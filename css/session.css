@@ -133,6 +133,46 @@
     margin-bottom: 0;
 }
 
+/* ── Bloques de ficha ──────────────────────────────── */
+.bloque-obligatorio {
+    border-left: 4px solid var(--color-success, #27ae60);
+    margin-bottom: 1.25rem;
+}
+
+.bloque-opcional {
+    border-left: 4px solid var(--color-accent);
+    margin-bottom: 1.25rem;
+    background: #fffdf5;
+}
+
+.bloque-tag {
+    font-size: .72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    padding: .2rem .6rem;
+    border-radius: 50px;
+    vertical-align: middle;
+    margin-left: .5rem;
+}
+
+.tag-obligatorio {
+    background: rgba(39, 174, 96, .12);
+    color: #27ae60;
+}
+
+.tag-opcional {
+    background: rgba(196, 160, 53, .15);
+    color: #b8941e;
+}
+
+.bloque-instruccion {
+    font-size: .9rem;
+    color: var(--color-text-light);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .session-header h1 {
