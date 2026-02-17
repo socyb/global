@@ -56,5 +56,5 @@ Material académico de uso exclusivo para el curso Globalización y Empleo 2026-
 ---
 
 <p align="center">
-  Hecho con ❤️ para la comunidad FCA · UNAM 2026
+  Hecho para la comunidad FCA · UNAM 2026
 </p>
