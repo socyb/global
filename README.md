@@ -42,26 +42,6 @@ global/
 3. **Unidad 3** — *Próximamente*
 4. **Unidad 4** — *Próximamente*
 
-## Uso local
-
-Para visualizar el sitio en tu computadora, simplemente abre `index.html` en cualquier navegador:
-
-```bash
-# Clonar el repositorio
-git clone https://github.com/socyb/global.git
-
-# Abrir en el navegador (macOS)
-open global/index.html
-```
-
-También puedes usar un servidor local:
-
-```bash
-cd global
-python3 -m http.server 8000
-# Visitar http://localhost:8000
-```
-
 ## Tecnologías
 
 - HTML5 semántico
