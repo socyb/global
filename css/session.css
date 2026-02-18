@@ -1,64 +1,85 @@
 /* ═══════════════════════════════════════════════════════
-   Session page styles
+   Session page styles — Neo-Academic Brutalism
+   Projection-friendly: larger type for classroom display
    ═══════════════════════════════════════════════════════ */
 
 .session-header {
-    padding: 1.5rem 0 1.25rem;
+    padding: 1.75rem 0 1.5rem;
 }
 
 .session-header h1 {
-    font-size: 1.6rem;
-    margin-bottom: .2rem;
+    font-size: 2.2rem;
+    color: var(--ink);
+    margin-bottom: .25rem;
+}
+
+.session-header .subtitle {
+    font-size: 1.15rem;
 }
 
 .back-link {
-    display: inline-block;
-    color: var(--color-accent-light);
-    font-size: .88rem;
-    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    color: var(--coral);
+    font-size: .95rem;
+    font-weight: 600;
     margin-bottom: .75rem;
+    padding: .35rem .8rem;
+    border-radius: var(--radius-sm);
+    border: var(--border-thin);
+    background: var(--surface);
+    box-shadow: 3px 3px 0 var(--ink);
     transition: all var(--transition);
+    font-family: var(--font-accent);
 }
 .back-link:hover {
-    color: #fff;
-    transform: translateX(-4px);
+    color: var(--ink);
+    background: var(--blush);
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--ink);
 }
 
-/* Content cards */
+/* ── Section headings ──────────────────────────────── */
+.section h2 {
+    font-size: 1.65rem;
+}
+
+/* ── Content cards ─────────────────────────────────── */
 .content-card {
-    background: var(--color-surface);
+    background: var(--surface);
     border-radius: var(--radius);
     padding: 1.5rem 1.75rem;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--color-border);
-    margin-bottom: .5rem;
+    border: var(--border-thin);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: .75rem;
 }
 
 .content-card h3 {
-    color: var(--color-primary);
+    color: var(--ink);
     margin-bottom: .75rem;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
 }
 
 .content-card p {
-    color: var(--color-text);
-    font-size: .95rem;
-    line-height: 1.65;
+    color: var(--text);
+    font-size: 1.15rem;
+    line-height: 1.7;
 }
 
-/* Instructions list */
+/* ── Instructions list ─────────────────────────────── */
 .instructions-list {
     list-style: none;
     counter-reset: step;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-top: .5rem;
+    gap: 1.25rem;
+    margin-top: .75rem;
 }
 
 .instructions-list li {
     counter-increment: step;
-    padding-left: 3rem;
+    padding-left: 3.5rem;
     position: relative;
 }
 
@@ -67,66 +88,73 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: 36px;
-    height: 36px;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    width: 40px;
+    height: 40px;
+    background: var(--ink);
     color: #fff;
-    border-radius: 50%;
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: .9rem;
+    font-size: 1.05rem;
+    font-family: var(--font-accent);
+    box-shadow: 3px 3px 0 var(--coral);
 }
 
 .instructions-list li strong {
     display: block;
-    font-size: 1rem;
-    color: var(--color-primary);
+    font-size: 1.2rem;
+    color: var(--ink);
     margin-bottom: .15rem;
 }
 
 .instructions-list li p {
-    font-size: .9rem;
-    color: var(--color-text-light);
+    font-size: 1.05rem;
+    color: var(--text-muted);
 }
 
-/* Ficha grid */
+/* ── Ficha grid ────────────────────────────────────── */
 .ficha-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.25rem;
+    gap: 1.15rem;
 }
 
 .ficha-item {
-    background: var(--color-bg);
+    background: var(--sky);
     border-radius: var(--radius-sm);
-    padding: 1.15rem 1.25rem;
-    border-left: 3px solid var(--color-accent);
+    padding: 1.15rem 1.3rem;
+    border: var(--border-thin);
+    border-left: 5px solid var(--teal);
 }
 
 .ficha-label {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: .35rem;
     font-weight: 700;
-    font-size: .95rem;
-    color: var(--color-primary);
+    font-size: 1.1rem;
+    color: var(--ink);
     margin-bottom: .35rem;
 }
 
 .ficha-item p {
-    font-size: .88rem;
-    color: var(--color-text-light);
+    font-size: 1.0rem;
+    color: var(--text-muted);
+    line-height: 1.55;
 }
 
-/* Note card */
+/* ── Note card ─────────────────────────────────────── */
 .note-card {
-    background: #fffdf0;
-    border-color: var(--color-accent-light);
+    background: var(--cream);
+    border-color: var(--gold);
+    border-left: 5px solid var(--gold);
 }
 
 .note-card p {
-    margin-bottom: .5rem;
-    font-size: .92rem;
+    margin-bottom: .55rem;
+    font-size: 1.05rem;
 }
 
 .note-card p:last-child {
@@ -135,47 +163,54 @@
 
 /* ── Bloques de ficha ──────────────────────────────── */
 .bloque-obligatorio {
-    border-left: 4px solid var(--color-success, #27ae60);
-    margin-bottom: 1.25rem;
+    border-left: 5px solid var(--green);
+    background: var(--mint);
+    margin-bottom: 1.15rem;
 }
 
 .bloque-opcional {
-    border-left: 4px solid var(--color-accent);
-    margin-bottom: 1.25rem;
-    background: #fffdf5;
+    border-left: 5px solid var(--gold);
+    margin-bottom: 1.15rem;
+    background: var(--cream);
 }
 
 .bloque-tag {
-    font-size: .72rem;
+    font-size: .8rem;
     font-weight: 700;
+    font-family: var(--font-accent);
     text-transform: uppercase;
     letter-spacing: .5px;
-    padding: .2rem .6rem;
-    border-radius: 50px;
+    padding: .25rem .65rem;
+    border-radius: var(--radius-sm);
     vertical-align: middle;
     margin-left: .5rem;
+    border: 2px solid var(--ink);
 }
 
 .tag-obligatorio {
-    background: rgba(39, 174, 96, .12);
-    color: #27ae60;
+    background: var(--green);
+    color: #fff;
 }
 
 .tag-opcional {
-    background: rgba(196, 160, 53, .15);
-    color: #b8941e;
+    background: var(--gold);
+    color: var(--ink);
 }
 
 .bloque-instruccion {
-    font-size: .9rem;
-    color: var(--color-text-light);
+    font-size: 1.05rem;
+    color: var(--text-muted);
     font-style: italic;
     margin-bottom: 1rem;
 }
 
-/* Responsive */
+/* ── Responsive ────────────────────────────────────── */
 @media (max-width: 768px) {
     .session-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .section h2 {
         font-size: 1.3rem;
     }
 
@@ -184,6 +219,23 @@
     }
 
     .content-card {
-        padding: 1.25rem;
+        padding: 1.15rem;
+    }
+
+    .content-card p,
+    .instructions-list li p,
+    .ficha-item p,
+    .note-card p,
+    .bloque-instruccion {
+        font-size: .95rem;
+    }
+
+    .instructions-list li strong,
+    .ficha-label {
+        font-size: 1rem;
+    }
+
+    .content-card h3 {
+        font-size: 1.1rem;
     }
 }
