@@ -4,3 +4,9 @@
 
 # Reference/draft files
 neoacademicbrutalism.html
+
+# PDF files
+*.pdf
+
+# Python virtual environment
+.venv/

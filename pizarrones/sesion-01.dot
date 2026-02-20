@@ -1,0 +1,123 @@
+graph sesion01 {
+    label       = "Sesión 1 — Conceptos emergentes\nGlobalización y Empleo 2026-2 · FCA UNAM";
+    labelloc    = t;
+    fontname    = "sans-serif";
+    fontsize    = 14;
+    bgcolor     = "#fafafa";
+    node [shape=box, style="filled,rounded", fontname="sans-serif", fontsize=12, margin="0.3,0.15"];
+    edge [fontname="sans-serif", fontsize=10, color="#888888"];
+
+    /* ── Nodo central ──────────────────────────────── */
+    curso [
+        label     = "Globalización\ny Empleo",
+        shape     = ellipse,
+        fillcolor = "#1a73e8",
+        fontcolor = white,
+        fontsize  = 14,
+        penwidth  = 0
+    ];
+
+    /* ── Cluster: Tecnología y economía digital ─────── */
+    subgraph cluster_tech {
+        label     = "Tecnología y economía digital";
+        style     = filled;
+        fillcolor = "#e8f0fe";
+        color     = "#7baaf7";
+
+        automatizacion [label="Automatización", fillcolor="#d2e3fc"];
+        ia             [label="\"IA\"",          fillcolor="#d2e3fc"];
+        digital        [label="Digital",         fillcolor="#d2e3fc"];
+        fintech        [label="Fintech",          fillcolor="#d2e3fc"];
+        startup        [label="Startup",          fillcolor="#d2e3fc"];
+
+        automatizacion -- ia;
+        automatizacion -- digital;
+        fintech -- startup;
+        digital -- fintech;
+    }
+
+    /* ── Cluster: Sistema internacional ────────────── */
+    subgraph cluster_sistema {
+        label     = "Sistema internacional";
+        style     = filled;
+        fillcolor = "#fef9e7";
+        color     = "#f9ab00";
+
+        sistema        [label="Sistema internacional", fillcolor="#feefc3"];
+        orden          [label="\"Orden mundial\"",      fillcolor="#feefc3"];
+        chokepoints    [label="Chokepoints",             fillcolor="#feefc3"];
+        interconexion  [label="Interconexión",           fillcolor="#feefc3"];
+        aldea          [label="Aldea global",            fillcolor="#feefc3"];
+
+        sistema -- orden;
+        sistema -- chokepoints;
+        interconexion -- aldea;
+    }
+
+    /* ── Cluster: Marcos conceptuales ──────────────── */
+    subgraph cluster_marcos {
+        label     = "Marcos conceptuales";
+        style     = filled;
+        fillcolor = "#fce8e6";
+        color     = "#f28b82";
+
+        sociociber [label="Sociocibernética",               fillcolor="#fad2cf"];
+        cultura    [label="Cultura organizacional\n(Hofstede)", fillcolor="#fad2cf"];
+    }
+
+    /* ── Cluster: Mundo laboral ─────────────────────── */
+    subgraph cluster_trabajo {
+        label     = "Mundo laboral";
+        style     = filled;
+        fillcolor = "#e6f4ea";
+        color     = "#81c995";
+
+        situacion    [label="Situación del\nempleo",    fillcolor="#ceead6"];
+        relaciones   [label="Relaciones laborales",      fillcolor="#ceead6"];
+        regulacion   [label="Regulación laboral",        fillcolor="#ceead6"];
+        arbitrage    [label="Labor arbitrage",           fillcolor="#ceead6"];
+        nearshoring  [label="Nearshoring",               fillcolor="#ceead6"];
+
+        situacion -- relaciones;
+        relaciones -- regulacion;
+        regulacion -- arbitrage;
+        relaciones -- nearshoring;
+    }
+
+    /* ── Cluster: Impactos / efectos ───────────────── */
+    subgraph cluster_impactos {
+        label     = "Impactos";
+        style     = filled;
+        fillcolor = "#f3e8fd";
+        color     = "#c58af9";
+
+        beneficios   [label="Beneficios",           fillcolor="#e9d2fd"];
+        oportunidades [label="Oportunidades",        fillcolor="#e9d2fd"];
+        riesgo       [label="Riesgo",                fillcolor="#e9d2fd"];
+        inclusion    [label="Inclusión financiera",  fillcolor="#e9d2fd"];
+        finanzas     [label="Finanzas",              fillcolor="#e9d2fd"];
+
+        beneficios -- oportunidades;
+        finanzas -- inclusion;
+        finanzas -- riesgo;
+    }
+
+    /* ── Conexiones al nodo central ─────────────────── */
+    curso -- automatizacion [label="impacto"];
+    curso -- situacion      [label="consecuencias"];
+    curso -- sistema        [label="contexto"];
+    curso -- sociociber     [label="enfoque teórico"];
+    curso -- finanzas       [label="dimensión\nfinanciera"];
+
+    /* ── Conexiones entre clusters ───────────────────── */
+    automatizacion -- situacion    [label="transforma",        style=dashed];
+    digital        -- fintech      [style=invis];
+    fintech        -- finanzas     [label="sector",            style=dashed];
+    aldea          -- interconexion [style=invis];
+    sistema        -- relaciones   [label="marco",             style=dashed];
+    nearshoring    -- aldea        [label="geografía\ndel trabajo", style=dashed];
+    regulacion     -- cultura      [label="dimensión\ncultural",   style=dashed];
+    finanzas       -- oportunidades [style=invis];
+    riesgo         -- chokepoints  [label="vulnerabilidad",    style=dashed];
+    sociociber     -- aldea        [label="red global",        style=dashed];
+}
