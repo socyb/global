@@ -221,6 +221,24 @@
 </footer>
 
 <script src="js/counter.js"></script>
+<script>
+/* Auto-update "Última actualización" from latest GitHub commit */
+(function () {
+    const el = document.getElementById('lastUpdated');
+    if (!el) return;
+    fetch('https://api.github.com/repos/socyb/global/commits?per_page=1')
+        .then(r => r.json())
+        .then(data => {
+            if (!data[0]) return;
+            const d = new Date(data[0].commit.committer.date);
+            el.setAttribute('datetime', d.toISOString().slice(0, 10));
+            el.textContent = d.toLocaleDateString('es-MX', {
+                day: 'numeric', month: 'long', year: 'numeric'
+            });
+        })
+        .catch(() => { /* keep static fallback */ });
+})();
+</script>
 
 </body>
 </html>
