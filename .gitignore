@@ -19,3 +19,9 @@ neoacademicbrutalism.html
 
 # PDF reference files
 pdfs/
+
+# Pizarrones PNG files
+pizarrones/*.png
+
+# Web archive files
+*.webarchive
