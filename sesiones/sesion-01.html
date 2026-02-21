@@ -104,15 +104,88 @@
         <div class="content-card">
             <h3>Mapa de conceptos emergentes</h3>
             <p>Conceptos aportados por el grupo durante la sesión de presentación, organizados por tema:</p>
-            <figure style="text-align:center; margin: 1.5rem 0;">
+            <figure class="mapa-thumb" style="text-align:center; margin:1.5rem 0; cursor:zoom-in;" onclick="document.getElementById('lightbox-mapa').classList.add('active')">
                 <img src="../pizarrones/sesion-01.svg"
                      alt="Diagrama de conceptos — Sesión 1"
-                     style="max-width:100%; height:auto; border:1px solid #e0e0e0; border-radius:8px; padding:1rem; background:#fafafa;">
+                     style="max-width:100%; height:auto; border:1px solid #e0e0e0; border-radius:8px; padding:1rem; background:#fafafa; transition:transform .2s, box-shadow .2s;"
+                     onmouseover="this.style.transform='scale(1.015)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,.12)'"
+                     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'">
                 <figcaption style="font-size:0.85rem; color:#666; margin-top:0.5rem;">
-                    Mapa de conceptos · Sesión 1 · 17 de febrero de 2026
+                    Clic para ampliar · Mapa de conceptos · Sesión 1 · 17 de febrero de 2026
                 </figcaption>
             </figure>
         </div>
+
+        <!-- Lightbox modal para el mapa -->
+        <div id="lightbox-mapa" class="lightbox-overlay" onclick="this.classList.remove('active')">
+            <button class="lightbox-close" aria-label="Cerrar">&times;</button>
+            <div class="lightbox-content" onclick="event.stopPropagation()">
+                <img src="../pizarrones/sesion-01.svg"
+                     alt="Diagrama de conceptos — Sesión 1 (ampliado)">
+            </div>
+        </div>
+
+        <style>
+            /* ── Lightbox overlay ─────────────────────── */
+            .lightbox-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                z-index: 9999;
+                background: rgba(0, 0, 0, .75);
+                backdrop-filter: blur(6px);
+                -webkit-backdrop-filter: blur(6px);
+                justify-content: center;
+                align-items: center;
+                animation: lb-fade-in .25s ease;
+            }
+            .lightbox-overlay.active {
+                display: flex;
+            }
+            .lightbox-content {
+                max-width: 94vw;
+                max-height: 92vh;
+                overflow: auto;
+                background: #fff;
+                border-radius: 12px;
+                padding: 1.5rem;
+                box-shadow: 0 12px 48px rgba(0, 0, 0, .35);
+                animation: lb-pop-in .3s cubic-bezier(.22, 1, .36, 1);
+            }
+            .lightbox-content img {
+                display: block;
+                max-width: 100%;
+                height: auto;
+            }
+            .lightbox-close {
+                position: fixed;
+                top: 1rem;
+                right: 1.25rem;
+                z-index: 10000;
+                background: rgba(255,255,255,.9);
+                border: none;
+                border-radius: 50%;
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1.5rem;
+                line-height: 1;
+                cursor: pointer;
+                color: #333;
+                box-shadow: 0 2px 8px rgba(0,0,0,.2);
+                transition: transform .15s;
+            }
+            .lightbox-close:hover {
+                transform: scale(1.1);
+            }
+            @keyframes lb-fade-in {
+                from { opacity: 0; }
+                to   { opacity: 1; }
+            }
+            @keyframes lb-pop-in {
+                from { transform: scale(.92); opacity: 0; }
+                to   { transform: scale(1);   opacity: 1; }
+            }
+        </style>
 
         <!-- Lista del grupo -->
         <div class="content-card">
@@ -174,6 +247,15 @@
         </div>
     </div>
 </footer>
+
+<script>
+    // Cerrar lightbox con Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            document.getElementById('lightbox-mapa').classList.remove('active');
+        }
+    });
+</script>
 
 </body>
 </html>

@@ -1,136 +1,220 @@
 digraph sesion01 {
-    label       = "Sesión 1 — Conceptos emergentes\nGlobalización y Empleo 2026-2 · FCA UNAM";
+    /* ── Configuración general ─────────────────────── */
+    label       = <<b>Sesión 1 — Conceptos emergentes</b><br/>Globalización y Empleo 2026-2 · FCA UNAM>;
     labelloc    = t;
-    fontname    = "sans-serif";
-    fontsize    = 14;
+    fontname    = "Helvetica Neue";
+    fontsize    = 16;
     bgcolor     = "#fafafa";
-    node [shape=box, style="filled,rounded", fontname="sans-serif", fontsize=12, margin="0.3,0.15"];
-    edge [fontname="sans-serif", fontsize=10, color="#888888", dir=none];
+    rankdir     = TB;
+    ranksep     = 1.2;
+    nodesep     = 0.8;
+    splines     = true;
+    compound    = true;
+    newrank     = true;
+    pad         = "0.5,0.4";
+
+    node [
+        shape    = box,
+        style    = "filled,rounded",
+        fontname = "Helvetica Neue",
+        fontsize = 11,
+        margin   = "0.25,0.12",
+        penwidth = 0.8,
+        color    = "#cccccc"
+    ];
+    edge [
+        fontname  = "Helvetica Neue",
+        fontsize  = 9,
+        color     = "#aaaaaa",
+        dir       = none,
+        penwidth  = 1.0,
+        arrowsize = 0.7
+    ];
 
     /* ── Nodo central ──────────────────────────────── */
     curso [
-        label     = "Globalización\ny Empleo",
+        label     = <<b>Globalización<br/>y Empleo</b>>,
         shape     = ellipse,
         fillcolor = "#1a73e8",
         fontcolor = white,
-        fontsize  = 14,
-        penwidth  = 0
+        fontsize  = 18,
+        fontname  = "Helvetica Neue Bold",
+        penwidth  = 2.5,
+        color     = "#0d47a1",
+        width     = 2.4,
+        height    = 1.4,
+        fixedsize = false
     ];
 
     /* ── Cluster: Tecnología y economía digital ─────── */
     subgraph cluster_tech {
-        label     = "Tecnología y economía digital";
-        style     = filled;
+        label     = <<b>Tecnología y economía digital</b>>;
+        labeljust = l;
+        fontname  = "Helvetica Neue";
+        fontsize  = 12;
+        fontcolor = "#1a56c4";
+        style     = "filled,rounded";
         fillcolor = "#e8f0fe";
         color     = "#7baaf7";
+        penwidth  = 1.5;
+        margin    = 16;
 
-        automatizacion [label="Automatización", fillcolor="#d2e3fc"];
-        ia             [label="\"IA\"",          fillcolor="#d2e3fc"];
-        digital        [label="Digital",         fillcolor="#d2e3fc"];
-        fintech        [label="Fintech",          fillcolor="#d2e3fc"];
-        startup        [label="Startup",          fillcolor="#d2e3fc"];
+        automatizacion [label=<<b>Automatización</b>>, fillcolor="#d2e3fc", fontsize=12, penwidth=1.2, color="#7baaf7"];
+        ia             [label=<«IA»>,                   fillcolor="#d2e3fc"];
+        digital        [label=<Digital>,                 fillcolor="#d2e3fc"];
+        fintech        [label=<Fintech>,                 fillcolor="#d2e3fc"];
+        startup        [label=<Startup>,                 fillcolor="#d2e3fc"];
 
-        automatizacion -> ia;
-        automatizacion -> digital;
-        fintech -> startup;
-        digital -> fintech;
+        automatizacion -> ia      [color="#7baaf7"];
+        automatizacion -> digital [color="#7baaf7"];
+        fintech -> startup        [color="#7baaf7"];
+        digital -> fintech        [color="#7baaf7"];
     }
 
     /* ── Cluster: Sistema internacional ────────────── */
     subgraph cluster_sistema {
-        label     = "Sistema internacional";
-        style     = filled;
+        label     = <<b>Sistema internacional</b>>;
+        labeljust = l;
+        fontname  = "Helvetica Neue";
+        fontsize  = 12;
+        fontcolor = "#b8860b";
+        style     = "filled,rounded";
         fillcolor = "#fef9e7";
         color     = "#f9ab00";
+        penwidth  = 1.5;
+        margin    = 16;
 
-        sistema        [label="Sistema internacional", fillcolor="#feefc3"];
-        orden          [label="\"Orden mundial\"",      fillcolor="#feefc3"];
-        chokepoints    [label="Chokepoints",             fillcolor="#feefc3"];
-        interconexion  [label="Interconexión",           fillcolor="#feefc3"];
-        aldea          [label="Aldea global",            fillcolor="#feefc3"];
-        nortesur       [label="Norte Global\ny Sur Global", fillcolor="#feefc3"];
+        sistema       [label=<<b>Sistema internacional</b>>,      fillcolor="#feefc3", fontsize=12, penwidth=1.2, color="#f9ab00"];
+        orden         [label=<«Orden mundial»>,                    fillcolor="#feefc3"];
+        chokepoints   [label=<Chokepoints>,                        fillcolor="#feefc3", shape=hexagon];
+        interconexion [label=<Interconexión>,                      fillcolor="#feefc3"];
+        aldea         [label=<Aldea global>,                       fillcolor="#feefc3"];
+        nortesur      [label=<Norte Global<br/>y Sur Global>,      fillcolor="#feefc3"];
 
-        sistema -> orden;
-        sistema -> chokepoints;
-        interconexion -> aldea;
-        nortesur -> sistema;
+        sistema -> orden         [color="#f9ab00"];
+        sistema -> chokepoints   [color="#f9ab00"];
+        interconexion -> aldea   [color="#f9ab00"];
+        nortesur -> sistema      [color="#f9ab00"];
     }
 
     /* ── Cluster: Marcos conceptuales ──────────────── */
     subgraph cluster_marcos {
-        label     = "Marcos conceptuales";
-        style     = filled;
+        label     = <<b>Marcos conceptuales</b>>;
+        labeljust = l;
+        fontname  = "Helvetica Neue";
+        fontsize  = 12;
+        fontcolor = "#c0392b";
+        style     = "filled,rounded";
         fillcolor = "#fce8e6";
         color     = "#f28b82";
+        penwidth  = 1.5;
+        margin    = 16;
 
-        sociociber   [label="Sociocibernética",               fillcolor="#fad2cf"];
-        cultura      [label="Cultura organizacional\n(Hofstede)", fillcolor="#fad2cf"];
-        guystanding  [label="Guy Standing",                   fillcolor="#fad2cf"];
-        policymemo   [label="Policy Memo",                    fillcolor="#fad2cf"];
+        sociociber  [label=<<b>Sociocibernética</b>>,                    fillcolor="#fad2cf", shape=diamond, fontsize=12, penwidth=1.2, color="#f28b82"];
+        cultura     [label=<Cultura organizacional<br/>(Hofstede)>,      fillcolor="#fad2cf", shape=diamond];
+        guystanding [label=<Guy Standing>,                               fillcolor="#fad2cf", shape=diamond];
+        policymemo  [label=<Policy Memo>,                                fillcolor="#fad2cf", shape=note];
 
-        guystanding -> sociociber;
+        guystanding -> sociociber [color="#f28b82"];
     }
 
     /* ── Cluster: Mundo laboral ─────────────────────── */
     subgraph cluster_trabajo {
-        label     = "Mundo laboral";
-        style     = filled;
+        label     = <<b>Mundo laboral</b>>;
+        labeljust = l;
+        fontname  = "Helvetica Neue";
+        fontsize  = 12;
+        fontcolor = "#1b7a3d";
+        style     = "filled,rounded";
         fillcolor = "#e6f4ea";
         color     = "#81c995";
+        penwidth  = 1.5;
+        margin    = 16;
 
-        situacion      [label="Situación del\nempleo",    fillcolor="#ceead6"];
-        relaciones     [label="Relaciones laborales",      fillcolor="#ceead6"];
-        regulacion     [label="Regulación laboral",        fillcolor="#ceead6"];
-        arbitrage      [label="Labor arbitrage",           fillcolor="#ceead6"];
-        nearshoring    [label="Nearshoring",               fillcolor="#ceead6"];
-        precariado     [label="Precariado",                fillcolor="#ceead6"];
-        gigeconomy     [label="Gig economy",               fillcolor="#ceead6"];
-        nuevasformas   [label="Nuevas formas\nde empleo",  fillcolor="#ceead6"];
+        situacion    [label=<<b>Situación del<br/>empleo</b>>,    fillcolor="#ceead6", fontsize=12, penwidth=1.2, color="#81c995"];
+        relaciones   [label=<Relaciones laborales>,                fillcolor="#ceead6"];
+        regulacion   [label=<Regulación laboral>,                  fillcolor="#ceead6"];
+        arbitrage    [label=<Labor arbitrage>,                     fillcolor="#ceead6"];
+        nearshoring  [label=<Nearshoring>,                         fillcolor="#ceead6"];
+        precariado   [label=<Precariado>,                          fillcolor="#ceead6"];
+        gigeconomy   [label=<Gig economy>,                         fillcolor="#ceead6"];
+        nuevasformas [label=<Nuevas formas<br/>de empleo>,         fillcolor="#ceead6"];
 
-        situacion -> relaciones;
-        relaciones -> regulacion;
-        regulacion -> arbitrage;
-        relaciones -> nearshoring;
-        precariado -> gigeconomy;
-        gigeconomy -> nuevasformas;
-        precariado -> situacion;
+        situacion -> relaciones    [color="#81c995"];
+        relaciones -> regulacion   [color="#81c995"];
+        regulacion -> arbitrage    [color="#81c995"];
+        relaciones -> nearshoring  [color="#81c995"];
+        precariado -> gigeconomy   [color="#81c995"];
+        gigeconomy -> nuevasformas [color="#81c995"];
+        precariado -> situacion    [color="#81c995"];
     }
 
     /* ── Cluster: Impactos / efectos ───────────────── */
     subgraph cluster_impactos {
-        label     = "Impactos";
-        style     = filled;
+        label     = <<b>Impactos</b>>;
+        labeljust = l;
+        fontname  = "Helvetica Neue";
+        fontsize  = 12;
+        fontcolor = "#7b2d8e";
+        style     = "filled,rounded";
         fillcolor = "#f3e8fd";
         color     = "#c58af9";
+        penwidth  = 1.5;
+        margin    = 16;
 
-        beneficios   [label="Beneficios",           fillcolor="#e9d2fd"];
-        oportunidades [label="Oportunidades",        fillcolor="#e9d2fd"];
-        riesgo       [label="Riesgo",                fillcolor="#e9d2fd"];
-        inclusion    [label="Inclusión financiera",  fillcolor="#e9d2fd"];
-        finanzas     [label="Finanzas",              fillcolor="#e9d2fd"];
+        finanzas      [label=<<b>Finanzas</b>>,         fillcolor="#e9d2fd", fontsize=12, penwidth=1.2, color="#c58af9"];
+        beneficios    [label=<Beneficios>,               fillcolor="#e9d2fd"];
+        oportunidades [label=<Oportunidades>,            fillcolor="#e9d2fd"];
+        riesgo        [label=<Riesgo>,                   fillcolor="#e9d2fd", shape=octagon];
+        inclusion     [label=<Inclusión financiera>,     fillcolor="#e9d2fd"];
 
-        beneficios -> oportunidades;
-        finanzas -> inclusion;
-        finanzas -> riesgo;
+        beneficios -> oportunidades [color="#c58af9"];
+        finanzas -> inclusion       [color="#c58af9"];
+        finanzas -> riesgo          [color="#c58af9"];
     }
 
-    /* ── Conexiones al nodo central ─────────────────── */
-    curso -> automatizacion [label="impacto"];
-    curso -> situacion      [label="consecuencias"];
-    curso -> sistema        [label="contexto"];
-    curso -> sociociber     [label="enfoque teórico"];
-    curso -> finanzas       [label="dimensión\nfinanciera"];
+    /* ── Leyenda ───────────────────────────────────── */
+    subgraph cluster_legend {
+        label     = <<b>Leyenda</b>>;
+        labeljust = l;
+        fontname  = "Helvetica Neue";
+        fontsize  = 10;
+        style     = "filled,rounded";
+        fillcolor = "#ffffff";
+        color     = "#cccccc";
+        penwidth  = 1.0;
+        margin    = 12;
 
-    /* ── Conexiones entre clusters ───────────────────── */
-    automatizacion -> situacion    [label="transforma",        style=dashed];
-    fintech        -> finanzas     [label="sector",            style=dashed];
-    sistema        -> relaciones   [label="marco",             style=dashed];
-    nearshoring    -> aldea        [label="geografía\ndel trabajo", style=dashed, constraint=false];
-    regulacion     -> cultura      [label="dimensión\ncultural",   style=dashed, constraint=false];
-    riesgo         -> chokepoints  [label="vulnerabilidad",    style=dashed, constraint=false];
-    sociociber     -> aldea        [label="red global",        style=dashed, constraint=false];
-    guystanding    -> precariado   [label="teoría",            style=dashed];
-    gigeconomy     -> digital      [label="plataformas",       style=dashed, constraint=false];
-    nortesur       -> nearshoring  [label="asimetría",         style=dashed, constraint=false];
-    policymemo     -> curso        [label="herramienta",       style=dashed, constraint=false];
+        node [fontsize=9, margin="0.15,0.08", width=0, height=0];
+
+        leg_tech    [label=<Tecnología>,               fillcolor="#d2e3fc", shape=box];
+        leg_sist    [label=<Sistema intl.>,            fillcolor="#feefc3", shape=box];
+        leg_marcos  [label=<Marcos conceptuales>,      fillcolor="#fad2cf", shape=diamond];
+        leg_trabajo [label=<Mundo laboral>,            fillcolor="#ceead6", shape=box];
+        leg_impacto [label=<Impactos>,                 fillcolor="#e9d2fd", shape=box];
+        leg_tool    [label=<Herramienta>,              fillcolor="#fad2cf", shape=note];
+        leg_risk    [label=<Riesgo / punto crítico>,   fillcolor="#e9d2fd", shape=octagon];
+
+        leg_tech -> leg_sist -> leg_marcos -> leg_trabajo -> leg_impacto -> leg_tool -> leg_risk [style=invis];
+    }
+
+    /* ── Conexiones al nodo central (gruesas, coloreadas) ── */
+    curso -> automatizacion [label=<impacto>,                fontcolor="#1a56c4", color="#1a73e8", penwidth=2.0, style=bold];
+    curso -> situacion      [label=<consecuencias>,          fontcolor="#1b7a3d", color="#34a853", penwidth=2.0, style=bold];
+    curso -> sistema        [label=<contexto>,               fontcolor="#b8860b", color="#f9ab00", penwidth=2.0, style=bold];
+    curso -> sociociber     [label=<enfoque teórico>,        fontcolor="#c0392b", color="#ea4335", penwidth=2.0, style=bold];
+    curso -> finanzas       [label=<dimensión<br/>financiera>, fontcolor="#7b2d8e", color="#c58af9", penwidth=2.0, style=bold];
+
+    /* ── Conexiones entre clusters (punteadas, color del origen) ── */
+    automatizacion -> situacion   [label=<transforma>,                   color="#7baaf7", fontcolor="#5a8fd4", style=dashed, penwidth=1.2];
+    fintech        -> finanzas    [label=<sector>,                       color="#7baaf7", fontcolor="#5a8fd4", style=dashed, penwidth=1.2];
+    sistema        -> relaciones  [label=<marco>,                        color="#f9ab00", fontcolor="#b8860b", style=dashed, penwidth=1.2];
+    nearshoring    -> aldea       [label=<geografía<br/>del trabajo>,     color="#81c995", fontcolor="#1b7a3d", style=dashed, penwidth=1.2, constraint=false];
+    regulacion     -> cultura     [label=<dimensión<br/>cultural>,       color="#81c995", fontcolor="#1b7a3d", style=dashed, penwidth=1.2, constraint=false];
+    riesgo         -> chokepoints [label=<vulnerabilidad>,               color="#c58af9", fontcolor="#7b2d8e", style=dashed, penwidth=1.2, constraint=false];
+    sociociber     -> aldea       [label=<red global>,                   color="#f28b82", fontcolor="#c0392b", style=dashed, penwidth=1.2, constraint=false];
+    guystanding    -> precariado  [label=<teoría>,                       color="#f28b82", fontcolor="#c0392b", style=dashed, penwidth=1.2];
+    gigeconomy     -> digital     [label=<plataformas>,                  color="#81c995", fontcolor="#1b7a3d", style=dashed, penwidth=1.2, constraint=false];
+    nortesur       -> nearshoring [label=<asimetría>,                    color="#f9ab00", fontcolor="#b8860b", style=dashed, penwidth=1.2, constraint=false];
+    policymemo     -> curso       [label=<herramienta>,                  color="#f28b82", fontcolor="#c0392b", style=dashed, penwidth=1.2, constraint=false];
 }
