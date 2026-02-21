@@ -11,8 +11,11 @@ neoacademicbrutalism.html
 # Video files
 *.mp4
 
-# Whiteboard photos
-pizarrones/*.png
-
 # Python virtual environment
 .venv/
+
+# VS Code settings
+.vscode/
+
+# PDF reference files
+pdfs/

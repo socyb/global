@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sesión 2 — La globalización, sus niveles de análisis y la coyuntura actual (2026) · Globalización y Empleo 2026-2">
+    <title>Sesión 2 · La globalización, sus niveles de análisis y la coyuntura actual (2026) — Globalización y Empleo</title>
+    <link rel="icon" href="../img/icon-globe.svg">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/session.css">
+    <style>
+        /* ══════════════════════════════════════════════
+           PRESENTATION / SLIDE ENGINE
+           ══════════════════════════════════════════════ */
+
+        /* ── Slide container ───────────────────────── */
+        .slides-wrapper {
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            animation: fadeSlide .45s ease;
+            min-height: 60vh;
+        }
+        .slide.active { display: block; }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Progress bar ──────────────────────────── */
+        .progress-bar-wrap {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: var(--surface);
+            border-bottom: var(--border-thin);
+            padding: .5rem 0;
+        }
+        .progress-bar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: .75rem;
+        }
+        .progress-track {
+            flex: 1;
+            height: 10px;
+            background: var(--sky);
+            border-radius: var(--radius-pill);
+            border: 2px solid var(--ink);
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--coral), var(--purple));
+            border-radius: var(--radius-pill);
+            transition: width .4s ease;
+        }
+        .progress-label {
+            font-family: var(--font-accent);
+            font-weight: 700;
+            font-size: .82rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        /* ── Navigation controls ───────────────────── */
+        .slide-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: .75rem;
+            margin-top: 2rem;
+            padding: 1rem 0;
+        }
+        .slide-nav button {
+            font-family: var(--font-accent);
+            font-weight: 700;
+            font-size: .95rem;
+            padding: .6rem 1.5rem;
+            border: var(--border-thin);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            background: var(--surface);
+            color: var(--ink);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .slide-nav button:hover:not(:disabled) {
+            background: var(--blush);
+            transform: translate(1px,1px);
+            box-shadow: var(--shadow-press);
+        }
+        .slide-nav button:disabled {
+            opacity: .35;
+            cursor: not-allowed;
+        }
+        .slide-nav .slide-counter {
+            font-family: var(--font-accent);
+            font-weight: 600;
+            font-size: .9rem;
+            color: var(--text-muted);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        /* ── Slide title area ──────────────────────── */
+        .slide-title-hero {
+            text-align: center;
+            padding: 3.5rem 1rem 2.5rem;
+        }
+        .slide-title-hero h2 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: .5rem;
+        }
+        .slide-title-hero .slide-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .slide-title-hero .slide-tag {
+            display: inline-block;
+            background: var(--ink);
+            color: #fff;
+            font-family: var(--font-accent);
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            padding: .3rem 1rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1rem;
+        }
+
+        /* ── Level cards (micro/meso/macro) ────────── */
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 1.25rem;
+        }
+        @media (max-width: 768px) {
+            .levels-grid { grid-template-columns: 1fr; }
+        }
+        .level-card {
+            background: var(--surface);
+            border: var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .level-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0 var(--ink);
+        }
+        .level-card .level-badge {
+            display: inline-block;
+            font-family: var(--font-accent);
+            font-weight: 800;
+            font-size: .75rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            padding: .25rem .75rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: .75rem;
+            border: 2px solid var(--ink);
+        }
+        .level-macro .level-badge { background: var(--coral); color: #fff; }
+        .level-meso .level-badge  { background: var(--purple); color: #fff; }
+        .level-micro .level-badge { background: var(--teal); color: #fff; }
+        .level-card h3 { font-size: 1.3rem; margin-bottom: .5rem; }
+        .level-card p { font-size: 1rem; line-height: 1.65; color: var(--text); }
+        .level-card ul {
+            margin-top: .5rem;
+            padding-left: 1.25rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* ── Quote block ───────────────────────────── */
+        .big-quote {
+            background: var(--cream);
+            border-left: 6px solid var(--gold);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem 2rem;
+            margin: 1.25rem 0;
+            font-size: 1.25rem;
+            font-style: italic;
+            line-height: 1.7;
+            color: var(--ink);
+        }
+        .big-quote cite {
+            display: block;
+            font-style: normal;
+            font-size: .95rem;
+            color: var(--text-muted);
+            margin-top: .75rem;
+            font-weight: 600;
+        }
+
+        /* ── Diagram / infographic blocks ──────────── */
+        .infographic-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .infographic-row .info-pill {
+            flex: 1 1 160px;
+            text-align: center;
+            background: var(--surface);
+            border: var(--border-thin);
+            border-radius: var(--radius);
+            padding: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .info-pill .info-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: .4rem;
+        }
+        .info-pill .info-label {
+            font-family: var(--font-accent);
+            font-weight: 700;
+            font-size: .9rem;
+            color: var(--ink);
+            display: block;
+        }
+        .info-pill .info-desc {
+            font-size: .85rem;
+            color: var(--text-muted);
+            margin-top: .25rem;
+        }
+
+        /* ── Two-column layout ─────────────────────── */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+        @media (max-width: 768px) {
+            .two-col { grid-template-columns: 1fr; }
+        }
+
+        /* ── Highlight number ──────────────────────── */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .stat-card {
+            text-align: center;
+            background: var(--surface);
+            border: var(--border);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            box-shadow: var(--shadow);
+        }
+        .stat-card .stat-number {
+            font-family: var(--font-accent);
+            font-weight: 800;
+            font-size: 2.2rem;
+            color: var(--coral);
+            display: block;
+        }
+        .stat-card .stat-label {
+            font-size: .9rem;
+            color: var(--text-muted);
+            margin-top: .25rem;
+        }
+
+        /* ── Timeline vertical ─────────────────────── */
+        .v-timeline {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-top: 1rem;
+        }
+        .v-timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0; bottom: 0;
+            width: 4px;
+            background: var(--ink);
+            border-radius: 2px;
+        }
+        .v-timeline .tl-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .v-timeline .tl-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: .35rem;
+            width: 14px; height: 14px;
+            background: var(--coral);
+            border: 3px solid var(--ink);
+            border-radius: 50%;
+            margin-left: 6px;
+        }
+        .v-timeline .tl-item h4 {
+            font-size: 1.1rem;
+            color: var(--ink);
+        }
+        .v-timeline .tl-item p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ── Concept tags (reuse from video page) ──── */
+        .key-concepts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+            margin-top: .75rem;
+        }
+        .concept-tag {
+            background: var(--ink);
+            color: #fff;
+            padding: .3rem .85rem;
+            border-radius: var(--radius-pill);
+            font-size: .9rem;
+            font-weight: 600;
+            font-family: var(--font-accent);
+        }
+        .concept-tag.tag-coral  { background: var(--coral); }
+        .concept-tag.tag-purple { background: var(--purple); }
+        .concept-tag.tag-teal   { background: var(--teal); color: var(--ink); }
+        .concept-tag.tag-green  { background: var(--green); }
+        .concept-tag.tag-gold   { background: var(--gold); color: var(--ink); }
+
+        /* ── Case study banner ─────────────────────── */
+        .case-banner {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            border-radius: var(--radius);
+            padding: 2rem 2.5rem;
+            border: var(--border);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.25rem;
+        }
+        .case-banner h3 {
+            color: var(--gold) !important;
+            font-size: 1.5rem;
+            margin-bottom: .5rem;
+        }
+        .case-banner p {
+            color: #ccd6f6;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        .case-banner .case-source {
+            font-size: .85rem;
+            color: #8892b0;
+            margin-top: .75rem;
+        }
+
+        /* ── Mapping table ─────────────────────────── */
+        .mapping-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-top: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .mapping-table th {
+            background: var(--ink);
+            color: #fff;
+            font-family: var(--font-accent);
+            font-size: .85rem;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            padding: .85rem 1rem;
+            text-align: left;
+        }
+        .mapping-table td {
+            padding: .85rem 1rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            border-bottom: 1px solid #ddd;
+            vertical-align: top;
+        }
+        .mapping-table tr:last-child td { border-bottom: none; }
+        .mapping-table tr:nth-child(even) td { background: var(--sky); }
+        .mapping-table .level-dot {
+            display: inline-block;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            margin-right: .4rem;
+            vertical-align: middle;
+        }
+        .dot-macro  { background: var(--coral); }
+        .dot-meso   { background: var(--purple); }
+        .dot-micro  { background: var(--teal); }
+
+        /* ── Discussion numbered list ──────────────── */
+        .discussion-list {
+            list-style: none;
+            counter-reset: question;
+            margin-top: .75rem;
+        }
+        .discussion-list li {
+            counter-increment: question;
+            padding: .85rem 0 .85rem 3.25rem;
+            position: relative;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.1rem;
+            line-height: 1.65;
+        }
+        .discussion-list li:last-child { border-bottom: none; }
+        .discussion-list li::before {
+            content: counter(question);
+            position: absolute;
+            left: 0; top: .85rem;
+            width: 32px; height: 32px;
+            background: var(--green);
+            color: #fff;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: .95rem;
+            font-family: var(--font-accent);
+        }
+
+        /* ── Org-grid ──────────────────────────────── */
+        .org-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: .75rem;
+            margin-top: 1rem;
+        }
+        .org-chip {
+            text-align: center;
+            background: var(--surface);
+            border: var(--border-thin);
+            border-radius: var(--radius-sm);
+            padding: .75rem .5rem;
+            font-family: var(--font-accent);
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--ink);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .org-chip:hover {
+            transform: translate(-1px,-1px);
+            box-shadow: var(--shadow);
+        }
+        .org-chip small {
+            display: block;
+            font-weight: 400;
+            font-size: .72rem;
+            color: var(--text-muted);
+            margin-top: .2rem;
+        }
+
+        /* ── Slide TOC (minimap) ───────────────────── */
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: .75rem;
+            margin-top: 1rem;
+        }
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            background: var(--surface);
+            border: var(--border-thin);
+            border-radius: var(--radius-sm);
+            padding: .75rem 1rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .toc-item:hover {
+            background: var(--blush);
+            transform: translate(1px,1px);
+            box-shadow: var(--shadow-press);
+        }
+        .toc-num {
+            width: 28px; height: 28px;
+            background: var(--ink);
+            color: #fff;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-accent);
+            font-weight: 700;
+            font-size: .8rem;
+            flex-shrink: 0;
+        }
+        .toc-text {
+            font-size: .92rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        /* ── Pulse animation for live indicator ────── */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .4; }
+        }
+        .live-dot {
+            display: inline-block;
+            width: 8px; height: 8px;
+            background: var(--coral);
+            border-radius: 50%;
+            margin-right: .4rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* ── Arrow connector between levels ────────── */
+        .arrow-down {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--text-muted);
+            margin: .5rem 0;
+            user-select: none;
+        }
+
+        /* ── Keyboard hint ─────────────────────────── */
+        .kb-hint {
+            text-align: center;
+            font-family: var(--font-accent);
+            font-size: .8rem;
+            color: var(--text-muted);
+            margin-top: .5rem;
+        }
+        .kb-hint kbd {
+            display: inline-block;
+            background: var(--ink);
+            color: #fff;
+            padding: .15rem .5rem;
+            border-radius: 4px;
+            font-size: .75rem;
+            margin: 0 .15rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header compacto -->
+<header class="site-header session-header">
+    <div class="container">
+        <a href="../index.html" class="back-link">← Volver al inicio</a>
+        <h1>Sesión 2 — La globalización, sus niveles de análisis y la coyuntura actual (2026)</h1>
+        <p class="subtitle">Globalización y Empleo 2026-2 · FCA UNAM · 20 de febrero de 2026</p>
+    </div>
+</header>
+
+<!-- Progress bar -->
+<div class="progress-bar-wrap">
+    <div class="container">
+        <div class="progress-bar-inner">
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill" style="width:0%"></div>
+            </div>
+            <span class="progress-label" id="progressLabel">1 / 18</span>
+        </div>
+    </div>
+</div>
+
+<main class="container">
+    <div class="slides-wrapper" id="slidesWrapper">
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 1 — PORTADA
+     ████████████████████████████████████████████████████ -->
+<section class="slide active" data-slide="1">
+    <div class="slide-title-hero">
+        <span class="slide-tag">Sesión 2</span>
+        <h2>La globalización, sus niveles de análisis<br>y la coyuntura actual (2026)</h2>
+        <p class="slide-subtitle">Interrelaciones, interdependencias e intercambios a escala planetaria</p>
+    </div>
+
+    <div class="content-card" style="text-align:center; background: var(--cream);">
+        <p style="font-size: 1.15rem;">Basado en <strong>Lombana &amp; Rozas (2013)</strong>, Cap. 1 · Actualizado con análisis de coyuntura 2026</p>
+        <div style="margin-top: 1rem;">
+            <span class="concept-tag">Globalización</span>
+            <span class="concept-tag tag-coral">Empleo</span>
+            <span class="concept-tag tag-purple">Negocios Internacionales</span>
+            <span class="concept-tag tag-teal">Aranceles 2026</span>
+        </div>
+    </div>
+
+    <div class="content-card" style="margin-top: 1rem;">
+        <h3>Índice de la presentación</h3>
+        <div class="toc-grid">
+            <div class="toc-item" onclick="goToSlide(2)"><span class="toc-num">2</span><span class="toc-text">¿Qué es la globalización?</span></div>
+            <div class="toc-item" onclick="goToSlide(3)"><span class="toc-num">3</span><span class="toc-text">Objetos de análisis</span></div>
+            <div class="toc-item" onclick="goToSlide(4)"><span class="toc-num">4</span><span class="toc-text">Los relacionamientos hoy</span></div>
+            <div class="toc-item" onclick="goToSlide(5)"><span class="toc-num">5</span><span class="toc-text">Niveles: Macro · Meso · Micro</span></div>
+            <div class="toc-item" onclick="goToSlide(6)"><span class="toc-num">6</span><span class="toc-text">Nivel Macro + Gobernanza</span></div>
+            <div class="toc-item" onclick="goToSlide(7)"><span class="toc-num">7</span><span class="toc-text">Nivel Meso</span></div>
+            <div class="toc-item" onclick="goToSlide(8)"><span class="toc-num">8</span><span class="toc-text">Nivel Micro</span></div>
+            <div class="toc-item" onclick="goToSlide(9)"><span class="toc-num">9</span><span class="toc-text">Dimensiones + capa digital</span></div>
+            <div class="toc-item" onclick="goToSlide(10)"><span class="toc-num">10</span><span class="toc-text">Globalización económica</span></div>
+            <div class="toc-item" onclick="goToSlide(11)"><span class="toc-num">11</span><span class="toc-text">Globalización sociocultural</span></div>
+            <div class="toc-item" onclick="goToSlide(12)"><span class="toc-num">12</span><span class="toc-text">Dimensión ambiental y digital</span></div>
+            <div class="toc-item" onclick="goToSlide(13)"><span class="toc-num">13</span><span class="toc-text">Caso: Trump y los aranceles</span></div>
+            <div class="toc-item" onclick="goToSlide(14)"><span class="toc-num">14</span><span class="toc-text">Caso Trump → Micro/Meso/Macro</span></div>
+            <div class="toc-item" onclick="goToSlide(15)"><span class="toc-num">15</span><span class="toc-text">¿Cómo medir la globalización?</span></div>
+            <div class="toc-item" onclick="goToSlide(16)"><span class="toc-num">16</span><span class="toc-text">Organizaciones internacionales</span></div>
+            <div class="toc-item" onclick="goToSlide(17)"><span class="toc-num">17</span><span class="toc-text">Discusión y cierre</span></div>
+            <div class="toc-item" onclick="goToSlide(18)"><span class="toc-num">18</span><span class="toc-text">Referencias y cómo citar</span></div>
+        </div>
+    </div>
+    <p class="kb-hint" style="margin-top:1.25rem;"><kbd>←</kbd> <kbd>→</kbd> Usa las flechas del teclado o los botones para navegar</p>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 2 — ¿QUÉ ES LA GLOBALIZACIÓN?
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="2">
+    <div class="slide-title-hero">
+        <span class="slide-tag">Concepto</span>
+        <h2>¿Qué es la globalización?</h2>
+    </div>
+
+    <div class="big-quote">
+        «…las comunicaciones, los intercambios y las interdependencias han alcanzado escala planetaria.»
+        <cite>— Lombana &amp; Rozas, 2013</cite>
+    </div>
+
+    <div class="content-card">
+        <h3>Dos caras de la misma moneda</h3>
+        <div class="two-col">
+            <div>
+                <p><strong>1. La globalización como <em>contexto</em> de los N.I.</strong></p>
+                <p>El marco de interrelaciones, interdependencias e intercambios en el que operan las empresas, los Estados y las personas a escala mundial.</p>
+            </div>
+            <div>
+                <p><strong>2. Los N.I. como <em>vehículo</em> de la globalización</strong></p>
+                <p>El comercio, la inversión y las cadenas de valor internacionales son a la vez producto y motor del proceso globalizador.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-card" style="background: var(--lavender); margin-top:.75rem;">
+        <h3>Elementos clave</h3>
+        <div class="infographic-row">
+            <div class="info-pill">
+                <span class="info-icon">🔗</span>
+                <span class="info-label">Interrelaciones</span>
+                <p class="info-desc">Vínculos entre actores de distintos países y escalas</p>
+            </div>
+            <div class="info-pill">
+                <span class="info-icon">🔄</span>
+                <span class="info-label">Intercambios</span>
+                <p class="info-desc">Flujos de bienes, servicios, capitales, información y personas</p>
+            </div>
+            <div class="info-pill">
+                <span class="info-icon">🤝</span>
+                <span class="info-label">Interdependencias</span>
+                <p class="info-desc">Lo que sucede en un país repercute en el resto del mundo</p>
+            </div>
+            <div class="info-pill">
+                <span class="info-icon">🌍</span>
+                <span class="info-label">Escala planetaria</span>
+                <p class="info-desc">Los fenómenos locales se insertan en dinámicas globales</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 3 — OBJETOS DE ANÁLISIS
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="3">
+    <div class="slide-title-hero">
+        <span class="slide-tag">Marco teórico</span>
+        <h2>Posibles objetos de análisis</h2>
+        <p class="slide-subtitle">¿Qué podemos observar para entender la globalización?</p>
+    </div>
+
+    <div class="levels-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="level-card" style="border-left: 5px solid var(--coral);">
+            <span class="info-icon" style="font-size:2.2rem;">⚙️</span>
+            <h3>Procesos</h3>
+            <p>Cadenas de producción, logística, digitalización, integración regional.</p>
+            <p style="margin-top:.5rem; font-size:.9rem; color:var(--text-muted);"><em>Ejemplo 2026:</em> La reconfiguración de cadenas de suministro ante los aranceles de Trump.</p>
+        </div>
+        <div class="level-card" style="border-left: 5px solid var(--purple);">
+            <span class="info-icon" style="font-size:2.2rem;">📦</span>
+            <h3>Productos</h3>
+            <p>¿Dónde se fabrican los componentes? ¿Con qué medios de producción? ¿Con cuáles relaciones laborales?</p>
+            <p style="margin-top:.5rem; font-size:.9rem; color:var(--text-muted);"><em>Ejemplo:</em> Un iPhone ensamblado en China con componentes de 43 países.</p>
+        </div>
+        <div class="level-card" style="border-left: 5px solid var(--teal);">
+            <span class="info-icon" style="font-size:2.2rem;">🤝</span>
+            <h3>Relacionamientos</h3>
+            <p>Vínculos entre actores: tratados comerciales, alianzas estratégicas, marketing relacional, sociología relacional.</p>
+            <p style="margin-top:.5rem; font-size:.9rem; color:var(--text-muted);"><em>Ejemplo:</em> La relación T-MEC entre México, EE.UU. y Canadá.</p>
+        </div>
+        <div class="level-card" style="border-left: 5px solid var(--gold);">
+            <span class="info-icon" style="font-size:2.2rem;">🛠️</span>
+            <h3>Medios e instrumentos</h3>
+            <p>Marketing, publicidad, derivados financieros, logística, planificación, tecnologías, información.</p>
+            <p style="margin-top:.5rem; font-size:.9rem; color:var(--text-muted);"><em>Ejemplo:</em> Aranceles como instrumento de política comercial.</p>
+        </div>
+    </div>
+
+    <div class="content-card" style="margin-top:1.25rem; background:var(--mint);">
+        <p style="text-align:center; font-size:1.15rem;">
+            <strong>Pregunta:</strong> ¿Cuáles de estos objetos de análisis identificas en la noticia de Trump sobre los aranceles globales del 10%?
+        </p>
+    </div>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 4 — LOS RELACIONAMIENTOS HOY
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="4">
+    <div class="slide-title-hero">
+        <span class="slide-tag" style="background:var(--teal); color:var(--ink);">Actualización</span>
+        <h2>Los relacionamientos hoy</h2>
+        <p class="slide-subtitle">Un concepto-núcleo, actualizado para 2026</p>
+    </div>
+
+    <div class="content-card" style="background:var(--paper); border-left:5px solid var(--purple); font-style:italic;">
+        <blockquote style="margin:0; font-size:1.1rem; line-height:1.8;">
+            «Los negocios internacionales son los <strong>relacionamientos</strong> de las empresas con el mundo, y se convierten, por tanto, en el <strong>vehículo de la globalización</strong>. […] Cada proceso, cada producto, cada relacionamiento, por pequeño que sea, tiene implicaciones en los negocios internacionales.»
+        </blockquote>
+        <p style="margin-top:.5rem; font-style:normal; font-size:.9rem; text-align:right; color:var(--text-muted);">— Lombana Coy et al. (2013, Prólogo)</p>
+    </div>
+
+    <div class="content-card" style="margin-top:.75rem; background:var(--cream); text-align:center;">
+        <p style="font-size:1.15rem; line-height:1.7;">En la globalización contemporánea, los relacionamientos no solo conectan <strong>personas y organizaciones</strong>: conectan también <strong>datos, energía, estándares y clima</strong>.</p>
+    </div>
+
+    <div class="content-card" style="margin-top:.75rem;">
+        <h3>Tipos de relacionamiento en la globalización actual</h3>
+        <div class="key-concepts" style="margin-top:.75rem;">
+            <span class="concept-tag">Contratos</span>
+            <span class="concept-tag tag-purple">Plataformas</span>
+            <span class="concept-tag tag-teal">Interfaces</span>
+            <span class="concept-tag tag-coral">Ratings</span>
+            <span class="concept-tag tag-gold">Auditorías</span>
+            <span class="concept-tag tag-green">Huellas ambientales</span>
+            <span class="concept-tag">Riesgos compartidos</span>
+        </div>
+    </div>
+
+    <div class="two-col" style="margin-top:1rem;">
+        <div class="content-card" style="background:var(--lavender);">
+            <h3>De lo tradicional…</h3>
+            <ul style="padding-left:1.25rem; line-height:1.8;">
+                <li>Contratos comerciales bilaterales</li>
+                <li>Tratados entre Estados</li>
+                <li>Alianzas empresariales</li>
+                <li>Relaciones laborales locales</li>
+            </ul>
+        </div>
+        <div class="content-card" style="background:var(--mint);">
+            <h3>…a lo contemporáneo</h3>
+            <ul style="padding-left:1.25rem; line-height:1.8;">
+                <li><strong>Plataformas digitales</strong> como infraestructura relacional global</li>
+                <li><strong>APIs y estándares técnicos</strong> que conectan sistemas entre países</li>
+                <li><strong>Ratings y auditorías</strong> como mecanismos de confianza transfronteriza</li>
+                <li><strong>Huellas ambientales</strong> que vinculan producción con impacto planetario</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-card" style="margin-top:.75rem; background:var(--blush); text-align:center;">
+        <p style="font-size:1.05rem;"><strong>Ejemplo 2026:</strong> La decisión arancelaria de Trump se comunica globalmente en tiempo real a través de plataformas digitales. Los mercados bursátiles reaccionan en segundos. Las cadenas de suministro se ajustan mediante interfaces digitales. El <em>relacionamiento</em> ya no es solo entre personas o instituciones: es también entre sistemas.</p>
+    </div>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 5 — NIVELES: MACRO / MESO / MICRO
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="4">
+    <div class="slide-title-hero">
+        <span class="slide-tag">Marco conceptual</span>
+        <h2>Niveles de análisis de la globalización</h2>
+        <p class="slide-subtitle">Toda dinámica global puede observarse en tres escalas interconectadas</p>
+    </div>
+
+    <div class="levels-grid">
+        <!-- MACRO -->
+        <div class="level-card level-macro">
+            <span class="level-badge">Macro</span>
+            <h3>Sistemas funcionales</h3>
+            <p>Estructuras y dinámicas a escala de la sociedad mundial:</p>
+            <ul>
+                <li>Política y geopolítica</li>
+                <li>Economía global</li>
+                <li>Derecho internacional</li>
+                <li>Ciencia y tecnología</li>
+                <li>Educación</li>
+                <li>Arte y religión</li>
+            </ul>
+        </div>
+        <!-- MESO -->
+        <div class="level-card level-meso">
+            <span class="level-badge">Meso</span>
+            <h3>Organizaciones</h3>
+            <p>Actores colectivos que operan entre lo global y lo local:</p>
+            <ul>
+                <li>Org. gubernamentales</li>
+                <li>Org. no gubernamentales</li>
+                <li>Org. intergubernamentales</li>
+                <li>Empresas transnacionales</li>
+                <li>Movimientos sociales</li>
+            </ul>
+        </div>
+        <!-- MICRO -->
+        <div class="level-card level-micro">
+            <span class="level-badge">Micro</span>
+            <h3>Sistemas de interacción</h3>
+            <p>La globalización experimentada en lo cotidiano:</p>
+            <ul>
+                <li>Una clase (presencial o virtual)</li>
+                <li>Un evento o acontecimiento</li>
+                <li>Una familia</li>
+                <li>Un círculo de amigos</li>
+                <li>Decisiones de consumo</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-card" style="text-align:center; margin-top:1.25rem; background: var(--blush);">
+        <p style="font-size:1.1rem;"><strong>Complejidad = redes de comunicaciones, interacciones, intercambios, interrelaciones... = <br>+ interdependencia</strong></p>
+        <p style="font-size:.95rem; color: var(--text-muted); margin-top:.5rem;">Los tres niveles tienen interacciones constantes: se afectan mutuamente de forma continua.</p>
+    </div>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 5 — NIVEL MACRO (detalle)
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="5">
+    <div class="slide-title-hero">
+        <span class="slide-tag" style="background:var(--coral);">Macro</span>
+        <h2>Nivel Macro — Sistemas y estructuras globales</h2>
+    </div>
+
+    <div class="big-quote">
+        «…la globalización es la salida desde lo político en la categoría del Estado Nacional que toma nuevos actores en los relacionamientos.»
+        <cite>— Ulrich Beck, 1998 (citado en Lombana Coy et al., 2013)</cite>
+    </div>
+
+    <div class="two-col">
+        <div class="content-card" style="background:var(--blush);">
+            <h3>Dimensión política &amp; jurídica</h3>
+            <ul style="padding-left:1.25rem; line-height:1.8;">
+                <li>Separación de poderes y comercio (Ejecutivo vs. Judicial)</li>
+                <li>Soberanía vs. integración supranacional</li>
+                <li>Derecho internacional y tratados (T-MEC, acuerdos OMC)</li>
+                <li><strong>Gobernanza multinivel:</strong> regulación transnacional, directivas, estándares privados</li>
+                <li><strong>Empresas como cuasi-reguladores:</strong> TICs, APIs, e-commerce, plataformas</li>
+                <li><strong>El Estado nacional «en salida»</strong> — nuevos actores y nuevas disputas (Beck)</li>
+                <li><strong>2026:</strong> La Corte Suprema de EE.UU. limita los aranceles de emergencia de Trump (fallo 6-3)</li>
+            </ul>
+        </div>
+        <div class="content-card" style="background:var(--cream);">
+            <h3>Dimensión económica</h3>
+            <ul style="padding-left:1.25rem; line-height:1.8;">
+                <li>Flujos de capital y de comercio</li>
+                <li>Crisis financieras mundiales y especulación</li>
+                <li>Control estatal vs. libre mercado / desregulación</li>
+                <li><strong>Geopolítica de cadenas críticas:</strong> semiconductores, energía, minerales</li>
+                <li><strong>Tecnopolítica:</strong> moderación de contenidos, vigilancia, propaganda</li>
+                <li><strong>2026:</strong> Arancel global del 10% bajo la Sección 122 del Trade Act — una herramienta rara vez utilizada con estos fines</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-card" style="margin-top:.75rem;">
+        <h3>Dicotomías ideológicas que se han universalizado</h3>
+        <div class="key-concepts">
+            <span class="concept-tag tag-coral">Izquierda / Derecha</span>
+            <span class="concept-tag tag-purple">Conservador / Liberal</span>
+            <span class="concept-tag">Público / Privado</span>
+            <span class="concept-tag tag-teal">Comunismo / Capitalismo</span>
+            <span class="concept-tag tag-gold">Nacionalismo / Cosmopolitismo</span>
+            <span class="concept-tag tag-green">Proteccionismo / Libre comercio</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 6 — NIVEL MESO (detalle)
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="6">
+    <div class="slide-title-hero">
+        <span class="slide-tag" style="background:var(--purple);">Meso</span>
+        <h2>Nivel Meso — Organizaciones y actores colectivos</h2>
+    </div>
+
+    <div class="content-card">
+        <h3>¿Cuál es el papel de las empresas y de las organizaciones en el mundo?</h3>
+        <p>En el nivel meso observamos los <strong>espacios donde se ponen en juego estrategias, valores y expectativas</strong>. Las organizaciones son los nodos que conectan las dinámicas macro con la experiencia micro.</p>
+    </div>
+
+    <div class="two-col" style="margin-top:.75rem;">
+        <div class="content-card" style="background:var(--lavender);">
+            <h3>Empresas transnacionales</h3>
+            <ul style="padding-left:1.25rem; line-height:1.8;">
+                <li>Cadenas globales de valor</li>
+                <li>«Sub-política» corporativa (Beck)</li>
+                <li>Paradoja: dificultad para las PyMEs de competir en mercados globalizados</li>
+                <li>Inversión Extranjera Directa (IED)</li>
+                <li>Dependencia tecnológica entre países desarrollados y en desarrollo</li>
+            </ul>
+        </div>
+        <div class="content-card" style="background:var(--mint);">
+            <h3>Organizaciones internacionales</h3>
+            <ul style="padding-left:1.25rem; line-height:1.8;">
+                <li>Gubernamentales (Estados nacionales)</li>
+                <li>Intergubernamentales (ONU, OMC, FMI…)</li>
+                <li>No gubernamentales (ONGs, sociedad civil)</li>
+                <li>Movimientos sociales transnacionales</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-card" style="margin-top:.75rem; background:var(--cream);">
+        <h3>Medios e instrumentos del nivel meso</h3>
+        <div class="infographic-row">
+            <div class="info-pill"><span class="info-icon">📊</span><span class="info-label">Marketing y publicidad</span></div>
+            <div class="info-pill"><span class="info-icon">💹</span><span class="info-label">Instrumentos de inversión</span></div>
+            <div class="info-pill"><span class="info-icon">🎨</span><span class="info-label">Diseño y logística</span></div>
+            <div class="info-pill"><span class="info-icon">🏭</span><span class="info-label">Planificación de producción</span></div>
+            <div class="info-pill"><span class="info-icon">💰</span><span class="info-label">Simbólicos: dinero, poder, confianza</span></div>
+            <div class="info-pill"><span class="info-icon">⚡</span><span class="info-label">Tecnología e información</span></div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 7 — NIVEL MICRO (detalle)
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="7">
+    <div class="slide-title-hero">
+        <span class="slide-tag" style="background:var(--teal); color:var(--ink);">Micro</span>
+        <h2>Nivel Micro — Sistemas de interacción cotidiana</h2>
+    </div>
+
+    <div class="content-card">
+        <h3>La globalización en lo cotidiano</h3>
+        <p>El nivel micro es donde experimentamos la globalización: en nuestras decisiones de consumo, nuestras relaciones laborales, nuestras conversaciones. Es el nivel de la <strong>interacción cara a cara</strong> (o pantalla a pantalla).</p>
+    </div>
+
+    <div class="levels-grid" style="margin-top:1rem;">
+        <div class="content-card" style="background:var(--sky);">
+            <span style="font-size:2rem;">🎓</span>
+            <h3>La clase</h3>
+            <p>Esta misma sesión es un sistema de interacción micro donde analizamos fenómenos macro. ¿Cuántos de los productos que usamos hoy fueron fabricados en otro país?</p>
+        </div>
+        <div class="content-card" style="background:var(--mint);">
+            <span style="font-size:2rem;">🛒</span>
+            <h3>Consumo</h3>
+            <p>Cada decisión de compra nos conecta con cadenas globales: la ropa que vestimos, la tecnología que usamos, los alimentos que consumimos.</p>
+        </div>
+        <div class="content-card" style="background:var(--cream);">
+            <span style="font-size:2rem;">👨‍💼</span>
+            <h3>Empleo</h3>
+            <p>Las relaciones laborales (empleador – empleo – empleados) están cada vez más determinadas por dinámicas globales: nearshoring, trabajo remoto, competencia internacional.</p>
+        </div>
+    </div>
+
+    <div class="content-card" style="margin-top:1rem; background:var(--blush);">
+        <h3>💡 Reflexión</h3>
+        <p style="font-size:1.15rem;">Si Trump impone un arancel del 10% a todas las importaciones, ¿cómo afecta tu vida cotidiana como estudiante y consumidor en México?</p>
+        <ul style="margin-top:.5rem; padding-left:1.5rem; line-height:1.8;">
+            <li>Aumento de precios en productos importados de EE.UU.</li>
+            <li>Posible caída del empleo en sectores exportadores mexicanos</li>
+            <li>Incertidumbre para quienes buscan empleo en empresas con operaciones binacionales</li>
+            <li>Reconfiguración del nearshoring que venía beneficiando a México</li>
+        </ul>
+    </div>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 8 — ESPACIOS ANALÍTICOS
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="8">
+    <div class="slide-title-hero">
+        <span class="slide-tag">Espacios</span>
+        <h2>Espacios analíticos de la globalización</h2>
+        <p class="slide-subtitle">El fenómeno se manifiesta en múltiples dimensiones simultáneas</p>
+    </div>
+
+    <div class="infographic-row" style="justify-content:center;">
+        <div class="info-pill" style="background:var(--blush); border-color:var(--coral);">
+            <span class="info-icon">🏛️</span>
+            <span class="info-label">Política</span>
+            <p class="info-desc">Soberanía, geopolítica, relaciones internacionales</p>
+        </div>
+        <div class="info-pill" style="background:var(--cream); border-color:var(--gold);">
+            <span class="info-icon">💰</span>
+            <span class="info-label">Económica</span>
+            <p class="info-desc">Comercio, finanzas, cadenas de valor, empleo</p>
+        </div>
+        <div class="info-pill" style="background:var(--mint); border-color:var(--green);">
+            <span class="info-icon">👥</span>
+            <span class="info-label">Social</span>
+            <p class="info-desc">Desigualdad, migración, relaciones laborales</p>
+        </div>
+        <div class="info-pill" style="background:var(--lavender); border-color:var(--purple);">
+            <span class="info-icon">🎭</span>
+            <span class="info-label">Cultural</span>
+            <p class="info-desc">Industria cultural, homogeneización vs. adaptación</p>
+        </div>
+        <div class="info-pill" style="background:var(--sky); border-color:var(--teal);">
+            <span class="info-icon">🌱</span>
+            <span class="info-label">Ambiental</span>
+            <p class="info-desc">Antropoceno, recursos, emisiones, residuos</p>
+        </div>
+    </div>
+
+    <!-- Capa transversal digital -->
+    <div class="content-card" style="margin-top:1rem; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color:#fff; border:var(--border); box-shadow:var(--shadow);">
+        <h3 style="color:var(--gold) !important;">💻 Capa transversal: Infraestructura digital y datos</h3>
+        <p style="color:#ccd6f6; margin-top:.5rem;">Lo digital no es “una dimensión más”: es la <strong style="color:#fff;">infraestructura</strong> que conecta y transforma todas las demás dimensiones.</p>
+        <div class="key-concepts" style="margin-top:.75rem;">
+            <span class="concept-tag tag-purple">Plataformas</span>
+            <span class="concept-tag tag-teal">Soberanía digital</span>
+            <span class="concept-tag tag-coral">Inteligencia Artificial</span>
+            <span class="concept-tag tag-gold">Ciberseguridad</span>
+            <span class="concept-tag tag-green">Estándares técnicos</span>
+            <span class="concept-tag">Datos transfronterizos</span>
+        </div>
+    </div>
+
+    <div class="two-col" style="margin-top:1.25rem;">
+        <div class="content-card">
+            <h3>Disciplinas que estudian la globalización</h3>
+            <ul style="padding-left:1.25rem; line-height:1.9; font-size:1.05rem;">
+                <li>Sociología</li>
+                <li>Historia</li>
+                <li>Ciencia Política</li>
+                <li>Economía</li>
+                <li>Psicología</li>
+                <li>Derecho Internacional</li>
+                <li>Administración</li>
+                <li>Relaciones Internacionales</li>
+                <li>Negocios Internacionales</li>
+            </ul>
+            <p style="margin-top:.75rem; font-size:.95rem; color:var(--text-muted);"><em>¿Qué otras disciplinas agregarías?</em></p>
+        </div>
+        <div class="content-card" style="background:var(--cream);">
+            <h3>¿Qué ámbitos consideras los más relevantes para los N.I.?</h3>
+            <p>Al estudiar Negocios Internacionales, no basta con analizar la dimensión económica. Los espacios político, social, cultural y ambiental son igualmente determinantes para entender las dinámicas globales.</p>
+            <p style="margin-top:.75rem;"><strong>Ejemplo 2026:</strong> Los aranceles de Trump son un fenómeno <em>económico</em>, pero su origen es <em>político</em>, su resolución es <em>jurídica</em>, y sus consecuencias son <em>sociales</em> (empleo, desigualdad).</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 9 — GLOBALIZACIÓN ECONÓMICA
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="9">
+    <div class="slide-title-hero">
+        <span class="slide-tag" style="background:var(--gold); color:var(--ink);">Económica</span>
+        <h2>Globalización económica — Temas clave</h2>
+    </div>
+
+<!--    <div class="stat-grid">
+        <div class="stat-card">
+            <span class="stat-number">$32T</span>
+            <span class="stat-label">Comercio mundial de bienes (2025, est.)</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">~65K</span>
+            <span class="stat-label">Empresas transnacionales activas</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">10%</span>
+            <span class="stat-label">Arancel global propuesto por Trump (2026)</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">150 días</span>
+            <span class="stat-label">Límite de la Sección 122 del Trade Act</span>
+        </div>
+    </div>
+-->
+    <div class="two-col" style="margin-top:1.25rem;">
+        <div class="content-card" style="background:var(--cream);">
+            <h3>Conceptos centrales</h3>
+            <ul style="padding-left:1.25rem; line-height:1.8;">
+                <li><strong>Empresas Transnacionales:</strong> motores y beneficiarias de la globalización</li>
+                <li><strong>Inversión Extranjera Directa (IED):</strong> capital que cruza fronteras</li>
+                <li><strong>Estandarización de mercados:</strong> productos globales, gustos locales</li>
+                <li><strong>Digitalización:</strong> acelerador de los flujos comerciales y financieros</li>
+                <li><strong>Especulación financiera:</strong> crisis globales con origen local</li>
+            </ul>
+        </div>
+        <div class="content-card" style="background:var(--blush);">
+            <h3>Tensiones contemporáneas (2026)</h3>
+            <ul style="padding-left:1.25rem; line-height:1.8;">
+                <li>Control estatal ↔ Desregulación</li>
+                <li>Proteccionismo (aranceles) ↔ Libre comercio</li>
+                <li><strong>Nearshoring y friendshoring</strong> ↔ Cadenas globales dispersas</li>
+                <li><strong>Trabajo en plataformas:</strong> gestión algorítmica, métricas, ratings</li>
+                <li><strong>Outsourcing y offshore:</strong> trabajo remoto global sin fronteras claras</li>
+                <li><strong>Fintech y tokenización:</strong> pagos digitales, big tech financiera</li>
+                <li><strong>Propiedad intelectual:</strong> patentes, software y rentas globales</li>
+                <li>Paradoja PyME: globalización que beneficia a los grandes</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-card" style="margin-top:.75rem;">
+        <h3>Categorías para medir la globalización económica</h3>
+        <div class="key-concepts">
+            <span class="concept-tag tag-coral">Flujos de capital</span>
+            <span class="concept-tag tag-purple">Flujos de comercio</span>
+            <span class="concept-tag tag-teal">Flujos de empleo</span>
+            <span class="concept-tag tag-green">Flujos migratorios</span>
+            <span class="concept-tag tag-gold">Déficit/superávit comercial</span>
+            <span class="concept-tag">Aranceles y barreras</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 10 — GLOBALIZACIÓN SOCIAL
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="10">
+    <div class="slide-title-hero">
+        <span class="slide-tag" style="background:var(--green);">Social</span>
+        <h2>Globalización social — Impactos humanos</h2>
+    </div>
+
+    <div class="content-card" style="background:var(--mint);">
+        <h3>Temas que conectan globalización con empleo y sociedad</h3>
+        <div class="levels-grid">
+            <div style="padding:.5rem 0;">
+                <p style="font-size:1.5rem;">📊</p>
+                <p><strong>Desigualdad</strong></p>
+                <p style="color:var(--text-muted); font-size:.95rem;">Brecha creciente entre y dentro de los países</p>
+            </div>
+            <div style="padding:.5rem 0;">
+                <p style="font-size:1.5rem;">🚪</p>
+                <p><strong>Exclusión / Inclusión</strong></p>
+                <p style="color:var(--text-muted); font-size:.95rem;">¿Quién participa de los beneficios de la globalización?</p>
+            </div>
+            <div style="padding:.5rem 0;">
+                <p style="font-size:1.5rem;">📱</p>
+                <p><strong>Acceso a las TICs</strong></p>
+                <p style="color:var(--text-muted); font-size:.95rem;">Brecha digital como nueva forma de exclusión</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="two-col" style="margin-top:1rem;">
+        <div class="content-card" style="background:var(--lavender);">
+            <h3>Cultura y globalización</h3>
+            <ul style="padding-left:1.25rem; line-height:1.8;">
+                <li><strong>Industria Cultural:</strong> streaming, memes, influencers, plataformas</li>
+                <li><strong>¿Homogeneización?</strong> — Glocalización: tensión entre lo global y la hibridación local</li>
+                <li><strong>Nacionalismo vs. Multiculturalismo:</strong> identidades en disputa</li>
+                <li><strong>Migración y diásporas:</strong> remesas, superdiversidad urbana</li>
+            </ul>
+        </div>
+        <div class="content-card" style="background:var(--cream);">
+            <h3>Relaciones laborales globalizadas</h3>
+            <ul style="padding-left:1.25rem; line-height:1.8;">
+                <li>Outsourcing y offshoring del empleo</li>
+                <li>Competencia laboral internacional</li>
+                <li>Precarización vs. nuevas oportunidades</li>
+                <li>Trabajo remoto transfronterizo</li>
+                <li><strong>Cadenas globales de cuidado:</strong> trabajos no remunerados, burnout, reproducción social</li>
+                <li><strong>Polarización de oportunidades:</strong> clase, raza, género, acceso digital</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-card" style="margin-top:.75rem; background:var(--blush);">
+        <h3>💡 Conexión con caso actual (2026)</h3>
+        <p>Marco Forgione (Chartered Institute of Export &amp; International Trade) advierte en el reportaje de DW News:</p>
+        <div class="big-quote" style="margin-top:.75rem; background:var(--surface);">
+            «Cuando tienes este nivel de incertidumbre en la política comercial, las empresas empiezan a frenar la inversión, la contratación, la expansión. Y eso tiene consecuencias reales para los trabajadores de ambos lados.»
+            <cite>— Marco Forgione, DW News, 20 feb 2026</cite>
+        </div>
+    </div>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 12 — DIMENSIÓN AMBIENTAL Y DIGITAL
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="12">
+    <div class="slide-title-hero">
+        <span class="slide-tag" style="background:var(--green);">Ambiental</span>
+        <h2>El Antropoceno y la dimensión material</h2>
+        <p class="slide-subtitle">Lo ambiental no es “una dimensión más”: es la <strong>condición material</strong> de las otras</p>
+    </div>
+
+    <div class="content-card" style="background:var(--mint);">
+        <h3>Impactos ambientales de la globalización</h3>
+        <div class="infographic-row">
+            <div class="info-pill" style="background:var(--surface);">
+                <span class="info-icon">🖥️</span>
+                <span class="info-label">Centros de datos</span>
+                <p class="info-desc">Energía, agua, calor: “nubes” muy terrestres</p>
+            </div>
+            <div class="info-pill" style="background:var(--surface);">
+                <span class="info-icon">⛏️</span>
+                <span class="info-label">Minerales críticos</span>
+                <p class="info-desc">Litio, cobalto, tierras raras y territorios de sacrificio</p>
+            </div>
+            <div class="info-pill" style="background:var(--surface);">
+                <span class="info-icon">📱</span>
+                <span class="info-label">E-waste</span>
+                <p class="info-desc">Residuos electrónicos y reciclaje transfronterizo</p>
+            </div>
+            <div class="info-pill" style="background:var(--surface);">
+                <span class="info-icon">🚢</span>
+                <span class="info-label">Logística global</span>
+                <p class="info-desc">Contenedores, aviación, última milla y emisiones</p>
+            </div>
+            <div class="info-pill" style="background:var(--surface);">
+                <span class="info-icon">🌿</span>
+                <span class="info-label">Greenwashing &amp; ESG</span>
+                <p class="info-desc">Métricas y gobierno corporativo ambiental</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="two-col" style="margin-top:1rem;">
+        <div class="content-card" style="background:var(--cream);">
+            <h3>Conexión con nuestro caso</h3>
+            <p>Los aranceles de Trump afectan las rutas de la logística global. Si las cadenas de suministro se acortan (nearshoring), ¿se reducen las emisiones del transporte o aumentan las de la nueva industrialización local?</p>
+            <p style="margin-top:.5rem;"><strong>Pregunta:</strong> ¿Qué costo ambiental tiene la reorganización de las cadenas globales de valor?</p>
+        </div>
+        <div class="content-card" style="background:var(--blush);">
+            <h3>Lo que queda fuera de la regulación</h3>
+            <ul style="padding-left:1.25rem; line-height:1.8;">
+                <li>Emisiones de carbono de infraestructura digital</li>
+                <li>Flujos de datos transfronterizos</li>
+                <li>Gestión algorítmica del trabajo</li>
+                <li>Impacto ambiental de la minería de datos y criptoactivos</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 13 — CASO TRUMP ARANCELES 2026
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="11">
+    <div class="slide-title-hero">
+        <span class="slide-tag" style="background:var(--coral);">Caso de estudio</span>
+        <h2>Trump y los aranceles globales de 2026</h2>
+        <p class="slide-subtitle"><span class="live-dot"></span> Noticia del 20 de febrero de 2026 — DW News</p>
+    </div>
+
+    <div class="case-banner">
+        <h3>🎬 ¿Qué sucedió?</h3>
+        <p>La Corte Suprema de EE.UU. declaró ilegales (fallo 6-3) la mayoría de los aranceles de emergencia impuestos por Trump bajo la IEEPA. En respuesta, Trump anunció un nuevo <strong>arancel global del 10%</strong> bajo la <strong>Sección 122 del Trade Act</strong> — una herramienta legal nunca antes utilizada con estos fines.</p>
+        <p class="case-source">Fuente: DW News · «Trump: Alternatives will be used to impose new tariffs» · <!-- <a href="video-trump-tariffs.html" style="color:var(--gold);">Ver análisis completo →</a>--></p>
+    </div>
+
+    <div class="v-timeline">
+        <div class="tl-item">
+            <h4>🏛️ Corte Suprema falla 6-3 contra Trump</h4>
+            <p>La mayoría de los aranceles de emergencia impuestos bajo la IEEPA se declaran ilegales. Se limita la autoridad presidencial para imponer aranceles sin aprobación del Congreso.</p>
+        </div>
+        <div class="tl-item">
+            <h4>😤 Trump arremete contra la Corte</h4>
+            <p>Acusa a los jueces de ser «partidistas» y estar «influidos por intereses extranjeros». Elogia a los jueces disidentes: Thomas, Alito y Kavanaugh.</p>
+        </div>
+        <div class="tl-item">
+            <h4>📝 Anuncia Executive Order con Sección 122</h4>
+            <p>Nuevo arancel global del 10% bajo la Sección 122 (límite legal: 15% máximo por 150 días). Herramienta diseñada para emergencias de balanza de pagos, nunca usada para aranceles.</p>
+        </div>
+        <div class="tl-item">
+            <h4>⚠️ Reacciones internacionales</h4>
+            <p>Jürgen Hardt (CDU, Alemania) señala que los «checks and balances» funcionan. Analistas advierten sobre la incertidumbre para la inversión. Expertos legales dudan que sobreviva a impugnaciones judiciales.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 12 — MAPEO TRUMP → MICRO/MESO/MACRO
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="12">
+    <div class="slide-title-hero">
+        <span class="slide-tag">Análisis</span>
+        <h2>Caso Trump → Niveles Micro, Meso y Macro</h2>
+        <p class="slide-subtitle">Aplicando nuestro marco conceptual a la coyuntura de 2026</p>
+    </div>
+
+    <table class="mapping-table">
+        <thead>
+            <tr>
+                <th>Nivel</th>
+                <th>¿Qué observamos en el caso?</th>
+                <th>Actores involucrados</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="level-dot dot-macro"></span><strong>Macro</strong></td>
+                <td>
+                    Conflicto entre poderes del Estado (Ejecutivo vs. Judicial). Instrumentos de política comercial: IEEPA, Sección 122, aranceles. Tensión entre proteccionismo y libre comercio. Derecho internacional y soberanía económica.
+                </td>
+                <td>Corte Suprema, Presidencia de EE.UU., Congreso, OMC, sistema financiero global</td>
+            </tr>
+            <tr>
+                <td><span class="level-dot dot-meso"></span><strong>Meso</strong></td>
+                <td>
+                    Empresas transnacionales paralizan inversiones por incertidumbre. Organizaciones como el Chartered Institute of Export advierten impactos. Partidos políticos (CDU, Alemania) definen posiciones. La UE evalúa aranceles de represalia.
+                </td>
+                <td>Empresas exportadoras, cámaras de comercio, partidos políticos, UE, T-MEC</td>
+            </tr>
+            <tr>
+                <td><span class="level-dot dot-micro"></span><strong>Micro</strong></td>
+                <td>
+                    Trabajadores en sectores exportadores enfrentan incertidumbre laboral. Consumidores perciben aumento de precios. Estudiantes de N.I. analizamos el fenómeno en clase. Familias que dependen de empleos en maquiladoras y zonas fronterizas.
+                </td>
+                <td>Trabajadores, consumidores, familias, estudiantes como nosotros</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="content-card" style="margin-top:1.25rem; background:var(--mint);">
+        <h3>🇲🇽 ¿Y México?</h3>
+        <div class="two-col" style="margin-top:.5rem;">
+            <div>
+                <p><strong>Sectores más vulnerables:</strong></p>
+                <ul style="padding-left:1.25rem; line-height:1.7;">
+                    <li>Automotriz (mayor exportación a EE.UU.)</li>
+                    <li>Electrónica y manufactura</li>
+                    <li>Agroexportación</li>
+                    <li>Maquiladoras fronterizas</li>
+                </ul>
+            </div>
+            <div>
+                <p><strong>Preguntas abiertas:</strong></p>
+                <ul style="padding-left:1.25rem; line-height:1.7;">
+                    <li>¿Protege el T-MEC a México?</li>
+                    <li>¿Se acelera o frena el nearshoring?</li>
+                    <li>¿Qué oportunidades se abren para México si las cadenas de suministro se reorganizan?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 13 — ¿CÓMO MEDIR LA GLOBALIZACIÓN?
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="13">
+    <div class="slide-title-hero">
+        <span class="slide-tag">Medición</span>
+        <h2>¿Cómo medir la globalización?</h2>
+        <p class="slide-subtitle">Índices, reportes y herramientas para observar sus dinámicas a nivel macro</p>
+    </div>
+
+    <div class="content-card" style="background:var(--lavender);">
+        <h3>📈 KOF Globalisation Index</h3>
+        <p>El <strong>KOF Index</strong> del Instituto Federal Suizo de Tecnología (ETH Zürich) mide la globalización en tres dimensiones:</p>
+        <div class="levels-grid" style="margin-top:1rem;">
+            <div class="content-card" style="text-align:center;">
+                <p style="font-size:2rem;">💰</p>
+                <h3>Económica</h3>
+                <p style="font-size:.95rem; color:var(--text-muted);">Flujos de comercio, IED, restricciones arancelarias</p>
+            </div>
+            <div class="content-card" style="text-align:center;">
+                <p style="font-size:2rem;">👥</p>
+                <h3>Social</h3>
+                <p style="font-size:.95rem; color:var(--text-muted);">Migración, turismo, flujos de información, proximidad cultural</p>
+            </div>
+            <div class="content-card" style="text-align:center;">
+                <p style="font-size:2rem;">🏛️</p>
+                <h3>Política</h3>
+                <p style="font-size:.95rem; color:var(--text-muted);">Embajadas, org. internacionales, tratados, misiones de paz</p>
+            </div>
+        </div>
+        <p style="margin-top:1rem; font-size:.95rem;">🔗 <a href="https://kof.ethz.ch/en/forecasts-and-indicators/indicators/kof-globalisation-index.html" target="_blank" rel="noopener">kof.ethz.ch — KOF Globalisation Index ↗</a></p>
+    </div>
+
+    <div class="content-card" style="margin-top:.75rem;">
+        <h3>Otros indicadores y fuentes</h3>
+        <div class="infographic-row">
+            <div class="info-pill">
+                <span class="info-icon">🌐</span>
+                <span class="info-label">DHL Global Connectedness Index</span>
+                <p class="info-desc">Flujos de comercio, capital, información y personas</p>
+            </div>
+            <div class="info-pill">
+                <span class="info-icon">📊</span>
+                <span class="info-label">World Bank Open Data</span>
+                <p class="info-desc">Indicadores económicos y sociales por país</p>
+            </div>
+            <div class="info-pill">
+                <span class="info-icon">📦</span>
+                <span class="info-label">WTO Trade Profiles</span>
+                <p class="info-desc">Perfiles comerciales de cada país miembro</p>
+            </div>
+            <div class="info-pill">
+                <span class="info-icon">📈</span>
+                <span class="info-label">UNCTAD World Investment Report</span>
+                <p class="info-desc">Flujos de IED y perspectivas de inversión global</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-card" style="margin-top:.75rem; background:var(--cream); text-align:center;">
+        <h3>💡 Medir la globalización hoy</h3>
+        <p style="font-size:1.1rem;">Medir la globalización hoy requiere <strong>cruzar lo económico con lo sociocultural, lo ambiental y lo digital</strong>.</p>
+        <div class="infographic-row" style="margin-top:.75rem; justify-content:center;">
+            <div class="info-pill" style="flex:0 1 auto;">
+                <span class="info-icon">🌡️</span>
+                <span class="info-label">Emisiones y huella de carbono</span>
+                <p class="info-desc">La dimensión material que faltaba</p>
+            </div>
+            <div class="info-pill" style="flex:0 1 auto;">
+                <span class="info-icon">📡</span>
+                <span class="info-label">Conectividad digital</span>
+                <p class="info-desc">Acceso, concentración, velocidad, soberanía</p>
+            </div>
+            <div class="info-pill" style="flex:0 1 auto;">
+                <span class="info-icon">⚠️</span>
+                <span class="info-label">Riesgos sistémicos</span>
+                <p class="info-desc">Interdependencia = vulnerabilidad compartida</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 14 — ORGANIZACIONES INTERNACIONALES
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="14">
+    <div class="slide-title-hero">
+        <span class="slide-tag">Actores</span>
+        <h2>Organizaciones internacionales clave</h2>
+        <p class="slide-subtitle">Actores del nivel meso que configuran las reglas del juego global</p>
+    </div>
+
+    <div class="org-grid">
+        <div class="org-chip" style="background:var(--sky);">🇺🇳 ONU<small>Org. de las Naciones Unidas</small></div>
+        <div class="org-chip" style="background:var(--cream);">💰 FMI<small>Fondo Monetario Internacional</small></div>
+        <div class="org-chip" style="background:var(--mint);">🏥 OMS<small>Org. Mundial de la Salud</small></div>
+        <div class="org-chip" style="background:var(--lavender);">🏦 BM<small>Banco Mundial</small></div>
+        <div class="org-chip" style="background:var(--blush);">📊 OCDE<small>Org. para la Coop. y el Des. Eco.</small></div>
+        <div class="org-chip" style="background:var(--cream);">📦 OMC<small>Org. Mundial del Comercio</small></div>
+        <div class="org-chip" style="background:var(--sky);">🌏 OCS<small>Org. de Coop. de Shanghái</small></div>
+        <div class="org-chip" style="background:var(--mint);">🌎 OEA<small>Org. de Estados Americanos</small></div>
+        <div class="org-chip" style="background:var(--lavender);">💡 OMPI<small>Org. Mundial de Prop. Intelectual</small></div>
+        <div class="org-chip" style="background:var(--blush);">👷 OIT<small>Org. Internacional del Trabajo</small></div>
+    </div>
+
+    <div class="content-card" style="margin-top:1rem; background:var(--paper); border:2px dashed var(--purple); text-align:center;">
+        <p style="font-size:1rem; margin-bottom:.75rem; color:var(--text-muted);">…y muchas más organizaciones que configuran la gobernanza global:</p>
+        <div style="display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center;">
+            <span class="concept-tag" style="font-size:.85rem;">🌾 FAO</span>
+            <span class="concept-tag tag-purple" style="font-size:.85rem;">📚 UNESCO</span>
+            <span class="concept-tag tag-teal" style="font-size:.85rem;">👶 UNICEF</span>
+            <span class="concept-tag tag-coral" style="font-size:.85rem;">🏗️ BID</span>
+            <span class="concept-tag tag-gold" style="font-size:.85rem;">⚡ OIEA</span>
+            <span class="concept-tag tag-green" style="font-size:.85rem;">🌍 PNUMA</span>
+            <span class="concept-tag" style="font-size:.85rem;">📡 UIT</span>
+            <span class="concept-tag tag-purple" style="font-size:.85rem;">✈️ OACI</span>
+            <span class="concept-tag tag-teal" style="font-size:.85rem;">🚢 OMI</span>
+            <span class="concept-tag tag-coral" style="font-size:.85rem;">🏘️ ONU-Hábitat</span>
+            <span class="concept-tag tag-gold" style="font-size:.85rem;">💊 ONUDI</span>
+            <span class="concept-tag tag-green" style="font-size:.85rem;">🔬 CERN</span>
+            <span class="concept-tag" style="font-size:.85rem;">⚖️ CPI</span>
+            <span class="concept-tag tag-purple" style="font-size:.85rem;">🏦 CAF</span>
+            <span class="concept-tag tag-teal" style="font-size:.85rem;">🤝 BRICS (NDB)</span>
+            <span class="concept-tag tag-coral" style="font-size:.85rem;">🛢️ OPEP</span>
+        </div>
+    </div>
+
+    <div class="two-col" style="margin-top:1.5rem;">
+        <div class="content-card" style="background:var(--cream);">
+            <h3>¿Por qué importan para nuestro caso?</h3>
+            <p>Cuando Trump impone aranceles unilaterales, desafía el orden multilateral que estas organizaciones representan. La OMC establece reglas para el comercio; el FMI monitorea los equilibrios macroeconómicos; la OIT protege los derechos laborales.</p>
+        </div>
+        <div class="content-card" style="background:var(--mint);">
+            <h3>Tratados comerciales relevantes</h3>
+            <ul style="padding-left:1.25rem; line-height:1.8;">
+                <li><strong>T-MEC</strong> — México, EE.UU. y Canadá</li>
+                <li><strong>Acuerdos OMC</strong> — Reglas multilaterales de comercio</li>
+                <li><strong>Acuerdos UE-México</strong> — Diversificación de socios</li>
+                <li><strong>RCEP</strong> — Asia-Pacífico como alternativa</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-card" style="margin-top:.75rem; background:var(--cream); border-left:5px solid var(--gold);">
+        <h3>⚠️ Lo que queda fuera de la regulación</h3>
+        <p style="font-size:1.05rem; line-height:1.7;">Plataformas digitales, flujos de datos transfronterizos, emisiones de carbono de infraestructura digital, gestión algorítmica del trabajo. Estos ámbitos aún carecen de un marco normativo internacional claro.</p>
+    </div>
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 15 — DISCUSIÓN Y CIERRE
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="15">
+    <div class="slide-title-hero">
+        <span class="slide-tag" style="background:var(--green);">Cierre</span>
+        <h2>Discusión y reflexión final</h2>
+    </div>
+
+    <div class="content-card" style="background:var(--cream);">
+        <h3>Preguntas para discusión en clase</h3>
+        <ol class="discussion-list">
+            <li>Si establecemos que la globalización genera mayor interdependencia, <strong>¿afirmarías que una mayor interdependencia económica produce también una mayor integración mundial en lo social?</strong> ¿O pueden ir en sentidos contrarios?</li>
+            <li>¿En qué aspectos consideras que las expectativas de integración internacional del «proyecto de la globalización» <strong>sí se han cumplido</strong> y en cuáles <strong>no</strong>? ¿Por qué?</li>
+            <li>Pensando en el caso de Trump y los aranceles de 2026: <strong>¿Es legítimo que un presidente imponga aranceles sin aprobación del Congreso?</strong> ¿Dónde debería estar el límite del poder ejecutivo en materia comercial?</li>
+            <li>Si México es uno de los principales socios comerciales de EE.UU., <strong>¿cómo impactaría un arancel global del 10% a la economía mexicana y específicamente al empleo?</strong> Identifica al menos un efecto en cada nivel: macro, meso y micro.</li>
+            <li><strong>¿Las guerras comerciales benefician o perjudican a los trabajadores?</strong> ¿A cuáles? Argumenta tu respuesta considerando los niveles de análisis que revisamos hoy.</li>
+            <li>¿Qué <strong>interdependencias</strong> queremos fortalecer y cuáles necesitamos repensar?</li>
+            <li>¿Quién <strong>gana</strong> y quién <strong>pierde</strong> cuando una cadena global se reorganiza?</li>
+            <li>Si las plataformas digitales son <strong>infraestructura global</strong>, ¿quién debería regularlas?</li>
+            <li>¿Puede existir una globalización que respete los <strong>límites planetarios</strong>?</li>
+        </ol>
+    </div>
+
+    <div class="content-card" style="margin-top:1rem; background:var(--lavender);">
+        <h3>🎯 Conceptos clave</h3>
+        <div class="key-concepts" style="margin-top:.5rem;">
+            <span class="concept-tag">Globalización</span>
+            <span class="concept-tag tag-coral">Nivel Macro</span>
+            <span class="concept-tag tag-purple">Nivel Meso</span>
+            <span class="concept-tag tag-teal">Nivel Micro</span>
+            <span class="concept-tag tag-green">Interdependencia</span>
+            <span class="concept-tag tag-gold">Aranceles</span>
+            <span class="concept-tag">Sección 122</span>
+            <span class="concept-tag tag-coral">Cadenas de valor</span>
+            <span class="concept-tag tag-purple">Empresas transnacionales</span>
+            <span class="concept-tag tag-teal">Plataformas digitales</span>
+            <span class="concept-tag tag-green">Antropoceno</span>
+            <span class="concept-tag tag-gold">Gobernanza multinivel</span>
+            <span class="concept-tag">Glocalización</span>
+            <span class="concept-tag tag-coral">KOF Index</span>
+            <span class="concept-tag tag-purple">T-MEC</span>
+            <span class="concept-tag tag-teal">Nearshoring</span>
+            <span class="concept-tag tag-green">Empleo y globalización</span>
+        </div>
+    </div>
+
+    <!--<div class="content-card" style="margin-top:1rem; text-align:center;">
+        <h3>📎 Recursos mencionados</h3>
+        <p style="margin-top:.5rem;">
+            <a href="video-trump-tariffs.html" style="font-weight:700;">Análisis del video Trump — DW News →</a>
+        </p>
+        <p style="margin-top:.35rem;">
+            <a href="https://kof.ethz.ch/en/forecasts-and-indicators/indicators/kof-globalisation-index.html" target="_blank" rel="noopener">KOF Globalisation Index ↗</a>
+        </p>
+        <p style="margin-top:.35rem; font-size:.95rem; color:var(--text-muted);">
+            Lombana, J. &amp; Rozas, S. (2013). <em>Negocios Internacionales: Fundamentos y estrategias.</em> Cap. 1.
+        </p>
+    </div>-->
+</section>
+
+
+<!-- ████████████████████████████████████████████████████
+     SLIDE 18 — REFERENCIAS Y CÓMO CITAR
+     ████████████████████████████████████████████████████ -->
+<section class="slide" data-slide="18">
+    <div class="slide-title-hero">
+        <span class="slide-tag" style="background:var(--purple);">Referencias</span>
+        <h2>Referencias y cómo citar</h2>
+    </div>
+
+    <div class="content-card" style="background:var(--paper); border-left:5px solid var(--purple);">
+        <h3>📚 Referencia bibliográfica (APA 7)</h3>
+        <p style="margin-top:.75rem; font-size:1.05rem; line-height:1.8; padding-left:2rem; text-indent:-2rem;">
+            Beck, U. (1998). <em>¿Qué es la globalización? Falacias del globalismo, respuestas a la globalización</em>. Paidós.
+        </p>
+        <p style="margin-top:.5rem; font-size:1.05rem; line-height:1.8; padding-left:2rem; text-indent:-2rem;">
+            DW News. (2026, 20 de febrero). <em>Trump: Alternatives will be used to impose new tariffs</em> [Video]. YouTube. <a href="https://www.youtube.com/watch?v=Jw43gcE5Avc" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Jw43gcE5Avc</a>
+        </p>
+        <p style="margin-top:.5rem; font-size:1.05rem; line-height:1.8; padding-left:2rem; text-indent:-2rem;">
+            Lombana Coy, J., Rozas Gutiérrez, S., Corredor Velandia, C., Silva Guerra, H., Castellanos Ramírez, A., González Ortíz, J., &amp; Ortiz Velásquez, M. (2013). <em>Negocios internacionales: Fundamentos y estrategias</em> (2a ed. revisada y aumentada). Editorial Universidad del Norte; Ecoe Ediciones.
+        </p>
+    </div>
+
+    <div class="content-card" style="margin-top:1rem; background:var(--cream); border-left:5px solid var(--teal);">
+        <h3>🌐 Cómo citar esta presentación (APA 7)</h3>
+        <p style="margin-top:.75rem; font-size:1.05rem; line-height:1.8; padding-left:2rem; text-indent:-2rem;">
+            Cardiel, J. (2026). <em>La globalización, sus niveles de análisis y la coyuntura actual (2026)</em> [Presentación de curso]. Globalización y Empleo 2026-2, Facultad de Contaduría y Administración, Universidad Nacional Autónoma de México. <a href="https://socyb.github.io/global/sesiones/sesion-02.html" target="_blank" rel="noopener">https://socyb.github.io/global/sesiones/sesion-02.html</a>
+        </p>
+    </div>
+
+    <!--<div class="content-card" style="margin-top:1rem; background:var(--lavender);">
+        <h3>📎 Nota sobre los materiales</h3>
+        <p style="font-size:.95rem; line-height:1.7;">Los contenidos de esta presentación se basan en el capítulo 1 de Lombana Coy et al. (2013), actualizados con análisis de coyuntura 2026 para fines exclusivamente académicos. Los materiales del curso están disponibles en: <a href="https://socyb.github.io/global/" target="_blank" rel="noopener">socyb.github.io/global</a></p>
+    </div>-->
+</section>
+
+
+    </div><!-- /slides-wrapper -->
+
+    <!-- Slide navigation -->
+    <div class="slide-nav">
+        <button id="btnPrev" onclick="changeSlide(-1)" disabled>← Anterior</button>
+        <span class="slide-counter" id="slideCounter">1 / 18</span>
+        <button id="btnNext" onclick="changeSlide(1)">Siguiente →</button>
+    </div>
+    <p class="kb-hint"><kbd>←</kbd> <kbd>→</kbd> Flechas del teclado &nbsp;·&nbsp; <kbd>Inicio</kbd> Primera &nbsp;·&nbsp; <kbd>Fin</kbd> Última</p>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p><a href="../index.html">← Volver a la página principal</a></p>
+            <p class="footer-meta">Globalización y Empleo 2026-2 · FCA UNAM · Dr. Jorge Cardiel</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   Slide Engine — keyboard + button navigation
+   ═══════════════════════════════════════════════════════ */
+(function () {
+    const slides = document.querySelectorAll('.slide');
+    const total  = slides.length;
+    let current  = 0;
+
+    const progressFill  = document.getElementById('progressFill');
+    const progressLabel = document.getElementById('progressLabel');
+    const slideCounter  = document.getElementById('slideCounter');
+    const btnPrev       = document.getElementById('btnPrev');
+    const btnNext       = document.getElementById('btnNext');
+
+    function showSlide(idx) {
+        slides[current].classList.remove('active');
+        current = Math.max(0, Math.min(idx, total - 1));
+        slides[current].classList.add('active');
+        updateUI();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateUI() {
+        const pct = ((current + 1) / total * 100).toFixed(1);
+        progressFill.style.width = pct + '%';
+        const label = (current + 1) + ' / ' + total;
+        progressLabel.textContent = label;
+        slideCounter.textContent  = label;
+        btnPrev.disabled = current === 0;
+        btnNext.disabled = current === total - 1;
+    }
+
+    window.changeSlide = function (dir) { showSlide(current + dir); };
+    window.goToSlide   = function (n)   { showSlide(n - 1); };
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); changeSlide(1); }
+        if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); changeSlide(-1); }
+        if (e.key === 'Home') { e.preventDefault(); showSlide(0); }
+        if (e.key === 'End')  { e.preventDefault(); showSlide(total - 1); }
+    });
+
+    /* Touch swipe support */
+    let touchStartX = 0;
+    document.addEventListener('touchstart', function (e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    document.addEventListener('touchend', function (e) {
+        const diff = e.changedTouches[0].screenX - touchStartX;
+        if (Math.abs(diff) > 50) { changeSlide(diff < 0 ? 1 : -1); }
+    }, { passive: true });
+
+    updateUI();
+})();
+</script>
+
+</body>
+</html>
