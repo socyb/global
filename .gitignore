@@ -8,5 +8,8 @@ neoacademicbrutalism.html
 # PDF files
 *.pdf
 
+# Video files
+*.mp4
+
 # Python virtual environment
 .venv/
