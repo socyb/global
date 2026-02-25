@@ -42,8 +42,8 @@
     <div class="container">
         <ul class="nav-links">
             <li><a href="#anuncios"><img src="img/icon-megaphone.svg" alt="" class="icon-8bit-sm"> Anuncios</a></li>
-            <li><a href="#unidades"><img src="img/icon-book.svg" alt="" class="icon-8bit-sm"> Unidades</a></li>
             <li><a href="#sesiones"><img src="img/icon-pencil.svg" alt="" class="icon-8bit-sm"> Sesiones</a></li>
+            <li><a href="#unidades"><img src="img/icon-book.svg" alt="" class="icon-8bit-sm"> Unidades</a></li>
             <li><a href="#calendario"><img src="img/icon-calendar.svg" alt="" class="icon-8bit-sm"> Calendario</a></li>
             <li><a href="#recursos"><img src="img/icon-link.svg" alt="" class="icon-8bit-sm"> Recursos</a></li>
         </ul>
@@ -53,7 +53,7 @@
 <main class="container">
 
     <!-- ANUNCIOS -->
-    <details id="anuncios" class="section accordion" open>
+    <details id="anuncios" class="section accordion">
         <summary class="accordion-header"><img src="img/icon-megaphone.svg" alt="" class="icon-8bit"> Anuncios</summary>
         <div class="accordion-body">
             <div class="announcements">
@@ -68,44 +68,15 @@
         </div>
     </details>
 
-    <!-- UNIDADES -->
-    <details id="unidades" class="section accordion">
-        <summary class="accordion-header"><img src="img/icon-book.svg" alt="" class="icon-8bit"> Unidades temáticas</summary>
-        <div class="accordion-body">
-            <div class="units-grid">
-                <div class="unit-card">
-                    <div class="unit-number">1</div>
-                    <h3>Unidad 1</h3>
-                    <p class="coming-soon"><img src="img/icon-lock.svg" alt="" class="icon-8bit-sm"> Próximamente…</p>
-                </div>
-                <div class="unit-card">
-                    <div class="unit-number">2</div>
-                    <h3>Unidad 2</h3>
-                    <p class="coming-soon"><img src="img/icon-lock.svg" alt="" class="icon-8bit-sm"> Próximamente…</p>
-                </div>
-                <div class="unit-card">
-                    <div class="unit-number">3</div>
-                    <h3>Unidad 3</h3>
-                    <p class="coming-soon"><img src="img/icon-lock.svg" alt="" class="icon-8bit-sm"> Próximamente…</p>
-                </div>
-                <div class="unit-card">
-                    <div class="unit-number">4</div>
-                    <h3>Unidad 4</h3>
-                    <p class="coming-soon"><img src="img/icon-lock.svg" alt="" class="icon-8bit-sm"> Próximamente…</p>
-                </div>
-            </div>
-        </div>
-    </details>
-
     <!-- SESIONES -->
     <details id="sesiones" class="section accordion">
-        <summary class="accordion-header"><img src="img/icon-pencil.svg" alt="" class="icon-8bit"> Sesiones y actividades</summary>
+        <summary class="accordion-header"><img src="img/icon-pencil.svg" alt="" class="icon-8bit"> Sesiones y actividades de la primera semana</summary>
         <div class="accordion-body">
             <div class="sessions-list">
                 <a href="sesiones/sesion-01.html" class="session-card active-session">
                     <span class="session-number">01</span>
                     <div class="session-info">
-                        <h3>Sesión 1 — Actividad de presentación</h3>
+                        <h3>Actividad de presentación</h3>
                         <p>Conociéndonos: dinámica de presentación del grupo.</p>
                     </div>
                     <span class="session-status status-available">Disponible →</span>
@@ -113,8 +84,25 @@
                 <a href="sesiones/sesion-02.html" class="session-card active-session">
                     <span class="session-number">02</span>
                     <div class="session-info">
-                        <h3>Sesión 2 — La globalización como contexto de los N.I.</h3>
+                        <h3>La globalización como contexto de los N.I.</h3>
                         <p>Niveles micro, meso y macro · Caso Trump aranceles 2026</p>
+                    </div>
+                    <span class="session-status status-available">Disponible →</span>
+                </a>
+            </div>
+        </div>
+    </details>
+
+    <!-- UNIDADES -->
+    <details id="unidades" class="section accordion" open>
+        <summary class="accordion-header"><img src="img/icon-book.svg" alt="" class="icon-8bit"> Unidad 1</summary>
+        <div class="accordion-body">
+            <div class="sessions-list">
+                <a href="actividades/actividad_video_digital_world_and_us_25feb26.html" class="session-card active-session">
+                    <span class="session-number">03</span>
+                    <div class="session-info">
+                        <h3>Video: The Digital World and Us</h3>
+                        <p>Actividad de análisis y formulario de respuestas.</p>
                     </div>
                     <span class="session-status status-available">Disponible →</span>
                 </a>
@@ -178,7 +166,7 @@
 
     <!-- RECURSOS -->
     <details id="recursos" class="section accordion">
-        <summary class="accordion-header"><img src="img/icon-link.svg" alt="" class="icon-8bit"> Recursos útiles</summary>
+        <summary class="accordion-header"><img src="img/icon-link.svg" alt="" class="icon-8bit"> Recursos</summary>
         <div class="accordion-body">
             <div class="resources-grid">
                 <a href="https://github.com/socyb/global" target="_blank" rel="noopener" class="resource-card">
