@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Control 1 - Globalization in Practice (Tabla de Ideas)</title>
+  <style>
+    :root {
+      --ink: #1f1d1a;
+      --paper: #f4efe3;
+      --card: #fffdf8;
+      --line: #d7cec0;
+      --teal: #0f6c73;
+      --ochre: #b0662f;
+      --muted: #5f5b54;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 14px;
+      background: linear-gradient(155deg, #e7dcc7 0%, #f1eee4 46%, #e5efe7 100%);
+      color: var(--ink);
+      font-family: "Avenir Next", "Trebuchet MS", sans-serif;
+    }
+
+    .page {
+      width: min(1320px, 100%);
+      margin: 0 auto;
+      border: 1px solid rgba(0, 0, 0, 0.18);
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.12);
+    }
+
+    header {
+      padding: clamp(16px, 2.3vw, 24px);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(120deg, rgba(15, 108, 115, 0.12), rgba(176, 102, 47, 0.11));
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Bodoni 72", "Didot", serif;
+      font-size: clamp(1.8rem, 3.2vw, 2.9rem);
+      line-height: 1.02;
+    }
+
+    .sub {
+      margin: 8px 0 0;
+      color: #2a2f2c;
+      line-height: 1.34;
+      font-size: clamp(0.94rem, 1.15vw, 1.04rem);
+      max-width: 85ch;
+    }
+
+    .meta {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .pill {
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      padding: 4px 9px;
+      background: rgba(255, 255, 255, 0.78);
+      font-weight: 700;
+    }
+
+    main {
+      padding: 14px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .toolbar input {
+      width: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      padding: 9px 11px;
+      font: inherit;
+      background: #fff;
+    }
+
+    .toolbar .count {
+      font-size: 0.86rem;
+      color: var(--muted);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .table-wrap {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: auto;
+      background: var(--card);
+    }
+
+    .groups {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--card);
+      padding: 12px;
+    }
+
+    .groups h2 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+      color: var(--teal);
+    }
+
+    .groups .intro {
+      margin: 0 0 10px;
+      font-size: 0.9rem;
+      color: #3c3a35;
+      line-height: 1.32;
+    }
+
+    .group-grid {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .group-card {
+      border: 1px solid #e3d8c8;
+      border-left: 4px solid var(--ochre);
+      border-radius: 10px;
+      padding: 9px;
+      background: #fff;
+    }
+
+    .group-card h3 {
+      margin: 0 0 5px;
+      font-size: 0.93rem;
+      color: #1f2d30;
+    }
+
+    .group-card ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 3px;
+      font-size: 0.85rem;
+      line-height: 1.26;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 980px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid #e6ddd0;
+      padding: 10px 10px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.9rem;
+      line-height: 1.33;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      background: #f3ecdd;
+      color: #1f2728;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    tbody tr:hover {
+      background: #fbf8f2;
+    }
+
+    td:nth-child(1) {
+      width: 48px;
+      text-align: center;
+      font-weight: 800;
+      color: #374047;
+    }
+
+    td:nth-child(2) {
+      width: 230px;
+      font-weight: 700;
+    }
+
+    td:nth-child(3) {
+      width: 290px;
+      color: #1a3b4d;
+      font-weight: 700;
+    }
+
+    td:nth-child(4) {
+      min-width: 420px;
+    }
+
+    .activity {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: var(--card);
+    }
+
+    .activity h2 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+      color: var(--teal);
+    }
+
+    .activity p {
+      margin: 0 0 8px;
+      font-size: 0.92rem;
+      line-height: 1.34;
+    }
+
+    .activity ol {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      gap: 5px;
+      font-size: 0.9rem;
+    }
+
+    .foot {
+      color: #4f4d49;
+      font-size: 0.8rem;
+      line-height: 1.3;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <header>
+      <h1>Control 1: Ideas Clave y Casos Elegidos</h1>
+      <p class="sub">
+        Síntesis de entregas de la actividad <strong>“Soportes cotidianos de la globalización: objetos y prácticas”</strong>,
+        vinculadas con la lectura <em>Globalization in Practice</em>.
+      </p>
+      <div class="meta">
+        <span class="pill">Grupo 2846 · 2026-2</span>
+        <span class="pill">20 estudiantes</span>
+        <span class="pill">Corte: 24 de febrero de 2026</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="toolbar">
+        <input id="searchInput" type="search" placeholder="Buscar por estudiante, caso/capítulo o idea..." />
+        <span id="rowCount" class="count">20 filas</span>
+      </section>
+
+      <section class="groups">
+        <h2>Equipos Sugeridos Por Tema (Para Trabajo En Clase)</h2>
+        <p class="intro">
+          Agrupación propuesta para que trabajen juntos quienes eligieron temas cercanos en la lectura.
+          Puedes usar estos equipos como base y mover estudiantes según dinámica de participación.
+        </p>
+        <div class="group-grid">
+          <article class="group-card">
+            <h3>Equipo 1 · Finanzas, riesgo y gobernanza privada</h3>
+            <ul>
+              <li>Alexander Clavero Lechuga · Credit Rating Agencies (Cap. 26)</li>
+              <li>Arturo Francisco Nápoles González · Credit Rating Agencies (Cap. 26)</li>
+              <li>Gretel Camila Rojas Aquino · Moody’s, Emotions, and Uncertainty in Finance</li>
+            </ul>
+          </article>
+
+          <article class="group-card">
+            <h3>Equipo 2 · Movilidad global e infraestructura de viaje</h3>
+            <ul>
+              <li>Benjamín Martínez Zúñiga · Airports</li>
+              <li>Daniela Sofía López Cruz · Backpacking</li>
+              <li>Axel Sahid González Colín · The Gap Year</li>
+            </ul>
+          </article>
+
+          <article class="group-card">
+            <h3>Equipo 3 · Trabajo transnacional y desigualdad</h3>
+            <ul>
+              <li>Victor Aviles Iturbide · The Case of Seafarers</li>
+              <li>Irene Martínez Acosta · Agroindustria floral global</li>
+              <li>Frida Daniela Elguea Zaldívar · Comercio sexual transnacional</li>
+              <li>Zoey Atenco Vargas · Capítulo 9 (movilidad y control)</li>
+            </ul>
+          </article>
+
+          <article class="group-card">
+            <h3>Equipo 4 · Información, representación y poder simbólico</h3>
+            <ul>
+              <li>César Manuel García Ibarra · World Maps</li>
+              <li>Mariana Zurisadai Flores Azuara · Redes globales de noticias (AFP/Reuters/AP)</li>
+              <li>Ana Sofía Hernández Milán · Subastas globales de arte y antigüedades</li>
+            </ul>
+          </article>
+
+          <article class="group-card">
+            <h3>Equipo 5 · Objetos cotidianos, consumo y mediación técnica</h3>
+            <ul>
+              <li>Michel Henestrosa García · Contenedores</li>
+              <li>Oscar Emiliano Cruz Lemus · Cigarette Packages</li>
+              <li>Sofía Gómez Monroy · Teléfono celular (Eric Laurier)</li>
+              <li>Hector Eleazar Acero Castro · Potlach y valor social</li>
+            </ul>
+          </article>
+
+          <article class="group-card">
+            <h3>Equipo 6 · Reespecificar la globalización (marco general)</h3>
+            <ul>
+              <li>Danna Paola Benítez Montiel · Introduction: Respecifying Globalization</li>
+              <li>Mateo Hidalgo Galván · Introduction: Respecifying Globalization</li>
+              <li>Carlos Eibar Williams Rendón · Globalization from Below</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Estudiante</th>
+              <th>Caso/Capítulo Elegido</th>
+              <th>Idea Importante Identificada</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr>
+              <td>1</td>
+              <td>Alexander Clavero Lechuga</td>
+              <td>Capítulo 26: Credit Rating Agencies (Timothy J. Sinclair)</td>
+              <td>Las agencias de calificación operan como reguladores privados que, bajo lenguaje técnico, influyen decisiones públicas y pueden trasladar costos sociales (ej. peajes) a sectores de menores ingresos.</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Ana Sofía Hernández Milán</td>
+              <td>The Interaction Order of Auctions of Fine Art and Antiques (Christian Heath)</td>
+              <td>Las subastas de arte muestran cómo tecnología, protocolos estandarizados y performance institucional sostienen un mercado global; su expansión no implica democratización, porque sigue mediada por capital económico y social.</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Arturo Francisco Nápoles González</td>
+              <td>Capítulo 26: Credit Rating Agencies</td>
+              <td>Las calificadoras pasaron de recolectar datos a organizar confianza en deuda soberana y corporativa, convirtiéndose en nodos clave del sistema financiero global.</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Axel Sahid González Colín</td>
+              <td>Entrada “The Gap Year”</td>
+              <td>La globalización se vive en soportes cotidianos (transporte, infraestructura urbana, objetos naturales) y en prácticas de movilidad que transforman la relación entre identidad personal y entorno.</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Benjamín Martínez Zúñiga</td>
+              <td>Entrada “Airports”</td>
+              <td>El aeropuerto condensa flujos globales de personas, mercancías, dinero e información, pero también expone jerarquías y controles diferenciados de movilidad.</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Carlos Eibar Williams Rendón</td>
+              <td>Globalization from Below (Chungking Mansions / M-Pesa)</td>
+              <td>La globalización también se produce “desde abajo”: redes informales y objetos ordinarios pueden funcionar como infraestructura económica transnacional con alta capacidad de adaptación.</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>César Manuel García Ibarra</td>
+              <td>“World Maps” (Annemarie Mol)</td>
+              <td>Los mapas no son neutrales: cada proyección produce una visión política del mundo, ordena jerarquías espaciales y participa en la construcción de poder global.</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Daniela Sofía López Cruz</td>
+              <td>Entrada “Backpacking” (Nick Clarke)</td>
+              <td>El backpacking parece movilidad individual, pero depende de redes burocráticas y comerciales (pasaportes, visas, tarjetas, hostales), por lo que reproduce privilegios de ciudadanía y desigualdad geográfica.</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Danna Paola Benítez Montiel</td>
+              <td>Introduction: Respecifying Globalization</td>
+              <td>La lectura desplaza el análisis de abstracciones (“mercado global”) hacia ensamblajes concretos de prácticas, objetos e infraestructura donde se materializan decisiones e intereses.</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Frida Daniela Elguea Zaldívar</td>
+              <td>Capítulo sobre trabajadoras sexuales / comercio sexual transnacional</td>
+              <td>Mirar actores marginados permite entender que la globalización combina movilidad digital, regulación desigual y vulnerabilidad migratoria; no puede analizarse sólo desde élites.</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>Gretel Camila Rojas Aquino</td>
+              <td>Moody’s, Emotions, and Uncertainty in Finance</td>
+              <td>La producción de confianza financiera global no es puramente matemática: incluye juicio, intuición, emociones y estructuras privadas de regulación del riesgo.</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>Hector Eleazar Acero Castro</td>
+              <td>Caso del potlach en comunidades indígenas</td>
+              <td>La globalización transforma sistemas de valor y prácticas sociales a través de objetos cotidianos; su normalización puede ocultar relaciones estructurales de desigualdad.</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>Irene Martínez Acosta</td>
+              <td>Caso agroindustria floral global</td>
+              <td>La cadena de frío conecta consumo afectivo y logística global, pero desplaza precariedad laboral y riesgos a territorios periféricos donde la regulación es más débil.</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>Mariana Zurisadai Flores Azuara</td>
+              <td>Redes globales de noticias (AFP/Reuters/AP)</td>
+              <td>La circulación “inmediata” de noticias depende de infraestructura material y trabajo estandarizado; los hechos locales se convierten en mercancías informativas globales.</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>Mateo Hidalgo Galván</td>
+              <td>Introduction: Respecifying Globalization</td>
+              <td>Lo global no es una escala dada, sino un logro práctico y frágil que se arma con acciones micro, herramientas estandarizadas e infraestructura cotidiana.</td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td>Michel Henestrosa García</td>
+              <td>Caso de contenedores</td>
+              <td>El contenedor, como objeto estandarizado, viabiliza cadenas de suministro fragmentadas entre países y muestra cómo lo “pequeño” reorganiza el comercio mundial.</td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td>Oscar Emiliano Cruz Lemus</td>
+              <td>Entrada “Cigarette Packages”</td>
+              <td>El empaque funciona como dispositivo donde disputan marca, regulación y salud pública; un objeto mínimo concentra tensiones de gobernanza y mercado global.</td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <td>Sofía Gómez Monroy</td>
+              <td>Texto de Eric Laurier sobre teléfono celular</td>
+              <td>El celular no solo comunica: reordena tiempos, coordinación y vínculos sociales, evidenciando cómo un objeto cotidiano produce escala y conectividad global.</td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td>Victor Aviles Iturbide</td>
+              <td>Entrada 17: Globalization of a Labour Market - The Case of Seafarers</td>
+              <td>La globalización marítima abarata costos mediante registros abiertos, pero profundiza segmentación salarial, precariedad contractual y vacíos regulatorios para trabajadores del mar.</td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td>Zoey Atenco Vargas</td>
+              <td>Capítulo 9: comercio sexual transnacional</td>
+              <td>Las infraestructuras y controles (visas, fronteras, plataformas) no solo habilitan movilidad global; también distribuyen vulnerabilidad y exposición diferenciada al riesgo.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="activity">
+        <h2>Actividad Sugerida Para Clase (40-50 min)</h2>
+        <p><strong>Nombre:</strong> “Del objeto al conflicto global”.</p>
+        <ol>
+          <li>Forma equipos de 4. Cada equipo elige 1 caso de la tabla (ej. Airports, Seafarers, World Maps, Cigarette Packages).</li>
+          <li>En una cartulina o diapositiva, trazan esta cadena: <strong>objeto/práctica → actores → beneficio → costo social/laboral → propuesta de regulación</strong>.</li>
+          <li>Cada equipo presenta en 3 minutos su “conflicto central” y su propuesta de intervención.</li>
+          <li>Cierre grupal: votar qué propuesta equilibra mejor competitividad global y empleo digno.</li>
+        </ol>
+      </section>
+
+      <p class="foot">
+        Fuente de síntesis: entregas en <code>controles/04362846-1... (Control 1)</code> y lectura base
+        <code>lecturas/globalizationInPractice_Oxford_2014.pdf</code>.
+      </p>
+    </main>
+  </article>
+
+  <script>
+    (function () {
+      const input = document.getElementById('searchInput');
+      const body = document.getElementById('tableBody');
+      const count = document.getElementById('rowCount');
+      const rows = Array.from(body.querySelectorAll('tr'));
+
+      function render() {
+        const q = (input.value || '').trim().toLowerCase();
+        let visible = 0;
+        rows.forEach((row) => {
+          const text = row.textContent.toLowerCase();
+          const match = !q || text.includes(q);
+          row.style.display = match ? '' : 'none';
+          if (match) {
+            visible += 1;
+          }
+        });
+        count.textContent = visible + ' filas visibles';
+      }
+
+      input.addEventListener('input', render);
+      render();
+    })();
+  </script>
+</body>
+</html>

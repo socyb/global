@@ -1,0 +1,2414 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cartografía Viva — Aportes 24feb26</title>
+  <style>
+    :root {
+      --ink: #181713;
+      --teal: #146c72;
+      --orange: #c45a28;
+      --sand: #f1e8d7;
+      --cream: #f9f5ec;
+      --green: #3f6a44;
+      --steel: #4f6578;
+      --muted: #66645f;
+      --line: rgba(24, 23, 19, 0.15);
+      --card: rgba(255, 255, 255, 0.84);
+      --shadow: 0 14px 36px rgba(0, 0, 0, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "Avenir Next Condensed", "Gill Sans Nova", "Trebuchet MS", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 10%, rgba(20, 108, 114, 0.22), transparent 32%),
+        radial-gradient(circle at 92% 18%, rgba(196, 90, 40, 0.2), transparent 34%),
+        linear-gradient(160deg, #efe6d3 0%, #e2e9dd 42%, #f6f0e3 100%);
+      padding: 14px;
+    }
+
+    .board {
+      width: min(1560px, 100%);
+      margin: 0 auto;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(250, 247, 240, 0.88);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(4px);
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      padding: clamp(14px, 2.2vw, 22px);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(120deg, rgba(20, 108, 114, 0.1), rgba(196, 90, 40, 0.1));
+    }
+
+    .title-wrap h1 {
+      margin: 0;
+      font-family: "Bodoni 72", "Didot", "Times New Roman", serif;
+      font-size: clamp(1.8rem, 3.2vw, 2.9rem);
+      line-height: 0.98;
+      letter-spacing: 0.01em;
+    }
+
+    .title-wrap p {
+      margin: 8px 0 0;
+      max-width: 72ch;
+      line-height: 1.35;
+      font-size: clamp(0.94rem, 1.2vw, 1.06rem);
+      color: #2e332e;
+    }
+
+    .date-flag {
+      align-self: start;
+      display: inline-grid;
+      gap: 6px;
+      justify-items: end;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      font-weight: 700;
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(250px, 314px) minmax(0, 1fr) minmax(260px, 360px);
+      gap: 0;
+      height: clamp(620px, 78vh, 920px);
+    }
+
+    .panel {
+      background: var(--card);
+      border-right: 1px solid var(--line);
+      padding: 14px;
+      overflow: auto;
+      min-height: 0;
+    }
+
+    .panel h2 {
+      margin: 0 0 10px;
+      font-family: "Bodoni 72", "Didot", "Times New Roman", serif;
+      font-size: 1.32rem;
+      line-height: 1.05;
+    }
+
+    .panel h3 {
+      margin: 12px 0 8px;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .controls-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    label.small {
+      font-size: 0.83rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #3a423e;
+      font-weight: 700;
+    }
+
+    input[type="search"],
+    select {
+      width: 100%;
+      border: 1px solid rgba(24, 23, 19, 0.24);
+      border-radius: 10px;
+      padding: 9px 10px;
+      font: inherit;
+      font-size: 0.95rem;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--ink);
+    }
+
+    input[type="search"]:focus-visible,
+    select:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 2px;
+    }
+
+    .check-wrap {
+      display: grid;
+      gap: 6px;
+      max-height: 220px;
+      overflow: auto;
+      padding: 8px;
+      border: 1px solid rgba(24, 23, 19, 0.17);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.68);
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.93rem;
+      line-height: 1.2;
+    }
+
+    .check-item input {
+      margin: 0;
+    }
+
+    .theme-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex: 0 0 10px;
+      border: 1px solid rgba(0, 0, 0, 0.22);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 8px 11px;
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: #16384a;
+      color: #fff;
+    }
+
+    button.secondary {
+      background: #ede8dc;
+      color: #1f1b17;
+      border: 1px solid rgba(0, 0, 0, 0.14);
+    }
+
+    button:hover {
+      filter: brightness(1.06);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .stat {
+      border: 1px solid rgba(24, 23, 19, 0.17);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.78);
+      padding: 8px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.05rem;
+    }
+
+    .stat span {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .group-list {
+      margin-top: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .group-item {
+      border: 1px solid rgba(24, 23, 19, 0.17);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.78);
+      overflow: hidden;
+    }
+
+    .group-head {
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid rgba(24, 23, 19, 0.13);
+      background: rgba(250, 249, 245, 0.92);
+      color: var(--ink);
+      text-align: left;
+      padding: 9px 10px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .group-content {
+      max-height: 220px;
+      overflow: auto;
+      padding: 8px;
+      display: grid;
+      gap: 7px;
+    }
+
+    .group-link {
+      border: 1px solid rgba(24, 23, 19, 0.15);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      width: 100%;
+      text-align: left;
+      font-size: 0.83rem;
+      line-height: 1.25;
+      padding: 7px 8px;
+    }
+
+    .group-link span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.76rem;
+      margin-top: 2px;
+    }
+
+    .network-wrap {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.64));
+      overflow: hidden;
+    }
+
+    #networkCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: grab;
+      touch-action: none;
+    }
+
+    #networkCanvas.dragging {
+      cursor: grabbing;
+    }
+
+    .map-controls {
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(4px);
+    }
+
+    .map-controls button {
+      min-width: 34px;
+      height: 30px;
+      padding: 0 8px;
+      border-radius: 8px;
+      font-size: 1rem;
+      line-height: 1;
+      background: #f2ece0;
+      color: #1e1d1a;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    .map-controls button:hover {
+      background: #ece5d6;
+    }
+
+    .map-controls .zoom-level {
+      min-width: 50px;
+      text-align: center;
+      font-size: 0.84rem;
+      font-weight: 800;
+      color: #2f3f42;
+      letter-spacing: 0.03em;
+    }
+
+    .map-hint {
+      position: absolute;
+      right: 12px;
+      top: 52px;
+      z-index: 5;
+      margin: 0;
+      font-size: 0.73rem;
+      line-height: 1.2;
+      color: #3b3b36;
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 8px;
+      padding: 4px 7px;
+      max-width: min(340px, 58vw);
+    }
+
+    .legend {
+      position: absolute;
+      left: 12px;
+      top: 10px;
+      z-index: 5;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+      padding: 8px 10px;
+      display: grid;
+      gap: 6px;
+      max-width: 320px;
+      font-size: 0.8rem;
+    }
+
+    .legend strong {
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-size: 0.73rem;
+      color: #4c524f;
+    }
+
+    .legend-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      line-height: 1.1;
+    }
+
+    .legend-shape {
+      width: 12px;
+      height: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      background: #ddd;
+      flex: 0 0 auto;
+    }
+
+    .legend-shape.circle {
+      border-radius: 50%;
+    }
+
+    .legend-shape.square {
+      border-radius: 2px;
+    }
+
+    .legend-shape.diamond {
+      transform: rotate(45deg);
+      border-radius: 2px;
+    }
+
+    .detail {
+      border-right: 0;
+    }
+
+    .detail-card {
+      border: 1px solid rgba(24, 23, 19, 0.17);
+      border-radius: 12px;
+      padding: 10px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+    }
+
+    .detail-title {
+      margin: 0;
+      font-size: 1.08rem;
+      line-height: 1.18;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      background: #f3f2ed;
+    }
+
+    .chip.theme {
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .detail-text {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.35;
+    }
+
+    .detail-link {
+      font-weight: 700;
+      color: var(--teal);
+      font-size: 0.86rem;
+      text-decoration: none;
+    }
+
+    .detail-link:hover {
+      text-decoration: underline;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      border: 1px solid rgba(24, 23, 19, 0.17);
+      border-radius: 12px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      display: grid;
+      gap: 8px;
+    }
+
+    .feedback h4 {
+      margin: 0;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #2f3f42;
+    }
+
+    .feedback-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+    }
+
+    .feedback-grid .connect-label {
+      grid-column: 1 / -1;
+      margin: 4px 0 -1px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #2e556e;
+    }
+
+    .feedback-grid #connectTargetSelect {
+      grid-column: 1 / -1;
+    }
+
+    .feedback button {
+      font-size: 0.82rem;
+      padding: 8px 9px;
+    }
+
+    .feedback .understood {
+      background: #2f7f5f;
+    }
+
+    .feedback .need-example {
+      background: #9f3f2a;
+    }
+
+    .feedback .connect {
+      grid-column: 1 / -1;
+      background: #285b87;
+    }
+
+    .summary-box {
+      margin-top: 12px;
+      border: 1px solid rgba(24, 23, 19, 0.17);
+      border-radius: 12px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      display: grid;
+      gap: 8px;
+    }
+
+    .summary-box h4 {
+      margin: 0;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #324433;
+    }
+
+    .summary-list {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 3px;
+      font-size: 0.84rem;
+      line-height: 1.3;
+    }
+
+    .empty {
+      margin: 0;
+      font-size: 0.86rem;
+      color: #5b5b55;
+      font-style: italic;
+    }
+
+    @media (max-width: 1220px) {
+      .layout {
+        grid-template-columns: 280px minmax(0, 1fr);
+        height: auto;
+        min-height: 74vh;
+      }
+
+      .detail {
+        grid-column: 1 / -1;
+        border-top: 1px solid var(--line);
+        border-right: 0;
+      }
+    }
+
+    @media (max-width: 860px) {
+      body {
+        padding: 6px;
+      }
+
+      .board {
+        border-radius: 12px;
+      }
+
+      .topbar {
+        grid-template-columns: 1fr;
+      }
+
+      .date-flag {
+        justify-items: start;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 0;
+      }
+
+      .panel {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .network-wrap {
+        min-height: 56vh;
+      }
+
+      .legend {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+      }
+
+      .map-controls {
+        left: 10px;
+        right: auto;
+      }
+
+      .map-hint {
+        left: 10px;
+        right: 10px;
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="board">
+    <header class="topbar">
+      <section class="title-wrap">
+        <h1>Cartografía Viva de Aportes</h1>
+        <p>
+          Panorama de noticias y glosario del curso <strong>Globalización y Empleo 2026-2</strong>.
+          La red conecta estudiantes, conceptos y temas; la retroalimentación queda guardada en este navegador.
+        </p>
+      </section>
+      <aside class="date-flag" aria-label="Datos de sesión">
+        <span class="pill">Sesión: 24 de febrero de 2026</span>
+        <span class="pill">Fuente: <code>sesiones/24feb26</code></span>
+      </aside>
+    </header>
+
+    <section class="layout">
+      <aside class="panel controls" aria-label="Filtros y agrupación">
+        <h2>Vista Panorámica</h2>
+        <div class="controls-grid">
+          <div class="field">
+            <label class="small" for="searchInput">Buscar</label>
+            <input id="searchInput" type="search" placeholder="Tema, estudiante, concepto, noticia..." />
+          </div>
+
+          <div class="field">
+            <label class="small" for="studentFilter">Estudiante</label>
+            <select id="studentFilter"></select>
+          </div>
+
+          <div class="field">
+            <label class="small">Tipo de aporte</label>
+            <div class="check-wrap" id="typeChecks"></div>
+          </div>
+
+          <div class="field">
+            <label class="small">Temas</label>
+            <div class="check-wrap" id="themeChecks"></div>
+          </div>
+
+          <div class="btn-row">
+            <button id="resetFiltersBtn" class="secondary" type="button">Restablecer filtros</button>
+            <button id="fitLayoutBtn" class="secondary" type="button">Ordenamiento automático</button>
+            <button id="resetNetworkBtn" class="secondary" type="button">Reiniciar red</button>
+            <button id="checkAllBtn" class="secondary" type="button">Poner todas las palomitas</button>
+            <button id="clearChecksBtn" class="secondary" type="button">Quitar todas las palomitas</button>
+            <button id="toggleAuthorsBtn" class="secondary" type="button">Ocultar autores</button>
+          </div>
+
+          <section class="stats" id="statsGrid"></section>
+        </div>
+
+        <h3>Agrupación Por Tema</h3>
+        <div id="groupByTheme" class="group-list"></div>
+      </aside>
+
+      <section class="network-wrap" aria-label="Red de relaciones">
+        <canvas id="networkCanvas"></canvas>
+        <div class="map-controls" aria-label="Controles de mapa">
+          <button id="zoomOutBtn" type="button" aria-label="Alejar">−</button>
+          <span id="zoomLevel" class="zoom-level">100%</span>
+          <button id="zoomInBtn" type="button" aria-label="Acercar">+</button>
+          <button id="resetZoomBtn" type="button" aria-label="Restablecer zoom">100%</button>
+        </div>
+        <p class="map-hint">Arrastra nodos para reordenar, arrastra el fondo para mover el mapa, usa la rueda para zoom y al acercar aparecen más etiquetas.</p>
+        <aside class="legend">
+          <strong>Guía visual</strong>
+          <div class="legend-row"><span class="legend-shape circle" style="background:#f1c40f"></span>Tema</div>
+          <div class="legend-row"><span class="legend-shape circle" style="background:#2f7f5f"></span>Estudiante</div>
+          <div class="legend-row"><span class="legend-shape square" style="background:#285b87"></span>Noticia</div>
+          <div class="legend-row"><span class="legend-shape diamond" style="background:#c45a28"></span>Concepto de glosario</div>
+          <div class="legend-row"><span style="display:inline-block;width:26px;height:0;border-top:2px solid #8c8c85"></span>Relación estructural</div>
+          <div class="legend-row"><span style="display:inline-block;width:26px;height:0;border-top:3px dashed #2f7f5f"></span>Conexión propuesta en retroalimentación</div>
+        </aside>
+      </section>
+
+      <aside class="panel detail" aria-label="Detalle y retroalimentación">
+        <h2>Detalle y Retroalimentación</h2>
+        <section id="detailContainer" class="detail-card">
+          <p class="empty">Selecciona un nodo de la red para ver su contenido, autor y conexiones.</p>
+        </section>
+
+        <section class="feedback" id="feedbackPanel" hidden>
+          <h4>Retroalimentación En Clase</h4>
+          <div class="feedback-grid">
+            <button id="understoodBtn" type="button" class="understood">Lo entendí (<span id="understoodCount">0</span>)</button>
+            <button id="needExampleBtn" type="button" class="need-example">Necesita ejemplo (<span id="needExampleCount">0</span>)</button>
+            <span class="connect-label">Conecta con…</span>
+            <select id="connectTargetSelect" aria-label="Selecciona nodo para conectar"></select>
+            <button id="connectBtn" type="button" class="connect">Registrar conexión</button>
+          </div>
+        </section>
+
+        <section class="summary-box">
+          <h4>Para la siguiente clase</h4>
+          <div>
+            <strong>Esto quedó claro</strong>
+            <ol id="clearList" class="summary-list"></ol>
+          </div>
+          <div>
+            <strong>Requieren ejemplos</strong>
+            <ol id="needsList" class="summary-list"></ol>
+          </div>
+          <div>
+            <strong>Nuevas conexiones propuestas</strong>
+            <ol id="linksList" class="summary-list"></ol>
+          </div>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const FEEDBACK_STORAGE_KEY = 'global-24feb26-feedback-v1';
+
+      const glossaryAuthorOverrides = {
+        'Systemic Global Risk': 'Gretel Camila Rojas Aquino',
+        'Scalography (Escalografía)': 'Carlos Eibar Williams Rendon'
+      };
+
+      const rawContributions = [
+        {
+          id: 'news-2183',
+          type: 'noticia',
+          title: 'Investigación de la UE a Shein por diseño de plataforma',
+          author: 'Jorge Cardiel Herrera',
+          summary: 'La Comisión Europea abrió una investigación a Shein por posibles incumplimientos relacionados con productos y diseño de interfaz. El caso muestra cómo la regulación transnacional intenta imponer responsabilidades sobre plataformas globales.',
+          keywords: ['Shein', 'Unión Europea', 'plataformas digitales', 'regulación transnacional', 'comercio electrónico'],
+          url: 'https://www.dw.com/en/shein-faces-eu-investigation-over-products-design-features/a-76011964'
+        },
+        {
+          id: 'news-2184',
+          type: 'noticia',
+          title: 'La Suprema Corte de EE. UU. invalida aranceles globales de Trump',
+          author: 'Arturo Francisco Napoles Gonzalez',
+          summary: 'El fallo de la Corte Suprema declaró ilegales los aranceles globales bajo IEEPA. La nota permite discutir cómo decisiones unilaterales en comercio afectan cadenas globales, precios e incertidumbre laboral.',
+          keywords: ['aranceles', 'comercio internacional', 'Suprema Corte', 'Estados Unidos', 'Trump', 'geopolítica'],
+          url: 'https://www.reuters.com/legal/government/us-supreme-court-rejects-trumps-global-tariffs-2026-02-20/'
+        },
+        {
+          id: 'news-2186',
+          type: 'noticia',
+          title: 'Reforma laboral en México: jornada y día de descanso',
+          author: 'Hector Eleazar Acero Castro',
+          summary: 'La discusión sobre reducción de jornada plantea tensiones entre flexibilidad empresarial y descanso efectivo. El caso se conecta con organización del tiempo de trabajo, horas extra y condiciones de empleo.',
+          keywords: ['reforma laboral', 'jornada 40 horas', 'descanso semanal', 'horas extra', 'empleo'],
+          url: 'https://www.cronista.com/mexico/actualidad-mx/reforma-laboral-se-anula-un-dia-de-reposo-y-se-concluyen-los-fines-de-semana-enteros-para-todos-los-empleados-habra-que-laborar-6-dias/'
+        },
+        {
+          id: 'news-2187',
+          type: 'noticia',
+          title: 'El espacio como columna digital de la economía global',
+          author: 'Axel Sahid Gonzalez Colin',
+          summary: 'La infraestructura espacial sostiene navegación, finanzas y monitoreo ambiental. El aporte permite ver cómo objetos técnicos aparentemente lejanos organizan actividades económicas cotidianas a escala global.',
+          keywords: ['espacio', 'infraestructura digital', 'GPS', 'economía global', 'tecnología'],
+          url: 'https://www.forbes.com/councils/forbestechcouncil/2026/02/03/why-space-is-becoming-the-digital-backbone-of-the-global-economy/'
+        },
+        {
+          id: 'news-2188',
+          type: 'noticia',
+          title: 'S&P mejora calificación de Amentum por reducción de deuda',
+          author: 'Alexander Clavero Lechuga',
+          summary: 'El cambio de calificación refleja poder de agencias privadas para moldear acceso a financiamiento. La noticia dialoga con gobernanza financiera, evaluación de riesgo y jerarquías en mercados globales.',
+          keywords: ['S&P', 'calificación crediticia', 'deuda', 'riesgo', 'finanzas globales'],
+          url: 'https://mx.investing.com/news/stock-market-news/sp-sube-calificacion-de-amentum-a-bb-por-pago-de-deuda-perspectiva-estable-3493342'
+        },
+        {
+          id: 'news-2189',
+          type: 'noticia',
+          title: 'Sector florícola: sostenibilidad, trazabilidad y seguridad',
+          author: 'Irene Martinez Acosta',
+          summary: 'El sector de flores y plantas vincula competitividad con estándares de transparencia y sostenibilidad. La integración en cadenas globales condiciona prácticas laborales y acceso a mercados.',
+          keywords: ['sostenibilidad', 'cadenas globales', 'trazabilidad', 'seguridad', 'sector florícola'],
+          url: 'https://www.royalfloraholland.com/en/news-2026/week-4/flower-and-plant-sector-has-long-been-committed-to-transparency-and-safety-based-on-sustainability-in-the-chain'
+        },
+        {
+          id: 'news-2190',
+          type: 'noticia',
+          title: 'Rusia e India en la estrategia regional de China',
+          author: 'Victor Aviles Iturbide',
+          summary: 'El análisis muestra balances de poder, alianzas y competencia geopolítica en Asia. Permite discutir cómo la globalización se expresa en decisiones estatales, energía, comercio y seguridad.',
+          keywords: ['China', 'Rusia', 'India', 'geopolítica', 'poder regional'],
+          url: 'https://www.diario-red.com/articulo/internacional/rusia-india-estrategia-poder-regional-china/20260221093314064301.html'
+        },
+        {
+          id: 'news-2191',
+          type: 'noticia',
+          title: 'Oxfam México propone plan de cuidados a 20 años',
+          author: 'Frida Daniela Elguea Zaldivar',
+          summary: 'La propuesta de política de cuidados se conecta con desigualdad, trabajo no remunerado y autonomía económica de las mujeres. El aporte permite enlazar empleo, reproducción social y violencia estructural.',
+          keywords: ['cuidados', 'desigualdad', 'trabajo no remunerado', 'mujeres', 'política pública'],
+          url: 'https://forbes.com.mx/oxfam-mexico-urge-plan-de-cuidados-a-20-anos-para-reducir-desigualdad-y-violencia/'
+        },
+        {
+          id: 'news-2192',
+          type: 'noticia',
+          title: 'Mapa de China y disputas fronterizas con India y Malasia',
+          author: 'Cesar Manuel Garcia Ibarra',
+          summary: 'El caso muestra cómo la cartografía opera como tecnología política para producir reclamos territoriales. Se vincula directamente con discusiones sobre escala, representación y poder.',
+          keywords: ['China', 'mapa', 'soberanía', 'disputa fronteriza', 'cartografía política'],
+          url: 'https://www.infobae.com/america/mundo/2023/08/31/india-y-malasia-reclamaron-a-china-por-la-publicacion-de-un-mapa-donde-se-adjudica-territorios-fronterizos-en-disputa/'
+        },
+        {
+          id: 'news-2193',
+          type: 'noticia',
+          title: 'BAT prevé recortes por IA y cambio de estrategia global',
+          author: 'Oscar Emiliano Cruz Lemus',
+          summary: 'La empresa reporta ganancias y al mismo tiempo evalúa ajustes laborales vinculados a automatización. El caso visibiliza cómo decisiones corporativas globales por productividad impactan empleo.',
+          keywords: ['IA', 'automatización', 'recortes de empleo', 'empresa multinacional', 'regulación'],
+          url: 'https://www.reuters.com/business/british-american-tobacco-annual-profit-rises-23-2026-02-12/'
+        },
+        {
+          id: 'gloss-1',
+          type: 'glosario',
+          title: 'Flexiguridad',
+          author: 'Jorge Cardiel Herrera',
+          summary: 'Concepto que busca combinar flexibilidad del mercado laboral con mecanismos de seguridad para trabajadores. Sirve para debatir quién absorbe riesgos en contextos de globalización y reestructuración productiva.',
+          keywords: ['flexibilidad laboral', 'seguridad social', 'regulación laboral', 'transiciones laborales', 'globalización'],
+          url: ''
+        },
+        {
+          id: 'gloss-2',
+          type: 'glosario',
+          title: 'Systemic Global Risk',
+          author: glossaryAuthorOverrides['Systemic Global Risk'],
+          summary: 'Riesgos interconectados con capacidad de desestabilizar sistemas planetarios. Útil para comprender efectos dominó entre finanzas, ambiente, tecnología y gobernanza global.',
+          keywords: ['interconexión', 'globalización', 'sistema financiero', 'riesgo sistémico'],
+          url: ''
+        },
+        {
+          id: 'gloss-3',
+          type: 'glosario',
+          title: 'Scalography (Escalografía)',
+          author: glossaryAuthorOverrides['Scalography (Escalografía)'],
+          summary: 'Propuesta metodológica para estudiar cómo se construyen escalas en objetos y prácticas. Permite cuestionar oposiciones dadas por sentadas como local/global o micro/macro.',
+          keywords: ['escala', 'micro/macro', 'local/global', 'metodología etnográfica', 'STS'],
+          url: ''
+        }
+      ];
+
+      const themeCatalog = [
+        {
+          id: 'regulacion',
+          label: 'Regulación y gobernanza',
+          color: '#0f6c73',
+          tokens: ['regul', 'gobern', 'suprema corte', 'ue', 'ley', 'investig', 'trazabilidad', 'norma', 'política', 'certific']
+        },
+        {
+          id: 'geopolitica',
+          label: 'Geopolítica y poder',
+          color: '#9c2f2f',
+          tokens: ['china', 'rusia', 'india', 'malasia', 'soberan', 'fronter', 'arancel', 'trump', 'diplomac', 'territor', 'mapa']
+        },
+        {
+          id: 'trabajo',
+          label: 'Trabajo y empleo',
+          color: '#cb6428',
+          tokens: ['empleo', 'laboral', 'jornada', 'trabajo', 'job', 'cuidados', 'horas', 'descanso', 'recorte']
+        },
+        {
+          id: 'finanzas',
+          label: 'Finanzas y riesgo',
+          color: '#345995',
+          tokens: ['deuda', 'calific', 'rating', 's&p', 'financ', 'capital', 'invers', 'riesgo', 'moody']
+        },
+        {
+          id: 'tecnologia',
+          label: 'Tecnología e infraestructura',
+          color: '#4f6d4c',
+          tokens: ['ia', 'digital', 'plataforma', 'gps', 'espacio', 'algorit', 'infraestructura', 'automatiz', 'diseño']
+        },
+        {
+          id: 'sostenibilidad',
+          label: 'Sostenibilidad y cadenas',
+          color: '#5f8a32',
+          tokens: ['sostenibilidad', 'cadena', 'ambient', 'flor', 'plant', 'seguridad', 'transparencia', 'clim']
+        },
+        {
+          id: 'teoria',
+          label: 'Conceptos teóricos',
+          color: '#7f5f46',
+          tokens: ['scalography', 'escalograf', 'flexiguridad', 'systemic global risk', 'metodolog', 'escala', 'globalización']
+        },
+        {
+          id: 'otros',
+          label: 'Otros cruces',
+          color: '#6f6f69',
+          tokens: []
+        }
+      ];
+
+      const typeCatalog = [
+        { id: 'noticia', label: 'Noticias' },
+        { id: 'glosario', label: 'Glosario' }
+      ];
+
+      const STOPWORDS = new Set([
+        'para', 'como', 'sobre', 'esta', 'este', 'desde', 'entre', 'global', 'globales', 'mismo', 'misma',
+        'tambien', 'solo', 'sino', 'todas', 'todos', 'donde', 'porque', 'cuando', 'ademas', 'hacia', 'bajo',
+        'lineas', 'linea', 'noticia', 'participacion', 'curso', 'clase', 'moodle', 'entry', 'through',
+        'that', 'with', 'from', 'have', 'been', 'into', 'their', 'over', 'they', 'them', 'than'
+      ]);
+
+      const themeById = new Map(themeCatalog.map((theme) => [theme.id, theme]));
+      const contributionById = new Map();
+      const studentSet = new Set();
+
+      const contributions = rawContributions.map((item) => {
+        const themes = inferThemes(item);
+        const normalizedKeywords = tokenize(item.keywords.join(' ') + ' ' + item.title + ' ' + item.summary);
+        const contribution = {
+          ...item,
+          themes,
+          normalizedKeywords
+        };
+        contributionById.set(contribution.id, contribution);
+        studentSet.add(contribution.author);
+        return contribution;
+      });
+
+      const students = Array.from(studentSet).sort((a, b) => a.localeCompare(b, 'es'));
+
+      const state = {
+        search: '',
+        selectedStudent: 'all',
+        activeTypes: new Set(typeCatalog.map((type) => type.id)),
+        activeThemes: new Set(themeCatalog.map((theme) => theme.id)),
+        showAuthors: true,
+        selectedNodeId: null,
+        feedback: loadFeedback(),
+        collapsedThemes: new Set()
+      };
+
+      const nodeMap = new Map();
+      const nodes = [];
+      const baseEdges = [];
+      let edges = [];
+      const simulation = {
+        width: 0,
+        height: 0,
+        running: true
+      };
+
+      const view = {
+        scale: 1,
+        minScale: 0.55,
+        maxScale: 2.8,
+        offsetX: 0,
+        offsetY: 0
+      };
+
+      const dom = {
+        searchInput: document.getElementById('searchInput'),
+        studentFilter: document.getElementById('studentFilter'),
+        typeChecks: document.getElementById('typeChecks'),
+        themeChecks: document.getElementById('themeChecks'),
+        resetFiltersBtn: document.getElementById('resetFiltersBtn'),
+        fitLayoutBtn: document.getElementById('fitLayoutBtn'),
+        resetNetworkBtn: document.getElementById('resetNetworkBtn'),
+        checkAllBtn: document.getElementById('checkAllBtn'),
+        clearChecksBtn: document.getElementById('clearChecksBtn'),
+        toggleAuthorsBtn: document.getElementById('toggleAuthorsBtn'),
+        groupByTheme: document.getElementById('groupByTheme'),
+        statsGrid: document.getElementById('statsGrid'),
+        detailContainer: document.getElementById('detailContainer'),
+        feedbackPanel: document.getElementById('feedbackPanel'),
+        understoodBtn: document.getElementById('understoodBtn'),
+        needExampleBtn: document.getElementById('needExampleBtn'),
+        understoodCount: document.getElementById('understoodCount'),
+        needExampleCount: document.getElementById('needExampleCount'),
+        connectTargetSelect: document.getElementById('connectTargetSelect'),
+        connectBtn: document.getElementById('connectBtn'),
+        clearList: document.getElementById('clearList'),
+        needsList: document.getElementById('needsList'),
+        linksList: document.getElementById('linksList'),
+        zoomOutBtn: document.getElementById('zoomOutBtn'),
+        zoomInBtn: document.getElementById('zoomInBtn'),
+        resetZoomBtn: document.getElementById('resetZoomBtn'),
+        zoomLevel: document.getElementById('zoomLevel'),
+        canvas: document.getElementById('networkCanvas')
+      };
+
+      const ctx = dom.canvas.getContext('2d');
+      let dpr = Math.max(1, window.devicePixelRatio || 1);
+      let hoveredNode = null;
+      let dragState = null;
+      let panState = null;
+      let pointerMoved = false;
+
+      buildGraph();
+      setupUI();
+      resizeCanvas();
+      applyFilters();
+      recenterNodes();
+      resetViewport();
+      requestAnimationFrame(loop);
+
+      function buildGraph() {
+        themeCatalog.forEach((theme) => {
+          const node = createNode({
+            id: 'theme-' + theme.id,
+            type: 'theme',
+            label: theme.label,
+            size: 18,
+            color: theme.color,
+            dataRef: theme.id
+          });
+          nodeMap.set(node.id, node);
+          nodes.push(node);
+        });
+
+        students.forEach((student) => {
+          const node = createNode({
+            id: 'student-' + student,
+            type: 'student',
+            label: student,
+            size: 11,
+            color: '#2f7f5f',
+            dataRef: student
+          });
+          nodeMap.set(node.id, node);
+          nodes.push(node);
+        });
+
+        contributions.forEach((contribution) => {
+          const node = createNode({
+            id: contribution.id,
+            type: contribution.type,
+            label: contribution.title,
+            size: contribution.type === 'noticia' ? 9.6 : 10.4,
+            color: contribution.type === 'noticia' ? '#285b87' : '#c45a28',
+            dataRef: contribution.id
+          });
+          nodeMap.set(node.id, node);
+          nodes.push(node);
+
+          baseEdges.push({
+            sourceId: node.id,
+            targetId: 'student-' + contribution.author,
+            type: 'autor',
+            weight: 1.2
+          });
+
+          contribution.themes.forEach((themeId) => {
+            baseEdges.push({
+              sourceId: node.id,
+              targetId: 'theme-' + themeId,
+              type: 'tema',
+              weight: 1
+            });
+          });
+        });
+
+        buildSimilarityEdges();
+        rebuildEdges();
+      }
+
+      function buildSimilarityEdges() {
+        const relationCandidates = [];
+        for (let index = 0; index < contributions.length; index += 1) {
+          const first = contributions[index];
+          for (let next = index + 1; next < contributions.length; next += 1) {
+            const second = contributions[next];
+            const score = similarityScore(first, second);
+            if (score < 3) {
+              continue;
+            }
+            if (first.type === second.type && first.type === 'noticia' && score < 4) {
+              continue;
+            }
+            relationCandidates.push({
+              sourceId: first.id,
+              targetId: second.id,
+              type: 'relacion',
+              weight: Math.min(2.4, 1 + score * 0.22),
+              score
+            });
+          }
+        }
+
+        relationCandidates
+          .sort((left, right) => right.score - left.score)
+          .slice(0, 24)
+          .forEach((edge) => {
+            baseEdges.push(edge);
+          });
+      }
+
+      function rebuildEdges() {
+        edges = baseEdges.slice();
+        const links = state.feedback.links || {};
+        Object.keys(links).forEach((key) => {
+          const count = links[key];
+          if (!count || count < 1) {
+            return;
+          }
+          const split = key.split('->');
+          if (split.length !== 2) {
+            return;
+          }
+          edges.push({
+            sourceId: split[0],
+            targetId: split[1],
+            type: 'feedback',
+            weight: Math.min(3, 1 + count * 0.35),
+            count
+          });
+        });
+      }
+
+      function setupUI() {
+        renderStudentFilter();
+        renderTypeChecks();
+        renderThemeChecks();
+        updateAuthorsButtonLabel();
+        renderStats();
+        renderGroupByTheme();
+        renderSummary();
+        renderDetail();
+        bindEvents();
+      }
+
+      function bindEvents() {
+        dom.searchInput.addEventListener('input', function () {
+          state.search = this.value || '';
+          applyFilters();
+        });
+
+        dom.studentFilter.addEventListener('change', function () {
+          state.selectedStudent = this.value;
+          applyFilters();
+        });
+
+        dom.typeChecks.addEventListener('change', function (event) {
+          if (!event.target.matches('input[type="checkbox"]')) {
+            return;
+          }
+          const typeId = event.target.value;
+          if (event.target.checked) {
+            state.activeTypes.add(typeId);
+          } else {
+            state.activeTypes.delete(typeId);
+          }
+          if (state.activeTypes.size === 0) {
+            state.activeTypes.add(typeId);
+            event.target.checked = true;
+          }
+          applyFilters();
+        });
+
+        dom.themeChecks.addEventListener('change', function (event) {
+          if (!event.target.matches('input[type="checkbox"]')) {
+            return;
+          }
+          const themeId = event.target.value;
+          if (event.target.checked) {
+            state.activeThemes.add(themeId);
+          } else {
+            state.activeThemes.delete(themeId);
+          }
+          if (state.activeThemes.size === 0) {
+            state.activeThemes.add(themeId);
+            event.target.checked = true;
+          }
+          applyFilters();
+        });
+
+        dom.resetFiltersBtn.addEventListener('click', resetFilters);
+        dom.fitLayoutBtn.addEventListener('click', resetAutoLayout);
+        dom.resetNetworkBtn.addEventListener('click', function () {
+          const approved = window.confirm('¿Reiniciar la red y borrar toda la retroalimentación (entendidos, ejemplos y conexiones propuestas)?');
+          if (!approved) {
+            return;
+          }
+          resetNetworkState();
+        });
+        dom.checkAllBtn.addEventListener('click', checkAllChecks);
+        dom.clearChecksBtn.addEventListener('click', clearAllChecks);
+        dom.toggleAuthorsBtn.addEventListener('click', function () {
+          state.showAuthors = !state.showAuthors;
+          updateAuthorsButtonLabel();
+          applyFilters();
+        });
+
+        dom.zoomInBtn.addEventListener('click', function () {
+          zoomAt(1.2, simulation.width * 0.5, simulation.height * 0.5);
+        });
+
+        dom.zoomOutBtn.addEventListener('click', function () {
+          zoomAt(1 / 1.2, simulation.width * 0.5, simulation.height * 0.5);
+        });
+
+        dom.resetZoomBtn.addEventListener('click', resetViewport);
+
+        dom.groupByTheme.addEventListener('click', function (event) {
+          const button = event.target.closest('button[data-action]');
+          if (!button) {
+            return;
+          }
+          const action = button.dataset.action;
+          const themeId = button.dataset.themeId;
+          if (action === 'toggle-group') {
+            if (state.collapsedThemes.has(themeId)) {
+              state.collapsedThemes.delete(themeId);
+            } else {
+              state.collapsedThemes.add(themeId);
+            }
+            renderGroupByTheme();
+            return;
+          }
+          if (action === 'select-node') {
+            selectNode(button.dataset.nodeId);
+            return;
+          }
+        });
+
+        dom.understoodBtn.addEventListener('click', function () {
+          const selectedContribution = getSelectedContribution();
+          if (!selectedContribution) {
+            return;
+          }
+          const feedback = ensureContributionFeedback(selectedContribution.id);
+          feedback.understood += 1;
+          saveFeedback();
+          renderDetail();
+          renderSummary();
+          renderStats();
+        });
+
+        dom.needExampleBtn.addEventListener('click', function () {
+          const selectedContribution = getSelectedContribution();
+          if (!selectedContribution) {
+            return;
+          }
+          const feedback = ensureContributionFeedback(selectedContribution.id);
+          feedback.needExample += 1;
+          saveFeedback();
+          renderDetail();
+          renderSummary();
+          renderStats();
+        });
+
+        dom.connectBtn.addEventListener('click', function () {
+          const selectedContribution = getSelectedContribution();
+          if (!selectedContribution) {
+            return;
+          }
+          const targetId = dom.connectTargetSelect.value;
+          if (!targetId || targetId === selectedContribution.id) {
+            return;
+          }
+          const key = selectedContribution.id + '->' + targetId;
+          state.feedback.links[key] = (state.feedback.links[key] || 0) + 1;
+          saveFeedback();
+          rebuildEdges();
+          renderDetail();
+          renderSummary();
+          renderStats();
+        });
+
+        window.addEventListener('resize', function () {
+          resizeCanvas();
+          if (!hasPinnedNodes()) {
+            recenterNodes();
+          }
+        });
+
+        dom.canvas.addEventListener('wheel', function (event) {
+          event.preventDefault();
+          const point = canvasPoint(event);
+          const factor = event.deltaY < 0 ? 1.12 : 1 / 1.12;
+          zoomAt(factor, point.x, point.y);
+        }, { passive: false });
+
+        dom.canvas.addEventListener('mousedown', function (event) {
+          const point = canvasPoint(event);
+          const worldPoint = screenToWorld(point.x, point.y);
+          const node = findNodeAtPoint(worldPoint.x, worldPoint.y);
+          pointerMoved = false;
+          if (node) {
+            dragState = {
+              nodeId: node.id,
+              offsetX: node.x - worldPoint.x,
+              offsetY: node.y - worldPoint.y,
+              startX: point.x,
+              startY: point.y
+            };
+            dom.canvas.classList.add('dragging');
+            return;
+          }
+
+          panState = {
+            startX: point.x,
+            startY: point.y,
+            startOffsetX: view.offsetX,
+            startOffsetY: view.offsetY
+          };
+          dom.canvas.classList.add('dragging');
+        });
+
+        dom.canvas.addEventListener('mousemove', function (event) {
+          const point = canvasPoint(event);
+          const worldPoint = screenToWorld(point.x, point.y);
+          hoveredNode = findNodeAtPoint(worldPoint.x, worldPoint.y);
+
+          if (dragState) {
+            const node = nodeMap.get(dragState.nodeId);
+            if (!node || !node.visible) {
+              return;
+            }
+            if (!pointerMoved && (Math.abs(point.x - dragState.startX) > 2 || Math.abs(point.y - dragState.startY) > 2)) {
+              pointerMoved = true;
+            }
+            node.x = worldPoint.x + dragState.offsetX;
+            node.y = worldPoint.y + dragState.offsetY;
+            node.vx = 0;
+            node.vy = 0;
+            node.pinned = true;
+            return;
+          }
+
+          if (panState) {
+            const deltaX = point.x - panState.startX;
+            const deltaY = point.y - panState.startY;
+            if (!pointerMoved && (Math.abs(deltaX) > 2 || Math.abs(deltaY) > 2)) {
+              pointerMoved = true;
+            }
+            view.offsetX = panState.startOffsetX + deltaX;
+            view.offsetY = panState.startOffsetY + deltaY;
+          }
+        });
+
+        window.addEventListener('mouseup', function () {
+          dragState = null;
+          panState = null;
+          dom.canvas.classList.remove('dragging');
+        });
+
+        dom.canvas.addEventListener('mouseleave', function () {
+          hoveredNode = null;
+        });
+
+        dom.canvas.addEventListener('click', function (event) {
+          if (pointerMoved) {
+            pointerMoved = false;
+            return;
+          }
+          const point = canvasPoint(event);
+          const worldPoint = screenToWorld(point.x, point.y);
+          const node = findNodeAtPoint(worldPoint.x, worldPoint.y);
+          if (!node) {
+            return;
+          }
+          selectNode(node.id);
+        });
+      }
+
+      function renderStudentFilter() {
+        const options = ['<option value="all">Todos</option>'];
+        students.forEach((student) => {
+          options.push('<option value="' + escapeHtml(student) + '">' + escapeHtml(student) + '</option>');
+        });
+        dom.studentFilter.innerHTML = options.join('');
+      }
+
+      function renderTypeChecks() {
+        dom.typeChecks.innerHTML = typeCatalog
+          .map((type) => {
+            return (
+              '<label class="check-item">' +
+              '<input type="checkbox" value="' + type.id + '" checked />' +
+              '<span>' + escapeHtml(type.label) + '</span>' +
+              '</label>'
+            );
+          })
+          .join('');
+      }
+
+      function renderThemeChecks() {
+        dom.themeChecks.innerHTML = themeCatalog
+          .map((theme) => {
+            return (
+              '<label class="check-item">' +
+              '<input type="checkbox" value="' + theme.id + '" checked />' +
+              '<span class="theme-dot" style="background:' + theme.color + '"></span>' +
+              '<span>' + escapeHtml(theme.label) + '</span>' +
+              '</label>'
+            );
+          })
+          .join('');
+      }
+
+      function resetFilters() {
+        state.search = '';
+        state.selectedStudent = 'all';
+        state.activeTypes = new Set(typeCatalog.map((type) => type.id));
+        state.activeThemes = new Set(themeCatalog.map((theme) => theme.id));
+        dom.searchInput.value = '';
+        dom.studentFilter.value = 'all';
+        dom.typeChecks.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+          input.checked = true;
+        });
+        dom.themeChecks.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+          input.checked = true;
+        });
+        applyFilters();
+      }
+
+      function clearAllChecks() {
+        state.activeTypes = new Set();
+        state.activeThemes = new Set();
+        dom.typeChecks.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+          input.checked = false;
+        });
+        dom.themeChecks.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+          input.checked = false;
+        });
+        applyFilters();
+      }
+
+      function checkAllChecks() {
+        state.activeTypes = new Set(typeCatalog.map((type) => type.id));
+        state.activeThemes = new Set(themeCatalog.map((theme) => theme.id));
+        dom.typeChecks.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+          input.checked = true;
+        });
+        dom.themeChecks.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+          input.checked = true;
+        });
+        applyFilters();
+      }
+
+      function updateAuthorsButtonLabel() {
+        dom.toggleAuthorsBtn.textContent = state.showAuthors ? 'Ocultar autores y nodos' : 'Mostrar autores y nodos';
+      }
+
+      function applyFilters() {
+        const visibleContributionIds = new Set();
+        contributions.forEach((contribution) => {
+          if (!state.activeTypes.has(contribution.type)) {
+            return;
+          }
+          if (state.selectedStudent !== 'all' && contribution.author !== state.selectedStudent) {
+            return;
+          }
+          const themeMatch = contribution.themes.some((themeId) => state.activeThemes.has(themeId));
+          if (!themeMatch) {
+            return;
+          }
+          if (state.search && !matchesSearch(contribution, state.search)) {
+            return;
+          }
+          visibleContributionIds.add(contribution.id);
+        });
+
+        const activeStudents = new Set();
+        const activeThemes = new Set();
+
+        contributions.forEach((contribution) => {
+          if (!visibleContributionIds.has(contribution.id)) {
+            return;
+          }
+          activeStudents.add(contribution.author);
+          contribution.themes.forEach((themeId) => {
+            if (state.activeThemes.has(themeId)) {
+              activeThemes.add(themeId);
+            }
+          });
+        });
+
+        nodes.forEach((node) => {
+          if (node.type === 'noticia' || node.type === 'glosario') {
+            node.visible = visibleContributionIds.has(node.id);
+            return;
+          }
+          if (node.type === 'student') {
+            node.visible = state.showAuthors && activeStudents.has(node.dataRef);
+            return;
+          }
+          if (node.type === 'theme') {
+            node.visible = activeThemes.has(node.dataRef);
+            return;
+          }
+          node.visible = true;
+        });
+
+        edges.forEach((edge) => {
+          const source = nodeMap.get(edge.sourceId);
+          const target = nodeMap.get(edge.targetId);
+          edge.visible = Boolean(source && target && source.visible && target.visible);
+        });
+
+        if (state.selectedNodeId) {
+          const selected = nodeMap.get(state.selectedNodeId);
+          if (!selected || !selected.visible) {
+            state.selectedNodeId = null;
+          }
+        }
+
+        renderStats();
+        renderGroupByTheme();
+        renderSummary();
+        renderDetail();
+      }
+
+      function renderStats() {
+        const visibleContributions = contributions.filter((contribution) => {
+          const node = nodeMap.get(contribution.id);
+          return node && node.visible;
+        });
+        const visibleStudents = new Set(visibleContributions.map((item) => item.author));
+        const visibleStudentCount = state.showAuthors ? visibleStudents.size : 0;
+        const activeThemeCount = new Set(
+          visibleContributions.flatMap((item) => item.themes.filter((themeId) => state.activeThemes.has(themeId)))
+        ).size;
+        const feedbackCount = Object.values(state.feedback.links || {}).reduce((total, value) => total + value, 0);
+
+        dom.statsGrid.innerHTML =
+          statCard(visibleContributions.length, 'Aportes visibles') +
+          statCard(visibleStudentCount, 'Estudiantes visibles') +
+          statCard(activeThemeCount, 'Temas activos') +
+          statCard(feedbackCount, 'Retro-conexiones');
+      }
+
+      function renderGroupByTheme() {
+        const parts = [];
+        themeCatalog.forEach((theme) => {
+          const contributionsForTheme = contributions
+            .filter((contribution) => contribution.themes.includes(theme.id))
+            .filter((contribution) => {
+              const node = nodeMap.get(contribution.id);
+              return node && node.visible;
+            });
+
+          if (contributionsForTheme.length === 0) {
+            return;
+          }
+
+          const collapsed = state.collapsedThemes.has(theme.id);
+          const content = collapsed
+            ? ''
+            : '<div class="group-content">' +
+              contributionsForTheme
+                .map((contribution) => {
+                  const subtitle = state.showAuthors
+                    ? escapeHtml(contribution.author) + ' · ' + escapeHtml(contribution.type)
+                    : escapeHtml(contribution.type);
+                  return (
+                    '<button class="group-link" data-action="select-node" data-node-id="' + contribution.id + '">' +
+                    escapeHtml(contribution.title) +
+                    '<span>' + subtitle + '</span>' +
+                    '</button>'
+                  );
+                })
+                .join('') +
+              '</div>';
+
+          parts.push(
+            '<article class="group-item">' +
+              '<button class="group-head" type="button" data-action="toggle-group" data-theme-id="' + theme.id + '">' +
+                '<span><span class="theme-dot" style="background:' + theme.color + '"></span> ' + escapeHtml(theme.label) + '</span>' +
+                '<span>' + contributionsForTheme.length + ' · ' + (collapsed ? '+' : '−') + '</span>' +
+              '</button>' +
+              content +
+            '</article>'
+          );
+        });
+
+        dom.groupByTheme.innerHTML = parts.join('') || '<p class="empty">No hay aportes con los filtros actuales.</p>';
+      }
+
+      function renderDetail() {
+        const node = state.selectedNodeId ? nodeMap.get(state.selectedNodeId) : null;
+        if (!node || !node.visible) {
+          dom.detailContainer.innerHTML = '<p class="empty">Selecciona un nodo de la red para ver su contenido, autor y conexiones.</p>';
+          dom.feedbackPanel.hidden = true;
+          return;
+        }
+
+        if (node.type === 'noticia' || node.type === 'glosario') {
+          const item = contributionById.get(node.id);
+          if (!item) {
+            return;
+          }
+          const feedback = ensureContributionFeedback(item.id);
+          const keywords = item.keywords.map((keyword) => '<span class="chip">' + escapeHtml(keyword) + '</span>').join('');
+          const themes = item.themes
+            .map((themeId) => {
+              const theme = themeById.get(themeId);
+              if (!theme) {
+                return '';
+              }
+              return '<span class="chip theme" style="background:' + theme.color + '">' + escapeHtml(theme.label) + '</span>';
+            })
+            .join('');
+
+          const sourceLink = item.url
+            ? '<a class="detail-link" href="' + item.url + '" target="_blank" rel="noopener noreferrer">Abrir fuente</a>'
+            : '';
+          const authorChip = state.showAuthors ? '<span class="chip">' + escapeHtml(item.author) + '</span>' : '';
+
+          dom.detailContainer.innerHTML =
+            '<h3 class="detail-title">' + escapeHtml(item.title) + '</h3>' +
+            '<div class="meta">' +
+              '<span class="chip">' + escapeHtml(item.type.toUpperCase()) + '</span>' +
+              authorChip +
+            '</div>' +
+            '<div class="meta">' + themes + '</div>' +
+            '<p class="detail-text">' + escapeHtml(item.summary) + '</p>' +
+            '<div class="meta">' + keywords + '</div>' +
+            sourceLink;
+
+          dom.feedbackPanel.hidden = false;
+          dom.understoodCount.textContent = String(feedback.understood || 0);
+          dom.needExampleCount.textContent = String(feedback.needExample || 0);
+          fillConnectTargets(item.id);
+          return;
+        }
+
+        if (node.type === 'student') {
+          const student = node.dataRef;
+          const items = contributions.filter((contribution) => contribution.author === student);
+          dom.detailContainer.innerHTML =
+            '<h3 class="detail-title">' + escapeHtml(student) + '</h3>' +
+            '<div class="meta"><span class="chip">ESTUDIANTE</span><span class="chip">' + items.length + ' aportes</span></div>' +
+            items
+              .map((item) => {
+                return '<button class="group-link" data-inline-node="' + item.id + '">' +
+                  escapeHtml(item.title) +
+                  '<span>' + escapeHtml(item.type) + '</span>' +
+                '</button>';
+              })
+              .join('');
+          dom.feedbackPanel.hidden = true;
+          bindInlineNodeButtons();
+          return;
+        }
+
+        if (node.type === 'theme') {
+          const themeId = node.dataRef;
+          const theme = themeById.get(themeId);
+          const items = contributions.filter((contribution) => contribution.themes.includes(themeId));
+          dom.detailContainer.innerHTML =
+            '<h3 class="detail-title">' + escapeHtml(theme ? theme.label : node.label) + '</h3>' +
+            '<div class="meta"><span class="chip">TEMA</span><span class="chip">' + items.length + ' aportes</span></div>' +
+            items
+              .filter((item) => {
+                const linkedNode = nodeMap.get(item.id);
+                return linkedNode && linkedNode.visible;
+              })
+              .map((item) => {
+                const subtitle = state.showAuthors ? escapeHtml(item.author) : escapeHtml(item.type);
+                return '<button class="group-link" data-inline-node="' + item.id + '">' +
+                  escapeHtml(item.title) +
+                  '<span>' + subtitle + '</span>' +
+                '</button>';
+              })
+              .join('');
+          dom.feedbackPanel.hidden = true;
+          bindInlineNodeButtons();
+        }
+      }
+
+      function bindInlineNodeButtons() {
+        dom.detailContainer.querySelectorAll('button[data-inline-node]').forEach((button) => {
+          button.addEventListener('click', function () {
+            selectNode(this.dataset.inlineNode);
+          });
+        });
+      }
+
+      function fillConnectTargets(selectedId) {
+        const options = ['<option value="">Selecciona otro aporte…</option>'];
+        contributions
+          .filter((contribution) => contribution.id !== selectedId)
+          .sort((a, b) => a.title.localeCompare(b.title, 'es'))
+          .forEach((contribution) => {
+            const optionLabel = state.showAuthors
+              ? escapeHtml(contribution.title) + ' · ' + escapeHtml(contribution.author)
+              : escapeHtml(contribution.title);
+            options.push(
+              '<option value="' + contribution.id + '">' +
+                optionLabel +
+              '</option>'
+            );
+          });
+        dom.connectTargetSelect.innerHTML = options.join('');
+      }
+
+      function renderSummary() {
+        const contributionFeedbackEntries = contributions.map((contribution) => {
+          const feedback = ensureContributionFeedback(contribution.id);
+          return {
+            id: contribution.id,
+            title: contribution.title,
+            understood: feedback.understood || 0,
+            needExample: feedback.needExample || 0
+          };
+        });
+
+        const clearRanking = contributionFeedbackEntries
+          .slice()
+          .sort((left, right) => {
+            const leftScore = left.understood - left.needExample;
+            const rightScore = right.understood - right.needExample;
+            if (rightScore !== leftScore) {
+              return rightScore - leftScore;
+            }
+            return right.understood - left.understood;
+          })
+          .filter((item) => item.understood > 0)
+          .slice(0, 3);
+
+        const needsRanking = contributionFeedbackEntries
+          .slice()
+          .sort((left, right) => right.needExample - left.needExample)
+          .filter((item) => item.needExample > 0)
+          .slice(0, 3);
+
+        const linksRanking = Object.entries(state.feedback.links || {})
+          .map(function (entry) {
+            const split = entry[0].split('->');
+            const source = contributionById.get(split[0]);
+            const target = contributionById.get(split[1]);
+            if (!source || !target) {
+              return null;
+            }
+            return {
+              label: source.title + ' → ' + target.title,
+              count: entry[1]
+            };
+          })
+          .filter(Boolean)
+          .sort((left, right) => right.count - left.count)
+          .slice(0, 10);
+
+        renderList(dom.clearList, clearRanking.map((item) => item.title + ' (' + item.understood + ')'));
+        renderList(dom.needsList, needsRanking.map((item) => item.title + ' (' + item.needExample + ')'));
+        renderList(dom.linksList, linksRanking.map((item) => item.label + ' (' + item.count + ')'));
+      }
+
+      function renderList(listElement, values) {
+        if (!values.length) {
+          listElement.innerHTML = '<li>Sin datos todavía</li>';
+          return;
+        }
+        listElement.innerHTML = values.map((value) => '<li>' + escapeHtml(value) + '</li>').join('');
+      }
+
+      function selectNode(nodeId) {
+        const node = nodeMap.get(nodeId);
+        if (!node || !node.visible) {
+          return;
+        }
+        state.selectedNodeId = nodeId;
+        renderDetail();
+      }
+
+      function getSelectedContribution() {
+        if (!state.selectedNodeId) {
+          return null;
+        }
+        return contributionById.get(state.selectedNodeId) || null;
+      }
+
+      function loadFeedback() {
+        try {
+          const raw = localStorage.getItem(FEEDBACK_STORAGE_KEY);
+          if (!raw) {
+            return { byContribution: {}, links: {} };
+          }
+          const parsed = JSON.parse(raw);
+          return {
+            byContribution: parsed.byContribution || {},
+            links: parsed.links || {}
+          };
+        } catch (_error) {
+          return { byContribution: {}, links: {} };
+        }
+      }
+
+      function ensureContributionFeedback(contributionId) {
+        if (!state.feedback.byContribution[contributionId]) {
+          state.feedback.byContribution[contributionId] = { understood: 0, needExample: 0 };
+        }
+        return state.feedback.byContribution[contributionId];
+      }
+
+      function saveFeedback() {
+        localStorage.setItem(FEEDBACK_STORAGE_KEY, JSON.stringify(state.feedback));
+        rebuildEdges();
+      }
+
+      function similarityScore(first, second) {
+        const sharedThemes = intersectionSize(new Set(first.themes), new Set(second.themes));
+        const sharedKeywords = intersectionSize(
+          new Set(first.normalizedKeywords),
+          new Set(second.normalizedKeywords)
+        );
+        return sharedThemes * 2 + Math.min(3, sharedKeywords);
+      }
+
+      function intersectionSize(first, second) {
+        let count = 0;
+        first.forEach((value) => {
+          if (second.has(value)) {
+            count += 1;
+          }
+        });
+        return count;
+      }
+
+      function inferThemes(item) {
+        const normalized = normalizeText(
+          item.title + ' ' + item.summary + ' ' + item.keywords.join(' ') + ' ' + item.author
+        );
+        const themes = [];
+        themeCatalog.forEach((theme) => {
+          if (theme.id === 'otros') {
+            return;
+          }
+          const match = theme.tokens.some((token) => normalized.includes(token));
+          if (match) {
+            themes.push(theme.id);
+          }
+        });
+        if (item.type === 'glosario' && !themes.includes('teoria')) {
+          themes.push('teoria');
+        }
+        if (themes.length === 0) {
+          themes.push('otros');
+        }
+        return unique(themes);
+      }
+
+      function tokenize(input) {
+        const words = normalizeText(input)
+          .split(/[^a-z0-9]+/)
+          .map((word) => word.trim())
+          .filter(Boolean)
+          .filter((word) => word.length > 3)
+          .filter((word) => !STOPWORDS.has(word));
+        return unique(words);
+      }
+
+      function normalizeText(value) {
+        return String(value || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
+      }
+
+      function unique(values) {
+        return Array.from(new Set(values));
+      }
+
+      function matchesSearch(contribution, query) {
+        const haystack = normalizeText(
+          contribution.title +
+          ' ' +
+          contribution.author +
+          ' ' +
+          contribution.summary +
+          ' ' +
+          contribution.keywords.join(' ')
+        );
+        const needle = normalizeText(query);
+        return haystack.includes(needle);
+      }
+
+      function createNode(config) {
+        return {
+          id: config.id,
+          type: config.type,
+          label: config.label,
+          size: config.size,
+          color: config.color,
+          dataRef: config.dataRef,
+          x: 0,
+          y: 0,
+          vx: 0,
+          vy: 0,
+          pinned: false,
+          visible: true
+        };
+      }
+
+      function hasPinnedNodes() {
+        return nodes.some((node) => node.pinned);
+      }
+
+      function resetAutoLayout() {
+        nodes.forEach((node) => {
+          node.pinned = false;
+        });
+        recenterNodes();
+        resetViewport();
+      }
+
+      function resetNetworkState() {
+        state.feedback = { byContribution: {}, links: {} };
+        state.selectedNodeId = null;
+        hoveredNode = null;
+        dragState = null;
+        panState = null;
+        localStorage.removeItem(FEEDBACK_STORAGE_KEY);
+        rebuildEdges();
+        resetAutoLayout();
+        applyFilters();
+      }
+
+      function recenterNodes() {
+        const width = simulation.width || dom.canvas.clientWidth || 800;
+        const height = simulation.height || dom.canvas.clientHeight || 600;
+        const studentNodes = nodes.filter((node) => node.type === 'student');
+        const newsNodes = nodes.filter((node) => node.type === 'noticia');
+        const glossaryNodes = nodes.filter((node) => node.type === 'glosario');
+        const themeNodes = nodes.filter((node) => node.type === 'theme');
+
+        themeNodes.forEach((node, index) => {
+          const angle = (index / themeNodes.length) * Math.PI * 2 - Math.PI / 2;
+          const radius = Math.min(width, height) * 0.25;
+          node.x = width * 0.5 + Math.cos(angle) * radius;
+          node.y = height * 0.5 + Math.sin(angle) * radius;
+          node.vx = 0;
+          node.vy = 0;
+        });
+
+        distributeVertical(studentNodes, width * 0.12, height * 0.15, height * 0.85);
+        distributeVertical(glossaryNodes, width * 0.74, height * 0.1, height * 0.45);
+        distributeVertical(newsNodes, width * 0.74, height * 0.48, height * 0.9);
+      }
+
+      function distributeVertical(groupNodes, xValue, startY, endY) {
+        if (!groupNodes.length) {
+          return;
+        }
+        const step = groupNodes.length === 1 ? 0 : (endY - startY) / (groupNodes.length - 1);
+        groupNodes.forEach((node, index) => {
+          const jitter = (Math.random() - 0.5) * 22;
+          node.x = xValue + jitter;
+          node.y = startY + step * index + jitter * 0.35;
+          node.vx = 0;
+          node.vy = 0;
+        });
+      }
+
+      function resizeCanvas() {
+        const rect = dom.canvas.getBoundingClientRect();
+        simulation.width = rect.width;
+        simulation.height = rect.height;
+        dpr = Math.max(1, window.devicePixelRatio || 1);
+        dom.canvas.width = Math.max(1, Math.round(rect.width * dpr));
+        dom.canvas.height = Math.max(1, Math.round(rect.height * dpr));
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function resetViewport() {
+        view.scale = 1;
+        view.offsetX = 0;
+        view.offsetY = 0;
+        updateZoomLevel();
+      }
+
+      function updateZoomLevel() {
+        dom.zoomLevel.textContent = Math.round(view.scale * 100) + '%';
+      }
+
+      function zoomAt(factor, screenX, screenY) {
+        const previousScale = view.scale;
+        const nextScale = clamp(previousScale * factor, view.minScale, view.maxScale);
+        if (nextScale === previousScale) {
+          return;
+        }
+
+        const worldPoint = screenToWorld(screenX, screenY);
+        view.scale = nextScale;
+        view.offsetX = screenX - worldPoint.x * nextScale;
+        view.offsetY = screenY - worldPoint.y * nextScale;
+        updateZoomLevel();
+      }
+
+      function worldToScreen(x, y) {
+        return {
+          x: x * view.scale + view.offsetX,
+          y: y * view.scale + view.offsetY
+        };
+      }
+
+      function screenToWorld(x, y) {
+        return {
+          x: (x - view.offsetX) / view.scale,
+          y: (y - view.offsetY) / view.scale
+        };
+      }
+
+      function loop() {
+        if (simulation.running) {
+          stepSimulation();
+          draw();
+        }
+        requestAnimationFrame(loop);
+      }
+
+      function stepSimulation() {
+        const width = simulation.width || dom.canvas.clientWidth;
+        const height = simulation.height || dom.canvas.clientHeight;
+        const visibleNodes = nodes.filter((node) => node.visible);
+        const visibleEdges = edges.filter((edge) => edge.visible);
+
+        visibleNodes.forEach((node) => {
+          if (node.pinned) {
+            node.vx = 0;
+            node.vy = 0;
+            return;
+          }
+          node.vx *= 0.87;
+          node.vy *= 0.87;
+        });
+
+        for (let firstIndex = 0; firstIndex < visibleNodes.length; firstIndex += 1) {
+          const first = visibleNodes[firstIndex];
+          for (let secondIndex = firstIndex + 1; secondIndex < visibleNodes.length; secondIndex += 1) {
+            const second = visibleNodes[secondIndex];
+            let dx = second.x - first.x;
+            let dy = second.y - first.y;
+            let distance = Math.sqrt(dx * dx + dy * dy) || 0.1;
+            if (distance > 260) {
+              continue;
+            }
+            const force = 220 / (distance * distance + 30);
+            dx /= distance;
+            dy /= distance;
+            if (!first.pinned) {
+              first.vx -= dx * force;
+              first.vy -= dy * force;
+            }
+            if (!second.pinned) {
+              second.vx += dx * force;
+              second.vy += dy * force;
+            }
+          }
+        }
+
+        visibleEdges.forEach((edge) => {
+          const source = nodeMap.get(edge.sourceId);
+          const target = nodeMap.get(edge.targetId);
+          if (!source || !target) {
+            return;
+          }
+          const preferredDistance = edge.type === 'tema' ? 100 : edge.type === 'autor' ? 84 : 118;
+          let dx = target.x - source.x;
+          let dy = target.y - source.y;
+          const distance = Math.sqrt(dx * dx + dy * dy) || 0.1;
+          const delta = distance - preferredDistance;
+          const spring = delta * 0.003 * edge.weight;
+          dx /= distance;
+          dy /= distance;
+          if (!source.pinned) {
+            source.vx += dx * spring;
+            source.vy += dy * spring;
+          }
+          if (!target.pinned) {
+            target.vx -= dx * spring;
+            target.vy -= dy * spring;
+          }
+        });
+
+        visibleNodes.forEach((node) => {
+          if (node.pinned) {
+            node.x = clamp(node.x, 22, width - 22);
+            node.y = clamp(node.y, 22, height - 22);
+            return;
+          }
+          const anchor = anchorForNode(node, width, height);
+          node.vx += (anchor.x - node.x) * 0.0042;
+          node.vy += (anchor.y - node.y) * 0.0042;
+
+          node.x += node.vx;
+          node.y += node.vy;
+
+          node.x = clamp(node.x, 22, width - 22);
+          node.y = clamp(node.y, 22, height - 22);
+        });
+      }
+
+      function anchorForNode(node, width, height) {
+        if (node.type === 'theme') {
+          const index = themeCatalog.findIndex((theme) => theme.id === node.dataRef);
+          const angle = (index / Math.max(1, themeCatalog.length)) * Math.PI * 2 - Math.PI / 2;
+          const radius = Math.min(width, height) * 0.23;
+          return {
+            x: width * 0.5 + Math.cos(angle) * radius,
+            y: height * 0.49 + Math.sin(angle) * radius
+          };
+        }
+        if (node.type === 'student') {
+          const visibleStudents = nodes.filter((item) => item.type === 'student');
+          const index = Math.max(0, visibleStudents.indexOf(node));
+          const step = Math.max(1, visibleStudents.length - 1);
+          return {
+            x: width * 0.13,
+            y: height * (0.15 + (0.72 * index) / step)
+          };
+        }
+        if (node.type === 'glosario') {
+          const visibleGlossary = nodes.filter((item) => item.type === 'glosario');
+          const index = Math.max(0, visibleGlossary.indexOf(node));
+          const step = Math.max(1, visibleGlossary.length - 1);
+          return {
+            x: width * 0.75,
+            y: height * (0.18 + (0.25 * index) / step)
+          };
+        }
+        const visibleNews = nodes.filter((item) => item.type === 'noticia');
+        const index = Math.max(0, visibleNews.indexOf(node));
+        const step = Math.max(1, visibleNews.length - 1);
+        return {
+          x: width * 0.75,
+          y: height * (0.5 + (0.35 * index) / step)
+        };
+      }
+
+      function draw() {
+        const width = simulation.width || dom.canvas.clientWidth;
+        const height = simulation.height || dom.canvas.clientHeight;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, width, height);
+        drawGrid(width, height);
+        drawEdges();
+        drawNodes();
+      }
+
+      function drawGrid(width, height) {
+        ctx.save();
+        ctx.strokeStyle = 'rgba(24,23,19,0.06)';
+        ctx.lineWidth = 1;
+        const cell = 44;
+        const worldTopLeft = screenToWorld(0, 0);
+        const worldBottomRight = screenToWorld(width, height);
+        const startX = Math.floor(worldTopLeft.x / cell) * cell;
+        const startY = Math.floor(worldTopLeft.y / cell) * cell;
+
+        for (let x = startX; x <= worldBottomRight.x + cell; x += cell) {
+          const screen = worldToScreen(x, 0);
+          ctx.beginPath();
+          ctx.moveTo(screen.x, 0);
+          ctx.lineTo(screen.x, height);
+          ctx.stroke();
+        }
+
+        for (let y = startY; y <= worldBottomRight.y + cell; y += cell) {
+          const screen = worldToScreen(0, y);
+          ctx.beginPath();
+          ctx.moveTo(0, screen.y);
+          ctx.lineTo(width, screen.y);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      function drawEdges() {
+        edges
+          .filter((edge) => edge.visible)
+          .forEach((edge) => {
+            const source = nodeMap.get(edge.sourceId);
+            const target = nodeMap.get(edge.targetId);
+            if (!source || !target) {
+              return;
+            }
+
+            const highlighted =
+              state.selectedNodeId &&
+              (source.id === state.selectedNodeId || target.id === state.selectedNodeId);
+
+            let stroke = '#8f9189';
+            let alpha = highlighted ? 0.9 : 0.36;
+            let lineWidth = edge.weight;
+            let dashed = false;
+
+            if (edge.type === 'autor') {
+              stroke = '#ca8650';
+            } else if (edge.type === 'tema') {
+              stroke = '#6a6f70';
+            } else if (edge.type === 'relacion') {
+              stroke = '#355f83';
+              dashed = true;
+              alpha = highlighted ? 0.82 : 0.3;
+            } else if (edge.type === 'feedback') {
+              stroke = '#2f7f5f';
+              dashed = true;
+              lineWidth = Math.min(4.4, 1 + (edge.count || 1));
+              alpha = highlighted ? 0.95 : 0.66;
+            }
+
+            ctx.save();
+            ctx.globalAlpha = alpha;
+            ctx.strokeStyle = stroke;
+            ctx.lineWidth = Math.max(0.7, lineWidth * view.scale);
+            ctx.setLineDash(dashed ? [6, 4] : []);
+            const sourceScreen = worldToScreen(source.x, source.y);
+            const targetScreen = worldToScreen(target.x, target.y);
+            ctx.beginPath();
+            ctx.moveTo(sourceScreen.x, sourceScreen.y);
+            ctx.lineTo(targetScreen.x, targetScreen.y);
+            ctx.stroke();
+            ctx.restore();
+          });
+      }
+
+      function drawNodes() {
+        const visibleNodes = nodes.filter((node) => node.visible);
+        visibleNodes.forEach((node) => drawNode(node));
+        visibleNodes.forEach((node) => drawLabel(node));
+      }
+
+      function drawNode(node) {
+        const isSelected = state.selectedNodeId === node.id;
+        const isHover = hoveredNode && hoveredNode.id === node.id;
+        const size = (node.size + (isSelected ? 2.6 : isHover ? 1.4 : 0)) * view.scale;
+        const baseAlpha = isSelected ? 1 : 0.94;
+        const point = worldToScreen(node.x, node.y);
+
+        ctx.save();
+        ctx.globalAlpha = baseAlpha;
+        ctx.fillStyle = node.color;
+        ctx.strokeStyle = 'rgba(0,0,0,0.22)';
+        ctx.lineWidth = isSelected ? 2.2 : 1.2;
+
+        if (node.type === 'noticia') {
+          drawRoundedRect(point.x - size * 0.95, point.y - size * 0.66, size * 1.9, size * 1.32, 3);
+          ctx.fill();
+          ctx.stroke();
+        } else if (node.type === 'glosario') {
+          ctx.beginPath();
+          ctx.moveTo(point.x, point.y - size);
+          ctx.lineTo(point.x + size, point.y);
+          ctx.lineTo(point.x, point.y + size);
+          ctx.lineTo(point.x - size, point.y);
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+        } else {
+          ctx.beginPath();
+          ctx.arc(point.x, point.y, size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+        }
+
+        if (isSelected || isHover) {
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(24,23,19,0.38)';
+          ctx.lineWidth = 1;
+          ctx.setLineDash([3, 4]);
+          ctx.arc(point.x, point.y, size + 7, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
+        ctx.restore();
+      }
+
+      function drawLabel(node) {
+        const isSelected = state.selectedNodeId === node.id;
+        const isHover = hoveredNode && hoveredNode.id === node.id;
+        const showAllLabels = view.scale >= 1.15;
+        if (!showAllLabels && !isSelected && !isHover && node.type !== 'theme') {
+          return;
+        }
+
+        let maxChars = node.type === 'student' ? 24 : 28;
+        if (showAllLabels) {
+          maxChars = view.scale >= 1.6 ? 54 : 38;
+        }
+        const text = truncate(node.label, maxChars);
+        const fontSize = clamp((node.type === 'theme' ? 12 : 11) * view.scale, 9, 20);
+        const point = worldToScreen(node.x, node.y);
+
+        ctx.save();
+        ctx.font = '700 ' + fontSize + 'px "Avenir Next Condensed", "Trebuchet MS", sans-serif';
+        const padding = 6;
+        const metrics = ctx.measureText(text);
+        const boxWidth = metrics.width + padding * 2;
+        const boxHeight = fontSize + 8;
+        const boxX = point.x + 10;
+        const boxY = point.y - boxHeight / 2;
+
+        ctx.fillStyle = 'rgba(255,255,255,0.87)';
+        ctx.strokeStyle = 'rgba(0,0,0,0.16)';
+        ctx.lineWidth = 1;
+        drawRoundedRect(boxX, boxY, boxWidth, boxHeight, 5);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#1a1a18';
+        ctx.fillText(text, boxX + padding, boxY + boxHeight - 6);
+        ctx.restore();
+      }
+
+      function drawRoundedRect(x, y, width, height, radius) {
+        const r = Math.min(radius, width / 2, height / 2);
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.lineTo(x + width - r, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + r);
+        ctx.lineTo(x + width, y + height - r);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - r, y + height);
+        ctx.lineTo(x + r, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - r);
+        ctx.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.closePath();
+      }
+
+      function findNodeAtPoint(x, y) {
+        const visibleNodes = nodes.filter((node) => node.visible);
+        for (let index = visibleNodes.length - 1; index >= 0; index -= 1) {
+          const node = visibleNodes[index];
+          const size = node.size + 5;
+          if (Math.abs(node.x - x) > size || Math.abs(node.y - y) > size) {
+            continue;
+          }
+          if (node.type === 'noticia') {
+            if (x >= node.x - size && x <= node.x + size && y >= node.y - size && y <= node.y + size) {
+              return node;
+            }
+            continue;
+          }
+          const dx = node.x - x;
+          const dy = node.y - y;
+          if (dx * dx + dy * dy <= size * size) {
+            return node;
+          }
+        }
+        return null;
+      }
+
+      function canvasPoint(event) {
+        const rect = dom.canvas.getBoundingClientRect();
+        return {
+          x: event.clientX - rect.left,
+          y: event.clientY - rect.top
+        };
+      }
+
+      function statCard(value, label) {
+        return '<article class="stat"><strong>' + value + '</strong><span>' + escapeHtml(label) + '</span></article>';
+      }
+
+      function clamp(value, min, max) {
+        return Math.min(max, Math.max(min, value));
+      }
+
+      function truncate(text, maxChars) {
+        if (!text || text.length <= maxChars) {
+          return text;
+        }
+        return text.slice(0, maxChars - 1) + '…';
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Equipos y Discusión - 24feb26</title>
+  <style>
+    :root {
+      --ink: #1f1d1a;
+      --paper: #f5f0e5;
+      --card: #fffdfa;
+      --line: #d8cebf;
+      --teal: #0f6c73;
+      --muted: #5e5951;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 14px;
+      font-family: "Avenir Next", "Trebuchet MS", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(155deg, #e8deca 0%, #f2efe6 50%, #e7f0ea 100%);
+    }
+
+    .page {
+      width: min(1080px, 100%);
+      margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    header {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(120deg, rgba(15, 108, 115, 0.12), rgba(176, 102, 47, 0.08));
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Bodoni 72", "Didot", serif;
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      line-height: 1.02;
+    }
+
+    .sub {
+      margin: 8px 0 0;
+      color: #2d322f;
+      line-height: 1.32;
+      font-size: 0.96rem;
+    }
+
+    main {
+      padding: 14px;
+      display: grid;
+      gap: 14px;
+    }
+
+    section {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--card);
+      padding: 12px;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 1.02rem;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .grid {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .team {
+      border: 1px solid #e3d8c8;
+      border-left: 4px solid #b0662f;
+      border-radius: 8px;
+      padding: 8px 9px;
+    }
+
+    .team h3 {
+      margin: 0 0 6px;
+      font-size: 0.94rem;
+      color: #212c2f;
+    }
+
+    .team ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 3px;
+      font-size: 0.87rem;
+      line-height: 1.24;
+    }
+
+    .questions {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      gap: 6px;
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+
+    .foot {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <header>
+      <h1>Equipos y Discusión en Grupo</h1>
+      <p class="sub">Globalización y Empleo 2026-2 · Sesión del 24 de febrero de 2026</p>
+    </header>
+
+    <main>
+      <section>
+        <h2>Equipos</h2>
+        <div class="grid">
+          <article class="team">
+            <h3>Equipo 1 · Finanzas y gobernanza privada</h3>
+            <ul>
+              <li>Alexander Clavero Lechuga</li>
+              <li>Arturo Francisco Nápoles González</li>
+              <li>Gretel Camila Rojas Aquino</li>
+            </ul>
+          </article>
+
+          <article class="team">
+            <h3>Equipo 2 · Movilidad e infraestructura de viaje</h3>
+            <ul>
+              <li>Benjamín Martínez Zúñiga</li>
+              <li>Daniela Sofía López Cruz</li>
+              <li>Axel Sahid González Colín</li>
+            </ul>
+          </article>
+
+          <article class="team">
+            <h3>Equipo 3 · Trabajo transnacional y desigualdad</h3>
+            <ul>
+              <li>Victor Aviles Iturbide</li>
+              <li>Irene Martínez Acosta</li>
+              <li>Frida Daniela Elguea Zaldívar</li>
+              <li>Zoey Atenco Vargas</li>
+            </ul>
+          </article>
+
+          <article class="team">
+            <h3>Equipo 4 · Información y representación del mundo</h3>
+            <ul>
+              <li>César Manuel García Ibarra</li>
+              <li>Mariana Zurisadai Flores Azuara</li>
+              <li>Ana Sofía Hernández Milán</li>
+            </ul>
+          </article>
+
+          <article class="team">
+            <h3>Equipo 5 · Objetos cotidianos y mediación técnica</h3>
+            <ul>
+              <li>Michel Henestrosa García</li>
+              <li>Oscar Emiliano Cruz Lemus</li>
+              <li>Sofía Gómez Monroy</li>
+              <li>Hector Eleazar Acero Castro</li>
+            </ul>
+          </article>
+
+          <article class="team">
+            <h3>Equipo 6 · Reespecificar la globalización</h3>
+            <ul>
+              <li>Danna Paola Benítez Montiel</li>
+              <li>Mateo Hidalgo Galván</li>
+              <li>Carlos Eibar Williams Rendón</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Preguntas de Discusión</h2>
+        <ol class="questions">
+          <li>¿Cuáles son los objetos y las prácticas?</li>
+          <li>¿Qué beneficios concretos produce este objeto/práctica?</li>
+          <li>¿Qué parte de la cadena captura más valor?</li>
+
+          <li>¿Qué actores concentran poder, influencia y/o capacidad de decisión?</li>
+                    <li>¿Qué actores (logística, datos, cuidados, intermediarios) sostienen el sistema?</li>
+
+          <li>¿Qué riesgos o costos se transfieren, se externalizan o se deslocalizan?</li>
+
+
+
+        </ol>
+      </section>
+
+      <!--<p class="foot">Sugerencia operativa: 12 minutos de discusión por equipo + 3 minutos de puesta en común por equipo.</p>-->
+    </main>
+  </article>
+</body>
+</html>

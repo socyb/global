@@ -25,3 +25,7 @@ pizarrones/*.png
 
 # Web archive files
 *.webarchive
+
+# Class submission and reading folders
+/controles/
+/lecturas/
