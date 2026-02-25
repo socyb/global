@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Actividad de clase sobre el video The Digital World and Us - The 5 Million Euro Radio Mast, vinculada con Globalization in Practice.">
+  <title>The Digital World and Us | Actividad de clase</title>
+  <link rel="icon" href="../img/icon-globe.svg">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/session.css">
+  <style>
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      background: #000;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.85rem;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .meta-item {
+      background: var(--sky);
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      padding: 0.8rem 0.95rem;
+    }
+
+    .meta-label {
+      font-family: var(--font-accent);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .meta-value {
+      font-size: 1.02rem;
+      line-height: 1.35;
+      color: var(--ink);
+      font-weight: 650;
+      word-break: break-word;
+    }
+
+    .bridge-card {
+      background: var(--cream);
+    }
+
+    .bridge-card h3 {
+      color: var(--purple);
+    }
+
+    .concept-list {
+      list-style: none;
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 0.65rem;
+    }
+
+    .concept-list li {
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      padding: 0.7rem 0.8rem;
+      background: #fff;
+      line-height: 1.45;
+      font-size: 1.02rem;
+    }
+
+    .concept-list strong {
+      color: var(--ink);
+    }
+
+    .activity-card {
+      background: var(--mint);
+    }
+
+    .activity-intro {
+      background: var(--blush);
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.15rem;
+      margin-bottom: 0.9rem;
+      font-size: 1.07rem;
+      line-height: 1.55;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .field label {
+      font-family: var(--font-accent);
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--ink);
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      background: #fff;
+      padding: 0.72rem 0.78rem;
+      font: inherit;
+      color: var(--ink);
+      line-height: 1.45;
+    }
+
+    .field textarea {
+      min-height: 122px;
+      resize: vertical;
+    }
+
+    .question-block {
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      padding: 0.8rem;
+      background: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .question-block p {
+      margin: 0 0 0.55rem;
+      font-size: 1.06rem;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 0.35rem;
+    }
+
+    .action-button {
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      padding: 0.58rem 0.9rem;
+      background: #fff;
+      color: var(--ink);
+      font-family: var(--font-accent);
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 var(--ink);
+      text-decoration: none;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+
+    .action-button:hover {
+      transform: translate(1px, 1px);
+      box-shadow: 2px 2px 0 var(--ink);
+      background: var(--cream);
+    }
+
+    .action-primary {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .action-danger {
+      background: #ffe7e7;
+    }
+
+    .save-status {
+      margin-top: 0.8rem;
+      font-family: var(--font-accent);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .save-status.ok {
+      color: #13693c;
+      font-weight: 700;
+    }
+
+    .save-status.error {
+      color: #9f2323;
+      font-weight: 700;
+    }
+
+    .resource-list {
+      margin-top: 0.7rem;
+      padding-left: 1.15rem;
+      display: grid;
+      gap: 0.4rem;
+      font-size: 1.03rem;
+    }
+
+    details {
+      margin-top: 0.9rem;
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      background: #fff;
+      padding: 0.65rem 0.85rem;
+    }
+
+    summary {
+      cursor: pointer;
+      font-family: var(--font-accent);
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .excerpt-list {
+      margin-top: 0.7rem;
+      padding-left: 1.2rem;
+      display: grid;
+      gap: 0.45rem;
+      line-height: 1.45;
+    }
+
+    .timestamp {
+      font-family: var(--font-accent);
+      font-size: 0.85rem;
+      color: var(--coral);
+      font-weight: 800;
+      margin-right: 0.35rem;
+    }
+
+    @media (max-width: 768px) {
+      .video-actions,
+      .form-actions {
+        flex-direction: column;
+      }
+
+      .action-button {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    @media print {
+      .no-print,
+      .back-link {
+        display: none !important;
+      }
+
+      .site-header {
+        border-bottom: 1px solid #000;
+        background: #fff;
+        padding: 0.7rem 0 0.45rem;
+      }
+
+      .section {
+        margin: 0.55rem 0;
+      }
+
+      .content-card,
+      .meta-item,
+      .question-block {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+        background: #fff !important;
+      }
+
+      .video-wrapper,
+      details {
+        display: none !important;
+      }
+
+      .field input,
+      .field textarea {
+        border: 1px solid #000;
+        background: #fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header session-header">
+    <div class="container">
+      <a href="../index.html" class="back-link">← Volver al inicio</a>
+      <h1>The Digital World and Us: The 5 Million Euro Radio Mast</h1>
+      <p class="subtitle">Actividad de clase · Globalización y Empleo 2026-2 · FCA UNAM</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2>Video</h2>
+      <div class="content-card">
+        <p style="font-size: 1rem; margin-bottom: 0.8rem;">
+          Puedes reproducir el video desde ARTE.
+          Si el embed no carga por restricciones del navegador, usa el enlace externo.
+        </p>
+        <div class="video-grid">
+          <article>
+            <h3>Reproducción en línea</h3>
+            <div class="video-wrapper">
+              <iframe
+                src="https://www.arte.tv/embeds/en/110863-005-A"
+                title="The Digital World and Us - The 5 Million Euro Radio Mast"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="video-actions no-print">
+              <a class="action-button" href="https://www.arte.tv/en/videos/110863-005-A/the-digital-world-and-us/" target="_blank" rel="noopener">Abrir URL oficial</a>
+              <button type="button" class="action-button" id="openPopup">Abrir en ventana emergente</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Metadatos del Video</h2>
+      <div class="content-card">
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Programa</span>
+            <span class="meta-value">The Digital World and Us</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Episodio</span>
+            <span class="meta-value">The 5 Million Euro Radio Mast</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Plataforma</span>
+            <span class="meta-value">ARTE in English</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Género</span>
+            <span class="meta-value">Documentary</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Duración oficial</span>
+            <span class="meta-value">780 s (13:00)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Fecha de publicación</span>
+            <span class="meta-value">27 de mayo de 2024</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Ventana de disponibilidad</span>
+            <span class="meta-value">27-may-2024 a 14-mar-2027 (datos ARTE)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Dirección</span>
+            <span class="meta-value">Dimitri Kourtchine</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Narración / investigación</span>
+            <span class="meta-value">Xavier de la Porte</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Idioma y subtítulos</span>
+            <span class="meta-value">Audio francés + subtítulos en español</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Resolución / fps</span>
+            <span class="meta-value">1280×720 · 25 fps · H.264/AAC</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">URL</span>
+            <span class="meta-value"><a href="https://www.arte.tv/en/videos/110863-005-A/the-digital-world-and-us/" target="_blank" rel="noopener">https://www.arte.tv/en/videos/110863-005-A/the-digital-world-and-us/</a></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Conexión con Globalization in Practice</h2>
+      <div class="content-card bridge-card">
+        <h3>Cómo refuerza la lectura</h3>
+        <p>
+          El documental permite aterrizar el argumento central visto en la introducción de <em>Globalization in Practice</em>:
+          la globalización se produce a través de objetos, infraestructuras y prácticas ordinarias.
+          Aquí, una torre de radio obsoleta y redes de transmisión se vuelven piezas estratégicas para organizar
+          finanzas globales en escalas de milisegundos y microsegundos.
+        </p>
+        <ul class="concept-list">
+          <li><strong>Objetos mundanos:</strong> torre, cableado, antenas, centros de datos, algoritmos.</li>
+          <li><strong>Extensión en espacio y tiempo:</strong> pequeñas mejoras de velocidad reconfiguran mercados intercontinentales.</li>
+          <li><strong>Materialidad de lo digital:</strong> lo “virtual” depende de infraestructura física y geográfica.</li>
+          <li><strong>Poder y distribución:</strong> quien controla la infraestructura captura ventajas y valor económico.</li>
+          <li><strong>Riesgo sistémico:</strong> errores de código y automatización pueden escalar a crisis financieras.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Formulario de Actividad</h2>
+      <div class="content-card activity-card">
+        <div class="activity-intro">
+          <strong>Instrucción:</strong> Contesta al menos una pregunta con base en el video y en la lectura de
+          <em>Globalization in Practice</em>. Las respuestas se guardan en este navegador
+          y pueden imprimirse o guardarse como PDF. Sube el archivo generado con tus respuestas al foro de Moodle. Contará como participación.
+        </div>
+
+        <form id="activityForm">
+          <div class="field-grid">
+            <div class="field">
+              <label for="fecha">Fecha</label>
+              <input id="fecha" name="fecha" type="date" data-export-label="Fecha">
+            </div>
+            <div class="field">
+              <label for="nombre">Nombre</label>
+              <input id="nombre" name="nombre" type="text" placeholder="Nombre" data-export-label="Nombre">
+            </div>
+          </div>
+
+          <div class="question-block">
+            <p>1) ¿Qué muestra el documental sobre la materialidad de lo digital (torres, centros de datos, energía, geografía)?</p>
+            <div class="field"><textarea name="q1" data-export-label="1) ¿Qué muestra el documental sobre la materialidad de lo digital (torres, centros de datos, energía, geografía)?"></textarea></div>
+          </div>
+
+          <div class="question-block">
+            <p>2) El caso Knight Capital muestra una falla de software con impacto sistémico. ¿Qué nos dice sobre automatización y gobernanza?</p>
+            <div class="field"><textarea name="q2" data-export-label="2) El caso Knight Capital muestra una falla de software con impacto sistémico. ¿Qué nos dice sobre automatización y gobernanza?"></textarea></div>
+          </div>
+
+          <div class="question-block">
+            <p>3) ¿Qué relación encuentras entre aceleración, financiarización y globalización?</p>
+            <div class="field"><textarea name="q3" data-export-label="3) ¿Qué relación encuentras entre aceleración, financiarización y globalización?"></textarea></div>
+          </div>
+        </form>
+
+        <div class="form-actions no-print">
+          <button type="button" class="action-button action-primary" id="saveBtn">Guardar respuestas</button>
+          <button type="button" class="action-button" id="exportBtn">Descargar .txt</button>
+          <button type="button" class="action-button" id="printBtn">Imprimir / Guardar PDF</button>
+          <button type="button" class="action-button action-danger" id="clearBtn">Limpiar formulario</button>
+        </div>
+        <p class="save-status" id="saveStatus">Estado: sin guardado todavía.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Transcripción y Recursos</h2>
+      <div class="content-card">
+        <p style="font-size: 1rem;">
+          Se preparó una versión limpia de la transcripción en formato texto para facilitar el trabajo en clase.
+        </p>
+        <ul class="resource-list">
+          <li><a href="./transcripcion_digital_world_and_us_25feb26_utf8.txt" target="_blank" rel="noopener">Transcripción limpia (TXT)</a></li>
+          <li><a href="https://www.arte.tv/en/videos/110863-005-A/the-digital-world-and-us/" target="_blank" rel="noopener">Video oficial en ARTE</a></li>
+        </ul>
+
+        <details>
+          <summary>Ver extractos clave con marca de tiempo</summary>
+          <ul class="excerpt-list">
+            <li><span class="timestamp">00:34</span> La torre aparece como infraestructura aparentemente obsoleta que adquiere valor estratégico.</li>
+            <li><span class="timestamp">01:22</span> La subasta llega a cinco millones de euros pese a su “obsolescencia”.</li>
+            <li><span class="timestamp">02:50</span> Paso de fibra óptica a microondas para reducir tiempos de transmisión.</li>
+            <li><span class="timestamp">03:17</span> La compra de torre permite ventaja competitiva de microsegundos.</li>
+            <li><span class="timestamp">05:44</span> La competencia se materializa en servidores y centros de datos.</li>
+            <li><span class="timestamp">07:24</span> Nuevas soluciones técnicas y límites físicos en la búsqueda de velocidad.</li>
+            <li><span class="timestamp">09:29</span> La aceleración financiera como parte de una lógica social más amplia.</li>
+            <li><span class="timestamp">11:31</span> Caso Knight Capital: error de software con pérdidas masivas en minutos.</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <p><a href="../index.html">← Volver a la página principal</a></p>
+        <p class="footer-meta">Globalización y Empleo 2026-2 · FCA UNAM · Dr. Jorge Cardiel</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = "actividad_video_digital_world_us_25feb26_v2";
+      const OFFICIAL_URL = "https://www.arte.tv/en/videos/110863-005-A/the-digital-world-and-us/";
+      const form = document.getElementById("activityForm");
+      const status = document.getElementById("saveStatus");
+      const saveBtn = document.getElementById("saveBtn");
+      const clearBtn = document.getElementById("clearBtn");
+      const printBtn = document.getElementById("printBtn");
+      const exportBtn = document.getElementById("exportBtn");
+      const popupBtn = document.getElementById("openPopup");
+      const fields = Array.from(form.querySelectorAll("input, textarea"));
+      let autosaveTimer = null;
+
+      function nowLabel() {
+        return new Date().toLocaleString("es-MX", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit"
+        });
+      }
+
+      function setStatus(message, kind) {
+        status.textContent = message;
+        status.classList.remove("ok", "error");
+        if (kind) {
+          status.classList.add(kind);
+        }
+      }
+
+      function readData() {
+        const data = {};
+        fields.forEach((field) => {
+          if (!field.name) {
+            return;
+          }
+          data[field.name] = field.value;
+        });
+        return data;
+      }
+
+      function writeData(data) {
+        fields.forEach((field) => {
+          if (!field.name) {
+            return;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, field.name)) {
+            field.value = data[field.name];
+          }
+        });
+      }
+
+      function saveData(showMessage) {
+        try {
+          const payload = {
+            savedAt: new Date().toISOString(),
+            data: readData()
+          };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+          if (showMessage) {
+            setStatus("Guardado local completado: " + nowLabel(), "ok");
+          } else {
+            setStatus("Autoguardado: " + nowLabel(), "ok");
+          }
+        } catch (error) {
+          setStatus("No se pudo guardar en este navegador.", "error");
+        }
+      }
+
+      function loadData() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) {
+            setStatus("Estado: sin guardado previo para este navegador.");
+            return;
+          }
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.data) {
+            writeData(parsed.data);
+          }
+          setStatus("Respuestas restauradas desde guardado local.", "ok");
+        } catch (error) {
+          setStatus("No se pudo restaurar el guardado local.", "error");
+        }
+      }
+
+      function defaultDate() {
+        const dateField = document.getElementById("fecha");
+        if (!dateField.value) {
+          const today = new Date();
+          const yyyy = today.getFullYear();
+          const mm = String(today.getMonth() + 1).padStart(2, "0");
+          const dd = String(today.getDate()).padStart(2, "0");
+          dateField.value = yyyy + "-" + mm + "-" + dd;
+        }
+      }
+
+      function buildTextExport() {
+        const lines = [];
+        const timestamp = new Date().toLocaleString("es-MX");
+        lines.push("Actividad de clase: The Digital World and Us");
+        lines.push("Exportado: " + timestamp);
+        lines.push("Curso: Globalizacion y Empleo 2026-2");
+        fields.forEach((field) => {
+          const label = field.getAttribute("data-export-label");
+          if (!label) {
+            return;
+          }
+          const value = (field.value || "").trim();
+          lines.push("");
+          lines.push(label + ":");
+          lines.push(value ? value : "[Sin respuesta]");
+        });
+        return lines.join("\n");
+      }
+
+      function downloadText() {
+        const nombre = (document.getElementById("nombre").value || "sin_nombre")
+          .trim()
+          .replace(/\s+/g, "_")
+          .replace(/[^A-Za-z0-9_-]/g, "");
+        const dateValue = document.getElementById("fecha").value || "sin_fecha";
+        const filename = "actividad_digital_world_" + nombre + "_" + dateValue + ".txt";
+        const blob = new Blob([buildTextExport()], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = filename;
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      function clearForm() {
+        const confirmed = window.confirm("Se borraran las respuestas guardadas en este navegador. ¿Continuar?");
+        if (!confirmed) {
+          return;
+        }
+        form.reset();
+        localStorage.removeItem(STORAGE_KEY);
+        defaultDate();
+        setStatus("Formulario limpio y guardado local eliminado.");
+      }
+
+      function openPopup() {
+        const popup = window.open(
+          OFFICIAL_URL,
+          "arte_digital_world",
+          "popup=yes,width=1280,height=760,menubar=no,toolbar=no,location=yes,resizable=yes,scrollbars=yes"
+        );
+        if (!popup) {
+          window.open(OFFICIAL_URL, "_blank", "noopener");
+        }
+      }
+
+      function prepareForPrint() {
+        form.querySelectorAll("textarea").forEach((area) => {
+          area.style.height = "auto";
+          area.style.height = area.scrollHeight + "px";
+        });
+      }
+
+      function bindEvents() {
+        fields.forEach((field) => {
+          field.addEventListener("input", function () {
+            clearTimeout(autosaveTimer);
+            autosaveTimer = setTimeout(function () {
+              saveData(false);
+            }, 350);
+          });
+        });
+
+        saveBtn.addEventListener("click", function () {
+          saveData(true);
+        });
+
+        clearBtn.addEventListener("click", clearForm);
+        exportBtn.addEventListener("click", downloadText);
+        popupBtn.addEventListener("click", openPopup);
+        printBtn.addEventListener("click", function () {
+          prepareForPrint();
+          window.print();
+        });
+        window.addEventListener("beforeprint", prepareForPrint);
+      }
+
+      defaultDate();
+      loadData();
+      bindEvents();
+    })();
+  </script>
+</body>
+</html>

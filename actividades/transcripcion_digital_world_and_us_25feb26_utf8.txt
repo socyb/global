@@ -1,0 +1,272 @@
+﻿00:00:03 | ¿Veis esa torre de ahí?
+00:00:05 | ¿Esa torre que parece insignificante?
+00:00:07 | Pues bien, ¡vale una fortuna!
+00:00:09 | No solo vale una fortuna, sino que cuenta
+00:00:12 | toda una historia.
+00:00:14 | Aunque parezca extraño,
+00:00:15 | más que el TGV y los récords de Usain Bolt,
+00:00:19 | esta historia habla de la obsesión por la velocidad.
+00:00:23 | Por eso os contaré la historia de esta torre.
+00:00:34 | La historia de esta torre comienza en Brujas, en 2012.
+00:00:37 | Un día, el Estado belga pone a la venta esta torre,
+00:00:40 | una de tantas otras.
+00:00:43 | Pero esta tiene una particularidad:
+00:00:45 | mide 240 metros de altura. Es muy alta.
+00:00:48 | Es la torre más alta de Bélgica.
+00:00:50 | EE. UU. la construyó en 1967 cerca de la frontera francesa
+00:00:54 | con el objetivo de facilitar las comunicaciones
+00:00:57 | entre Alemania e Inglaterra. Era plena Guerra Fría.
+00:00:59 | Pero perdió toda su utilidad el día que los militares decidieron
+00:01:02 | dejar de transmitir su información por ondas
+00:01:05 | y pasaron a utilizar cables de fibra óptica.
+00:01:07 | Entonces, en una pequeña sala de ese edificio,
+00:01:10 | los belgas la subastan.
+00:01:13 | La puja se inició en 255 000 euros,
+00:01:15 | pero los belgas esperaban 400 000. Pero las ofertas se disparan.
+00:01:19 | Quinientos mil, un millón,
+00:01:21 | dos millones.
+00:01:22 | Al final, la torre se vendió a cinco millones de euros.
+00:01:26 | Pero ¿os dais cuenta?
+00:01:28 | Cinco millones de euros por algo que ya se ha vuelto obsoleto.
+00:01:31 | Hubo que esperar algunas semanas para conocer al comprador,
+00:01:34 | una empresa registrada en Inglaterra que pertenece
+00:01:37 | a una empresa estadounidense, que a su vez pertenece
+00:01:40 | a una empresa de Chicago que, evidentemente,
+00:01:42 | no quiso darse a conocer.
+00:01:43 | Pero al final, se reveló su nombre:
+00:01:46 | JUMP.
+00:01:46 | Esta historia la descubrió Alexandre Laumonier.
+00:01:50 | Laumonier es un antropólogo experto en los algoritmos en las finanzas.
+00:01:54 | Contacté con él y me dijo: "Vale, te lo cuento todo,
+00:01:57 | pero nos vemos a los pies de la torre".
+00:01:59 | JUMP es una empresa de negociación de alta frecuencia
+00:02:02 | que, a diferencia de otros,
+00:02:05 | no toma posiciones a largo plazo,
+00:02:08 | sino que juega con ínfimas variaciones de precio
+00:02:11 | de nanosegundos, según la oferta y la demanda.
+00:02:14 | Lo que llamamos "negociación de alta frecuencia".
+00:02:16 | En su libro "4",
+00:02:17 | nos recuerda que hoy en día, la negociación de alta frecuencia
+00:02:20 | representa casi el 70 %
+00:02:22 | de las transacciones bursátiles de los mercados estadounidenses.
+00:02:24 | Los que realizan estas transacciones
+00:02:27 | son programas informáticos, no los humanos.
+00:02:30 | Es algo que está totalmente informatizado,
+00:02:33 | porque hay que tener en cuenta miles de datos
+00:02:35 | de miles de productos diferentes que están todos correlacionados.
+00:02:39 | Los seres humanos no pueden hacer ese trabajo.
+00:02:41 | Para manejar todos esos datos, los operadores de alta frecuencia
+00:02:43 | utilizan algoritmos que les permiten
+00:02:45 | vender o comprar en cuestión de milisegundos.
+00:02:48 | Vale, pero ¿qué tiene que ver eso con la torre?
+00:02:50 | Hasta 2010, los operadores de alta frecuencia
+00:02:52 | utilizaban cables de fibra óptica, como los de internet.
+00:02:56 | A partir de 2010, algunos empezaron a usar las microondas,
+00:02:59 | señales de radio que van el doble de rápido que los cables
+00:03:02 | de fibra óptica. La señal de radio viaja en línea recta por el aire.
+00:03:06 | El problema es que hay que encontrar puntos de relevo, es decir,
+00:03:08 | torres, pilares o edificios muy altos
+00:03:11 | que permitan transmitir
+00:03:12 | estas microondas. Por la curvatura de la Tierra,
+00:03:15 | no es posible superar los cien kilómetros.
+00:03:17 | Por eso compraron esta torre belga
+00:03:18 | a cinco millones de euros, ya que les permitió ganar
+00:03:21 | unos diez microsegundos
+00:03:22 | en comparación con sus competidores de Europa.
+00:03:24 | La velocidad es determinante en los mercados financieros.
+00:03:29 | Ser el primero en recibir una información
+00:03:31 | que permite hacer una orden antes que los competidores,
+00:03:33 | y, por lo tanto, ganar más
+00:03:35 | en la variación de las cotizaciones.
+00:03:37 | Lo entiendo.
+00:03:38 | Además, no es algo tan nuevo.
+00:03:41 | En su libro, Alexandre cuenta anécdotas sorprendentes.
+00:03:43 | Por ejemplo, en el Japón del siglo XVI,
+00:03:46 | para transmitir información más rápido entre Tokio y Osaka,
+00:03:50 | se emborrachaba a los mensajeros para que olvidaran sus dolores.
+00:03:57 | Hoy en día, no se trata de ganar unas horas o incluso unos minutos,
+00:04:02 | es cuestión de milisegundos.
+00:04:04 | Y eso es otra historia.
+00:04:06 | Hasta hace poco, se pensaba que la panacea
+00:04:08 | era la fibra óptica y la optimización de trayectorias.
+00:04:12 | Recuerdo que a principios de los 2000,
+00:04:14 | se publicaron bastantes artículos sobre Spread Networks,
+00:04:17 | el cable que conecta las bolsas de Nueva York y Chicago.
+00:04:21 | Los operadores de alta frecuencia utilizaban cables de internet.
+00:04:25 | El problema es que no van en línea recta,
+00:04:27 | eso hace que se pierdan algunos milisegundos en el camino.
+00:04:30 | Entonces, una empresa tuvo la idea de trazar un cable recto.
+00:04:33 | Ahí surgió otro problema, había que atravesar los Apalaches.
+00:04:38 | ¡Es hermoso aquí arriba!
+00:04:41 | No es poca cosa.
+00:04:42 | El costo de la operación fue de 300 millones de dólares
+00:04:46 | para ganar cuatro milisegundos.
+00:04:48 | Tiene sentido en el mundo de la alta frecuencia financiera.
+00:04:51 | Esto es lo que sabía antes de descubrir
+00:04:53 | esta torre y las microondas.
+00:04:55 | Ya era muy apasionante,
+00:04:57 | porque este mundo de las finanzas de alta frecuencia,
+00:04:59 | que creemos que es un mundo de programas,
+00:05:01 | un mundo abstracto de cifras, tiene una materialidad concreta.
+00:05:05 | Antes, esta materialidad era muy obvia,
+00:05:08 | grandes edificios conocidos por todo el mundo
+00:05:10 | en cuyo interior había operadores que se gritaban entre ellos.
+00:05:18 | La velocidad ya era importante.
+00:05:20 | Se cuenta que las empresas de transacciones,
+00:05:24 | para tener más visibilidad, reclutaban exjugadores de básquet.
+00:05:27 | Otras empresas les hacían usar tacones a sus operadores.
+00:05:31 | De hecho, se tuvo que legislar
+00:05:33 | la altura máxima de los tacones para que no se extralimitaran.
+00:05:36 | Hoy en día, la imagen que tenemos del mercado financiero
+00:05:38 | son personas detrás de sus pantallas.
+00:05:40 | Pero en realidad, ¿qué es un mercado financiero?
+00:05:44 | Es un servidor informático
+00:05:45 | colocado en un centro de datos
+00:05:48 | y rodeado de otros servidores informáticos
+00:05:50 | que pertenecen a empresas de negociación de alta frecuencia
+00:05:53 | que intentan colocarse muy cerca del servidor central
+00:05:56 | con la esperanza de ganar unos pocos nanosegundos.
+00:05:58 | Dentro de los mercados financieros,
+00:06:00 | ya no se habla de milisegundos, sino de nanosegundos.
+00:06:05 | Y además, el día que se descubrió
+00:06:06 | que los servidores que estaban más cerca
+00:06:08 | de los circuitos de refrigeración
+00:06:10 | iban un poco más rápido que sus competidores,
+00:06:12 | se desató una guerra por estar
+00:06:14 | lo más cerca posible de estos circuitos.
+00:06:17 | Las limitaciones físicas,
+00:06:19 | los equipos, la distancia, el calor y el frío
+00:06:22 | siguen siendo esenciales.
+00:06:24 | Y esa torre lo demuestra muy bien. Esta torre es tan alta
+00:06:27 | por las limitaciones físicas de las microondas,
+00:06:31 | atraídas por el agua. Para cruzar el canal de la Mancha,
+00:06:34 | deben hacerlo en altura.
+00:06:36 | Me pregunto
+00:06:37 | si es el final de la aceleración de los mercados financieros.
+00:06:41 | ¿Hemos encontrado con las microondas el medio más rápido?
+00:06:46 | El nuevo proyecto de la negociación de alta frecuencia
+00:06:50 | es utilizar señales más rápidas que las microondas, la onda corta,
+00:06:54 | más antigua que las microondas e inventada por Marconi
+00:06:58 | a comienzos del siglo XX. La ventaja de a onda corta es
+00:07:01 | que sube hasta la ionosfera, rebota y desciende
+00:07:05 | a varios miles de kilómetros.
+00:07:08 | La ionosfera
+00:07:09 | es la región de la atmósfera situada a unos 100 kilómetros.
+00:07:13 | Desde hace mucho tiempo, se han estudiado las propiedades
+00:07:17 | de la ionosfera enviando
+00:07:19 | hacia ella ondas de radio que se reflejan.
+00:07:22 | Así que ahora,
+00:07:24 | en el suburbio donde se ubica el mercado principal de Chicago,
+00:07:27 | en Aurora,
+00:07:29 | hay nuevos tipos de antenas
+00:07:31 | que permiten transmitir los datos del mercado financiero
+00:07:34 | desde Chicago directamente a Fráncfort
+00:07:37 | en 40 milisegundos. Impresionante
+00:07:41 | y más rápido que las microondas y la fibra óptica.
+00:07:45 | Pero se puede transmitir muy poca información
+00:07:49 | por onda corta, solo unas pocas palabras
+00:07:51 | contra gigabytes de información.
+00:07:55 | Qué paradoja. El futuro pasa por una tecnología
+00:07:57 | muy pobre en ancho de banda y centenaria.
+00:08:00 | ¿No hay medios un poco más vanguardistas?
+00:08:03 | Pues sí. Los operadores tienen a encontrar
+00:08:06 | nuevas tecnologías para ir cada vez más rápido.
+00:08:09 | Se piensa en usar satélites,
+00:08:12 | que permitirían transmitir los datos financieros más rápido.
+00:08:16 | Tienen proyectos similares
+00:08:19 | a los que Elon Musk lleva a cabo con las constelaciones de satélites
+00:08:22 | que invaden el cielo.
+00:08:24 | Cuando Alexandre me dice esto, comprendo una cosa:
+00:08:26 | la búsqueda de rapidez no se limita a las finanzas.
+00:08:30 | Hay que relacionarla con una historia más amplia,
+00:08:33 | nuestra historia cotidiana.
+00:08:36 | Siempre queremos ir más rápido. Y cuanto más rápido vamos,
+00:08:39 | menos soportamos la lentitud.
+00:08:41 | Alguien identificó esta paradoja en el s. XIX, Alexis de Tocqueville.
+00:08:46 | Se fue a Estados Unidos
+00:08:47 | a estudiar la joven democracia estadounidense
+00:08:50 | y observó una cosa:
+00:08:51 | cuanto más se acerca una sociedad a su ideal,
+00:08:55 | más insatisfecha está.
+00:08:57 | Lo que Tocqueville vio en el ámbito del derecho
+00:09:00 | y de la democracia, nosotros lo vivimos con la velocidad.
+00:09:04 | Cuanto menos esperamos, más impacientes somos.
+00:09:07 | Por ejemplo, estas nuevas tiendas que prometen envíos
+00:09:10 | las 24 horas en 15 minutos.
+00:09:12 | No, doce, diez, dos minutos, cero minutos.
+00:09:16 | ¿Por qué no vivir en un supermercado?
+00:09:18 | Parece una locura, pero es profundamente humano.
+00:09:20 | Vemos el mundo de las finanzas con otros ojos,
+00:09:23 | pero quizá solo sea la manifestación
+00:09:26 | un poco más espectacular de una tendencia
+00:09:29 | que lleva mucho tiempo entre nosotros.
+00:09:31 | Pero eso plantea una pregunta vertiginosa.
+00:09:33 | ¿Hasta dónde vamos a llegar?
+00:09:35 | ¿Estamos condenados a una aceleración sin fin?
+00:09:38 | Hoy en día, los operadores transmiten datos financieros
+00:09:42 | a una velocidad del 99 %
+00:09:45 | la velocidad de la luz en el vacío. Estamos muy cerca.
+00:09:48 | Siempre hay maneras de ganar nanosegundos.
+00:09:51 | Es una lucha sin fin que tiene un límite.
+00:09:54 | Los operadores de alta frecuencia nunca dejarán de buscar
+00:09:59 | por todos los medios
+00:10:01 | alcanzar el último límite, que es el de la física.
+00:10:04 | Queda entonces una gran pregunta:
+00:10:07 | ¿dónde está el ser humano en todo esto?
+00:10:09 | El gran filósofo de la velocidad es el francés Paul Virilio.
+00:10:13 | Desde los años 70 y hasta el día de su muerte,
+00:10:16 | reflexionó sobre las implicaciones
+00:10:19 | sociales y políticas de la velocidad.
+00:10:21 | Hoy en día, con la instantaneidad,
+00:10:23 | la ubicuidad y la inmediatez,
+00:10:25 | estamos alcanzando el límite
+00:10:27 | de nuestro propio poder,
+00:10:29 | con la amenaza de delegar ese poder
+00:10:33 | a contestadores automáticos, programas, máquinas
+00:10:37 | que operan a gran velocidad
+00:10:41 | y que escapan al hombre.
+00:10:42 | Hay una delegación de poder.
+00:10:45 | Y si el tiempo es dinero, la velocidad es poder.
+00:10:49 | Delegamos nuestro poder a la máquina.
+00:10:51 | Bastante visionario, hay que reconocerlo.
+00:10:53 | ¿Qué habría dicho Virilio de la alta frecuencia en finanzas?
+00:10:56 | ¿Y de la quiebra financiera producida por ordenadores
+00:10:59 | que compiten entre sí para ver quién es más rápido?
+00:11:02 | Porque en su obra,
+00:11:03 | los accidentes y las catástrofes tienen un lugar preponderante.
+00:11:08 | Como reveladores de nuestra carrera hacia el progreso.
+00:11:15 | La negociación de alta frecuencia ya rozó la catástrofe.
+00:11:18 | Fue en agosto de 2012.
+00:11:21 | Uno de los principales corredores de la Bolsa de Nueva York,
+00:11:23 | la empresa Knight Capital, gestionaba
+00:11:26 | el 17 % del Nasdaq, que es muchísimo.
+00:11:29 | El 1 de agosto de 2012,
+00:11:31 | esta empresa, de alta frecuencia, compró por error
+00:11:35 | las acciones de 150 empresas.
+00:11:39 | Como resultado,
+00:11:40 | los competidores, alarmados,
+00:11:42 | compraron las acciones de las mismas empresas,
+00:11:44 | cuyos precios se dispararon y se multiplicaron por cinco
+00:11:48 | en cuestión de minutos y de manera totalmente artificial.
+00:11:52 | Hubo que detener las transacciones.
+00:11:53 | Knight Capital
+00:11:54 | perdió 440 millones de dólares en unos pocos segundos,
+00:11:58 | y, de hecho, a los pocos meses fue comprada por un competidor.
+00:12:02 | Se descubrió que todo esto se debió al error de un programador
+00:12:06 | que olvidó copiar un fragmento de protocolo.
+00:12:09 | Un pequeño error en un código informático
+00:12:12 | puso en peligro a los humanos por culpa de las máquinas.
+00:12:14 | Al mismo tiempo, el error provino de un humano
+00:12:17 | y bastó con que un humano apretara un botón
+00:12:19 | para que todo se detuviese.
+00:12:24 | ¿Cuál sería la moraleja de esta historia?
+00:12:27 | Pues miro esa vieja torre
+00:12:30 | y pienso que quizá sea un símbolo,
+00:12:32 | el símbolo de nuestra búsqueda
+00:12:34 | desenfrenada de un absoluto, en este caso la velocidad,
+00:12:37 | y el símbolo de lo que nos impide alcanzarlo,
+00:12:40 | un error de programación o las leyes de la física.
+00:12:43 | En realidad, y por suerte, seguimos siendo un poco de materia.
+00:12:46 | Fue necesario que esa torre se vendiera a 5 M de euros
+00:12:51 | para darme cuenta de eso.
+00:12:56 | Subtítulos: María Soledad Martínez López.
