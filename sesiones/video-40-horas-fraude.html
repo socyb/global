@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Video de análisis — Así funciona el FRAUDE de las 40 horas laborales | Mientras tanto en México · Globalización y Empleo 2026-2">
+    <title>Así funciona el FRAUDE de las 40 horas laborales | Mientras tanto en México — Globalización y Empleo</title>
+    <link rel="icon" href="../img/icon-globe.svg">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/session.css">
+    <style>
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--radius);
+            border: var(--border);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .meta-item {
+            background: var(--sky);
+            border: var(--border-thin);
+            border-radius: var(--radius-sm);
+            padding: 0.85rem 1rem;
+        }
+        .meta-item .meta-label {
+            font-family: var(--font-accent);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        .meta-item .meta-value {
+            font-size: 1.05rem;
+            color: var(--ink);
+            font-weight: 600;
+        }
+        .analysis-card {
+            background: var(--cream);
+        }
+        .analysis-card h3 {
+            color: var(--purple);
+        }
+        .activity-card {
+            background: var(--mint);
+        }
+        .activity-card h3 {
+            color: var(--green);
+        }
+        .transcript-box {
+            max-height: 420px;
+            overflow-y: auto;
+            background: var(--paper);
+            border: var(--border-thin);
+            border-radius: var(--radius-sm);
+            padding: 1.25rem;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text);
+            margin-top: 0.75rem;
+        }
+        .transcript-box p {
+            margin-bottom: 0.7rem;
+            font-size: 1rem;
+        }
+        .timestamp {
+            font-family: var(--font-accent);
+            font-size: 0.8rem;
+            color: var(--coral);
+            font-weight: 700;
+            margin-right: 0.35rem;
+        }
+        .key-concepts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .key-concepts .concept-tag {
+            background: var(--ink);
+            color: #fff;
+            padding: 0.3rem 0.85rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: var(--font-accent);
+        }
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+        .step-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            height: 44px;
+            padding: 0 0.75rem;
+            background: var(--ink);
+            color: #fff;
+            font-family: var(--font-accent);
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: var(--radius-sm);
+            white-space: nowrap;
+        }
+        .step-header h2 {
+            margin-bottom: 0;
+        }
+        .activity-instruction {
+            background: var(--blush);
+            border: var(--border-thin);
+            border-radius: var(--radius-sm);
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        .activity-instruction strong {
+            color: var(--coral);
+        }
+        .mood-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .mood-item {
+            border: var(--border-thin);
+            border-radius: var(--radius-sm);
+            padding: 0.8rem;
+            background: var(--paper);
+        }
+        .mood-item h4 {
+            margin-bottom: 0.35rem;
+            font-size: 1rem;
+        }
+        .mood-item p {
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+        .mood-bar {
+            height: 10px;
+            border-radius: 999px;
+            background: #e5e7eb;
+            overflow: hidden;
+        }
+        .mood-bar > span {
+            display: block;
+            height: 100%;
+        }
+        .mood-neg span { background: #c0392b; width: 20.2%; }
+        .mood-neu span { background: #6b7280; width: 67.3%; }
+        .mood-pos span { background: #15803d; width: 12.5%; }
+        .comment-list {
+            list-style: none;
+            margin-top: 0.75rem;
+        }
+        .comment-list li {
+            border-bottom: 1px dashed #ccc;
+            padding: 0.75rem 0;
+        }
+        .comment-list li:last-child {
+            border-bottom: none;
+        }
+        .comment-author {
+            display: inline-block;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .comment-likes {
+            font-size: 0.86rem;
+            color: var(--text-muted);
+            margin-left: 0.5rem;
+        }
+        .files-list {
+            margin-top: 0.5rem;
+            padding-left: 1.2rem;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header session-header">
+    <div class="container">
+        <a href="../index.html" class="back-link">← Volver al inicio</a>
+        <h1>Así funciona el FRAUDE de las 40 horas laborales | Mientras tanto en México</h1>
+        <p class="subtitle">Material de consulta · Globalización y Empleo 2026-2 · FCA UNAM</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="section">
+        <h2>Video</h2>
+        <div class="video-wrapper">
+            <iframe
+                src="https://www.youtube-nocookie.com/embed/idNoLfrMw1g"
+                title="Así funciona el FRAUDE de las 40 horas laborales | Mientras tanto en México"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Metadata</h2>
+        <div class="content-card">
+            <div class="meta-grid">
+                <div class="meta-item">
+                    <span class="meta-label">Título</span>
+                    <span class="meta-value">Así funciona el FRAUDE de las 40 horas laborales</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Canal</span>
+                    <span class="meta-value">Mientras tanto en Mexico</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Uploader ID</span>
+                    <span class="meta-value">@mientrastantoenmexicooficial</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Upload Date</span>
+                    <span class="meta-value">22 de febrero de 2026</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Duración</span>
+                    <span class="meta-value">4:09</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Idioma</span>
+                    <span class="meta-value">Español (es-US)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Vistas (captura)</span>
+                    <span class="meta-value">31,063</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Likes (captura)</span>
+                    <span class="meta-value">1,549</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Comentarios (captura inicial)</span>
+                    <span class="meta-value">469</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Comentarios recuperados</span>
+                    <span class="meta-value">208</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Video ID</span>
+                    <span class="meta-value">idNoLfrMw1g</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Fuente</span>
+                    <span class="meta-value"><a href="https://www.youtube.com/watch?v=idNoLfrMw1g" target="_blank" rel="noopener">YouTube ↗</a></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h3>Mapa de archivos (carpetas y subcarpetas)</h3>
+            <p style="font-size: 0.97rem; color: var(--text-muted); margin-bottom: 0.6rem;">
+                Ruta base del recurso: <code>recursos/videos/40-horas-fraude-idNoLfrMw1g/</code>
+            </p>
+            <ul class="files-list">
+                <li><a href="../recursos/videos/40-horas-fraude-idNoLfrMw1g/metadata.json" target="_blank" rel="noopener"><code>metadata.json</code></a> · metadatos generales</li>
+                <li><a href="../recursos/videos/40-horas-fraude-idNoLfrMw1g/metadata_with_comments.json" target="_blank" rel="noopener"><code>metadata_with_comments.json</code></a> · metadatos + comentarios</li>
+                <li><a href="../recursos/videos/40-horas-fraude-idNoLfrMw1g/transcript.es.srt" target="_blank" rel="noopener"><code>transcript.es.srt</code></a> · subtítulos automáticos</li>
+                <li><a href="../recursos/videos/40-horas-fraude-idNoLfrMw1g/transcript_clean.txt" target="_blank" rel="noopener"><code>transcript_clean.txt</code></a> · transcripción limpia</li>
+                <li><a href="../recursos/videos/40-horas-fraude-idNoLfrMw1g/comments_transcript.txt" target="_blank" rel="noopener"><code>comments_transcript.txt</code></a> · transcripción de comentarios</li>
+                <li><a href="../recursos/videos/40-horas-fraude-idNoLfrMw1g/comments_export.csv" target="_blank" rel="noopener"><code>comments_export.csv</code></a> · comentarios exportados</li>
+                <li><a href="../recursos/videos/40-horas-fraude-idNoLfrMw1g/comments_export.txt" target="_blank" rel="noopener"><code>comments_export.txt</code></a> · comentarios en texto</li>
+                <li><a href="../recursos/videos/40-horas-fraude-idNoLfrMw1g/mood_summary.json" target="_blank" rel="noopener"><code>mood_summary.json</code></a> · sondeo de mood</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="step-header">
+            <span class="step-badge">Paso 1</span>
+            <h2>Resumen rápido</h2>
+        </div>
+
+        <div class="content-card analysis-card">
+            <h3>Resumen sencillo</h3>
+            <ul style="margin-top: 0.5rem; padding-left: 1.3rem; font-size: 1.08rem; line-height: 1.8;">
+                <li>El video sostiene que la reducción de jornada a 40 horas podría no traducirse en más descanso real para todos.</li>
+                <li>Se subraya que la implementación sería gradual de 2026 a 2030, no inmediata.</li>
+                <li>El argumento central es que el diseño legal abriría espacios para ampliar horas extra y reducir beneficios reales.</li>
+                <li>También se cuestionan cambios de redacción legal que, según el video, podrían debilitar responsabilidades patronales.</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h3>Conceptos clave</h3>
+            <div class="key-concepts">
+                <span class="concept-tag">Jornada laboral</span>
+                <span class="concept-tag">40 horas</span>
+                <span class="concept-tag">Horas extra</span>
+                <span class="concept-tag">Descanso semanal</span>
+                <span class="concept-tag">Reparto de utilidades</span>
+                <span class="concept-tag">Derechos laborales</span>
+                <span class="concept-tag">Subcontratación</span>
+                <span class="concept-tag">Seguridad social</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="step-header">
+            <span class="step-badge">Paso 2</span>
+            <h2>Actividad rápida (10 min)</h2>
+        </div>
+
+        <!--<div class="activity-instruction">
+            <strong>Instrucción:</strong> En parejas, detecten si el video presenta una alerta sólida o una exageración.
+        </div>-->
+
+        <div class="content-card activity-card">
+            <h3>Mini ejercicio</h3>
+            <ol style="margin-top: 0.5rem; padding-left: 1.3rem; font-size: 1.06rem; line-height: 1.8;">
+                <li>Escribe una afirmación concreta del video (ejemplo: horas extra, descanso, utilidades).</li>
+                <li> Busca rápidamente en fuentes confiables (noticias, análisis, documentos oficiales) para validar o refutar cada afirmación. No se trata de un fact-checking exhaustivo, sino de un sondeo rápido para evaluar la solidez de los argumentos.</li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Transcripción automática (es)</h2>
+        <div class="content-card">
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+                Fuente: subtítulos automáticos de YouTube (captura del 25 de febrero de 2026).
+            </p>
+            <div class="transcript-box">
+                <p><span class="timestamp">00:00</span> La reforma para reducir la jornada laboral a 40 horas avanza, pero podría ser una farsa. En el discurso promete menos trabajo y más bienestar. Sin embargo, en el papel no garantiza dos días de descanso, amplía las horas extra</p>
+                <p><span class="timestamp">00:14</span> y podría abrir la puerta menores ingresos e incluso afectaciones en la pensión. Por lo que en este video te explico las letras chiquitas detrás de la reforma de las 40 horas. La reforma para reducir la jornada</p>
+                <p><span class="timestamp">00:30</span> laboral de 48 a 40 horas finalmente avanza, sin embargo, no será inmediata. El plan del gobierno de Claudia Shabom contempla una implementación gradual que comenzará en 2026 y se consolidará hasta el 2030. En ese contexto, el presidente</p>
+                <p><span class="timestamp">00:46</span> de la Junta de Coordinación Política, el morenista Ignacio Mier, afirmó que la mayoría de los empleadores en México ve con buenos ojos la iniciativa y la calificó como un cambio histórico para el país. Desde el discurso oficial, la</p>
+                <p><span class="timestamp">00:58</span> medida se presenta como un paso hacia la justicia social, la estabilidad laboral y la alineación de México con estándares internacionales de productividad y bienestar. No obstante, no todo es color de rosa. Diversos sindicatos y</p>
+                <p><span class="timestamp">01:10</span> especialistas advierten que el diseño actual de la reforma podría ser una simulación o incluso una estafa, pues señalan que, tal como está planteada, la ley podría terminar afectando derechos laborales y la seguridad social en lugar</p>
+                <p><span class="timestamp">01:22</span> de mejorar realmente la calidad de vida de los trabajadores. Pero, ¿por qué hay tanto escepticismo? Te explico [música] en cinco puntos. El primer foco rojo es que la reforma no garantiza explícitamente 2 días de descanso</p>
+                <p><span class="timestamp">01:34</span> obligatorio. Aunque la jornada se reduzca a 40 horas, la ley permite que estas se distribuyan en 6 días. O sea, muchas personas podrían seguir trabajando 6 días a la semana. Esto significa que si vives en una ciudad con</p>
+                <p><span class="timestamp">01:46</span> tráfico pesado, continuarías invirtiendo prácticamente el mismo tiempo y dinero [música] en traslados. Por otro lado, tenemos quizá el punto más delicado de la reforma, las horas extra. Mientras se reduce la jornada normal en el papel, en</p>
+                <p><span class="timestamp">01:58</span> los hechos se amplía el límite de horas extras, pues el dictamen eleva el tope de 9 a 12 horas extras semanales y permite hasta 4 horas diarias. En términos reales, hacia 2030 una persona podría terminar trabajando hasta 52</p>
+                <p><span class="timestamp">02:12</span> horas efectivas por semana. En los hechos se normalizarían jornadas de hasta 12 horas diarias bajo el discurso de la flexibilidad laboral. Un dato clave es que lamentablemente las horas adicionales pagan impuestos y cuotas de</p>
+                <p><span class="timestamp">02:24</span> seguridad social más altas, lo que reduce el ingreso real que recibe el trabajador por cada hora extra. Y no solo eso, al cambiar la forma en que se distribuyen los ingresos, también podría afectarse el reparto de utilidades,</p>
+                <p><span class="timestamp">02:36</span> disminuyendo el monto total que reciben los trabajadores. En resumen, más horas extra no implica más beneficio, pero sí puede significar más carga laboral con menos ganancia real. Por su parte, la reforma propone redefinir la jornada</p>
+                <p><span class="timestamp">02:49</span> laboral como el tiempo en que se realiza una actividad subordinada, eliminando el concepto vigente de estar a disposición del empleador. Esto significa que horas como prepararse, trasladarse dentro de la empresa o esperar instrucciones</p>
+                <p><span class="timestamp">03:01</span> podrían dejar de contarse como trabajo efectivo. En la práctica, esta definición permite que las empresas descuenten periodos esenciales de la jornada diaria, aunque el trabajador siga cumpliendo con sus</p>
+                <p><span class="timestamp">03:12</span> responsabilidades. Finalmente, la reforma también introduce un cambio de lenguaje [música] que, aunque suene incluyente, genera preocupación jurídica. Sustituir patrón por persona [música] empleadora y trabajador por</p>
+                <p><span class="timestamp">03:23</span> persona trabajadora parece un ajuste semántico menor, pero abogados laboristas advierten que no lo es. El problema es que este lenguaje más genérico y difuso puede debilitar la identificación clara de</p>
+                <p><span class="timestamp">03:33</span> responsabilidades legales. En la práctica podría facilitar esquemas de evasión y subcontratación simulada. ¿Tú qué opinas? ¿Crees que esta reforma realmente le dé más descanso a los mexicanos o se trata de una trampa?</p>
+                <p><span class="timestamp">03:45</span> Cuéntanos tu opinión en los comentarios y si te gustó este video, no olvides regalarnos un me gusta, suscribirte al canal y activar la campanita.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Comentarios de YouTube y sondeo de mood</h2>
+        <div class="content-card">
+            <p style="font-size:1.02rem; line-height:1.7;">
+               En esta captura se recuperaron <strong>208 comentarios</strong>; así que este sondeo se toma como <strong>muestra</strong>, no como censo total.
+            </p>
+
+            <div class="mood-grid">
+                <div class="mood-item mood-neg">
+                    <h4>Crítico/negativo</h4>
+                    <p>42 comentarios (20.2%) · 715 likes (59.0% de likes)</p>
+                    <div class="mood-bar"><span></span></div>
+                </div>
+                <div class="mood-item mood-neu">
+                    <h4>Mixto/neutral</h4>
+                    <p>140 comentarios (67.3%) · 429 likes (35.4% de likes)</p>
+                    <div class="mood-bar"><span></span></div>
+                </div>
+                <div class="mood-item mood-pos">
+                    <h4>Favorable/positivo</h4>
+                    <p>26 comentarios (12.5%) · 67 likes (5.5% de likes)</p>
+                    <div class="mood-bar"><span></span></div>
+                </div>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.75rem;">
+                Nota metodológica: clasificación por palabras clave, útil para pulso rápido.
+            </p>
+        </div>
+
+        <div class="content-card">
+            <h3>Muestra de comentarios (top por likes)</h3>
+            <ul class="comment-list">
+                <li>
+                    <span class="comment-author">@123Lzant</span>
+                    <span class="comment-likes">356 likes</span>
+                    <p>Si la reforma les gusto a los empresarios, significa que es una estafa para el trabajador.</p>
+                </li>
+                <li>
+                    <span class="comment-author">@luisgallardo158</span>
+                    <span class="comment-likes">106 likes</span>
+                    <p>Es una trampa: señala el posible incremento de horas extra y el impacto en salud laboral.</p>
+                </li>
+                <li>
+                    <span class="comment-author">@mister_bushido</span>
+                    <span class="comment-likes">62 likes</span>
+                    <p>Ya con la palabra "persona trabajadora" ya se pueden sacar muchos huecos legales.</p>
+                </li>
+                <li>
+                    <span class="comment-author">@2hectordc</span>
+                    <span class="comment-likes">39 likes</span>
+                    <p>Lo ve como beneficio simulado y advierte pérdida de derechos laborales.</p>
+                </li>
+                <li>
+                    <span class="comment-author">@antrax1969</span>
+                    <span class="comment-likes">30 likes</span>
+                    <p>Nadie paga las horas extras ni festivos; propone alternativas como home office.</p>
+                </li>
+                <li>
+                    <span class="comment-author">@Eduardo-eu9up</span>
+                    <span class="comment-likes">15 likes</span>
+                    <p>Recuerden en México las horas extra no son obligatorias.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p><a href="../index.html">← Volver a la página principal</a></p>
+            <p class="footer-meta">Globalización y Empleo 2026-2 · FCA UNAM · Dr. Jorge Cardiel</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,60 +1,72 @@
-# 🌍 Globalización y Empleo 2026-2
+# Globalización y Empleo 2026-2
 
 **Facultad de Contaduría y Administración · UNAM**  
 **Dr. Jorge Cardiel**
 
----
-
 ## Acerca de este repositorio
 
-Este repositorio aloja la página web complementaria del curso **Globalización y Empleo** del semestre 2026-2 en la FCA UNAM. Funciona como apoyo a la plataforma Moodle del curso.
+Este repositorio aloja la página web complementaria del curso **Globalización y Empleo** (semestre 2026-2, FCA UNAM).  
+Funciona como apoyo a Moodle con sesiones, actividades, materiales y transcripciones de video.
 
-🔗 **Sitio web:** [https://socyb.github.io/global/](https://socyb.github.io/global/)
+Sitio: [https://socyb.github.io/global/](https://socyb.github.io/global/)
 
-## ¿Qué encontrarás aquí?
+## Estructura actual del proyecto
 
-| Recurso | Descripción |
-|---------|-------------|
-| 📝 Actividades y talleres | Dinámicas y ejercicios para cada sesión |
-| 📊 Presentaciones | Material de apoyo visual para las clases |
-| 📖 Notas de lectura | Guías y resúmenes de lecturas asignadas |
-| 📅 Calendario | Fechas clave del semestre |
-| 🔗 Recursos | Enlaces útiles para el curso |
-
-## Estructura del sitio
-
-```
+```text
 global/
-├── index.html              # Página principal del curso
-├── css/
-│   ├── styles.css          # Estilos generales
-│   └── session.css         # Estilos para páginas de sesión
-├── js/
-│   └── counter.js          # Contador de visitas
-└── sesiones/
-    └── sesion-01.html      # Sesión 1: Actividad de presentación
+├── index.html                         # Página principal del curso
+├── css/                               # Estilos globales y de sesiones
+│   ├── styles.css
+│   └── session.css
+├── js/                                # Scripts del sitio
+│   └── counter.js
+├── img/                               # Íconos y recursos gráficos
+├── sesiones/                          # Páginas de sesión y análisis de videos
+│   ├── sesion-01.html
+│   ├── sesion-02.html
+│   ├── video-trump-tariffs.html
+│   ├── video-40-horas-fraude.html
+│   └── 24feb26/                       # Insumos de sesión específica
+├── actividades/                       # Actividades HTML y materiales de trabajo en clase
+│   ├── actividad_video_digital_world_and_us_25feb26.html
+│   ├── presentacion_globalization_v2.html
+│   ├── panorama_aportes_24feb26.html
+│   └── ...otros HTML/MD de apoyo
+├── recursos/                          # Datos procesados para consulta en páginas
+│   └── videos/
+│       └── 40-horas-fraude-idNoLfrMw1g/
+│           ├── metadata.json
+│           ├── metadata_with_comments.json
+│           ├── transcript.es.srt
+│           ├── transcript_clean.txt
+│           ├── comments_export.csv
+│           ├── comments_export.txt
+│           ├── comments_transcript.txt
+│           └── mood_summary.json
+├── yt-backups/                        # Respaldos (yt-dlp) por video
+│   ├── backup.py
+│   ├── Trump Alternatives .../
+│   ├── The Digital World and Us .../
+│   └── Así funciona el FRAUDE .../
+├── pizarrones/                        # Diagramas DOT/SVG
+├── lecturas/                          # Materiales de lectura
+└── controles/                         # Entregas y archivos de control académico
 ```
 
-## Unidades temáticas
+## Criterio de organización
 
-1. **Unidad 1** — *Próximamente*
-2. **Unidad 2** — *Próximamente*
-3. **Unidad 3** — *Próximamente*
-4. **Unidad 4** — *Próximamente*
+- `sesiones/`: solo páginas HTML publicables para clase.
+- `actividades/`: actividades y páginas de trabajo didáctico.
+- `recursos/videos/<slug-id>/`: salida limpia y versionable por video (metadata, transcripciones, comentarios, mood).
+- `yt-backups/`: fuentes y transcripciones de respaldo.
 
 ## Tecnologías
 
-- HTML5 semántico
-- CSS3 (Grid, Flexbox, variables CSS)
-- JavaScript vanilla
-- Hospedado en GitHub Pages
+- HTML5
+- CSS3
+- JavaScript
+- GitHub Pages
 
 ## Licencia
 
-Material académico de uso exclusivo para el curso Globalización y Empleo 2026-2, FCA UNAM.
-
----
-
-<p align="center">
-  Hecho para la comunidad FCA · UNAM 2026
-</p>
+Material académico de uso exclusivo para el curso Globalización y Empleo 2026-2 (FCA UNAM).
