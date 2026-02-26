@@ -1,0 +1,2222 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Curso — Panel de Noticias del Foro (26 feb 2026)</title>
+  <style>
+    :root {
+      --bg: #f4f1e9;
+      --ink: #1c1a16;
+      --muted: #605b52;
+      --panel: rgba(255, 255, 255, 0.86);
+      --line: rgba(28, 26, 22, 0.14);
+      --accent-1: #0f5a78;
+      --accent-2: #bd4a2d;
+      --accent-3: #1f7a5c;
+      --accent-4: #8f6d1f;
+      --shadow: 0 16px 42px rgba(0, 0, 0, 0.16);
+      --r: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      color: var(--ink);
+      font-family: "Avenir Next Condensed", "Gill Sans Nova", "Trebuchet MS", sans-serif;
+      background:
+        radial-gradient(circle at 10% 6%, rgba(15, 90, 120, 0.18), transparent 30%),
+        radial-gradient(circle at 92% 14%, rgba(189, 74, 45, 0.17), transparent 30%),
+        linear-gradient(165deg, #f0e9da 0%, #d9e6e2 45%, #f5efe1 100%);
+      padding: 14px;
+    }
+
+    .canvas {
+      width: min(1640px, 100%);
+      margin: 0 auto;
+      background: rgba(251, 249, 244, 0.86);
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(3px);
+    }
+
+    .top {
+      padding: clamp(16px, 2vw, 24px);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(120deg, rgba(15, 90, 120, 0.13), rgba(189, 74, 45, 0.12));
+      display: grid;
+      gap: 12px;
+    }
+
+    .top-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Bodoni 72", "Didot", "Times New Roman", serif;
+      font-size: clamp(1.9rem, 3.4vw, 3.05rem);
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+      text-wrap: balance;
+    }
+
+    .sub {
+      margin: 8px 0 0;
+      max-width: 84ch;
+      color: #2e302b;
+      font-size: clamp(0.96rem, 1.17vw, 1.09rem);
+      line-height: 1.3;
+    }
+
+    .top-actions {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: end;
+    }
+
+    .date-flag,
+    .top button {
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.18);
+      padding: 7px 12px;
+      font: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.9);
+      color: #1f1d1a;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .top button {
+      cursor: pointer;
+    }
+
+    .top button:hover {
+      filter: brightness(1.05);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(100px, 1fr));
+      gap: 10px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.86);
+      padding: 10px;
+      display: grid;
+      gap: 2px;
+    }
+
+    .stat strong {
+      font-size: clamp(1rem, 1.3vw, 1.35rem);
+      line-height: 1;
+    }
+
+    .stat span {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .controls {
+      padding: 10px clamp(12px, 2vw, 22px) 14px;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.58);
+    }
+
+    .control-row {
+      display: grid;
+      grid-template-columns: minmax(170px, 1.2fr) minmax(140px, 0.62fr) auto;
+      gap: 10px;
+    }
+
+    input[type="search"],
+    select {
+      width: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font: inherit;
+      font-size: 0.98rem;
+      color: #1f1a16;
+    }
+
+    input:focus-visible,
+    select:focus-visible,
+    button:focus-visible,
+    .chip:focus-visible,
+    .card:focus-visible {
+      outline: 2px solid var(--accent-1);
+      outline-offset: 2px;
+    }
+
+    .btn-clear {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      background: #102c3b;
+      color: #fff;
+      font: inherit;
+      font-weight: 700;
+      padding: 10px 12px;
+      cursor: pointer;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .chip {
+      border: 1px solid rgba(0, 0, 0, 0.18);
+      border-left: 4px solid var(--chip-color, #446);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, 0.92);
+      font: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: #1e1a16;
+      cursor: pointer;
+      transition: transform 0.14s ease, filter 0.14s ease, background 0.14s ease;
+    }
+
+    .chip[data-active="false"] {
+      opacity: 0.55;
+      background: rgba(255, 255, 255, 0.66);
+      filter: grayscale(0.35);
+    }
+
+    .chip:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr) 360px;
+      min-height: clamp(620px, 76vh, 940px);
+    }
+
+    .panel {
+      border-right: 1px solid var(--line);
+      padding: 12px;
+      overflow: auto;
+      min-height: 0;
+      background: var(--panel);
+    }
+
+    .panel:last-child {
+      border-right: 0;
+      border-left: 1px solid var(--line);
+    }
+
+    .panel h2 {
+      margin: 0 0 10px;
+      font-family: "Bodoni 72", "Didot", "Times New Roman", serif;
+      font-size: 1.45rem;
+      line-height: 1.02;
+      letter-spacing: 0.01em;
+    }
+
+    .panel h3 {
+      margin: 12px 0 8px;
+      font-size: 0.84rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #32443f;
+    }
+
+    .micro {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.83rem;
+      line-height: 1.24;
+    }
+
+    .matrix-wrap {
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+      overflow: auto;
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    table.matrix {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.79rem;
+    }
+
+    .matrix th,
+    .matrix td {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      text-align: center;
+      min-width: 42px;
+      padding: 5px;
+    }
+
+    .matrix th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: rgba(241, 245, 243, 0.98);
+      font-weight: 700;
+    }
+
+    .matrix th.row-head {
+      text-align: left;
+      position: sticky;
+      left: 0;
+      z-index: 3;
+      min-width: 136px;
+      max-width: 136px;
+      overflow-wrap: anywhere;
+    }
+
+    .matrix td {
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      transition: transform 0.12s ease;
+    }
+
+    .matrix td:hover {
+      transform: scale(1.04);
+    }
+
+    .pair-list {
+      margin: 8px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 6px;
+    }
+
+    .pair-item {
+      border: 1px solid rgba(0, 0, 0, 0.13);
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.86);
+      padding: 7px 9px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.84rem;
+    }
+
+    .pair-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      flex: 0 0 10px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 9px;
+      padding-right: 2px;
+    }
+
+    .card {
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      border-left: 6px solid var(--accent-1);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 7px 18px rgba(0, 0, 0, 0.08);
+      padding: 11px;
+      cursor: pointer;
+      display: grid;
+      gap: 7px;
+      animation: fadeup 0.38s ease both;
+    }
+
+    .card[data-selected="true"] {
+      border-color: rgba(0, 0, 0, 0.3);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+      background: #fff;
+    }
+
+    .card-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 8px;
+    }
+
+    .card h4 {
+      margin: 0;
+      font-size: 1.03rem;
+      line-height: 1.15;
+      text-wrap: pretty;
+    }
+
+    .card-meta {
+      margin: 0;
+      color: #3a3833;
+      font-size: 0.82rem;
+    }
+
+    .row-tags,
+    .row-themes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag,
+    .theme {
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      padding: 4px 8px;
+      font-size: 0.77rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.86);
+      line-height: 1;
+    }
+
+    .theme {
+      border-left: 4px solid var(--theme-color, #678);
+    }
+
+    .card-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .card-foot small {
+      color: #46423b;
+      font-size: 0.78rem;
+    }
+
+    .card a.link-btn {
+      color: #0b5673;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+
+    .card a.link-btn:hover {
+      text-decoration: underline;
+    }
+
+    .authors {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 7px;
+    }
+
+    .author-item {
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 8px;
+      cursor: pointer;
+      display: grid;
+      gap: 6px;
+    }
+
+    .author-item[data-active="true"] {
+      border-color: rgba(0, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 0.97);
+    }
+
+    .author-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .bar {
+      width: 100%;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.09);
+      overflow: hidden;
+    }
+
+    .bar i {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      width: 0;
+      transition: width 0.45s ease;
+    }
+
+    .detail {
+      margin-top: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.94);
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .detail h4 {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.16;
+    }
+
+    .detail p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.25;
+    }
+
+    .meta-list {
+      display: grid;
+      gap: 5px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.82rem;
+      line-height: 1.2;
+    }
+
+    .meta-list li {
+      display: grid;
+      grid-template-columns: 102px 1fr;
+      gap: 8px;
+      border-top: 1px dashed rgba(0, 0, 0, 0.14);
+      padding-top: 5px;
+    }
+
+    .meta-list li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .meta-list strong {
+      font-size: 0.77rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #49463f;
+    }
+
+    .links {
+      display: grid;
+      gap: 4px;
+      max-height: 132px;
+      overflow: auto;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.82rem;
+    }
+
+    .links a {
+      color: #0e5572;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    details {
+      border: 1px dashed rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 6px;
+      background: rgba(251, 251, 251, 0.86);
+    }
+
+    summary {
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #2e3d38;
+    }
+
+    pre {
+      margin: 8px 0 0;
+      font-size: 0.75rem;
+      line-height: 1.26;
+      max-height: 180px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .empty {
+      border: 1px dashed rgba(0, 0, 0, 0.22);
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.75);
+      padding: 16px;
+      font-size: 0.95rem;
+      color: #3e3a35;
+    }
+
+    .pair-filter {
+      margin-top: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 7px;
+      font-size: 0.82rem;
+      display: none;
+    }
+
+    .pair-filter[data-on="true"] {
+      display: block;
+    }
+
+    .pair-filter button {
+      margin-top: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      border-radius: 8px;
+      background: #fff;
+      padding: 4px 8px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.79rem;
+      font-weight: 700;
+    }
+
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 8px;
+      align-items: center;
+      font-size: 0.77rem;
+      color: #3f3a33;
+    }
+
+    .card-links a {
+      color: #0f5a78;
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(15, 90, 120, 0.55);
+    }
+
+    .card-links a:hover {
+      text-decoration: underline;
+    }
+
+    .axis-bars {
+      display: grid;
+      gap: 5px;
+    }
+
+    .axis-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 42px;
+      gap: 7px;
+      align-items: center;
+      font-size: 0.79rem;
+      font-weight: 700;
+      color: #39362f;
+    }
+
+    .axis-track {
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin-top: 2px;
+    }
+
+    .axis-fill {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: var(--axis-color, #567);
+      width: 0;
+      transition: width 0.28s ease;
+    }
+
+    .slide-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: none;
+    }
+
+    .slide-modal[data-open="true"] {
+      display: block;
+    }
+
+    .slide-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 13, 18, 0.63);
+      backdrop-filter: blur(2px);
+    }
+
+    .slide-dialog {
+      position: absolute;
+      inset: clamp(16px, 2.6vw, 34px);
+      border-radius: 18px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      background:
+        radial-gradient(circle at 85% 8%, rgba(15, 90, 120, 0.13), transparent 28%),
+        radial-gradient(circle at 14% 12%, rgba(189, 74, 45, 0.12), transparent 30%),
+        #faf8f2;
+      box-shadow: 0 22px 54px rgba(0, 0, 0, 0.28);
+      overflow: auto;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .slide-head {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+      background: rgba(251, 248, 241, 0.95);
+      backdrop-filter: blur(2px);
+      display: grid;
+      gap: 8px;
+    }
+
+    .slide-kicker {
+      margin: 0;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      color: #0f5a78;
+    }
+
+    .slide-head h2 {
+      margin: 0;
+      font-family: "Bodoni 72", "Didot", "Times New Roman", serif;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      line-height: 1;
+      text-wrap: balance;
+      max-width: 34ch;
+    }
+
+    .slide-author {
+      margin: 0;
+      font-size: clamp(0.95rem, 1.2vw, 1.18rem);
+      line-height: 1.2;
+      color: #332f28;
+    }
+
+    .slide-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .slide-actions button {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.93);
+      color: #1f1b17;
+      font: inherit;
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 7px 12px;
+      cursor: pointer;
+    }
+
+    .slide-actions button.primary {
+      background: #123e53;
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .slide-body {
+      padding: clamp(12px, 2.2vw, 24px);
+      display: grid;
+      gap: 12px;
+    }
+
+    .slide-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.84fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .slide-block {
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .slide-block h3 {
+      margin: 0;
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #32443f;
+    }
+
+    .slide-block p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.34;
+      color: #27231e;
+    }
+
+    .slide-links {
+      margin: 0;
+      padding-left: 16px;
+      display: grid;
+      gap: 4px;
+      max-height: 180px;
+      overflow: auto;
+    }
+
+    .slide-links a {
+      color: #0f5a78;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .slide-links a:hover {
+      text-decoration: underline;
+    }
+
+    .slide-fulltext {
+      margin: 0;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px dashed rgba(0, 0, 0, 0.18);
+      background: rgba(248, 246, 240, 0.95);
+      max-height: min(48vh, 520px);
+      overflow: auto;
+      font-size: clamp(1rem, 1.25vw, 1.26rem);
+      line-height: 1.44;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .related-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 6px;
+    }
+
+    .related-item {
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.88);
+      padding: 7px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .related-item a {
+      color: #0f5a78;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .related-item a:hover {
+      text-decoration: underline;
+    }
+
+    .related-meta {
+      font-size: 0.8rem;
+      color: #433f37;
+    }
+
+    body.has-modal {
+      overflow: hidden;
+    }
+
+    @keyframes fadeup {
+      from {
+        opacity: 0;
+        transform: translateY(9px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    body.projection {
+      font-size: 118%;
+      padding: 6px;
+    }
+
+    body.projection .canvas {
+      width: 100%;
+      border-radius: 0;
+      border: 0;
+    }
+
+    body.projection .controls {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(3px);
+    }
+
+    body.projection .slide-dialog {
+      inset: 0;
+      border-radius: 0;
+      border: 0;
+    }
+
+    body.projection .slide-head h2 {
+      font-size: clamp(2rem, 4.1vw, 3.6rem);
+      max-width: 22ch;
+    }
+
+    body.projection .slide-author {
+      font-size: clamp(1.16rem, 1.8vw, 1.62rem);
+    }
+
+    body.projection .slide-fulltext {
+      font-size: clamp(1.16rem, 1.7vw, 1.86rem);
+      max-height: min(54vh, 760px);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 1260px) {
+      .stats {
+        grid-template-columns: repeat(3, minmax(100px, 1fr));
+      }
+
+      .layout {
+        grid-template-columns: minmax(250px, 1fr) minmax(0, 1.45fr);
+      }
+
+      .panel:last-child {
+        grid-column: 1 / -1;
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 900px) {
+      body {
+        padding: 8px;
+      }
+
+      .top-head,
+      .control-row,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .top-actions {
+        justify-content: start;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+      }
+
+      .panel,
+      .panel:last-child {
+        border-left: 0;
+        border-right: 0;
+      }
+
+      .panel {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .slide-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <header class="top">
+      <div class="top-head">
+        <div>
+          <h1>Curso: Panorama de Noticias y Cruces Temáticos</h1>
+          <p class="sub">Vista de proyección para clase. Reúne quién subió cada noticia, cómo se conectan los temas y los metadatos de cada participación (fuentes, fechas, links, conteos y registro original).</p>
+        </div>
+        <div class="top-actions">
+          <span id="dateFlag" class="date-flag">Corte: 26 feb 2026, 00:00</span>
+          <button id="projectionBtn" type="button">Modo proyección</button>
+        </div>
+      </div>
+      <div id="stats" class="stats"></div>
+    </header>
+
+    <section class="controls">
+      <div class="control-row">
+        <input id="searchInput" type="search" placeholder="Buscar por tema, palabra, noticia o fuente..." aria-label="Buscar" />
+        <select id="authorSelect" aria-label="Filtrar por autor">
+          <option value="">Todos los autores</option>
+        </select>
+        <button id="clearBtn" class="btn-clear" type="button">Limpiar filtros</button>
+      </div>
+      <div id="themeChips" class="chip-row"></div>
+    </section>
+
+    <main class="layout">
+      <section class="panel" aria-label="Relación de temas">
+        <h2>Relación de Temas</h2>
+        <p class="micro">Haz clic en una celda para filtrar por dos temas que aparecen juntos en una misma noticia.</p>
+        <div id="pairFilter" class="pair-filter" data-on="false"></div>
+        <h3>Matriz de Co-ocurrencia</h3>
+        <div id="matrixWrap" class="matrix-wrap"></div>
+        <h3>Temas Puente</h3>
+        <ul id="pairList" class="pair-list"></ul>
+      </section>
+
+      <section class="panel" aria-label="Contribuciones del foro">
+        <h2>Noticias del Foro</h2>
+        <p class="micro">Tarjetas ordenadas de la más reciente a la más antigua. Haz clic para abrir la diapositiva; usa flechas para avanzar y <kbd>P</kbd> para proyección.</p>
+        <div id="timeline" class="timeline"></div>
+      </section>
+
+      <aside class="panel" aria-label="Autores y metadatos">
+        <h2>Quiénes Subieron Noticias</h2>
+        <p class="micro">Selecciona autor para ver solo sus aportes.</p>
+        <ul id="authorList" class="authors"></ul>
+
+        <section id="detail" class="detail" aria-live="polite"></section>
+      </aside>
+    </main>
+  </div>
+
+  <div id="slideModal" class="slide-modal" data-open="false" aria-hidden="true">
+    <div class="slide-backdrop" data-close-modal="true"></div>
+    <article class="slide-dialog" role="dialog" aria-modal="true" aria-labelledby="slideTitle">
+      <header class="slide-head">
+        <p id="slideKicker" class="slide-kicker"></p>
+        <h2 id="slideTitle"></h2>
+        <p id="slideAuthor" class="slide-author"></p>
+        <div class="slide-actions">
+          <button id="slidePrevBtn" type="button">Anterior</button>
+          <button id="slideNextBtn" type="button">Siguiente</button>
+          <button id="slideCloseBtn" class="primary" type="button">Cerrar</button>
+        </div>
+      </header>
+      <div id="slideBody" class="slide-body"></div>
+    </article>
+  </div>
+
+  <script src="./data_26feb26.js"></script>
+  <script>
+    (function () {
+      const rawPosts = Array.isArray(window.FORO_NOTICIAS_RAW) ? window.FORO_NOTICIAS_RAW : [];
+      const parser = new DOMParser();
+      const decoder = document.createElement("textarea");
+
+      const THEME_RULES = [
+        {
+          key: "regulacion_gobernanza",
+          label: "Regulacion y gobernanza",
+          color: "#0f5a78",
+          patterns: [/regulaci[oó]n/, /gobernanza/, /ley\s+aduaner/, /decreto/, /supreme court|corte suprema/, /investigaci[oó]n/, /comisi[oó]n europea/, /cumplimiento/, /certificaci[oó]n/, /trazabilidad/, /agencia/]
+        },
+        {
+          key: "geopolitica",
+          label: "Geopolitica y poder",
+          color: "#bd4a2d",
+          patterns: [/geopol[ií]tica/, /multipolar/, /rusia/, /india/, /china/, /soberan[ií]a/, /fronter/, /mapa/, /territorio/, /trump/, /ee\.\s*uu|estados unidos/, /arancel/]
+        },
+        {
+          key: "trabajo_empleo",
+          label: "Trabajo, empleo y derechos",
+          color: "#1f7a5c",
+          patterns: [/empleo/, /jornada/, /reforma laboral/, /trabajador/, /cuidados/, /desigualdad/, /violencia de g[eé]nero/, /autonom[ií]a econ[oó]mica/, /proletariado/, /salario/]
+        },
+        {
+          key: "tecnologia_ia",
+          label: "Tecnologia e IA",
+          color: "#7a5c14",
+          patterns: [/inteligencia artificial|\bia\b/, /digital/, /centros? de datos/, /automatizaci[oó]n/, /plataformas?/, /algorit/, /engagement/, /ai boom/, /openai/]
+        },
+        {
+          key: "comercio_cadenas",
+          label: "Comercio, cadenas y logistica",
+          color: "#2f6a88",
+          patterns: [/comercio internacional|comercio exterior/, /cadena(s)? de suministro/, /aduan/, /importador/, /mercado global/, /e-commerce|comercio electr[oó]nico/, /turismo internacional/, /vuelos/, /aerol[ií]neas/, /log[ií]stic/]
+        },
+        {
+          key: "finanzas_mercados",
+          label: "Finanzas y mercados",
+          color: "#315d3f",
+          patterns: [/sp\s*&?p|s&p/, /calificaci[oó]n crediticia/, /deuda/, /inversor|inversion/, /capital/, /costos? de financiamiento/, /inflaci[oó]n/, /profit|ganancia/, /tariffs?/]
+        },
+        {
+          key: "sostenibilidad",
+          label: "Sostenibilidad y trazabilidad",
+          color: "#8a6a22",
+          patterns: [/sostenibilidad/, /seguridad alimentaria/, /cambio clim[aá]tico/, /transparencia/, /sector de flores/, /ambiental/, /chain/, /trazabilidad/]
+        },
+        {
+          key: "infraestructura_energia",
+          label: "Infraestructura y energia",
+          color: "#5f3f2b",
+          patterns: [/energ[ií]a/, /espacio/, /gps/, /infraestructura/, /power costs/, /radio mast/, /electricidad/, /data center/]
+        },
+        {
+          key: "seguridad_conflicto",
+          label: "Seguridad y conflicto",
+          color: "#6d3030",
+          patterns: [/violencia/, /seguridad a[eé]rea/, /conflicto/, /protesta diplom[aá]tica/, /muerte/, /cjng/]
+        }
+      ];
+
+      const THEME_BY_KEY = Object.fromEntries(THEME_RULES.map((item) => [item.key, item]));
+
+      const state = {
+        search: "",
+        author: "",
+        activeThemes: new Set(),
+        pairFilter: null,
+        selectedId: null,
+        modalOpen: false,
+        filtered: []
+      };
+
+      function decodeHtml(text) {
+        decoder.innerHTML = text;
+        return decoder.value;
+      }
+
+      function normalizeSpaces(text) {
+        return (text || "").replace(/\u00a0/g, " ").replace(/[\t\r ]+/g, " ").replace(/\n{3,}/g, "\n\n").trim();
+      }
+
+      function cleanToken(token) {
+        return normalizeSpaces(token)
+          .replace(/^[\-•·▪●o]+\s*/i, "")
+          .replace(/^\d+[.)]\s*/, "")
+          .replace(/[.;:,]+$/g, "")
+          .trim();
+      }
+
+      function htmlToTextWithLines(html) {
+        const normalized = (html || "")
+          .replace(/<!--[\s\S]*?-->/g, " ")
+          .replace(/<script[\s\S]*?<\/script>/gi, " ")
+          .replace(/<style[\s\S]*?<\/style>/gi, " ")
+          .replace(/<br\s*\/?>/gi, "\n")
+          .replace(/<\/(p|div|li|h[1-6]|ul|ol|tr|td|article|section)>/gi, "\n")
+          .replace(/<[^>]+>/g, " ");
+
+        return normalizeSpaces(decodeHtml(normalized))
+          .split("\n")
+          .map((line) => normalizeSpaces(line))
+          .filter(Boolean);
+      }
+
+      function extractSection(lines, startRegex, endRegex) {
+        let collecting = false;
+        const parts = [];
+
+        for (const line of lines) {
+          if (!collecting) {
+            const start = line.match(startRegex);
+            if (start) {
+              collecting = true;
+              const rest = cleanToken(line.slice(start.index + start[0].length));
+              if (rest) {
+                parts.push(rest);
+              }
+            }
+            continue;
+          }
+
+          if (endRegex) {
+            const end = line.match(endRegex);
+            if (end) {
+              const before = cleanToken(line.slice(0, end.index));
+              if (before) {
+                parts.push(before);
+              }
+              break;
+            }
+          }
+
+          parts.push(line);
+        }
+
+        return normalizeSpaces(parts.join(" "));
+      }
+
+      function extractInfo(post) {
+        const doc = parser.parseFromString("<div>" + (post.message || "") + "</div>", "text/html");
+        const root = doc.body.firstElementChild || doc.body;
+
+        const links = Array.from(root.querySelectorAll("a[href]"))
+          .map((a) => (a.getAttribute("href") || "").trim())
+          .filter((href) => /^https?:\/\//i.test(href));
+
+        const rawUrlMatches = Array.from((post.message || "").matchAll(/https?:\/\/[^\s"'<>]+/g)).map((m) => m[0]);
+
+        const uniqueLinks = dedupe([...links, ...rawUrlMatches]);
+        const images = dedupe(
+          Array.from(root.querySelectorAll("img[src]"))
+            .map((img) => (img.getAttribute("src") || "").trim())
+            .filter((src) => /^https?:\/\//i.test(src))
+        );
+
+        const lines = htmlToTextWithLines(post.message || "");
+        const plainText = normalizeSpaces(lines.join(" "));
+
+        const synopsis = extractSection(
+          lines,
+          /(\b3[.)]?\s*)?(s[ií]ntesis(?:\s+de\s+5\s+l[ií]neas)?)\s*:?/i,
+          /(\b4[.)]?\s*)?palabras?\s+clave\s*:?/i
+        );
+
+        const relation = extractSection(
+          lines,
+          /(\b5[.)]?\s*)?relaci[oó]n\s+con\s+los?\s+temas?\s+de\s+la\s+clase\s*:?/i,
+          null
+        );
+
+        const apa = extractSection(
+          lines,
+          /(\b1[.)]?\s*)?cita\s+en\s+formato\s+apa(?:\s*\(.*?\))?\s*:?/i,
+          /(\b2[.)]?\s*)?link\s+al\s+recurso\s*:?/i
+        );
+
+        const keywordCandidates = Array.from(root.querySelectorAll(".badge, [class*='badge']"))
+          .map((el) => cleanToken(el.textContent || ""))
+          .filter(Boolean);
+
+        const keywordBlock = extractSection(
+          lines,
+          /(\b4[.)]?\s*)?palabras?\s+clave\s*:?/i,
+          /(\b5[.)]?\s*)?relaci[oó]n\s+con\s+los?\s+temas?\s+de\s+la\s+clase\s*:?/i
+        );
+
+        const splitFromBlock = keywordBlock
+          .replace(/[•·▪●]/g, "\n")
+          .replace(/\s+o\s+/gi, "\n")
+          .split(/[\n,;|]/)
+          .map((part) => cleanToken(part))
+          .filter((token) => token.length > 2 && !/^palabras?\s+clave/i.test(token));
+
+        const keywords = dedupe([...keywordCandidates, ...splitFromBlock]).slice(0, 12);
+
+        const sourceDomains = dedupe(
+          uniqueLinks
+            .map((url) => {
+              try {
+                return new URL(url).hostname.replace(/^www\./i, "");
+              } catch (error) {
+                return "";
+              }
+            })
+            .filter(Boolean)
+        );
+
+        const fullText = lines.join("\n\n");
+        const combined = [post.subject, plainText, synopsis, relation, keywords.join(" ")].join(" ").toLowerCase();
+
+        let themeScores = THEME_RULES
+          .map((rule) => ({
+            key: rule.key,
+            score: rule.patterns.reduce((acc, pattern) => acc + (pattern.test(combined) ? 1 : 0), 0)
+          }))
+          .filter((entry) => entry.score > 0)
+          .sort((a, b) => b.score - a.score);
+
+        let themes = themeScores.map((entry) => entry.key);
+        if (!themes.length) {
+          themes = ["otros"];
+          themeScores = [{ key: "otros", score: 1 }];
+        }
+
+          return {
+          links: uniqueLinks,
+          images,
+          plainText,
+          fullText,
+          synopsis: synopsis || firstSentences(plainText, 2),
+          relation: relation || firstSentences(plainText, 2),
+          apa,
+          keywords,
+          sourceDomains,
+          themeScores,
+          themes: dedupe(themes)
+        };
+      }
+
+      function firstSentences(text, limit) {
+        const parts = normalizeSpaces(text).split(/(?<=[.!?])\s+/).filter(Boolean);
+        return parts.slice(0, limit).join(" ").trim();
+      }
+
+      function dedupe(items) {
+        const seen = new Set();
+        const result = [];
+        for (const raw of items) {
+          const item = normalizeSpaces(raw || "");
+          if (!item) {
+            continue;
+          }
+          const key = item.toLowerCase();
+          if (seen.has(key)) {
+            continue;
+          }
+          seen.add(key);
+          result.push(item);
+        }
+        return result;
+      }
+
+      function toDateText(seconds) {
+        if (!seconds) {
+          return "s/f";
+        }
+        const date = new Date(Number(seconds) * 1000);
+        return date.toLocaleDateString("es-MX", { day: "2-digit", month: "short", year: "numeric" });
+      }
+
+      function toDateTimeText(seconds) {
+        if (!seconds) {
+          return "s/f";
+        }
+        const date = new Date(Number(seconds) * 1000);
+        return date.toLocaleString("es-MX", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit"
+        });
+      }
+
+      function buildPosts() {
+        return rawPosts
+          .map((post) => {
+            const info = extractInfo(post);
+            return {
+              id: post.id,
+              discussion: post.discussion,
+              parent: post.parent,
+              userid: post.userid,
+              userfullname: post.userfullname,
+              created: post.created,
+              modified: post.modified,
+              wordcount: post.wordcount,
+              charcount: post.charcount,
+              messageformat: post.messageformat,
+              messagetrust: post.messagetrust,
+              attachment: post.attachment,
+              totalscore: post.totalscore,
+              mailnow: post.mailnow,
+              deleted: post.deleted,
+              privatereplyto: post.privatereplyto,
+              subject: normalizeSpaces(post.subject || "Sin asunto"),
+              message: post.message || "",
+              ...info
+            };
+          })
+          .sort((a, b) => b.created - a.created);
+      }
+
+      const allPosts = buildPosts();
+
+      function themeLabel(key) {
+        return THEME_BY_KEY[key] ? THEME_BY_KEY[key].label : "Otros emergentes";
+      }
+
+      function themeColor(key) {
+        return THEME_BY_KEY[key] ? THEME_BY_KEY[key].color : "#6f6f6f";
+      }
+
+      function getPostById(id) {
+        return allPosts.find((post) => post.id === Number(id)) || null;
+      }
+
+      function cropText(text, maxLength) {
+        const normalized = normalizeSpaces(text);
+        if (normalized.length <= maxLength) {
+          return normalized;
+        }
+        return normalized.slice(0, Math.max(1, maxLength - 1)).trimEnd() + "…";
+      }
+
+      function normalizeKeyword(text) {
+        return normalizeSpaces(text).toLowerCase();
+      }
+
+      function computeRelatedPosts(basePost, pool, limit) {
+        if (!basePost) {
+          return [];
+        }
+
+        const baseThemes = new Set(basePost.themes);
+        const baseDomains = new Set(basePost.sourceDomains.map((domain) => domain.toLowerCase()));
+        const baseKeywords = new Set(basePost.keywords.map(normalizeKeyword));
+        const list = [];
+
+        for (const candidate of pool) {
+          if (candidate.id === basePost.id) {
+            continue;
+          }
+
+          const sharedThemes = candidate.themes.filter((theme) => baseThemes.has(theme));
+          const sharedDomains = candidate.sourceDomains.filter((domain) => baseDomains.has(domain.toLowerCase()));
+          const sharedKeywords = candidate.keywords.filter((keyword) => baseKeywords.has(normalizeKeyword(keyword)));
+          const keywordScore = Math.min(sharedKeywords.length, 3);
+          const score = sharedThemes.length * 4 + sharedDomains.length * 3 + keywordScore;
+
+          if (!score) {
+            continue;
+          }
+
+          list.push({
+            post: candidate,
+            score,
+            sharedThemes,
+            sharedDomains,
+            sharedKeywords
+          });
+        }
+
+        list.sort((a, b) => b.score - a.score || b.post.created - a.post.created);
+        if (typeof limit === "number") {
+          return list.slice(0, limit);
+        }
+        return list;
+      }
+
+      function renderAxisBars(post) {
+        const scores = Array.isArray(post.themeScores) && post.themeScores.length
+          ? post.themeScores
+          : post.themes.map((key) => ({ key, score: 1 }));
+        const top = scores.slice(0, 5);
+        const max = top.reduce((highest, item) => Math.max(highest, item.score), 1);
+
+        return '<div class="axis-bars">' + top.map((item) => {
+          const width = Math.max(16, Math.round(item.score / max * 100));
+          return [
+            '<div class="axis-row">',
+            '<div>',
+            '<span>' + escapeHtml(themeLabel(item.key)) + '</span>',
+            '<div class="axis-track"><i class="axis-fill" style="--axis-color:' + themeColor(item.key) + ';width:' + width + '%"></i></div>',
+            "</div>",
+            "<strong>" + item.score + "</strong>",
+            "</div>"
+          ].join("");
+        }).join("") + "</div>";
+      }
+
+      function buildRelatedInlineLinks(post, limit) {
+        const related = computeRelatedPosts(post, allPosts, limit);
+        if (!related.length) {
+          return "";
+        }
+
+        return '<div class="card-links"><span>Relacionadas:</span> ' + related.map((entry) => {
+          return '<a href="#noticia-' + entry.post.id + '" class="related-news-link" data-related-id="' + entry.post.id + '">' + escapeHtml(cropText(entry.post.subject, 52)) + "</a>";
+        }).join(" · ") + "</div>";
+      }
+
+      function postMatches(post) {
+        if (state.author && post.userfullname !== state.author) {
+          return false;
+        }
+
+        if (state.activeThemes.size > 0) {
+          const hasTheme = post.themes.some((theme) => state.activeThemes.has(theme));
+          if (!hasTheme) {
+            return false;
+          }
+        }
+
+        if (state.pairFilter) {
+          const hasA = post.themes.includes(state.pairFilter[0]);
+          const hasB = post.themes.includes(state.pairFilter[1]);
+          if (!(hasA && hasB)) {
+            return false;
+          }
+        }
+
+        if (!state.search) {
+          return true;
+        }
+
+        const q = state.search.toLowerCase();
+        const bag = [
+          post.subject,
+          post.userfullname,
+          post.keywords.join(" "),
+          post.sourceDomains.join(" "),
+          post.links.join(" "),
+          post.synopsis,
+          post.relation,
+          post.plainText,
+          post.themes.map((key) => themeLabel(key)).join(" ")
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        return bag.includes(q);
+      }
+
+      function computeStats(posts) {
+        const authors = dedupe(posts.map((post) => post.userfullname));
+        const domains = dedupe(posts.flatMap((post) => post.sourceDomains));
+        const themeKeys = dedupe(posts.flatMap((post) => post.themes));
+        const totalLinks = posts.reduce((acc, post) => acc + post.links.length, 0);
+        const totalWords = posts.reduce((acc, post) => acc + (Number(post.wordcount) || 0), 0);
+
+        return {
+          noticias: posts.length,
+          autores: authors.length,
+          temas: themeKeys.length,
+          fuentes: domains.length,
+          links: totalLinks,
+          palabras: totalWords
+        };
+      }
+
+      function renderStats(posts) {
+        const stats = computeStats(posts);
+        const root = document.getElementById("stats");
+        const items = [
+          ["noticias", stats.noticias],
+          ["participantes", stats.autores],
+          ["temas activos", stats.temas],
+          ["sitios fuente", stats.fuentes],
+          ["links recopilados", stats.links],
+          ["palabras reportadas", stats.palabras.toLocaleString("es-MX")]
+        ];
+
+        root.innerHTML = items
+          .map(
+            ([label, value]) =>
+              "<article class=\"stat\"><strong>" + value + "</strong><span>" + label + "</span></article>"
+          )
+          .join("");
+      }
+
+      function countThemes(posts) {
+        const map = new Map();
+        for (const post of posts) {
+          for (const key of post.themes) {
+            map.set(key, (map.get(key) || 0) + 1);
+          }
+        }
+        return Array.from(map.entries()).sort((a, b) => b[1] - a[1]);
+      }
+
+      function buildCooccurrence(posts) {
+        const keys = countThemes(posts).map((entry) => entry[0]);
+        const matrix = keys.map(() => keys.map(() => 0));
+
+        for (const post of posts) {
+          const relevant = keys.filter((key) => post.themes.includes(key));
+          for (let i = 0; i < relevant.length; i += 1) {
+            for (let j = i; j < relevant.length; j += 1) {
+              const a = keys.indexOf(relevant[i]);
+              const b = keys.indexOf(relevant[j]);
+              matrix[a][b] += 1;
+              if (a !== b) {
+                matrix[b][a] += 1;
+              }
+            }
+          }
+        }
+
+        return { keys, matrix };
+      }
+
+      function renderMatrix(posts) {
+        const wrap = document.getElementById("matrixWrap");
+        const { keys, matrix } = buildCooccurrence(posts);
+
+        if (!keys.length) {
+          wrap.innerHTML = '<div class="empty">No hay datos para la matriz con los filtros actuales.</div>';
+          document.getElementById("pairList").innerHTML = "";
+          return;
+        }
+
+        let max = 0;
+        for (const row of matrix) {
+          for (const value of row) {
+            if (value > max) {
+              max = value;
+            }
+          }
+        }
+
+        const head = "<tr><th></th>" + keys.map((key) => "<th title=\"" + themeLabel(key) + "\">" + shortTheme(themeLabel(key)) + "</th>").join("") + "</tr>";
+
+        const rows = keys
+          .map((rowKey, rowIndex) => {
+            const cells = keys
+              .map((colKey, colIndex) => {
+                const value = matrix[rowIndex][colIndex];
+                const opacity = max ? 0.12 + value / max * 0.78 : 0;
+                const color = "rgba(15, 90, 120, " + opacity.toFixed(3) + ")";
+                const clickable = rowKey !== colKey && value > 0;
+                return "<td data-row=\"" + rowKey + "\" data-col=\"" + colKey + "\" data-value=\"" + value + "\" style=\"background:" + color + ";" + (clickable ? "font-weight:700;" : "") + "\" title=\"" + themeLabel(rowKey) + " + " + themeLabel(colKey) + ": " + value + "\">" + value + "</td>";
+              })
+              .join("");
+            return "<tr><th class=\"row-head\" style=\"border-left:4px solid " + themeColor(rowKey) + "\">" + shortTheme(themeLabel(rowKey)) + "</th>" + cells + "</tr>";
+          })
+          .join("");
+
+        wrap.innerHTML = "<table class=\"matrix\"><thead>" + head + "</thead><tbody>" + rows + "</tbody></table>";
+
+        wrap.querySelectorAll("td").forEach((cell) => {
+          cell.addEventListener("click", () => {
+            const row = cell.getAttribute("data-row");
+            const col = cell.getAttribute("data-col");
+            const value = Number(cell.getAttribute("data-value"));
+            if (!row || !col || row === col || !value) {
+              return;
+            }
+            state.pairFilter = [row, col];
+            renderPairFilter();
+            applyFilters();
+          });
+        });
+
+        renderPairs(keys, matrix);
+      }
+
+      function shortTheme(text) {
+        return text
+          .replace(" y ", " /")
+          .replace("Tecnologia", "Tec")
+          .replace("Comercio", "Com")
+          .replace("Infraestructura", "Infra")
+          .replace("Regulacion", "Reg")
+          .replace("Sostenibilidad", "Sost")
+          .replace("Geopolitica", "Geo")
+          .replace("Trabajo", "Trab");
+      }
+
+      function renderPairs(keys, matrix) {
+        const list = [];
+        for (let i = 0; i < keys.length; i += 1) {
+          for (let j = i + 1; j < keys.length; j += 1) {
+            const value = matrix[i][j];
+            if (value > 0) {
+              list.push({
+                a: keys[i],
+                b: keys[j],
+                value
+              });
+            }
+          }
+        }
+
+        list.sort((x, y) => y.value - x.value);
+        const root = document.getElementById("pairList");
+
+        root.innerHTML = list
+          .slice(0, 10)
+          .map((pair) => {
+            return [
+              '<li class="pair-item">',
+              '<span class="pair-dot" style="background:' + themeColor(pair.a) + '"></span>',
+              "<span>" + themeLabel(pair.a) + " ↔ " + themeLabel(pair.b) + "</span>",
+              "<strong>" + pair.value + "</strong>",
+              "</li>"
+            ].join("");
+          })
+          .join("");
+      }
+
+      function renderPairFilter() {
+        const root = document.getElementById("pairFilter");
+        if (!state.pairFilter) {
+          root.dataset.on = "false";
+          root.innerHTML = "";
+          return;
+        }
+
+        root.dataset.on = "true";
+        root.innerHTML =
+          "Filtro de relacion activo: <strong>" +
+          themeLabel(state.pairFilter[0]) +
+          " + " +
+          themeLabel(state.pairFilter[1]) +
+          "</strong><br><button type=\"button\" id=\"clearPairBtn\">Quitar filtro de relacion</button>";
+
+        const clearBtn = document.getElementById("clearPairBtn");
+        clearBtn.addEventListener("click", () => {
+          state.pairFilter = null;
+          renderPairFilter();
+          applyFilters();
+        });
+      }
+
+      function renderThemeChips(posts) {
+        const counts = countThemes(posts);
+        const root = document.getElementById("themeChips");
+
+        root.innerHTML = counts
+          .map(([key, amount]) => {
+            const active = state.activeThemes.size === 0 || state.activeThemes.has(key);
+            return '<button type="button" class="chip" data-key="' + key + '" data-active="' + active + '" style="--chip-color:' + themeColor(key) + '">' + themeLabel(key) + " (" + amount + ")</button>";
+          })
+          .join("");
+
+        root.querySelectorAll(".chip").forEach((chip) => {
+          chip.addEventListener("click", () => {
+            const key = chip.getAttribute("data-key");
+            if (!key) {
+              return;
+            }
+
+            if (state.activeThemes.has(key)) {
+              state.activeThemes.delete(key);
+            } else {
+              state.activeThemes.add(key);
+            }
+
+            const total = countThemes(allPosts).length;
+            if (state.activeThemes.size === total) {
+              state.activeThemes.clear();
+            }
+
+            applyFilters();
+          });
+        });
+      }
+
+      function renderAuthorSelect(posts) {
+        const select = document.getElementById("authorSelect");
+        const authors = dedupe(posts.map((post) => post.userfullname)).sort((a, b) => a.localeCompare(b, "es"));
+
+        select.innerHTML = '<option value="">Todos los autores</option>' + authors.map((name) => '<option value="' + escapeHtml(name) + '">' + escapeHtml(name) + "</option>").join("");
+        select.value = state.author;
+      }
+
+      function renderAuthorList(posts) {
+        const root = document.getElementById("authorList");
+        const map = new Map();
+
+        for (const post of posts) {
+          map.set(post.userfullname, (map.get(post.userfullname) || 0) + 1);
+        }
+
+        const ranking = Array.from(map.entries()).sort((a, b) => b[1] - a[1]);
+        const max = ranking.length ? ranking[0][1] : 1;
+
+        root.innerHTML = ranking
+          .map(([name, count]) => {
+            const active = state.author === name;
+            const width = Math.max(9, Math.round(count / max * 100));
+            return [
+              '<li class="author-item" data-name="' + escapeHtml(name) + '" data-active="' + active + '">',
+              '<div class="author-head"><span>' + escapeHtml(name) + '</span><strong>' + count + "</strong></div>",
+              '<div class="bar"><i style="width:' + width + '%"></i></div>',
+              "</li>"
+            ].join("");
+          })
+          .join("");
+
+        root.querySelectorAll(".author-item").forEach((item) => {
+          item.addEventListener("click", () => {
+            const name = item.getAttribute("data-name");
+            if (!name) {
+              return;
+            }
+
+            state.author = state.author === name ? "" : name;
+            applyFilters();
+          });
+        });
+      }
+
+      function renderTimeline(posts) {
+        const root = document.getElementById("timeline");
+
+        if (!posts.length) {
+          root.innerHTML = '<div class="empty">No hay noticias con estos filtros.</div>';
+          renderDetail(null);
+          if (state.modalOpen) {
+            closeSlide();
+          }
+          return;
+        }
+
+        if (!posts.some((post) => post.id === state.selectedId)) {
+          state.selectedId = posts[0].id;
+        }
+
+        root.innerHTML = posts
+          .map((post) => {
+            const selected = post.id === state.selectedId;
+            const firstLink = post.links[0] || "";
+            const relatedInline = buildRelatedInlineLinks(post, 2);
+            const dominantAxis = post.themes[0] || "otros";
+            return [
+              '<article id="noticia-' + post.id + '" class="card" tabindex="0" data-id="' + post.id + '" data-selected="' + selected + '" style="border-left-color:' + themeColor(dominantAxis) + '">',
+              '<div class="card-top">',
+              '<h4>' + escapeHtml(post.subject) + '</h4>',
+              '<small>' + toDateText(post.created) + '</small>',
+              "</div>",
+              '<p class="card-meta"><strong>' + escapeHtml(post.userfullname) + '</strong> · ' + post.sourceDomains.length + " fuente(s) · eje: " + escapeHtml(themeLabel(dominantAxis)) + "</p>",
+              '<div class="row-themes">' + post.themes.map((key) => '<span class="theme" style="--theme-color:' + themeColor(key) + '">' + themeLabel(key) + "</span>").join("") + "</div>",
+              '<div class="row-tags">' + post.keywords.slice(0, 5).map((kw) => '<span class="tag">' + escapeHtml(kw) + "</span>").join("") + "</div>",
+              relatedInline,
+              '<div class="card-foot">',
+              '<small>' + (post.wordcount || 0) + " palabras · " + (post.links.length || 0) + " links</small>",
+              firstLink ? '<a class="link-btn" href="' + escapeHtml(firstLink) + '" target="_blank" rel="noopener">Abrir fuente</a>' : "",
+              "</div>",
+              "</article>"
+            ].join("");
+          })
+          .join("");
+
+        root.querySelectorAll(".card").forEach((card) => {
+          const id = Number(card.getAttribute("data-id"));
+          const select = (openModal) => {
+            if (!id) {
+              return;
+            }
+            state.selectedId = id;
+            renderTimeline(posts);
+            const chosen = posts.find((post) => post.id === id) || null;
+            renderDetail(chosen);
+            if (openModal && chosen) {
+              openSlide(chosen);
+            }
+          };
+
+          card.querySelectorAll(".related-news-link").forEach((link) => {
+            link.addEventListener("click", (event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              const targetId = Number(link.getAttribute("data-related-id"));
+              if (targetId) {
+                selectPostById(targetId, true);
+              }
+            });
+          });
+
+          card.addEventListener("click", (event) => {
+            if (event.target.closest("a")) {
+              return;
+            }
+            select(true);
+          });
+
+          card.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              select(true);
+            }
+          });
+        });
+
+        const selected = posts.find((post) => post.id === state.selectedId) || posts[0] || null;
+        renderDetail(selected);
+      }
+
+      function selectPostById(postId, openModal) {
+        const chosen = getPostById(postId);
+        if (!chosen) {
+          return;
+        }
+
+        state.selectedId = chosen.id;
+        const visibleList = state.filtered.length ? state.filtered : allPosts;
+        const visible = visibleList.some((post) => post.id === chosen.id);
+        if (visible) {
+          renderTimeline(visibleList);
+        }
+        renderDetail(chosen);
+        if (openModal) {
+          openSlide(chosen);
+        }
+
+        if (visible) {
+          const card = document.getElementById("noticia-" + chosen.id);
+          if (card) {
+            card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }
+        }
+      }
+
+      function renderDetail(post) {
+        const root = document.getElementById("detail");
+
+        if (!post) {
+          root.innerHTML = '<div class="empty">Selecciona una noticia para ver metadatos.</div>';
+          return;
+        }
+
+        const metaRows = [
+          ["ID", post.id],
+          ["Discusion", post.discussion],
+          ["Parent", post.parent],
+          ["User ID", post.userid],
+          ["Autor", post.userfullname],
+          ["Creado", toDateTimeText(post.created)],
+          ["Modificado", toDateTimeText(post.modified)],
+          ["Wordcount", post.wordcount || 0],
+          ["Charcount", post.charcount || 0],
+          ["Formato", post.messageformat],
+          ["Trust", post.messagetrust],
+          ["Attachment", post.attachment],
+          ["Totalscore", post.totalscore],
+          ["Mail now", post.mailnow],
+          ["Deleted", post.deleted],
+          ["Private reply", post.privatereplyto],
+          ["Links", post.links.length],
+          ["Imagenes", post.images.length]
+        ];
+
+        const related = computeRelatedPosts(post, allPosts, 5);
+        const relatedHtml = related.length
+          ? '<ul class="related-list">' + related.map((entry) => {
+            const shared = entry.sharedThemes.length
+              ? entry.sharedThemes.map((key) => themeLabel(key)).join(", ")
+              : "sin eje compartido";
+            return [
+              '<li class="related-item">',
+              '<a href="#noticia-' + entry.post.id + '" class="detail-related-link" data-related-id="' + entry.post.id + '">' + escapeHtml(entry.post.subject) + "</a>",
+              '<span class="related-meta">' + escapeHtml(entry.post.userfullname) + " · comparte: " + escapeHtml(shared) + "</span>",
+              "</li>"
+            ].join("");
+          }).join("") + "</ul>"
+          : '<p class="micro">Sin noticias claramente relacionadas.</p>';
+
+        root.innerHTML = [
+          '<h4>' + escapeHtml(post.subject) + "</h4>",
+          '<p><strong>Autor:</strong> ' + escapeHtml(post.userfullname) + "</p>",
+          "<h3>Ejes de la noticia</h3>",
+          renderAxisBars(post),
+          '<p><strong>Sintesis:</strong> ' + escapeHtml(post.synopsis || "Sin sintesis") + "</p>",
+          '<p><strong>Relacion con clase:</strong> ' + escapeHtml(post.relation || "Sin descripcion") + "</p>",
+          '<h3>Fuentes y links</h3>',
+          '<ul class="links">' + (post.links.length ? post.links.map((url) => '<li><a href="' + escapeHtml(url) + '" target="_blank" rel="noopener">' + escapeHtml(url) + "</a></li>").join("") : "<li>Sin links detectados.</li>") + "</ul>",
+          "<h3>Noticias relacionadas</h3>",
+          relatedHtml,
+          '<h3>Palabras clave</h3>',
+          '<div class="row-tags">' + (post.keywords.length ? post.keywords.map((kw) => '<span class="tag">' + escapeHtml(kw) + "</span>").join("") : "<span class=\"tag\">Sin datos</span>") + "</div>",
+          '<h3>Metadatos</h3>',
+          '<ul class="meta-list">' + metaRows.map(([k, v]) => "<li><strong>" + escapeHtml(String(k)) + "</strong><span>" + escapeHtml(String(v)) + "</span></li>").join("") + "</ul>",
+          '<details><summary>Ver registro original (JSON de la participacion)</summary><pre>' + escapeHtml(JSON.stringify(post, null, 2)) + "</pre></details>"
+        ].join("");
+
+        root.querySelectorAll(".detail-related-link").forEach((link) => {
+          link.addEventListener("click", (event) => {
+            event.preventDefault();
+            const targetId = Number(link.getAttribute("data-related-id"));
+            if (targetId) {
+              selectPostById(targetId, true);
+            }
+          });
+        });
+      }
+
+      function renderSlide(post) {
+        const slideTitle = document.getElementById("slideTitle");
+        const slideKicker = document.getElementById("slideKicker");
+        const slideAuthor = document.getElementById("slideAuthor");
+        const slideBody = document.getElementById("slideBody");
+
+        if (!post) {
+          slideTitle.textContent = "Sin noticia seleccionada";
+          slideKicker.textContent = "";
+          slideAuthor.textContent = "";
+          slideBody.innerHTML = '<div class="empty">Selecciona una noticia para verla como diapositiva.</div>';
+          return;
+        }
+
+        const related = computeRelatedPosts(post, allPosts, 8);
+        const domains = post.sourceDomains.length ? post.sourceDomains.join(", ") : "Sin dominio identificado";
+        const linksHtml = post.links.length
+          ? '<ul class="slide-links">' + post.links.map((url) => '<li><a href="' + escapeHtml(url) + '" target="_blank" rel="noopener">' + escapeHtml(url) + "</a></li>").join("") + "</ul>"
+          : "<p>Sin links detectados.</p>";
+        const relatedHtml = related.length
+          ? '<ul class="related-list">' + related.map((entry) => {
+            const sharedAxes = entry.sharedThemes.length ? entry.sharedThemes.map((key) => themeLabel(key)).join(", ") : "Cruce por fuente/palabra";
+            return [
+              '<li class="related-item">',
+              '<a href="#noticia-' + entry.post.id + '" class="modal-related-link" data-related-id="' + entry.post.id + '">' + escapeHtml(entry.post.subject) + "</a>",
+              '<span class="related-meta">' + escapeHtml(entry.post.userfullname) + " · comparte: " + escapeHtml(sharedAxes) + " · puntaje " + entry.score + "</span>",
+              "</li>"
+            ].join("");
+          }).join("") + "</ul>"
+          : "<p>Sin cruces fuertes detectados.</p>";
+
+        slideKicker.textContent = "Diapositiva de noticia";
+        slideTitle.textContent = post.subject;
+        slideAuthor.textContent = post.userfullname + " · " + toDateTimeText(post.created);
+
+        slideBody.innerHTML = [
+          '<section class="slide-grid">',
+          '<article class="slide-block">',
+          "<h3>Texto completo aportado</h3>",
+          '<pre class="slide-fulltext">' + escapeHtml(post.fullText || post.plainText || "Sin texto disponible.") + "</pre>",
+          "</article>",
+          '<article class="slide-block">',
+          "<h3>Ejes del curso en esta noticia</h3>",
+          renderAxisBars(post),
+          "<p><strong>Eje principal:</strong> " + escapeHtml(themeLabel(post.themes[0] || "otros")) + "</p>",
+          "<p><strong>Resumen para exponer:</strong> " + escapeHtml(post.synopsis || "Sin sintesis") + "</p>",
+          "<p><strong>Conexion con clase:</strong> " + escapeHtml(post.relation || "Sin descripcion") + "</p>",
+          "</article>",
+          "</section>",
+          '<section class="slide-grid">',
+          '<article class="slide-block">',
+          "<h3>Fuentes y metadatos</h3>",
+          "<p><strong>Autor:</strong> " + escapeHtml(post.userfullname) + "</p>",
+          "<p><strong>Fuentes:</strong> " + escapeHtml(domains) + "</p>",
+          "<p><strong>Conteo:</strong> " + (post.wordcount || 0) + " palabras · " + (post.charcount || 0) + " caracteres</p>",
+          "<p><strong>Palabras clave:</strong> " + escapeHtml(post.keywords.join(", ") || "Sin datos") + "</p>",
+          linksHtml,
+          "</article>",
+          '<article class="slide-block">',
+          "<h3>Noticias relacionadas</h3>",
+          relatedHtml,
+          "</article>",
+          "</section>"
+        ].join("");
+
+        slideBody.querySelectorAll(".modal-related-link").forEach((link) => {
+          link.addEventListener("click", (event) => {
+            event.preventDefault();
+            const targetId = Number(link.getAttribute("data-related-id"));
+            if (targetId) {
+              selectPostById(targetId, true);
+            }
+          });
+        });
+      }
+
+      function openSlide(post) {
+        const modal = document.getElementById("slideModal");
+        if (!modal) {
+          return;
+        }
+
+        renderSlide(post);
+        state.modalOpen = true;
+        modal.dataset.open = "true";
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("has-modal");
+      }
+
+      function closeSlide() {
+        const modal = document.getElementById("slideModal");
+        if (!modal) {
+          return;
+        }
+        state.modalOpen = false;
+        modal.dataset.open = "false";
+        modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("has-modal");
+      }
+
+      function navigateSlide(step) {
+        const list = state.filtered.length ? state.filtered : allPosts;
+        if (!list.length) {
+          return;
+        }
+        let index = list.findIndex((post) => post.id === state.selectedId);
+        if (index < 0) {
+          index = 0;
+        }
+        const next = (index + step + list.length) % list.length;
+        selectPostById(list[next].id, true);
+      }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function applyFilters() {
+        state.filtered = allPosts.filter(postMatches);
+        renderStats(state.filtered);
+        renderThemeChips(allPosts);
+        renderPairFilter();
+        renderMatrix(state.filtered);
+        renderTimeline(state.filtered);
+        renderAuthorList(state.filtered.length ? state.filtered : allPosts);
+        renderAuthorSelect(allPosts);
+
+        if (state.modalOpen) {
+          if (!state.filtered.length) {
+            closeSlide();
+            return;
+          }
+          const selected = state.filtered.find((post) => post.id === state.selectedId) || state.filtered[0];
+          state.selectedId = selected.id;
+          renderSlide(selected);
+        }
+      }
+
+      function setupControls() {
+        const search = document.getElementById("searchInput");
+        const select = document.getElementById("authorSelect");
+        const clearBtn = document.getElementById("clearBtn");
+        const projectionBtn = document.getElementById("projectionBtn");
+        const modal = document.getElementById("slideModal");
+        const closeSlideBtn = document.getElementById("slideCloseBtn");
+        const prevSlideBtn = document.getElementById("slidePrevBtn");
+        const nextSlideBtn = document.getElementById("slideNextBtn");
+
+        const latestDate = allPosts.length ? Math.max(...allPosts.map((post) => Number(post.created) || 0)) : null;
+        if (latestDate) {
+          document.getElementById("dateFlag").textContent = "Corte: " + toDateTimeText(latestDate);
+        }
+
+        search.addEventListener("input", () => {
+          state.search = normalizeSpaces(search.value);
+          applyFilters();
+        });
+
+        select.addEventListener("change", () => {
+          state.author = select.value;
+          applyFilters();
+        });
+
+        clearBtn.addEventListener("click", () => {
+          state.search = "";
+          state.author = "";
+          state.activeThemes.clear();
+          state.pairFilter = null;
+          search.value = "";
+          select.value = "";
+          applyFilters();
+        });
+
+        const toggleProjection = () => {
+          document.body.classList.toggle("projection");
+          if (state.modalOpen) {
+            const selected = getPostById(state.selectedId);
+            if (selected) {
+              renderSlide(selected);
+            }
+          }
+        };
+
+        projectionBtn.addEventListener("click", toggleProjection);
+
+        if (modal) {
+          modal.addEventListener("click", (event) => {
+            if (event.target && event.target.getAttribute("data-close-modal") === "true") {
+              closeSlide();
+            }
+          });
+        }
+
+        if (closeSlideBtn) {
+          closeSlideBtn.addEventListener("click", closeSlide);
+        }
+
+        if (prevSlideBtn) {
+          prevSlideBtn.addEventListener("click", () => navigateSlide(-1));
+        }
+
+        if (nextSlideBtn) {
+          nextSlideBtn.addEventListener("click", () => navigateSlide(1));
+        }
+
+        document.addEventListener("keydown", (event) => {
+          const key = event.key.toLowerCase();
+          const targetTag = event.target && event.target.tagName ? event.target.tagName.toLowerCase() : "";
+          const writing = targetTag === "input" || targetTag === "textarea" || targetTag === "select";
+
+          if (state.modalOpen && event.key === "Escape") {
+            closeSlide();
+            return;
+          }
+
+          if (writing) {
+            return;
+          }
+
+          if (key === "p") {
+            toggleProjection();
+            return;
+          }
+
+          if (key === "f") {
+            event.preventDefault();
+            search.focus();
+            return;
+          }
+
+          if (state.modalOpen) {
+
+            if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+              event.preventDefault();
+              navigateSlide(1);
+              return;
+            }
+
+            if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+              event.preventDefault();
+              navigateSlide(-1);
+              return;
+            }
+          }
+
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            if (!state.filtered.length) {
+              return;
+            }
+
+            const index = state.filtered.findIndex((post) => post.id === state.selectedId);
+            const current = index >= 0 ? index : 0;
+            const step = event.key === "ArrowDown" ? 1 : -1;
+            const next = (current + step + state.filtered.length) % state.filtered.length;
+            selectPostById(state.filtered[next].id, false);
+          }
+        });
+      }
+
+      if (!allPosts.length) {
+        document.getElementById("timeline").innerHTML = '<div class="empty">No se cargaron participaciones. Revisa `foro_noticias/data_26feb26.js`.</div>';
+      } else {
+        setupControls();
+        applyFilters();
+      }
+    })();
+  </script>
+</body>
+</html>
