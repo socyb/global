@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Landing de materiales para la clase del 26 de febrero de 2026." />
+  <title>Clase 26 feb 2026 · Materiales</title>
+  <style>
+    :root {
+      --paper: #f7f4ee;
+      --ink: #1f1d1a;
+      --muted: #5c564d;
+      --line: rgba(31, 29, 26, 0.18);
+      --teal: #1c5f78;
+      --brick: #b34b2c;
+      --olive: #4c6949;
+      --panel: rgba(255, 255, 255, 0.9);
+      --shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "Avenir Next Condensed", "Gill Sans Nova", "Trebuchet MS", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 9%, rgba(28, 95, 120, 0.18), transparent 33%),
+        radial-gradient(circle at 88% 12%, rgba(179, 75, 44, 0.16), transparent 34%),
+        linear-gradient(165deg, #ece7dd 0%, #e2ebe4 45%, #f4f1e8 100%);
+      padding: clamp(8px, 1.6vw, 18px);
+      min-height: 100dvh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .wrap {
+      width: min(1280px, 100%);
+      min-height: clamp(620px, calc(100dvh - 24px), 980px);
+      max-height: calc(100dvh - 16px);
+      border: 1px solid rgba(0, 0, 0, 0.24);
+      border-radius: 20px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+    }
+
+    header,
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(250, 248, 244, 0.93);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      border-bottom: 0;
+      font-size: 0.84rem;
+      color: #3d382f;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1 1 340px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--teal), var(--brick));
+      border: 1px solid rgba(0, 0, 0, 0.22);
+    }
+
+    .chip {
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, 0.8);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #2f3a34;
+    }
+
+    .hero {
+      padding: 18px clamp(12px, 2vw, 20px) 10px;
+      display: grid;
+      gap: 8px;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 95% 20%, rgba(79, 106, 72, 0.12), transparent 45%);
+    }
+
+    .title {
+      margin: 0;
+      font-family: "Bodoni 72", "Didot", "Times New Roman", serif;
+      font-size: clamp(2.1rem, 4vw, 3.7rem);
+      line-height: 0.98;
+      max-width: 16ch;
+      text-wrap: balance;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 80ch;
+      color: #312d27;
+      font-size: clamp(1rem, 1.2vw, 1.2rem);
+      line-height: 1.34;
+    }
+
+    .pulse-wrap {
+      margin-top: 2px;
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.86);
+      overflow: hidden;
+    }
+
+    .pulse {
+      width: 100%;
+      height: 66px;
+      display: block;
+    }
+
+    .pulse path {
+      fill: none;
+      stroke: rgba(28, 95, 120, 0.5);
+      stroke-width: 2;
+      stroke-dasharray: 8 8;
+      animation: flow 4s linear infinite;
+    }
+
+    .pulse circle {
+      fill: var(--brick);
+      animation: blink 1.8s ease-in-out infinite;
+    }
+
+    .grid {
+      padding: 14px clamp(12px, 2vw, 20px) 18px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(10px, 1.2vw, 14px);
+      align-content: start;
+      overflow: auto;
+      scrollbar-gutter: stable;
+    }
+
+    .card {
+      border: 1px solid rgba(0, 0, 0, 0.17);
+      border-radius: 14px;
+      background: var(--panel);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+      padding: 12px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 8px;
+      min-height: 210px;
+    }
+
+    .kicker {
+      margin: 0;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #32403a;
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: clamp(1.02rem, 1.15vw, 1.25rem);
+      line-height: 1.2;
+      min-height: 2.8em;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: clamp(0.88rem, 0.95vw, 1rem);
+      line-height: 1.33;
+      color: #3b362f;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      background: #184a60;
+      color: #fff;
+      font-size: 0.87rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      padding: 8px 10px;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: #0f3c50;
+    }
+
+    .small {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .footer-right {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    @keyframes flow {
+      to { stroke-dashoffset: -32; }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(1.14); }
+    }
+
+    @media (min-width: 1500px) {
+      .wrap {
+        width: min(1450px, 98vw);
+      }
+
+      .grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 1280px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-height: 860px) and (min-width: 900px) {
+      body {
+        padding: 10px;
+      }
+
+      .wrap {
+        min-height: calc(100dvh - 20px);
+        max-height: calc(100dvh - 20px);
+      }
+
+      header,
+      footer {
+        padding: 9px 12px;
+      }
+
+      .hero {
+        padding: 14px 14px 8px;
+        gap: 6px;
+      }
+
+      .title {
+        font-size: clamp(1.8rem, 3vw, 2.7rem);
+      }
+
+      .subtitle {
+        font-size: 0.98rem;
+      }
+
+      .pulse {
+        height: 52px;
+      }
+
+      .grid {
+        padding: 10px 12px 12px;
+        gap: 10px;
+      }
+
+      .card {
+        min-height: 186px;
+        padding: 10px;
+        gap: 6px;
+      }
+
+      .kicker {
+        font-size: 0.7rem;
+      }
+
+      .card h2 {
+        font-size: 0.98rem;
+        min-height: 2.4em;
+      }
+
+      .card p {
+        font-size: 0.84rem;
+      }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 8px 8px max(10px, env(safe-area-inset-bottom));
+        align-items: stretch;
+      }
+
+      .wrap {
+        width: 100%;
+        min-height: auto;
+        max-height: none;
+        border-radius: 14px;
+        overflow: visible;
+      }
+
+      header,
+      footer {
+        padding: 10px 12px;
+        gap: 8px;
+      }
+
+      .brand {
+        flex: 1 1 100%;
+        font-size: 0.84rem;
+      }
+
+      .chip {
+        font-size: 0.7rem;
+      }
+
+      .hero {
+        padding: 14px 12px 8px;
+      }
+
+      .title {
+        font-size: clamp(1.7rem, 8vw, 2.3rem);
+        max-width: 100%;
+      }
+
+      .subtitle {
+        font-size: 0.95rem;
+      }
+
+      .pulse {
+        height: 48px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        padding: 12px;
+        overflow: visible;
+      }
+
+      .card {
+        min-height: 0;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 10px 12px;
+      }
+
+      footer {
+        font-size: 0.78rem;
+      }
+
+      .footer-right {
+        width: 100%;
+        text-align: right;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <span class="dot"></span>
+        <span>Globalización y Empleo · Landing de clase</span>
+      </div>
+      <div class="chip" id="classDate">Clase · 26 feb 2026</div>
+    </header>
+
+    <section class="hero">
+      <h1 class="title">Materiales para la sesión del 26 de febrero de 2026</h1>
+      <p class="subtitle">Accesos directos a presentaciones y actividades para proyectar y navegar en clase sin perder tiempo entre carpetas.</p>
+      <div class="pulse-wrap" aria-hidden="true">
+        <svg class="pulse" viewBox="0 0 900 66">
+          <path d="M8 35 C80 35, 96 12, 160 12 S248 54, 320 54 S408 20, 485 20 S572 45, 648 45 S760 14, 892 14"></path>
+          <circle cx="160" cy="12" r="5"></circle>
+          <circle cx="320" cy="54" r="5"></circle>
+          <circle cx="485" cy="20" r="5"></circle>
+          <circle cx="648" cy="45" r="5"></circle>
+        </svg>
+      </div>
+    </section>
+
+    <main class="grid">
+      <article class="card">
+        <p class="kicker">1 · Foro / Recortes</p>
+        <h2>Noticias destacadas del día</h2>
+        <p>Versión de recortes relevantes para la discusión de noticias.</p>
+        <a class="btn" href="./presentacion_recortes_noticias_27feb26.html" target="_blank" rel="noopener noreferrer">Abrir</a>
+        <p class="small">Recorrido breve por 4 titulares clave y sus conexiones.</p>
+      </article>
+
+      <article class="card">
+        <p class="kicker">2 · Foro</p>
+        <h2>Panorama del foro de noticias</h2>
+        <p>Presentación general del foro con enfoque de participaciones.</p>
+        <a class="btn" href="./presentacion_foro_noticias_hoy.html" target="_blank" rel="noopener noreferrer">Abrir</a>
+        <p class="small">Vista general para comentar aportes y relaciones entre temas.</p>
+      </article>
+
+      <article class="card">
+        <p class="kicker">3 · Lecturas</p>
+        <h2>Lecturas seleccionadas: Globalization</h2>
+        <p>Diapositivas complementarias de apartados seleccionados del libro.</p>
+        <a class="btn" href="../lecturas/presentacion_selection_globalization_27feb26.html" target="_blank" rel="noopener noreferrer">Abrir</a>
+        <p class="small">Síntesis minimalista para conectar teoría con casos.</p>
+      </article>
+
+      <article class="card">
+        <p class="kicker">4 · Actividad</p>
+        <h2>Actividad: Digital World and Us</h2>
+        <p>Actividad para analizar el video y relacionarlo con globalización.</p>
+        <a class="btn" href="../actividades/actividad_video_digital_world_and_us_25feb26.html" target="_blank" rel="noopener noreferrer">Abrir</a>
+        <p class="small">Guía de trabajo para discusión y aplicación en clase.</p>
+      </article>
+
+      <article class="card">
+        <p class="kicker">5 · Video</p>
+        <h2>Video: Trump Tariffs</h2>
+        <p>Diapositivas de apoyo para el video de aranceles y coyuntura.</p>
+        <a class="btn" href="./video-trump-tariffs.html" target="_blank" rel="noopener noreferrer">Abrir</a>
+        <p class="small">Material de apoyo para debate de política comercial.</p>
+      </article>
+    </main>
+
+    <footer>
+      <span>Curso: Globalización y Empleo · Negocios Internacionales</span>
+      <span class="footer-right" id="clock"></span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const clock = document.getElementById("clock");
+
+      function paintTime() {
+        const now = new Date();
+        const exact = now.toLocaleString("es-MX", {
+          weekday: "short",
+          day: "2-digit",
+          month: "short",
+          hour: "2-digit",
+          minute: "2-digit"
+        });
+        if (clock) clock.textContent = exact;
+      }
+
+      paintTime();
+      setInterval(paintTime, 30000);
+    })();
+  </script>
+</body>
+</html>

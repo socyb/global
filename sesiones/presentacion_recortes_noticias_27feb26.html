@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Presentacion breve de noticias seleccionadas para clase del 27 de febrero de 2026." />
+  <title>Recortes de Noticias · 27 feb 2026</title>
+  <style>
+    :root {
+      --paper: #f7f6f2;
+      --ink: #1f1d1a;
+      --muted: #5f5a52;
+      --line: rgba(31, 29, 26, 0.18);
+      --teal: #1d5f72;
+      --rust: #b05137;
+      --olive: #4f6a48;
+      --panel: rgba(255, 255, 255, 0.92);
+      --shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      padding: 12px;
+      font-family: "Avenir Next Condensed", "Gill Sans Nova", "Trebuchet MS", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 8%, rgba(29, 95, 114, 0.18), transparent 35%),
+        radial-gradient(circle at 88% 15%, rgba(176, 81, 55, 0.16), transparent 35%),
+        linear-gradient(165deg, #ece7dc 0%, #e2ebe4 46%, #f5f2ea 100%);
+    }
+
+    .deck {
+      width: min(1280px, 96vw);
+      aspect-ratio: 16 / 9;
+      border: 1px solid rgba(0, 0, 0, 0.24);
+      border-radius: 18px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      position: relative;
+    }
+
+    .topbar,
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(250, 248, 244, 0.93);
+      z-index: 10;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      border-bottom: 0;
+      font-size: 0.82rem;
+      color: #403b33;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--rust));
+      border: 1px solid rgba(0, 0, 0, 0.22);
+    }
+
+    .context {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: #2f3a34;
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .progress-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 180px;
+    }
+
+    .progress-track {
+      width: 140px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.14);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--teal), #2db1c7);
+      transition: width 0.25s ease;
+    }
+
+    .progress-text {
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: #2e332f;
+      min-width: 42px;
+      text-align: right;
+    }
+
+    .stage {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 6% 93%, rgba(79, 106, 72, 0.11), transparent 32%),
+        radial-gradient(circle at 95% 86%, rgba(99, 75, 127, 0.09), transparent 30%);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(3%);
+      transition: opacity 0.26s ease, transform 0.26s ease;
+      padding: clamp(18px, 2.1vw, 28px);
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 12px;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0);
+    }
+
+    .tag {
+      margin: 0;
+      width: fit-content;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      background: rgba(255, 255, 255, 0.84);
+      padding: 6px 10px;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      color: #303a35;
+    }
+
+    .main {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+      min-height: 0;
+    }
+
+    .title {
+      margin: 0;
+      font-family: "Bodoni 72", "Didot", "Times New Roman", serif;
+      font-size: clamp(2rem, 3.8vw, 3.7rem);
+      line-height: 0.98;
+      max-width: 18ch;
+      text-wrap: balance;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 78ch;
+      font-size: clamp(0.98rem, 1.2vw, 1.2rem);
+      line-height: 1.36;
+      color: #302d28;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .card {
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      border-radius: 13px;
+      background: var(--panel);
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+      box-shadow: 0 7px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: clamp(1.02rem, 1.28vw, 1.34rem);
+      line-height: 1.14;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: clamp(0.92rem, 1.02vw, 1.07rem);
+      line-height: 1.35;
+      color: #35322d;
+    }
+
+    .list {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 6px;
+      font-size: clamp(0.9rem, 0.98vw, 1.04rem);
+      line-height: 1.33;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: 12px;
+      align-items: stretch;
+      min-height: 0;
+    }
+
+    .news-media {
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.9);
+      display: grid;
+      grid-template-rows: 1fr auto;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .news-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #ddd;
+    }
+
+    .media-caption {
+      padding: 8px 10px;
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+      font-size: 0.86rem;
+      color: #3e3932;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .media-caption button {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.94);
+      color: #1f1b17;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 5px 9px;
+      cursor: pointer;
+    }
+
+    .meta {
+      display: grid;
+      gap: 8px;
+      align-content: start;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      background: rgba(255, 255, 255, 0.86);
+      color: #2f3a34;
+    }
+
+    .tiny {
+      margin: 0;
+      font-size: 0.81rem;
+      color: #59544c;
+      line-height: 1.35;
+    }
+
+    .pulse-wrap {
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.84);
+      padding: 8px;
+    }
+
+    .pulse-svg {
+      width: 100%;
+      height: 54px;
+      display: block;
+    }
+
+    .pulse-line {
+      stroke: rgba(29, 95, 114, 0.45);
+      stroke-width: 2;
+      stroke-dasharray: 7 7;
+      animation: dash 4s linear infinite;
+      fill: none;
+    }
+
+    .pulse-dot {
+      fill: var(--rust);
+      animation: blink 1.7s ease-in-out infinite;
+    }
+
+    .relations {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .relation-item {
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      display: grid;
+      gap: 7px;
+    }
+
+    .relation-item h3 {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .relation-item p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #37342e;
+      line-height: 1.34;
+    }
+
+    .nav {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .nav button {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #1f1b17;
+      font: inherit;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 6px 11px;
+      cursor: pointer;
+    }
+
+    .nav button.primary {
+      background: #15455b;
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .modal {
+      position: absolute;
+      inset: 0;
+      display: none;
+      background: rgba(10, 12, 13, 0.72);
+      backdrop-filter: blur(2px);
+      z-index: 30;
+      padding: clamp(14px, 2vw, 20px);
+      place-items: center;
+    }
+
+    .modal.open {
+      display: grid;
+    }
+
+    .modal-card {
+      width: min(1160px, 94vw);
+      height: min(88vh, 700px);
+      border-radius: 14px;
+      background: #f8f7f3;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.32);
+      display: grid;
+      grid-template-rows: auto 1fr;
+      overflow: hidden;
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .modal-head p {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #2f3a34;
+    }
+
+    .modal-head button {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      overflow: auto;
+      background:
+        linear-gradient(120deg, rgba(29, 95, 114, 0.08), transparent 30%),
+        linear-gradient(340deg, rgba(176, 81, 55, 0.08), transparent 30%);
+    }
+
+    .modal-body img {
+      max-width: 98%;
+      max-height: 98%;
+      object-fit: contain;
+      display: block;
+      border: 1px solid rgba(0, 0, 0, 0.18);
+    }
+
+    @keyframes dash {
+      to { stroke-dashoffset: -28; }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.16); }
+    }
+
+    @media (max-width: 980px) {
+      .deck {
+        aspect-ratio: auto;
+        height: 96vh;
+      }
+
+      .cards,
+      .news-grid,
+      .relations {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span>Globalizacion y Empleo · Foro de noticias</span>
+      </div>
+      <div class="context" id="classDateBadge">Clase · 27 feb 2026</div>
+      <div class="progress-wrap">
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-text" id="progressText">1/6</div>
+      </div>
+    </header>
+
+    <main class="stage">
+      <section class="slide active" data-slide>
+        <p class="tag">Apertura</p>
+        <div class="main">
+          <h1 class="title">Cuatro noticias clave para conectar foro, curso y coyuntura</h1>
+          <p class="subtitle">Selección de recortes del 26 de febrero de 2026 para discusión en clase del <strong id="classDateInline">27 de febrero de 2026</strong>. Objetivo: vincular datos, actores y escalas de la globalización.</p>
+          <div class="cards">
+            <article class="card">
+              <h3>Ciberataque y IA</h3>
+              <p>Sustraen 195 millones de registros con apoyo de un chatbot.</p>
+            </article>
+            <article class="card">
+              <h3>Informalidad laboral</h3>
+              <p>2025 cierra con nivel récord: 32.63 millones de personas.</p>
+            </article>
+            <article class="card">
+              <h3>Finanzas del CJNG</h3>
+              <p>Contabilidad criminal expone logística, sueldos y sobornos.</p>
+            </article>
+            <article class="card">
+              <h3>Inversión extranjera</h3>
+              <p>IED de 40,871 mdd (+11%), con fuertes contrastes internos.</p>
+            </article>
+          </div>
+          <div class="pulse-wrap" aria-hidden="true">
+            <svg class="pulse-svg" viewBox="0 0 620 54" role="img" aria-label="Linea de pulso informativo">
+              <path class="pulse-line" d="M6 30 C58 30, 70 10, 120 10 S188 45, 230 45 S300 20, 354 20 S430 40, 474 40 S546 18, 614 18"></path>
+              <circle class="pulse-dot" cx="120" cy="10" r="5"></circle>
+              <circle class="pulse-dot" cx="230" cy="45" r="5"></circle>
+              <circle class="pulse-dot" cx="354" cy="20" r="5"></circle>
+              <circle class="pulse-dot" cx="474" cy="40" r="5"></circle>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide>
+        <p class="tag">Noticia 1</p>
+        <div class="main">
+          <h2 class="title">Ciberseguridad publica y uso adversarial de IA</h2>
+          <div class="news-grid">
+            <figure class="news-media">
+              <img src="../recortes_noticias/Screenshot 2026-02-26 at 17.17.52.png" alt="Recorte sobre robo de registros mediante ataques apoyados en IA." />
+              <figcaption class="media-caption">
+                <span>Fuente visible: Bloomberg en recopilacion de primeras planas (26 feb 2026)</span>
+                <button type="button" data-modal-src="../recortes_noticias/Screenshot 2026-02-26 at 17.17.52.png" data-modal-title="Noticia 1 · Ciberataque y IA">Ampliar recorte</button>
+              </figcaption>
+            </figure>
+            <div class="meta">
+              <article class="card">
+                <h3>Claves para clase</h3>
+                <ul class="list">
+                  <li>Se reporta sustraccion de <strong>195 millones</strong> de registros en Mexico.</li>
+                  <li>La nota indica uso de IA para automatizar comandos y explotar vulnerabilidades.</li>
+                  <li>Instituciones mencionadas: SAT, INE y gobiernos estatales.</li>
+                </ul>
+              </article>
+              <div class="chip-row">
+                <span class="chip">Tecnologia y poder</span>
+                <span class="chip">Estado digital</span>
+                <span class="chip">Riesgo transnacional</span>
+              </div>
+              <p class="tiny"><strong>Pregunta guia:</strong> si la IA acelera ataques, ¿que capacidades publicas y marcos regulatorios se vuelven urgentes?</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide>
+        <p class="tag">Noticia 2</p>
+        <div class="main">
+          <h2 class="title">Informalidad record: crecimiento con fragilidad laboral</h2>
+          <div class="news-grid">
+            <figure class="news-media">
+              <img src="../recortes_noticias/Screenshot 2026-02-26 at 17.18.12.png" alt="Recorte sobre informalidad laboral récord en 2025." />
+              <figcaption class="media-caption">
+                <span>Fuente visible: firma Ernesto Sarabia en compilado de primeras planas</span>
+                <button type="button" data-modal-src="../recortes_noticias/Screenshot 2026-02-26 at 17.18.12.png" data-modal-title="Noticia 2 · Informalidad laboral">Ampliar recorte</button>
+              </figcaption>
+            </figure>
+            <div class="meta">
+              <article class="card">
+                <h3>Dato central</h3>
+                <ul class="list">
+                  <li>La nota reporta <strong>32.63 millones</strong> de personas en informalidad en 2025.</li>
+                  <li>Se menciona una tasa promedio nacional de <strong>54.89%</strong>.</li>
+                  <li>El incremento anual de plazas informales limita acceso a seguridad social.</li>
+                </ul>
+              </article>
+              <div class="chip-row">
+                <span class="chip">Mercado laboral</span>
+                <span class="chip">Desigualdad</span>
+                <span class="chip">Proteccion social</span>
+              </div>
+              <p class="tiny"><strong>Pregunta guia:</strong> ¿como interpretar una economia que atrae capital, pero mantiene alta precariedad laboral?</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide>
+        <p class="tag">Noticia 3</p>
+        <div class="main">
+          <h2 class="title">La contabilidad del CJNG: economia criminal y gobernanza local</h2>
+          <div class="news-grid">
+            <figure class="news-media">
+              <img src="../recortes_noticias/Screenshot 2026-02-26 at 17.19.47.png" alt="Recorte de El Universal sobre registros de gastos e ingresos del CJNG." />
+              <figcaption class="media-caption">
+                <span>Medio: El Universal (26 feb 2026)</span>
+                <button type="button" data-modal-src="../recortes_noticias/Screenshot 2026-02-26 at 17.19.47.png" data-modal-title="Noticia 3 · Contabilidad del CJNG">Ampliar recorte</button>
+              </figcaption>
+            </figure>
+            <div class="meta">
+              <article class="card">
+                <h3>Lectura analitica</h3>
+                <ul class="list">
+                  <li>El recorte describe registros de nomina, pagos y sobornos del grupo criminal.</li>
+                  <li>Muestra organizacion economica: control territorial, logistica y gestion de personal.</li>
+                  <li>Conecta seguridad, economia informal violenta e instituciones locales.</li>
+                </ul>
+              </article>
+              <div class="chip-row">
+                <span class="chip">Violencia y economia</span>
+                <span class="chip">Captura institucional</span>
+                <span class="chip">Territorio</span>
+              </div>
+              <p class="tiny"><strong>Pregunta guia:</strong> ¿como cambia la lectura del desarrollo regional cuando incorporamos economias ilegales?</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide>
+        <p class="tag">Noticia 4</p>
+        <div class="main">
+          <h2 class="title">IED en ascenso: dinamismo macro y tensiones estructurales</h2>
+          <div class="news-grid">
+            <figure class="news-media">
+              <img src="../recortes_noticias/Screenshot 2026-02-26 at 17.22.03.png" alt="Recorte de El Economista sobre inversion extranjera directa en Mexico." />
+              <figcaption class="media-caption">
+                <span>Medio: El Economista (26 feb 2026)</span>
+                <button type="button" data-modal-src="../recortes_noticias/Screenshot 2026-02-26 at 17.22.03.png" data-modal-title="Noticia 4 · Inversion extranjera">Ampliar recorte</button>
+              </figcaption>
+            </figure>
+            <div class="meta">
+              <article class="card">
+                <h3>Datos reportados</h3>
+                <ul class="list">
+                  <li>IED total en 2025: <strong>40,871 mdd</strong> (crecimiento anual de 11%).</li>
+                  <li>Nuevas inversiones con mayor dinamismo (alza de 130%).</li>
+                  <li>Se menciona tambien desinversion en el cuarto trimestre.</li>
+                </ul>
+              </article>
+              <div class="chip-row">
+                <span class="chip">Globalizacion economica</span>
+                <span class="chip">Cadenas productivas</span>
+                <span class="chip">Dependencia externa</span>
+              </div>
+              <p class="tiny"><strong>Pregunta guia:</strong> ¿que politicas permiten traducir IED en empleo formal y movilidad social?</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide>
+        <p class="tag">Cierre</p>
+        <div class="main">
+          <h2 class="title">Relacion entre las cuatro noticias para la discusion del curso</h2>
+          <div class="relations">
+            <article class="relation-item">
+              <h3>1) Estado y capacidades</h3>
+              <p>Ciberataques y economia criminal muestran limites concretos de la capacidad estatal para proteger datos, territorio e instituciones.</p>
+            </article>
+            <article class="relation-item">
+              <h3>2) Mercado laboral real</h3>
+              <p>La informalidad record matiza los datos macro positivos: crecimiento e inversion no garantizan automaticamente empleo protegido.</p>
+            </article>
+            <article class="relation-item">
+              <h3>3) Globalizacion desigual</h3>
+              <p>La IED integra a Mexico en circuitos globales, pero la distribucion del riesgo y del beneficio sigue siendo muy asimetrica.</p>
+            </article>
+            <article class="relation-item">
+              <h3>4) Agenda de clase</h3>
+              <p>Comparar actores, escalas y mecanismos: plataforma digital, mercado laboral, seguridad local y capital internacional.</p>
+            </article>
+          </div>
+          <article class="card">
+            <h3>Pregunta final para abrir conversacion</h3>
+            <p>Si estas cuatro noticias fueran un solo caso de estudio, ¿donde pondriamos la prioridad de politica publica: regulacion digital, seguridad territorial, formalizacion laboral o estrategia de inversion?</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Curso: Globalizacion y Empleo · Negocios Internacionales</span>
+      <div class="nav">
+        <button type="button" id="prevBtn">Anterior</button>
+        <button type="button" id="nextBtn" class="primary">Siguiente</button>
+      </div>
+      <span id="footerDate"></span>
+    </footer>
+
+    <div class="modal" id="imageModal" aria-hidden="true">
+      <div class="modal-card">
+        <div class="modal-head">
+          <p id="modalTitle">Recorte ampliado</p>
+          <button type="button" id="closeModalBtn">Cerrar</button>
+        </div>
+        <figure class="modal-body">
+          <img id="modalImage" alt="Recorte ampliado de noticia" />
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const slides = Array.from(document.querySelectorAll("[data-slide]"));
+      const progressFill = document.getElementById("progressFill");
+      const progressText = document.getElementById("progressText");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const classDateBadge = document.getElementById("classDateBadge");
+      const classDateInline = document.getElementById("classDateInline");
+      const footerDate = document.getElementById("footerDate");
+      const modal = document.getElementById("imageModal");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalImage = document.getElementById("modalImage");
+      const closeModalBtn = document.getElementById("closeModalBtn");
+      const modalTriggers = Array.from(document.querySelectorAll("[data-modal-src]"));
+
+      let index = 0;
+
+      function updateDateLabels() {
+        const now = new Date();
+        const shortDate = now.toLocaleDateString("es-MX", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
+        });
+        const longDate = now.toLocaleDateString("es-MX", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric"
+        });
+        if (classDateBadge) classDateBadge.textContent = "Clase · " + shortDate;
+        if (classDateInline) classDateInline.textContent = longDate;
+        if (footerDate) {
+          footerDate.textContent = now.toLocaleString("es-MX", {
+            weekday: "short",
+            day: "2-digit",
+            month: "short",
+            hour: "2-digit",
+            minute: "2-digit"
+          });
+        }
+      }
+
+      function setSlide(next) {
+        index = Math.max(0, Math.min(next, slides.length - 1));
+        slides.forEach((slide, i) => {
+          slide.classList.toggle("active", i === index);
+        });
+        const pct = ((index + 1) / slides.length) * 100;
+        if (progressFill) progressFill.style.width = pct + "%";
+        if (progressText) progressText.textContent = (index + 1) + "/" + slides.length;
+      }
+
+      function move(step) {
+        setSlide(index + step);
+      }
+
+      function openModal(src, title) {
+        if (!modal || !modalImage) return;
+        modalImage.src = src;
+        modalTitle.textContent = title || "Recorte ampliado";
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+      }
+
+      function closeModal() {
+        if (!modal || !modalImage) return;
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+        modalImage.removeAttribute("src");
+      }
+
+      if (prevBtn) prevBtn.addEventListener("click", function () { move(-1); });
+      if (nextBtn) nextBtn.addEventListener("click", function () { move(1); });
+
+      modalTriggers.forEach((button) => {
+        button.addEventListener("click", function () {
+          const src = button.getAttribute("data-modal-src");
+          const title = button.getAttribute("data-modal-title");
+          if (!src) return;
+          openModal(src, title);
+        });
+      });
+
+      if (closeModalBtn) {
+        closeModalBtn.addEventListener("click", closeModal);
+      }
+
+      if (modal) {
+        modal.addEventListener("click", function (event) {
+          if (event.target === modal) closeModal();
+        });
+      }
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") closeModal();
+        if (modal && modal.classList.contains("open")) return;
+        if (event.key === "ArrowRight" || event.key === "PageDown") move(1);
+        if (event.key === "ArrowLeft" || event.key === "PageUp") move(-1);
+      });
+
+      updateDateLabels();
+      setInterval(updateDateLabels, 30000);
+      setSlide(0);
+    })();
+  </script>
+</body>
+</html>
