@@ -1,0 +1,1312 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Los dos elefantes y la globalización · Actividad introductoria · 3 mar 2026</title>
+  <style>
+    /* ── Tokens ──────────────────────────────────────────── */
+    :root {
+      --paper: #f7f6f2;
+      --ink: #1f1d1a;
+      --muted: #5f5a52;
+      --line: rgba(31,29,26,0.18);
+      --cyan: #1c6079;
+      --brick: #b55234;
+      --olive: #4f6a48;
+      --plum: #634b7f;
+      --amber: #b58c34;
+      --panel: rgba(255,255,255,0.92);
+      --shadow: 0 14px 36px rgba(0,0,0,0.12);
+      --pad: clamp(12px, 2.5vw, 28px);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    html { height: 100%; -webkit-text-size-adjust: 100%; }
+    body {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Avenir Next","Gill Sans Nova","Trebuchet MS",system-ui,sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 9%, rgba(28,96,121,0.16), transparent 33%),
+        radial-gradient(circle at 88% 12%, rgba(181,82,52,0.15), transparent 34%),
+        linear-gradient(165deg, #ece7dc 0%, #e2ebe4 45%, #f5f2ea 100%);
+    }
+
+    /* ── Deck (viewport-filling shell) ───────────────────── */
+    .deck {
+      width: 100%; height: 100dvh;
+      background: var(--paper);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ── Topbar ──────────────────────────────────────────── */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px var(--pad);
+      border-bottom: 1px solid var(--line);
+      background: rgba(250,248,244,0.96);
+      z-index: 10;
+      flex-wrap: wrap;
+    }
+    /* ── Back button ─────────────────────────────────────── */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 3px 9px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: transparent;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .back-btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    .brand-dot {
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--brick));
+      border: 1px solid rgba(0,0,0,0.22);
+      flex-shrink: 0;
+    }
+    .context {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: #2f3a34;
+      border: 1px solid rgba(0,0,0,0.14);
+      border-radius: 999px;
+      padding: 5px 10px;
+      background: rgba(255,255,255,0.78);
+      white-space: nowrap;
+    }
+    .progress-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .progress-track {
+      width: min(140px, 22vw); height: 6px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.12);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; width: 0;
+      background: linear-gradient(90deg, var(--cyan), #2db1c7);
+      transition: width 0.25s ease;
+    }
+    .progress-text {
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: #2e332f;
+      min-width: 32px;
+      text-align: right;
+    }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 7px var(--pad);
+      border-top: 1px solid var(--line);
+      background: rgba(250,248,244,0.96);
+      z-index: 10;
+      font-size: 0.78rem;
+      color: #403b33;
+      flex-wrap: wrap;
+    }
+    .footer > span:first-child { flex: 1; min-width: 0; }
+
+    /* ── Nav buttons ─────────────────────────────────────── */
+    .nav {
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .nav button {
+      border: 1px solid rgba(0,0,0,0.18);
+      border-radius: 9px;
+      background: rgba(255,255,255,0.92);
+      color: #1f1b17;
+      font: inherit;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 7px 14px;
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.12s;
+    }
+    .nav button:active { background: rgba(0,0,0,0.08); }
+    .nav button.primary {
+      background: #15455b;
+      color: #fff;
+      border-color: transparent;
+    }
+    .nav button.primary:active { background: #0e3445; }
+
+    /* ── Stage (slide container, scrollable) ──────────────── */
+    .stage {
+      position: relative;
+      overflow: hidden;
+      min-height: 0;
+      background:
+        radial-gradient(circle at 4% 95%, rgba(79,106,72,0.08), transparent 30%),
+        radial-gradient(circle at 96% 90%, rgba(99,75,127,0.06), transparent 30%);
+    }
+
+    /* ── Slides ──────────────────────────────────────────── */
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(2%);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      padding: var(--pad);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0);
+    }
+
+    /* ── Tags (pill badges) ──────────────────────────────── */
+    .tag {
+      width: fit-content;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.14);
+      background: rgba(255,255,255,0.84);
+      padding: 4px 10px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      color: #303a35;
+      flex-shrink: 0;
+    }
+    .tag.cyan  { background: rgba(28,96,121,0.12); color: var(--cyan);  border-color: rgba(28,96,121,0.25); }
+    .tag.brick { background: rgba(181,82,52,0.12); color: var(--brick); border-color: rgba(181,82,52,0.25); }
+    .tag.olive { background: rgba(79,106,72,0.12); color: var(--olive); border-color: rgba(79,106,72,0.25); }
+    .tag.plum  { background: rgba(99,75,127,0.12); color: var(--plum);  border-color: rgba(99,75,127,0.25); }
+    .tag.amber { background: rgba(181,140,52,0.12); color: var(--amber); border-color: rgba(181,140,52,0.25); }
+
+    /* ── Content wrappers ────────────────────────────────── */
+    .main {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+      min-height: 0;
+    }
+    .title {
+      font-family: "Bodoni 72","Didot","Times New Roman",serif;
+      font-size: clamp(1.6rem, 3.2vw, 3.2rem);
+      line-height: 1;
+      max-width: 20ch;
+      text-wrap: balance;
+    }
+    .subtitle {
+      max-width: 65ch;
+      font-size: clamp(1.1rem, 1.35vw, 1.35rem);
+      line-height: 1.5;
+      color: #302d28;
+    }
+
+    /* ── Column layouts ──────────────────────────────────── */
+    .cols {
+      display: grid;
+      grid-template-columns: 1.15fr 0.9fr;
+      gap: 12px;
+      align-items: start;
+    }
+    .cols-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+    .cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+    /* ── Cards ────────────────────────────────────────────── */
+    .card {
+      border: 1px solid rgba(0,0,0,0.13);
+      border-radius: 12px;
+      background: var(--panel);
+      padding: 16px 20px;
+      display: grid;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .card.cyan  { background: rgba(28,96,121,0.06); border-color: rgba(28,96,121,0.2); }
+    .card.brick { background: rgba(181,82,52,0.06); border-color: rgba(181,82,52,0.2); }
+    .card.olive { background: rgba(79,106,72,0.07); border-color: rgba(79,106,72,0.2); }
+    .card.plum  { background: rgba(99,75,127,0.06); border-color: rgba(99,75,127,0.2); }
+    .card.amber { background: rgba(181,140,52,0.06); border-color: rgba(181,140,52,0.2); }
+    .card h3 {
+      margin: 0;
+      font-size: clamp(1.08rem, 1.35vw, 1.38rem);
+      line-height: 1.22;
+    }
+    .card p {
+      margin: 0;
+      font-size: clamp(1rem, 1.14vw, 1.18rem);
+      line-height: 1.5;
+      color: #35322d;
+    }
+    .list {
+      margin: 0;
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 7px;
+      font-size: clamp(1rem, 1.1vw, 1.16rem);
+      line-height: 1.45;
+    }
+    .micro { font-size: 0.9rem; color: #555049; }
+
+    /* ── Highlight quote ─────────────────────────────────── */
+    .hl {
+      background: rgba(181,140,52,0.12);
+      border-left: 4px solid var(--amber);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      font-size: clamp(1.02rem, 1.18vw, 1.22rem);
+      line-height: 1.5;
+      color: #2a2620;
+      font-style: italic;
+    }
+    .hl-note {
+      margin-top: 6px;
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 5px;
+      font-size: 0.92rem;
+      font-style: normal;
+      color: var(--brick);
+      font-weight: 700;
+    }
+
+    /* ── Reveal card (click to show) ─────────────────────── */
+    .reveal-card {
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .reveal-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.1); }
+    .reveal-mystery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-align: center;
+      min-height: 100px;
+      transition: opacity 0.3s ease;
+    }
+    .reveal-mystery .mystery-icon {
+      font-size: 2.4rem;
+      line-height: 1;
+      opacity: 0.7;
+    }
+    .reveal-mystery .mystery-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--brick);
+      border: 1px dashed rgba(181,82,52,0.4);
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+    .reveal-answer {
+      display: none;
+    }
+    .reveal-card.revealed .reveal-mystery { display: none; }
+    .reveal-card.revealed .reveal-answer {
+      display: block;
+      animation: revealFade 0.4s ease;
+    }
+    .reveal-card.revealed { cursor: default; }
+    .reveal-card.revealed:hover { transform: none; }
+    @keyframes revealFade {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hl-note::before { content: "✏\FE0F"; }
+    .page-ref {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    /* ── Def box ─────────────────────────────────────────── */
+    .def-box {
+      border: 2px solid var(--ink);
+      border-radius: 10px;
+      padding: 16px 22px;
+      background: rgba(255,255,255,0.88);
+      font-family: "Bodoni 72","Didot","Times New Roman",serif;
+      font-size: clamp(1.08rem, 1.3vw, 1.35rem);
+      line-height: 1.55;
+      color: var(--ink);
+      font-style: italic;
+    }
+    .def-box cite {
+      display: block;
+      margin-top: 6px;
+      font-style: normal;
+      font-family: "Avenir Next","Trebuchet MS",sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+    }
+
+    /* ── Round badges (activity) ─────────────────────────── */
+    .round-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      font-family: "Bodoni 72","Didot",serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      border: 2px solid;
+    }
+    .round-badge.r1 { background: rgba(28,96,121,0.12); border-color: var(--cyan); color: var(--cyan); }
+    .round-badge.r2 { background: rgba(181,82,52,0.12); border-color: var(--brick); color: var(--brick); }
+    .round-badge.r3 { background: rgba(99,75,127,0.12); border-color: var(--plum); color: var(--plum); }
+    .round-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .round-body { flex: 1; min-width: 0; }
+    .round-body h3 { margin: 0 0 4px; font-size: clamp(0.92rem, 1.08vw, 1.14rem); }
+    .round-body p  { margin: 0; font-size: clamp(0.84rem, 0.93vw, 0.98rem); line-height: 1.42; color: #35322d; }
+    .round-body.big h3 { font-size: clamp(1.05rem, 1.4vw, 1.35rem); margin-bottom: 6px; }
+    .round-body.big p  { font-size: clamp(0.96rem, 1.12vw, 1.14rem); line-height: 1.48; }
+
+    /* ── Collapsible reveal (click to expand) ─────────────── */
+    .collapsible-trigger {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      border: 1px dashed rgba(181,82,52,0.4);
+      background: rgba(181,82,52,0.06);
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--brick);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .collapsible-trigger:hover { background: rgba(181,82,52,0.12); transform: translateY(-1px); }
+    .collapsible-trigger .arrow { transition: transform 0.3s ease; display: inline-block; }
+    .collapsible-trigger.open .arrow { transform: rotate(90deg); }
+    .collapsible-content {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+      margin-top: 0;
+    }
+    .collapsible-content.open {
+      max-height: 300px;
+      opacity: 1;
+      margin-top: 10px;
+    }
+    .kant-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 6px 16px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(99,75,127,0.10), rgba(99,75,127,0.18));
+      border: 1px solid rgba(99,75,127,0.3);
+      color: var(--plum);
+      font-weight: 700;
+      font-size: clamp(0.88rem, 1vw, 1.02rem);
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .kant-link:hover { background: rgba(99,75,127,0.22); transform: translateY(-1px); }
+    .timer-chip {
+      display: inline-block;
+      background: rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 999px;
+      padding: 2px 9px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #4a4540;
+      margin-left: 5px;
+    }
+
+    /* ── Elephant emoji ───────────────────────────────────── */
+    .elephant-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      line-height: 1;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+    }
+
+    /* ── Clickable card triggers ─────────────────────────── */
+    .milanovic-trigger,
+    .steger-trigger {
+      cursor: pointer;
+      transition: box-shadow 0.15s, transform 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .milanovic-trigger:hover,
+    .milanovic-trigger:focus-visible { box-shadow: 0 8px 24px rgba(181,82,52,0.28); transform: translateY(-2px); }
+    .steger-trigger:hover,
+    .steger-trigger:focus-visible { box-shadow: 0 8px 24px rgba(79,106,72,0.32); transform: translateY(-2px); }
+
+    /* ── Modal overlay ───────────────────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      padding: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: auto; }
+    .modal-panel {
+      position: relative;
+      background: var(--paper);
+      border: 1px solid rgba(0,0,0,0.18);
+      border-radius: 14px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+      max-width: 920px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+    .modal-img-side {
+      padding: 20px 14px 20px 20px;
+      background: rgba(0,0,0,0.025);
+      border-right: 1px solid rgba(0,0,0,0.08);
+      display: grid;
+      gap: 8px;
+      align-content: start;
+    }
+    .modal-img-side img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.12);
+      display: block;
+    }
+    .modal-img-caption { font-size: 0.72rem; color: var(--muted); line-height: 1.45; }
+    .modal-text-side {
+      padding: 20px 20px 20px 14px;
+      display: grid;
+      gap: 9px;
+      align-content: start;
+    }
+    .modal-title {
+      font-family: "Bodoni 72","Didot","Times New Roman",serif;
+      font-size: clamp(1.1rem, 1.5vw, 1.45rem);
+      margin: 0; line-height: 1.1;
+      padding-right: 28px;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: rgba(0,0,0,0.07);
+      border: 1px solid rgba(0,0,0,0.14);
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 4px 10px;
+      font-weight: 700;
+      line-height: 1.4;
+      font-family: inherit;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .modal-close:hover { background: rgba(181,82,52,0.15); }
+    .modal-sub {
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--brick);
+      margin: 0;
+    }
+    .segment-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+    .segment-list li {
+      font-size: 0.82rem;
+      line-height: 1.4;
+      padding: 5px 8px;
+      border-radius: 6px;
+      border-left: 3px solid;
+    }
+    .seg-tail  { background: rgba(79,106,72,0.09);  border-color: var(--olive); }
+    .seg-body  { background: rgba(28,96,121,0.09);  border-color: var(--cyan); }
+    .seg-trunk { background: rgba(181,82,52,0.09);  border-color: var(--brick); }
+    .seg-tip   { background: rgba(99,75,127,0.09);  border-color: var(--plum); }
+    .modal-cite {
+      font-size: 0.7rem;
+      color: var(--muted);
+      line-height: 1.52;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding-top: 8px;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       DESKTOP / PROJECTION  (≥ 769px)
+       ══════════════════════════════════════════════════════ */
+    @media (min-width: 769px) {
+      body { padding: 8px; }
+      .deck {
+        max-width: 1400px;
+        height: calc(100dvh - 16px);
+        border-radius: 14px;
+        border: 1px solid rgba(0,0,0,0.2);
+        box-shadow: var(--shadow);
+      }
+    }
+
+    /* ══════════════════════════════════════════════════════
+       MOBILE  (≤ 768px)
+       ══════════════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      :root { --pad: 14px; }
+      body { padding: 0; }
+
+      /* Full-bleed deck */
+      .deck {
+        width: 100%;
+        height: 100dvh;
+        border-radius: 0;
+      }
+
+      /* Compact topbar: hide long brand text, keep pill + progress */
+      .brand span:last-child { display: none; }
+      .context { font-size: 0.68rem; padding: 4px 8px; }
+      .topbar { padding: 6px 10px; gap: 6px; }
+
+      /* Footer stacks if needed */
+      .footer {
+        padding: 6px 10px;
+        font-size: 0.74rem;
+        gap: 4px;
+      }
+      .footer > span:first-child {
+        display: none; /* hide long citation on mobile */
+      }
+      .nav button { padding: 8px 16px; font-size: 0.85rem; }
+
+      /* Stacked columns */
+      .cols,
+      .cols-3,
+      .cols-4 { grid-template-columns: 1fr !important; }
+
+      /* Slide padding */
+      .slide { padding: 12px; gap: 10px; }
+      .title { font-size: clamp(1.35rem, 5.5vw, 1.9rem); max-width: none; }
+      .subtitle { font-size: 0.92rem; }
+
+      /* Cards */
+      .card { padding: 12px 14px; }
+      .card h3 { font-size: 1.02rem; }
+      .card p  { font-size: 0.96rem; }
+
+      /* Highlights */
+      .hl { padding: 10px 12px; font-size: 0.96rem; }
+
+      /* Def box */
+      .def-box { padding: 12px 14px; font-size: 1rem; }
+
+      /* Rounds */
+      .round-badge { width: 36px; height: 36px; font-size: 1.15rem; }
+      .round-row { gap: 10px; }
+      .round-body h3 { font-size: 0.93rem; }
+      .round-body p  { font-size: 0.86rem; }
+
+      /* Elephant smaller on mobile */
+      .elephant-wrap { font-size: clamp(2rem, 12vw, 4rem); }
+
+      /* Modal: single column, full width */
+      .modal-overlay { padding: 8px; }
+      .modal-panel {
+        grid-template-columns: 1fr;
+        max-height: 92vh;
+        border-radius: 12px;
+      }
+      .modal-img-side {
+        border-right: 0;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        padding: 14px;
+      }
+      .modal-text-side { padding: 14px; }
+      .modal-title { font-size: 1.15rem; }
+    }
+
+    /* ══════════════════════════════════════════════════════
+       VERY SMALL  (≤ 420px, small phones)
+       ══════════════════════════════════════════════════════ */
+    @media (max-width: 420px) {
+      .progress-track { width: 60px; }
+      .slide { padding: 10px; gap: 8px; }
+      .title { font-size: clamp(1.2rem, 6vw, 1.6rem); }
+      .card { padding: 8px 10px; border-radius: 10px; }
+      .segment-list li { font-size: 0.78rem; padding: 4px 6px; }
+    }
+
+    /* Landscape phone */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .topbar { padding: 4px 10px; }
+      .footer { padding: 4px 10px; }
+      .slide { padding: 8px 14px; gap: 6px; }
+      .title { font-size: clamp(1rem, 3vw, 1.6rem); }
+      .round-badge { width: 32px; height: 32px; font-size: 1rem; }
+    }
+
+    /* ── Slide 0 splash ──────────────────────────────────── */
+    .splash-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(20px, 5vw, 60px);
+      flex-wrap: wrap;
+      flex: 1;
+    }
+    .splash-figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .splash-figure svg {
+      width: clamp(120px, 22vw, 240px);
+      height: auto;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,0.12));
+    }
+    .splash-figure figcaption {
+      font-size: clamp(0.9rem, 1.2vw, 1.15rem);
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .splash-question {
+      font-family: "Bodoni 72","Didot","Times New Roman",serif;
+      font-size: clamp(1.6rem, 4vw, 3.6rem);
+      line-height: 1.1;
+      text-align: center;
+      max-width: 18ch;
+      text-wrap: balance;
+      color: var(--ink);
+    }
+    .splash-vs {
+      font-family: "Bodoni 72","Didot",serif;
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--amber);
+      opacity: 0.7;
+    }
+    @media (max-width: 768px) {
+      .splash-row { gap: 14px; }
+      .splash-figure svg { width: clamp(90px, 30vw, 160px); }
+    }
+  </style>
+</head>
+<body>
+<div class="deck" id="deck">
+  <header class="topbar">
+    <a href="../index.html" class="back-btn" title="Volver al índice del curso">← Inicio</a>
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span>Globalización y Empleo · Lectura 2 · Steger 2013</span>
+    </div>
+    <div class="context">Actividad · 3 mar 2026</div>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">1/10</div>
+    </div>
+  </header>
+
+  <main class="stage">
+
+    <!-- ── Slide 0: Splash — Kant + Elefante ──────────────────── -->
+    <section class="slide active" data-slide>
+      <div class="main" style="justify-content:center; align-items:center;">
+        <h2 class="splash-question">¿Qué tiene que ver Kant con un elefante?</h2>
+        <div class="splash-row">
+
+          <!-- Kant (SVG portrait) -->
+          <figure class="splash-figure">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" aria-label="Retrato estilizado de Immanuel Kant">
+              <!-- head -->
+              <ellipse cx="100" cy="90" rx="52" ry="62" fill="#f2e6d0" stroke="#1f1d1a" stroke-width="2.5"/>
+              <!-- wig curls -->
+              <ellipse cx="54" cy="68" rx="18" ry="28" fill="#d5d0c8" stroke="#1f1d1a" stroke-width="1.8"/>
+              <ellipse cx="146" cy="68" rx="18" ry="28" fill="#d5d0c8" stroke="#1f1d1a" stroke-width="1.8"/>
+              <ellipse cx="100" cy="32" rx="40" ry="16" fill="#d5d0c8" stroke="#1f1d1a" stroke-width="1.8"/>
+              <!-- side curls -->
+              <circle cx="42" cy="92" r="10" fill="#d5d0c8" stroke="#1f1d1a" stroke-width="1.5"/>
+              <circle cx="158" cy="92" r="10" fill="#d5d0c8" stroke="#1f1d1a" stroke-width="1.5"/>
+              <circle cx="42" cy="110" r="8" fill="#ccc7be" stroke="#1f1d1a" stroke-width="1.5"/>
+              <circle cx="158" cy="110" r="8" fill="#ccc7be" stroke="#1f1d1a" stroke-width="1.5"/>
+              <!-- eyes -->
+              <ellipse cx="82" cy="82" rx="8" ry="6" fill="#fff" stroke="#1f1d1a" stroke-width="1.8"/>
+              <circle cx="83" cy="83" r="3.5" fill="#1f1d1a"/>
+              <ellipse cx="118" cy="82" rx="8" ry="6" fill="#fff" stroke="#1f1d1a" stroke-width="1.8"/>
+              <circle cx="117" cy="83" r="3.5" fill="#1f1d1a"/>
+              <!-- eyebrows -->
+              <path d="M72 72 Q82 65 92 72" fill="none" stroke="#1f1d1a" stroke-width="2" stroke-linecap="round"/>
+              <path d="M108 72 Q118 65 128 72" fill="none" stroke="#1f1d1a" stroke-width="2" stroke-linecap="round"/>
+              <!-- nose -->
+              <path d="M97 88 Q100 102 103 88" fill="none" stroke="#1f1d1a" stroke-width="2" stroke-linecap="round"/>
+              <!-- mouth -->
+              <path d="M86 108 Q100 116 114 108" fill="none" stroke="#1f1d1a" stroke-width="2" stroke-linecap="round"/>
+              <!-- collar / coat -->
+              <path d="M48 140 Q50 128 70 128 L130 128 Q150 128 152 140 L162 190 Q164 200 155 202 L45 202 Q36 200 38 190 Z" fill="#2a2520" stroke="#1f1d1a" stroke-width="2"/>
+              <!-- lapels -->
+              <path d="M80 128 L92 170" stroke="#f2e6d0" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M120 128 L108 170" stroke="#f2e6d0" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- cravat -->
+              <path d="M88 130 Q100 148 112 130" fill="#e8dfd0" stroke="#1f1d1a" stroke-width="1.5"/>
+              <circle cx="100" cy="138" r="4" fill="#f2e6d0" stroke="#1f1d1a" stroke-width="1"/>
+              <!-- text -->
+              <text x="100" y="230" text-anchor="middle" font-family="Bodoni 72,Didot,Times New Roman,serif" font-size="18" font-weight="700" fill="#1f1d1a">KANT</text>
+              <text x="100" y="250" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#5f5a52">1724 – 1804</text>
+            </svg>
+          </figure>
+
+          <span class="splash-vs">×</span>
+
+          <!-- Elephant (emoji) -->
+          <figure class="splash-figure">
+            <span style="font-size:clamp(6rem,18vw,11rem);line-height:1;" aria-label="Elefante">🐘</span>
+          </figure>
+
+        </div>
+        <p class="subtitle" style="text-align:center; max-width:40ch; margin:0 auto;">Hoy lo descubriremos → <strong>Siguiente</strong></p>
+      </div>
+    </section>
+
+    <!-- ── Slide 1: Portada ────────────────────────────────────── -->
+    <section class="slide" data-slide>
+      <p class="tag">Actividad introductoria</p>
+      <div class="main">
+        <h1 class="title">Los dos elefantes y la globalización</h1>
+        <p class="subtitle">Dos metáforas, un mismo animal. El mismo año (2013). Hoy trabajamos con ambas.</p>
+        <div class="cols">
+          <div class="card olive steger-trigger" id="steger-card" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Leer más sobre la parábola budista">
+            <div class="elephant-wrap" style="font-size:clamp(1.8rem,3.2vw,2.8rem); justify-content:flex-start; margin-bottom:4px;" aria-hidden="true">🐘</div>
+            <h3>Elefante 1 · La parábola budista</h3>
+            <p>Varios ciegos tocan partes distintas de un elefante y cada uno cree describir el animal completo. Steger la usa para mostrar que cada disciplina "conoce" solo una fracción de la globalización. <em>Aquí entra la pregunta kantiana de hoy.</em></p>
+            <h1><em>¿Cómo es posible conocer?</em></h1>
+            <p class="micro" style="margin-top:5px; color:var(--olive); font-weight:700; letter-spacing:0.04em;">Haz click para profundizar →</p>
+          </div>
+          <div class="card brick milanovic-trigger" id="milanovic-card" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Descubrir el segundo elefante" style="text-align:center; align-content:center; min-height:160px; gap:10px;">
+            <div class="elephant-wrap" style="font-size:clamp(3rem,6vw,5.5rem); justify-content:center; filter:grayscale(1) opacity(0.18);" aria-hidden="true">🐘</div>
+            <h3 style="font-family:'Bodoni 72','Didot','Times New Roman',serif; font-size:clamp(1.1rem,1.9vw,1.8rem); line-height:1.1;">¿Cuál es el otro elefante?</h3>
+            <p class="micro" style="font-size:0.82rem; color:var(--brick); font-weight:700; letter-spacing:0.04em;">Haz click para descubrirlo →</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Slide 2: Síntesis de la lectura ────────────────────── -->
+    <section class="slide" data-slide>
+      <p class="tag cyan">Síntesis · Capítulo 1</p>
+      <div class="main">
+        <h2 class="title" style="font-size:clamp(1.4rem,2.5vw,2.6rem); max-width:none;">De qué habla el capítulo</h2>
+        <div class="cols-3">
+          <div class="card cyan">
+            <h3>🔍 Concepto en disputa</h3>
+            <p>No hay consenso académico sobre qué es la globalización. Es un concepto <strong><em>contested</em></strong> (en disputa): cada disciplina toca solo <strong>una parte</strong> del fenómeno.</p>
+            <p class="micro" style="color:var(--cyan); font-weight:700;">→ ¿Quién define entonces qué es?</p>
+          </div>
+          <div class="card olive">
+            <h3>🌍 Lo "glocal"</h3>
+            <p>Lo global y lo local <strong>no se oponen</strong>: se imbrican y se producen mutuamente. El <strong>Mundial de Sudáfrica</strong> (2010), <strong>Shakira</strong> y <strong>Forlán</strong> son el ejemplo central.</p>
+            <p class="micro" style="color:var(--olive); font-weight:700;">→ Global + local = glocal</p>
+          </div>
+          <div class="card plum">
+            <h3>📚 Tres conceptos clave</h3>
+            <ul class="list">
+              <li><strong>Globalidad</strong> — condición futura de <strong>plena interconexión</strong>.</li>
+              <li><strong>Globalización</strong> — <strong>proceso</strong> de movimiento hacia esa condición.</li>
+              <li><strong>Imaginario global</strong> — <strong>conciencia creciente</strong> de esa conectividad.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="def-box">
+          "Globalization refers to the <strong>expansion and intensification</strong> of social relations and consciousness across <strong>world-time</strong> and <strong>world-space</strong>."
+          <cite>Steger, 2013 · definición operativa del capítulo</cite>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Slide 3: Cuatro cualidades ────────────────────────── -->
+    <section class="slide" data-slide>
+      <p class="tag cyan">Síntesis · Capítulo 1</p>
+      <div class="main">
+        <h2 class="title" style="font-size:clamp(1.4rem,2.5vw,2.6rem); max-width:none;">Las cuatro cualidades de la globalización</h2>
+        <div class="cols-3 cols-4">
+          <div class="card">
+            <h3>🕸️ Nuevas redes</h3>
+            <p>Creación de <strong>vínculos transfronterizos</strong>: políticos, económicos, culturales y geográficos. Lo que antes estaba separado, ahora se conecta.</p>
+          </div>
+          <div class="card">
+            <h3>↔️ Estiramiento social</h3>
+            <p>Las relaciones se <strong>expanden en alcance</strong>: mercados financieros operan 24/7, los mismos centros comerciales aparecen en todos los continentes.</p>
+          </div>
+          <div class="card">
+            <h3>⚡ Intensificación</h3>
+            <p>Las redes no solo se expanden, se <strong>aceleran</strong>. Facebook, Twitter y la <em>"communication power"</em> (Castells) conectan a <strong>miles de millones</strong> en tiempo real.</p>
+          </div>
+          <div class="card">
+            <h3>🧠 Dimensión subjetiva</h3>
+            <p>No solo es material: también transforma la <strong>conciencia</strong>. Moldea identidades individuales y colectivas. <em>Nos sabemos globales.</em></p>
+          </div>
+        </div>
+        <p class="micro" style="margin-top:4px;"><strong>Steger, Cap. 1 · pp. 30–35</strong> · Estas 4 cualidades definen cómo opera la globalización, no solo qué es.</p>
+      </div>
+    </section>
+
+    <!-- ── Slide 4: Subrayado 1 ───────────────────────────────── -->
+    <section class="slide" data-slide>
+      <p class="tag amber">Lo que subrayé (p. 9)</p>
+      <div class="main">
+        <h2 class="title" style="font-size:clamp(1.4rem,2.5vw,2.5rem); max-width:none;">El nexo global-local</h2>
+        <div class="cols">
+          <div>
+            <p class="page-ref">Página 9 · Capítulo 1</p>
+            <div class="hl">
+              "…many people still have trouble recognizing globalization for what it is: the <strong>myriad forms of connectivity</strong> and flows linking the local (and national) to the global — as well as the West to the East, and the North to the South."
+              <span class="hl-note">La globalización no es una "aplanadora"</span>
+            </div>
+            <p style="margin-top:10px; font-size:clamp(1rem,1.12vw,1.16rem); color:#35322d;">Steger rechaza la imagen de la globalización como <strong><em>steamroller</em></strong> (aplanadora) que aplana lo local. La conexión es <strong>bidireccional</strong> y <strong>multidireccional</strong>.</p>
+          </div>
+          <div class="card olive">
+            <h3>🏫 ¿Por qué importa para el curso?</h3>
+            <p>En <strong>Globalización y Empleo</strong> solemos fijar la vista en el "Norte" que impone condiciones al "Sur". Steger dice que el vínculo es más complejo: también hay <strong>flujos inversos</strong> y tensiones dentro de cada escala.</p>
+            <p class="micro" style="margin-top:6px; color:var(--brick); font-weight:700;">💬 Pregunta rápida: ¿Pueden dar un ejemplo donde lo local moldea lo global?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Slide 5: Subrayado 2+3 (Shakira) ──────────────────── -->
+    <section class="slide" data-slide>
+      <p class="tag amber">Lo que subrayé · pp. 13–14</p>
+      <div class="main">
+        <h2 class="title" style="font-size:clamp(1.4rem,2.5vw,2.5rem); max-width:none;">Hibridación y el video más visto</h2>
+        <div class="cols">
+          <div>
+            <p class="page-ref">Página 13 · Hibridación cultural</p>
+            <div class="hl">
+              "…these <strong>cultural hybridization</strong> processes have been greatly accelerated by globalization."
+              <span class="hl-note">Busca un ejemplo de hibridación</span>
+            </div>
+            <p class="page-ref" style="margin-top:10px;">Página 14 · El caso Waka Waka</p>
+            <div class="hl">
+              "Her video clip on YouTube has become the third most watched music video of all time with over 250 million views. And yet, <strong>Golden Sounds benefitted little</strong> from the global success of the song…"
+              <span class="hl-note">¿Cuál es el más visto hoy en día?</span>
+            </div>
+          </div>
+          <div style="display:grid; gap:10px;">
+            <div class="card amber">
+              <h3>🎵 Sobre la hibridación</h3>
+              <p>Waka Waka: canción bélica <strong>camerunesa</strong> → versión latinoamericana de <strong>Wilfrido Vargas</strong> → retomada por <strong>Shakira</strong> → producida por <strong>SONY</strong>.</p>
+              <p class="micro" style="color:var(--amber); font-weight:700;">→ ¿A quién beneficia el valor generado?</p>
+            </div>
+            <div class="card brick reveal-card" id="reveal-video">
+              <div class="reveal-mystery">
+                <span class="mystery-icon">🎬❓</span>
+                <h3 style="margin:0;">¿Cuál es el video más visto de la historia?</h3>
+                <span class="mystery-label">Toca para descubrir</span>
+              </div>
+              <div class="reveal-answer">
+                <h3>🦈 Baby Shark</h3>
+                <p>En 2026 el récord lo tiene <em>Baby Shark</em> (~15 000 M de vistas) seguido de <em>Despacito</em>. Waka Waka tiene ~3 500 M. <br><span class="micro">¿Qué nos dice eso sobre qué tipo de contenido "globaliza" más?</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Slide 6: Subrayado 4+5 (proceso / tiempo-espacio) ─── -->
+    <section class="slide" data-slide>
+      <p class="tag amber">Lo que subrayé · pp. 14–16</p>
+      <div class="main">
+        <h2 class="title" style="font-size:clamp(1.4rem,2.5vw,2.5rem); max-width:none;">Proceso, tiempo y espacio</h2>
+        <div class="cols">
+          <div>
+            <p class="page-ref">Página 14 · El nexo global-local como síntesis</p>
+            <div class="hl">
+              "They are both the <strong>products and catalysts</strong> of globalization processes that make more sense when considered as a <strong>global-local nexus</strong>. In short, globalization cannot be confined to macro-dynamics isolated from concrete settings."
+            </div>
+            <p class="page-ref" style="margin-top:10px;">Página 16 · Proceso ≠ condición estática</p>
+            <div class="hl">
+              "…the conceptualization of globalization as a <strong>dynamic process</strong> rather than as a static condition forces the researcher to pay close attention to our shifting perceptions of <strong>time and space</strong> mediated by digital technology."
+            </div>
+          </div>
+          <div class="card plum">
+            <h3>🔗 Conexión con Kant (hoy)</h3>
+            <p>Steger dice que la globalización transforma nuestra percepción de <strong>tiempo y espacio</strong>. Kant diría que tiempo y espacio son formas <strong><em>a priori</em></strong> con las que el sujeto estructura toda experiencia.</p>
+            <p class="micro" style="color:var(--plum); font-weight:700; margin-top:6px;">💬 ¿La globalización cambia esas categorías… o cambia los contenidos que las llenan?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Slide 7: Subrayados 6+7 (elefante) ────────────────── -->
+    <section class="slide" data-slide>
+      <p class="tag amber">Lo que subrayé · pp. 17–18</p>
+      <div class="main">
+        <h2 class="title" style="font-size:clamp(1.4rem,2.5vw,2.5rem); max-width:none;">La parábola del elefante</h2>
+        <div class="cols">
+          <div>
+            <p class="page-ref">Página 17 · Concepto en disputa</p>
+            <div class="hl">
+              "One of the reasons why globalization remains a <strong>contested concept</strong> is because there exists <strong>no scholarly consensus</strong> on what kinds of social processes constitute its essence."
+            </div>
+            <p class="page-ref" style="margin-top:10px;">Página 18 · El error colectivo</p>
+            <div class="hl">
+              "…their collective mistake lies in their <strong>dogmatic attempts to reduce</strong> such a complex phenomenon as globalization to one or two domains that corresponds to their own expertise. Surely, a central task for the new field of <strong>global studies</strong> must be to devise better ways for gauging the relative importance of each dimension without losing sight of the <strong>interdependent whole</strong>."
+            </div>
+          </div>
+          <div class="card" style="display:grid; gap:10px; align-content:center;">
+            <div class="elephant-wrap" style="font-size:clamp(2.5rem,5vw,4.5rem);">🐘</div>
+            <p style="font-size:clamp(1.02rem,1.15vw,1.18rem); line-height:1.5; color:#35322d; margin:0;">Cada ciego toca solo <strong>una parte</strong> del animal y cree tener la verdad completa. El reto de los <em>Global Studies</em> es <strong>integrar todas las partes</strong> sin perder de vista el todo.</p>
+            <p class="micro" style="color:var(--brick); font-weight:700;">💬 ¿Tu disciplina qué parte del elefante toca?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Slide 8: Actividad — Las 2 rondas ─────────────────── -->
+    <section class="slide" data-slide>
+      <p class="tag olive">Del qué al cómo · Del objeto al modo de conocer los objetos</p>
+      <div class="main">
+        <h2 class="title" style="font-size:clamp(1.4rem,2.5vw,2.5rem); max-width:none;">El elefante y la globalización</h2>
+        <div style="display:grid; gap:12px; margin-top:2px;">
+
+          <div class="round-row">
+            <div class="round-badge r1">1</div>
+            <div class="round-body big">
+              <h3>¿Qué parte del elefante estudia <strong>su disciplina</strong>? <span class="timer-chip"></span></h3>
+              <p><em>"Si cada ciego es una disciplina, ¿qué parte del elefante estudia la <strong>Administración</strong>? ¿La <strong>Economía</strong>? ¿La <strong>Sociología</strong>?"</em></p>
+            </div>
+          </div>
+
+          <div class="round-row">
+            <div class="round-badge r2">2</div>
+            <div class="round-body big">
+              <h3>¿Podemos conocer la globalización <strong>"en sí misma"</strong>? <span class="timer-chip"></span></h3>
+              <p>Conecta con Kant: <em>"Steger dice que cada disciplina ve solo un <strong>fenómeno parcial</strong>. Kant diría que el <strong>noúmeno</strong> — la cosa en sí — es <strong>inaccesible</strong>. ¿Podemos conocer la globalización tal como es, o más bien la <strong>construimos</strong>?"</em></p>
+
+              <span class="collapsible-trigger" id="kant-conclusion-trigger">
+                <span class="arrow">▶</span> Entonces, ¿cómo conocemos?
+              </span>
+              <div class="collapsible-content" id="kant-conclusion-content">
+                <div class="card plum" style="margin:0;">
+                  <p style="font-size:clamp(0.96rem,1.1vw,1.12rem); line-height:1.5; margin:0;">Entonces conocemos <strong>trascendentalmente</strong> y <strong>críticamente</strong>: comparamos <em>modos de conocer</em> el objeto, no el objeto "en sí".</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a href="video-kant-03mar26.html" class="kant-link" target="_blank">
+            🎬 Videos de Kant · Ejercicio complementario →
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Slide 9: Cierre ────────────────────────────────────── -->
+    <section class="slide" data-slide>
+      <p class="tag">Cierre</p>
+      <div class="main">
+        <h2 class="title" style="font-size:clamp(1.5rem,2.8vw,2.9rem); max-width:none;">Para llevarse hoy</h2>
+        <div class="cols">
+          <div style="display:grid; gap:10px;">
+            <div class="card cyan">
+              <h3>📖 De la lectura</h3>
+              <ul class="list">
+                <li>Globalización = <strong>proceso multidimensional</strong>, no solo económico.</li>
+                <li>Lo <strong>glocal</strong>: global y local se producen mutuamente.</li>
+                <li>Concepto <strong><em>contested</em></strong> (en disputa): su definición es también un <strong>campo de poder</strong>.</li>
+              </ul>
+            </div>
+            <div class="card plum">
+              <h3>🔗 De la conexión con Kant</h3>
+              <ul class="list">
+                <li>Conocemos la globalización a través de <strong>categorías disciplinares</strong> (fenómenos), no "en sí misma" (<strong>noúmeno</strong>). Esto vuelve posible estudiar <em>cómo es que conocemos</em> el objeto.</li>
+                <li>El sujeto que conoce — <strong>empresa, Estado, disciplina</strong> — estructura lo que "ve".</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card brick" style="align-content:center;">
+            <h3>❓ Pregunta abierta para el semestre</h3>
+            <p style="font-size:clamp(1.05rem,1.2vw,1.22rem);">Steger propone que los <em>Global Studies</em> deben <strong>integrar todas las partes del elefante</strong>. ¿Es eso posible… o siempre estaremos tocando solo un fragmento?</p>
+            <p class="micro" style="margin-top:6px; color:var(--brick); font-weight:700;">🧭 Esta tensión recorrerá el curso entero.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>Globalización y Empleo 2026-2 · FCA UNAM · Steger, <em>Globalization: A Very Short Introduction</em>, 2013</span>
+    <div class="nav">
+      <button type="button" id="prevBtn">← Anterior</button>
+      <button type="button" id="nextBtn" class="primary">Siguiente →</button>
+    </div>
+    <span id="footerDate"></span>
+  </footer>
+</div>
+
+<!-- ── Steger modal ────────────────────────────────────────────── -->
+<div class="modal-overlay" id="steger-overlay" role="dialog" aria-modal="true" aria-labelledby="steger-modal-heading">
+  <div class="modal-panel">
+    <button class="modal-close" id="steger-close" aria-label="Cerrar">✕</button>
+
+    <div class="modal-img-side">
+      <p class="modal-sub">Ilustración · Steger (2013, p. 33)</p>
+      <img
+        src="../img/steger_blind_elephant.jpeg"
+        alt="Ilustración del libro de Steger: los académicos de la globalización como ciegos frente al elefante"
+        style="border-radius:6px; border:1px solid rgba(0,0,0,0.12);"
+      />
+      <p class="modal-img-caption">
+        Los expertos en globalización como los ciegos en la parábola budista: cada uno capta una dimensión pero ninguno ve el todo.<br>
+        Fuente: Steger, M. B. (2013). <em>Globalization: A very short introduction</em> (3.ª ed., p. 33). Oxford University Press.
+      </p>
+    </div>
+
+    <div class="modal-text-side">
+      <h2 class="modal-title" id="steger-modal-heading">La parábola budista de los ciegos y el elefante</h2>
+      <p style="margin:0 0 6px;font-size:0.87rem;line-height:1.46;color:#35322d;">En la parábola, varios ciegos tocan partes distintas de un elefante y concluyen cosas completamente diferentes. Steger la usa para mostrar que la globalización es un concepto <em>en disputa</em>: cada disciplina (economía, ciencia política, sociología…) "toca" solo una parte del fenómeno y lo declara el todo.</p>
+<!--
+      <p class="modal-sub" style="margin-top:6px;">Las cuatro cualidades de la globalización (Steger, 2013)</p>
+      <ul class="segment-list">
+        <li class="seg-tail"><strong>① Nuevas redes:</strong> Creación de vínculos que cruzan fronteras políticas, económicas, culturales y geográficas.</li>
+        <li class="seg-body"><strong>② Estiramiento social:</strong> Las relaciones se expanden: mercados financieros, centros comerciales idénticos en todos los continentes, ONG globales.</li>
+        <li class="seg-trunk"><strong>③ Intensificación:</strong> Los flujos globales se vuelven más densos y frecuentes: cada clic conecta a miles de personas simultáneamente.</li>
+        <li class="seg-tip"><strong>④ Imaginario global:</strong> Conciencia creciente de que "existimos en un mundo compartido", emergida por la digitalización y los medios de comunicación.</li>
+      </ul>
+
+      <p class="modal-sub" style="margin-top:6px;">Lo que subrayaste en la lectura</p>
+      <div class="hl" style="font-size:0.82rem; padding:6px 10px; margin-bottom:4px;">"recognizing globalization for what it is: the myriad forms of connectivity and flows linking the local (and national) to the global — as well as the West to the East, and the North to the South." <span class="hl-note" style="font-size:0.76rem;">(p. 9)</span></div>
+      <div class="hl" style="font-size:0.82rem; padding:6px 10px; margin-bottom:4px;">"these cultural hybridization processes have been greatly accelerated by globalization." <span class="hl-note" style="font-size:0.76rem;">(p. 13) → Busca un ejemplo de hibridación</span></div>
+      <div class="hl" style="font-size:0.82rem; padding:6px 10px; margin-bottom:4px;">"their collective mistake lies in their dogmatic attempts to reduce such a complex phenomenon as globalization to one or two domains that corresponds to their own expertise." <span class="hl-note" style="font-size:0.76rem;">(p. 18) — el error de los ciegos</span></div>
+    -->
+      <div class="modal-cite">
+        <p style="margin:0 0 3px;font-weight:800;font-size:0.71rem;text-transform:uppercase;letter-spacing:.07em;">Referencia (APA 7)</p>
+        <p style="margin:0;">Steger, M. B. (2013). <em>Globalization: A very short introduction</em> (3.ª ed., cap. 1, pp. 9–19). Oxford University Press.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Milanovic modal ──────────────────────────────────────────── -->
+<div class="modal-overlay" id="milanovic-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
+  <div class="modal-panel">
+    <button class="modal-close" id="milanovic-close" aria-label="Cerrar">✕</button>
+
+    <div class="modal-img-side">
+      <p class="modal-sub">Gráfica original · Wikimedia Commons</p>
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/d/de/Global_changes_in_real_income_by_income_percentile_-_v1.png"
+        alt="Curva del elefante de Lakner y Milanovic: cambios porcentuales en el ingreso real por percentil de ingreso global, 1988–2008"
+        loading="lazy"
+      />
+      <p class="modal-img-caption">
+        Eje X: percentil de ingreso global (0 = más pobre, 100 = más rico). Eje Y: crecimiento acumulado del ingreso real (%).<br>
+        Fuente: Lakner &amp; Milanovic (2013). Imagen: <em>Wikimedia Commons</em> — CC BY-SA 4.0.
+      </p>
+      <p class="modal-sub" style="margin-top:6px;">🎬 Video explicativo</p>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; border:1px solid rgba(0,0,0,0.12);">
+        <iframe
+          src="https://www.youtube.com/embed/qc7g6Uhi1i4"
+          title="Video explicativo: la curva del elefante de Milanovic"
+          style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+
+    <div class="modal-text-side">
+      <h2 class="modal-title" id="modal-heading">La curva del elefante de Milanovic</h2>
+      <p style="margin:0;font-size:0.87rem;line-height:1.46;color:#35322d;">Publicada en 2013 por Christoph Lakner y Branko Milanovic, muestra cómo se distribuyó el crecimiento del ingreso real entre 1988 y 2008 a lo largo de toda la distribución global. Su forma recuerda al perfil lateral de un elefante.</p>
+      <p class="modal-sub" style="margin-top:2px;">Las cuatro partes de la curva</p>
+      <ul class="segment-list">
+        <li class="seg-tail"><strong>Cola (0–10 %):</strong> Los más pobres — casi sin crecimiento. Concentrados en África Subsahariana.</li>
+        <li class="seg-body"><strong>Cuerpo (10–60 %):</strong> Clase media emergente global — fuerte crecimiento. China e India son los protagonistas.</li>
+        <li class="seg-trunk"><strong>Trompa hacia abajo (60–80 %):</strong> Clase media de países ricos — estancamiento. El "perdedor" político de la globalización en Occidente.</li>
+        <li class="seg-tip"><strong>Punta de la trompa (80–100 %):</strong> Élites globales — crecimiento enorme. El 1 % más rico casi duplicó su ingreso.</li>
+      </ul>
+      <p style="margin:0;font-size:0.83rem;line-height:1.42;color:#35322d;">Alvaredo et al. (2018) actualizaron la curva (1980–2016) y confirmaron que el 1 % capturó el doble de crecimiento que el 50 % más pobre.</p>
+      <div class="modal-cite">
+        <p style="margin:0 0 3px;font-weight:800;font-size:0.71rem;text-transform:uppercase;letter-spacing:.07em;">Referencias (APA 7)</p>
+        <p style="margin:0 0 5px;">Lakner, C., &amp; Milanovic, B. (2013). <em>Global income distribution: From the fall of the Berlin Wall to the Great Recession</em> (Policy Research Working Paper No. 6719). World Bank. https://doi.org/10.1596/1813-9450-6719</p>
+        <p style="margin:0 0 5px;">Alvaredo, F., Chancel, L., Piketty, T., Saez, E., &amp; Zucman, G. (2018). The elephant curve of global inequality and growth. <em>AEA Papers and Proceedings, 108</em>, 103–108. https://doi.org/10.1257/pandp.20181073</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const slides = Array.from(document.querySelectorAll('[data-slide]'));
+  const progressFill = document.getElementById('progressFill');
+  const progressText = document.getElementById('progressText');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const footerDate = document.getElementById('footerDate');
+  let index = 0;
+
+  function setSlide(next) {
+    index = Math.max(0, Math.min(next, slides.length - 1));
+    slides.forEach((s, i) => s.classList.toggle('active', i === index));
+    const pct = ((index + 1) / slides.length) * 100;
+    if (progressFill) progressFill.style.width = pct + '%';
+    if (progressText) progressText.textContent = (index + 1) + '/' + slides.length;
+  }
+
+  function updateDate() {
+    if (footerDate) {
+      footerDate.textContent = new Date().toLocaleString('es-MX', {
+        weekday: 'short', day: '2-digit', month: 'short',
+        hour: '2-digit', minute: '2-digit'
+      });
+    }
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => setSlide(index - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => setSlide(index + 1));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') setSlide(index + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'PageUp'  ) setSlide(index - 1);
+  });
+
+  // ── Touch swipe ────────────────────────────────────────
+  let sx = 0, sy = 0;
+  const stage = document.querySelector('.stage');
+  stage.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  stage.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - sx;
+    const dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      dx < 0 ? setSlide(index + 1) : setSlide(index - 1);
+    }
+  }, { passive: true });
+
+  updateDate();
+  setInterval(updateDate, 30000);
+  setSlide(0);
+
+  // ── Reveal card (video más visto) ─────────────────────────
+  const revealCard = document.getElementById('reveal-video');
+  revealCard.addEventListener('click', () => {
+    revealCard.classList.add('revealed');
+  });
+
+  // ── Collapsible (Kant conclusion) ─────────────────────────
+  const cTrigger = document.getElementById('kant-conclusion-trigger');
+  const cContent = document.getElementById('kant-conclusion-content');
+  cTrigger.addEventListener('click', () => {
+    cTrigger.classList.toggle('open');
+    cContent.classList.toggle('open');
+  });
+
+  // ── Milanovic modal ────────────────────────────────────────
+  const overlay  = document.getElementById('milanovic-overlay');
+  const mcard    = document.getElementById('milanovic-card');
+  const closeBtn = document.getElementById('milanovic-close');
+
+  function openModal()  { overlay.classList.add('open');    closeBtn.focus(); }
+  function closeModal() { overlay.classList.remove('open'); mcard.focus(); }
+
+  mcard.addEventListener('click', openModal);
+  mcard.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(); } });
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+  });
+
+  // ── Steger modal ───────────────────────────────────────────────────────────
+  const sOverlay  = document.getElementById('steger-overlay');
+  const sCard     = document.getElementById('steger-card');
+  const sCloseBtn = document.getElementById('steger-close');
+
+  function openSteger()  { sOverlay.classList.add('open');    sCloseBtn.focus(); }
+  function closeSteger() { sOverlay.classList.remove('open'); sCard.focus(); }
+
+  sCard.addEventListener('click', openSteger);
+  sCard.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSteger(); } });
+  sCloseBtn.addEventListener('click', closeSteger);
+  sOverlay.addEventListener('click', e => { if (e.target === sOverlay) closeSteger(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && sOverlay.classList.contains('open')) closeSteger();
+  });
+})();
+</script>
+</body>
+</html>

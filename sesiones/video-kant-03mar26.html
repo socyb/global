@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Videos sobre Immanuel Kant para la clase del 3 de marzo de 2026 · Globalización y Empleo 2026-2">
+    <title>La globalización como objeto de conocimiento · 3 mar 2026 | Globalización y Empleo</title>
+    <link rel="icon" href="../img/icon-globe.svg">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/session.css">
+    <style>
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--radius);
+            border: var(--border);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .meta-item {
+            background: var(--sky);
+            border: var(--border-thin);
+            border-radius: var(--radius-sm);
+            padding: 0.85rem 1rem;
+        }
+        .meta-item .meta-label {
+            font-family: var(--font-accent);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        .meta-item .meta-value {
+            font-size: 1.1rem;
+            color: var(--ink);
+            font-weight: 600;
+        }
+        .analysis-card {
+            background: var(--cream);
+        }
+        .analysis-card h3 {
+            color: var(--purple);
+        }
+        .activity-card {
+            background: var(--mint);
+        }
+        .activity-card h3 {
+            color: var(--green);
+        }
+        .vocab-card {
+            background: var(--lavender);
+        }
+        .vocab-card h3 {
+            color: var(--purple);
+        }
+        .transcript-box {
+            max-height: 420px;
+            overflow-y: auto;
+            background: var(--paper);
+            border: var(--border-thin);
+            border-radius: var(--radius-sm);
+            padding: 1.25rem;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text);
+            margin-top: 0.75rem;
+        }
+        .transcript-box p {
+            margin-bottom: 0.6rem;
+        }
+        .key-concepts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .key-concepts .concept-tag {
+            background: var(--ink);
+            color: #fff;
+            padding: 0.3rem 0.85rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: var(--font-accent);
+        }
+        .discussion-list {
+            list-style: none;
+            counter-reset: question;
+            margin-top: 0.75rem;
+        }
+        .discussion-list li {
+            counter-increment: question;
+            padding: 0.75rem 0 0.75rem 3rem;
+            position: relative;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .discussion-list li:last-child { border-bottom: none; }
+        .discussion-list li::before {
+            content: counter(question);
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            width: 32px; height: 32px;
+            background: var(--green);
+            color: #fff;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            font-family: var(--font-accent);
+        }
+        .chapter-list {
+            list-style: none;
+            margin-top: 0.75rem;
+        }
+        .chapter-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #ccc;
+            font-size: 1.05rem;
+        }
+        .chapter-list li:last-child { border-bottom: none; }
+        .timestamp {
+            font-family: var(--font-accent);
+            font-size: 0.8rem;
+            color: var(--coral);
+            font-weight: 700;
+            margin-right: 0.35rem;
+        }
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+        .step-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            height: 44px;
+            padding: 0 0.75rem;
+            background: var(--ink);
+            color: #fff;
+            font-family: var(--font-accent);
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: var(--radius-sm);
+            white-space: nowrap;
+        }
+        .video-divider {
+            border: none;
+            border-top: 3px solid var(--ink);
+            margin: 3rem 0 2rem;
+            opacity: 0.12;
+        }
+        .video-number {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--ink);
+            color: #fff;
+            font-family: var(--font-accent);
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+            padding: 0.4rem 1rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1rem;
+        }
+        .discussion-list details summary {
+            cursor: pointer;
+            font-weight: 600;
+            list-style: none;
+        }
+        .discussion-list details summary::-webkit-details-marker {
+            display: none;
+        }
+        .discussion-list details summary::after {
+            content: ' ↓';
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .discussion-list details[open] summary::after {
+            content: ' ↑';
+        }
+        .discussion-list details p {
+            margin-top: 0.65rem;
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.7;
+            padding-left: 0.75rem;
+            border-left: 3px solid var(--green);
+        }
+        .video-block {
+            margin-bottom: 0;
+        }
+        .video-block > summary.video-summary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--ink);
+            color: #fff;
+            font-family: var(--font-accent);
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+            padding: 0.4rem 1rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1rem;
+            cursor: pointer;
+            list-style: none;
+            user-select: none;
+        }
+        .video-block > summary.video-summary::-webkit-details-marker {
+            display: none;
+        }
+        .video-block > summary.video-summary::after {
+            content: ' ↓';
+            font-size: 0.85rem;
+            opacity: 0.65;
+        }
+        .video-block[open] > summary.video-summary::after {
+            content: ' ↑';
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header session-header">
+    <div class="container">
+        <a href="../index.html" class="back-link">← Volver al inicio</a>
+        <h1>La globalización como objeto de conocimiento — Dos videos para clase</h1>
+        <p class="subtitle">Materiales de apoyo · 3 de marzo de 2026 · Globalización y Empleo 2026-2 · FCA UNAM</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- ════════════════════════════════════════════════════
+         VIDEO 1 — Adictos a la Filosofía
+         ════════════════════════════════════════════════════ -->
+
+    <details class="video-block">
+    <summary class="video-summary">Video 1 · Adictos a la Filosofía</summary>
+
+    <!-- Embed -->
+    <section class="section">
+        <h2>Descubre lo que Kant piensa del conocimiento — Kant #1</h2>
+        <div class="video-wrapper">
+            <iframe
+                src="https://www.youtube-nocookie.com/embed/F6HstBW8lX4"
+                title="Descubre lo que KANT piensa del CONOCIMIENTO [FÁCIL!!!] Kant #1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Metadata -->
+    <section class="section">
+        <h2>Metadatos</h2>
+        <div class="content-card">
+            <div class="meta-grid">
+                <div class="meta-item">
+                    <span class="meta-label">Canal</span>
+                    <span class="meta-value">Adictos a la Filosofía</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Fecha de publicación</span>
+                    <span class="meta-value">25 de mayo de 2018</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Duración</span>
+                    <span class="meta-value">15:05</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Idioma</span>
+                    <span class="meta-value">Español</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Vistas</span>
+                    <span class="meta-value">733&thinsp;754</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Video ID</span>
+                    <span class="meta-value"><a href="https://www.youtube.com/watch?v=F6HstBW8lX4" target="_blank" rel="noopener">F6HstBW8lX4 ↗</a></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapters -->
+        <div class="content-card">
+            <h3>Índice del video</h3>
+            <ul class="chapter-list">
+                <li><span class="timestamp">0:00</span> ¿Quién fue Immanuel Kant y cuál fue su aporte a la filosofía?</li>
+                <li><span class="timestamp">1:13</span> Significado de "crítica"</li>
+                <li><span class="timestamp">1:32</span> ¿Cómo resuelve Kant el dilema entre racionalismo y empirismo?</li>
+                <li><span class="timestamp">3:09</span> ¿Qué quiere decir la palabra "trascendental"?</li>
+                <li><span class="timestamp">3:48</span> Condiciones de posibilidad</li>
+                <li><span class="timestamp">4:18</span> Juicios analíticos vs. juicios sintéticos</li>
+                <li><span class="timestamp">6:31</span> ¿Qué son los juicios sintéticos a priori?</li>
+                <li><span class="timestamp">8:12</span> Lo universal proviene del sujeto, no de la experiencia</li>
+                <li><span class="timestamp">8:59</span> ¿Qué es para Aristóteles el conocimiento?</li>
+                <li><span class="timestamp">10:08</span> ¿Qué es el conocimiento para Kant?</li>
+                <li><span class="timestamp">12:27</span> Comparación con Aristóteles: fenómeno vs. noúmeno</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Análisis -->
+    <section class="section">
+        <div class="step-header">
+            <span class="step-badge">Análisis</span>
+            <h2>Para la discusión en clase</h2>
+        </div>
+
+        <div class="content-card analysis-card">
+            <h3>¿Por qué este video para hoy?</h3>
+            <p>Este video del canal <em>Adictos a la Filosofía</em> ofrece una introducción clara y accesible a la <strong>teoría del conocimiento de Immanuel Kant</strong>, presentada por el profesor Enric. En poco más de 15 minutos desgrana los conceptos centrales de la <em>Crítica de la Razón Pura</em>: la síntesis entre racionalismo y empirismo, los tipos de juicio (analítico, sintético, sintético a priori) y la distinción entre fenómeno y noúmeno.</p>
+            <p style="margin-top: 0.75rem;">Conecta con nuestro curso en al menos tres dimensiones:</p>
+            <ul style="margin-top: 0.5rem; padding-left: 1.5rem; font-size: 1.1rem; line-height: 1.8;">
+                <li><strong>Fundamentos epistemológicos:</strong> Los límites del conocimiento humano son también los límites de cualquier teoría sobre la globalización y la sociedad.</li>
+                <li><strong>Razón práctica e imperativo categórico:</strong> Base de debates éticos sobre comercio justo, derechos laborales y responsabilidad corporativa global.</li>
+                <li><strong>Giro copernicano:</strong> La idea de que el sujeto construye la realidad es clave para entender cómo los actores globales (estados, empresas, organismos) construyen marcos interpretativos del orden mundial.</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h3>Conceptos clave</h3>
+            <div class="key-concepts">
+                <span class="concept-tag">Crítica de la Razón Pura</span>
+                <span class="concept-tag">Trascendental</span>
+                <span class="concept-tag">Racionalismo</span>
+                <span class="concept-tag">Empirismo</span>
+                <span class="concept-tag">Juicio analítico</span>
+                <span class="concept-tag">Juicio sintético</span>
+                <span class="concept-tag">Juicio sintético a priori</span>
+                <span class="concept-tag">Fenómeno</span>
+                <span class="concept-tag">Noúmeno</span>
+                <span class="concept-tag">Giro copernicano</span>
+                <span class="concept-tag">A priori / a posteriori</span>
+                <span class="concept-tag">Condiciones de posibilidad</span>
+            </div>
+        </div>
+
+        <div class="content-card activity-card">
+            <h3>Preguntas para discusión</h3>
+            <ol class="discussion-list">
+                <li>
+                    <details>
+                        <summary>¿Analogía con el «conocimiento» del mercado global?</summary>
+                        <p>Kant dice que para conocer algo necesitamos tanto la experiencia (intuición sensible) como las estructuras del sujeto (entendimiento). ¿Hay alguna analogía con la forma en que las empresas o los estados «conocen» el mercado global?</p>
+                    </details>
+                </li>
+                <li>
+                    <details>
+                        <summary>¿Los fenómenos económicos globales como «noúmeno»?</summary>
+                        <p>El noúmeno —la «cosa en sí»— es inaccesible para el conocimiento humano. ¿En qué sentido los fenómenos económicos globales (precios, flujos de capital, empleo informal) son también «inaccesibles» en su totalidad?</p>
+                    </details>
+                </li>
+                <li>
+                    <details>
+                        <summary>¿Quiénes son los «sujetos» que estructuran la globalización?</summary>
+                        <p>El «giro copernicano» de Kant invierte la relación sujeto-objeto: es el sujeto quien estructura la experiencia, no al revés. ¿Quiénes son los «sujetos» que estructuran la globalización contemporánea?</p>
+                    </details>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Transcripción video 1 -->
+    <section class="section">
+        <h2>Transcripción (español · autogenerada por YouTube)</h2>
+        <div class="content-card">
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.5rem;">Subtítulos autogenerados · Español · Fuente: YouTube · Video ID: F6HstBW8lX4</p>
+            <div class="transcript-box">
+                <p>Hola Fil adictos hoy vamos a ver arist hoy vamos a ver hoy vale vale vale vale vale Dios vamos a ver [Música] Kant venga Kant tú puedes enri bueno no me hago responsable de las trombosis cerebrales que este vídeo pueda provocar no ha sido mi culpa sino vuestra por insistir immanuel Kant probablemente</p>
+                <p>uno de los más grandes filósofos de todos los tiempos fue un hombre tranquilo que jamás salió de su ciudad natal kenigsberg y cuyo mayor mérito fue escribir un libro a la edad de 57 años que revolucionó todo el panorama de la filosofía estoy hablando Por supuesto de la crítica de la razón pura</p>
+                <p>que va a iniciar una trilogía que Kant terminará tras 9 años con la crítica de la razón práctica y la crítica del juicio demostrando que en esta vida hay que pensar mucho y escribir poco lo digo por si hay algún Illuminati de la neca escuchando hoy vamos a hablar de la crítica de</p>
+                <p>la razón pura donde Kant construye su teoría del conocimiento crítica significa para Kant examen criticar la razón pura significa entonces poner la razón a examen examinar cuáles son sus límites Cuáles son las posibilidades del conocimiento humano En definitiva la pregunta que Kant quiere responder es qué podemos conocer pensad que K se encuentra</p>
+                <p>justo en medio de una lucha encarnizada entre el racionalismo cartesiano representado por un señor llamado Wolf y el empirismo representado por Hum el racionalismo sería el campeón de los conceptos puros Mientras que el empirismo sería el campeón de las intuiciones sensibles pero para Kant ambos sistemas de pensamiento acaban en aporías por un</p>
+                <p>lado el racionalismo desemboca en una metafísica ática Porque se pone a teorizar sin haber examinado antes el instrumento que utiliza la razón por otro lado el empirismo de humanum termina en un escepticismo radical que pone en cuestión el fundamento de la ciencia y de la moral porque niega la posibilidad de cualquier conocimiento</p>
+                <p>universal y necesario Y esto es un problema para Kant porque era un forofo no solo de Newton y de la ciencia moderna sino también del deber moral universal e ineludible y como era su deber creer en el deber debía criticar estas conclusiones de Hum ante estos dos problemas dogmatismo racionalista y escepticismo empirista</p>
+                <p>Kant intentará una síntesis particular de racionalismo y empirismo para fundamentar con éxito el conocimiento científico hque mate a jum al tiempo que marcará los límites Más allá de los cuales nuestra razón no puede ir jakemate a Descartes o a Wolf razón y experiencia deberán unirse en el nuevo sistema cantiano deberán fusionarse [Música]</p>
+                <p>[Aplausos] si os ponéis a leer a Kant hay un término que os vais a encontrar por todas partes trascendental teoría elemental trascendental estética trascendental lógica trascendental Qué significa leáo directamente llamo trascendental a todo conocimiento que se ocupa no tanto de objetos cuanto de nuestro modo de conocer filosofía trascendental no significa pues una</p>
+                <p>filosofía muy importante sino una filosofía que se fija no en las cosas sino en el sujeto y en el modo en el que el sujeto conoce los objetos de conocimiento lo trascendental refiere a las condiciones de posibilidad del conocimiento de un objeto condiciones de posibilidad aquellos requisitos para que se dé algo en</p>
+                <p>nuestro caso el conocimiento como veremos para Kant estas condiciones se encuentran en parte en el objeto mismo son ciertas determinaciones a priori independientes de la experiencia que ayudan a configurar el objeto de conocimiento el sujeto no conoce apelo por decirlo así sino mediante una estructura previa que aplica a los datos de los</p>
+                <p>sentidos vamos a explicarlo mejor Kant distingue entre dos tipos de juicios los juicios analíticos y los juicios sintéticos los juicios analíticos son aquellos cuyo predicado está contenido en el concepto del sujeto por ejemplo un triángulo tiene tres lados tener tres lados es precisamente lo que significa ser un triángulo el predicado está contenido</p>
+                <p>en el sujeto este tipo de juicios son a priori es decir independientes de la experiencia porque para verificarlos no necesito acudir a una fuente distinta del mismo juicio con el concepto de sujeto ya tengo suficiente porque en él ya está incluido el predicado pienso un poquito en Qué significa y ya está como</p>
+                <p>son independ de la experiencia estos juicios tienen universalidad y necesidad que son dos características que a Kant le molan Mazo El problema es que vale son juicios universales y necesarios pero no nos añaden ningún tipo de conocimiento Porque todo lo que decimos en el predicado ya está contenido en el sujeto son juicios</p>
+                <p>como mucho explicativos o en términos técnicos kantianos juicios p tontos pero ya está el predicado no añade Nada nuevo al sujeto los juicios sintéticos en cambio son aquellos en los que el predicado sí que aporta algo nuevo al sujeto es decir son aquellos juicios que sí que nos aportan conocimiento por ejemplo los</p>
+                <p>perros azules son muy majos está claro que ser Majo no es algo que esté incluido en el concepto de perro azul por tanto cuando yo digo los perros azules son majos Realmente estoy conociendo algo nuevo que no conocía al conocer solo el sujeto perro azul así as que no son meramente juicios explicativos</p>
+                <p>sino juicios extensivos porque el predicado añade algo nuevo al sujeto que no estaba contenido en él cuál es el problema que por lo general los juicios sintéticos son empíricos o a posteriori es decir que dependen se fundamentan en la experiencia y Hum ya nos enseñó que de la experiencia no se puede derivar</p>
+                <p>nunca necesidad ni universalidad la experiencia solo nos muestra casos ulares y contingentes el problema de los juicios analíticos es que a pesar de ser universales y necesarios no nos añaden conocimiento y el problema de los juicios sintéticos a posteriori es que a pesar de Añadir noos conocimiento son solo particulares Y contingentes ninguno</p>
+                <p>de estos dos tipos de juicios sirven para fundamentar una ciencia que Precisamente lo que pretende es Añadir conocimiento que sea universal y necesario por tanto todo el problema para Kant va a consistir en fundamentar la posibilidad de hacer juicios que nos aporten Conocimiento es decir que sean juicios sintéticos y a la vez</p>
+                <p>que ese conocimiento sea universal y necesario es decir que sean juicios a priori estamos hablando de la posibilidad de los juicios sintéticos a priori juicio sintético a priori público de adictos a la filosofía Público de adictos a la filosofía juicio sintético a [Música] priori el juicio sintético a priori va a ser entonces</p>
+                <p>el lugar de de la fusión de razón y experiencia la experiencia aporta el fundamento empírico sin el cual no cabe conocimiento alguno la razón va a aportar la universalidad y la necesidad lo a priori esto es importantísimo la universalidad y la necesidad No provienen de las cosas sino que provienen del sujeto de</p>
+                <p>las estructuras con las que el sujeto conoce la realidad Por qué Porque de nuevo Hum ya nos explicó que la universalidad y la necesidad no se pueden derivar de la experiencia por tanto si hacemos juicios necesarios y universales estas dos características tienen que provenir de una fuente distinta de la experiencia que no</p>
+                <p>va a ser otra que la misma razón la razón o el sujeto tienen una estructura a priori que aplica a los datos de los sentidos seguid conmigo un poco más y lo entenderéis para la filosofía clásica basada en Aristóteles la realidad Está formada por dos principios constitutivos la materia y la forma la</p>
+                <p>materia ha dicho bruscamente es aquello de que está hecho una cosa el material que en Aristóteles es pura potencia indeterminada algo así como el apiron de anaximandro la forma en cambio es el que de una cosa aquella figura o estructura interna que la hace reconocible cojamos una estatua de bronce la materia es</p>
+                <p>el bronce aquello que es moldeado la forma es la figura reconocible de la Estatua la clave es que tanto materia como forma son principios constitutivos de la realidad la realidad es materia y forma el ser humano cuando conoce lo que hace es abstraer o separar la forma de la materia de modo que</p>
+                <p>lo que conoce es la forma el que de una cosa pero esta forma está originalmente en la cosa y la hace ser lo que es ejemplo de muchos animales concretos abstraido la forma de animal pero la forma de animal es algo de la realidad que yo conozco que yo descubro Qué pasa que</p>
+                <p>llega Hum y dice que este proceso de abstracción no es posible y que no se puede sacar nada universal ni necesario de lo empírico No hay forma que abstraer en lo empírico eso es simplemente producto de un hábito mental por tanto Qué hace Kant para solucionar esto acepta la crítica de base de</p>
+                <p>que no hay forma en lo empírico Pero va a decir que lo formal proviene de otra fuente la forma proviene del sujeto de las categorías del sujeto la materia en cambio la aporta la realidad o el noúmeno como Kant lo Llama a través de la ventana de las intuiciones empíricas ni las categorías</p>
+                <p>solas son conocimiento ni lo empírico solo es conocimiento solo en el encuentro entre ambos se produce el conocimiento intuición sensible y concepto constituyen los dos elementos de todo nuestro conocimiento de suerte que ni los conceptos sin una intuición correspondiente ni la intuición sin conceptos pueden darnos conocimiento sin sensibilidad ningún objeto nos sería</p>
+                <p>dado y sin el entendimiento ningún objeto sería pensado los pensamientos sin contenido son vacíos las intuiciones sin conceptos son ciegas tan necesario es pues hacer a los conceptos sensibles es decir añadirles el objeto en la intuición como hacer a las intuiciones inteligibles es decir someterlas a conceptos las dos facultades no pueden cambiar</p>
+                <p>sus funciones el entendimiento no puede intuir nada ni los sentidos pueden pensar nada Solo de su Unión puede salir el conocimiento vale me acabo de imaginar al hijo de Kant preguntándole a su padre papá de dónde sale el conocimiento y Kant diciendo Mira hijo mío cuando papá categorías del pensamiento y mamá intuiciones</p>
+                <p>sensibles se quieren mucho Se abrazan muy muy muy muy fuerte y de su Unión Sale hijo conocimiento poca broma porque es tal cual papá solo no hace ningún hijo pensamientos sin contenido son vacíos y mamá sola tampoco las intuiciones sin concepto son ciegas solo hay conocimiento en El encuentro entre las estructuras a</p>
+                <p>priori del sujeto y lo dado en las intuiciones empíricas Solo que este encuentro no es sexual No aquí a diferencia de lo que veíamos en Aristóteles la forma ya no es algo que viene dado en la realidad sino que es algo del sujeto que pone el sujeto lo que Kant excluye por influencia</p>
+                <p>de Hum es cualquier teoría clássica de la abstracción en la que la forma pertenece a la cosa y es el sujeto el que la abstrae o la descubre mediante su razón en Kant la forma ya no es algo de la realidad que el sujeto descubre sino que es aquello que el sujeto pone</p>
+                <p>o añade a los datos caóticos que le llegan y que le son dados por los sentidos en Aristóteles el compuesto de materia y forma constituye la cosa real en Kant el compuesto de materia y forma constituye el objeto del conocimiento Puede que sea un Matiz pero lo cambia todo la forma ya no</p>
+                <p>es un modo de ser de un noúmeno que en sí permanece desconocido para nosotros sino que son modos de conocer del sujeto estructuras de su acceso al noúmeno de tal modo que podemos decir que al final lo que el sujeto conoce en las cosas es aquello que él mismo ya ha puesto en</p>
+                <p>ellas Aunque podemos preguntarnos es eso conocimiento No en vano para Kant la realidad en sí misma el noúmeno nos es desconocido Porque no tenemos un acceso directo a él no conocemos el noúmeno sino el fenómeno que es precisamente esta combinación de materia y forma todo nuestro conocimiento está predeterminado por nuestras estructuras de</p>
+                <p>conocimiento de modo que no hay un acceso puro o incontaminado al noúmeno no hay conocimiento al margen de la forma que encantes recordémoslo forma de conocer por tanto no conocemos la realidad en sí sino que la conocemos según nuestro modo de conocer que paradójicamente es un obstáculo las categorías no son determinaciones o</p>
+                <p>propiedades que pertenezcan a los objetos mismos sino formas de nuestro modo de recibir los fenómenos la realidad que nos es dada en las intuiciones empíricas es informe y caótica y es el sujeto el que la ordena según sus leyes internas repitamoslo la forma no es algo de la realidad sino que es algo</p>
+                <p>que ponemos nosotros que proviene de nuestro psiquismo es la contribución del sujeto al objeto de conocimiento de modo que puede decirse que en cierto sentido no es la realidad la que se impone al sujeto sino que es el sujeto el que impone a la realidad sus propias leyes de conocimiento su estructura a</p>
+                <p>priori la filosofía del sujeto de Descartes ha llegado a una Cumbre y todo está preparado para dar El Salto al idealismo alemán en resumen el conocimiento para Kant solo se produce en El encuentro entre lo empírico o material que proviene del noúmeno y no se es dado en las intuiciones sensibles y lo</p>
+                <p>formal que proviene del sujeto de su estructura interna el conocimiento surge de la fusión de razón y experiencia o del encuentro entre papá categorías del pensamiento y mamá intuiciones sensibles si te ha gustado y consideras que has aprendido algo dale a like compártelo con tus amigos y suscríbete para que tu pensamiento no</p>
+                <p>se quede vacío y sin contenido</p>
+            </div>
+        </div>
+    </section>
+
+    </details>
+
+    <hr class="video-divider">
+
+    <!-- ════════════════════════════════════════════════════
+         VIDEO 2 — DW Español
+         ════════════════════════════════════════════════════ -->
+
+    <details class="video-block">
+    <summary class="video-summary">Video 2 · DW Español</summary>
+
+    <!-- Embed -->
+    <section class="section">
+        <h2>Un pensador revolucionario: Immanuel Kant</h2>
+        <div class="video-wrapper">
+            <iframe
+                src="https://www.youtube-nocookie.com/embed/HhyxKG1ScyA"
+                title="Un pensador revolucionario: Immanuel Kant — DW Español"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Metadata -->
+    <section class="section">
+        <h2>Metadatos</h2>
+        <div class="content-card">
+            <div class="meta-grid">
+                <div class="meta-item">
+                    <span class="meta-label">Canal</span>
+                    <span class="meta-value">DW Español</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Fecha de publicación</span>
+                    <span class="meta-value">17 de abril de 2024</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Duración</span>
+                    <span class="meta-value">16:48</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Idioma</span>
+                    <span class="meta-value">Español</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Vistas</span>
+                    <span class="meta-value">743&thinsp;234</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Video ID</span>
+                    <span class="meta-value"><a href="https://www.youtube.com/watch?v=HhyxKG1ScyA" target="_blank" rel="noopener">HhyxKG1ScyA ↗</a></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h3>Descripción</h3>
+            <p style="font-size: 1.05rem; line-height: 1.7;">Revolucionó el pensamiento, nos insta a usar el cerebro y cuestionar nuestras acciones. Kant aspiraba a la justicia y desarrolló principios que condujeran a la paz. Hoy, 300 años después de su nacimiento, el filósofo es más relevante que nunca. — <em>DW Magacines / DW History &amp; Culture</em></p>
+        </div>
+    </section>
+
+    <!-- Análisis -->
+    <section class="section">
+        <div class="step-header">
+            <span class="step-badge">Análisis</span>
+            <h2>Para la discusión en clase</h2>
+        </div>
+
+        <div class="content-card analysis-card">
+            <h3>¿Por qué este video para hoy?</h3>
+            <p>Este reportaje de <em>DW Español</em> sitúa la vida y el pensamiento de Kant en su contexto histórico (Königsberg/Kaliningrado, siglo XVIII, monarquías absolutistas, Ilustración) y proyecta su relevancia al presente, especialmente su filosofía política: la paz perpetua, la justicia universal y el imperativo de pensar por uno mismo (<em>sapere aude</em>).</p>
+            <p style="margin-top: 0.75rem;">Complementa al primer video con una dimensión histórico-biográfica y una proyección global:</p>
+            <ul style="margin-top: 0.5rem; padding-left: 1.5rem; font-size: 1.1rem; line-height: 1.8;">
+                <li><strong>Sapere aude / Ilustración:</strong> En un mundo globalizado, ¿quién define qué significa "pensar por uno mismo"? ¿Las redes sociales facilitan u obstaculizan ese ideal?</li>
+                <li><strong>Cosmopolitismo kantiano:</strong> La injusticia en cualquier punto del planeta se siente en todas partes — una formulación premonitoria de la interdependencia global.</li>
+                <li><strong>Paz perpetua:</strong> El proyecto kantiano de una federación de repúblicas libres es uno de los antecedentes filosóficos de organismos como la ONU o la UE.</li>
+                <li><strong>Kant y el empleo:</strong> El ascenso social a través del talento (Kant era hijo de artesanos) contrasta con las desigualdades estructurales del mercado laboral globalizado de hoy.</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h3>Conceptos clave</h3>
+            <div class="key-concepts">
+                <span class="concept-tag">Sapere aude</span>
+                <span class="concept-tag">Ilustración (Aufklärung)</span>
+                <span class="concept-tag">Imperativo categórico</span>
+                <span class="concept-tag">Paz perpetua</span>
+                <span class="concept-tag">Cosmopolitismo</span>
+                <span class="concept-tag">Racionalismo crítico</span>
+                <span class="concept-tag">Justicia universal</span>
+                <span class="concept-tag">Autonomía moral</span>
+                <span class="concept-tag">Derechos humanos</span>
+                <span class="concept-tag">Pensamiento propio</span>
+                <span class="concept-tag">Königsberg / Kaliningrado</span>
+            </div>
+        </div>
+
+        <div class="content-card activity-card">
+            <h3>Preguntas para discusión</h3>
+            <ol class="discussion-list">
+                <li>
+                    <details>
+                        <summary>¿La injusticia global: más o menos verdad en nuestra era?</summary>
+                        <p>Kant afirmó que «la injusticia cometida en un lugar del planeta se siente en todas partes». ¿Qué ejemplos contemporáneos vendrían a la mente? ¿Es esto más o menos verdad en la era de la globalización que en el siglo XVIII?</p>
+                    </details>
+                </li>
+                <li>
+                    <details>
+                        <summary>¿El <em>sapere aude</em> frente a algoritmos y desinformación?</summary>
+                        <p>El video conecta el lema <em>sapere aude</em> con la necesidad de pensar con autonomía frente a la autoridad. ¿Qué obstáculos enfrenta ese ideal en el contexto de las plataformas digitales, los algoritmos y la desinformación global?</p>
+                    </details>
+                </li>
+                <li>
+                    <details>
+                        <summary>¿Han realizado o traicionado la ONU y la UE la «paz perpetua»?</summary>
+                        <p>El proyecto de la «paz perpetua» de Kant anticipó instituciones como la ONU o la UE. ¿En qué medida estas instituciones han realizado o traicionado ese proyecto? ¿Qué papel juegan en la regulación del trabajo global?</p>
+                    </details>
+                </li>
+                <li>
+                    <details>
+                        <summary>¿Qué perspectiva predomina en DW como medio alemán?</summary>
+                        <p>DW es un medio público alemán que produce contenido en español. ¿Qué perspectiva o punto de vista predomina en el reportaje? ¿Cómo cambiaría la narrativa si fuera producida por un medio latinoamericano?</p>
+                    </details>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Transcripción video 2 -->
+    <section class="section">
+        <h2>Transcripción (español · autogenerada por YouTube)</h2>
+        <div class="content-card">
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.5rem;">Subtítulos autogenerados · Español · Fuente: YouTube · Video ID: HhyxKG1ScyA</p>
+            <div class="transcript-box">
+                <p>[Música] un hombre que transformó el pensamiento humano su profesión filósofo su nombre y Manuel Kant su lema Atrévete a pensar algo Bastante atrevido para la época Kant nació hace 300 años en lo que era entonces kisber pero sus ideas aún son tan relevantes como lo fueron en su época no era un filósofo</p>
+                <p>ajeno a la realidad sentía una gran curiosidad por el mundo Kant fue el primero en elaborar una teoría diciendo que debemos conectarnos unos con otros Kant decía que la injusticia cometida en un lugar del planeta se siente en todas partes y justamente por eso Kant es tan importante hoy [Música] de las monarquías</p>
+                <p>absolutistas en ese contexto instaba a que pensemos por nosotros mismos ese es uno de los mensajes de kh no tengan tanto miedo tengan valor pero era más fácil decirlo que hacerlo una palabra contra los gobernantes podía tener consecuencias [Música] drásticas nada podía haber sugerido que K llegaría a ser unía uno de los</p>
+                <p>pensadores de la histor ni que sus ideas cambiarían para siempre la filosofía de procedencia humilde su padre era artesano y su madre ni siquiera asistió a la escuela Manuel fue el cuarto de 11 hijos y muy pronto se destacó por su inteligencia que sería su mayor recurso para salir adelante resulta interesante que</p>
+                <p>el ascenso social mediante el talento siempre fue posible Aunque para eso había que ser brillante [Música] Kant superó sin sobresaltos la escuela y la universidad durante un tiempo pagó sus estudios como un exitoso jugador de Villar pero sobre todo se interesó por la filosofía la metafísica las matemáticas la historia natural y la</p>
+                <p>astronomía un verdadero polímata Kant confiaba plenamente en El poder del pensamiento y la razón estaba convencido que las personas pueden ilustrarse como sociedad en tiempos de Kant kisber pertenecía a prusia con Berlín como capital hoy se llama kaliningrado y es parte de Rusia Kant casi no salía de su ciudad pero kisber Puerto</p>
+                <p>comercial a orillas del Báltico estaba conectada con el resto del mundo el meteórico ascenso de Kant al estrellado intelectual tuvo un comienzo a los 57 años publicó su obra Magna la crítica de la razón pura le siguieron varios éxitos de venta que le generarían riqueza y le permitirían moverse en los círculos más</p>
+                <p>distinguidos de la sociedad quizá ningún otro filósofo haya influido el pensamiento moderno tanto como él de apenas 1.57 de estatura este hombrecillo de kisber sigue siendo un gigante intelectual para muchos filósofos de hoy mi vida Por cierto algunos de sus contemporáneos consideraban a Kant un poco estrafalario se levantaba cada mañana a las</p>
+                <p>5:4 bebía dos tazas de té y fumaba en pipa daba clases de 7 a nueve y pensaba de 9 a 1 menos cuar luego escribía y salía a pasear por la tarde cada día a la misma hora en tiempos de Kant la gente vivía rodeada de autoridades el Rey el ejército la iglesia</p>
+                <p>La mayoría de la gente hacía lo que le decían en parte por miedo podían ejecutar o enviarte al exilio arrojaban a la gente a la cárcel esto ocurría en toda Francia y en muchos lugares de Alemania Inglaterra pasaban muchas cosas sustancialmente peores que un linchamiento digital en [Música] Twitter hasta que llega Kant</p>
+                <p>a este mundo autoritario y transforma el pensamiento humano lo que pedía Era realmente simple pero Valiente y productivo exhortaba a la gente a usar su propio razonamiento en lugar de seguir directivas sapere aude Atrévete a pensar este pensar por uno mismo también es algo que apunta a sacarnos de ciertas zonas de Confort</p>
+                <p>porque no podemos permitirnos hacernos las cosas más fáciles de lo que son y muchas cosas requieren capacidad de diferenciación autocrítica y [Música] humildad pero para K pensar por uno mismo también significa debatir y exponerse a otras opiniones analizar más detenidamente el verdadero significado de pensar por uno mismo significa examinar junto con los</p>
+                <p>demás si lo que consideramos correcto también es defendible Ese es su mensaje K dice la Ilustración es la salida del hombre de su inmadurez autoinflingido Pero por qué autoinfligida en parte es culpa nuestra pero la cobardía es fomentada por Reyes y Duques o quien detentar el poder por aquel entonces como por supuesto</p>
+                <p>también la iglesia Dice que los llamados guardianes tratan a la gente como ganado como animales sin razón y este ganado es manso y mucho más fácil de controlar ese sumamente radical Kant Observa el cielo estrellado y hace un descubrimiento fascinante no no un nuevo planeta ni tampoco extraterrestres en cuya existencia creía firmemente</p>
+                <p>mirando hacia el infinito a lo que llama el cielo estrellado Kant percibe un segundo infinito Pero dentro de sí mismo algo que lo distingue a él un ser humano de los animales su ley moral la resume en una fórmula que la mayoría habremos oído mencionar el famoso imperativo categórico obra solo según aquella</p>
+                <p>máxima por la cual puedas querer que al mismo tiempo se convierta en ley universal otra exhortación Revolucionaria considerar lo que nuestras acciones significan para los demás no es una idea completamente original pero la novedad es que Kant no no necesita de una autoridad moral superior ni por lo tanto de Dios quiere que</p>
+                <p>las personas reconozcan por la razón lo que está bien y lo que está mal que se cuestionen a sí mismas en lugar de encomendarse a la autoridad divina desde entonces ya nada fue igual todo un sistema de pensamiento descansa ahora sobre la razón humana una gran responsabilidad formules imperativo categórico y creo que</p>
+                <p>la más importante es actúa como Si todos fueran Un fin en sí mismos nunca utilices a nadie como medio nunca instrumentales a la gente pero esto es mucho más difícil de seguir de lo que parece el compromiso de con la dignidad humana giro [Música] filosofía el mundo en el que vivía Kant se</p>
+                <p>vio profundamente sacudido en 1789 por la revolución francesa en París a unos 1700 km de kisber se tomó por asalto la bastilla y las cabezas rodaron en Pos de la libertad y una vida mejor qué pensó Kant comparte los ideales que impulsaron la Revolución Francesa idea de igualdad mismas libertades republicanismo de que</p>
+                <p>las personas también deben poder ser actores políticos y capaces de gobernarse así mismas Aunque Kant rechazaba los levantamientos y las revueltas criticaba sin rodeos los privilegios de la nobleza el paternalismo de la iglesia y el colonialismo un mundo más justo parecía posible y Kant quería que su filosofía tuviera un efecto práctico que</p>
+                <p>condujera a una vida mejor y a la libertad las consecuencias políticas Aún se observan hoy en día la filosofía de Kant es la única base para una izquierda liberal viva y los valores que hoy necesitamos desesperadamente estaban todos en Kant es un legado increíblemente exigente que si somos sinceros quizá también nos avergüence</p>
+                <p>porque no estamos a la altura de muchos de sus postulados sobre todo en lo que respecta a la justicia Global en las relaciones entre el norte y sur globales hay muchas injusticias [Música] sobre todo las políticas dictadas por instituciones financieras internacionales que implantaron el neoliberalismo en áa en muchos países el neoliberalismo ha</p>
+                <p>impulsado la codicia el acaparamiento de tierras y la corrupción esto es una injusticia K diría que es una violación de su imperativo [Aplausos] categórico pocos de los que hoy se manifiestan a favor de la paz saben que están en deuda con Kant una pasionado antibelicista con más de 70 años plasmó sus pensamientos</p>
+                <p>en su ensayo sobre la paz perpetua sus ideas eran radicalmente modernas para 1795 una época en la cual Las Guerras estaban a la orden del día Kant Apuesta por establecer tratados entre Estados soberanos era algo muy progresista para la época Hoy vemos que los tratados bilaterales no bastan especialmente si una de las</p>
+                <p>partes como es el caso de Rusia anula sus propios tratados de un día para otro controles internacionales justo lo que quería también el propio vivió tres guerras y la ocupación rusa de kisber sabía de lo que hablaba lo radical en sus textos son sobre todo las demandas que se derivan de ese ideal</p>
+                <p>de paz mundial desde la perspectiva actual esas exigencias Siguen sin cumplirse que los estados establezcan relaciones de confianza entre ellos hasta el de mantener ejércitos permanentes que supongan una amenaza recíproca sigue siendo una idea utópica ciertamente Las Guerras han seguido sucediéndose desde la muerte de Kant con todo sus ideas suenan casi a</p>
+                <p>una guía práctica para la creación de las Naciones Unidas un intento serio Y al menos parcialmente exitoso de garantizar la paz en el mundo Kant vivió en la era de la Ilustración pero como el mismo reconoció no fue una era ilustrada tampoco él fue una persona ilustrada por modernas que nos parezcan Muchas</p>
+                <p>de sus ideas en otras se equivocó de forma flagrante la humanidad alcanza su mayor grado de perfección en la raza Blanca especialmente perturbadora es su teoría sobre las supuestas razas humanas donde vincula características externas a cualidad Morales e intelectuales para él los amerindios a los que denomina raza roja están incapacitados para la</p>
+                <p>cultura básicamente no pueden abandonar el estado de [Música] naturaleza considera que la raza negra está capacitada Solamente para la cultura de la esclavitud que no puede progresar a una cultura más avanzada la llamada raza amarilla representada por indios orientales y chinos entre otros no puede participar en culturas más avanzadas K piensa que</p>
+                <p>solo los europeos occidentales tienen las actitudes y la vocación de hacer progresar a la humanidad hacia su destino [Música] moral hoy ese tipo de pensamiento es inaceptable y parecería en total contradicción con la idea de universalismo de la idea de que la dignidad humana se deriva de nuestra capacidad de razonar erosionan los</p>
+                <p>postulados racistas de Kant su idea de Justicia para muchos académicos kantianos sus ideas sobre las razas son secundarias con respecto al núcleo de su filosofía consideran que esas ideas no afectan a la consistencia de su teoría Así que lo juzgamos en base al núcleo y a la consistencia de su epistemología su ética</p>
+                <p>y su Metafísica de hecho en su última obra Kant defendió la igualdad de derechos se retracto el filósofo de sus tesis racistas los académicos no se ponen de acuerdo pero está claro que sus opiniones estaban firmemente arraigadas en el pensamiento de su época algo aplicable también a su antisemitismo y su menosprecio por</p>
+                <p>las mujeres sin embargo al final de sus días Kant acabó exigiendo un derecho de ciudadanía mundial un derecho de visita para todos ante todo no debería rechazarse a los refugiados K reconoció en aquel entonces algo que lamentablemente en el siglo XX ya no se da por descontado es decir que todo ciudadano debe</p>
+                <p>poder abandonar su país y Buscar refugio en otro lugar si es aceptado sería magnífico si el mundo recordara que se trata en realidad de algo evidente [Música] pero por muy utópicas que parezcan sus ideas sobre Paz perpetua ciudadanía global y Justicia ciertamente Kant no fue un soñador al contrario observaba la realidad con</p>
+                <p>sobriedad pero creía en la esperanza la cuestión es cómo entendía Kant la esperanza no la entendía como sentimiento o emoción sino como una obligación moral un postulado de la razón práctica Es que para sobrevivir y continuar necesitamos Esperanza aunque no haya motivos para tenerla lo peor pasará si perdemos la esperanza es justo</p>
+                <p>lo que necesitamos cuando estamos a punto de desesperar mientras no sepamos que nada tiene sentido debemos seguir luchando por la justicia y la paz Así lo cree Kant y parece una idea bastante buena ah [Música]</p>
+            </div>
+        </div>
+    </section>
+
+    </details>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p><a href="../index.html">← Volver a la página principal</a></p>
+            <p class="footer-meta">Globalización y Empleo 2026-2 · FCA UNAM · 3 de marzo de 2026</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
