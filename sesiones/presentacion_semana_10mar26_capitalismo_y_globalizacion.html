@@ -1,0 +1,1058 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trabajo, deuda y globalización · Presentación semanal · 10 mar 2026</title>
+  <style>
+    :root {
+      --paper: #f7f6f2;
+      --ink: #1f1d1a;
+      --muted: #5f5a52;
+      --line: rgba(31,29,26,0.18);
+      --cyan: #1c6079;
+      --brick: #b55234;
+      --olive: #4f6a48;
+      --plum: #634b7f;
+      --amber: #b58c34;
+      --panel: rgba(255,255,255,0.92);
+      --shadow: 0 14px 36px rgba(0,0,0,0.12);
+      --pad: clamp(12px, 2.5vw, 28px);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    html { height: 100%; -webkit-text-size-adjust: 100%; }
+    body {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Avenir Next","Gill Sans Nova","Trebuchet MS",system-ui,sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 9%, rgba(28,96,121,0.16), transparent 33%),
+        radial-gradient(circle at 88% 12%, rgba(181,82,52,0.15), transparent 34%),
+        linear-gradient(165deg, #ece7dc 0%, #e2ebe4 45%, #f5f2ea 100%);
+    }
+
+    .deck {
+      width: 100%;
+      height: 100dvh;
+      background: var(--paper);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px var(--pad);
+      border-bottom: 1px solid var(--line);
+      background: rgba(250,248,244,0.96);
+      z-index: 10;
+      flex-wrap: wrap;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 3px 9px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: transparent;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .back-btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    .brand-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--brick));
+      border: 1px solid rgba(0,0,0,0.22);
+      flex-shrink: 0;
+    }
+    .context {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: #2f3a34;
+      border: 1px solid rgba(0,0,0,0.14);
+      border-radius: 999px;
+      padding: 5px 10px;
+      background: rgba(255,255,255,0.78);
+      white-space: nowrap;
+    }
+    .progress-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .progress-track {
+      width: min(140px, 22vw);
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.12);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--cyan), #2db1c7);
+      transition: width 0.25s ease;
+    }
+    .progress-text {
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: #2e332f;
+      min-width: 32px;
+      text-align: right;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 7px var(--pad);
+      border-top: 1px solid var(--line);
+      background: rgba(250,248,244,0.96);
+      z-index: 10;
+      font-size: 0.78rem;
+      color: #403b33;
+      flex-wrap: wrap;
+    }
+    .footer > span:first-child { flex: 1; min-width: 0; }
+
+    .nav {
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .nav button {
+      border: 1px solid rgba(0,0,0,0.18);
+      border-radius: 9px;
+      background: rgba(255,255,255,0.92);
+      color: #1f1b17;
+      font: inherit;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 7px 14px;
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.12s;
+    }
+    .nav button:active { background: rgba(0,0,0,0.08); }
+    .nav button.primary {
+      background: #15455b;
+      color: #fff;
+      border-color: transparent;
+    }
+    .nav button.primary:active { background: #0e3445; }
+
+    .stage {
+      position: relative;
+      overflow: hidden;
+      min-height: 0;
+      background:
+        radial-gradient(circle at 4% 95%, rgba(79,106,72,0.08), transparent 30%),
+        radial-gradient(circle at 96% 90%, rgba(99,75,127,0.06), transparent 30%);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(2%);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      padding: var(--pad);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0);
+    }
+
+    .tag {
+      width: fit-content;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.14);
+      background: rgba(255,255,255,0.84);
+      padding: 4px 10px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      color: #303a35;
+      flex-shrink: 0;
+    }
+    .tag.cyan  { background: rgba(28,96,121,0.12); color: var(--cyan);  border-color: rgba(28,96,121,0.25); }
+    .tag.brick { background: rgba(181,82,52,0.12); color: var(--brick); border-color: rgba(181,82,52,0.25); }
+    .tag.olive { background: rgba(79,106,72,0.12); color: var(--olive); border-color: rgba(79,106,72,0.25); }
+    .tag.plum  { background: rgba(99,75,127,0.12); color: var(--plum);  border-color: rgba(99,75,127,0.25); }
+    .tag.amber { background: rgba(181,140,52,0.12); color: var(--amber); border-color: rgba(181,140,52,0.25); }
+
+    .main {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+      min-height: 0;
+    }
+    .title {
+      font-family: "Bodoni 72","Didot","Times New Roman",serif;
+      font-size: clamp(1.6rem, 3.2vw, 3.2rem);
+      line-height: 1;
+      max-width: 20ch;
+      text-wrap: balance;
+    }
+    .subtitle {
+      max-width: 68ch;
+      font-size: clamp(1.02rem, 1.25vw, 1.3rem);
+      line-height: 1.5;
+      color: #302d28;
+    }
+
+    .cols {
+      display: grid;
+      grid-template-columns: 1.15fr 0.9fr;
+      gap: 12px;
+      align-items: start;
+    }
+    .cols-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+    .cols-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+    .auto-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      align-items: start;
+    }
+
+    .card {
+      border: 1px solid rgba(0,0,0,0.13);
+      border-radius: 12px;
+      background: var(--panel);
+      padding: 16px 20px;
+      display: grid;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .card.cyan  { background: rgba(28,96,121,0.06); border-color: rgba(28,96,121,0.2); }
+    .card.brick { background: rgba(181,82,52,0.06); border-color: rgba(181,82,52,0.2); }
+    .card.olive { background: rgba(79,106,72,0.07); border-color: rgba(79,106,72,0.2); }
+    .card.plum  { background: rgba(99,75,127,0.06); border-color: rgba(99,75,127,0.2); }
+    .card.amber { background: rgba(181,140,52,0.06); border-color: rgba(181,140,52,0.2); }
+    .card h3 {
+      margin: 0;
+      font-size: clamp(1.04rem, 1.32vw, 1.34rem);
+      line-height: 1.22;
+    }
+    .card p {
+      margin: 0;
+      font-size: clamp(0.96rem, 1.08vw, 1.14rem);
+      line-height: 1.48;
+      color: #35322d;
+    }
+    .list {
+      margin: 0;
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 7px;
+      font-size: clamp(0.96rem, 1.08vw, 1.12rem);
+      line-height: 1.42;
+    }
+    .micro {
+      font-size: 0.9rem;
+      color: #555049;
+    }
+
+    .hl {
+      background: rgba(181,140,52,0.12);
+      border-left: 4px solid var(--amber);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      font-size: clamp(1rem, 1.14vw, 1.18rem);
+      line-height: 1.46;
+      color: #2a2620;
+      font-style: italic;
+    }
+    .page-ref {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .doc-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .doc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.14);
+      background: rgba(255,255,255,0.86);
+      color: #25211d;
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+    .doc-link:hover {
+      background: rgba(28,96,121,0.1);
+      border-color: rgba(28,96,121,0.25);
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .hero-meta .card p {
+      font-size: 0.98rem;
+    }
+
+    .topic-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .topic-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.14);
+      background: rgba(255,255,255,0.86);
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .image-frame {
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.7);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .image-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .timeline-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+    .timeline-list li {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(0,0,0,0.12);
+      font-size: 0.96rem;
+      line-height: 1.4;
+    }
+    .timeline-list strong {
+      color: var(--brick);
+      margin-right: 6px;
+    }
+
+    .embed-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+    .embed-card {
+      border: 1px solid rgba(0,0,0,0.13);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--panel);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .embed-card iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      background: #ddd7cf;
+    }
+    .embed-copy {
+      padding: 14px 16px 16px;
+      display: grid;
+      gap: 8px;
+    }
+    .embed-copy h3 {
+      font-size: 1.02rem;
+      line-height: 1.22;
+    }
+    .embed-copy p {
+      font-size: 0.96rem;
+      line-height: 1.45;
+      color: #35322d;
+    }
+
+    .closing-box {
+      border: 2px solid var(--ink);
+      border-radius: 12px;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.82);
+      font-family: "Bodoni 72","Didot","Times New Roman",serif;
+      font-size: clamp(1.08rem, 1.28vw, 1.32rem);
+      line-height: 1.45;
+    }
+
+    @media (min-width: 769px) {
+      body { padding: 8px; }
+      .deck {
+        max-width: 1400px;
+        height: calc(100dvh - 16px);
+        border-radius: 14px;
+        border: 1px solid rgba(0,0,0,0.2);
+        box-shadow: var(--shadow);
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root { --pad: 14px; }
+      body { padding: 0; }
+      .deck {
+        width: 100%;
+        height: 100dvh;
+        border-radius: 0;
+      }
+      .brand span:last-child { display: none; }
+      .context { font-size: 0.68rem; padding: 4px 8px; }
+      .topbar { padding: 6px 10px; gap: 6px; }
+      .footer {
+        padding: 6px 10px;
+        font-size: 0.74rem;
+        gap: 4px;
+      }
+      .footer > span:first-child { display: none; }
+      .nav button { padding: 8px 16px; font-size: 0.85rem; }
+      .cols, .cols-3, .cols-4, .embed-grid { grid-template-columns: 1fr !important; }
+      .slide { padding: 12px; gap: 10px; }
+      .title { font-size: clamp(1.35rem, 5.5vw, 1.9rem); max-width: none; }
+      .subtitle { font-size: 0.92rem; }
+      .card { padding: 12px 14px; }
+      .card h3 { font-size: 1.02rem; }
+      .card p  { font-size: 0.96rem; }
+      .hl { padding: 10px 12px; font-size: 0.96rem; }
+      .closing-box { padding: 12px 14px; font-size: 1rem; }
+    }
+
+    @media (max-width: 420px) {
+      .progress-track { width: 60px; }
+      .slide { padding: 10px; gap: 8px; }
+      .title { font-size: clamp(1.2rem, 6vw, 1.6rem); }
+      .card { padding: 8px 10px; border-radius: 10px; }
+    }
+
+    @media (max-height: 500px) and (orientation: landscape) {
+      .topbar { padding: 4px 10px; }
+      .footer { padding: 4px 10px; }
+      .slide { padding: 8px 14px; gap: 6px; }
+      .title { font-size: clamp(1rem, 3vw, 1.6rem); }
+    }
+  </style>
+</head>
+<body>
+<div class="deck" id="deck">
+  <header class="topbar">
+    <a href="../index.html" class="back-btn" title="Volver al índice del curso">← Inicio</a>
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span>Globalización y Empleo · Presentación semanal</span>
+    </div>
+    <div class="context">10 mar 2026</div>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">1/18</div>
+    </div>
+  </header>
+
+  <main class="stage">
+    <section class="slide active" data-slide>
+      <p class="tag">Presentación semanal</p>
+      <div class="main" style="justify-content:center;">
+        <h1 class="title">Trabajo, deuda y globalización</h1>
+        <p class="subtitle">Lectura 2 subrayada + glosario estudiantil + controles + Walter Benjamin + mapa cognitivo de la clase 5. Una sola presentación para trabajar esta semana.</p>
+        <div class="hero-meta">
+          <div class="card cyan">
+            <h3>Lectura 2</h3>
+            <p>Tus marcas concentran la atención en la construcción política del capitalismo, la transición al capital financiero, la deuda, el papel del Estado y la heterogeneidad de los modelos laborales.</p>
+          </div>
+          <div class="card brick">
+            <h3>Voces del grupo</h3>
+            <p>El glosario y una muestra amplia de controles repiten cuatro preocupaciones: financiarización, flexibilidad/precarización, pérdida de protección y nuevas subjetividades laborales.</p>
+          </div>
+          <div class="card olive">
+            <h3>Benjamin</h3>
+            <p><em>El capitalismo como religión</em> añade una clave fuerte para leer culpa, deuda, disciplina y el “culto” permanente de la productividad.</p>
+          </div>
+          <div class="card plum">
+            <h3>Clase 5</h3>
+            <p>El mapa cognitivo sirve como bisagra: preguntas guía, cronología mínima, enfoque epistemológico/ontológico y agenda temática para lo que sigue.</p>
+          </div>
+        </div>
+        <div class="doc-links">
+          <a class="doc-link" href="../actividades/actividad2_10marzo26/lectura2_GyE_2023_2.pdf">Lectura 2 PDF</a>
+          <a class="doc-link" href="../actividades/actividad2_10marzo26/benjamin_capitalismoReligion.pdf">Benjamin PDF</a>
+          <a class="doc-link" href="../glosario/Glosarios%20%7C%20Negocios%20Internacionales.pdf">Glosario PDF</a>
+          <a class="doc-link" href="../whiteboards/GyE_Clase5.pdf">GyE_Clase5.pdf</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag olive">Ruta de trabajo</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">Cómo está organizada la clase</h2>
+        <div class="auto-grid">
+          <div class="card">
+            <h3>1. Lectura subrayada</h3>
+            <p>Vamos a empezar por lo que marcaste en el texto: qué cambia en el paso del capitalismo industrial al financiarizado y por qué eso reordena empleo, derechos y Estado.</p>
+          </div>
+          <div class="card">
+            <h3>2. Lo que entendió el grupo</h3>
+            <p>Después entramos a glosario y controles para identificar cómo los estudiantes tradujeron esas ideas a conceptos, ejemplos y experiencias cotidianas.</p>
+          </div>
+          <div class="card">
+            <h3>3. Benjamin como lente</h3>
+            <p>El ensayo de Walter Benjamin funciona como comentario crítico: culpa, deuda, culto permanente y subjetividad neoliberal.</p>
+          </div>
+          <div class="card">
+            <h3>4. Clase 5</h3>
+            <p>El mapa cognitivo organiza las preguntas y los ejes de observación para no quedarse solo en “definiciones”, sino pasar a problemas concretos.</p>
+          </div>
+          <div class="card">
+            <h3>5. Cuatro videos</h3>
+            <p>Al final quedan embebidos para usarlos durante esta semana con preguntas de discusión ya preparadas dentro del deck.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag amber">Lectura 2 · tus subrayados</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">Qué priorizan tus marcas</h2>
+        <div class="cols">
+          <div style="display:grid; gap:10px;">
+            <div>
+              <p class="page-ref">Página 14</p>
+              <div class="hl">Las sociedades capitalistas actuales no son un orden “natural”: son <strong>campos políticamente construidos</strong>, sostenidos por dispositivos institucionales y culturales.</div>
+            </div>
+            <div>
+              <p class="page-ref">Página 16</p>
+              <div class="hl">El capital arraiga en contextos no capitalistas y sustituye costumbres y vínculos comunitarios por <strong>relaciones comerciales, contratos y cálculo económico</strong>.</div>
+            </div>
+          </div>
+          <div class="card olive">
+            <h3>Comentario / síntesis</h3>
+            <ul class="list">
+              <li>El punto de partida del capítulo no es “cómo funciona el mercado”, sino <strong>quién construyó las reglas</strong> con las que ese mercado opera.</li>
+              <li>Por eso la lectura no separa economía, política y cultura: las relaciones laborales se entienden como <strong>resultado histórico</strong>, no como efecto automático.</li>
+              <li>Tus subrayados van directo al nervio del libro: <strong>desnaturalizar</strong> el capitalismo para volver visibles sus decisiones, conflictos y exclusiones.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag amber">Lectura 2 · transición histórica</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">Del capitalismo industrial al financiarizado</h2>
+        <div class="cols">
+          <div class="card cyan">
+            <h3>Capitalismo industrial</h3>
+            <ul class="list">
+              <li>Producción material, fábrica y trabajo asalariado como ejes visibles del orden social.</li>
+              <li>La expansión industrial vuelve posible, con conflictos y límites, formas de regulación estatal y bienestar.</li>
+              <li>El empleo conserva centralidad política y simbólica.</li>
+            </ul>
+          </div>
+          <div class="card brick">
+            <h3>Capitalismo financiarizado</h3>
+            <ul class="list">
+              <li>Crédito, deuda, especulación y rentabilidad de corto plazo desplazan el centro de gravedad del sistema.</li>
+              <li>La lectura subraya volatilidad, burbujas y pérdida de soberanía económica de los Estados.</li>
+              <li>La innovación ya no aparece solo como mejora productiva, sino como <strong>destrucción creativa</strong> que rompe arreglos previos.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="auto-grid">
+          <div>
+            <p class="page-ref">Página 12</p>
+            <div class="hl">El corto plazo y la explosión de burbujas financieras aparecen como efecto estructural, no como accidente externo.</div>
+          </div>
+          <div>
+            <p class="page-ref">Página 17</p>
+            <div class="hl">La deuda se vuelve “motor económico y subjetivo” del capitalismo financiero.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag amber">Lectura 2 · subjetividad</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">La deuda reorganiza el trabajo y la vida</h2>
+        <div class="auto-grid">
+          <div class="card plum">
+            <h3>Promesa + culpa</h3>
+            <p>En la página 18 la deuda ya no es solo un tema financiero: organiza subjetividades. Al par “esfuerzo-recompensa” se agrega la promesa de pagar y la culpa de deber.</p>
+          </div>
+          <div class="card olive">
+            <h3>Nuevo espíritu del capitalismo</h3>
+            <p>Autonomía, creatividad y libertad no desaparecen: son absorbidas por la lógica neoliberal y puestas al servicio de la flexibilización.</p>
+          </div>
+          <div class="card brick">
+            <h3>Empresario de sí mismo</h3>
+            <p>Los subrayados sobre minijobs y empleo atípico muestran una mutación clave: el trabajador se vuelve responsable individual de riesgos que antes eran más colectivos.</p>
+          </div>
+        </div>
+        <div class="hl">El punto fino del capítulo es este: la financiarización no solo cambia inversiones; <strong>cambia la forma en que las personas se piensan, se culpan y aceptan precariedad</strong>.</div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag amber">Lectura 2 · Estado y bienestar</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">Estado, bienestar y conflicto social</h2>
+        <div class="auto-grid">
+          <div class="card">
+            <h3>El mercado necesita Estado</h3>
+            <p>Las páginas 19 y 20 insisten en que el mercado no existe sin autoridad pública, reglas e instituciones. El Estado no está fuera del capitalismo: ayuda a construirlo.</p>
+          </div>
+          <div class="card">
+            <h3>La excepción keynesiana</h3>
+            <p>La etapa fordista-keynesiana aparece como una <strong>excepcionalidad histórica</strong> del siglo XX, no como la forma “normal” del capitalismo.</p>
+          </div>
+          <div class="card">
+            <h3>Bienestar y redistribución</h3>
+            <p>En la página 21 se marca una idea fuerte: pleno empleo, eficiencia económica y bienestar social fueron pensados como objetivos interdependientes.</p>
+          </div>
+          <div class="card">
+            <h3>Consenso y corporativización</h3>
+            <p>La página 22 muestra cómo el conflicto de clase se canaliza al Estado y a la negociación. No desaparece: cambia de forma.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag amber">Lectura 2 · comparación</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">No existe un solo capitalismo</h2>
+        <div class="cols">
+          <div style="display:grid; gap:10px;">
+            <div>
+              <p class="page-ref">Páginas 24–25</p>
+              <div class="hl">El capitalismo ofrece significados distintos según los contextos y es demasiado heterogéneo para reducirlo a una formulación universal.</div>
+            </div>
+            <div>
+              <p class="page-ref">Páginas 26–27</p>
+              <div class="hl">No hay convergencia automática: las presiones globales coexisten con <strong>diferencias institucionales persistentes</strong> entre países.</div>
+            </div>
+          </div>
+          <div class="card olive">
+            <h3>Comentario / síntesis</h3>
+            <ul class="list">
+              <li>La comparación sirve porque globalización no equivale a homogeneización total.</li>
+              <li>Los “tipos” de capitalismo son modelos analíticos, no copias perfectas de la realidad.</li>
+              <li>Tus subrayados cierran en un punto metodológico muy claro: hay que leer articulaciones históricas concretas entre Estado, instituciones, cultura política y trabajo.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag brick">Insight desde los controles</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">Qué apareció repetidamente en los controles</h2>
+        <div class="auto-grid">
+          <div class="card brick">
+            <h3>La crisis de 2008 no fue leída como accidente</h3>
+            <p>En varias entregas la Gran Recesión aparece como oportunidad histórica para debilitar la centralidad del trabajo y reordenar derechos sociales. Esto se repite en Sofía, Mateo, Diego y Carlos.</p>
+          </div>
+          <div class="card plum">
+            <h3>La deuda se entendió como control moral</h3>
+            <p>Alexander y Axel captan muy bien la dimensión subjetiva: deuda, culpa y obligación de rendimiento. El sistema no solo cobra; también hace sentir que descansar es fallar.</p>
+          </div>
+          <div class="card olive">
+            <h3>Flexibilidad = ambivalencia</h3>
+            <p>Óscar reconoce que la flexibilidad puede aparecer como adaptación empresarial, pero la mayoría de los textos la conecta más con precarización, minijobs y traslado del riesgo al individuo.</p>
+          </div>
+          <div class="card cyan">
+            <h3>Se tradujo la teoría a la vida cotidiana</h3>
+            <p>Varios controles no se quedaron en conceptos abstractos: hablaron de culpa por no ser productivos, de presión por “emprenderse” y de cómo el trabajador deja de verse como ciudadano con derechos.</p>
+          </div>
+        </div>
+        <p class="micro">Muestra revisada: 15 controles del folder <em>Transformaciones contemporáneas de las relaciones de empleo [Control 3]</em>.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag cyan">Glosario estudiantil I</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">Capital, empleo y protección social</h2>
+        <div class="auto-grid">
+          <div class="card">
+            <h3>Capitalismo industrial</h3>
+            <p><strong>Zoey Atenco</strong> lo trabaja como ruptura con el orden artesanal y base histórica del trabajo asalariado, la fábrica y la posterior protección social.</p>
+          </div>
+          <div class="card">
+            <h3>Capitalismo financiarizado</h3>
+            <p><strong>Carlos Eibar</strong> lo define como etapa donde deuda, crédito y especulación pesan más que la producción material.</p>
+          </div>
+          <div class="card">
+            <h3>Desmercantilización</h3>
+            <p><strong>Mateo Hidalgo</strong> la entiende como autonomía frente al mercado cuando salud, pensiones o bienestar no dependen por completo del salario.</p>
+          </div>
+          <div class="card">
+            <h3>Remercantilización</h3>
+            <p><strong>Eric Rosales</strong> subraya el retorno del trabajo a condición de simple mercancía y el traslado del riesgo al trabajador.</p>
+          </div>
+          <div class="card">
+            <h3>Flexiguridad</h3>
+            <p><strong>Jorge Cardiel</strong> la formula como intento de combinar adaptación empresarial y seguridad, abriendo la pregunta: <strong>¿quién absorbe la incertidumbre?</strong></p>
+          </div>
+        </div>
+        <div class="hl">El glosario muestra algo útil para clase: el grupo ya no está pensando solo en “empleos”, sino en <strong>formas de protección, riesgo y regulación</strong>.</div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag cyan">Glosario estudiantil II</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">Escalas, conciencia global y riesgo</h2>
+        <div class="auto-grid">
+          <div class="card olive">
+            <h3>Globalidad</h3>
+            <p><strong>Carlos Eibar</strong> distingue proceso y condición: la globalidad sería un horizonte de interconexión intensa, no algo ya concluido.</p>
+          </div>
+          <div class="card plum">
+            <h3><em>Global imaginary</em></h3>
+            <p><strong>Eric Rosales</strong> resalta la dimensión subjetiva de la globalización: cambia cómo imaginamos comunidad, pertenencia y competencia.</p>
+          </div>
+          <div class="card amber">
+            <h3>Scalography</h3>
+            <p><strong>Carlos Eibar</strong> recuerda que “lo global” y “lo local” no son escalas obvias; hay que estudiar cómo se construyen en prácticas y objetos concretos.</p>
+          </div>
+          <div class="card brick">
+            <h3><em>Systemic global risk</em></h3>
+            <p><strong>Gretel Rojas</strong> pone el foco en amenazas interconectadas capaces de desestabilizar varios sistemas a la vez.</p>
+          </div>
+        </div>
+        <div class="card cyan">
+          <h3>Insight general</h3>
+          <p>El glosario amplía bien la discusión: globalización no es solo comercio o finanzas. También es conciencia, escala, método y riesgo sistémico.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag plum">Walter Benjamin</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">Cuatro tesis rápidas de <em>El capitalismo como religión</em></h2>
+        <div class="cols-4">
+          <div class="card plum">
+            <h3>1. Es una religión</h3>
+            <p>Benjamin no dice solo que el capitalismo venga de lo religioso: afirma que <strong>funciona él mismo como religión</strong>.</p>
+          </div>
+          <div class="card plum">
+            <h3>2. Es puro culto</h3>
+            <p>No necesita gran teología. Lo decisivo es la práctica continua, el ritual, la obediencia cotidiana.</p>
+          </div>
+          <div class="card plum">
+            <h3>3. No descansa</h3>
+            <p>Es un culto permanente, sin tregua. No hay verdadero “día fuera” del circuito de rendimiento, deuda y consumo.</p>
+          </div>
+          <div class="card plum">
+            <h3>4. Produce culpa/deuda</h3>
+            <p>Su rasgo más filoso: en vez de expiar la culpa, la reproduce. En alemán, la ambigüedad de <em>Schuld</em> junta culpa y deuda.</p>
+          </div>
+        </div>
+        <div class="hl">La frase clave para llevar al aula: el capitalismo sería un culto que no redime, sino que <strong>intensifica la deuda y la desesperación</strong>.</div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag plum">Walter Benjamin · comentario</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">Por qué Benjamin dialoga tan bien con la lectura 2</h2>
+        <div class="cols">
+          <div class="card brick">
+            <h3>Lo que añade</h3>
+            <ul class="list">
+              <li>Pone nombre a algo que en Brunet et al. aparece empíricamente: la deuda no es solo mecanismo económico, sino dispositivo moral.</li>
+              <li>Ayuda a leer la productividad como ritual, no solo como exigencia empresarial.</li>
+              <li>Hace visible la dimensión afectiva del neoliberalismo: ansiedad, culpa, autoexplotación.</li>
+            </ul>
+          </div>
+          <div style="display:grid; gap:10px;">
+            <div class="card olive">
+              <h3>Puente con la clase</h3>
+              <p>Si la lectura 2 mostró que el trabajador tiende a convertirse en “empresario de sí mismo”, Benjamin ayuda a ver la forma casi litúrgica de esa obediencia: evaluación constante, disponibilidad y deuda permanente.</p>
+            </div>
+            <div class="card amber">
+              <h3>Pregunta útil para discusión</h3>
+              <p>¿Cuáles son hoy los rituales de ese culto? Puntaje crediticio, pago mínimo, marca personal, empleabilidad, productividad, estar siempre “haciendo algo”.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag olive">Mapa cognitivo · clase 5</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">Las preguntas que organizan la clase 5</h2>
+        <div class="cols">
+          <div class="card olive">
+            <ol class="list">
+              <li>¿Qué acontecimientos cambian el rumbo de la globalización?</li>
+              <li>¿Cuáles son sus “olas” y cómo periodizarla sin simplificar?</li>
+              <li>¿Es proceso, condición, sistema, fuerza o época?</li>
+              <li>¿Qué diferencia hay entre <em>globalization</em>, <em>globality</em> y <em>globalism</em>?</li>
+              <li>¿Las crisis fortalecen interdependencia o frenan el impulso globalizador?</li>
+            </ol>
+          </div>
+          <div class="image-frame">
+            <img src="../img/mapa-clase5/header.jpeg" alt="Cabecera del mapa cognitivo de la clase 5" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag olive">Mapa cognitivo · cronología</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">Cronología mínima para no pensar la globalización en abstracto</h2>
+        <div class="cols">
+          <div>
+            <ul class="timeline-list">
+              <li><strong>1919</strong> OIT / ILO</li>
+              <li><strong>1945–1947</strong> ONU y GATT</li>
+              <li><strong>1994–1995</strong> NAFTA y OMC</li>
+              <li><strong>2001</strong> China en la OMC y 9/11</li>
+              <li><strong>2008–2009</strong> Crisis financiera global</li>
+              <li><strong>2020</strong> TMEC y Covid-19</li>
+              <li><strong>2022–2024</strong> Ucrania, nueva etapa del conflicto israelí-palestino y elecciones en EUA</li>
+            </ul>
+          </div>
+          <div class="image-frame">
+            <img src="../img/mapa-clase5/timeline_infographic.png" alt="Infografía con la línea del tiempo del mapa cognitivo" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag olive">Mapa cognitivo · ejes</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">Cómo mirar la globalización en la clase 5</h2>
+        <div class="cols-3">
+          <div class="card plum">
+            <h3>Epistemología</h3>
+            <p>Pregunta por el <strong>cómo conocemos</strong>. No basta nombrar el objeto; hay que revisar desde qué categorías, disciplinas y escalas lo observamos.</p>
+          </div>
+          <div class="card cyan">
+            <h3>Ontología</h3>
+            <p>Empuja a pensar la globalización como sistema complejo: no lineal, asimétrico y con causalidades múltiples.</p>
+          </div>
+          <div class="card amber">
+            <h3>Temas a seguir</h3>
+            <div class="topic-cloud">
+              <span class="topic-pill">Geopolítica</span>
+              <span class="topic-pill">Cadenas de suministro</span>
+              <span class="topic-pill">Crisis</span>
+              <span class="topic-pill">Precariedad</span>
+              <span class="topic-pill">Offshoring</span>
+              <span class="topic-pill">OIT</span>
+              <span class="topic-pill">Ganadores / perdedores</span>
+              <span class="topic-pill">Decoupling</span>
+            </div>
+          </div>
+        </div>
+        <div class="hl">El mapa cognitivo es útil porque obliga a pasar de la definición general a una <strong>agenda de problemas concretos</strong>.</div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag brick">Videos recomendados</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">Videos 1 y 2 para esta semana</h2>
+        <div class="embed-grid">
+          <article class="embed-card">
+            <iframe src="https://www.youtube.com/embed/oYusbzayH4c" title="¿Qué es el trabajo? Trabajo, salario, beneficio 1 ARTE" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="embed-copy">
+              <h3>¿Qué es el trabajo? Trabajo, salario, beneficio 1</h3>
+              <p>Sirve para abrir el bloque entero: qué entendemos por trabajo, cómo se forma la relación salario-beneficio y por qué esa relación no es neutral.</p>
+              <p class="micro">Marcelo Vega · ID: <code>oYusbzayH4c</code></p>
+            </div>
+          </article>
+          <article class="embed-card">
+            <iframe src="https://www.youtube.com/embed/9rvq1AR3nRo" title="Madagascar: la mano de obra barata de la IA" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="embed-copy">
+              <h3>Madagascar: la mano de obra barata de la IA</h3>
+              <p>Excelente para mostrar que la economía “digital” sigue dependiendo de trabajo físico, barato y globalmente desigual. Dialoga muy bien con precarización y cadenas globales.</p>
+              <p class="micro">ARTE.tv Documentales · ID: <code>9rvq1AR3nRo</code></p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide>
+      <p class="tag brick">Videos recomendados</p>
+      <div class="main">
+        <h2 class="title" style="max-width:none;">Videos 3 y 4 + cierre</h2>
+        <div class="embed-grid">
+          <article class="embed-card">
+            <iframe src="https://www.youtube.com/embed/Zg324Sb6Pl0" title="Pobres a pesar de trabajar" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="embed-copy">
+              <h3>Pobres a pesar de trabajar</h3>
+              <p>Es el puente más directo con remercantilización, minijobs y trabajador pobre: tener empleo ya no garantiza bienestar ni protección social suficiente.</p>
+              <p class="micro">ARTE.tv Documentales · ID: <code>Zg324Sb6Pl0</code></p>
+            </div>
+          </article>
+          <article class="embed-card">
+            <iframe src="https://www.youtube.com/embed/lFdvbf9bomM" title="Why 'Metropolis', Fritz Lang's Silent Movie, Still Defines Sci-Fi 100 Years Later" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="embed-copy">
+              <h3>Why <em>Metropolis</em> Still Defines Sci-Fi 100 Years Later</h3>
+              <p>Úsalo como cierre cultural: trabajo, máquinas, jerarquía y ciudad industrial. Permite volver de la teoría a una imagen clásica del conflicto entre técnica, capital y cuerpos.</p>
+              <p class="micro">DW History and Culture · ID: <code>lFdvbf9bomM</code></p>
+            </div>
+          </article>
+        </div>
+        <div class="closing-box">Idea de cierre para la semana: <strong>si el trabajo se reorganiza por deuda, flexibilidad y competencia global, entonces estudiar globalización exige mirar a la vez instituciones, escalas, subjetividades y conflicto social</strong>.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Fuentes base: Brunet, Pizzi y Moral · glosario y controles del grupo · Walter Benjamin · mapa cognitivo de clase 5</span>
+    <span id="footerDate">10 mar 2026</span>
+    <div class="nav">
+      <button id="prevBtn" type="button">Anterior</button>
+      <button id="nextBtn" type="button" class="primary">Siguiente</button>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  const slides = Array.from(document.querySelectorAll('[data-slide]'));
+  const progressFill = document.getElementById('progressFill');
+  const progressText = document.getElementById('progressText');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const footerDate = document.getElementById('footerDate');
+  let index = 0;
+
+  function setSlide(next) {
+    index = Math.max(0, Math.min(next, slides.length - 1));
+    slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+    const pct = ((index + 1) / slides.length) * 100;
+    if (progressFill) progressFill.style.width = pct + '%';
+    if (progressText) progressText.textContent = (index + 1) + '/' + slides.length;
+  }
+
+  function updateDate() {
+    if (!footerDate) return;
+    footerDate.textContent = new Date().toLocaleString('es-MX', {
+      weekday: 'short',
+      day: '2-digit',
+      month: 'short',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', function () { setSlide(index - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { setSlide(index + 1); });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowRight' || event.key === 'PageDown') setSlide(index + 1);
+    if (event.key === 'ArrowLeft' || event.key === 'PageUp') setSlide(index - 1);
+  });
+
+  let startX = 0;
+  let startY = 0;
+  const stage = document.querySelector('.stage');
+  if (stage) {
+    stage.addEventListener('touchstart', function (event) {
+      startX = event.touches[0].clientX;
+      startY = event.touches[0].clientY;
+    }, { passive: true });
+
+    stage.addEventListener('touchend', function (event) {
+      const dx = event.changedTouches[0].clientX - startX;
+      const dy = event.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        if (dx < 0) setSlide(index + 1);
+        else setSlide(index - 1);
+      }
+    }, { passive: true });
+  }
+
+  updateDate();
+  setInterval(updateDate, 30000);
+  setSlide(0);
+})();
+</script>
+</body>
+</html>
