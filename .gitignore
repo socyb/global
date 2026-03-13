@@ -32,3 +32,14 @@ pizarrones/*.png
 # Class submission and reading folders
 /controles/
 /lecturas/
+
+# Local-only source material not used by the published site
+/yt-backups/
+/glosario/*/
+/sesiones/24feb26/*.csv
+/sesiones/24feb26/*.xml
+/foro_noticias/*_discussion.json
+/pizarrones/*.dot
+/cap-glob-old.html
+/actividades/enunciados_marcados_introduction_GlobalizationInPractice.md
+/actividades/transcripcion_digital_world_and_us_25feb26.txt

@@ -6,7 +6,7 @@
 ## Acerca de este repositorio
 
 Este repositorio aloja la página web complementaria del curso **Globalización y Empleo** (semestre 2026-2, FCA UNAM).  
-Funciona como apoyo a Moodle con sesiones, actividades, materiales y transcripciones de video.
+Funciona como apoyo a Moodle con sesiones, actividades y materiales publicados.
 
 Sitio: [https://socyb.github.io/global/](https://socyb.github.io/global/)
 
@@ -26,12 +26,14 @@ global/
 │   ├── sesion-02.html
 │   ├── video-trump-tariffs.html
 │   ├── video-40-horas-fraude.html
-│   └── 24feb26/                       # Insumos de sesión específica
+│   └── ...otros HTML de clase
 ├── actividades/                       # Actividades HTML y materiales de trabajo en clase
 │   ├── actividad_video_digital_world_and_us_25feb26.html
 │   ├── presentacion_globalization_v2.html
 │   ├── panorama_aportes_24feb26.html
 │   └── ...otros HTML/MD de apoyo
+├── foro_noticias/                     # Visualización pública del foro
+├── recortes_noticias/                 # Imágenes usadas en presentaciones públicas
 ├── recursos/                          # Datos procesados para consulta en páginas
 │   └── videos/
 │       └── 40-horas-fraude-idNoLfrMw1g/
@@ -43,11 +45,6 @@ global/
 │           ├── comments_export.txt
 │           ├── comments_transcript.txt
 │           └── mood_summary.json
-├── yt-backups/                        # Respaldos (yt-dlp) por video
-│   ├── backup.py
-│   ├── Trump Alternatives .../
-│   ├── The Digital World and Us .../
-│   └── Así funciona el FRAUDE .../
 ├── pizarrones/                        # Diagramas DOT/SVG
 ├── lecturas/                          # Materiales de lectura
 └── controles/                         # Entregas y archivos de control académico
@@ -58,7 +55,15 @@ global/
 - `sesiones/`: solo páginas HTML publicables para clase.
 - `actividades/`: actividades y páginas de trabajo didáctico.
 - `recursos/videos/<slug-id>/`: salida limpia y versionable por video (metadata, transcripciones, comentarios, mood).
-- `yt-backups/`: fuentes y transcripciones de respaldo.
+
+## Material local no publicado
+
+Se mantiene fuera del repositorio todo lo que no interviene en la versión final del sitio. Ejemplos:
+
+- respaldos crudos en `yt-backups/`
+- entregas intermedias en `glosario/*/`
+- fuentes auxiliares como `sesiones/24feb26/*.csv` y `sesiones/24feb26/*.xml`
+- borradores y fuentes de trabajo como `cap-glob-old.html`, `pizarrones/*.dot` y algunos `.md` o `.txt` de apoyo
 
 ## Tecnologías
 
