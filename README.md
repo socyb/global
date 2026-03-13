@@ -18,8 +18,6 @@ global/
 ├── css/                               # Estilos globales y de sesiones
 │   ├── styles.css
 │   └── session.css
-├── js/                                # Scripts del sitio
-│   └── counter.js
 ├── img/                               # Íconos y recursos gráficos
 ├── sesiones/                          # Páginas de sesión y análisis de videos
 │   ├── sesion-01.html
