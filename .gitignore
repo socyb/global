@@ -11,6 +11,9 @@ neoacademicbrutalism.html
 # Video files
 *.mp4
 
+# Python scripts
+*.py
+
 # Python virtual environment
 .venv/
 

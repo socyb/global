@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trabajo, deuda y globalización</title>
+  <style>
+    :root {
+      --bg: #fafaf7;
+      --ink: #111;
+      --muted: #555;
+      --red: #e63946;
+      --blue: #1d3557;
+      --teal: #2a9d8f;
+      --amber: #e9c46a;
+      --coral: #f4845f;
+      --plum: #6c3d7a;
+      --border: 3px solid var(--ink);
+      --shadow: 6px 6px 0 var(--ink);
+      --radius: 14px;
+      --pad: clamp(14px, 3vw, 32px);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    html { height: 100%; -webkit-text-size-adjust: 100%; }
+    body {
+      height: 100%;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+
+    /* ── deck layout ── */
+    .deck {
+      width: 100%; height: 100dvh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      overflow: hidden;
+    }
+
+    /* ── topbar ── */
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px var(--pad);
+      border-bottom: var(--border);
+      background: #fff;
+      gap: 8px; flex-wrap: wrap;
+    }
+    .brand {
+      font-weight: 900; font-size: 0.82rem;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center;
+      font-size: 0.78rem; font-weight: 800;
+      color: var(--ink); text-decoration: none;
+      padding: 4px 12px;
+      border: 2px solid var(--ink); border-radius: 999px;
+      background: #fff;
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .back-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+    .pill {
+      display: inline-block;
+      border: 2px solid var(--ink); border-radius: 999px;
+      padding: 3px 10px; font-size: 0.72rem; font-weight: 800;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      background: var(--amber);
+    }
+    .progress-wrap {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .progress-track {
+      width: min(120px, 20vw); height: 8px;
+      border: 2px solid var(--ink); border-radius: 999px;
+      background: #fff; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; width: 0;
+      background: var(--teal);
+      transition: width 0.3s ease;
+    }
+    .progress-text {
+      font-size: 0.78rem; font-weight: 900;
+      min-width: 36px; text-align: right;
+    }
+
+    /* ── footer nav ── */
+    .footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px var(--pad);
+      border-top: var(--border);
+      background: #fff;
+      gap: 8px; flex-wrap: wrap;
+    }
+    .footer-info {
+      font-size: 0.76rem; font-weight: 700; color: var(--muted);
+    }
+    .nav { display: flex; gap: 8px; }
+    .nav button {
+      font: inherit; font-weight: 800; font-size: 0.88rem;
+      padding: 10px 20px;
+      border: var(--border); border-radius: 12px;
+      background: #fff; cursor: pointer;
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform 0.1s, box-shadow 0.1s;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .nav button:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+    .nav button.primary {
+      background: var(--blue); color: #fff;
+    }
+
+    /* ── slides ── */
+    .stage {
+      position: relative; overflow: hidden;
+    }
+    .slide {
+      position: absolute; inset: 0;
+      opacity: 0; pointer-events: none;
+      transform: translateX(3%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      padding: var(--pad);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      display: flex; flex-direction: column;
+      gap: 16px;
+    }
+    .slide.active {
+      opacity: 1; pointer-events: auto;
+      transform: translateX(0);
+    }
+
+    /* ── typography ── */
+    .tag {
+      display: inline-block; width: fit-content;
+      border: 2px solid var(--ink); border-radius: 999px;
+      padding: 4px 12px; font-size: 0.7rem;
+      font-weight: 900; text-transform: uppercase;
+      letter-spacing: 0.08em;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+    .tag.teal   { background: #b7ede5; }
+    .tag.coral  { background: #fdd0c2; }
+    .tag.amber  { background: #faeab8; }
+    .tag.plum   { background: #e0c8ee; }
+    .tag.blue   { background: #c3d5ec; }
+
+    .main {
+      display: flex; flex-direction: column;
+      gap: 14px; flex: 1;
+    }
+    .title {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: clamp(1.6rem, 4vw, 3.4rem);
+      line-height: 1.05;
+      max-width: 22ch;
+      text-wrap: balance;
+    }
+    .subtitle {
+      max-width: 60ch;
+      font-size: clamp(1rem, 1.4vw, 1.3rem);
+      line-height: 1.5; color: #333;
+    }
+
+    /* ── cards ── */
+    .card {
+      border: var(--border); border-radius: var(--radius);
+      background: #fff;
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+      display: grid; gap: 8px;
+    }
+    .card.teal  { background: #e8f8f5; }
+    .card.coral { background: #fff0eb; }
+    .card.amber { background: #fef9e7; }
+    .card.plum  { background: #f3ecf8; }
+    .card.blue  { background: #eaf0f8; }
+    .card h3 {
+      margin: 0; font-size: clamp(1rem, 1.3vw, 1.28rem); line-height: 1.2;
+    }
+    .card p, .card li {
+      margin: 0; font-size: clamp(0.92rem, 1.08vw, 1.1rem);
+      line-height: 1.48; color: #222;
+    }
+
+    /* ── layout helpers ── */
+    .cols   { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+    .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: start; }
+    .cols-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; align-items: start; }
+    .auto-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; align-items: start; }
+    .stack { display: grid; gap: 10px; }
+
+    .list {
+      margin: 0; padding-left: 1.1rem;
+      display: grid; gap: 6px;
+      font-size: clamp(0.92rem, 1.08vw, 1.1rem);
+      line-height: 1.44;
+    }
+    .hl {
+      border: var(--border); border-radius: var(--radius);
+      border-left-width: 6px;
+      padding: 14px 18px;
+      font-size: clamp(0.98rem, 1.14vw, 1.16rem);
+      line-height: 1.46;
+      background: #fef9e7;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .topic-cloud {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .topic-pill {
+      border: 2px solid var(--ink); border-radius: 999px;
+      padding: 5px 12px; font-size: 0.82rem; font-weight: 800;
+      background: #fff;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .timeline-list {
+      list-style: none; padding: 0; margin: 0;
+      display: grid; gap: 8px;
+    }
+    .timeline-list li {
+      padding: 10px 14px;
+      border: 2px solid var(--ink); border-radius: 10px;
+      background: #fff;
+      font-size: 0.94rem; line-height: 1.4;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+    .timeline-list strong { color: var(--red); margin-right: 6px; }
+
+    .embed-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 14px; align-items: start;
+    }
+    .embed-card {
+      border: var(--border); border-radius: var(--radius);
+      overflow: hidden; background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .embed-card iframe {
+      display: block; width: 100%;
+      aspect-ratio: 16/9; border: 0; background: #ddd;
+    }
+    .embed-copy {
+      padding: 14px 16px; display: grid; gap: 6px;
+    }
+    .embed-copy h3 { font-size: 0.98rem; line-height: 1.2; }
+    .embed-copy p { font-size: 0.9rem; line-height: 1.4; color: #333; }
+
+    .closing-box {
+      border: var(--border); border-radius: var(--radius);
+      padding: 18px 22px; background: #fff;
+      box-shadow: var(--shadow);
+      font-family: 'Georgia', serif;
+      font-size: clamp(1.06rem, 1.3vw, 1.3rem);
+      line-height: 1.45;
+    }
+
+    /* ── SVG illustrations ── */
+    .svg-block {
+      display: flex; justify-content: center;
+      align-items: center; padding: 8px;
+    }
+    .svg-block svg { max-width: 100%; height: auto; }
+
+    /* hero centered layout */
+    .hero-center {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; flex: 1;
+      gap: 18px;
+    }
+    .hero-center .title { max-width: none; }
+
+    /* ── responsive ── */
+    @media (min-width: 769px) {
+      body { padding: 10px; }
+      .deck {
+        max-width: 1300px; margin: 0 auto;
+        height: calc(100dvh - 20px);
+        border: var(--border); border-radius: 18px;
+        box-shadow: 8px 8px 0 var(--ink);
+      }
+    }
+    @media (max-width: 768px) {
+      .brand span { font-size: 0.72rem; }
+      .cols, .cols-3, .cols-4, .embed-grid { grid-template-columns: 1fr !important; }
+      .slide { padding: 12px; gap: 12px; }
+      .title { font-size: clamp(1.4rem, 6vw, 2rem); }
+      .card { padding: 14px 16px; }
+      .nav button { padding: 10px 18px; }
+    }
+    @media (max-width: 420px) {
+      .slide { padding: 10px; gap: 10px; }
+      .title { font-size: clamp(1.2rem, 6.5vw, 1.6rem); }
+      .card { padding: 10px 12px; border-radius: 10px; box-shadow: 4px 4px 0 var(--ink); }
+      .progress-track { width: 60px; }
+    }
+    @media (max-height: 500px) and (orientation: landscape) {
+      .topbar, .footer { padding: 4px 10px; }
+      .slide { padding: 8px 14px; gap: 6px; }
+      .title { font-size: clamp(1rem, 3vw, 1.6rem); }
+    }
+  </style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <header class="topbar">
+    <a href="index.html" class="back-btn" title="Volver al inicio">← Inicio</a>
+    <div class="brand"><span>Globalización y Empleo · 2026-2</span></div>
+    <span class="pill">Semana 10–12 de marzo</span>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">1/13</div>
+    </div>
+  </header>
+
+  <main class="stage">
+
+    <!-- ═══ 1. PORTADA ═══ -->
+    <section class="slide active" data-slide>
+      <div class="hero-center">
+        <svg width="180" height="120" viewBox="0 0 180 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Engranaje global">
+          <circle cx="90" cy="60" r="42" stroke="#111" stroke-width="3" fill="#e8f8f5"/>
+          <ellipse cx="90" cy="60" rx="42" ry="18" stroke="#111" stroke-width="2" fill="none"/>
+          <line x1="90" y1="18" x2="90" y2="102" stroke="#111" stroke-width="2"/>
+          <circle cx="90" cy="60" r="8" fill="#e63946" stroke="#111" stroke-width="2"/>
+          <!-- gear teeth -->
+          <rect x="83" y="6" width="14" height="12" rx="3" fill="#faeab8" stroke="#111" stroke-width="2"/>
+          <rect x="83" y="102" width="14" height="12" rx="3" fill="#faeab8" stroke="#111" stroke-width="2"/>
+          <rect x="36" y="53" width="12" height="14" rx="3" fill="#faeab8" stroke="#111" stroke-width="2"/>
+          <rect x="132" y="53" width="12" height="14" rx="3" fill="#faeab8" stroke="#111" stroke-width="2"/>
+          <!-- chain links -->
+          <rect x="8" y="48" width="24" height="24" rx="6" fill="#fff0eb" stroke="#111" stroke-width="2.5"/>
+          <text x="20" y="65" text-anchor="middle" font-size="13" font-weight="900" fill="#111">$</text>
+          <rect x="148" y="48" width="24" height="24" rx="6" fill="#f3ecf8" stroke="#111" stroke-width="2.5"/>
+          <text x="160" y="65" text-anchor="middle" font-size="12" font-weight="900" fill="#111">⚙</text>
+        </svg>
+        <h1 class="title" style="max-width:none;">Trabajo, deuda y&nbsp;globalización</h1>
+        <p class="subtitle">Capitalismo financiarizado, relaciones de empleo y el culto de la productividad.</p>
+        <div class="auto-grid" style="max-width:700px; width:100%;">
+          <div class="card teal"><h3>Lectura 2</h3><p>Brunet, Pizzi &amp; Moral</p></div>
+          <div class="card plum"><h3>Benjamin</h3><p>El capitalismo como religión</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 2. CAPITALISMO COMO CONSTRUCCIÓN POLÍTICA ═══ -->
+    <section class="slide" data-slide>
+      <span class="tag amber">Idea central</span>
+      <div class="main">
+        <h2 class="title">El capitalismo es una construcción sociopolítica</h2>
+        <div class="cols">
+          <div class="stack">
+            <svg width="100%" height="140" viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama: instituciones sostienen al mercado">
+              <!-- building / institution -->
+              <rect x="20" y="40" width="80" height="80" rx="6" fill="#eaf0f8" stroke="#111" stroke-width="2.5"/>
+              <rect x="35" y="20" width="50" height="24" rx="4" fill="#fff" stroke="#111" stroke-width="2"/>
+              <text x="60" y="37" text-anchor="middle" font-size="11" font-weight="800" fill="#111">ESTADO</text>
+              <rect x="32" y="58" width="18" height="22" rx="3" fill="#fff" stroke="#111" stroke-width="1.5"/>
+              <rect x="60" y="58" width="18" height="22" rx="3" fill="#fff" stroke="#111" stroke-width="1.5"/>
+              <rect x="40" y="90" width="30" height="28" rx="3" fill="#faeab8" stroke="#111" stroke-width="1.5"/>
+              <!-- arrow -->
+              <line x1="110" y1="80" x2="155" y2="80" stroke="#111" stroke-width="2.5" stroke-dasharray="6 4"/>
+              <polygon points="155,74 168,80 155,86" fill="#111"/>
+              <!-- market -->
+              <rect x="175" y="30" width="130" height="90" rx="10" fill="#fff0eb" stroke="#111" stroke-width="2.5"/>
+              <text x="240" y="62" text-anchor="middle" font-size="12" font-weight="800" fill="#111">MERCADO</text>
+              <text x="240" y="80" text-anchor="middle" font-size="10" fill="#555">reglas · contratos</text>
+              <text x="240" y="95" text-anchor="middle" font-size="10" fill="#555">cultura · poder</text>
+            </svg>
+            <div class="hl">Las sociedades capitalistas no son un orden natural: son <strong>campos políticamente construidos</strong> por instituciones, leyes y cultura.</div>
+          </div>
+          <div class="card blue">
+            <h3>Implicaciones</h3>
+            <ul class="list">
+              <li>No se puede separar economía de política ni de cultura.</li>
+              <li>Las relaciones laborales son <strong>resultado histórico</strong>, no efecto automático del mercado.</li>
+              <li>Costumbres y vínculos comunitarios fueron sustituidos por contratos y cálculo económico.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 3. INDUSTRIAL → FINANCIARIZADO ═══ -->
+    <section class="slide" data-slide>
+      <span class="tag teal">Transición histórica</span>
+      <div class="main">
+        <h2 class="title">Del capitalismo industrial al&nbsp;financiarizado</h2>
+        <div class="cols">
+          <div class="card teal">
+            <h3>Capitalismo industrial</h3>
+            <svg width="100%" height="70" viewBox="0 0 260 70" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fábrica">
+              <rect x="10" y="30" width="100" height="36" rx="4" fill="#e8f8f5" stroke="#111" stroke-width="2"/>
+              <rect x="120" y="18" width="50" height="48" rx="4" fill="#e8f8f5" stroke="#111" stroke-width="2"/>
+              <rect x="180" y="8" width="30" height="58" rx="4" fill="#e8f8f5" stroke="#111" stroke-width="2"/>
+              <!-- chimneys -->
+              <rect x="130" y="4" width="8" height="16" rx="2" fill="#fff" stroke="#111" stroke-width="1.5"/>
+              <rect x="152" y="4" width="8" height="16" rx="2" fill="#fff" stroke="#111" stroke-width="1.5"/>
+              <!-- windows -->
+              <rect x="22" y="40" width="14" height="12" rx="2" fill="#fff" stroke="#111" stroke-width="1"/>
+              <rect x="44" y="40" width="14" height="12" rx="2" fill="#fff" stroke="#111" stroke-width="1"/>
+              <rect x="66" y="40" width="14" height="12" rx="2" fill="#fff" stroke="#111" stroke-width="1"/>
+              <!-- people -->
+              <circle cx="220" cy="44" r="7" fill="#faeab8" stroke="#111" stroke-width="1.5"/>
+              <line x1="220" y1="51" x2="220" y2="64" stroke="#111" stroke-width="1.5"/>
+              <circle cx="240" cy="44" r="7" fill="#faeab8" stroke="#111" stroke-width="1.5"/>
+              <line x1="240" y1="51" x2="240" y2="64" stroke="#111" stroke-width="1.5"/>
+            </svg>
+            <ul class="list">
+              <li>Fábrica, trabajo asalariado y producción material.</li>
+              <li>Regulación estatal y bienestar posibles.</li>
+              <li>El empleo tiene centralidad política y simbólica.</li>
+            </ul>
+          </div>
+          <div class="card coral">
+            <h3>Capitalismo financiarizado</h3>
+            <svg width="100%" height="70" viewBox="0 0 260 70" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gráfica financiera">
+              <!-- chart rising/falling -->
+              <rect x="10" y="10" width="180" height="56" rx="6" fill="#fff0eb" stroke="#111" stroke-width="2"/>
+              <polyline points="24,50 50,42 76,28 102,36 128,18 154,44 176,26" fill="none" stroke="#e63946" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- dollar bubbles -->
+              <circle cx="210" cy="20" r="14" fill="#fef9e7" stroke="#111" stroke-width="2"/>
+              <text x="210" y="25" text-anchor="middle" font-size="14" font-weight="900" fill="#111">$</text>
+              <circle cx="240" cy="48" r="14" fill="#fef9e7" stroke="#111" stroke-width="2"/>
+              <text x="240" y="53" text-anchor="middle" font-size="14" font-weight="900" fill="#111">$</text>
+            </svg>
+            <ul class="list">
+              <li>Crédito, deuda y especulación desplazan el centro.</li>
+              <li>Volatilidad y burbujas como efecto estructural.</li>
+              <li>Innovación = <strong>destrucción creativa</strong> de arreglos previos.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 4. DEUDA Y SUBJETIVIDAD ═══ -->
+    <section class="slide" data-slide>
+      <span class="tag plum">Subjetividad</span>
+      <div class="main">
+        <h2 class="title">La deuda reorganiza el trabajo y la vida</h2>
+        <div class="cols-3">
+          <div class="card plum">
+            <h3>Promesa + culpa</h3>
+            <p>La deuda organiza subjetividades: al esfuerzo-recompensa se agrega la promesa de pagar y la culpa de deber.</p>
+          </div>
+          <div class="card teal">
+            <h3>Nuevo espíritu</h3>
+            <p>Autonomía y creatividad son absorbidas por la lógica neoliberal y puestas al servicio de la flexibilización.</p>
+          </div>
+          <div class="card coral">
+            <h3>Empresario de sí</h3>
+            <p>El trabajador se vuelve responsable individual de riesgos que antes eran colectivos: minijobs, empleo atípico.</p>
+          </div>
+        </div>
+        <div class="hl">La financiarización no solo cambia inversiones; <strong>cambia la forma en que las personas se piensan, se culpan y aceptan precariedad</strong>.</div>
+        <div class="svg-block">
+          <svg width="300" height="80" viewBox="0 0 300 80" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ciclo deuda-culpa">
+            <rect x="5" y="20" width="80" height="40" rx="10" fill="#f3ecf8" stroke="#111" stroke-width="2.5"/>
+            <text x="45" y="45" text-anchor="middle" font-size="13" font-weight="800" fill="#111">DEUDA</text>
+            <path d="M90 35 L120 35" stroke="#111" stroke-width="2" marker-end="url(#arrowB)"/>
+            <rect x="125" y="20" width="80" height="40" rx="10" fill="#fff0eb" stroke="#111" stroke-width="2.5"/>
+            <text x="165" y="45" text-anchor="middle" font-size="13" font-weight="800" fill="#111">CULPA</text>
+            <path d="M210 35 L240 35" stroke="#111" stroke-width="2" marker-end="url(#arrowB)"/>
+            <rect x="245" y="20" width="50" height="40" rx="10" fill="#fef9e7" stroke="#111" stroke-width="2.5"/>
+            <text x="270" y="45" text-anchor="middle" font-size="11" font-weight="800" fill="#111">MÁS</text>
+            <text x="270" y="56" text-anchor="middle" font-size="9" font-weight="700" fill="#555">trabajo</text>
+            <path d="M270 64 C270 78 45 78 45 64" stroke="#111" stroke-width="2" stroke-dasharray="5 3" fill="none" marker-end="url(#arrowB)"/>
+            <defs><marker id="arrowB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#111"/></marker></defs>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 5. ESTADO Y BIENESTAR ═══ -->
+    <section class="slide" data-slide>
+      <span class="tag blue">Estado y bienestar</span>
+      <div class="main">
+        <h2 class="title">El mercado necesita Estado</h2>
+        <div class="auto-grid">
+          <div class="card">
+            <h3>Sin autoridad pública no hay mercado</h3>
+            <p>El Estado no está fuera del capitalismo: ayuda a construirlo con reglas e instituciones.</p>
+          </div>
+          <div class="card amber">
+            <h3>La excepción keynesiana</h3>
+            <p>La etapa fordista-keynesiana fue una <strong>excepcionalidad histórica</strong> del siglo XX, no la forma "normal" del capitalismo.</p>
+          </div>
+          <div class="card teal">
+            <h3>Bienestar como proyecto</h3>
+            <p>Pleno empleo, eficiencia económica y bienestar social fueron pensados como objetivos interdependientes.</p>
+          </div>
+          <div class="card coral">
+            <h3>El conflicto cambia de forma</h3>
+            <p>El conflicto de clase se canaliza al Estado y la negociación colectiva. No desaparece: se transforma.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 6. VARIEDADES DE CAPITALISMO ═══ -->
+    <section class="slide" data-slide>
+      <span class="tag amber">Comparación</span>
+      <div class="main">
+        <h2 class="title">No existe un solo capitalismo</h2>
+        <div class="cols">
+          <div class="svg-block" style="flex-direction:column; gap:12px;">
+            <svg width="260" height="160" viewBox="0 0 260 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tres tipos de capitalismo">
+              <!-- Three boxes representing varieties -->
+              <rect x="10" y="10" width="72" height="90" rx="8" fill="#e8f8f5" stroke="#111" stroke-width="2.5"/>
+              <text x="46" y="40" text-anchor="middle" font-size="10" font-weight="800" fill="#111">NÓRDICO</text>
+              <text x="46" y="56" text-anchor="middle" font-size="8" fill="#555">Estado fuerte</text>
+              <text x="46" y="68" text-anchor="middle" font-size="8" fill="#555">Protección alta</text>
+              <rect x="94" y="10" width="72" height="90" rx="8" fill="#fff0eb" stroke="#111" stroke-width="2.5"/>
+              <text x="130" y="40" text-anchor="middle" font-size="9" font-weight="800" fill="#111">ANGLOSAJÓN</text>
+              <text x="130" y="56" text-anchor="middle" font-size="8" fill="#555">Mercado flexible</text>
+              <text x="130" y="68" text-anchor="middle" font-size="8" fill="#555">Riesgo individual</text>
+              <rect x="178" y="10" width="72" height="90" rx="8" fill="#fef9e7" stroke="#111" stroke-width="2.5"/>
+              <text x="214" y="36" text-anchor="middle" font-size="9" font-weight="800" fill="#111">EUROPEO</text>
+              <text x="214" y="48" text-anchor="middle" font-size="9" font-weight="800" fill="#111">CONT.</text>
+              <text x="214" y="64" text-anchor="middle" font-size="8" fill="#555">Corporativismo</text>
+              <text x="214" y="76" text-anchor="middle" font-size="8" fill="#555">Negociación</text>
+              <!-- Connecting line -->
+              <line x1="20" y1="120" x2="240" y2="120" stroke="#111" stroke-width="2"/>
+              <text x="130" y="145" text-anchor="middle" font-size="10" font-weight="700" fill="#555">Presiones globales ≠ homogeneización</text>
+            </svg>
+          </div>
+          <div class="card">
+            <h3>Ideas clave</h3>
+            <ul class="list">
+              <li>Globalización <strong>no equivale</strong> a homogeneización total.</li>
+              <li>Los "tipos" de capitalismo son modelos analíticos, no copias de la realidad.</li>
+              <li>Hay que leer articulaciones concretas entre Estado, instituciones, cultura política y trabajo.</li>
+              <li>Las diferencias institucionales <strong>persisten</strong> a pesar de las presiones globales.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 7. BENJAMIN ═══ -->
+    <section class="slide" data-slide>
+      <span class="tag plum">Walter Benjamin</span>
+      <div class="main">
+        <h2 class="title">El capitalismo como religión</h2>
+        <div class="cols-4">
+          <div class="card plum">
+            <svg width="100%" height="50" viewBox="0 0 80 50" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="25" r="20" fill="#f3ecf8" stroke="#111" stroke-width="2"/><text x="40" y="30" text-anchor="middle" font-size="22" fill="#111">☩</text></svg>
+            <h3>1. Es religión</h3>
+            <p>No viene de lo religioso: <strong>funciona él mismo</strong> como religión.</p>
+          </div>
+          <div class="card plum">
+            <svg width="100%" height="50" viewBox="0 0 80 50" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="25" r="20" fill="#f3ecf8" stroke="#111" stroke-width="2"/><text x="40" y="31" text-anchor="middle" font-size="18" fill="#111">🔄</text></svg>
+            <h3>2. Puro culto</h3>
+            <p>No necesita teología. Lo decisivo es la práctica continua y la obediencia.</p>
+          </div>
+          <div class="card plum">
+            <svg width="100%" height="50" viewBox="0 0 80 50" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="25" r="20" fill="#f3ecf8" stroke="#111" stroke-width="2"/><text x="40" y="31" text-anchor="middle" font-size="18" fill="#111">∞</text></svg>
+            <h3>3. Sin tregua</h3>
+            <p>Culto permanente. No hay verdadero "día fuera" del rendimiento y consumo.</p>
+          </div>
+          <div class="card plum">
+            <svg width="100%" height="50" viewBox="0 0 80 50" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="25" r="20" fill="#f3ecf8" stroke="#111" stroke-width="2"/><text x="40" y="32" text-anchor="middle" font-size="14" font-weight="800" fill="#e63946">Schuld</text></svg>
+            <h3>4. Culpa = deuda</h3>
+            <p>En vez de expiar la culpa, la reproduce. <em>Schuld</em> = culpa y deuda.</p>
+          </div>
+        </div>
+        <div class="hl">El capitalismo sería un culto que no redime, sino que <strong>intensifica la deuda y la desesperación</strong>.</div>
+      </div>
+    </section>
+
+    <!-- ═══ 8. BENJAMIN + LECTURA 2 ═══ -->
+    <section class="slide" data-slide>
+      <span class="tag plum">Benjamin + Lectura 2</span>
+      <div class="main">
+        <h2 class="title">¿Por qué leerlos juntos?</h2>
+        <div class="cols">
+          <div class="card coral">
+            <h3>Lo que Benjamin añade</h3>
+            <ul class="list">
+              <li>La deuda no es solo mecanismo económico, sino <strong>dispositivo moral</strong>.</li>
+              <li>La productividad funciona como <strong>ritual</strong>, no solo como exigencia empresarial.</li>
+              <li>Hace visible la dimensión afectiva del neoliberalismo: ansiedad, culpa, autoexplotación.</li>
+            </ul>
+          </div>
+          <div class="stack">
+            <div class="card teal">
+              <h3>El puente</h3>
+              <p>Si el trabajador se convierte en "empresario de sí mismo", Benjamin muestra la forma casi litúrgica de esa obediencia: evaluación constante, disponibilidad y deuda permanente.</p>
+            </div>
+            <div class="card amber">
+              <h3>Para discutir</h3>
+              <p>¿Cuáles son hoy los rituales de ese culto? Puntaje crediticio, pago mínimo, marca personal, empleabilidad, "estar siempre haciendo algo".</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 9. CONCEPTOS CLAVE ═══ -->
+    <section class="slide" data-slide>
+      <span class="tag teal">Vocabulario</span>
+      <div class="main">
+        <h2 class="title">Algunos conceptos clave</h2>
+        <div class="auto-grid">
+          <div class="card"><h3>Capitalismo industrial</h3><p>Producción material, fábrica, trabajo asalariado y protección social como base histórica.</p></div>
+          <div class="card"><h3>Capitalismo financiarizado</h3><p>Deuda, crédito y especulación pesan más que la producción material.</p></div>
+          <div class="card"><h3>Desmercantilización</h3><p>Autonomía frente al mercado: salud, pensiones o bienestar no dependen solo del salario.</p></div>
+          <div class="card"><h3>Remercantilización</h3><p>Retorno del trabajo a simple mercancía; el riesgo se traslada al trabajador.</p></div>
+          <div class="card"><h3>Flexiguridad</h3><p>Intento de combinar adaptación empresarial y seguridad. ¿Quién absorbe la incertidumbre?</p></div>
+          <div class="card"><h3>Riesgo sistémico global</h3><p>Amenazas interconectadas capaces de desestabilizar varios sistemas a la vez.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 10. PREGUNTAS CLASE 5 + CRONOLOGÍA ═══ -->
+    <section class="slide" data-slide>
+      <span class="tag blue">Desarrollo histórico</span>
+      <div class="main">
+        <h2 class="title">Algunos acontecimientos del desarrollo histórico de la globalización</h2>
+        <div class="cols">
+          <div class="card blue">
+            <ol class="list">
+              <li>¿Qué acontecimientos cambian el rumbo de la globalización?</li>
+              <li>¿Cuáles son sus "olas" y cómo periodizarla?</li>
+              <li>¿Es proceso, condición, sistema, fuerza o época?</li>
+              <li>¿Qué diferencia hay entre <em>globalization</em>, <em>globality</em> y <em>globalism</em>?</li>
+              <li>¿Las crisis fortalecen o frenan la interdependencia?</li>
+            </ol>
+          </div>
+          <div class="stack">
+            <ul class="timeline-list">
+              <li><strong>1919</strong> OIT / ILO</li>
+              <li><strong>1945–47</strong> ONU y GATT</li>
+              <li><strong>1994–95</strong> NAFTA y OMC</li>
+              <li><strong>2001</strong> China en la OMC · 9/11</li>
+              <li><strong>2008</strong> Crisis financiera global</li>
+              <li><strong>2020</strong> TMEC · Covid-19</li>
+              <li><strong>2022–24</strong> Ucrania · Gaza · Elecciones EUA</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 11. VIDEOS ═══ -->
+    <section class="slide" data-slide>
+      <span class="tag coral">Videos</span>
+      <div class="main">
+        <h2 class="title">Material audiovisual de la semana</h2>
+        <div class="embed-grid">
+          <article class="embed-card">
+            <iframe src="https://www.youtube.com/embed/oYusbzayH4c" title="¿Qué es el trabajo?" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="embed-copy">
+              <h3>¿Qué es el trabajo?</h3>
+              <p>Relación salario-beneficio y por qué no es neutral.</p>
+            </div>
+          </article>
+          <article class="embed-card">
+            <iframe src="https://www.youtube.com/embed/9rvq1AR3nRo" title="Madagascar: la mano de obra barata de la IA" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="embed-copy">
+              <h3>Madagascar: mano de obra barata de la IA</h3>
+              <p>La economía digital sigue dependiendo de trabajo barato y globalmente desigual.</p>
+            </div>
+          </article>
+          <article class="embed-card">
+            <iframe src="https://www.youtube.com/embed/Zg324Sb6Pl0" title="Pobres a pesar de trabajar" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="embed-copy">
+              <h3>Pobres a pesar de trabajar</h3>
+              <p>Tener empleo ya no garantiza bienestar ni protección suficiente.</p>
+            </div>
+          </article>
+          <article class="embed-card">
+            <iframe src="https://www.youtube.com/embed/lFdvbf9bomM" title="Metropolis de Fritz Lang" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="embed-copy">
+              <h3>Metropolis, 100 años después</h3>
+              <p>Trabajo, máquinas, jerarquía: imagen clásica del conflicto capital-cuerpos.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 12. CIERRE ═══ -->
+    <section class="slide" data-slide>
+      <div class="hero-center">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nodo de cierre">
+          <circle cx="60" cy="60" r="50" fill="#fef9e7" stroke="#111" stroke-width="3"/>
+          <circle cx="60" cy="60" r="30" fill="#f3ecf8" stroke="#111" stroke-width="2"/>
+          <circle cx="60" cy="60" r="12" fill="#e63946" stroke="#111" stroke-width="2"/>
+          <line x1="60" y1="10" x2="60" y2="30" stroke="#111" stroke-width="2"/>
+          <line x1="60" y1="90" x2="60" y2="110" stroke="#111" stroke-width="2"/>
+          <line x1="10" y1="60" x2="30" y2="60" stroke="#111" stroke-width="2"/>
+          <line x1="90" y1="60" x2="110" y2="60" stroke="#111" stroke-width="2"/>
+        </svg>
+        <div class="closing-box" style="max-width:720px;">
+          La próxima vez que revises tu puntaje crediticio, contestes un correo a las 11 de la noche o sientas culpa por descansar, pregúntate: <strong>¿quién diseñó las reglas de este juego y a quién le conviene que sigas jugando sin cuestionarlas?</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 13. REFERENCIAS ═══ -->
+    <section class="slide" data-slide>
+      <span class="tag amber">Referencias</span>
+      <div class="main">
+        <h2 class="title">Referencias</h2>
+        <div class="card" style="overflow-y:auto;">
+          <ul class="list" style="font-size:0.88rem; gap:12px;">
+            <li>Benjamin, W. (1921). <em>El capitalismo como religión</em> [Fragmento]. En <em>Gesammelte Schriften</em> (Vol. VI). Suhrkamp.</li>
+            <li>Brunet, I., Pizzi, A. y Moral, D. (2016). <em>Sistemas laborales comparados: Las transformaciones de las relaciones de empleo en la era neoliberal</em>. Anthropos Editorial; Universidad Nacional del Litoral.</li>
+            <li>ARTE.tv Documentales. (2024). <em>Madagascar: la mano de obra barata de la IA</em> [Video]. YouTube. https://www.youtube.com/watch?v=9rvq1AR3nRo</li>
+            <li>ARTE.tv Documentales. (2023). <em>Pobres a pesar de trabajar</em> [Video]. YouTube. https://www.youtube.com/watch?v=Zg324Sb6Pl0</li>
+            <li>DW History and Culture. (2024). <em>Why Metropolis, Fritz Lang's silent movie, still defines sci-fi 100 years later</em> [Video]. YouTube. https://www.youtube.com/watch?v=lFdvbf9bomM</li>
+            <li>Archipel 33 y ARTE France (Productores). (2019). <em>¿Qué es el trabajo? Trabajo, salario, beneficio 1</em> [Documental]. ARTE. https://www.youtube.com/watch?v=oYusbzayH4c</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span class="footer-info">Globalización y Empleo · FCA UNAM · 2026-2</span>
+    <div class="nav">
+      <button id="prevBtn" type="button">← Anterior</button>
+      <button id="nextBtn" type="button" class="primary">Siguiente →</button>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  const slides = Array.from(document.querySelectorAll('[data-slide]'));
+  const fill = document.getElementById('progressFill');
+  const text = document.getElementById('progressText');
+  const prev = document.getElementById('prevBtn');
+  const next = document.getElementById('nextBtn');
+  let idx = 0;
+
+  function go(n) {
+    idx = Math.max(0, Math.min(n, slides.length - 1));
+    slides.forEach(function (s, i) { s.classList.toggle('active', i === idx); });
+    var pct = ((idx + 1) / slides.length) * 100;
+    if (fill) fill.style.width = pct + '%';
+    if (text) text.textContent = (idx + 1) + '/' + slides.length;
+  }
+
+  prev.addEventListener('click', function () { go(idx - 1); });
+  next.addEventListener('click', function () { go(idx + 1); });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') go(idx + 1);
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') go(idx - 1);
+  });
+
+  var startX = 0, startY = 0;
+  var stage = document.querySelector('.stage');
+  stage.addEventListener('touchstart', function (e) {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+  stage.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    var dy = e.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      dx < 0 ? go(idx + 1) : go(idx - 1);
+    }
+  }, { passive: true });
+
+  go(0);
+})();
+</script>
+</body>
+</html>

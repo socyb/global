@@ -459,6 +459,10 @@ a.session-card:hover {
     cursor: default;
 }
 
+.session-card.past {
+    opacity: .45;
+}
+
 /* ── Timeline / Calendario ─────────────────────────── */
 .calendario-bloque {
     background: var(--surface);

@@ -1,0 +1,173 @@
+Transcripción: Madagascar: la mano de obra barata de la IA
+Canal: ARTE.tv Documentales
+ID: 9rvq1AR3nRo
+Duración: 24:33
+============================================================
+
+Aunque a menudo imaginamos que la inteligencia artificial funciona de forma
+totalmente autónoma, sin intervención humana, en realidad necesita un ejército
+de pequeñas manos para funcionar. En Antananaribo, la capital de Madagascar,
+David Ratomson, de 32 años, es una de ellas. Para mantener a su familia
+compagina varios trabajos. La mitad del tiempo, este padre de tres hijos dirige
+un bar justo enfrente de la gran estación de autobuses de la ciudad. Su mujer
+Ariel, maestra le ayuda en la hora del almuerzo. Mir las. Es el final del turno.
+David se va a casa. Al final de este callejón vive con su familia en una casa
+modesta. Saltimana ahí para trabajar. David está bien equipado con fibra óptica.
+Todos los días de la semana, a partir de las 4, se conecta a una plataforma de
+trabajo en línea que le proporciona tareas que debe realizar. Hay que anotar
+imágenes, clasificar objetos para entrenar a la IA a hacer mejores sugerencias a
+sus usuarios. A esto se le llama anotación de datos. Aquí identifica un cisne.
+Luego, cuando un usuario de IA busque una foto de un cisne, se le podrá ofrecer
+esta gracias al trabajo de David. David sueña con fundar su empresa de
+inteligencia artificial, pero mientras tanto, para colaborar con los gastos
+familiares debe seguir siendo un simple peón. En Madagascar, unas 100,000
+personas hacen lo mismo que David. Son las pequeñas manos de la IA que entrenan
+los algoritmos de Chat GPT, Google o Amazon. En uno de los países más pobres del
+mundo, donde tres cuartas partes de sus 31 millones de habitantes viven bajo el
+umbral de la pobreza, la industria de la inteligencia artificial ha encontrado
+mano de obra disponible. cualificada y sobre todo muy barata. Muchos trabajan
+sin contrato, sin estatus ni protección social y ganan muy poco. Para otros, los
+que son contratados en buenas condiciones, esta revolución de la IA se considera
+una gran oportunidad. En el barrio de Ambodimita, al sureste de la capital
+Malgache, Elina de 25 años es una de las privilegiadas. Gracias a su trabajo con
+la IA, disfruta de un estilo de vida bastante cómodo con su familia, papá.
+Bisous bisous bisous bisous maman bye papia so a las 8 en punto el autobús de la
+empresa de para la que trabaja viene a recogerla una ventaja reservada empleados
+con contrato como ella. Abordo una decena de compañeros. Jece à 9h et je termine
+à 13h et puis je recommence à 17h et je termine à 22h. Mon travail précédent, il
+y avait pas de personnel. Ce sont des bonnes conditions de travail. trabaja en
+un edificio moderno del distrito financiero de la ciudad. Trabaja en BPO, una de
+las empresas digitales más importantes de Madagascar. En el espacio abierto
+donde trabaja hay 80 personas entrenando a la IA haciendo click todo el día.
+Cada operador procesa cientos de datos, imágenes y cifras. Estos son controlados
+por certificadores. Todo ello bajo la supervisión de roba el director que lleva
+4 años en el cargo. Bonjour. commence à recevoir des documents là de temps en
+temps ou euh oui ça commence une photo sur le rafraîch rôle de chaque prnotateur
+aujourd'hui c'est vraiment d'entraîner cette intelligence artificielle qui se
+cache derrière la plateforme. C'est la base de l'amélioration de Shakia
+aujourd'hui. il faut qu'il y a un être humain derrière qui entraîne la machine
+pour que à un moment donné au fait la machine arrive à automatiser le process
+automater le traitement et pour que voilà pour qu'il soit autonome. Actualmente
+el trabajo de Elina consiste en anotar facturas, documentos de empresas de todo
+el mundo que ella lee y corrige, comprobando, por ejemplo, que el IVA se haya
+contabilizado correctamente y con el tipo impositivo adecuado. Durante sus
+sesiones de trabajo, Elina no debe abandonar su puesto ni un minuto. Objectif il
+50 factures par jour mais il y a des personnes plus par exemple 4000 2000
+factures par jour un trabajo que paga unos 120 al m un salario muy superior a la
+media nacional que ronda los 80 con estas tarifas los oficios relacionados con
+la IA traen a los jóvenes malgaches y en los últimos años han surgido numerosas
+formaciones en el país, tanto en universidades como en escuelas especializadas.
+Una de las más exitosas es la escuela 42, dirigida por el francés Anthony La
+Cost. J'ai 267 étudiants à l'école 42. Aujourd'hui, c'est 100 % euh des je veux
+dire des jeunes malgaches. Ils ont tous plein d'idées dans le artificiel et je
+dirais qu'ils ont pas entre qui compromis par ce qu'ils ont déjà vu. Je pense
+c'est extrêmement intéressant. Aquí no hay profesores. Los estudiantes aprenden
+solos con programas en el ordenador. Muchos de ellos sueñan con una vida mejor
+gracias a la IA. créer une société avec mission principale du coup créer
+plusieurs solutions pour élever le niveau des étudiants collégiens lycéen à
+Madascar avec des petites solutions IA. L'intelligence artificielle fait rêver
+la jeunesse malgache. Donc les jeunes sont très attirés par putain qu'est-ce
+qu'est-ce que je peux faire avec ça ? Quel apport je peux avoir dans l'intell
+artificielle ? Est-ce que je dois en créer ? Est-ce que je dois travailler avec
+? des grandes questions aujourd'hui. Donc ils sont vraiment très attirés par par
+ce genre de de métier. Sin embargo, para algunos titulados del mercado en los
+últimos años, la realidad dista mucho del paraíso que les habían prometido.
+Muchos se han desilusionado, como este empleado que da su testimonio de forma
+anónima. A sus 32 años, a pesar de tener muy buenos títulos en informática,
+lleva 5 años con contratos precarios de anotador. Su salario nunca superó los
+80, mucho menos de lo que esperaba del sector Y sobre todo, según él, la presión
+es constante. Pero la experiencia que más le indignó fue cuando vigilaba a
+distancia tiendas en el extranjero a través de sistemas de videovigilancia.
+Oficialmente era una inteligencia artificial la que detectaba los robos. A pesar
+de estos contratiempos, sigue trabajando en IA. Es su única opción laboral por
+el momento. En Madagascar las condiciones laborales se consideran tan duras para
+algunos que gigantes tecnológicos como Amazon han preferido incluir al país en
+su lista negra. La empresa no quería ser acusada de explotar a sus empleados.
+Oficialmente es imposible trabajar para la IA de Amazon desde Madagascar, ya que
+el acceso está bloqueado. Pero algunos astutos han logrado eludir la prohibición
+y se ha organizado un mercado negro. Dani, de 37 años, es otro peón de la IA. Lo
+encontramos en el popular barrio de Itaosí. Merci 1,60 más o menos lo que gana
+en mediodía de media a 80 al mes. Salí, salí, salí. No es mucho, pero suficiente
+para alimentar sus ambiciones. J'ai juste acheter une voiture pour faire de la
+location, du transport et tout ça et au plus tard construire ma propre maison.
+C'est déjà un petit loupin de terre à moi. Daniemente ha encontrado una laguna
+en el sistema que le permite sacar provecho. Al principio trabajaba de forma
+clandestina para Amazon gracias a una cuenta que le compró a un intermediario
+extranjero. para finance [risas] Para ganar más y tener un trabajo menos duro,
+empieza a organizar la venta de cuentas. Compra varias cuentas más a su
+intermediario indio con el fin de revenderlas o alquilarlas a malgaches. lleva
+una comisión por el traspaso. proposition Dani se ha inventado una nueva
+profesión de intermediario al margen de las normas y las reglas. No es una
+excepción. El 80% de los empleados del sector trabajan sin un marco legal y se
+escapan de todo control. Sin embargo, el gobierno de Madagascar apuesta fuerte
+por la IA para desarrollar su economía. Quiere animar a los trabajadores a
+regularizar su situación. Es uno de los objetivos de Stefanie Delm, ministra de
+telecomunicaciones encargada de atraer a inversores internacionales de IA. Alors
+nous à tous, c'est d'abord cette main d'œuvre jeune. Aujourd'hui, 64 % de la
+population Malaga âgé de moins de 25 ans. C'est une main d'œuvre qui est assez
+peu coûteuse pour l'instant. Le salaire minimum imposé par la loi, c'est 250
+260000 arri. Pero para ser creíbles ante las grandes empresas mundiales es
+necesario proponerles leyes estrictas, sobre todo con un marco regulador del
+Estatuto de los Trabajadores. Una tarea titánica contrôler déjà on aire et
+encore une fois il y a vraiment une révolution à faire pour inciter les gens à
+sortir du secteur informel. Donc euh c'est pas uniquement des sanctions
+négatives comme je dis tout à l'heure, la punition des amendes, mais expliquer
+aux gens qu'est-ce qu'ils y gagnent. euh que les entreprises aussi si réellement
+elles s'intéressent à à l'avenir de Madagascar, elles doivent être prudente dans
+la manière de de signer ces contrats là et dénoncer aussi des des pratiques qui
+qui semblent douteuses. Aunque el Estado avanza lentamente, los malgaches
+prefieren organizarse por su cuenta para hacer valer sus derechos y mejorar sus
+condiciones laborales. A pocos kilómetros del centro de Antananaribo, ese fin de
+semana se celebra la feria internacional de Madagascar con cientos de
+participantes, grandes empresas, jóvenes startups o instituciones públicas.
+Entre ellos el stand de Madal Stars, una asociación digital fundada por Dimitri,
+un malgache que lleva mucho en el extranjero. On a nouvellement les métiers
+aussi liés à l'intelligence artificielle et notamment aux intégrations et aux
+annotations IA. Donc comment est-ce que du coup l'IA pourrait vous aider à à
+augmenter votre productivité ou à workfow l'objetivo de la associación es poner
+en contacto a las empresas que necesitan mano de obra cualificada en IA con los
+trabajadores. Dimitri intenta convencer a un profesional del turismo del país
+para que contrate a un empleado para crear su sitio web. passé comme ça par
+hasard. Donc c'est un peu par curiosité mais en fait en discutant on se rend
+compte que bah il y a des très bonnes initiatives et bah nous on est plutôt dans
+du recrutement freelance comme ça. Donc vous avez plutôt vous un projet plus un
+site web. La asociación impone condiciones a todos. Tanto empleadores como
+trabajadores deben respetar un convenio. On constate que il y a beaucoup de
+travailleurs de l'intelligence artificielle qui font face à des abus de la part
+de leurs recruteurs. Donc nous on va agir en tant que tiers de confiance au sens
+où les recruteurs vont nous faire confiance certes pour leur trouver des talents
+qui sont à la hauteur de leur demande et des compétences requises, mais
+inversement également les talents vont nous faire confiance pour qu' on vérifie
+que ces recruteurs soient des sociétés solvables respectueux de la dignité
+humaine. La associación quiere establecer medidas de protección, pero no
+cuestiona el modelo dominante, el de un país subcontratista del mundo de la IA.
+Sin embargo, algunos empresarios malgaches están tratando de cambiar este
+paradigma. En la pequeña ciudad de Anjomakelli, a las afueras de la capital, dos
+ingenieros prueban una solución de IA que ellos mismos han diseñado. Han creado
+una aplicación de IA destinada a ayudar a agricultores. Esta analiza diversos
+parámetros de las plantas que cultivan, el nivel de hidratación, la toxicidad o
+incluso su comestibilidad. Ese día la prueban en la casa de un malgache que
+cultiva mandioca, una planta muy extendida en África que se utiliza entre otras
+cosas para producir harina. de la fe de manio et on va laisser nous dire le
+résultat. Ça détecte non seulement qu'il y a la la feuille, elle est malade et
+le symptôme en fait c'est que on a une nécrose c'estàdire que même si
+apparemment les plantes sont en bonne santé on peut on peut voir que les racines
+sont très endommagées. Gracias a ello, los agricultores clasifican las plantas
+cosechadas, las que hay que cuidar y las que hay que desechar. Los ingenieros
+diseñaron la app a partir de un programa de IA de libre acceso en línea. Luego
+la entrenaron utilizando fotos de miles de plantas. inventé par des malgaches
+par nous et c'est c'est un message aussi au monde entier que nous ne sommes pas
+que des annotateur de données nous créons aussi notre propre intelligence
+artificielle mais de m l'intelligence artificielle c'est un levier de de de
+développement de croissance économique actuellement à Madagascar et c'est une
+opportunité c'est la c'est la révolution industrielle et avec quelques
+ingénieurs seulement actuellement on peut créer une IA qui dans l'ura qui
+générera plus de valeur en fait que des milliers de d'ouvriers, des milliers de
+de de main d'œuvre en fait. Para desarrollar sus diferentes inventos, crearon el
+Liam, el laboratorio de IA de Madagascar, ubicado en un lugar atípico alejado de
+la ciudad, una comunidad protestante en la que se encuentra una iglesia, una
+escuela y las oficinas del IAM, donde trabajan investigadores, expertos e
+ingenieros en IA. Aquí cuentan con el apoyo de su vecino de oficina, Pascal, el
+pastor de la comunidad. Todas las mañanas en el patio. Los niños al unísono el
+himno nacional. En Madagascar empieza a surgir otra vía encarnada por ingenieros
+como Fitaín, la de un país puntero en inteligencia artificial. Ha

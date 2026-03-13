@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Actividad de clase sobre el documental Madagascar: la mano de obra barata de la IA (ARTE), vinculada con capitalismo financiarizado y globalización.">
+  <title>Madagascar: la mano de obra barata de la IA | Actividad de clase</title>
+  <link rel="icon" href="../img/icon-globe.svg">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/session.css">
+  <style>
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      background: #000;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.85rem;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .meta-item {
+      background: var(--sky);
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      padding: 0.8rem 0.95rem;
+    }
+
+    .meta-label {
+      font-family: var(--font-accent);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .meta-value {
+      font-size: 1.02rem;
+      line-height: 1.35;
+      color: var(--ink);
+      font-weight: 650;
+      word-break: break-word;
+    }
+
+    .bridge-card {
+      background: var(--cream);
+    }
+
+    .bridge-card h3 {
+      color: var(--purple);
+    }
+
+    .concept-list {
+      list-style: none;
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 0.65rem;
+    }
+
+    .concept-list li {
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      padding: 0.7rem 0.8rem;
+      background: #fff;
+      line-height: 1.45;
+      font-size: 1.02rem;
+    }
+
+    .concept-list strong {
+      color: var(--ink);
+    }
+
+    .activity-card {
+      background: var(--mint);
+    }
+
+    .activity-intro {
+      background: var(--blush);
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.15rem;
+      margin-bottom: 0.9rem;
+      font-size: 1.07rem;
+      line-height: 1.55;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .field label {
+      font-family: var(--font-accent);
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--ink);
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      background: #fff;
+      padding: 0.72rem 0.78rem;
+      font: inherit;
+      color: var(--ink);
+      line-height: 1.45;
+    }
+
+    .field textarea {
+      min-height: 122px;
+      resize: vertical;
+    }
+
+    .question-block {
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      padding: 0.8rem;
+      background: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .question-block p {
+      margin: 0 0 0.55rem;
+      font-size: 1.06rem;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 0.35rem;
+    }
+
+    .action-button {
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      padding: 0.58rem 0.9rem;
+      background: #fff;
+      color: var(--ink);
+      font-family: var(--font-accent);
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 var(--ink);
+      text-decoration: none;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+
+    .action-button:hover {
+      transform: translate(1px, 1px);
+      box-shadow: 2px 2px 0 var(--ink);
+      background: var(--cream);
+    }
+
+    .action-primary {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .action-danger {
+      background: #ffe7e7;
+    }
+
+    .save-status {
+      margin-top: 0.8rem;
+      font-family: var(--font-accent);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .save-status.ok {
+      color: #13693c;
+      font-weight: 700;
+    }
+
+    .save-status.error {
+      color: #9f2323;
+      font-weight: 700;
+    }
+
+    .resource-list {
+      margin-top: 0.7rem;
+      padding-left: 1.15rem;
+      display: grid;
+      gap: 0.4rem;
+      font-size: 1.03rem;
+    }
+
+    details {
+      margin-top: 0.9rem;
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      background: #fff;
+      padding: 0.65rem 0.85rem;
+    }
+
+    summary {
+      cursor: pointer;
+      font-family: var(--font-accent);
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .excerpt-list {
+      margin-top: 0.7rem;
+      padding-left: 1.2rem;
+      display: grid;
+      gap: 0.45rem;
+      line-height: 1.45;
+    }
+
+    .timestamp {
+      font-family: var(--font-accent);
+      font-size: 0.85rem;
+      color: var(--coral);
+      font-weight: 800;
+      margin-right: 0.35rem;
+    }
+
+    @media (max-width: 768px) {
+      .video-actions,
+      .form-actions {
+        flex-direction: column;
+      }
+
+      .action-button {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    @media print {
+      .no-print,
+      .back-link {
+        display: none !important;
+      }
+
+      .site-header {
+        border-bottom: 1px solid #000;
+        background: #fff;
+        padding: 0.7rem 0 0.45rem;
+      }
+
+      .section {
+        margin: 0.55rem 0;
+      }
+
+      .content-card,
+      .meta-item,
+      .question-block {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+        background: #fff !important;
+      }
+
+      .video-wrapper,
+      details {
+        display: none !important;
+      }
+
+      .field input,
+      .field textarea {
+        border: 1px solid #000;
+        background: #fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header session-header">
+    <div class="container">
+      <a href="../index.html" class="back-link">← Volver al inicio</a>
+      <h1>Madagascar: la mano de obra barata de la IA</h1>
+      <p class="subtitle">Actividad de clase · Globalización y Empleo 2026-2 · FCA UNAM</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2>Video</h2>
+      <div class="content-card">
+        <p style="font-size: 1rem; margin-bottom: 0.8rem;">
+          Documental de ARTE.tv sobre los trabajadores malgaches que alimentan los algoritmos de Google, Amazon y ChatGPT
+          desde Antananarivo a cambio de unos pocos céntimos.
+        </p>
+        <div class="video-grid">
+          <article>
+            <h3>Reproducción en línea</h3>
+            <div class="video-wrapper">
+              <iframe
+                src="https://www.youtube.com/embed/9rvq1AR3nRo"
+                title="Madagascar: la mano de obra barata de la IA | ARTE.tv Documentales"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="video-actions no-print">
+              <a class="action-button" href="https://www.youtube.com/watch?v=9rvq1AR3nRo" target="_blank" rel="noopener">Abrir en YouTube</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Metadatos del Video</h2>
+      <div class="content-card">
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Título</span>
+            <span class="meta-value">Madagascar: la mano de obra barata de la IA</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Canal</span>
+            <span class="meta-value">ARTE.tv Documentales</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Producción</span>
+            <span class="meta-value">Archipel 33 / ARTE France</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Género</span>
+            <span class="meta-value">Documental</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Duración</span>
+            <span class="meta-value">24:33</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Fecha de publicación</span>
+            <span class="meta-value">6 de diciembre de 2025</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Disponibilidad</span>
+            <span class="meta-value">Hasta 20 de agosto de 2028</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Idioma y subtítulos</span>
+            <span class="meta-value">Audio francés + subtítulos auto en español</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Vistas</span>
+            <span class="meta-value">240,704</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Video ID</span>
+            <span class="meta-value">9rvq1AR3nRo</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">URL</span>
+            <span class="meta-value"><a href="https://www.youtube.com/watch?v=9rvq1AR3nRo" target="_blank" rel="noopener">youtube.com/watch?v=9rvq1AR3nRo</a></span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Tags</span>
+            <span class="meta-value">Madagascar, África, IA, Antananarivo, anotación de datos</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Conexión con las lecturas del curso</h2>
+      <div class="content-card bridge-card">
+        <h3>¿Por qué ver este documental en esta semana?</h3>
+        <p>
+          El documental permite aterrizar ideas centrales de Brunet, Pizzi y Moral (2016) y de Benjamin (1921):
+          la globalización no solo mueve mercancías y finanzas, sino que reorganiza el trabajo humano
+          a escala planetaria, generando nuevas formas de precarización y dependencia.
+        </p>
+        <ul class="concept-list">
+          <li><strong>Anotación de datos como trabajo invisible:</strong> la IA depende de un ejército de personas clasificando imágenes, textos y cifras a mano. El documental hace visible lo que la narrativa tecnológica oculta.</li>
+          <li><strong>Remercantilización:</strong> los trabajadores malgaches operan sin contrato, sin protección social y con ingresos mínimos. El riesgo se traslada completamente al individuo.</li>
+          <li><strong>Capitalismo financiarizado y cadenas globales:</strong> empresas de Silicon Valley externalizan microtareas a uno de los países más pobres del mundo, aprovechando mano de obra cualificada y barata.</li>
+          <li><strong>Subjetividad neoliberal:</strong> varios personajes del documental sueñan con "emprender" gracias a la IA, reproduciendo la lógica del "empresario de sí mismo" que describe la lectura.</li>
+          <li><strong>El culto de la productividad (Benjamin):</strong> el trabajo de anotación es repetitivo, sin pausa, medido al centavo. Una forma contemporánea del culto sin tregua.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Formulario de Actividad</h2>
+      <div class="content-card activity-card">
+        <div class="activity-intro">
+          <strong>Instrucción:</strong> Ve el documental completo y contesta al menos dos preguntas.
+          Puedes apoyarte en la transcripción y en las lecturas de la semana
+          (Brunet et al. y Benjamin). Las respuestas se guardan en este navegador
+          y pueden exportarse como archivo de texto. Sube tu archivo al foro de Moodle.
+        </div>
+
+        <form id="activityForm">
+          <div class="field-grid">
+            <div class="field">
+              <label for="fecha">Fecha</label>
+              <input id="fecha" name="fecha" type="date" data-export-label="Fecha">
+            </div>
+            <div class="field">
+              <label for="nombre">Nombre</label>
+              <input id="nombre" name="nombre" type="text" placeholder="Nombre completo" data-export-label="Nombre">
+            </div>
+          </div>
+
+          <div class="question-block">
+            <p>1) ¿Qué es la "anotación de datos" y por qué la inteligencia artificial necesita trabajo humano para funcionar? Describe al menos un ejemplo concreto del documental.</p>
+            <div class="field"><textarea name="q1" data-export-label="1) ¿Qué es la anotación de datos y por qué la IA necesita trabajo humano para funcionar?"></textarea></div>
+          </div>
+
+          <div class="question-block">
+            <p>2) Compara las condiciones laborales de David (trabajador independiente) y Elina (empleada con contrato). ¿Qué nos dice esta diferencia sobre la desigualdad dentro del mismo sector?</p>
+            <div class="field"><textarea name="q2" data-export-label="2) Compara las condiciones laborales de David y Elina."></textarea></div>
+          </div>
+
+          <div class="question-block">
+            <p>3) El documental muestra que empresas de Silicon Valley externalizan microtareas a Madagascar. Relaciona esto con el concepto de "remercantilización" o "capitalismo financiarizado" de la lectura de Brunet et al.</p>
+            <div class="field"><textarea name="q3" data-export-label="3) Relaciona la externalización de microtareas con remercantilización o capitalismo financiarizado."></textarea></div>
+          </div>
+
+          <div class="question-block">
+            <p>4) Benjamin describe el capitalismo como un culto sin tregua que produce culpa. ¿En qué momentos del documental reconoces esa lógica?</p>
+            <div class="field"><textarea name="q4" data-export-label="4) ¿En qué momentos del documental reconoces la lógica del capitalismo como culto sin tregua?"></textarea></div>
+          </div>
+        </form>
+
+        <div class="form-actions no-print">
+          <button type="button" class="action-button action-primary" id="saveBtn">Guardar respuestas</button>
+          <button type="button" class="action-button" id="exportBtn">Descargar .txt</button>
+          <button type="button" class="action-button" id="printBtn">Imprimir</button>
+          <button type="button" class="action-button action-danger" id="clearBtn">Limpiar formulario</button>
+        </div>
+        <p class="save-status" id="saveStatus">Estado: sin guardado todavía.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Transcripción y Recursos</h2>
+      <div class="content-card">
+        <p style="font-size: 1rem;">
+          Se preparó una versión limpia de la transcripción automática (español) para facilitar el trabajo en clase.
+        </p>
+        <ul class="resource-list">
+          <li><a href="./transcripcion_madagascar_ia_utf8.txt" target="_blank" rel="noopener">Transcripción limpia (TXT)</a></li>
+          <li><a href="https://www.youtube.com/watch?v=9rvq1AR3nRo" target="_blank" rel="noopener">Video en YouTube</a></li>
+        </ul>
+
+        <details>
+          <summary>Ver extractos clave con marca de tiempo</summary>
+          <ul class="excerpt-list">
+            <li><span class="timestamp">00:01</span> Introducción: la IA necesita "un ejército de pequeñas manos" para funcionar.</li>
+            <li><span class="timestamp">02:14</span> David se conecta cada día a una plataforma de anotación de datos desde su casa.</li>
+            <li><span class="timestamp">02:55</span> Explicación de la anotación: clasificar imágenes para entrenar algoritmos (ejemplo del cisne).</li>
+            <li><span class="timestamp">04:08</span> En Madagascar, unas 100,000 personas hacen anotación de datos. Muchos sin contrato ni protección.</li>
+            <li><span class="timestamp">06:28</span> Elina, empleada con contrato, trabaja en una empresa formal: condiciones muy distintas a las de David.</li>
+            <li><span class="timestamp">09:42</span> Cada operador procesa cientos de datos; el trabajo consiste en anotar facturas y verificar datos fiscales.</li>
+            <li><span class="timestamp">11:30</span> La Escuela 42 en Antananarivo: formación en IA sin profesores, los jóvenes sueñan con emprender.</li>
+            <li><span class="timestamp">14:15</span> Debate ético: ¿quién se beneficia realmente de la IA? Los datos generados en Madagascar alimentan empresas de todo el mundo.</li>
+            <li><span class="timestamp">18:40</span> Se contraponen las expectativas de desarrollo digital con la realidad de salarios de centavos por tarea.</li>
+            <li><span class="timestamp">22:00</span> Cierre: Madagascar como "fábrica de clics" — la economía digital reproduce desigualdades globales.</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <p><a href="../index.html">← Volver a la página principal</a></p>
+        <p class="footer-meta">Globalización y Empleo 2026-2 · FCA UNAM · Dr. Jorge Cardiel</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = "actividad_madagascar_ia_12mar26_v1";
+      var form = document.getElementById("activityForm");
+      var status = document.getElementById("saveStatus");
+      var saveBtn = document.getElementById("saveBtn");
+      var clearBtn = document.getElementById("clearBtn");
+      var printBtn = document.getElementById("printBtn");
+      var exportBtn = document.getElementById("exportBtn");
+      var fields = Array.from(form.querySelectorAll("input, textarea"));
+      var autosaveTimer = null;
+
+      function nowLabel() {
+        return new Date().toLocaleString("es-MX", {
+          year: "numeric", month: "2-digit", day: "2-digit",
+          hour: "2-digit", minute: "2-digit"
+        });
+      }
+
+      function setStatus(message, kind) {
+        status.textContent = message;
+        status.classList.remove("ok", "error");
+        if (kind) status.classList.add(kind);
+      }
+
+      function readData() {
+        var data = {};
+        fields.forEach(function (f) { if (f.name) data[f.name] = f.value; });
+        return data;
+      }
+
+      function writeData(data) {
+        fields.forEach(function (f) {
+          if (f.name && data.hasOwnProperty(f.name)) f.value = data[f.name];
+        });
+      }
+
+      function saveData(show) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({ savedAt: new Date().toISOString(), data: readData() }));
+          setStatus(show ? "Guardado local completado: " + nowLabel() : "Autoguardado: " + nowLabel(), "ok");
+        } catch (e) {
+          setStatus("No se pudo guardar en este navegador.", "error");
+        }
+      }
+
+      function loadData() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) { setStatus("Estado: sin guardado previo para este navegador."); return; }
+          var parsed = JSON.parse(raw);
+          if (parsed && parsed.data) writeData(parsed.data);
+          setStatus("Respuestas restauradas desde guardado local.", "ok");
+        } catch (e) {
+          setStatus("No se pudo restaurar el guardado local.", "error");
+        }
+      }
+
+      function defaultDate() {
+        var d = document.getElementById("fecha");
+        if (!d.value) {
+          var t = new Date();
+          d.value = t.getFullYear() + "-" + String(t.getMonth() + 1).padStart(2, "0") + "-" + String(t.getDate()).padStart(2, "0");
+        }
+      }
+
+      function buildTextExport() {
+        var lines = [];
+        lines.push("Actividad de clase: Madagascar — la mano de obra barata de la IA");
+        lines.push("Exportado: " + new Date().toLocaleString("es-MX"));
+        lines.push("Curso: Globalizacion y Empleo 2026-2");
+        fields.forEach(function (f) {
+          var label = f.getAttribute("data-export-label");
+          if (!label) return;
+          var val = (f.value || "").trim();
+          lines.push("");
+          lines.push(label + ":");
+          lines.push(val ? val : "[Sin respuesta]");
+        });
+        return lines.join("\n");
+      }
+
+      function downloadText() {
+        var nombre = (document.getElementById("nombre").value || "sin_nombre").trim().replace(/\s+/g, "_").replace(/[^A-Za-z0-9_-]/g, "");
+        var dateVal = document.getElementById("fecha").value || "sin_fecha";
+        var filename = "actividad_madagascar_ia_" + nombre + "_" + dateVal + ".txt";
+        var blob = new Blob([buildTextExport()], { type: "text/plain;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url; a.download = filename;
+        document.body.appendChild(a); a.click(); a.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      function clearForm() {
+        if (!window.confirm("Se borrarán las respuestas guardadas en este navegador. ¿Continuar?")) return;
+        form.reset();
+        localStorage.removeItem(STORAGE_KEY);
+        defaultDate();
+        setStatus("Formulario limpio y guardado local eliminado.");
+      }
+
+      function prepareForPrint() {
+        form.querySelectorAll("textarea").forEach(function (a) {
+          a.style.height = "auto";
+          a.style.height = a.scrollHeight + "px";
+        });
+      }
+
+      fields.forEach(function (f) {
+        f.addEventListener("input", function () {
+          clearTimeout(autosaveTimer);
+          autosaveTimer = setTimeout(function () { saveData(false); }, 350);
+        });
+      });
+
+      saveBtn.addEventListener("click", function () { saveData(true); });
+      clearBtn.addEventListener("click", clearForm);
+      exportBtn.addEventListener("click", downloadText);
+      printBtn.addEventListener("click", function () { prepareForPrint(); window.print(); });
+      window.addEventListener("beforeprint", prepareForPrint);
+
+      defaultDate();
+      loadData();
+    })();
+  </script>
+</body>
+</html>
