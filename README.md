@@ -29,7 +29,7 @@ global/
 │   ├── actividad_video_digital_world_and_us_25feb26.html
 │   ├── presentacion_globalization_v2.html
 │   ├── panorama_aportes_24feb26.html
-│   └── ...otros HTML/MD de apoyo
+│   └── ...otros HTML de apoyo
 ├── foro_noticias/                     # Visualización pública del foro
 ├── recortes_noticias/                 # Imágenes usadas en presentaciones públicas
 ├── recursos/                          # Datos procesados para consulta en páginas
@@ -43,9 +43,7 @@ global/
 │           ├── comments_export.txt
 │           ├── comments_transcript.txt
 │           └── mood_summary.json
-├── pizarrones/                        # Diagramas DOT/SVG
-├── lecturas/                          # Materiales de lectura
-└── controles/                         # Entregas y archivos de control académico
+└── pizarrones/                        # Diagramas SVG publicados
 ```
 
 ## Criterio de organización
@@ -53,15 +51,6 @@ global/
 - `sesiones/`: solo páginas HTML publicables para clase.
 - `actividades/`: actividades y páginas de trabajo didáctico.
 - `recursos/videos/<slug-id>/`: salida limpia y versionable por video (metadata, transcripciones, comentarios, mood).
-
-## Material local no publicado
-
-Se mantiene fuera del repositorio todo lo que no interviene en la versión final del sitio. Ejemplos:
-
-- respaldos crudos en `yt-backups/`
-- entregas intermedias en `glosario/*/`
-- fuentes auxiliares como `sesiones/24feb26/*.csv` y `sesiones/24feb26/*.xml`
-- borradores y fuentes de trabajo como `cap-glob-old.html`, `pizarrones/*.dot` y algunos `.md` o `.txt` de apoyo
 
 ## Tecnologías
 
