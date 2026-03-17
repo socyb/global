@@ -281,6 +281,172 @@
       margin-top: clamp(20px, 3vw, 36px);
     }
 
+    /* ── Modal overlay ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 20, 15, 0.82);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.visible { display: flex; }
+
+    .modal-box {
+      width: 100%;
+      max-width: 560px;
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -18px;
+      right: -14px;
+      z-index: 10;
+      width: 44px;
+      height: 44px;
+      border: 3px solid var(--ink);
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 1.3rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+      transition: background 0.15s;
+    }
+    .modal-close:hover { background: #f0d0d0; }
+
+    /* Flip container */
+    .flip-container {
+      perspective: 900px;
+      width: 100%;
+    }
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      transition: transform 0.5s, height 0.35s ease;
+      transform-style: preserve-3d;
+    }
+    .flip-container.flipped .flip-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-front, .flip-back {
+      width: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 3vw, 36px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .flip-front {
+      position: relative;
+    }
+    .flip-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .flip-front {
+      background: var(--surface);
+    }
+    /* When flipped, front hides and back drives height */
+    .flip-container.flipped .flip-front {
+      visibility: hidden;
+    }
+    .flip-container.flipped .flip-back {
+      position: relative;
+    }
+    .flip-front .modal-cat { margin-bottom: 10px; }
+    .flip-front h3 {
+      font-size: clamp(1.2rem, 1.8vw + 0.4rem, 1.6rem);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .flip-front .flip-hint {
+      font-family: var(--font-accent);
+      font-size: clamp(0.75rem, 0.8vw + 0.2rem, 0.85rem);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      color: var(--gold-dark);
+      margin-top: auto;
+    }
+
+    .flip-back {
+      background: #fdfcf6;
+      transform: rotateY(180deg);
+      border-color: var(--gold);
+      visibility: hidden;
+    }
+    .flip-container.flipped .flip-back {
+      visibility: visible;
+    }
+    .flip-back p {
+      font-size: clamp(0.95rem, 1vw + 0.3rem, 1.1rem);
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .flip-back blockquote {
+      font-style: italic;
+      border-left: 4px solid var(--gold);
+      padding-left: 12px;
+      margin: 8px 0;
+      color: var(--ink);
+      font-size: clamp(0.92rem, 0.97vw + 0.28rem, 1.05rem);
+    }
+    .flip-back .page-ref {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-size: clamp(0.7rem, 0.75vw + 0.16rem, 0.8rem);
+      font-weight: 800;
+      background: var(--crimson);
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-top: 8px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .modal-actions button {
+      font-family: var(--font-accent);
+      font-size: clamp(0.82rem, 0.88vw + 0.2rem, 0.95rem);
+      font-weight: 700;
+      padding: 10px 20px;
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .modal-actions button:active { transform: scale(0.97); }
+    .btn-flip {
+      background: var(--gold-light);
+      color: var(--ink);
+    }
+    .btn-flip:hover { background: var(--gold); color: #fff; }
+    .btn-next {
+      background: var(--crimson);
+      color: #fff;
+    }
+    .btn-next:hover { background: var(--crimson-light); }
+
     /* ── Responsive ── */
     @media (max-width: 600px) {
       .card-question { gap: 10px; }
@@ -320,6 +486,7 @@
       <button onclick="revealAll()">👁 Revelar todas</button>
       <button onclick="hideAll()">🙈 Ocultar todas</button>
       <button onclick="shuffle()">🔀 Barajar</button>
+      <button onclick="openRandom()" style="background:var(--crimson);color:#fff;">🎲 Pregunta aleatoria</button>
     </div>
 
     <!-- ═══ DECK ═══ -->
@@ -765,6 +932,27 @@
 
   </div>
 
+  <!-- ═══ MODAL ═══ -->
+  <div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">✕</button>
+      <div class="flip-container" id="flipCard">
+        <div class="flip-inner">
+          <div class="flip-front" id="modalFront">
+            <div class="modal-cat" id="modalCat"></div>
+            <h3 id="modalQ"></h3>
+            <span class="flip-hint">Presiona «Voltear» para ver la respuesta</span>
+          </div>
+          <div class="flip-back" id="modalBack"></div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-flip" onclick="flipToggle()">🔄 Voltear</button>
+        <button class="btn-next" onclick="openRandom()">🎲 Otra pregunta</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     function revealAll() {
       document.querySelectorAll('.card').forEach(c => c.classList.add('open'));
@@ -775,18 +963,59 @@
     function shuffle() {
       const deck = document.getElementById('deck');
       const cards = [...deck.children];
-      // Fisher-Yates
       for (let i = cards.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         deck.appendChild(cards[j]);
         [cards[i], cards[j]] = [cards[j], cards[i]];
       }
-      // Re-number
       deck.querySelectorAll('.card-num').forEach((n, idx) => {
         n.textContent = idx + 1;
       });
       hideAll();
     }
+
+    /* ── Modal random card ── */
+    const modal = document.getElementById('modal');
+    const flipCard = document.getElementById('flipCard');
+    const modalFront = document.getElementById('modalFront');
+    const modalBack = document.getElementById('modalBack');
+    const modalCat = document.getElementById('modalCat');
+    const modalQ = document.getElementById('modalQ');
+
+    function openRandom() {
+      const cards = document.querySelectorAll('#deck .card');
+      const card = cards[Math.floor(Math.random() * cards.length)];
+      // Extract question
+      const catEl = card.querySelector('.cat');
+      modalCat.innerHTML = catEl ? catEl.outerHTML : '';
+      modalQ.textContent = card.querySelector('h3').textContent;
+      // Extract answer
+      modalBack.innerHTML = card.querySelector('.card-answer').innerHTML;
+      // Reset to front
+      flipCard.classList.remove('flipped');
+      modal.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+      // Scroll modal to top
+      document.querySelector('.modal-box').scrollTop = 0;
+    }
+
+    function flipToggle() {
+      flipCard.classList.toggle('flipped');
+      // Scroll modal to top when flipping
+      document.querySelector('.modal-box').scrollTop = 0;
+    }
+
+    function closeModal() {
+      modal.classList.remove('visible');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (!modal.classList.contains('visible')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flipToggle(); }
+      if (e.key === 'ArrowRight' || e.key === 'n') openRandom();
+    });
   </script>
 </body>
 </html>
