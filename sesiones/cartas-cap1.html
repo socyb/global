@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🃏 Cartas del Capítulo · Sistemas laborales comparados</title>
+  <style>
+    :root {
+      --ink: #1a2a2a;
+      --paper: #f0ece4;
+      --surface: #fff;
+      --muted: #5a5a4a;
+      --gold: #c8a84e;
+      --gold-dark: #8a6a20;
+      --gold-light: #f0dca0;
+      --crimson: #8b1a1a;
+      --crimson-light: #c83838;
+      --green: #2a6a40;
+      --green-light: #d0e8d4;
+      --blue: #2a4a7a;
+      --blue-light: #d0dce8;
+      --border: 3px solid var(--ink);
+      --radius: 8px;
+      --shadow: 6px 6px 0 var(--ink);
+      --shadow-sm: 4px 4px 0 var(--ink);
+      --font-body: 'American Typewriter', 'Georgia', serif;
+      --font-accent: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font-body);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: clamp(1rem, 1.1vw + 0.5rem, 1.18rem);
+      line-height: 1.55;
+      padding: clamp(14px, 2.5vw, 28px);
+    }
+    .wrap { max-width: 900px; margin: 0 auto; }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: clamp(20px, 3vw, 36px);
+      padding: clamp(20px, 3vw, 36px);
+      background: var(--crimson);
+      color: #fff;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '🃏';
+      position: absolute;
+      top: -20px;
+      right: -10px;
+      font-size: clamp(80px, 15vw, 140px);
+      opacity: 0.12;
+      transform: rotate(12deg);
+    }
+    .header .back-link {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-size: clamp(0.78rem, 0.85vw + 0.2rem, 0.88rem);
+      color: var(--gold-light);
+      text-decoration: none;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .header h1 {
+      font-size: clamp(1.5rem, 3.5vw + 0.3rem, 2.4rem);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .header p {
+      font-size: clamp(0.9rem, 1vw + 0.3rem, 1.05rem);
+      opacity: 0.85;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ── Foucault epigraph ── */
+    .epigraph {
+      background: var(--surface);
+      border: var(--border);
+      border-left: 8px solid var(--gold);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(16px, 2.5vw, 28px);
+      margin-bottom: clamp(20px, 3vw, 36px);
+      font-style: italic;
+      color: var(--muted);
+      font-size: clamp(0.95rem, 1vw + 0.3rem, 1.08rem);
+    }
+    .epigraph .author {
+      display: block;
+      margin-top: 10px;
+      font-style: normal;
+      font-weight: 700;
+      color: var(--crimson);
+      font-size: clamp(0.82rem, 0.85vw + 0.2rem, 0.92rem);
+    }
+
+    /* ── Instructions ── */
+    .instructions {
+      background: var(--gold-light);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(14px, 2vw, 22px);
+      margin-bottom: clamp(20px, 3vw, 36px);
+      font-size: clamp(0.9rem, 0.95vw + 0.25rem, 1.02rem);
+    }
+    .instructions h2 {
+      font-size: clamp(1.05rem, 1.2vw + 0.3rem, 1.2rem);
+      margin-bottom: 8px;
+      color: var(--gold-dark);
+    }
+    .instructions ol {
+      padding-left: 1.4em;
+    }
+    .instructions li { margin-bottom: 4px; }
+
+    /* ── Card deck ── */
+    .deck { display: flex; flex-direction: column; gap: 18px; }
+
+    .card {
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    /* Question side */
+    .card-question {
+      padding: clamp(16px, 2vw, 24px);
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      user-select: none;
+      -webkit-user-select: none;
+      transition: background 0.15s;
+    }
+    .card-question:hover { background: #fafaf4; }
+    .card-question:active { background: var(--gold-light); }
+
+    .card-num {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      background: var(--crimson);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-accent);
+      font-weight: 900;
+      font-size: clamp(0.85rem, 0.9vw + 0.2rem, 1rem);
+      border: 2px solid var(--ink);
+    }
+    .card-q-text {
+      flex: 1;
+    }
+    .card-q-text h3 {
+      font-size: clamp(1rem, 1.1vw + 0.3rem, 1.15rem);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .card-q-text .hint {
+      font-family: var(--font-accent);
+      font-size: clamp(0.72rem, 0.78vw + 0.18rem, 0.82rem);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      color: var(--gold-dark);
+    }
+    .card-toggle {
+      flex-shrink: 0;
+      align-self: center;
+      font-size: 1.5em;
+      transition: transform 0.25s;
+      color: var(--crimson);
+    }
+    .card.open .card-toggle { transform: rotate(180deg); }
+
+    /* Answer side */
+    .card-answer {
+      display: none;
+      border-top: 2px dashed var(--gold);
+      padding: clamp(16px, 2vw, 24px);
+      background: #fdfcf6;
+    }
+    .card.open .card-answer { display: block; }
+
+    .card-answer p {
+      font-size: clamp(0.92rem, 0.98vw + 0.28rem, 1.05rem);
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .card-answer .page-ref {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-size: clamp(0.7rem, 0.75vw + 0.16rem, 0.8rem);
+      font-weight: 800;
+      background: var(--crimson);
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-top: 4px;
+    }
+    .card-answer blockquote {
+      font-style: italic;
+      border-left: 4px solid var(--gold);
+      padding-left: 12px;
+      margin: 8px 0;
+      color: var(--ink);
+      font-size: clamp(0.88rem, 0.93vw + 0.25rem, 1rem);
+    }
+
+    /* ── Category badges ── */
+    .cat {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-size: clamp(0.65rem, 0.7vw + 0.14rem, 0.75rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 2px solid var(--ink);
+      margin-right: 6px;
+    }
+    .cat-eco { background: var(--green-light); color: var(--green); }
+    .cat-pol { background: var(--gold-light); color: var(--gold-dark); }
+    .cat-org { background: var(--blue-light); color: var(--blue); }
+    .cat-crit { background: #f0d0d0; color: var(--crimson); }
+    .cat-glob { background: #e0d8f0; color: #4a3080; }
+
+    /* ── Controls bar ── */
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: clamp(16px, 2.5vw, 28px);
+    }
+    .controls button {
+      font-family: var(--font-accent);
+      font-size: clamp(0.78rem, 0.85vw + 0.18rem, 0.88rem);
+      font-weight: 700;
+      padding: 8px 16px;
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+      cursor: pointer;
+      background: var(--surface);
+      color: var(--ink);
+      transition: background 0.15s, transform 0.1s;
+    }
+    .controls button:hover { background: var(--gold-light); }
+    .controls button:active { transform: scale(0.97); }
+    .controls button.active {
+      background: var(--crimson);
+      color: #fff;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 22px 12px;
+      font-family: var(--font-accent);
+      font-size: clamp(0.78rem, 0.82vw + 0.18rem, 0.88rem);
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      margin-top: clamp(20px, 3vw, 36px);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .card-question { gap: 10px; }
+      .card-num { width: 34px; height: 34px; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="header">
+      <a class="back-link" href="slc.html">← Sistemas laborales comparados</a>
+      <h1>🃏 Cartas del Capítulo</h1>
+      <p>Preguntas y respuestas basadas en el Capítulo 1 de Brunet, Pizzi y Moral (2016), pp. 21–55.</p>
+    </header>
+
+    <!-- ═══ FOUCAULT EPIGRAPH ═══ -->
+    <div class="epigraph">
+      «Lo que yo quisiera que quedara en claro es que el trabajo no es en absoluto la esencia concreta del hombre o la existencia del hombre en su forma concreta. Para que los hombres sean efectivamente colocados en el trabajo y ligados a él es necesaria una operación o una serie de operaciones complejas por las que los hombres se encuentran realmente, no de una manera analítica sino sintética, vinculados al aparato de producción para el que trabajan. Para que la esencia del hombre pueda representarse como trabajo se necesita la operación o la síntesis operada por un poder político.»
+      <span class="author">— Michel Foucault (1986: 138), citado en p. 43</span>
+    </div>
+
+    <!-- ═══ INSTRUCTIONS ═══ -->
+    <div class="instructions">
+      <h2>🎴 Cómo jugar</h2>
+      <ol>
+        <li>Cada carta muestra una <strong>pregunta</strong> sobre la lectura.</li>
+        <li>Intenta responder <strong>antes</strong> de voltear la carta.</li>
+        <li>Toca o haz clic en la carta para ver la <strong>respuesta fundamentada</strong> con la página exacta del libro.</li>
+        <li>Usa los botones para <strong>revelar todas</strong>, <strong>ocultar todas</strong> o <strong>barajar</strong>.</li>
+      </ol>
+    </div>
+
+    <!-- ═══ CONTROLS ═══ -->
+    <div class="controls">
+      <button onclick="revealAll()">👁 Revelar todas</button>
+      <button onclick="hideAll()">🙈 Ocultar todas</button>
+      <button onclick="shuffle()">🔀 Barajar</button>
+    </div>
+
+    <!-- ═══ DECK ═══ -->
+    <div class="deck" id="deck">
+
+      <!-- CARD 1 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">1</span>
+          <div class="card-q-text">
+            <span class="cat cat-eco">Economía</span>
+            <h3>¿Qué tres lógicas sociales sostuvieron el pacto de postguerra en Europa?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <p>El gran acuerdo de postguerra se explica por el «encuentro» de tres grandes lógicas sociales:</p>
+          <blockquote>«El keynesianismo, el taylorismo-fordismo y el corporativismo laboral.»</blockquote>
+          <p>El keynesianismo organizó la política económica, el fordismo organizó la producción, y el corporativismo reguló las relaciones entre clases sociales.</p>
+          <span class="page-ref">p. 21</span>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">2</span>
+          <div class="card-q-text">
+            <span class="cat cat-pol">Política</span>
+            <h3>¿Cuál fue el objetivo central de la política keynesiana de postguerra?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«El compromiso político de tipo keynesiano, por parte de los gobiernos de los países centrales europeos, se orientó por un claro objetivo: el pleno empleo.»</blockquote>
+          <p>Para lograrlo se articularon políticas de bienestar orientadas a generar un verdadero mercado de consumo de masas.</p>
+          <span class="page-ref">p. 21</span>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">3</span>
+          <div class="card-q-text">
+            <span class="cat cat-eco">Economía</span>
+            <h3>¿Cómo se financió la expansión del gasto público keynesiano?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«Para su financiación no solo se recurrió a la vía impositiva sino también, y fundamentalmente, a la emisión de deuda pública, con el objeto de conseguir que sus efectos expansivos sobre la demanda fuesen mayores.»</blockquote>
+          <p>La inversión pública y la política monetaria y fiscal expansiva ampliaron las oportunidades de alcanzar el pleno empleo.</p>
+          <span class="page-ref">p. 23</span>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">4</span>
+          <div class="card-q-text">
+            <span class="cat cat-org">Organización</span>
+            <h3>¿En qué consiste la lógica productiva fordista?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«Un sistema de organización de la producción basado en la elaboración masiva de productos estandarizados (o semi-estandarizados) e intensivos en capital, creando economías de escala.»</blockquote>
+          <p>Supuso una clara división del trabajo entre directivos, mandos intermedios y operarios, con tareas previamente codificadas.</p>
+          <span class="page-ref">p. 23</span>
+        </div>
+      </div>
+
+      <!-- CARD 5 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">5</span>
+          <div class="card-q-text">
+            <span class="cat cat-org">Organización</span>
+            <h3>¿Qué es la división funcional del trabajo y qué efectos produce?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <p>El centro de trabajo se organizó mediante la división funcional del trabajo a todos los niveles para alcanzar la máxima productividad.</p>
+          <blockquote>«Sus efectos son la eliminación de tiempos muertos, la estandarización y fragmentación del trabajo, la corrección de movimientos inútiles, la contratación de trabajadores semi-cualificados, el salario como incentivo para incrementar la productividad y la integración de tareas en un proceso continuo.»</blockquote>
+          <span class="page-ref">p. 23</span>
+        </div>
+      </div>
+
+      <!-- CARD 6 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">6</span>
+          <div class="card-q-text">
+            <span class="cat cat-pol">Política</span>
+            <h3>¿Qué es el corporativismo laboral y qué papel juegan los sindicatos?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«Prácticas políticas que se plasman en acuerdos y pactos entre fuerzas sociales, en principio antagónicas» (Solé, 1984: 11).</blockquote>
+          <p>La emergencia de la gran empresa y del obrero-masa creó intereses colectivos uniformes. Estas condiciones favorecen que empresarios y gobiernos reconozcan un interlocutor colectivo (sindicatos) con quien gestionar las relaciones laborales y controlar el conflicto social.</p>
+          <span class="page-ref">pp. 23–25</span>
+        </div>
+      </div>
+
+      <!-- CARD 7 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">7</span>
+          <div class="card-q-text">
+            <span class="cat cat-pol">Política</span>
+            <h3>¿Qué significa la expresión «modelos de relaciones laborales»?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«Una configuración particular de reglas, actores y prácticas.»</blockquote>
+          <p>La relación salarial del capitalismo liberal, regulada en términos mercantiles, fue sustituida por una regulación salarial social y políticamente ordenada, dando lugar a las relaciones industriales (terminología anglosajona) o laborales.</p>
+          <span class="page-ref">p. 25</span>
+        </div>
+      </div>
+
+      <!-- CARD 8 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">8</span>
+          <div class="card-q-text">
+            <span class="cat cat-pol">Política</span>
+            <h3>¿Qué función cumplió el trabajo asalariado en la sociedad de postguerra?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«El trabajo asalariado cumplió la función de ser el medio básico y fundamental de integración de los individuos a la ciudadanía social y política, basándose sobre la oferta de un tipo de empleo determinado, que comportó la prestación laboral en condiciones dignas.»</blockquote>
+          <p>Esto fue posible bajo la norma social del pleno empleo.</p>
+          <span class="page-ref">p. 25</span>
+        </div>
+      </div>
+
+      <!-- CARD 9 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">9</span>
+          <div class="card-q-text">
+            <span class="cat cat-pol">Política</span>
+            <h3>¿Bajo qué perspectiva se construyó el Estado de bienestar?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«Se expandió bajo una perspectiva durkheimiana, como resultado de la importancia que alcanzó la integración del individuo en el colectivo social.»</blockquote>
+          <p>Constituyó un dispositivo que pretendió conjurar los riesgos de la desafiliación y la anomia social, erigiéndose como el argumento central del plan de gobernabilidad de las sociedades modernas.</p>
+          <span class="page-ref">p. 25</span>
+        </div>
+      </div>
+
+      <!-- CARD 10 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">10</span>
+          <div class="card-q-text">
+            <span class="cat cat-crit">Crítica</span>
+            <h3>¿Por qué no debemos idealizar el periodo del Estado de bienestar?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«No debemos idealizar este período (Castel, 2005) dada la situación de los trabajadores inmigrantes y de la posición subordinada de las trabajadoras, así como de una proporción significativa de sectores populares autóctonos.»</blockquote>
+          <p>Se hicieron presentes desigualdades estructurales entre categorías asalariadas.</p>
+          <span class="page-ref">p. 25</span>
+        </div>
+      </div>
+
+      <!-- CARD 11 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">11</span>
+          <div class="card-q-text">
+            <span class="cat cat-eco">Economía</span>
+            <h3>¿Cuáles fueron los pilares de la política neoliberal que sustituyó al keynesianismo?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«Privatización de empresas públicas, políticas monetarias restrictivas, control del déficit fiscal y la inflación, descenso del gasto público y de la presión fiscal a las empresas, flexibilización de los mercados de trabajo.»</blockquote>
+          <p>Todos estos elementos constituyeron los criterios económicos centrales de la nueva etapa, abandonando la demanda agregada como motor del crecimiento.</p>
+          <span class="page-ref">p. 27</span>
+        </div>
+      </div>
+
+      <!-- CARD 12 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">12</span>
+          <div class="card-q-text">
+            <span class="cat cat-org">Organización</span>
+            <h3>¿Era el taylorismo-fordismo solo un método de organización del trabajo?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«La lógica taylorista-fordista original no buscó simplemente un mejor modo de organizar el trabajo, sino también dar respuesta específica al problema de cómo controlar, de la mejor manera posible, a sus trabajadores.»</blockquote>
+          <p>El objetivo latente fue alterar el equilibrio de fuerzas en el conflicto capital-trabajo.</p>
+          <span class="page-ref">p. 27</span>
+        </div>
+      </div>
+
+      <!-- CARD 13 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">13</span>
+          <div class="card-q-text">
+            <span class="cat cat-org">Organización</span>
+            <h3>¿Es el «justo a tiempo» (kaizen) realmente un modelo pos-fordista?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«Algunos cuestionen que el paradigma de la producción ligera o ajustada constituya un modelo posfordista (Köhler, 2001). Por el contrario, constituiría una perfección del fordismo, mediante instrumentos como el "justo a tiempo" y el "kaizen".»</blockquote>
+          <p>La diferencia reside en el intento continuo de explicitar los conocimientos tácitos que los trabajadores poseen para transferirlos a la dirección.</p>
+          <span class="page-ref">p. 27</span>
+        </div>
+      </div>
+
+      <!-- CARD 14 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">14</span>
+          <div class="card-q-text">
+            <span class="cat cat-org">Organización</span>
+            <h3>¿Qué diferencia al método «push» del método «pull» en producción?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <p>La producción en masa usa el método <strong>push</strong>: obtención del volumen máximo de producto para luego forzar su penetración en el mercado.</p>
+          <p>La producción ajustada usa el método <strong>pull</strong>: se adapta a la demanda y «tira» de la misma, convirtiendo la demanda en planes de producción flexibles.</p>
+          <span class="page-ref">p. 29</span>
+        </div>
+      </div>
+
+      <!-- CARD 15 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">15</span>
+          <div class="card-q-text">
+            <span class="cat cat-crit">Crítica</span>
+            <h3>¿Qué es el «obrero social» del postfordismo?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«La individuación produce un nuevo tipo de proletariado, el obrero social, que expresa una multiplicidad de nuevas figuras del trabajo vivo postfordista. Se trata de obrero colectivo móvil, flexible, precario» (Hardt y Negri, 2005).</blockquote>
+          <p>La producción postfordista es «hablante», «comunicante», organizada en grupos, con tecnologías que aceleran la circulación de la información.</p>
+          <span class="page-ref">pp. 31–32</span>
+        </div>
+      </div>
+
+      <!-- CARD 16 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">16</span>
+          <div class="card-q-text">
+            <span class="cat cat-eco">Economía</span>
+            <h3>¿Cómo se resolvió la crisis de los años setenta en términos capitalistas?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«La crisis global de los años setenta se resolvió en términos capitalistas creando las condiciones biopolíticas y materiales para el relanzamiento de la acumulación a escala ampliada.»</blockquote>
+          <p>El capital financiero comenzó una decisiva intervención para restablecer su propio control hegemónico, provocando la crisis de la sociedad salarial y de la lógica fordista.</p>
+          <span class="page-ref">pp. 31–33</span>
+        </div>
+      </div>
+
+      <!-- CARD 17 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">17</span>
+          <div class="card-q-text">
+            <span class="cat cat-org">Organización</span>
+            <h3>¿Qué son las «organizaciones adhocráticas» de Mintzberg?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«Organizaciones adhocráticas, modelo de organización flexible con sistemas de comunicación "fríos" y donde se constituyen equipos de expertos para desarrollar los proyectos de innovación» (Mintzberg, 1995).</blockquote>
+          <p>Los nuevos empleados cualificados son descritos como analistas de símbolos.</p>
+          <span class="page-ref">p. 33</span>
+        </div>
+      </div>
+
+      <!-- CARD 18 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">18</span>
+          <div class="card-q-text">
+            <span class="cat cat-glob">Globalización</span>
+            <h3>¿Cuál es el núcleo de la globalización según Arrighi?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«El núcleo de la globalización es la interdependencia de los mercados financieros interconectados electrónicamente en tiempo real» (Arrighi, 2007).</blockquote>
+          <span class="page-ref">p. 35</span>
+        </div>
+      </div>
+
+      <!-- CARD 19 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">19</span>
+          <div class="card-q-text">
+            <span class="cat cat-glob">Globalización</span>
+            <h3>¿Por qué Luhmann dice que vivimos en una «sociedad financiera»?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«La sociedad capitalista o postindustrial ha pasado a ser realmente una sociedad financiera, ya que el verdadero centro en la economía mundializada no es geográfico ni guarda relación con un Estado, sino que se trata de los mercados financieros globales» (Luhmann, 1998).</blockquote>
+          <span class="page-ref">p. 37</span>
+        </div>
+      </div>
+
+      <!-- CARD 20 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">20</span>
+          <div class="card-q-text">
+            <span class="cat cat-glob">Globalización</span>
+            <h3>¿Qué hacen las redes globales según Castells?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«Las redes globales de intercambios instrumentales conectan o desconectan de forma selectiva individuos, grupos, regiones o incluso países según su importancia para cumplir las metas procesadas en la red, en una corriente incesante de decisiones estratégicas» (Castells, 2002: 29).</blockquote>
+          <span class="page-ref">p. 37</span>
+        </div>
+      </div>
+
+      <!-- CARD 21 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">21</span>
+          <div class="card-q-text">
+            <span class="cat cat-glob">Globalización</span>
+            <h3>¿Qué dimensión oculta tiene el «digitalismo»?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«El digitalismo no ha sido más que un medio de expandir el mercado. El digitalismo incluye una dimensión colonizadora, esto es, incluye una novedosa manera de colonizar el mundo por parte del capital.»</blockquote>
+          <span class="page-ref">p. 37</span>
+        </div>
+      </div>
+
+      <!-- CARD 22 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">22</span>
+          <div class="card-q-text">
+            <span class="cat cat-crit">Crítica</span>
+            <h3>¿Qué critica el marxismo al enfoque institucionalista de relaciones laborales?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«El modelo marxista de relaciones laborales no puso su principal foco de atención en analizar los procesos de regulación laboral, al entender que estos procesos tan solo ayudaban a maximizar el control que ejercían los empleadores sobre la fuerza de trabajo. Por el contrario, puso en el centro de su análisis los procesos de control social que se ejercen sobre los trabajadores.»</blockquote>
+          <span class="page-ref">p. 41</span>
+        </div>
+      </div>
+
+      <!-- CARD 23 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">23</span>
+          <div class="card-q-text">
+            <span class="cat cat-crit">Crítica</span>
+            <h3>¿Cuál es el «problema clave» en la relación capital-trabajo según Marx?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«El problema clave lo constituye la transformación de fuerza de trabajo en trabajo productivo generador de plusvalor, a través del despliegue de los diversos dispositivos de gestión de recursos humanos diseñados para tal fin.»</blockquote>
+          <span class="page-ref">p. 43</span>
+        </div>
+      </div>
+
+      <!-- CARD 24 -->
+      <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-question">
+          <span class="card-num">24</span>
+          <div class="card-q-text">
+            <span class="cat cat-crit">Crítica</span>
+            <h3>Según Foucault, ¿el trabajo es la esencia del hombre?</h3>
+            <span class="hint">Toca para voltear →</span>
+          </div>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-answer">
+          <blockquote>«Lo que yo quisiera que quedara en claro es que el trabajo no es en absoluto la esencia concreta del hombre o la existencia del hombre en su forma concreta. Para que los hombres sean efectivamente colocados en el trabajo y ligados a él es necesaria una operación o una serie de operaciones complejas por las que los hombres se encuentran realmente, no de una manera analítica sino sintética, vinculados al aparato de producción para el que trabajan. Para que la esencia del hombre pueda representarse como trabajo se necesita la operación o la síntesis operada por un poder político.»</blockquote>
+          <p>Foucault (1986: 138)</p>
+          <span class="page-ref">p. 43</span>
+        </div>
+      </div>
+
+    </div><!-- /deck -->
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+      <a href="slc.html" style="color:var(--crimson);text-decoration:none;font-weight:700;">← Volver a Sistemas laborales comparados</a>
+      <span>Globalización y Empleo · FCA · UNAM · 2026-2 · Jorge Cardiel</span>
+      <p style="margin-top:8px;font-size:clamp(0.72rem,0.75vw+0.18rem,0.82rem);color:var(--muted);max-width:600px;text-align:center;line-height:1.45;">
+        Preguntas elaboradas a partir de las notas de lectura del Capítulo 1 de Brunet, I., Pizzi, A. y Moral, D. (2016). <em>Sistemas laborales comparados</em>. Anthropos, pp. 21–55.
+      </p>
+    </footer>
+
+  </div>
+
+  <script>
+    function revealAll() {
+      document.querySelectorAll('.card').forEach(c => c.classList.add('open'));
+    }
+    function hideAll() {
+      document.querySelectorAll('.card').forEach(c => c.classList.remove('open'));
+    }
+    function shuffle() {
+      const deck = document.getElementById('deck');
+      const cards = [...deck.children];
+      // Fisher-Yates
+      for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        deck.appendChild(cards[j]);
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+      }
+      // Re-number
+      deck.querySelectorAll('.card-num').forEach((n, idx) => {
+        n.textContent = idx + 1;
+      });
+      hideAll();
+    }
+  </script>
+</body>
+</html>
