@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Mediateca — Videos del curso Globalización y Empleo 2026-2, FCA UNAM">
+  <title>Mediateca · Globalización y Empleo 2026-2</title>
+  <link rel="icon" href="img/icon-globe.svg">
+  <style>
+    :root {
+      --ink: #111;
+      --paper: #fafaf7;
+      --surface: #fff;
+      --blush: #fff5f5;
+      --mint: #e8fdf5;
+      --sky: #eef6ff;
+      --lavender: #f0ecff;
+      --cream: #fffdf0;
+      --gold: #ffd93d;
+      --coral: #ff6b6b;
+      --teal: #4ecdc4;
+      --purple: #6c5ce7;
+      --text: #22272d;
+      --text-muted: #555;
+      --border: 3px solid var(--ink);
+      --border-thin: 2px solid var(--ink);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --radius-pill: 999px;
+      --shadow: 6px 6px 0 var(--ink);
+      --shadow-sm: 4px 4px 0 var(--ink);
+      --shadow-press: 2px 2px 0 var(--ink);
+      --font-body: 'American Typewriter','Georgia','Times New Roman',serif;
+      --font-accent: system-ui,-apple-system,'Segoe UI',sans-serif;
+      --transition: .2s ease;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:var(--font-body);
+      background:var(--paper);
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    .wrap{max-width:1100px;margin:0 auto;padding:clamp(14px,2.5vw,28px)}
+
+    /* ── Header ── */
+    .page-header{
+      text-align:center;
+      padding:clamp(24px,4vw,48px) clamp(14px,2vw,24px);
+      background:linear-gradient(135deg,var(--blush) 0%,var(--lavender) 100%);
+      border:var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      margin-bottom:clamp(20px,3vw,36px);
+      position:relative;
+      overflow:hidden;
+    }
+    .page-header::before{
+      content:'📺';
+      position:absolute;top:-15px;right:-5px;
+      font-size:clamp(70px,14vw,130px);opacity:.1;transform:rotate(8deg);
+    }
+    .page-header .back{
+      display:inline-block;
+      font-family:var(--font-accent);font-size:clamp(.78rem,.85vw+.2rem,.88rem);
+      color:var(--purple);text-decoration:none;font-weight:700;margin-bottom:10px;
+    }
+    .page-header h1{
+      font-size:clamp(1.6rem,3.5vw+.3rem,2.6rem);line-height:1.1;margin-bottom:8px;
+    }
+    .page-header .sub{
+      font-size:clamp(.88rem,1vw+.3rem,1.05rem);color:var(--text-muted);max-width:600px;margin:0 auto;
+    }
+
+    /* ── Filter pills ── */
+    .filters{
+      display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+      margin-bottom:clamp(18px,2.5vw,32px);
+    }
+    .filter-btn{
+      font-family:var(--font-accent);font-size:clamp(.78rem,.8vw+.2rem,.88rem);
+      font-weight:700;letter-spacing:.03em;
+      padding:8px 16px;
+      border:var(--border-thin);border-radius:var(--radius-pill);
+      background:var(--surface);color:var(--text);cursor:pointer;
+      box-shadow:var(--shadow-press);transition:var(--transition);
+    }
+    .filter-btn:hover{background:var(--cream)}
+    .filter-btn.active{
+      background:var(--ink);color:#fff;box-shadow:none;transform:translate(2px,2px);
+    }
+
+    /* ── Section titles ── */
+    .section-label{
+      font-family:var(--font-accent);font-size:clamp(.72rem,.75vw+.18rem,.82rem);
+      font-weight:800;text-transform:uppercase;letter-spacing:.12em;
+      color:var(--text-muted);margin-bottom:6px;
+    }
+    .section-title{
+      font-size:clamp(1.2rem,2vw+.3rem,1.6rem);margin-bottom:clamp(14px,2vw,24px);
+      border-bottom:var(--border-thin);padding-bottom:8px;
+    }
+
+    /* ── Mosaic grid ── */
+    .mosaic{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));
+      gap:clamp(14px,2vw,20px);
+      margin-bottom:clamp(28px,4vw,48px);
+    }
+
+    /* ── Video card ── */
+    .v-card{
+      background:var(--surface);
+      border:var(--border);border-radius:var(--radius);
+      box-shadow:var(--shadow-sm);
+      overflow:hidden;transition:transform var(--transition),box-shadow var(--transition);
+    }
+    .v-card:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+    .v-card[hidden]{display:none}
+    .v-card .thumb{
+      position:relative;width:100%;aspect-ratio:16/9;
+      background:#222;overflow:hidden;cursor:pointer;
+    }
+    .v-card .thumb img{
+      width:100%;height:100%;object-fit:cover;display:block;
+      transition:opacity .3s;
+    }
+    .v-card .thumb .play-icon{
+      position:absolute;top:50%;left:50%;
+      transform:translate(-50%,-50%);
+      width:56px;height:56px;
+      background:rgba(0,0,0,.7);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      pointer-events:none;transition:transform .2s,background .2s;
+    }
+    .v-card .thumb:hover .play-icon{background:var(--coral);transform:translate(-50%,-50%) scale(1.1)}
+    .play-icon svg{fill:#fff;width:24px;height:24px;margin-left:3px}
+    .v-card .thumb iframe{
+      position:absolute;top:0;left:0;width:100%;height:100%;border:0;
+    }
+    .v-card .info{padding:clamp(10px,1.5vw,16px)}
+    .v-card .info h3{
+      font-size:clamp(.88rem,1vw+.2rem,1rem);line-height:1.3;margin-bottom:4px;
+    }
+    .v-card .info .meta{
+      font-family:var(--font-accent);font-size:clamp(.7rem,.72vw+.16rem,.78rem);
+      color:var(--text-muted);display:flex;flex-wrap:wrap;gap:6px 12px;
+    }
+    .v-card .info .tag{
+      display:inline-block;
+      font-family:var(--font-accent);font-size:clamp(.62rem,.65vw+.14rem,.72rem);
+      font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+      padding:3px 8px;border-radius:var(--radius-pill);
+      border:1.5px solid var(--ink);background:var(--cream);
+      margin-top:6px;
+    }
+    .tag[data-cat="trabajo"]{background:#ffecd2}
+    .tag[data-cat="globalización"]{background:#d4f4dd}
+    .tag[data-cat="finanzas"]{background:#d0dce8}
+    .tag[data-cat="filosofía"]{background:var(--lavender)}
+    .tag[data-cat="tecnología"]{background:#ffe8f0}
+    .tag[data-cat="comercio"]{background:#fff3d0}
+    .tag[data-cat="política"]{background:#ffe0e0}
+    .tag[data-cat="cadenas globales"]{background:#e0f2ea}
+
+    /* ── Footer ── */
+    .footer{
+      text-align:center;padding:clamp(18px,3vw,32px);
+      font-family:var(--font-accent);font-size:clamp(.72rem,.75vw+.18rem,.84rem);
+      color:var(--text-muted);margin-top:clamp(20px,3vw,36px);
+      border-top:var(--border-thin);
+    }
+    .footer a{color:var(--purple);text-decoration:none;font-weight:700}
+
+    /* ── Responsive ── */
+    @media(max-width:480px){
+      .mosaic{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- HEADER -->
+    <header class="page-header">
+      <a class="back" href="index.html">← Inicio</a>
+      <h1>📺 Mediateca</h1>
+      <p class="sub">Todos los videos que hemos mencionado en el curso, reunidos en un solo lugar</p>
+    </header>
+
+    <!-- FILTERS -->
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="trabajo">Trabajo</button>
+      <button class="filter-btn" data-filter="globalización">Globalización</button>
+      <button class="filter-btn" data-filter="comercio">Comercio</button>
+      <button class="filter-btn" data-filter="finanzas">Finanzas</button>
+      <button class="filter-btn" data-filter="tecnología">Tecnología</button>
+      <button class="filter-btn" data-filter="filosofía">Filosofía</button>
+      <button class="filter-btn" data-filter="política">Política</button>
+      <button class="filter-btn" data-filter="cadenas globales">Cadenas globales</button>
+    </div>
+
+    <!-- ═══ VIDEOS QUE ESTAMOS VIENDO ═══ -->
+    <section>
+      <p class="section-label">Ahora</p>
+      <h2 class="section-title">Videos que estamos viendo</h2>
+      <div class="mosaic">
+
+        <article class="v-card" data-cats="trabajo globalización">
+          <div class="thumb" data-yt="Zg324Sb6Pl0">
+            <img src="https://img.youtube.com/vi/Zg324Sb6Pl0/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Pobres a pesar de trabajar</h3>
+            <div class="meta"><span>ARTE</span><span>Documental completo</span></div>
+            <span class="tag" data-cat="trabajo">Trabajo</span>
+            <span class="tag" data-cat="globalización">Globalización</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="globalización">
+          <div class="thumb" data-yt="XHteRHDI3dU">
+            <img src="https://img.youtube.com/vi/XHteRHDI3dU/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Globalization — How crises change our world (1/2)</h3>
+            <div class="meta"><span>DW Documentary</span></div>
+            <span class="tag" data-cat="globalización">Globalización</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="globalización">
+          <div class="thumb" data-yt="pEAi92VmBd4">
+            <img src="https://img.youtube.com/vi/pEAi92VmBd4/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Globalization — How crises change our world (2/2)</h3>
+            <div class="meta"><span>DW Documentary</span></div>
+            <span class="tag" data-cat="globalización">Globalización</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ TRABAJO Y EMPLEO ═══ -->
+    <section>
+      <p class="section-label">Bloque 1</p>
+      <h2 class="section-title">Trabajo y empleo</h2>
+      <div class="mosaic">
+
+        <article class="v-card" data-cats="trabajo">
+          <div class="thumb" data-yt="oYusbzayH4c">
+            <img src="https://img.youtube.com/vi/oYusbzayH4c/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>¿Qué es el trabajo? Trabajo, salario, beneficio 1</h3>
+            <div class="meta"><span>ARTE</span><span>Documental</span></div>
+            <span class="tag" data-cat="trabajo">Trabajo</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="trabajo globalización">
+          <div class="thumb" data-yt="idNoLfrMw1g">
+            <img src="https://img.youtube.com/vi/idNoLfrMw1g/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Así funciona el FRAUDE de las 40 horas laborales</h3>
+            <div class="meta"><span>Mientras tanto en México</span><span>4 min</span></div>
+            <span class="tag" data-cat="trabajo">Trabajo</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="trabajo globalización">
+          <div class="thumb" data-yt="Zg324Sb6Pl0">
+            <img src="https://img.youtube.com/vi/Zg324Sb6Pl0/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Pobres a pesar de trabajar</h3>
+            <div class="meta"><span>ARTE</span><span>Documental completo</span></div>
+            <span class="tag" data-cat="trabajo">Trabajo</span>
+            <span class="tag" data-cat="globalización">Globalización</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="trabajo">
+          <div class="thumb" data-yt="9PULyar9r70">
+            <img src="https://img.youtube.com/vi/9PULyar9r70/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Pobres a pesar de trabajar (clip)</h3>
+            <div class="meta"><span>ARTE</span><span>Fragmento</span></div>
+            <span class="tag" data-cat="trabajo">Trabajo</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="trabajo política">
+          <div class="thumb" data-yt="ctpR2fDzgv4">
+            <img src="https://img.youtube.com/vi/ctpR2fDzgv4/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>El Precariado — Guy Standing</h3>
+            <div class="meta"><span>The Precariat</span></div>
+            <span class="tag" data-cat="trabajo">Trabajo</span>
+            <span class="tag" data-cat="política">Política</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="trabajo">
+          <div class="thumb" data-yt="50sTd-wL5z0">
+            <img src="https://img.youtube.com/vi/50sTd-wL5z0/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>La Labor de la OIT</h3>
+            <div class="meta"><span>OIT</span></div>
+            <span class="tag" data-cat="trabajo">Trabajo</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ GLOBALIZACIÓN ═══ -->
+    <section>
+      <p class="section-label">Bloque 2</p>
+      <h2 class="section-title">Globalización</h2>
+      <div class="mosaic">
+
+        <article class="v-card" data-cats="globalización">
+          <div class="thumb" data-yt="XHteRHDI3dU">
+            <img src="https://img.youtube.com/vi/XHteRHDI3dU/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Globalization — How crises change our world (1/2)</h3>
+            <div class="meta"><span>DW Documentary</span></div>
+            <span class="tag" data-cat="globalización">Globalización</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="globalización">
+          <div class="thumb" data-yt="pEAi92VmBd4">
+            <img src="https://img.youtube.com/vi/pEAi92VmBd4/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Globalization — How crises change our world (2/2)</h3>
+            <div class="meta"><span>DW Documentary</span></div>
+            <span class="tag" data-cat="globalización">Globalización</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="globalización finanzas">
+          <div class="thumb" data-yt="qc7g6Uhi1i4">
+            <img src="https://img.youtube.com/vi/qc7g6Uhi1i4/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>La curva del elefante de Milanovic</h3>
+            <div class="meta"><span>Explicación visual</span></div>
+            <span class="tag" data-cat="globalización">Globalización</span>
+            <span class="tag" data-cat="finanzas">Finanzas</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="globalización">
+          <div class="thumb" data-yt="yoZiTCz_wYA">
+            <img src="https://img.youtube.com/vi/yoZiTCz_wYA/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Globalization: Winners and losers in world trade (1/2)</h3>
+            <div class="meta"><span>DW Documentary</span></div>
+            <span class="tag" data-cat="globalización">Globalización</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="globalización">
+          <div class="thumb" data-yt="gIYaSEwoblY">
+            <img src="https://img.youtube.com/vi/gIYaSEwoblY/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Globalization: Profits over people (2/2)</h3>
+            <div class="meta"><span>DW Documentary</span></div>
+            <span class="tag" data-cat="globalización">Globalización</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="globalización">
+          <div class="thumb" data-yt="RhvkvTJdbl8">
+            <img src="https://img.youtube.com/vi/RhvkvTJdbl8/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>The globalization backlash: A new world economic order?</h3>
+            <div class="meta"><span>DW</span></div>
+            <span class="tag" data-cat="globalización">Globalización</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="globalización">
+          <div class="thumb" data-yt="opaSKeneNwM">
+            <img src="https://img.youtube.com/vi/opaSKeneNwM/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Deslocalización — Los Simpsons</h3>
+            <div class="meta"><span>The Simpsons</span></div>
+            <span class="tag" data-cat="globalización">Globalización</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="globalización">
+          <div class="thumb" data-yt="a5qt5fFOJl0">
+            <img src="https://img.youtube.com/vi/a5qt5fFOJl0/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Economic decoupling: Is globalization dying or transforming?</h3>
+            <div class="meta"><span>DW</span></div>
+            <span class="tag" data-cat="globalización">Globalización</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="globalización">
+          <div class="thumb" data-yt="ttaaMw8wAy0">
+            <img src="https://img.youtube.com/vi/ttaaMw8wAy0/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Why Some Countries Are Thriving Amid Globalization's Decline</h3>
+            <div class="meta"><span>DW</span></div>
+            <span class="tag" data-cat="globalización">Globalización</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ COMERCIO ═══ -->
+    <section>
+      <p class="section-label">Bloque 3</p>
+      <h2 class="section-title">Comercio internacional</h2>
+      <div class="mosaic">
+
+        <article class="v-card" data-cats="comercio">
+          <div class="thumb" data-yt="DnW9ZQtI1_E">
+            <img src="https://img.youtube.com/vi/DnW9ZQtI1_E/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>The deceptive promise of free trade</h3>
+            <div class="meta"><span>DW</span></div>
+            <span class="tag" data-cat="comercio">Comercio</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="comercio">
+          <div class="thumb" data-yt="DwKR08t5BGA">
+            <img src="https://img.youtube.com/vi/DwKR08t5BGA/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>NAFTA explained by avocados. And shoes.</h3>
+            <div class="meta"><span>Vox</span></div>
+            <span class="tag" data-cat="comercio">Comercio</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="comercio">
+          <div class="thumb" data-yt="371CRxnGkA8">
+            <img src="https://img.youtube.com/vi/371CRxnGkA8/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>USMCA vs NAFTA, explained with a toy car</h3>
+            <div class="meta"><span>Vox</span></div>
+            <span class="tag" data-cat="comercio">Comercio</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="comercio globalización">
+          <div class="thumb" data-yt="ai1074P9yes">
+            <img src="https://img.youtube.com/vi/ai1074P9yes/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>El revés de los mapas: Comercio mundial</h3>
+            <div class="meta"><span>ARTE</span></div>
+            <span class="tag" data-cat="comercio">Comercio</span>
+            <span class="tag" data-cat="globalización">Globalización</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="comercio política">
+          <div class="thumb" data-yt="Jw43gcE5Avc">
+            <img src="https://img.youtube.com/vi/Jw43gcE5Avc/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Trump: Alternatives will be used to impose new tariffs</h3>
+            <div class="meta"><span>DW News</span></div>
+            <span class="tag" data-cat="comercio">Comercio</span>
+            <span class="tag" data-cat="política">Política</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ CADENAS GLOBALES ═══ -->
+    <section>
+      <p class="section-label">Bloque 4</p>
+      <h2 class="section-title">Cadenas globales de valor</h2>
+      <div class="mosaic">
+
+        <article class="v-card" data-cats="cadenas globales">
+          <div class="thumb" data-yt="M0VWroX0gZA">
+            <img src="https://img.youtube.com/vi/M0VWroX0gZA/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>The life cycle of a cup of coffee</h3>
+            <div class="meta"><span>TED-Ed</span></div>
+            <span class="tag" data-cat="cadenas globales">Cadenas globales</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="cadenas globales tecnología">
+          <div class="thumb" data-yt="eIdJ22AfsO8">
+            <img src="https://img.youtube.com/vi/eIdJ22AfsO8/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>What's a smartphone made of?</h3>
+            <div class="meta"><span>TED-Ed</span></div>
+            <span class="tag" data-cat="cadenas globales">Cadenas globales</span>
+            <span class="tag" data-cat="tecnología">Tecnología</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="cadenas globales">
+          <div class="thumb" data-yt="TRGHI6eP4HU">
+            <img src="https://img.youtube.com/vi/TRGHI6eP4HU/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Supply Chain Crisis Explained Through a Single Sweater</h3>
+            <div class="meta"><span>NBC</span></div>
+            <span class="tag" data-cat="cadenas globales">Cadenas globales</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="cadenas globales">
+          <div class="thumb" data-yt="G1s0nvBc-Mw">
+            <img src="https://img.youtube.com/vi/G1s0nvBc-Mw/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Incautan fábrica clandestina de Coca Cola</h3>
+            <div class="meta"><span>Noticias</span></div>
+            <span class="tag" data-cat="cadenas globales">Cadenas globales</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ TECNOLOGÍA E IA ═══ -->
+    <section>
+      <p class="section-label">Bloque 5</p>
+      <h2 class="section-title">Tecnología e inteligencia artificial</h2>
+      <div class="mosaic">
+
+        <article class="v-card" data-cats="tecnología trabajo">
+          <div class="thumb" data-yt="9rvq1AR3nRo">
+            <img src="https://img.youtube.com/vi/9rvq1AR3nRo/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Madagascar: la mano de obra barata de la IA</h3>
+            <div class="meta"><span>ARTE.tv Documentales</span><span>Documental</span></div>
+            <span class="tag" data-cat="tecnología">Tecnología</span>
+            <span class="tag" data-cat="trabajo">Trabajo</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="tecnología globalización" data-arte="https://www.arte.tv/embeds/en/110863-005-A">
+          <div class="thumb" data-arte-embed="https://www.arte.tv/embeds/en/110863-005-A">
+            <img src="https://api.arte.tv/api/player/v2/config/en/110863-005-A" alt="" loading="lazy"
+              onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 320 180%22><rect fill=%22%23222%22 width=%22320%22 height=%22180%22/><text x=%22160%22 y=%2295%22 text-anchor=%22middle%22 fill=%22%23fff%22 font-size=%2216%22 font-family=%22sans-serif%22>ARTE</text></svg>'">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>The Digital World and Us — The 5 Million Euro Radio Mast</h3>
+            <div class="meta"><span>ARTE.tv</span><span>Documental</span></div>
+            <span class="tag" data-cat="tecnología">Tecnología</span>
+            <span class="tag" data-cat="globalización">Globalización</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="tecnología">
+          <div class="thumb" data-yt="lFdvbf9bomM">
+            <img src="https://img.youtube.com/vi/lFdvbf9bomM/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Why Metropolis Still Defines Sci-Fi 100 Years Later</h3>
+            <div class="meta"><span>DW</span><span>Fritz Lang</span></div>
+            <span class="tag" data-cat="tecnología">Tecnología</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ FINANZAS ═══ -->
+    <section>
+      <p class="section-label">Bloque 6</p>
+      <h2 class="section-title">Finanzas y política económica</h2>
+      <div class="mosaic">
+
+        <article class="v-card" data-cats="finanzas política">
+          <div class="thumb" data-yt="cfaubxeS5HU">
+            <img src="https://img.youtube.com/vi/cfaubxeS5HU/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>How Biden's Inflation Reduction Act changed the world</h3>
+            <div class="meta"><span>DW</span></div>
+            <span class="tag" data-cat="finanzas">Finanzas</span>
+            <span class="tag" data-cat="política">Política</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ FILOSOFÍA ═══ -->
+    <section>
+      <p class="section-label">Bloque 7</p>
+      <h2 class="section-title">Filosofía y pensamiento crítico</h2>
+      <div class="mosaic">
+
+        <article class="v-card" data-cats="filosofía">
+          <div class="thumb" data-yt="F6HstBW8lX4">
+            <img src="https://img.youtube.com/vi/F6HstBW8lX4/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Descubre lo que KANT piensa del CONOCIMIENTO</h3>
+            <div class="meta"><span>Filosofía</span></div>
+            <span class="tag" data-cat="filosofía">Filosofía</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="filosofía">
+          <div class="thumb" data-yt="HhyxKG1ScyA">
+            <img src="https://img.youtube.com/vi/HhyxKG1ScyA/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Un pensador revolucionario: Immanuel Kant</h3>
+            <div class="meta"><span>DW</span></div>
+            <span class="tag" data-cat="filosofía">Filosofía</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="filosofía">
+          <div class="thumb" data-yt="16W7c0mb-rE">
+            <img src="https://img.youtube.com/vi/16W7c0mb-rE/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Emergence — How Stupid Things Become Smart Together</h3>
+            <div class="meta"><span>Kurzgesagt</span></div>
+            <span class="tag" data-cat="filosofía">Filosofía</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ GEOPOLÍTICA ═══ -->
+    <section>
+      <p class="section-label">Bloque 8</p>
+      <h2 class="section-title">Geopolítica</h2>
+      <div class="mosaic">
+
+        <article class="v-card" data-cats="política globalización">
+          <div class="thumb" data-yt="-HAu2-1AvL0">
+            <img src="https://img.youtube.com/vi/-HAu2-1AvL0/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>China, Rusia y la misteriosa OCS</h3>
+            <div class="meta"><span>VisualPolitik</span></div>
+            <span class="tag" data-cat="política">Política</span>
+            <span class="tag" data-cat="globalización">Globalización</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="política comercio">
+          <div class="thumb" data-yt="-MftmV2Z4jE">
+            <img src="https://img.youtube.com/vi/-MftmV2Z4jE/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Chinese company Cosco acquires stake in Hamburg port terminal</h3>
+            <div class="meta"><span>DW News</span></div>
+            <span class="tag" data-cat="política">Política</span>
+            <span class="tag" data-cat="comercio">Comercio</span>
+          </div>
+        </article>
+
+        <article class="v-card" data-cats="política">
+          <div class="thumb" data-yt="JgPS6HWYJ04">
+            <img src="https://img.youtube.com/vi/JgPS6HWYJ04/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h3>Aliados de Trump en la conferencia conservadora más importante de EE.&nbsp;UU.</h3>
+            <div class="meta"><span>Noticias</span></div>
+            <span class="tag" data-cat="política">Política</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <a href="index.html">← Inicio</a>
+      <span> · Globalización y Empleo · FCA · UNAM · 2026-2 · Dr. Jorge Cardiel</span>
+    </footer>
+
+  </div>
+
+  <script>
+  /* ── Filter logic ── */
+  document.querySelectorAll('.filter-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
+      btn.classList.add('active');
+      var cat = btn.dataset.filter;
+      document.querySelectorAll('.v-card').forEach(function(card){
+        if(cat==='all') { card.hidden=false; return; }
+        card.hidden = !(card.dataset.cats||'').includes(cat);
+      });
+      /* hide empty sections */
+      document.querySelectorAll('section').forEach(function(sec){
+        var cards = sec.querySelectorAll('.v-card');
+        if(!cards.length) return;
+        var anyVisible = Array.from(cards).some(function(c){return !c.hidden});
+        sec.hidden = !anyVisible;
+      });
+    });
+  });
+
+  /* ── Lazy embed on click ── */
+  document.querySelectorAll('.v-card .thumb').forEach(function(thumb){
+    thumb.addEventListener('click',function(){
+      if(thumb.querySelector('iframe')) return;
+      var yt = thumb.dataset.yt;
+      var arte = thumb.dataset.arteEmbed;
+      var iframe = document.createElement('iframe');
+      if(yt){
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + yt + '?autoplay=1&rel=0';
+      } else if(arte){
+        iframe.src = arte;
+      } else { return; }
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.loading = 'lazy';
+      thumb.innerHTML = '';
+      thumb.appendChild(iframe);
+    });
+  });
+  </script>
+</body>
+</html>
