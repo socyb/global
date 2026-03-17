@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sistemas laborales comparados · Estructura del libro</title>
+  <style>
+    :root {
+      --ink: #1a2a2a;
+      --paper: #eaf4ef;
+      --blush: #d8ece2;
+      --rose: #c0e0d0;
+      --surface: #fff;
+      --text: #1a2a2a;
+      --muted: #3a5a5a;
+      --border: 3px solid var(--ink);
+      --border-thin: 2px solid var(--ink);
+      --radius: 6px;
+      --radius-sm: 4px;
+      --radius-pill: 999px;
+      --shadow: 6px 6px 0 var(--ink);
+      --shadow-sm: 4px 4px 0 var(--ink);
+      --font-body: 'American Typewriter', 'Georgia', serif;
+      --font-accent: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      /* Cover palette */
+      --teal: #008d8e;
+      --teal-dark: #006e70;
+      --blue: #2166a9;
+      --blue-light: #50aee2;
+      --red: #e2312b;
+      --green: #22af49;
+      --green-dark: #009060;
+      --mint: #c0e0d0;
+      --moss: #009060;
+      --copper: #e2312b;
+      --plum: #2166a9;
+      --gold: #50aee2;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+    body {
+      font-family: var(--font-body);
+      background: var(--paper);
+      color: var(--text);
+      font-size: clamp(1rem, 1.1vw + 0.5rem, 1.18rem);
+      line-height: 1.55;
+      padding: clamp(14px, 2.5vw, 28px);
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--teal);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 0;
+      text-align: center;
+      margin-bottom: clamp(18px, 2.5vw, 28px);
+      overflow: hidden;
+      position: relative;
+    }
+    .header-blocks {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3px;
+      padding: 3px;
+      margin-bottom: 0;
+    }
+    .header-blocks .blk {
+      height: clamp(10px, 1.8vw, 18px);
+      border-radius: 2px;
+    }
+    .header-inner {
+      padding: clamp(16px, 3vw, 28px) clamp(18px, 3vw, 32px);
+      background: rgba(255,255,255,0.92);
+    }
+    .header .pill-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-accent);
+      font-size: clamp(0.75rem, 1.2vw, 0.88rem);
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--teal);
+      color: #fff;
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      padding: 6px 14px;
+    }
+    .header h1 {
+      font-size: clamp(2rem, 5.5vw, 3.4rem);
+      line-height: 1.05;
+      margin-bottom: 8px;
+    }
+    .header .sub {
+      font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+      color: var(--muted);
+      max-width: 44ch;
+      margin: 0 auto;
+      line-height: 1.4;
+    }
+
+    /* ── Section titles ── */
+    .section-label {
+      font-family: var(--font-accent);
+      font-size: clamp(0.78rem, 1.1vw, 0.9rem);
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+      line-height: 1.1;
+      margin-bottom: clamp(14px, 2vw, 20px);
+    }
+    section {
+      margin-bottom: clamp(22px, 3vw, 36px);
+    }
+
+    /* ── Flow diagram (3 blocks + arrows) ── */
+    .flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 10px;
+      align-items: stretch;
+    }
+    .flow-card {
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(12px, 2vw, 18px);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .flow-card h3 {
+      font-size: clamp(1.15rem, 1.7vw, 1.4rem);
+      line-height: 1.15;
+    }
+    .flow-card .caps {
+      font-family: var(--font-accent);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .flow-card ul {
+      padding-left: 18px;
+      font-size: clamp(0.92rem, 1.2vw, 1.05rem);
+      line-height: 1.4;
+    }
+    .flow-card li + li { margin-top: 4px; }
+    .fc-base { background: linear-gradient(180deg, rgba(0,141,142,0.18), #fff); }
+    .fc-models { background: linear-gradient(180deg, rgba(0,144,96,0.18), #fff); }
+    .fc-close { background: linear-gradient(180deg, rgba(226,49,43,0.15), #fff); }
+    .flow-arrow {
+      display: grid;
+      place-items: center;
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      font-weight: 900;
+      color: var(--teal);
+    }
+
+    /* ── Model cards grid ── */
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: clamp(12px, 2vw, 16px);
+    }
+    .model-card {
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(14px, 2vw, 18px);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: var(--surface);
+    }
+    .model-card .ch-num {
+      font-family: var(--font-accent);
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .model-card h3 {
+      font-size: clamp(1.18rem, 1.6vw, 1.4rem);
+      line-height: 1.15;
+    }
+    .model-card .countries {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .country-chip {
+      font-family: var(--font-accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: var(--mint);
+      border: 2px solid var(--ink);
+      border-radius: var(--radius-sm);
+      padding: 4px 10px;
+    }
+    .model-card .key-points {
+      font-size: clamp(0.9rem, 1.15vw, 1.02rem);
+      line-height: 1.4;
+      color: #3a3a3a;
+    }
+    .model-card .key-points li + li { margin-top: 3px; }
+    .mc-med { border-top: 6px solid var(--red); }
+    .mc-nord { border-top: 6px solid var(--teal); }
+    .mc-cont { border-top: 6px solid var(--blue); }
+    .mc-anglo { border-top: 6px solid var(--blue-light); }
+    .mc-latam { border-top: 6px solid var(--green); }
+
+    /* ── Matrix pattern ── */
+    .matrix-strip {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 8px;
+      align-items: stretch;
+    }
+    .matrix-step {
+      background: var(--surface);
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      box-shadow: 3px 3px 0 var(--teal);
+      padding: clamp(12px, 1.6vw, 16px);
+      text-align: center;
+      font-family: var(--font-accent);
+      font-size: clamp(0.84rem, 1.15vw, 0.98rem);
+      font-weight: 800;
+      line-height: 1.3;
+      display: grid;
+      place-items: center;
+    }
+    .matrix-arrow {
+      display: grid;
+      place-items: center;
+      font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+      font-weight: 900;
+      color: var(--teal-dark);
+    }
+
+    /* ── Venn diagram ── */
+    .venn-wrap {
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: 6px 6px 0 var(--teal);
+      background: var(--surface);
+      padding: clamp(14px, 2vw, 22px);
+      text-align: center;
+      margin-bottom: clamp(16px, 2vw, 24px);
+    }
+    .venn-wrap svg { max-width: 440px; width: 100%; height: auto; }
+
+    /* ── Closing section ── */
+    .close-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(12px, 2vw, 16px);
+    }
+    .close-card {
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(14px, 2vw, 18px);
+      background: var(--surface);
+    }
+    .close-card h3 {
+      font-size: clamp(1.15rem, 1.5vw, 1.32rem);
+      margin-bottom: 8px;
+    }
+    .close-card p, .close-card ul {
+      font-size: clamp(0.92rem, 1.15vw, 1.05rem);
+      line-height: 1.42;
+    }
+    .close-card ul { padding-left: 18px; }
+    .close-card li + li { margin-top: 3px; }
+
+    /* ── Legend ── */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: clamp(14px, 2vw, 22px);
+      font-family: var(--font-accent);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .legend i {
+      width: 12px; height: 12px;
+      border-radius: 999px;
+      display: inline-block;
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: var(--font-accent);
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 14px 0 6px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      margin-top: clamp(18px, 2.5vw, 30px);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      .flow {
+        grid-template-columns: 1fr;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        min-height: 30px;
+      }
+      .matrix-strip {
+        grid-template-columns: 1fr;
+      }
+      .matrix-arrow {
+        transform: rotate(90deg);
+        min-height: 24px;
+      }
+      .close-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .models-grid {
+        grid-template-columns: 1fr;
+      }
+      body {
+        font-size: 1.02rem;
+      }
+      .header h1 {
+        font-size: 1.8rem;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="header">
+      <div class="header-blocks" aria-hidden="true">
+        <div class="blk" style="background:#008d8e;grid-column:span 3"></div>
+        <div class="blk" style="background:#50aee2;grid-column:span 2"></div>
+        <div class="blk" style="background:#c0e0d0;grid-column:span 1"></div>
+        <div class="blk" style="background:#e2312b;grid-column:span 2"></div>
+        <div class="blk" style="background:#22af49;grid-column:span 1"></div>
+        <div class="blk" style="background:#2166a9;grid-column:span 3"></div>
+        <div class="blk" style="background:#009060;grid-column:span 2"></div>
+        <div class="blk" style="background:#50aee2;grid-column:span 1"></div>
+        <div class="blk" style="background:#e2312b;grid-column:span 1"></div>
+        <div class="blk" style="background:#008d8e;grid-column:span 4"></div>
+        <div class="blk" style="background:#22af49;grid-column:span 2"></div>
+        <div class="blk" style="background:#c0e0d0;grid-column:span 2"></div>
+      </div>
+      <div class="header-inner">
+        <div class="pill-row">
+          <span class="pill">Globalización y Empleo</span>
+          <span class="pill">Semana 17–19 mar 2026</span>
+        </div>
+        <img src="../img/cover_brunet.png" alt="Portada: Sistemas laborales comparados" style="display:block;margin:0 auto 12px;width:clamp(80px,12vw,140px);border:2px solid var(--ink);border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);">
+        <h1>Sistemas laborales comparados</h1>
+        <p class="sub">Brunet, Pizzi y Moral · Estructura del libro y los cinco modelos de relaciones laborales</p>
+        <a href="../index.html" style="display:inline-block;margin-top:12px;font-family:var(--font-accent);font-size:clamp(0.8rem,0.9vw+0.2rem,0.92rem);font-weight:700;color:var(--teal);text-decoration:none;">← Inicio</a>
+      </div>
+    </header>
+
+    <!-- ═══ PREGUNTA CENTRAL ═══ -->
+    <section>
+      <div class="venn-wrap">
+        <p class="section-label">Pregunta que atraviesa todo el libro</p>
+        <svg viewBox="0 0 440 320" role="img" aria-labelledby="vTitle vDesc">
+          <title id="vTitle">Relación Mercado–Estado–Trabajo</title>
+          <desc id="vDesc">Tres círculos muestran la intersección entre mercado, Estado y trabajo que organiza las relaciones laborales comparadas.</desc>
+          <circle cx="176" cy="128" r="90" fill="rgba(0,141,142,0.25)" stroke="#008d8e" stroke-width="2.4"/>
+          <circle cx="264" cy="128" r="90" fill="rgba(226,49,43,0.18)" stroke="#e2312b" stroke-width="2.4"/>
+          <circle cx="220" cy="206" r="90" fill="rgba(0,144,96,0.22)" stroke="#009060" stroke-width="2.4"/>
+          <text x="132" y="78" font-size="18" font-weight="900" fill="#006e70" font-family="Georgia,serif">Mercado</text>
+          <text x="284" y="78" font-size="18" font-weight="900" fill="#b02020" font-family="Georgia,serif">Estado</text>
+          <text x="198" y="282" font-size="18" font-weight="900" fill="#006838" font-family="Georgia,serif">Trabajo</text>
+          <text x="220" y="148" text-anchor="middle" font-size="15" font-weight="900" fill="#111" font-family="system-ui,sans-serif">Relaciones</text>
+          <text x="220" y="168" text-anchor="middle" font-size="15" font-weight="900" fill="#111" font-family="system-ui,sans-serif">laborales</text>
+          <text x="220" y="188" text-anchor="middle" font-size="15" font-weight="900" fill="#111" font-family="system-ui,sans-serif">comparadas</text>
+          <text x="100" y="166" font-size="11" fill="#006e70" font-family="system-ui,sans-serif">financiarización</text>
+          <text x="288" y="166" font-size="11" fill="#a02020" font-family="system-ui,sans-serif">regulación</text>
+          <text x="188" y="240" font-size="11" fill="#006838" font-family="system-ui,sans-serif">negociación</text>
+        </svg>
+        <p style="font-size:clamp(1rem,1.4vw,1.15rem); color:#444; max-width:48ch; margin:10px auto 0; line-height:1.4;">¿Cómo se organizan las relaciones laborales según la combinación entre mercado, Estado y trabajo en cada región?</p>
+      </div>
+    </section>
+
+    <!-- ═══ FLUJO GENERAL DEL LIBRO ═══ -->
+    <section>
+      <p class="section-label">Arquitectura del libro</p>
+      <h2 class="section-title">Tres movimientos</h2>
+
+      <div class="flow">
+        <article class="flow-card fc-base">
+          <span class="caps">Entrada teórica</span>
+          <h3>Cap. 1–2</h3>
+          <ul>
+            <li>Capitalismo financiarizado</li>
+            <li>Sociedad salarial y crisis de los 70-80</li>
+            <li>Actores: Estado, sindicatos, empresas</li>
+            <li>Método comparado</li>
+          </ul>
+        </article>
+
+        <div class="flow-arrow" aria-hidden="true">→</div>
+
+        <article class="flow-card fc-models">
+          <span class="caps">Núcleo comparativo</span>
+          <h3>Cap. 3–7</h3>
+          <ul>
+            <li>5 modelos de relaciones laborales</li>
+            <li>Cada uno con la misma matriz analítica</li>
+            <li>Historia · Actores · Negociación · Países</li>
+          </ul>
+        </article>
+
+        <div class="flow-arrow" aria-hidden="true">→</div>
+
+        <article class="flow-card fc-close">
+          <span class="caps">Cierre</span>
+          <h3>Cap. 8 + Fuentes</h3>
+          <ul>
+            <li>Reflexiones finales</li>
+            <li>Bibliografía</li>
+            <li>Bases de datos y webgrafía</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══ MATRIZ REPETIDA ═══ -->
+    <section>
+      <p class="section-label">Patrón comparativo · Capítulos 3 al 7</p>
+      <h2 class="section-title">La misma secuencia se repite en cada modelo</h2>
+
+      <div class="matrix-strip" aria-label="Secuencia analítica de cada capítulo comparativo">
+        <div class="matrix-step">Presentación del modelo</div>
+        <div class="matrix-arrow" aria-hidden="true">→</div>
+        <div class="matrix-step">Contexto histórico</div>
+        <div class="matrix-arrow" aria-hidden="true">→</div>
+        <div class="matrix-step">Actores: Estado, sindicatos, empresas</div>
+        <div class="matrix-arrow" aria-hidden="true">→</div>
+        <div class="matrix-step">Negociación colectiva</div>
+        <div class="matrix-arrow" aria-hidden="true">→</div>
+        <div class="matrix-step">Comparación entre países</div>
+      </div>
+    </section>
+
+    <!-- ═══ 5 MODELOS ═══ -->
+    <section>
+      <p class="section-label">Cinco familias</p>
+      <h2 class="section-title">Los modelos de relaciones laborales</h2>
+
+      <div class="models-grid">
+
+        <article class="model-card mc-med">
+          <span class="ch-num">Capítulo 3</span>
+          <h3>Mediterráneo</h3>
+          <div class="countries">
+            <span class="country-chip">Francia</span>
+            <span class="country-chip">Italia</span>
+            <span class="country-chip">España</span>
+            <span class="country-chip">Portugal</span>
+            <span class="country-chip">Grecia</span>
+          </div>
+          <ul class="key-points">
+            <li>Estado intervencionista fuerte</li>
+            <li>Pluralismo sindical</li>
+            <li>Sub-sistemas internos (francés, italiano, rescatados)</li>
+          </ul>
+        </article>
+
+        <article class="model-card mc-nord">
+          <span class="ch-num">Capítulo 4</span>
+          <h3>Nórdico</h3>
+          <div class="countries">
+            <span class="country-chip">Suecia</span>
+            <span class="country-chip">Dinamarca</span>
+            <span class="country-chip">Noruega</span>
+            <span class="country-chip">Finlandia</span>
+            <span class="country-chip">Islandia</span>
+          </div>
+          <ul class="key-points">
+            <li>Alta densidad institucional</li>
+            <li>Negociación centralizada</li>
+            <li>Estado de bienestar amplio</li>
+          </ul>
+        </article>
+
+        <article class="model-card mc-cont">
+          <span class="ch-num">Capítulo 5</span>
+          <h3>Continental</h3>
+          <div class="countries">
+            <span class="country-chip">Alemania</span>
+            <span class="country-chip">Austria</span>
+            <span class="country-chip">Países Bajos</span>
+            <span class="country-chip">Bélgica</span>
+          </div>
+          <ul class="key-points">
+            <li>Corporativismo y codeterminación</li>
+            <li>Negociación sectorial</li>
+            <li>Protección social contributiva</li>
+          </ul>
+        </article>
+
+        <article class="model-card mc-anglo">
+          <span class="ch-num">Capítulo 6</span>
+          <h3>Angloamericano</h3>
+          <div class="countries">
+            <span class="country-chip">EE.UU.</span>
+            <span class="country-chip">Reino Unido</span>
+            <span class="country-chip">Irlanda</span>
+          </div>
+          <ul class="key-points">
+            <li>Ordenamiento privado dominante</li>
+            <li>Giro conservador (Reagan/Thatcher)</li>
+            <li>Flexibilidad laboral y desregulación</li>
+          </ul>
+        </article>
+
+        <article class="model-card mc-latam">
+          <span class="ch-num">Capítulo 7</span>
+          <h3>Latinoamericano + China</h3>
+          <div class="countries">
+            <span class="country-chip">Brasil</span>
+            <span class="country-chip">Argentina</span>
+            <span class="country-chip">China</span>
+          </div>
+          <ul class="key-points">
+            <li>Industrialización tardía y neoliberalismo</li>
+            <li>Etapa pos-neoliberal</li>
+            <li>Concertación tripartita</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ CONTEXTO HISTÓRICO COMÚN ═══ -->
+    <section>
+      <p class="section-label">Eje temporal compartido</p>
+      <h2 class="section-title">Tres etapas históricas que todos los modelos atraviesan</h2>
+
+      <div class="close-grid">
+        <article class="close-card" style="border-top: 6px solid var(--teal);">
+          <h3>1945–1973</h3>
+          <p>Capitalismo organizado</p>
+          <ul>
+            <li>Expansión del Estado de bienestar</li>
+            <li>Sociedad salarial estable</li>
+            <li>Pactos fordistas capital–trabajo</li>
+          </ul>
+        </article>
+        <article class="close-card" style="border-top: 6px solid var(--blue-light);">
+          <h3>1975–1990</h3>
+          <p>Primera gran crisis social</p>
+          <ul>
+            <li>Crisis del petróleo y estanflación</li>
+            <li>Desindustrialización parcial</li>
+            <li>Inicio de la desregulación</li>
+          </ul>
+        </article>
+        <article class="close-card" style="grid-column: 1 / -1; border-top: 6px solid var(--red);">
+          <h3>1990–2015</h3>
+          <p>Hegemonía del capitalismo financiarizado</p>
+          <ul>
+            <li>Gran Recesión 2008: oportunidad para reducir derechos laborales</li>
+            <li>Capital financiero domina sobre políticas nacionales</li>
+            <li>Pérdida de centralidad del trabajo</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══ CIERRE: CAP 8 ═══ -->
+    <section>
+      <p class="section-label">Para cerrar</p>
+      <h2 class="section-title">Reflexiones finales del libro (Cap. 8)</h2>
+      <div class="close-grid">
+        <article class="close-card">
+          <h3>Premisa central</h3>
+          <p>No existen leyes económicas naturales: las relaciones laborales son construcciones hegemónicas, siempre en disputa.</p>
+        </article>
+        <article class="close-card">
+          <h3>Pregunta abierta</h3>
+          <p>¿Se están reestructurando los vínculos sociales para favorecer nuevos incentivos laborales en un capitalismo global más competitivo?</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══ ANTECEDENTE ═══ -->
+    <section style="text-align:center;">
+      <a href="blw.html" style="display:inline-block;background:var(--ink);color:#fff;font-family:var(--font-accent);font-weight:800;font-size:clamp(0.9rem,1vw+0.3rem,1.05rem);padding:12px 28px;border-radius:var(--radius);border:var(--border);box-shadow:var(--shadow-sm);text-decoration:none;letter-spacing:0.04em;">
+        📖 Antecedente: Bamber, Lansbury &amp; Wailes (2004) →
+      </a>
+      <p style="margin-top:10px;font-size:clamp(0.82rem,0.85vw+0.2rem,0.92rem);color:var(--muted);">El método comparativo que inspiró este libro</p>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+      <a href="../index.html" style="color:var(--teal);text-decoration:none;font-weight:700;">← Inicio</a>
+      <span>Globalización y Empleo · FCA · UNAM · 2026-2 · Jorge Cardiel</span>
+      <p style="margin-top:8px;font-size:clamp(0.72rem,0.75vw+0.18rem,0.82rem);color:var(--muted);max-width:700px;text-align:center;line-height:1.45;">
+        <strong>Cómo citar esta página:</strong> Cardiel, J. (2026). <em>Sistemas laborales comparados: Estructura del libro y los cinco modelos de relaciones laborales</em> [Material didáctico digital]. Globalización y Empleo, FCA, UNAM. https://socyb.github.io/global/sesiones/slc.html
+      </p>
+    </footer>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Mapa visual del índice de Sistemas laborales comparados para la semana del 17 y 19 de marzo de 2026." />
+  <title>Semana 17 y 19 mar 2026 · Índice visual de Sistemas laborales comparados</title>
+  <style>
+    :root {
+      --paper: #f4ecdf;
+      --ink: #1e1b18;
+      --muted: #61574d;
+      --line: rgba(30, 27, 24, 0.16);
+      --teal: #1f6673;
+      --copper: #bb5d37;
+      --moss: #5f7041;
+      --plum: #6d557d;
+      --gold: #b89135;
+      --panel: rgba(255, 251, 245, 0.9);
+      --shadow: 0 18px 42px rgba(32, 23, 14, 0.12);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      font-family: "Avenir Next Condensed", "Gill Sans Nova", "Trebuchet MS", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 12%, rgba(31, 102, 115, 0.16), transparent 30%),
+        radial-gradient(circle at 90% 14%, rgba(187, 93, 55, 0.14), transparent 26%),
+        linear-gradient(160deg, #ebe3d5 0%, #f4ecdf 44%, #e5ebdf 100%);
+      padding: clamp(10px, 1.7vw, 22px);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(1320px, 100%);
+      margin: 0 auto;
+      border: 1px solid rgba(0, 0, 0, 0.22);
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255, 253, 249, 0.96), rgba(247, 241, 232, 0.96)),
+        repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.02) 0,
+          rgba(0, 0, 0, 0.02) 1px,
+          transparent 1px,
+          transparent 38px
+        );
+      box-shadow: var(--shadow);
+    }
+
+    .topbar,
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 12px 18px;
+      background: rgba(252, 249, 243, 0.92);
+    }
+
+    .topbar {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      font-size: 0.84rem;
+      color: #3e372f;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      font-size: 0.92rem;
+    }
+
+    .brand-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--teal), var(--copper));
+      border: 1px solid rgba(0, 0, 0, 0.22);
+      flex-shrink: 0;
+    }
+
+    .pill-row {
+      display: inline-flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .pill,
+    .ghost-btn,
+    .solid-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(0, 0, 0, 0.16);
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.74);
+      color: #2e3732;
+    }
+
+    .ghost-btn {
+      background: transparent;
+    }
+
+    .solid-btn {
+      color: #fff;
+      background: #194d58;
+      border-color: transparent;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.9fr);
+      gap: 20px;
+      padding: clamp(18px, 3vw, 34px);
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 82% 18%, rgba(109, 85, 125, 0.08), transparent 28%),
+        radial-gradient(circle at 14% 88%, rgba(95, 112, 65, 0.09), transparent 26%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #31403a;
+    }
+
+    .hero-copy {
+      display: grid;
+      align-content: start;
+      gap: 12px;
+    }
+
+    .title {
+      margin: 0;
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+      font-size: clamp(2.4rem, 5vw, 4.9rem);
+      line-height: 0.94;
+      max-width: 12ch;
+      text-wrap: balance;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 64ch;
+      font-size: clamp(1rem, 1.25vw, 1.2rem);
+      line-height: 1.45;
+      color: #342f29;
+    }
+
+    .summary-card {
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.78);
+      padding: 14px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .summary-card p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      color: #3f382f;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-top: 6px;
+    }
+
+    .hero-diagram {
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(245, 239, 229, 0.88));
+      padding: 16px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.07);
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .diagram-title {
+      margin: 0;
+      font-size: 0.86rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #33413d;
+    }
+
+    .diagram-note {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.35;
+      color: #463f36;
+    }
+
+    .section {
+      padding: clamp(18px, 2.6vw, 28px);
+      border-top: 1px solid var(--line);
+    }
+
+    .section:first-of-type {
+      border-top: 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .section-kicker {
+      margin: 0 0 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #516059;
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+      font-size: clamp(1.7rem, 2.6vw, 2.6rem);
+      line-height: 1;
+      text-wrap: balance;
+    }
+
+    .section-text {
+      margin: 0;
+      max-width: 64ch;
+      color: #4b433a;
+      font-size: 0.98rem;
+      line-height: 1.45;
+    }
+
+    .macro-flow {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .flow-arrow {
+      display: grid;
+      place-items: center;
+      min-width: 36px;
+      font-size: 1.8rem;
+      color: #70563d;
+      font-weight: 900;
+    }
+
+    .flow-card,
+    .chapter-card,
+    .route-card,
+    .pattern-card {
+      border-radius: 18px;
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      background: var(--panel);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    .flow-card {
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+      min-height: 220px;
+    }
+
+    .tone-base { background: linear-gradient(180deg, rgba(31, 102, 115, 0.12), rgba(255, 255, 255, 0.86)); }
+    .tone-models { background: linear-gradient(180deg, rgba(95, 112, 65, 0.12), rgba(255, 255, 255, 0.86)); }
+    .tone-close { background: linear-gradient(180deg, rgba(187, 93, 55, 0.12), rgba(255, 255, 255, 0.86)); }
+
+    .flow-card h3,
+    .chapter-card h3,
+    .route-card h3,
+    .pattern-card h3 {
+      margin: 0;
+      font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+      line-height: 1.18;
+    }
+
+    .flow-card p,
+    .chapter-card p,
+    .route-card p,
+    .pattern-card p {
+      margin: 0;
+      color: #40392f;
+      font-size: 0.94rem;
+      line-height: 1.38;
+    }
+
+    .mini-kicker {
+      margin: 0;
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #42504a;
+    }
+
+    .chip-set {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      color: #33403a;
+    }
+
+    .pattern-card {
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .pattern-strip {
+      display: grid;
+      grid-template-columns: repeat(9, minmax(0, 1fr));
+      gap: 8px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .pattern-step,
+    .pattern-arrow {
+      min-height: 76px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      border-radius: 14px;
+    }
+
+    .pattern-step {
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      font-size: 0.88rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .pattern-arrow {
+      font-size: 1.45rem;
+      color: #6d5a45;
+      font-weight: 900;
+    }
+
+    .chapters {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .chapter-card {
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+      border-top: 5px solid var(--accent, var(--teal));
+      min-height: 260px;
+    }
+
+    .chapter-no {
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #46524d;
+    }
+
+    .chapter-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #40392f;
+      font-size: 0.93rem;
+      line-height: 1.32;
+    }
+
+    .chapter-card li + li {
+      margin-top: 5px;
+    }
+
+    .chapter-card.wide {
+      grid-column: span 2;
+    }
+
+    .week-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.95fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .route-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .route-card {
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .route-card strong {
+      font-size: 1.08rem;
+    }
+
+    .route-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .route-list div {
+      border-left: 4px solid rgba(0, 0, 0, 0.16);
+      padding-left: 10px;
+      font-size: 0.95rem;
+      line-height: 1.35;
+      color: #40392f;
+    }
+
+    .source-card {
+      border-radius: 18px;
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      background:
+        linear-gradient(180deg, rgba(109, 85, 125, 0.1), rgba(255, 255, 255, 0.9));
+      padding: 16px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+      display: grid;
+      gap: 12px;
+    }
+
+    .source-card h3 {
+      margin: 0;
+      font-size: 1.14rem;
+    }
+
+    .source-card p {
+      margin: 0;
+      color: #41392f;
+      font-size: 0.95rem;
+      line-height: 1.38;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #40392f;
+    }
+
+    .legend i {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 1120px) {
+      .hero,
+      .week-grid,
+      .chapters {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .chapter-card.wide {
+        grid-column: span 2;
+      }
+
+      .pattern-strip {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 860px) {
+      .hero,
+      .week-grid,
+      .route-grid,
+      .chapters,
+      .macro-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-arrow,
+      .pattern-arrow {
+        min-height: 28px;
+        font-size: 1.2rem;
+      }
+
+      .pattern-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .chapter-card.wide {
+        grid-column: auto;
+      }
+
+      .title {
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Globalización y Empleo · Semana 17 y 19 de marzo</span>
+      </div>
+      <div class="pill-row">
+        <span class="pill">Índice visual</span>
+        <span class="pill">Brunet, Pizzi y Moral</span>
+        <a class="ghost-btn" href="../lecturas/brunet_pizzi_moral_sistemas_laborales_comparados.pdf">Abrir lectura</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Semana del 17 y 19 de marzo de 2026</span>
+        <h1 class="title">Cómo está armado el libro</h1>
+        <p class="subtitle">Este mapa convierte el índice de <em>Sistemas laborales comparados</em> en una ruta visible: primero fija las bases teóricas, luego compara cinco grandes modelos laborales y finalmente cierra con una síntesis y las fuentes de trabajo.</p>
+        <div class="summary-card">
+          <p><strong>Clave de lectura:</strong> el libro no avanza por países sueltos. Avanza desde una pregunta general sobre capitalismo, Estado y trabajo hacia una comparación sistemática de modelos nacionales y regionales. Por eso conviene leerlo como <strong>arquitectura</strong>, no solo como lista de capítulos.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="solid-btn" href="#flujo">Ver diagrama</a>
+          <a class="ghost-btn" href="#semana">Ruta 17 y 19 marzo</a>
+        </div>
+      </div>
+
+      <div class="hero-diagram">
+        <p class="diagram-title">Intersección que atraviesa todo el libro</p>
+        <svg viewBox="0 0 420 320" width="100%" role="img" aria-labelledby="vennTitle vennDesc">
+          <title id="vennTitle">Diagrama de Venn sobre la organización del libro</title>
+          <desc id="vennDesc">Tres círculos muestran que el libro compara relaciones laborales en la intersección entre mercado, Estado y trabajo.</desc>
+          <rect x="8" y="8" width="404" height="304" rx="20" fill="rgba(255,255,255,0.52)" stroke="rgba(30,27,24,0.12)" />
+          <circle cx="168" cy="126" r="88" fill="rgba(31,102,115,0.24)" stroke="#1f6673" stroke-width="2.2" />
+          <circle cx="258" cy="126" r="88" fill="rgba(187,93,55,0.22)" stroke="#bb5d37" stroke-width="2.2" />
+          <circle cx="213" cy="202" r="88" fill="rgba(95,112,65,0.24)" stroke="#5f7041" stroke-width="2.2" />
+          <text x="130" y="76" font-size="17" font-weight="900" fill="#12353d">Mercado</text>
+          <text x="276" y="76" font-size="17" font-weight="900" fill="#6d2f1c">Estado</text>
+          <text x="196" y="274" font-size="17" font-weight="900" fill="#354121">Trabajo</text>
+          <text x="212" y="146" text-anchor="middle" font-size="16" font-weight="900" fill="#1e1b18">Relaciones</text>
+          <text x="212" y="166" text-anchor="middle" font-size="16" font-weight="900" fill="#1e1b18">laborales</text>
+          <text x="212" y="186" text-anchor="middle" font-size="16" font-weight="900" fill="#1e1b18">comparadas</text>
+          <text x="97" y="164" font-size="12" fill="#2f3b39">financiarización</text>
+          <text x="275" y="164" font-size="12" fill="#523426">regulación</text>
+          <text x="182" y="238" font-size="12" fill="#3d462a">negociación</text>
+          <text x="126" y="106" font-size="11" fill="#34413d">cap. 1-2</text>
+          <text x="286" y="106" font-size="11" fill="#5a372c">cap. 3-5</text>
+          <text x="234" y="225" font-size="11" fill="#44502f">cap. 3-7</text>
+        </svg>
+        <p class="diagram-note">Aunque cambian los países y los contextos, el eje siempre es el mismo: <strong>cómo se organizan las relaciones laborales</strong> según la combinación entre mercado, Estado y trabajo.</p>
+      </div>
+    </section>
+
+    <section class="section" id="flujo">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Lectura de conjunto</p>
+          <h2 class="section-title">Flujo general del índice</h2>
+        </div>
+        <p class="section-text">La estructura completa puede leerse como un recorrido en tres movimientos: fundamentos, comparación de modelos y cierre reflexivo.</p>
+      </div>
+
+      <div class="macro-flow" aria-label="Flujo general del libro">
+        <article class="flow-card tone-base">
+          <p class="mini-kicker">Entrada teórica</p>
+          <h3>Capítulos 1 y 2</h3>
+          <p>Definen el problema del libro: capitalismo financiarizado, Estado, actores sociales, comparación en ciencias sociales y transformación histórica de la sociedad salarial.</p>
+          <div class="chip-set">
+            <span class="chip">Introducción</span>
+            <span class="chip">Formaciones sociales</span>
+            <span class="chip">Método comparado</span>
+          </div>
+        </article>
+
+        <div class="flow-arrow" aria-hidden="true">→</div>
+
+        <article class="flow-card tone-models">
+          <p class="mini-kicker">Núcleo comparativo</p>
+          <h3>Capítulos 3 al 7</h3>
+          <p>Despliegan cinco familias de modelos laborales. Cada bloque cruza contexto histórico, actores, negociación colectiva y rasgos nacionales.</p>
+          <div class="chip-set">
+            <span class="chip">Mediterráneo</span>
+            <span class="chip">Nórdico</span>
+            <span class="chip">Continental</span>
+            <span class="chip">Angloamericano</span>
+            <span class="chip">Latinoamericano</span>
+          </div>
+        </article>
+
+        <div class="flow-arrow" aria-hidden="true">→</div>
+
+        <article class="flow-card tone-close">
+          <p class="mini-kicker">Cierre</p>
+          <h3>Capítulo 8 + bibliografía + webgrafía</h3>
+          <p>La comparación se condensa en reflexiones finales y luego se documenta con el aparato bibliográfico y las bases de datos que sostienen el análisis.</p>
+          <div class="chip-set">
+            <span class="chip">Síntesis</span>
+            <span class="chip">Fuentes</span>
+            <span class="chip">Bases de datos</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Patrón comparativo</p>
+          <h2 class="section-title">La secuencia que se repite del capítulo 3 al 7</h2>
+        </div>
+        <p class="section-text">La parte comparativa no está improvisada. Cada modelo vuelve a pasar por una misma matriz analítica, y esa repetición es lo que permite comparar.</p>
+      </div>
+
+      <article class="pattern-card">
+        <h3>Matriz interna de los capítulos comparativos</h3>
+        <p>Cuando el libro cambia de región, no cambia de lógica: primero presenta el modelo, después ubica su historia, luego examina a los actores y finalmente mira la negociación colectiva y las diferencias nacionales.</p>
+        <div class="pattern-strip" aria-label="Secuencia repetida de los capítulos comparativos">
+          <div class="pattern-step">Presentación del modelo</div>
+          <div class="pattern-arrow" aria-hidden="true">→</div>
+          <div class="pattern-step">Contexto histórico</div>
+          <div class="pattern-arrow" aria-hidden="true">→</div>
+          <div class="pattern-step">Actores: Estado, sindicatos, empresas</div>
+          <div class="pattern-arrow" aria-hidden="true">→</div>
+          <div class="pattern-step">Negociación colectiva</div>
+          <div class="pattern-arrow" aria-hidden="true">→</div>
+          <div class="pattern-step">Comparación entre países</div>
+        </div>
+      </article>
+
+      <div class="chapters">
+        <article class="chapter-card" style="--accent: var(--teal);">
+          <div class="chapter-no">Capítulo 1</div>
+          <h3>Introducción</h3>
+          <p>Abre el libro con cuatro entradas conceptuales que funcionan como brújula general.</p>
+          <ul>
+            <li>Construcción del capitalismo financiarizado.</li>
+            <li>Lógicas de acumulación y Estados nacionales.</li>
+            <li>Actores sociales y sistemas de relaciones laborales.</li>
+            <li>La comparación en ciencias sociales.</li>
+          </ul>
+        </article>
+
+        <article class="chapter-card" style="--accent: var(--teal);">
+          <div class="chapter-no">Capítulo 2</div>
+          <h3>Formaciones sociales capitalistas</h3>
+          <p>Profundiza la base histórica y teórica antes de entrar a los modelos nacionales.</p>
+          <ul>
+            <li>Sociedad salarial y crisis de los setenta y ochenta.</li>
+            <li>Nueva hegemonía financiera.</li>
+            <li>Modelos teóricos de relaciones laborales.</li>
+            <li>Innovación, competitividad y desigualdad.</li>
+          </ul>
+        </article>
+
+        <article class="chapter-card" style="--accent: var(--moss);">
+          <div class="chapter-no">Capítulo 3</div>
+          <h3>Modelo mediterráneo</h3>
+          <p>Primer gran bloque comparativo; combina historia, instituciones y negociación colectiva.</p>
+          <div class="chip-set">
+            <span class="chip">Francia</span>
+            <span class="chip">Italia</span>
+            <span class="chip">España</span>
+            <span class="chip">Portugal</span>
+            <span class="chip">Grecia</span>
+          </div>
+          <ul>
+            <li>Incluye un apéndice sobre sub-sistemas internos del modelo.</li>
+          </ul>
+        </article>
+
+        <article class="chapter-card" style="--accent: var(--moss);">
+          <div class="chapter-no">Capítulo 4</div>
+          <h3>Modelo nórdico</h3>
+          <p>Se concentra en la densidad institucional y las variantes internas del norte europeo.</p>
+          <div class="chip-set">
+            <span class="chip">Suecia</span>
+            <span class="chip">Dinamarca</span>
+            <span class="chip">Noruega</span>
+            <span class="chip">Finlandia</span>
+            <span class="chip">Islandia</span>
+          </div>
+        </article>
+
+        <article class="chapter-card" style="--accent: var(--moss);">
+          <div class="chapter-no">Capítulo 5</div>
+          <h3>Modelo continental</h3>
+          <p>Retoma la misma matriz para estudiar otro arreglo europeo de bienestar y negociación.</p>
+          <div class="chip-set">
+            <span class="chip">Alemania</span>
+            <span class="chip">Austria</span>
+            <span class="chip">Países Bajos</span>
+            <span class="chip">Bélgica</span>
+          </div>
+        </article>
+
+        <article class="chapter-card" style="--accent: var(--moss);">
+          <div class="chapter-no">Capítulo 6</div>
+          <h3>Modelo angloamericano</h3>
+          <p>Discute el peso del ordenamiento privado y el giro conservador en el mundo anglosajón.</p>
+          <div class="chip-set">
+            <span class="chip">EE.UU.</span>
+            <span class="chip">Reino Unido</span>
+            <span class="chip">Irlanda</span>
+          </div>
+        </article>
+
+        <article class="chapter-card wide" style="--accent: var(--moss);">
+          <div class="chapter-no">Capítulo 7</div>
+          <h3>Modelo latinoamericano + epílogo sobre China</h3>
+          <p>El último bloque comparativo estudia Brasil y Argentina, y luego agrega un epílogo sobre el sistema nacional de relaciones laborales en China. Eso ensancha la comparación más allá de Europa y el mundo anglosajón.</p>
+          <div class="chip-set">
+            <span class="chip">Brasil</span>
+            <span class="chip">Argentina</span>
+            <span class="chip">China</span>
+          </div>
+          <ul>
+            <li>Contexto histórico de industrialización, neoliberalismo y etapa pos-neoliberal.</li>
+            <li>Actores, negociación colectiva y concertación tripartita.</li>
+          </ul>
+        </article>
+
+        <article class="chapter-card wide" style="--accent: var(--copper);">
+          <div class="chapter-no">Capítulo 8 y cierre documental</div>
+          <h3>Reflexiones finales, bibliografía y bases de datos</h3>
+          <p>El libro no termina solo con una conclusión: termina con una síntesis y con el andamiaje documental que permite rastrear cómo se construyó la comparación.</p>
+          <ul>
+            <li><strong>Capítulo 8:</strong> cierre analítico del recorrido comparado.</li>
+            <li><strong>Bibliografía:</strong> sostiene el marco teórico e histórico.</li>
+            <li><strong>Bases de datos:</strong> muestra el soporte empírico y webgráfico.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="semana">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Uso semanal</p>
+          <h2 class="section-title">Cómo repartir esta página entre el 17 y el 19 de marzo</h2>
+        </div>
+        <p class="section-text">La misma página puede servir para dos momentos distintos: primero entender la arquitectura del libro y luego usarla para comparar modelos concretos.</p>
+      </div>
+
+      <div class="week-grid">
+        <div class="route-grid">
+          <article class="route-card">
+            <p class="mini-kicker">Martes 17 de marzo</p>
+            <h3>Entrada al libro</h3>
+            <p><strong>Objetivo:</strong> entender qué pregunta hace el libro y por qué comienza por teoría e historia antes de pasar a los casos.</p>
+            <div class="route-list">
+              <div>Leer el flujo general del índice.</div>
+              <div>Detenerse en los capítulos 1 y 2 como base común.</div>
+              <div>Identificar qué papel juegan Estado, mercado y trabajo.</div>
+            </div>
+          </article>
+
+          <article class="route-card">
+            <p class="mini-kicker">Jueves 19 de marzo</p>
+            <h3>Comparación de modelos</h3>
+            <p><strong>Objetivo:</strong> usar la matriz repetida para contrastar regiones sin perder de vista el mismo problema general.</p>
+            <div class="route-list">
+              <div>Revisar la secuencia común de los capítulos 3 al 7.</div>
+              <div>Comparar qué cambia entre Mediterráneo, Nórdico, Continental, Angloamericano y Latinoamericano.</div>
+              <div>Cerrar con el capítulo 8 como síntesis del recorrido.</div>
+            </div>
+          </article>
+        </div>
+
+        <aside class="source-card">
+          <h3>Fuente usada para esta visual</h3>
+          <p>La página está construida a partir del índice del PDF <em>Sistemas laborales comparados. Las transformaciones de las relaciones de empleo en la era neoliberal</em>, usando la secuencia de capítulos y apartados tal como aparece en la lectura.</p>
+          <div class="legend" aria-label="Leyenda de colores">
+            <span><i style="background:#1f6673;"></i> Base teórica</span>
+            <span><i style="background:#5f7041;"></i> Modelos comparados</span>
+            <span><i style="background:#bb5d37;"></i> Cierre y fuentes</span>
+          </div>
+          <a class="solid-btn" href="../lecturas/brunet_pizzi_moral_sistemas_laborales_comparados.pdf">Abrir PDF de la lectura</a>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>Archivo preparado para la semana del 17 y 19 de marzo de 2026.</span>
+      <span>Sesión: índice visual del libro.</span>
+    </footer>
+  </div>
+</body>
+</html>

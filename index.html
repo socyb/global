@@ -50,17 +50,23 @@
 <main class="container">
 
     <!-- ANUNCIOS -->
-    <details id="anuncios" class="section accordion">
+    <details id="anuncios" class="section accordion" open>
         <summary class="accordion-header"><img src="img/icon-megaphone.svg" alt="" class="icon-8bit"> Anuncios</summary>
         <div class="accordion-body">
             <div class="announcements">
                 <article class="announcement">
-                    <span class="announcement-date">17 feb 2026</span>
+                    <span class="announcement-date">17 mar 2026</span>
                     <div class="announcement-body">
-                        <strong>¡Bienvenidos al semestre 2026-2!</strong>
-                        <p>Esta página será el complemento de nuestro Moodle. Aquí encontrarán actividades, talleres, presentaciones y notas de lectura. ¡Estén pendientes de las actualizaciones!</p>
+                        <strong>Examen parcial 1 — jueves 19 de marzo</strong>
+                        <p>Recuerden traer pluma y sus notas de las lecturas (versión física o digital). El examen es presencial en el horario de clase.</p>
                     </div>
                 </article>
+            </div>
+            <div class="past-mosaic" style="margin-top:.75rem;">
+                <div class="past-mini" style="cursor:default;">
+                    <span class="pm-num">17 feb</span>
+                    <span class="pm-title">¡Bienvenidos al semestre 2026-2!</span>
+                </div>
             </div>
         </div>
     </details>
@@ -92,37 +98,72 @@
     <details id="unidades" class="section accordion" open>
         <summary class="accordion-header"><img src="img/icon-book.svg" alt="" class="icon-8bit"> Unidad 1</summary>
         <div class="accordion-body">
+            <style>
+                .past-mosaic {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: .5rem;
+                    margin-bottom: 1rem;
+                }
+                .past-mini {
+                    display: flex;
+                    align-items: center;
+                    gap: .6rem;
+                    background: var(--surface);
+                    border: 1px solid rgba(0,0,0,0.12);
+                    border-radius: var(--radius-sm);
+                    padding: .5rem .75rem;
+                    text-decoration: none;
+                    color: var(--text-muted);
+                    font-size: .82rem;
+                    line-height: 1.25;
+                    opacity: .55;
+                    transition: opacity .2s;
+                }
+                .past-mini:hover { opacity: .85; }
+                .past-mini .pm-num {
+                    font-family: var(--font-accent);
+                    font-weight: 800;
+                    font-size: .85rem;
+                    color: var(--ink);
+                    min-width: 22px;
+                }
+                .past-mini .pm-title {
+                    font-weight: 600;
+                    color: var(--ink);
+                }
+                @media (max-width: 520px) {
+                    .past-mosaic { grid-template-columns: 1fr; }
+                }
+            </style>
+            <div class="past-mosaic">
+                <a href="actividades/actividad_video_digital_world_and_us_25feb26.html" class="past-mini">
+                    <span class="pm-num">03</span>
+                    <span class="pm-title">The Digital World and Us</span>
+                </a>
+                <a href="sesiones/actividad_elefante_globalizacion_03mar26.html" class="past-mini">
+                    <span class="pm-num">04</span>
+                    <span class="pm-title">Globalización como objeto de conocimiento</span>
+                </a>
+                <a href="cap-glob.html" class="past-mini">
+                    <span class="pm-num">05</span>
+                    <span class="pm-title">Trabajo, deuda y globalización</span>
+                </a>
+                <a href="actividades/actividad_madagascar_ia_12mar26.html" class="past-mini">
+                    <span class="pm-num">06</span>
+                    <span class="pm-title">Madagascar: mano de obra de la IA</span>
+                </a>
+            </div>
             <div class="sessions-list">
-                <a href="actividades/actividad_video_digital_world_and_us_25feb26.html" class="session-card past">
-                    <span class="session-number">03</span>
+                <a href="sesiones/slc.html" class="session-card active-session">
+                    <span class="session-number">07</span>
                     <div class="session-info">
-                        <h3>Video: The Digital World and Us</h3>
-                        <p>Actividad de análisis y formulario de respuestas.</p>
-                    </div>
-                </a>
-                <a href="sesiones/actividad_elefante_globalizacion_03mar26.html" class="session-card past">
-                    <span class="session-number">04</span>
-                    <div class="session-info">
-                        <h3>La globalización como objeto de conocimiento</h3>
-                        <p>Parábola de Steger y Kant</p>
-                    </div>
-                </a>
-                <a href="cap-glob.html" class="session-card active-session">
-                    <span class="session-number">05</span>
-                    <div class="session-info">
-                        <h3>Trabajo, deuda y globalización</h3>
-                        <p>Capitalismo financiarizado, relaciones de empleo y Benjamin</p>
+                        <h3>Sistemas laborales comparados · Semana 17–19 mar</h3>
+                        <p>Estructura del libro de Brunet, Pizzi y Moral: cinco modelos de relaciones laborales</p>
                     </div>
                     <span class="session-status status-available">Disponible →</span>
                 </a>
-                <a href="actividades/actividad_madagascar_ia_12mar26.html" class="session-card active-session">
-                    <span class="session-number">06</span>
-                    <div class="session-info">
-                        <h3>Video: Madagascar — la mano de obra barata de la IA</h3>
-                        <p>Documental ARTE: anotación de datos, precarización y cadenas globales de la IA</p>
-                    </div>
-                    <span class="session-status status-available">Disponible →</span>
-                </a>
+            </div>
                 <!--<a href="sesiones/video-40-horas-fraude.html" class="session-card active-session">
                     <span class="session-number">04</span>
                     <div class="session-info">

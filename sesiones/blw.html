@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>International &amp; Comparative Employment Relations · Bamber, Lansbury &amp; Wailes (2004)</title>
+  <style>
+    :root {
+      --ink: #2a1a10;
+      --paper: #f4f0ea;
+      --blush: #e8e0d4;
+      --surface: #fff;
+      --text: #2a1a10;
+      --muted: #5a4a3a;
+      /* Bamber/Lansbury/Sage cover palette */
+      --sage: #a8bfb8;
+      --sage-light: #c0d0cc;
+      --tan: #c0a088;
+      --tan-light: #d8c8b0;
+      --brown: #703020;
+      --brown-dark: #402010;
+      --red: #a01020;
+      --red-light: #c83040;
+      --cream: #e8dcc8;
+      --olive: #6a7a60;
+      /* Structure tokens */
+      --border: 3px solid var(--ink);
+      --border-thin: 2px solid var(--ink);
+      --radius: 6px;
+      --radius-sm: 4px;
+      --shadow: 6px 6px 0 var(--ink);
+      --shadow-sm: 4px 4px 0 var(--ink);
+      --font-body: 'American Typewriter', 'Georgia', serif;
+      --font-accent: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+    body {
+      font-family: var(--font-body);
+      background: var(--paper);
+      color: var(--text);
+      font-size: clamp(1rem, 1.1vw + 0.5rem, 1.18rem);
+      line-height: 1.55;
+      padding: clamp(14px, 2.5vw, 28px);
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+
+    /* ── Header ── */
+    .header {
+      background: var(--brown);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 0;
+      text-align: center;
+      margin-bottom: clamp(18px, 2.5vw, 28px);
+      overflow: hidden;
+    }
+    .header-blocks {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3px;
+      padding: 3px;
+    }
+    .header-blocks .blk {
+      height: clamp(10px, 1.8vw, 18px);
+      border-radius: 2px;
+    }
+    .header-inner {
+      padding: clamp(16px, 3vw, 28px) clamp(18px, 3vw, 32px);
+      background: rgba(255,255,255,0.93);
+    }
+    .pill-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-accent);
+      font-size: clamp(0.75rem, 1.2vw, 0.88rem);
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 999px;
+      border: 2px solid var(--ink);
+    }
+    .pill.brown { background: var(--brown); color: #fff; }
+    .pill.sage { background: var(--sage); color: var(--ink); }
+    .pill.tan { background: var(--tan); color: var(--ink); }
+    .pill.red { background: var(--red); color: #fff; }
+    .header h1 {
+      font-family: var(--font-body);
+      font-size: clamp(1.5rem, 3vw + 0.5rem, 2.2rem);
+      line-height: 1.15;
+      color: var(--brown-dark);
+      margin: 8px 0 6px;
+    }
+    .header p.sub {
+      font-family: var(--font-accent);
+      font-size: clamp(0.92rem, 1.1vw + 0.3rem, 1.1rem);
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ── Antecedent callout ── */
+    .antecedent {
+      background: var(--cream);
+      border: var(--border);
+      border-left: 8px solid var(--brown);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(14px, 2vw, 22px);
+      margin-bottom: clamp(18px, 2.5vw, 28px);
+      font-size: clamp(0.95rem, 1vw + 0.4rem, 1.08rem);
+    }
+    .antecedent strong { color: var(--brown); }
+    .antecedent .arrow {
+      display: inline-block;
+      font-size: 1.3em;
+      margin: 0 6px;
+      color: var(--red);
+    }
+
+    /* ── Section titles ── */
+    .section-label {
+      font-family: var(--font-accent);
+      font-size: clamp(0.78rem, 0.9vw + 0.2rem, 0.92rem);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      color: var(--brown);
+      margin-bottom: 4px;
+    }
+    .section-title {
+      font-size: clamp(1.25rem, 2.2vw + 0.3rem, 1.7rem);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    section {
+      margin-bottom: clamp(24px, 3.5vw, 44px);
+    }
+
+    /* ── Country map grid ── */
+    .map-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .map-card {
+      background: var(--surface);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(14px, 2vw, 20px);
+      border-top: 6px solid var(--sage);
+    }
+    .map-card h3 {
+      font-size: clamp(1.05rem, 1.2vw + 0.3rem, 1.2rem);
+      margin-bottom: 8px;
+      color: var(--brown-dark);
+    }
+    .map-card .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .chip {
+      font-family: var(--font-accent);
+      font-size: clamp(0.72rem, 0.8vw + 0.2rem, 0.82rem);
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 2px solid var(--ink);
+      background: var(--sage-light);
+    }
+    .map-card.anglo { border-top-color: var(--brown); }
+    .map-card.anglo .chip { background: var(--tan-light); }
+    .map-card.latin { border-top-color: var(--tan); }
+    .map-card.latin .chip { background: var(--cream); }
+    .map-card.nordic { border-top-color: var(--olive); }
+    .map-card.nordic .chip { background: #d0dcc8; }
+    .map-card.asia { border-top-color: var(--red); }
+    .map-card.asia .chip { background: #f0d0d0; }
+
+    /* ── Concept cards ── */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .concept-card {
+      background: var(--surface);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(14px, 2vw, 20px);
+    }
+    .concept-card h3 {
+      font-size: clamp(1.05rem, 1.2vw + 0.3rem, 1.2rem);
+      margin-bottom: 6px;
+      color: var(--brown-dark);
+    }
+    .concept-card p, .concept-card li {
+      font-size: clamp(0.9rem, 1vw + 0.3rem, 1.02rem);
+      color: var(--muted);
+    }
+    .concept-card ul {
+      padding-left: 1.2em;
+      margin-top: 6px;
+    }
+    .concept-card ul li { margin-bottom: 4px; }
+    .concept-card.highlight {
+      border-left: 8px solid var(--red);
+    }
+    .concept-card.highlight-brown {
+      border-left: 8px solid var(--brown);
+    }
+
+    /* ── Levels strip ── */
+    .levels {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .level-card {
+      background: var(--surface);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(14px, 2vw, 20px);
+      text-align: center;
+    }
+    .level-card .label {
+      font-family: var(--font-accent);
+      font-size: clamp(0.72rem, 0.8vw + 0.2rem, 0.82rem);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 800;
+      color: #fff;
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+    .level-card h3 {
+      font-size: clamp(1rem, 1.1vw + 0.3rem, 1.15rem);
+      margin-bottom: 6px;
+    }
+    .level-card p {
+      font-size: clamp(0.88rem, 0.95vw + 0.25rem, 1rem);
+      color: var(--muted);
+    }
+
+    /* ── Perspective comparison ── */
+    .persp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .persp-card {
+      background: var(--surface);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(14px, 2vw, 20px);
+    }
+    .persp-card h3 {
+      font-size: clamp(1rem, 1.1vw + 0.3rem, 1.15rem);
+      margin-bottom: 8px;
+      color: var(--brown-dark);
+    }
+    .persp-card blockquote {
+      font-style: italic;
+      color: var(--muted);
+      border-left: 4px solid var(--sage);
+      padding-left: 12px;
+      margin: 8px 0;
+      font-size: clamp(0.88rem, 0.95vw + 0.25rem, 1rem);
+    }
+    .persp-card.simple { border-top: 6px solid var(--tan); }
+    .persp-card.instit { border-top: 6px solid var(--sage); }
+    .persp-card.integr { border-top: 6px solid var(--red); }
+
+    /* ── Objectives & Challenges ── */
+    .obj-list {
+      list-style: none;
+      counter-reset: obj;
+    }
+    .obj-list li {
+      counter-increment: obj;
+      background: var(--surface);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(12px, 1.5vw, 18px);
+      padding-left: clamp(48px, 5vw, 60px);
+      margin-bottom: 12px;
+      position: relative;
+      font-size: clamp(0.95rem, 1vw + 0.3rem, 1.08rem);
+    }
+    .obj-list li::before {
+      content: counter(obj);
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--brown);
+      color: #fff;
+      font-family: var(--font-accent);
+      font-weight: 800;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Dunlop box ── */
+    .dunlop-box {
+      background: var(--cream);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(16px, 2.5vw, 28px);
+      margin-bottom: 14px;
+    }
+    .dunlop-box h3 {
+      font-size: clamp(1.1rem, 1.3vw + 0.3rem, 1.3rem);
+      color: var(--brown-dark);
+      margin-bottom: 8px;
+    }
+    .dunlop-box p {
+      font-size: clamp(0.95rem, 1vw + 0.3rem, 1.08rem);
+    }
+    .critique-list {
+      margin-top: 12px;
+      padding-left: 1.3em;
+    }
+    .critique-list li {
+      margin-bottom: 6px;
+      font-size: clamp(0.9rem, 0.95vw + 0.25rem, 1.02rem);
+      color: var(--muted);
+    }
+
+    /* ── Standing callout ── */
+    .standing-callout {
+      background: var(--red);
+      color: #fff;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(16px, 2.5vw, 28px);
+      margin-bottom: clamp(18px, 2.5vw, 28px);
+    }
+    .standing-callout h3 {
+      font-size: clamp(1.1rem, 1.3vw + 0.3rem, 1.3rem);
+      margin-bottom: 6px;
+    }
+    .standing-callout p {
+      font-size: clamp(0.95rem, 1vw + 0.3rem, 1.08rem);
+      opacity: 0.95;
+    }
+
+    /* ── References ── */
+    .ref-section {
+      background: var(--blush);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(14px, 2vw, 22px);
+      margin-bottom: clamp(18px, 2.5vw, 28px);
+    }
+    .ref-section h3 {
+      font-family: var(--font-accent);
+      font-size: clamp(0.85rem, 0.9vw + 0.2rem, 0.95rem);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      color: var(--brown);
+      margin-bottom: 10px;
+    }
+    .ref-section p {
+      font-size: clamp(0.88rem, 0.9vw + 0.25rem, 0.98rem);
+      color: var(--muted);
+      margin-bottom: 8px;
+      padding-left: 2em;
+      text-indent: -2em;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 22px 12px;
+      font-family: var(--font-accent);
+      font-size: clamp(0.8rem, 0.85vw + 0.2rem, 0.92rem);
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+    }
+
+    /* ── Schema images ── */
+    .schema-img {
+      display: block;
+      width: 100%;
+      max-width: 800px;
+      margin: 16px auto;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      .levels { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .map-grid, .concept-grid, .persp-grid { grid-template-columns: 1fr; }
+      .levels { grid-template-columns: 1fr; }
+      .header h1 { font-size: clamp(1.3rem, 5vw, 1.7rem); }
+      .section-title { font-size: clamp(1.1rem, 4vw, 1.4rem); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="header">
+      <div class="header-blocks">
+        <div class="blk" style="background:var(--brown)"></div>
+        <div class="blk" style="background:var(--sage)"></div>
+        <div class="blk" style="background:var(--tan)"></div>
+        <div class="blk" style="background:var(--brown-dark)"></div>
+        <div class="blk" style="background:var(--sage)"></div>
+        <div class="blk" style="background:var(--red)"></div>
+        <div class="blk" style="background:var(--olive)"></div>
+        <div class="blk" style="background:var(--tan)"></div>
+        <div class="blk" style="background:var(--brown)"></div>
+        <div class="blk" style="background:var(--sage-light)"></div>
+        <div class="blk" style="background:var(--cream)"></div>
+        <div class="blk" style="background:var(--brown-dark)"></div>
+      </div>
+      <div class="header-inner">
+        <div class="pill-row">
+          <span class="pill brown">Bamber · Lansbury · Wailes</span>
+          <span class="pill sage">Relaciones laborales comparadas</span>
+          <span class="pill tan">4ª edición</span>
+        </div>
+        <img src="17mar26/img/cover_bamber.png" alt="Portada: International & Comparative Employment Relations" style="display:block;margin:0 auto 12px;width:clamp(80px,12vw,140px);border:2px solid var(--ink);border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);">
+        <h1>International &amp; Comparative Employment Relations</h1>
+        <p class="sub">Globalisation and the Developed Market Economies · Greg J. Bamber, Russell D. Lansbury &amp; Nick Wailes (eds.)</p>
+        <a href="slc.html" style="display:inline-block;margin-top:12px;font-family:var(--font-accent);font-size:clamp(0.8rem,0.9vw+0.2rem,0.92rem);font-weight:700;color:var(--brown);text-decoration:none;">← Volver a Sistemas laborales comparados</a>
+      </div>
+    </header>
+
+    <!-- ═══ ANTECEDENT NOTE ═══ -->
+    <div class="antecedent">
+      <strong>Nota de contexto:</strong> Este libro de Bamber, Lansbury y Wailes (2004) es un <strong>antecedente directo</strong> del texto de Brunet, Pizzi y Moral (2016) que revisamos como lectura principal del curso. El esquema comparativo que proponen Bamber <em>et al.</em> —10 economías de mercado desarrolladas— sirvió como base para que Brunet <em>et al.</em> formularan su modelo de cinco sistemas laborales.
+      <br><br>
+      Bamber <em>et al.</em> (2004) <span class="arrow">→</span> Brunet, Pizzi &amp; Moral (2016)
+    </div>
+
+    <!-- ═══ 10 COUNTRIES MAP ═══ -->
+    <section>
+      <p class="section-label">Marco de comparación</p>
+      <h2 class="section-title">10 miembros de la OCDE: el «club de los países ricos»</h2>
+
+      <img class="schema-img" src="17mar26/img/slide_03.png" alt="Esquema comparativo: 10 países OCDE agrupados">
+
+      <div class="map-grid">
+        <article class="map-card anglo">
+          <h3>Países anglosajones</h3>
+          <div class="chip-row">
+            <span class="chip">EE.UU.</span>
+            <span class="chip">Reino Unido</span>
+            <span class="chip">Canadá</span>
+            <span class="chip">Australia</span>
+          </div>
+          <p style="font-size:clamp(0.85rem,0.9vw+0.2rem,0.95rem);color:var(--muted);">País donde comenzó la industrialización (Reino Unido)</p>
+        </article>
+
+        <article class="map-card latin">
+          <h3>Países latinos (UE)</h3>
+          <div class="chip-row">
+            <span class="chip">Italia</span>
+            <span class="chip">Francia</span>
+          </div>
+        </article>
+
+        <article class="map-card nordic">
+          <h3>Europa nor-oriental</h3>
+          <div class="chip-row">
+            <span class="chip">Alemania</span>
+            <span class="chip">Suecia</span>
+          </div>
+        </article>
+
+        <article class="map-card asia">
+          <h3>Asia del este</h3>
+          <div class="chip-row">
+            <span class="chip">Japón</span>
+            <span class="chip">Corea del Sur</span>
+          </div>
+          <p style="font-size:clamp(0.85rem,0.9vw+0.2rem,0.95rem);color:var(--muted);">País que pasó de economía agraria a industrial en &lt;&nbsp;50 años</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══ RELACIONES DE TRABAJO: CONCEPTO ═══ -->
+    <section>
+      <p class="section-label">Campo de estudio</p>
+      <h2 class="section-title">Relaciones de trabajo: un campo interdisciplinario</h2>
+
+      <img class="schema-img" src="17mar26/img/slide_06.png" alt="Esquema: relaciones de trabajo, contextos macro/meso/micro">
+
+      <div class="concept-grid">
+        <article class="concept-card highlight-brown">
+          <h3>Relaciones industriales</h3>
+          <p>Instituciones reguladoras: legislaciones, negociaciones colectivas, acuerdos, arbitrajes, sindicatos, consultorías.</p>
+        </article>
+
+        <article class="concept-card">
+          <h3>Administración de Recursos Humanos</h3>
+          <p>Gestión de la relación laboral a nivel organizacional: selección, capacitación, compensación, evaluación del desempeño.</p>
+        </article>
+
+        <article class="concept-card" style="grid-column: 1 / -1;">
+          <h3>Herramientas interdisciplinarias</h3>
+          <p>Economía, Historia, Derecho, Ciencia Política, Psicología, Sociología, Contaduría, entre otras.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══ NIVELES DE ANÁLISIS ═══ -->
+    <section>
+      <p class="section-label">Escalas de análisis</p>
+      <h2 class="section-title">Macro · Meso · Micro</h2>
+
+      <div class="levels">
+        <article class="level-card">
+          <span class="label" style="background:var(--brown);">Macro</span>
+          <h3>Geopolítica &amp; Sistema-mundo</h3>
+          <p>Globalización, interdependencias entre economías nacionales.</p>
+        </article>
+        <article class="level-card">
+          <span class="label" style="background:var(--olive);">Meso</span>
+          <h3>Empresas &amp; Estados-nación</h3>
+          <p>Regulaciones nacionales, corporaciones multinacionales, instituciones intermedias.</p>
+        </article>
+        <article class="level-card">
+          <span class="label" style="background:var(--red);">Micro</span>
+          <h3>Interacciones &amp; Dinámicas</h3>
+          <p>Comunicaciones, sistemas psíquicos, percepciones individuales en el lugar de trabajo.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══ PERSPECTIVA COMPARATIVA vs INTERNACIONAL ═══ -->
+    <section>
+      <p class="section-label">Dos lentes complementarios</p>
+      <h2 class="section-title">Perspectiva comparativa e internacional</h2>
+
+      <img class="schema-img" src="17mar26/img/slide_09.png" alt="Esquema: perspectiva comparativa e internacional + objetivos">
+
+      <div class="concept-grid">
+        <article class="concept-card highlight-brown">
+          <h3>Perspectiva comparativa</h3>
+          <p>Selecciona países y los contrasta sistemáticamente: ¿qué tienen en común? ¿qué los diferencia?</p>
+        </article>
+        <article class="concept-card highlight">
+          <h3>Perspectiva internacional</h3>
+          <p>Integra actores transnacionales: multinacionales, organizaciones intergubernamentales, flujos globales de capital y trabajo.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══ OBJECTIVES ═══ -->
+    <section>
+      <p class="section-label">Bamber, Lansbury &amp; Wailes</p>
+      <h2 class="section-title">Tres objetivos del libro</h2>
+
+      <ol class="obj-list">
+        <li>¿Cuáles son los <strong>factores que dan forma</strong> a los patrones de relaciones laborales en cada país?</li>
+        <li>¿Cuál es el <strong>impacto de la globalización</strong> en las economías de mercado desarrolladas?</li>
+        <li>¿Es posible construir <strong>teoría</strong> a partir de la comparación?<br><em>Concreción → Abstracción → Concreción</em></li>
+      </ol>
+    </section>
+
+    <!-- ═══ DESAFÍOS ═══ -->
+    <section>
+      <p class="section-label">Problemas metodológicos</p>
+      <h2 class="section-title">Desafíos de la comparación</h2>
+
+      <img class="schema-img" src="17mar26/img/slide_11.png" alt="Esquema: desafíos de la comparación">
+
+      <div class="concept-grid">
+        <article class="concept-card highlight-brown">
+          <h3>Desafío 1: ¿Qué y cómo comparar?</h3>
+          <p>Selección de variables o puntos de referencia que permitan comparación significativa entre países con historias muy distintas.</p>
+        </article>
+        <article class="concept-card highlight">
+          <h3>Desafío 2: Formal vs. real</h3>
+          <p>Distinguir entre el <em>deber ser</em> (leyes, aspecto formal) y las <em>prácticas reales</em> de las instituciones laborales.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══ DUNLOP ═══ -->
+    <section>
+      <p class="section-label">Autores y aportes clave</p>
+      <h2 class="section-title">La concepción sistémica de Dunlop (1958)</h2>
+
+      <img class="schema-img" src="17mar26/img/slide_13.png" alt="Esquema: Dunlop y críticas">
+
+      <div class="dunlop-box">
+        <h3>El sistema de relaciones industriales</h3>
+        <p>Una <strong>red de normas</strong> formada por la interacción entre el gobierno, los negocios y el empleo, influida por los factores económicos, sociopolíticos y tecnológicos existentes y emergentes.</p>
+      </div>
+
+      <div class="concept-card" style="border: var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: clamp(14px,2vw,20px);">
+        <h3 style="color:var(--red);">Críticas a Dunlop</h3>
+        <ul class="critique-list">
+          <li>No toma en cuenta variables del <strong>comportamiento</strong>: motivaciones, percepciones, disposiciones.</li>
+          <li>Ignora los <strong>grupos informales</strong> de trabajo analizados por la escuela de relaciones humanas (Mayo, 1949).</li>
+          <li>Acentúa el rol de las instituciones que <strong>hacen las leyes</strong>, en vez de analizar las causas de los conflictos y el papel de las personas decidiendo sobre su relación laboral.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══ CONVERGENCIA vs DIVERGENCIA ═══ -->
+    <section>
+      <p class="section-label">El gran debate</p>
+      <h2 class="section-title">¿Convergencia o divergencia? ¿Convergencias divergentes?</h2>
+
+      <p style="font-size:clamp(0.95rem,1vw+0.3rem,1.08rem);color:var(--muted);margin-bottom:18px;">La economía política crítica propone estudiar las <strong>relaciones sociales en los procesos productivos</strong>, la relación empleador/empleado como <em>antagonismo estructurado</em>, y los mecanismos —como la negociación colectiva— como <strong>compromisos institucionalizados</strong> que mantienen o modifican un balance de poder.</p>
+    </section>
+
+    <!-- ═══ THREE PERSPECTIVES ON GLOBALISATION ═══ -->
+    <section>
+      <p class="section-label">Marco teórico central</p>
+      <h2 class="section-title">Tres perspectivas sobre la globalización</h2>
+
+      <img class="schema-img" src="17mar26/img/slide_17.png" alt="Esquema: tres perspectivas sobre la globalización">
+
+      <div class="persp-grid">
+        <article class="persp-card simple">
+          <h3>Perspectiva simple</h3>
+          <blockquote>«International economic activity has become so interconnected… that [the pressures of globalisation] leave little scope for national differences in patterns of employment relations.»</blockquote>
+          <p style="margin-top:8px;font-size:clamp(0.88rem,0.9vw+0.2rem,0.98rem);color:var(--muted);">La globalización homogeneiza: las presiones son tan fuertes que los patrones nacionales tienden a converger.</p>
+        </article>
+
+        <article class="persp-card instit">
+          <h3>Perspectiva institucionalista</h3>
+          <blockquote>«Differences in national-level institutions are likely to refract common economic pressures in different ways.»</blockquote>
+          <p style="margin-top:8px;font-size:clamp(0.88rem,0.9vw+0.2rem,0.98rem);color:var(--muted);">Las instituciones nacionales filtran las presiones globales: la divergencia persiste.</p>
+        </article>
+
+        <article class="persp-card integr" style="grid-column: 1 / -1;">
+          <h3>Perspectiva integrada</h3>
+          <blockquote>«An integrated approach draws on the insight provided by the globalisation and institutionalist views, and offers the possibility of explaining similarities <em>and</em> differences in national patterns of employment relations within the same analytical framework.»</blockquote>
+          <p style="margin-top:8px;font-size:clamp(0.88rem,0.9vw+0.2rem,0.98rem);color:var(--muted);">Desde la economía política, subraya la interacción entre intereses e instituciones en el contexto de cambio económico internacional.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══ GUY STANDING · PRECARIADO ═══ -->
+    <div class="standing-callout">
+      <h3>El precariado como nueva clase (Standing, 2011)</h3>
+      <p>Guy Standing retoma el debate convergencia/divergencia para señalar que, independientemente del modelo nacional, la globalización neoliberal ha producido una nueva <strong>clase social emergente</strong>: el <em>precariado</em> — trabajadores sin seguridad laboral, sin identidad profesional estable y sin protección institucional suficiente. Este fenómeno conecta el marco comparativo de Bamber <em>et al.</em> con las consecuencias sociales que analiza Brunet <em>et al.</em></p>
+    </div>
+
+    <!-- ═══ REFERENCES ═══ -->
+    <div class="ref-section">
+      <h3>Referencias</h3>
+      <p>Bamber, G. J., Lansbury, R. D. y Wailes, N. (Eds.). (2004). <em>International and comparative employment relations: Globalisation and the developed market economies</em> (4ª ed.). Allen &amp; Unwin.</p>
+      <p>Brunet, I., Pizzi, A. y Moral, D. (2016). <em>Sistemas laborales comparados: Las transformaciones de las relaciones de empleo en la era neoliberal</em>. Anthropos.</p>
+      <p>Standing, G. (2011). <em>The precariat: The new dangerous class</em>. Bloomsbury Academic.</p>
+    </div>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+      <a href="slc.html" style="color:var(--brown);text-decoration:none;font-weight:700;">← Volver a Sistemas laborales comparados</a>
+      <span>Globalización y Empleo · FCA · UNAM · 2026-2 · Jorge Cardiel</span>
+      <p style="margin-top:8px;font-size:clamp(0.72rem,0.75vw+0.18rem,0.82rem);color:var(--muted);max-width:700px;text-align:center;line-height:1.45;">
+        <strong>Cómo citar esta página:</strong> Cardiel, J. (2026). <em>International &amp; Comparative Employment Relations: Presentación basada en Bamber, Lansbury y Wailes (2004)</em> [Material didáctico digital]. Globalización y Empleo, FCA, UNAM. https://socyb.github.io/global/sesiones/blw.html
+      </p>
+    </footer>
+
+  </div>
+</body>
+</html>
