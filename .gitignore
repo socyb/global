@@ -36,6 +36,7 @@ pizarrones/*.png
 # Local-only source material not used by the published site
 /yt-backups/
 /glosario/*/
+/glosario/*.xml
 /sesiones/24feb26/*.csv
 /sesiones/24feb26/*.xml
 /foro_noticias/*_discussion.json
@@ -43,3 +44,10 @@ pizarrones/*.png
 /cap-glob-old.html
 /actividades/enunciados_marcados_introduction_GlobalizationInPractice.md
 /actividades/transcripcion_digital_world_and_us_25feb26.txt
+
+# Private/support files for Feminist Perspectives activity
+/actividades/actividad_feminist_perspectives_global_24mar26/README.md
+/actividades/actividad_feminist_perspectives_global_24mar26/consulta_privada.md
+/actividades/actividad_feminist_perspectives_global_24mar26/consulta_privada.html
+/actividades/actividad_feminist_perspectives_global_24mar26/assets/data/
+/actividades/actividad_feminist_perspectives_global_24mar26/assets/img/feminist_perspectives_titlepage.png

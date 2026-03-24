@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glosario — Globalización y Empleo 2026-2</title>
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f2eb;
+      --accent: #c8000a;
+      --gray: #888;
+      --border: 2.5px solid #0a0a0a;
+      --font-mono: 'Courier New', Courier, monospace;
+      --font-serif: Georgia, 'Times New Roman', serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--white); color: var(--black); font-family: var(--font-serif); min-height: 100vh; }
+
+    /* HEADER */
+    header {
+      border-bottom: var(--border);
+      padding: 2rem 2.5rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 1rem;
+    }
+    header .eyebrow {
+      font-family: var(--font-mono); font-size: 0.68rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.4rem;
+    }
+    header h1 {
+      font-size: clamp(1.4rem, 3vw, 2.4rem);
+      font-family: var(--font-mono); font-weight: 700;
+      text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.1;
+    }
+    header h1 em { font-style: normal; color: var(--accent); }
+    .header-meta {
+      font-family: var(--font-mono); font-size: 0.72rem;
+      text-align: right; line-height: 1.8; color: var(--gray);
+      border-left: 2.5px solid var(--black); padding-left: 1.2rem;
+    }
+    .header-meta strong { color: var(--black); }
+
+    /* TOOLBAR */
+    .toolbar {
+      border-bottom: 2px solid var(--black);
+      padding: 0.8rem 2.5rem;
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+      font-family: var(--font-mono); font-size: 0.72rem;
+      background: var(--black); color: var(--white);
+    }
+    .toolbar .count {
+      background: var(--accent); color: #fff;
+      padding: 0.2em 0.7em; font-weight: 700; letter-spacing: 0.05em;
+    }
+    .toolbar label { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; }
+    .toolbar input[type=checkbox] { accent-color: var(--accent); width:14px; height:14px; }
+    .search-wrap { margin-left: auto; display: flex; align-items: center; gap: 0.5rem; }
+    #search {
+      background: transparent; border: 1.5px solid #666;
+      color: var(--white); font-family: var(--font-mono); font-size: 0.72rem;
+      padding: 0.3em 0.7em; width: 220px; outline: none;
+    }
+    #search:focus { border-color: var(--accent); }
+    #search::placeholder { color: #666; }
+
+    /* GRID */
+    main { padding: 2.5rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 0; border-top: var(--border); border-left: var(--border);
+    }
+
+    /* CARD */
+    .card {
+      border-right: var(--border); border-bottom: var(--border);
+      cursor: pointer; background: var(--white);
+      display: flex; flex-direction: column;
+      transition: background 0.12s; min-height: 210px;
+    }
+    .card:hover { background: var(--black); color: var(--white); }
+    .card:hover .card-num,
+    .card:hover .card-tags,
+    .card:hover .card-footer-label { color: #aaa; }
+    .card:hover .card-tag { border-color: #555; color: #ccc; }
+    .card:hover .teacher-badge { background: var(--accent); color: #fff; }
+    .card:hover .arrow { opacity: 1; }
+    .card:hover .card-author-name { color: #ddd; }
+    .card:hover .card-author-date { color: #888; }
+    .card:hover .card-author.pending { color: #666; }
+
+    .card-num {
+      font-family: var(--font-mono); font-size: 0.65rem;
+      color: var(--gray); letter-spacing: 0.08em;
+      padding: 1rem 1.1rem 0;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .teacher-badge {
+      font-family: var(--font-mono); font-size: 0.58rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      background: var(--black); color: var(--white); padding: 0.15em 0.5em;
+    }
+    .card-concept {
+      padding: 0.7rem 1.1rem 0.4rem;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 700; line-height: 1.2;
+      font-family: var(--font-mono); text-transform: uppercase;
+      letter-spacing: -0.01em; flex-grow: 1;
+    }
+    .card-author {
+      padding: 0 1.1rem 0.4rem;
+      font-family: var(--font-mono); font-size: 0.63rem;
+      color: #555; display: flex; flex-direction: column; gap: 0.05rem;
+    }
+    .card-author.pending { color: #aaa; font-style: italic; }
+    .card-author-name { font-weight: 700; letter-spacing: 0.02em; }
+    .card-author-date { color: var(--gray); }
+
+    .card-tags {
+      padding: 0 1.1rem; font-family: var(--font-mono); font-size: 0.62rem;
+      color: var(--gray); display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.6rem;
+    }
+    .card-tag { border: 1px solid #bbb; padding: 0.1em 0.45em; white-space: nowrap; }
+    .card-footer-label {
+      padding: 0.6rem 1.1rem; font-family: var(--font-mono);
+      font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gray); border-top: 1.5px solid #d0ccc0;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .card:hover .card-footer-label { border-top-color: #333; }
+    .arrow { opacity: 0; transition: opacity 0.12s; font-size: 0.9rem; }
+    .card.hidden { display: none; }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(10,10,10,0.78); z-index: 1000;
+      overflow-y: auto; padding: 2.5vw;
+    }
+    .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+    .modal-box {
+      background: var(--white); border: var(--border);
+      width: 100%; max-width: 800px; margin: auto;
+      display: flex; flex-direction: column;
+    }
+    .modal-header {
+      border-bottom: var(--border); padding: 1.2rem 1.5rem;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 1rem; align-items: start;
+    }
+    .modal-eyebrow {
+      font-family: var(--font-mono); font-size: 0.65rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.3rem;
+    }
+    .modal-title {
+      font-family: var(--font-mono);
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: 700; text-transform: uppercase; line-height: 1.15;
+    }
+    .modal-close {
+      background: var(--black); color: var(--white); border: none;
+      font-family: var(--font-mono); font-size: 1rem;
+      width: 2.2rem; height: 2.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .modal-close:hover { background: var(--accent); }
+
+    .modal-author-strip {
+      border-bottom: 1.5px solid #d0ccc0; padding: 0.75rem 1.5rem;
+      font-family: var(--font-mono); font-size: 0.72rem;
+      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+      background: rgba(0,0,0,0.03);
+    }
+    .modal-author-strip .field { display: flex; flex-direction: column; gap: 0.1rem; }
+    .modal-author-strip .field-label {
+      font-size: 0.58rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gray);
+    }
+    .modal-author-strip .field-value { font-weight: 700; color: var(--black); }
+    .modal-author-strip .field-value.pending { color: var(--gray); font-style: italic; font-weight: 400; }
+
+    .modal-aliases {
+      border-bottom: 1.5px solid #d0ccc0; padding: 0.8rem 1.5rem;
+      font-family: var(--font-mono); font-size: 0.65rem;
+      display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; color: var(--gray);
+    }
+    .modal-alias-label { text-transform: uppercase; letter-spacing: 0.1em; margin-right: 0.3rem; }
+    .modal-alias-tag { border: 1.5px solid #bbb; padding: 0.15em 0.5em; color: var(--black); }
+
+    .modal-body { padding: 1.5rem; overflow-y: auto; max-height: 60vh; }
+    .modal-body .card {
+      border: 1.5px solid #ccc !important; border-right: 1.5px solid #ccc !important;
+      border-bottom: 1.5px solid #ccc !important; background: #faf9f5 !important;
+      min-height: unset !important; cursor: default !important; pointer-events: none;
+    }
+    .modal-body .card:hover { background: #faf9f5 !important; color: var(--black) !important; }
+    .modal-body .card-header {
+      background: #eee !important; border-bottom: 1px solid #ccc !important; padding: 0.6rem 1rem !important;
+    }
+    .modal-body h2, .modal-body h3, .modal-body h4, .modal-body h5 {
+      font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em;
+      border-bottom: 1.5px solid var(--black); padding-bottom: 0.3rem;
+      margin: 1.2rem 0 0.6rem; font-size: 0.8rem;
+    }
+    .modal-body h2:first-child, .modal-body h3:first-child { margin-top: 0; }
+    .modal-body p { font-family: var(--font-serif); font-size: 0.95rem; line-height: 1.7; margin-bottom: 0.8rem; }
+    .modal-body blockquote {
+      border-left: 3px solid var(--accent); padding: 0.6rem 1rem;
+      margin: 1rem 0; background: rgba(200,0,10,0.04); font-style: italic;
+    }
+    .modal-body ul, .modal-body ol { padding-left: 1.5rem; margin-bottom: 0.8rem; font-size: 0.9rem; line-height: 1.65; }
+    .modal-body strong { font-weight: 700; }
+    .modal-body em { font-style: italic; }
+    .modal-body hr { border: none; border-top: 1.5px solid #ccc; margin: 1.2rem 0; }
+    .modal-body .badge {
+      font-family: var(--font-mono); font-size: 0.65rem; padding: 0.2em 0.6em;
+      border: 1.5px solid #bbb; background: transparent !important;
+      color: var(--black) !important; display: inline-block; margin: 0.1em;
+    }
+    .modal-body small { font-size: 0.82em; color: var(--gray); }
+    .modal-body .text-muted { color: var(--gray) !important; }
+
+    .modal-footer {
+      border-top: var(--border); padding: 0.8rem 1.5rem;
+      font-family: var(--font-mono); font-size: 0.65rem; color: var(--gray);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .modal-footer .teacher-stamp {
+      background: var(--black); color: var(--white);
+      padding: 0.2em 0.7em; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    .empty-state {
+      grid-column: 1/-1; padding: 4rem; text-align: center;
+      font-family: var(--font-mono); font-size: 0.8rem; color: var(--gray); display: none;
+    }
+    .empty-state.show { display: block; }
+
+    @media (max-width: 640px) {
+      header { padding: 1.2rem 1rem; grid-template-columns: 1fr; }
+      .header-meta { text-align: left; border-left: none; border-top: 1.5px solid #ccc; padding-left: 0; padding-top: 0.8rem; }
+      .toolbar { padding: 0.7rem 1rem; }
+      .search-wrap { margin-left: 0; width: 100%; }
+      #search { width: 100%; }
+      main { padding: 0; }
+      .grid { border: none; }
+      .card { border: var(--border); margin: -1.25px; }
+      .modal-overlay { padding: 0; }
+      .modal-box { min-height: 100vh; }
+      .modal-body { max-height: none; }
+      .modal-author-strip { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="eyebrow">Glosario · 2026-2</div>
+    <h1>Globalización<br>y <em>Empleo</em></h1>
+  </div>
+  <div class="header-meta">
+    <div><strong>Entradas</strong> 14</div>
+    <div><strong>Formato</strong> Zettelkasten</div>
+    <div><strong>Semestre</strong> 2026-2</div>
+    <div><strong>Modalidad</strong> Colaborativo</div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <span class="count" id="visible-count">14</span>
+  <span style="letter-spacing:0.08em">ENTRADAS</span>
+  <label><input type="checkbox" id="filter-teacher" onchange="applyFilters()"> SOLO DOCENTE</label>
+  <label><input type="checkbox" id="filter-student" onchange="applyFilters()"> SOLO ESTUDIANTES</label>
+  <div class="search-wrap">
+    <span style="letter-spacing:0.08em">BUSCAR</span>
+    <input type="text" id="search" placeholder="concepto, autor o etiqueta…" oninput="applyFilters()">
+  </div>
+</div>
+
+<main>
+  <div class="grid" id="grid">
+    <div class="empty-state" id="empty-state">[ SIN RESULTADOS ]</div>
+  </div>
+</main>
+
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <div class="modal-eyebrow" id="modal-eyebrow"></div>
+        <div class="modal-title" id="modal-title"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">&#10005;</button>
+    </div>
+    <div class="modal-author-strip" id="modal-author-strip"></div>
+    <div class="modal-aliases" id="modal-aliases"></div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer">
+      <span id="modal-footer-entry"></span>
+      <span id="modal-teacher-stamp"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+const ENTRIES = [{"id": 0, "concept": "Flexiguridad", "definition": "<div class=\"card shadow-sm mb-3\">\n<div class=\"card-header bg-light\">\n<h4 class=\"mb-0\">Flexicuridad (flexicurity)</h4>\n</div>\n<div class=\"card-body\">\n<div class=\"mb-3\">\n<h5 class=\"h6 text-uppercase mb-2\">Definición (cita textual)</h5>\n<blockquote class=\"blockquote mb-2\">\n<p class=\"mb-0\">“the adaptation to the changed economic and social conditions requires a more flexible labour market combined with levels of security that address simultaneously the new needs of employers and employees”</p>\n</blockquote>\n<p class=\"mb-0\"><small class=\"text-muted\"> (Davulis & Petrylaitė, 2012, p. 4). </small></p>\n</div>\n<div class=\"mb-3\">\n<h5 class=\"h6 text-uppercase mb-2\">Comentario</h5>\n<p class=\"mb-0\">La <strong>flexicuridad</strong> nombra un intento de combinar dos impulsos que suelen chocar: <strong>flexibilizar</strong> el mercado de trabajo para que empresas y organizaciones se adapten a cambios productivos, tecnológicos y competitivos, y <strong>garantizar seguridad</strong> suficiente para que la vida laboral no quede expuesta a la volatilidad (protecciones, protección social y políticas activas). En el marco del debate sobre regulación laboral del siglo XXI, aparece como respuesta a presiones asociadas a la globalización, la reestructuración empresarial y la transformación tecnológica del empleo.</p>\n</div>\n<div class=\"mb-3\">\n<h5 class=\"h6 text-uppercase mb-2\">Palabras clave</h5>\n<div class=\"d-flex flex-wrap gap-2\"><span class=\"badge bg-light text-dark border\">flexibilidad laboral</span> <span class=\"badge bg-light text-dark border\">seguridad social</span> <span class=\"badge bg-light text-dark border\">políticas activas de empleo</span> <span class=\"badge bg-light text-dark border\">negociación colectiva</span> <span class=\"badge bg-light text-dark border\">transiciones laborales</span> <span class=\"badge bg-light text-dark border\">precarización</span> <span class=\"badge bg-light text-dark border\">globalización</span> <span class=\"badge bg-light text-dark border\">regulación laboral</span></div>\n<div class=\"mb-3\">\n<h5 class=\"h6 text-uppercase mb-2\">Relación con el curso (Globalización y Empleo)</h5>\n<ul class=\"mb-0\">\n<li><strong>Traduce la globalización a instituciones laborales:</strong> permite analizar cómo la competencia global y la presión por productividad se “convierten” en reformas de contratación, despido, horarios y movilidad, y cómo se intenta compensar eso con seguridad.</li>\n<li><strong>Hace visible la disputa por el riesgo:</strong> ayuda a discutir quién asume la incertidumbre (empresas, Estado o trabajadores) y con qué instrumentos (protección social, seguros, formación, políticas activas).</li>\n<li><strong>Conecta regulación y formas de empleo contemporáneas:</strong> es útil para leer el auge de empleos no estándar (temporalidad, subcontratación, plataformas) y el debate sobre cómo “asegurar” trayectorias laborales en mercados más flexibles.</li>\n</ul>\n</div>\n<div class=\"pt-2 border-top\">\n<h5 class=\"h6 text-uppercase mb-2\">Referencia (APA 7)</h5>\n<p class=\"mb-0\">Davulis, T., & Petrylaitė, D. (Eds.). (2012). <em>Labour Regulation in the 21st Century: In Search of Flexibility and Security</em>. Cambridge Scholars Publishing.</p>\n</div>\n</div>\n</div>\n</div>", "teacher_entry": true, "aliases": [], "author": "Jorge Cardiel Herrera", "date": "martes, 17 de febrero de 2026, 14:26"}, {"id": 1, "concept": "Systemic Global Risk", "definition": "<p><strong>DEFINICIÓN</strong></p>\n<p>\"represent dangers that threaten the stability of the entire planet or significant portions of it.... When a risk is ‘systemic’, it means it doesn’t just affect one part in isolation; instead, it has the potential to ripple outwards, impacting multiple parts of the web simultaneously and potentially causing the entire structure to weaken or even collapse. The<strong> </strong>description of these risks is rooted in their interconnected nature and global scale\"</p>\n<p><strong>REFERENCIA</strong></p>\n<p>Sustainability Directory (2026) Systemic Global Risks. Sitio web: https://climate.sustainability-directory.com/term/systemic-global-risks/</p>\n<p><strong>COMENTARIO</strong></p>\n<p data-pm-slice=\"1 1 []\">Los riesgos globales sistémicos son amenazas interconectadas a gran escala que pueden desestabilizar o colapsar sistemas esenciales del planeta (económicos, ambientales, sociales y tecnológicos) debido a su naturaleza que en la actualidad se encuentra profundamente entrelazada.</p>\n<p>Afectan múltiples sectores y regiones al mismo tiempo, y sus impactos pueden propagarse como un efecto dominó a través del sistema global. En resumen, estos riesgos surgen debido a que el mundo está profundamente globalizado.</p>\n<p><strong>RELACIÓN CON EL CURSO</strong></p>\n<p>Con respecto a la primer lectura, al apartado \"Moody's, Emotions, and Uncertainity in Finance\" se nos menciona un poco de los riesgos asociados a la interconexión financiera global, misma que ha sido consecuencia de los distintos estratos de la globalización que ha ido evolucionando a través de los años.</p>\n<p></p>", "teacher_entry": false, "aliases": ["Interconexión, Globalización, Sistema financiero"], "author": "Gretel Camila Rojas Aquino", "date": "lunes, 23 de febrero de 2026, 18:48"}, {"id": 2, "concept": "Scalography", "definition": "<h2 data-start=\"149\" data-end=\"183\">Definición </h2>\n<p data-start=\"184\" data-end=\"538\">“Woolgar and colleagues have proposed the notion of ‘scalography’—the sceptical ethnographic study of scalar objects and practices—as the methodological stance appropriate to highlighting the contingent features of what is so often taken for granted about scale.”<br data-start=\"447\" data-end=\"450\">(Thrift, Tickell, & Woolgar, 2014, nota al pie 6).</p>\n<hr data-start=\"540\" data-end=\"543\">\n<h2 data-start=\"545\" data-end=\"564\">Comentario</h2>\n<p data-start=\"565\" data-end=\"972\">La scalography (escalografía) se refiere a una propuesta metodológica para estudiar críticamente cómo se construyen las “escalas” en el análisis social (por ejemplo, lo local, lo global, lo micro o lo macro). En lugar de asumir que esas escalas existen de manera natural o evidente, este enfoque plantea que deben analizarse como resultados de prácticas, objetos, discursos e infraestructuras concretas.</p>\n<p data-start=\"974\" data-end=\"1453\">Su relevancia dentro del texto es central porque cuestiona una de las ideas más comunes en los estudios de globalización: que lo “global” siempre equivale a algo grande, lejano o abstracto, y que lo “local” siempre corresponde a algo pequeño o limitado. La escalografía permite mostrar que esas categorías son producidas y sostenidas socialmente, y que muchas veces un objeto aparentemente “pequeño” (como una tarjeta, un cable o un celular) puede tener efectos de escala global.</p>\n<p data-start=\"1455\" data-end=\"1706\">En términos analíticos, este concepto fortalece una mirada más empírica y menos determinista de la globalización, ya que obliga a observar cómo se produce la escala en la práctica, quién la define, con qué herramientas, y con qué efectos de poder.</p>\n<hr data-start=\"1708\" data-end=\"1711\">\n<p data-start=\"1737\" data-end=\"1935\"></p>\n<hr data-start=\"1937\" data-end=\"1940\">\n<h2 data-start=\"1942\" data-end=\"1997\">Relación con el curso</h2>\n<p data-start=\"2000\" data-end=\"2225\">Ayuda a analizar cómo se “escala” el trabajo: permite ver cómo fenómenos laborales (por ejemplo, informalidad, subcontratación o trabajo en plataformas) pasan de ser tratados como casos “locales” a problemas “globales”.</p>\n<p data-start=\"2228\" data-end=\"2456\">Cuestiona categorías rígidas del mercado laboral: muestra que términos como “empleo local” o “economía global” no son neutros, sino construcciones que dependen de políticas, estadísticas, empresas y marcos institucionales.</p>\n<p data-start=\"2459\" data-end=\"2650\">Conecta objetos y empleo: permite estudiar cómo tecnologías concretas (apps, celulares, software de gestión, plataformas digitales) producen nuevas escalas de trabajo y control laboral.</p>\n<p data-start=\"2653\" data-end=\"2884\">Aporta una mirada crítica sobre poder y medición: ayuda a entender quién define la escala de un problema laboral (empresa, Estado, organismos internacionales) y cómo eso influye en la regulación y en las condiciones de trabajo.</p>\n<hr data-start=\"2886\" data-end=\"2889\">\n<h2 data-start=\"2891\" data-end=\"2918\">Referencia APA 7</h2>\n<p data-start=\"2919\" data-end=\"3221\">Thrift, N., Tickell, A., & Woolgar, S. (2014). Introduction: Respecifying globalization: An editorial essay for <em data-start=\"3031\" data-end=\"3058\">Globalization in Practice</em>. In N. Thrift, A. Tickell, S. Woolgar, & W. H. Rupp (Eds.), <em data-start=\"3119\" data-end=\"3146\">Globalization in Practice</em> (pp. 1–16). Oxford University Press.</p>", "teacher_entry": false, "aliases": ["escala", "micro/macro", "local/global", "metodología etnográfica", "STS (Science and Technology Studies)", "prácticas sociales", "objetos escalares", "globalización", "construcción social", "análisis crítico"], "author": "Carlos Eibar Williams Rendón", "date": "martes, 24 de febrero de 2026, 16:36"}, {"id": 3, "concept": "Globalidad (globality)", "definition": "<p><strong data-start=\"141\" data-end=\"170\">Definición (cita textual)</strong><br data-start=\"170\" data-end=\"173\">“Yet, we should not assume either that globality is already upon us nor that it refers to a determinate endpoint that precludes any further development. Rather, this concept signifies a future social condition characterized by tight global economic, political, cultural, and environmental interconnections and flows that make most of the currently existing borders and boundaries irrelevant.”<br data-start=\"565\" data-end=\"568\">(Steger, 2013, p. 29).</p>\n<p><strong data-start=\"592\" data-end=\"606\">Comentario</strong><br data-start=\"606\" data-end=\"609\">La globalidad se entiende como una condición social futura en la que las interconexiones mundiales serían tan intensas que muchas de las fronteras tradicionales perderían relevancia. A diferencia de la globalización, que se refiere al proceso de transformación y expansión de vínculos a escala mundial, la globalidad alude más bien al posible estado al que ese proceso conduce. Este concepto es importante porque permite distinguir entre el cambio en curso y el resultado potencial de ese cambio. En la lectura, Steger aclara que la globalidad no debe verse como una realidad ya alcanzada, sino como una condición en desarrollo, abierta e indeterminada. En ese sentido, la globalidad no implica la desaparición absoluta de lo nacional o lo local, sino una reorganización de su significado dentro de un mundo crecientemente interdependiente. Relacionado con el video, este concepto ayuda a entender cómo fenómenos como las finanzas de alta frecuencia muestran un nivel extremo de integración tecnológica y económica global, donde las distancias físicas parecen reducirse y las decisiones locales se insertan inmediatamente en redes mundiales. Sin embargo, también queda claro que esa globalidad sigue siendo incompleta, porque todavía existen límites físicos, materiales, políticos y humanos.</p>\n<p data-start=\"2069\" data-end=\"2344\"><strong data-start=\"2069\" data-end=\"2119\">Relación con el curso (Globalización y Empleo)</strong><br data-start=\"2119\" data-end=\"2122\">Permite diferenciar entre proceso y resultado: ayuda a distinguir la globalización como dinámica de cambio y la globalidad como posible condición estructural hacia la que se orientan los mercados de trabajo contemporáneos.</p>\n<p data-start=\"2346\" data-end=\"2592\">Hace visible la reconfiguración del empleo en un mundo interdependiente: permite analizar cómo las fronteras económicas se vuelven menos rígidas y cómo el trabajo se inserta cada vez más en cadenas globales de producción, servicios e información.</p>\n<p data-start=\"2594\" data-end=\"2875\">Conecta transformaciones globales y nuevas exigencias laborales: resulta útil para comprender por qué el empleo actual demanda adaptación constante, competencias transnacionales, dominio tecnológico y capacidad de responder a dinámicas que ya no son solamente locales o nacionales.</p>\n<p data-start=\"2877\" data-end=\"3002\"><strong data-start=\"2877\" data-end=\"2899\">Referencia (APA 7)</strong><br data-start=\"2899\" data-end=\"2902\">Steger, M. B. (2013). <em data-start=\"2924\" data-end=\"2966\">Globalization: A very short introduction</em> (3rd ed.). Oxford University Press.</p>", "teacher_entry": false, "aliases": ["interconexión global", "fronteras", "interdependencia", "condición social", "globalización", "economía mundial", "tecnología", "transformación social"], "author": "Carlos Eibar Williams Rendón", "date": "martes, 3 de marzo de 2026, 16:34"}, {"id": 4, "concept": "global imaginary (imaginario global)", "definition": "<p><strong data-path-to-node=\"5\" data-index-in-node=\"0\">Definición (cita textual)</strong> \"Finally, let us adopt global imaginary as a concept referring to people's growing consciousness of global connectivity. [...] The thickening of the global consciousness destabilizes and unsettles the conventional nation-state within which people imagine their communal existence.\" (Steger, 2013, pp. 30-31).</p>\n<p></p>\n<p><strong data-path-to-node=\"6\" data-index-in-node=\"0\">Comentario</strong> El imaginario global se entiende como un cambio en la conciencia humana, donde las personas comienzan a percibir su vida y su sentido de comunidad a una escala verdaderamente mundial. A diferencia de los procesos económicos o tecnológicos de la globalización que son tangibles, el imaginario global ocurre en el plano subjetivo. Steger aclara que esto no significa que las identidades locales o nacionales desaparezcan, sino que el Estado-nación deja de ser el único marco de referencia para nuestras acciones y pensamientos. Este concepto es fundamental porque demuestra que la globalización también transforma nuestra mente; por ejemplo, cuando nos preocupamos por problemas de impacto mundial (como el cambio climático o crisis económicas en otros continentes) y participamos en redes que cruzan fronteras, demostrando que ya nos asumimos como ciudadanos interconectados.</p>\n<p data-path-to-node=\"7\"><strong data-path-to-node=\"7\" data-index-in-node=\"0\">Relación con el curso </strong></p>\n<ul data-path-to-node=\"8\">\n<li>\n<p data-path-to-node=\"8,0,0\"><strong data-path-to-node=\"8,0,0\" data-index-in-node=\"0\">Transforma la mentalidad del trabajador moderno:</strong> ayuda a entender que los profesionales de hoy ya no limitan sus aspiraciones o su competencia a un mercado local, sino que se preparan con una visión global para competir internacionalmente.</p>\n</li>\n<li>\n<p data-path-to-node=\"8,1,0\"><strong data-path-to-node=\"8,1,0\" data-index-in-node=\"0\">Redefine la cultura organizacional de las empresas:</strong> permite analizar cómo las organizaciones buscan perfiles que posean esta conciencia global, ya que necesitan equipos capaces de comprender la diversidad cultural y las tendencias mundiales.</p>\n</li>\n<li>\n<p data-path-to-node=\"8,2,0\"><strong data-path-to-node=\"8,2,0\" data-index-in-node=\"0\">Impulsa el desarrollo de competencias transnacionales:</strong> resulta útil para comprender por qué el empleo actual demanda habilidades que nacen de este imaginario global, tales como la comunicación intercultural, el dominio de idiomas extranjeros y la adaptabilidad a entornos de trabajo descentralizados o remotos.</p>\n</li>\n</ul>\n<p>Steger, M. B. (2013). <em>Globalization: A very short introduction</em>. Oxford University Press.</p>", "teacher_entry": false, "aliases": ["imaginario global, conciencia global, interconectividad, identidad transnacional, subjetividad."], "author": "Eric Donaldo Rosales Ramírez", "date": "martes, 3 de marzo de 2026, 20:24"}, {"id": 5, "concept": "Remercantilización", "definition": "<h6 dir=\"ltr\"><span style=\"color: #000000;\">DEFINICIÓN (CITA TEXTUAL)</span></h6>\n<p dir=\"ltr\">\"[Se ha pasado de garantizar] un proceso de desmercantilización de las necesidades sociales, de manera que la satisfacción de las mismas no dependa del poder adquisitivo [a la] remercantilización de la existencia social de los ciudadanos\".</p>\n<p dir=\"ltr\">(Brunet, Pizzi & Moral, 2016, p. 10).</p>\n<h6 dir=\"ltr\">COMENTARIO</h6>\n<p dir=\"ltr\">La remercantilización describe el proceso actual donde el trabajo pierde su estatus de \"derecho protegido\" y vuelve a ser tratado como una simple mercancía sujeta a la oferta y demanda. En la era del capitalismo financiero, esto significa que la protección que antes brindaba el Estado de Bienestar (salud, pensiones, desempleo) se debilita, obligando al individuo a comprar estas soluciones en el mercado privado. Es una respuesta a las presiones de competitividad global donde se busca reducir costos eliminando derechos laborales.</p>\n<p dir=\"ltr\"></p>\n<h6 dir=\"ltr\">RELACIÓN CON EL CURSO (GLOBALIZACIÓN Y EMPLEO)</h6>\n<ul>\n<li dir=\"ltr\" aria-level=\"1\">\n<p dir=\"ltr\" role=\"presentation\">Traduce la globalización a la vida diaria: Permite entender cómo la competencia económica mundial presiona a los gobiernos para que dejen de proteger el empleo y permitan formas de contratación más \"flexibles\" y menos seguras.</p>\n</li>\n<li dir=\"ltr\" aria-level=\"1\">\n<p dir=\"ltr\" role=\"presentation\">Hace visible la disputa por el riesgo: Ayuda a discutir cómo el riesgo de enfermarse o quedarse sin dinero en la vejez ya no lo asume el Estado como antes, sino que se le traslada directamente al trabajador (sujeto de riesgo).</p>\n</li>\n<li dir=\"ltr\">Conecta regulación y formas de empleo contemporáneas: Es útil para analizar por qué hoy son tan comunes los minijobs o el trabajo por plataformas, donde el trabajador es visto como un \"emprendedor de sí mismo\" pero sin las protecciones del empleo tradicional.</li>\n</ul>\n<h6 dir=\"ltr\">REFERENCIA (APA 7)</h6>\n<p dir=\"ltr\">Brunet, I., Pizzi, A., & Moral, D. (2016). Sistemas laborales comparados: Las transformaciones de las relaciones de empleo en la era neoliberal. Anthropos Editorial / Universidad Nacional del Litoral. </p>\n<p></p>", "teacher_entry": false, "aliases": ["mercantilización capitalismo financiero Estado de Bienestar neoliberalismo precariedad laboral globalización protección social"], "author": "Eric Donaldo Rosales Ramírez", "date": "lunes, 9 de marzo de 2026, 16:24"}, {"id": 6, "concept": "Capitalismo financiarizado", "definition": "<p data-start=\"225\" data-end=\"441\"><strong data-start=\"225\" data-end=\"254\">Definición (cita textual)</strong><br data-start=\"254\" data-end=\"257\">“Por último, llegamos al tercer tipo general de capitalismo políticamente construido, el gobernado por la lógica financiera, cuya transformación se ha producido durante el siglo XX.”</p>\n<p data-start=\"443\" data-end=\"1083\"><br data-start=\"457\" data-end=\"460\">El capitalismo financiarizado se refiere a una etapa del capitalismo en la que el poder principal ya no está tanto en la producción de bienes o servicios, sino en las finanzas, la deuda, el crédito y la especulación. Es decir, la economía comienza a organizarse más alrededor del movimiento del dinero y de los activos financieros que del trabajo productivo en sí. En el texto, esta idea es muy importante porque explica cómo el capital financiero fue adquiriendo cada vez más fuerza a nivel mundial, hasta influir directamente en las decisiones de los Estados, en las políticas públicas y en la vida de los trabajadores.</p>\n<p data-start=\"1085\" data-end=\"1539\">Además, este concepto ayuda a entender por qué la Gran Recesión no fue vista solo como una crisis económica común, sino como una consecuencia de un modelo en donde predominan las ganancias de corto plazo, la desregulación y la acumulación basada en deuda. También se relaciona con la precarización laboral, porque dentro de esta lógica los derechos sociales y laborales pierden fuerza frente a la exigencia de flexibilidad, competitividad y rentabilidad.</p>\n<p data-start=\"1665\" data-end=\"2141\"><strong> Relacion con el curso </strong></p>\n<p data-start=\"1665\" data-end=\"2141\">Este concepto se relaciona con el estudio de la globalización y las relaciones laborales porque permite entender cómo los cambios económicos globales impactan directamente en el trabajo, en el papel del Estado y en los derechos de los trabajadores. También ayuda a analizar cómo el capitalismo actual ha cambiado sus formas de control, pasando de una economía más centrada en la producción a otra dominada por las finanzas y la rentabilidad.</p>", "teacher_entry": false, "aliases": ["finanzas", "deuda", "crédito", "especulación", "desregulación", "capital", "precarización", "globalización"], "author": "Carlos Eibar Williams Rendón", "date": "lunes, 9 de marzo de 2026, 16:42"}, {"id": 7, "concept": "Capitalismo Industrial", "definition": "<h5 dir=\"ltr\"><span style=\"color: #85046a;\">Definición (cita textual)</span></h5>\n<p dir=\"ltr\">El capitalismo industrial ha sido, como tipo ideal y fenómeno económico, un producto de la civilización europea (Anderson, 1974a, 1974b; Mann, 1997). Si bien hasta 1800 solo se dio, en toda su amplitud, en el noroeste del continente, no fue hasta mediados de siglo XIX cuando lo encontramos en el resto del continente europeo. (Anderson, 1974a, 1974b; Mann, 1997, como se citó en Brunet et al., 2016, p. 9).</p>\n<p dir=\"ltr\">Históricamente, lo normal ha sido que el capital haya acabado arraigando en contextos previamente no capitalistas, y sustituyendo las costumbres por relaciones comerciales, relaciones de empleo o contratos laborales, reemplazando la comunidad y los vínculos sociales tradicionales por la sociedad y el cálculo económico (Gledhill, 2000, como se citó en Brunet et al., 2016, p. 9).</p>\n<h5 dir=\"ltr\"><span style=\"color: #85046a;\">Comentario</span></h5>\n<p><span class=\"ng-star-inserted\">El capitalismo industrial representó una ruptura radical con las tradiciones laborales del Antiguo Régimen al desplazar la producción artesanal por el </span><span class=\"ng-star-inserted\">régimen de fábrica</span><span class=\"ng-star-inserted\"> y la </span><span class=\"ng-star-inserted\">proletarización</span><span class=\"ng-star-inserted\"> masiva. El Estado desempeñó un papel central al crear las condiciones institucionales necesarias para el funcionamiento del mercado y la acumulación de capital.  El “miedo al hambre” funcionó como un mecanismo disciplinario para obligar a los trabajadores a aceptar las condiciones laborales del nuevo sistema fabril.</span></p>\n<h5 dir=\"ltr\"><span style=\"color: #85046a;\">Palabras clave</span></h5>\n<p dir=\"ltr\"><span style=\"color: #85046a;\"><span class=\"badge bg-light text-dark border\">Proletarización</span><span class=\"badge bg-light text-dark border\">Destrucción creativa</span><span class=\"badge bg-light text-dark border\">Estado nacional</span><span class=\"badge bg-light text-dark border\">Transiciones laborales</span><span class=\"badge bg-light text-dark border\">Trabajo asalariado</span><span class=\"badge bg-light text-dark border\">Acumulación de capital</span><span class=\"badge bg-light text-dark border\">Miedo al hambre</span></span></p>\n<h5 dir=\"ltr\"><span style=\"color: #85046a;\">Relación con el curso (Globalización y Empleo)</span></h5>\n<p><span style=\"color: #c47abb;\"><strong>Explica la transformación del  sistema de empleos: </strong></span>Ayuda a analizar cómo el paso hacia un capitalismo financiero transformó los empleos estables en trabajos más flexibles, temporales o precarios.</p>\n<p><span style=\"color: #c47abb;\"><strong>Traduce la remercantilización del trabajo:</strong></span> Permite analizar cómo el empleo, que antes estaba más protegido por derechos sociales, se trata cada vez más como una mercancía dentro de la competencia económica global.</p>\n<p><span style=\"color: #c47abb;\"><strong>Ayuda a comprender la precarización del trabajo:</strong> </span>muestra cómo muchas protecciones laborales que surgieron durante el capitalismo industrial se han debilitado, dado que el capitalismo financiarizado ya no tiene como eje central la producción.</p>\n<p><span style=\"color: #c47abb;\"><strong>Ayuda a entender la relación entre la industrialización y el bienestar social:</strong></span> Muestra cómo el crecimiento industrial permitió el desarrollo de sistemas de protección social vinculados al empleo.</p>\n<h5 dir=\"ltr\"><span style=\"color: #85046a;\">Referencia (APA 7)</span></h5>\n<p><span class=\"ng-star-inserted\">Brunet, I., Pizzi, A., y Moral, D. (2016). </span><i class=\"ng-star-inserted\">Sistemas laborales comparados: Las transformaciones de las relaciones de empleo en la era neoliberal</i><span class=\"ng-star-inserted\">. Anthropos Editorial; Universidad Nacional del Litoral.</span></p>", "teacher_entry": false, "aliases": ["Proletarización, Destrucción creativa, Estado nacional, Transiciones laborales, Trabajo asalariado, Acumulación de capital, Miedo al hambre, Capitalismo Industrial"], "author": "Zoey Atenco Vargas", "date": "lunes, 9 de marzo de 2026, 23:46"}, {"id": 8, "concept": "Desmercantilización", "definition": "<p>La desmercantilización es el grado en que el bienestar de los individuos se garantiza como un derecho ciudadano, independientemente de su participación en el mercado laboral. Ocurre cuando el Estado asume la provisión de necesidades básicas (como salud o pensiones), debilitando la dependencia absoluta del trabajador hacia el salario para sobrevivir. Un nivel alto de desmercantilización otorga autonomía social, pues reduce significativamente la vulnerabilidad económica y elimina la urgencia vital de aceptar condiciones laborales precarias o de explotación.</p>\n<p><strong>Cita en APA 7</strong><br>Sojo, A. (2005). Estado, mercado y familia: el haz del bienestar social como objeto de política (Serie Políticas Sociales No. 114). Comisión Económica para América Latina y el Caribe (CEPAL). https://repositorio.cepal.org/handle/11362/6094</p>\n<p><strong>Link del recurso</strong><br>https://repositorio.cepal.org/handle/11362/6094</p>\n<p><strong>Relación a la clase</strong><br>La desmercantilización es clave en la materia ya que contrasta la protección social con el libre mercado. En Sistemas laborales comparados se advierte que el capitalismo financiero impulsa la remercantilización de la existencia ciudadana , desmantelando el bienestar para forzar a las personas a aceptar empleos precarios y flexibles. Simultáneamente, The Physical Roots of a Digital Globe muestra que la economía digital global se sostiene sobre trabajadores físicos desprovistos de esta protección y expuestos a gran vulnerabilidad comercial. En suma, podemos así analizar cómo defender la dignidad laboral frente a la voraz competitividad transnacional.</p>", "teacher_entry": false, "aliases": ["Estado del bienestar", "Protección social", "Derechos ciudadanos", "Dependencia mercantil", "Política social"], "author": "Mateo Hidalgo Galván", "date": "lunes, 10 de marzo de 2026, 00:32"}, {"id": 9, "concept": "Hegemonía financiera", "definition": "<p><strong>Definición </strong></p>\n<p>La hegemonía financiera se refiere al dominio que adquiere el capital financiero dentro del capitalismo contemporáneo, influyendo no solo en la economía, sino también en las decisiones políticas y laborales. En el texto, este concepto aparece como parte de la transformación del modelo keynesiano-fordista hacia una etapa neoliberal. Bajo esta lógica, las empresas priorizan la rentabilidad, la competencia y el valor para los inversionistas. Como consecuencia, se debilitan la estabilidad laboral y la intervención protectora del Estado. Esto genera un aumento de la desigualdad, la precarización del empleo y la fragmentación social.</p>\n<p><strong>Relación </strong></p>\n<p data-start=\"1564\" data-end=\"2303\">Este concepto se relaciona con los temas de la clase porque permite entender cómo cambiaron las relaciones de empleo en la era neoliberal. Explica el paso de un modelo con mayor regulación estatal y protección laboral hacia otro en el que predominan la flexibilidad, la competencia y la lógica del mercado. También ayuda a analizar por qué el trabajo perdió parte de su estabilidad y de su función integradora dentro de la sociedad. Además, se conecta con el estudio de la globalización y de las desigualdades sociales, ya que muestra que los cambios económicos impactan directamente en la vida de los trabajadores. Por ello, la hegemonía financiera es una categoría clave para comprender las transformaciones actuales del sistema laboral.</p>\n<p data-start=\"1564\" data-end=\"2303\"><strong>Cita </strong></p>\n<p data-start=\"1564\" data-end=\"2303\">Brunet Icart, I., Pizzi, A., & Moral, D. (2016). <em data-start=\"249\" data-end=\"351\">Sistemas laborales comparados: Las transformaciones de las relaciones de empleo en la era neoliberal</em> (1.ª ed.). Ediciones UNL; Anthropos.</p>", "teacher_entry": false, "aliases": ["capital financiero", "financiarización", "neoliberalismo", "precarización laboral", "desigualdad social", "globalización"], "author": "Carlos Eibar Williams Rendón", "date": "lunes, 16 de marzo de 2026, 17:59"}, {"id": 10, "concept": "Precarización Laboral", "definition": "<div class=\"mb-3\">\n<h5 class=\"h6 text-uppercase mb-2\">Definición (cita textual)</h5>\n<blockquote class=\"blockquote mb-2\">\n<p class=\"mb-0\">“Según <sup><a href=\"https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S2448-66552019000200113#B4\">Boffi (2015)</a></sup> la definición de precarización laboral es multidimensional, e incluye una variedad de formas de empleo establecidas por debajo del estándar normativo socialmente aceptado en al menos una de las siguientes dimensiones: la temporal, la organización, la económica y / o la social de la relación laboral. En las cuatro dimensiones, la precariedad se debe a una distribución desequilibrada hacia y entre los trabajadores de inseguridades y riesgos típicamente asociados a la vida económica en general y al mercado laboral en particular.”</p>\n</blockquote>\n<p class=\"mb-0\"><small class=\"text-muted\"> (Martínez, Marroquín & Ríos, 2019).</small></p>\n</div>\n<div class=\"mb-3\">\n<h5 class=\"h6 text-uppercase mb-2\">Comentario</h5>\n<p class=\"mb-0\">La precarización laboral es un fenómeno complejo que define la realidad de millones de personas en la economía actual. No se trata solo de ganar poco dinero, es una transformación profunda de la relación entre el trabajador, su empleo y su seguridad a futuro.</p>\n</div>\n<div class=\"mb-3\">\n<h5 class=\"h6 text-uppercase mb-2\">Palabras clave</h5>\n<div class=\"d-flex flex-wrap gap-2\"><span class=\"badge bg-light text-dark border\">Inestabilidad Contractual</span><span class=\"badge bg-light text-dark border\">Jornadas laborales</span><span class=\"badge bg-light text-dark border\">Salarios bajos</span><span class=\"badge bg-light text-dark border\">Seguridad en el trabajo</span><span class=\"badge bg-light text-dark border\">Protección social</span><span class=\"badge bg-light text-dark border\">precarización</span><span class=\"badge bg-light text-dark border\">globalización</span><span class=\"badge bg-light text-dark border\">Probreza</span></div>\n<div class=\"mb-3\">\n<h5 class=\"h6 text-uppercase mb-2\">Relación con el curso (Globalización y Empleo)</h5>\n<ul class=\"mb-0\">\n<li>\n<p data-path-to-node=\"4\"><span style=\"color: #000000;\">El tránsito del modelo fordista al post-fordista es fundamental para entender la precarización actual. Mientras que el siglo XX se caracterizó por la estabilidad laboral y el fortalecimiento del Estado de Bienestar, la globalización económica ha impuesto un modelo de producción flexible. En este nuevo esquema, las empresas demandan una adaptabilidad extrema para responder a la volatilidad de los mercados mundiales, lo que suele traducirse en la sustitución de contratos indefinidos por vínculos temporales, subcontratación y la transferencia del riesgo de mercado directamente hacia el trabajador.</span></p>\n</li>\n<li><span style=\"color: #000000;\">La consolidación de las cadenas globales de valor ha profundizado la vulnerabilidad del empleo mediante la externalización u outsourcing. Al desarticular la relación directa entre el empleador principal y el empleado, se diluyen las responsabilidades legales y la capacidad de negociación colectiva. En este entorno, el trabajador deja de ser parte de una estructura orgánica de la empresa para convertirse en un eslabón intercambiable de una red de suministros global, donde cualquier cambio en la demanda internacional puede significar la pérdida inmediata del sustento sin indemnizaciones ni redes de protección.</span></li>\n</ul>\n</div>\n<div class=\"pt-2 border-top\">\n<h5 class=\"h6 text-uppercase mb-2\">Referencia (APA 7)</h5>\n<p class=\"mb-0\">Martínez, K., <span style=\"font-size: 1rem; text-align: initial;\">Marroquín, J. </span>& Ríos, H. (2019). P<em>recarización laboral y pobreza en México.</em> Análisis económico, 34(86), 113-131. SciELO. http://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S2448-66552019000200113&lng=es&tlng=es. </p>\n</div>\n</div>", "teacher_entry": false, "aliases": ["Inestabilidad Contractual, Jornadas Laborales, Salarios bajos, Seguridad en el trabajo, Protección social, Precarización, Globalización, Pobreza"], "author": "Irene Martínez Acosta", "date": "martes, 17 de marzo de 2026, 21:07"}, {"id": 11, "concept": "Feminismo neoliberal", "definition": "<table id=\"yui_3_18_1_1_1774233811645_91\" class=\"glossarypost fullwithauthor\" cellspacing=\"0\">\n<tbody id=\"yui_3_18_1_1_1774233811645_90\">\n<tr id=\"yui_3_18_1_1_1774233811645_89\" valign=\"top\">\n<td class=\"entry\" colspan=\"2\">\n<div class=\"no-overflow\">\n<p><strong>DEFINICIÓN</strong></p>\n<p>Reconfiguración del movimiento feminista en el contexto del capitalismo contemporáneo, donde ciertas demandas como la autonomía, la libertad individual y la participación en el mercado laboral han sido incorporadas a la lógica neoliberal. Según Nancy Fraser, el feminismo pasó de criticar las desigualdades estructurales del capitalismo a coincidir, en algunos casos, con sus valores, especialmente en torno a la individualización y la mercantilización de la vida social.</p>\n<p><strong>REFERENCIA</strong></p>\n<p>Fraser, N. (2013). <em data-start=\"1369\" data-end=\"1443\">Fortunes of feminism: From state-managed capitalism to neoliberal crisis. https://apdh.org.ar/sites/default/files/2021-09/Fortunas%20del%20feminismo%20-%20Nancy%20Fraser.pdf</em></p>\n<p><strong>COMENTARIO</strong></p>\n<p>Este concepto muestra una tensión central en donde aunque el feminismo ha logrado avances importantes en términos de derechos e inclusión, también ha sido parcialmente cooptado por el neoliberalismo. Esto implica que el empoderamiento femenino puede reducirse a éxito individual dentro del mercado, dejando de lado problemáticas estructurales como la desigualdad económica o el trabajo no remunerado.</p>\n<p><strong>RELACIÓN CON EL CURSO</strong></p>\n<p>Con respecto nuestra quinta lectura, es un concepto mencionado pero poco explorado.</p>\n</div>\n</td>\n</tr>\n</tbody>\n</table>", "teacher_entry": false, "aliases": ["Neoliberalismo, cooptación, individualismo, mercantilización, desigualdad estructural, empoderamiento."], "author": "Gretel Camila Rojas Aquino", "date": "domingo, 22 de marzo de 2026, 20:51"}, {"id": 12, "concept": "Feminización del trabajo", "definition": "<p><strong>DEFINICIÓN</strong></p>\n<p>Proceso mediante el cual aumentan tanto la participación de las mujeres en el mercado laboral como la expansión de condiciones laborales precarias, flexibles e inestables asociadas históricamente al trabajo femenino.</p>\n<p><strong>REFERENCIA</strong></p>\n<p><em>Standing, G. (1999). Global feminization through flexible labor: A theme revisited. <em data-start=\"195\" data-end=\"218\">World Development, 27</em>(3), 583–602. https://www.sciencedirect.com/science/article/abs/pii/S0305750X9800151X</em></p>\n<p><strong>COMENTARIO</strong></p>\n<p>Este concepto permite entender que la globalización no solo incorpora a más mujeres al trabajo, sino que también extiende condiciones de precariedad a toda la fuerza laboral. Así, lo que antes era característico del trabajo femenino se convierte en una norma oficial del empleo en capitalismo contemporáneo.</p>\n<p><strong>RELACIÓN CON EL CURSO</strong></p>\n<p id=\"yui_3_18_1_1_1774234344615_102\">Con respecto nuestra quinta lectura, es un concepto mencionado a través de la inclusión forzada de las mujeres en la fuerza laboral global, pero que, es castigada en un trabajo \"feminidazado\" precario.</p>", "teacher_entry": false, "aliases": [], "author": "Gretel Camila Rojas Aquino", "date": "domingo, 22 de marzo de 2026, 20:58"}, {"id": 13, "concept": "Housewifization", "definition": "<blockquote>\n<p>The term housewifization was coined in 1982 by the German Marxist ecofeminist Maria Mies, referring to the capitalist process of naturalising and devaluing women’s labour by socially and ideologically defining them as housewives, irrespective of whether they are <em>de facto</em> housewives or not (1986:180).</p>\n<p>For Mies, this sexual division of labour is intrinsically international, and rooted in global and ongoing historical processes of colonialism and slavery. In the famous chapter “Housewifization and Colonization” of her book <em>Patriarchy and Accumulation</em> <em>on a World Scale</em> (1986:92)</p>\n</blockquote>\n<div>\n<p><i>Housewifization</i>. (2025, 16 enero). Kohl. <span class=\"url\">https://kohljournal.press/housewifization#:~:text=1.,:92)%2C%20she%20writes:</span></p>\n<p></p>\n<p><strong><span class=\"url\">Relación con la clase</span></strong></p>\n<p><span class=\"url\">En la lectura, este término se menciona haciendo referencia a los efectos de los procesos económicos que surgieron en la vida de las mujeres gracias a la modernización temprana marginó a las mujeres del proceso productivo, dando así vida al término \"housewifization\"</span></p>\n<p><span class=\"url\"><a href=\"https://kohljournal.press/housewifization#:~:text=1.,:92)%2C%20she%20writes:\">https://kohljournal.press/housewifization#:~:text=1.,:92)%2C%20she%20writes:</a></span></p>\n</div>", "teacher_entry": false, "aliases": ["capitalist, women, labour,housewives"], "author": "Karla Mariana Díaz Silva", "date": "domingo, 22 de marzo de 2026, 23:21"}];
+
+const DAYS   = {'lunes':'lun.','martes':'mar.','miércoles':'mié.','jueves':'jue.','viernes':'vie.','sábado':'sáb.','domingo':'dom.'};
+const MONTHS = {'enero':'ene.','febrero':'feb.','marzo':'mar.','abril':'abr.','mayo':'may.','junio':'jun.','julio':'jul.','agosto':'ago.','septiembre':'sep.','octubre':'oct.','noviembre':'nov.','diciembre':'dic.'};
+
+function slugify(text) {
+  return text
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function shortDate(s) {
+  if (!s) return '';
+  Object.entries(DAYS).forEach(([k,v])   => s = s.replace(k, v));
+  Object.entries(MONTHS).forEach(([k,v]) => s = s.replace(' de '+k+' de ', ' '+v+' '));
+  return s.replace(', ', ' · ');
+}
+
+function buildCards() {
+  const grid = document.getElementById('grid');
+  ENTRIES.forEach((e, idx) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.id      = e.id;
+    card.dataset.concept = e.concept.toLowerCase();
+    card.dataset.slug    = slugify(e.concept);
+    card.dataset.teacher = e.teacher_entry ? '1' : '0';
+    card.dataset.author  = (e.author || '').toLowerCase();
+    card.dataset.aliases = e.aliases.map(a => a.toLowerCase()).join(' ');
+    card.id = `glosario-${card.dataset.slug}`;
+
+    const num         = String(idx+1).padStart(2,'0');
+    const teacherBadge = e.teacher_entry ? '<span class="teacher-badge">Docente</span>' : '';
+    const tagList     = e.aliases.slice(0,4).map(a =>
+      a.split(/[,·]/).slice(0,3).map(t => `<span class="card-tag">${t.trim()}</span>`).join('')
+    ).join('');
+
+    const authorBlock = e.author
+      ? `<div class="card-author">
+           <span class="card-author-name">${e.author}</span>
+           <span class="card-author-date">${shortDate(e.date)}</span>
+         </div>`
+      : `<div class="card-author pending">datos pendientes</div>`;
+
+    card.innerHTML = `
+      <div class="card-num"><span>ZTL·${num}</span>${teacherBadge}</div>
+      <div class="card-concept">${e.concept}</div>
+      ${authorBlock}
+      <div class="card-tags">${tagList}</div>
+      <div class="card-footer-label"><span>VER ENTRADA</span><span class="arrow">&#8594;</span></div>`;
+
+    card.addEventListener('click', () => openModal(e.id));
+    grid.insertBefore(card, document.getElementById('empty-state'));
+  });
+}
+
+function openModal(id, updateHash = true) {
+  const e   = ENTRIES[id];
+  const idx = id + 1;
+
+  document.getElementById('modal-eyebrow').textContent =
+    `ZTL·${String(idx).padStart(2,'0')} · Globalización y Empleo 2026-2`;
+  document.getElementById('modal-title').textContent = e.concept;
+
+  const strip = document.getElementById('modal-author-strip');
+  strip.innerHTML = e.author
+    ? `<div class="field"><span class="field-label">Autor/a</span><span class="field-value">${e.author}</span></div>
+       <div class="field"><span class="field-label">Fecha de envío</span><span class="field-value">${e.date}</span></div>
+       <div class="field"><span class="field-label">Tipo</span><span class="field-value">${e.teacher_entry ? '★ Docente' : 'Estudiante'}</span></div>`
+    : `<div class="field"><span class="field-label">Autor/a</span><span class="field-value pending">no disponible</span></div>
+       <div class="field"><span class="field-label">Tipo</span><span class="field-value">${e.teacher_entry ? '★ Docente' : 'Estudiante'}</span></div>`;
+
+  const aliasEl = document.getElementById('modal-aliases');
+  if (e.aliases.length > 0) {
+    const tags = e.aliases
+      .flatMap(a => a.split(/[,·]/).map(t => t.trim()).filter(Boolean))
+      .map(t => `<span class="modal-alias-tag">${t}</span>`).join('');
+    aliasEl.innerHTML = `<span class="modal-alias-label">Palabras clave —</span> ${tags}`;
+    aliasEl.style.display = '';
+  } else {
+    aliasEl.style.display = 'none';
+  }
+
+  document.getElementById('modal-body').innerHTML = e.definition;
+  document.getElementById('modal-footer-entry').textContent =
+    `Entrada ${idx} de ${ENTRIES.length} · Glosario Globalización y Empleo`;
+  document.getElementById('modal-teacher-stamp').innerHTML = e.teacher_entry
+    ? '<span class="teacher-stamp">&#9733; Entrada docente</span>'
+    : '<span style="color:#888">Entrada estudiantil</span>';
+
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modal-body').scrollTop = 0;
+
+  if (updateHash) {
+    history.replaceState(null, '', `#${slugify(e.concept)}`);
+  }
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+  if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
+}
+
+function applyFilters() {
+  const search     = document.getElementById('search').value.toLowerCase().trim();
+  const onlyTeacher = document.getElementById('filter-teacher').checked;
+  const onlyStudent = document.getElementById('filter-student').checked;
+  let visible = 0;
+  document.querySelectorAll('.card').forEach(card => {
+    const hit = !search
+      || card.dataset.concept.includes(search)
+      || card.dataset.aliases.includes(search)
+      || card.dataset.author.includes(search);
+    const teacherOk = !onlyTeacher || card.dataset.teacher === '1';
+    const studentOk = !onlyStudent || card.dataset.teacher === '0';
+    const show = hit && teacherOk && studentOk;
+    card.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  document.getElementById('visible-count').textContent = visible;
+  document.getElementById('empty-state').classList.toggle('show', visible === 0);
+}
+
+document.getElementById('modal').addEventListener('click', function(ev) {
+  if (ev.target === this) closeModal();
+});
+document.addEventListener('keydown', ev => { if (ev.key === 'Escape') closeModal(); });
+
+function openConceptFromHash() {
+  const slug = decodeURIComponent(window.location.hash.replace(/^#/, '').trim());
+  if (!slug) return;
+  const match = ENTRIES.find(entry => slugify(entry.concept) === slug);
+  if (match) openModal(match.id, false);
+}
+
+buildCards();
+openConceptFromHash();
+window.addEventListener('hashchange', openConceptFromHash);
+</script>
+</body>
+</html>
