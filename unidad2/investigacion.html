@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabajo de Investigación · Globalización y Empleo 2026-2</title>
+  <link rel="icon" href="../img/icon-globe.svg">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    /* ── Overrides específicos para esta página ── */
+    .inv-hero {
+      background: linear-gradient(135deg, #e8fdf5 0%, #eef6ff 100%);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(24px, 4vw, 40px);
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .inv-hero::before {
+      content: "";
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: rgba(0, 163, 122, 0.08);
+    }
+    .inv-eyebrow {
+      font-family: var(--font-accent);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #00a37a;
+      margin-bottom: 10px;
+    }
+    .inv-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-family: var(--font-body);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin: 0 0 10px;
+    }
+    .inv-subtitle {
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin: 0;
+      max-width: 66ch;
+    }
+
+    /* ── Sección de fechas clave ── */
+    .fechas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 1.5rem 0;
+    }
+    .fecha-card {
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      padding: 18px 16px;
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      gap: 6px;
+    }
+    .fecha-card.highlight {
+      border-color: #00a37a;
+      background: #e8fdf5;
+      box-shadow: 4px 4px 0 #00a37a;
+    }
+    .fecha-card.alert {
+      border-color: var(--coral);
+      background: var(--blush);
+      box-shadow: 4px 4px 0 var(--coral);
+    }
+    .fecha-label {
+      font-family: var(--font-accent);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .fecha-date {
+      font-size: 1.15rem;
+      font-weight: 900;
+      font-family: var(--font-accent);
+      color: var(--ink);
+    }
+    .fecha-desc {
+      font-size: 0.9rem;
+      line-height: 1.45;
+      color: var(--text);
+    }
+
+    /* ── Bloque de contenido ── */
+    .inv-block {
+      border: var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 3vw, 32px);
+      margin-bottom: 1.5rem;
+    }
+    .inv-block-title {
+      font-family: var(--font-accent);
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-bottom: var(--border-thin);
+      padding-bottom: 10px;
+      margin: 0 0 18px;
+    }
+    .inv-block-title span {
+      display: inline-block;
+      background: var(--ink);
+      color: #fff;
+      font-size: 0.72rem;
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    /* ── Avance: requisitos ── */
+    .req-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+    }
+    .req-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      background: var(--cream);
+      border: 1.5px solid rgba(0,0,0,0.12);
+      border-radius: var(--radius-sm);
+      font-size: 0.97rem;
+      line-height: 1.52;
+    }
+    .req-num {
+      font-family: var(--font-accent);
+      font-weight: 900;
+      font-size: 0.85rem;
+      color: #00a37a;
+      background: rgba(0,163,122,0.12);
+      border-radius: 999px;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Equipo ── */
+    .equipo-box {
+      background: repeating-linear-gradient(
+        45deg,
+        #ffffff,
+        #ffffff 190px,
+        #dff4ff 200px,
+        #ffffff 200px
+      );
+      border: 2px dotted #00b389;
+      border-radius: var(--radius);
+      padding: clamp(18px, 3vw, 28px);
+    }
+    .equipo-box h3 {
+      font-family: var(--font-accent);
+      font-size: 1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #00a37a;
+      margin: 0 0 14px;
+    }
+    .team-size-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-accent);
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: var(--ink);
+      background: #e8fdf5;
+      border: 2px solid #00a37a;
+      border-radius: var(--radius-sm);
+      padding: 10px 20px;
+      margin-bottom: 14px;
+    }
+    .team-size-badge small {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+    .deadline-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--coral);
+      color: #fff;
+      font-family: var(--font-accent);
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    /* ── Avances timeline ── */
+    .avances-timeline {
+      display: grid;
+      gap: 0;
+    }
+    .avance-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1.5px solid rgba(0,0,0,0.1);
+      align-items: start;
+    }
+    .avance-item:last-child { border-bottom: none; }
+    .avance-fecha {
+      font-family: var(--font-accent);
+      font-weight: 900;
+      font-size: 0.95rem;
+      color: #00a37a;
+      padding-top: 2px;
+    }
+    .avance-body strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .avance-body p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── Nota objetiva ── */
+    .objective-box {
+      background: #eef6ff;
+      border-left: 6px solid #5b7db8;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 18px 20px;
+      font-size: 0.97rem;
+      line-height: 1.62;
+      color: #1f2937;
+    }
+    .objective-box + .objective-box {
+      margin-top: 14px;
+    }
+
+    @media (max-width: 540px) {
+      .avance-item {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+      .fechas-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="header-text">
+        <span class="header-pill">FCA · UNAM · Licenciatura en Negocios Internacionales</span>
+        <h1><img src="../img/icon-globe.svg" alt="" class="icon-8bit-lg"> Globalización y Empleo</h1>
+        <p class="subtitle">Semestre 2026-2 · Unidad 2 · Trabajo de Investigación</p>
+        <p class="instructor">Dr. Jorge Cardiel</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="site-nav">
+  <div class="container">
+    <ul class="nav-links">
+      <li><a href="../index.html"><img src="../img/icon-book.svg" alt="" class="icon-8bit-sm"> Inicio</a></li>
+      <li><a href="#equipo">Equipo</a></li>
+      <li><a href="#avances">Avances</a></li>
+      <li><a href="#objetivo">Objetivo</a></li>
+      <li><a href="#requisitos">Requisitos del 1.er avance</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+
+  <!-- HERO -->
+  <div class="inv-hero">
+    <p class="inv-eyebrow">Unidad 2 · Semestre 2026-2</p>
+    <h1 class="inv-title">Trabajos de<br>Investigación</h1>
+    <p class="inv-subtitle">
+      <em>Globalización y Empleo</em> · Análisis comparativo e internacional de sistemas de empleo.
+    </p>
+  </div>
+
+  <!-- FECHAS CLAVE -->
+  <div class="inv-block" id="avances">
+    <h2 class="inv-block-title"><span>📅</span> Fechas clave</h2>
+
+    <div class="fechas-grid">
+      <div class="fecha-card alert">
+        <span class="fecha-label">Formación de equipo</span>
+        <span class="fecha-date">Jue 9 de abril</span>
+        <span class="fecha-desc">Límite para registrar equipo (1 a 5 personas)</span>
+      </div>
+      <div class="fecha-card highlight">
+        <span class="fecha-label">1.er avance · Revisión A</span>
+        <span class="fecha-date">Jue 16 de abril</span>
+        <span class="fecha-desc">Revisión en clase del primer avance</span>
+      </div>
+      <div class="fecha-card highlight">
+        <span class="fecha-label">1.er avance · Revisión B</span>
+        <span class="fecha-date">Mar 21 de abril</span>
+        <span class="fecha-desc">Revisión en clase del primer avance</span>
+      </div>
+      <div class="fecha-card highlight">
+        <span class="fecha-label">1.er avance · Revisión C</span>
+        <span class="fecha-date">Jue 23 de abril</span>
+        <span class="fecha-desc">Revisión en clase del primer avance</span>
+      </div>
+      <div class="fecha-card">
+        <span class="fecha-label">Entrega final</span>
+        <span class="fecha-date">Mar 2 de junio</span>
+        <span class="fecha-desc">Entrega en Moodle en el formato indicado</span>
+      </div>
+      <div class="fecha-card">
+        <span class="fecha-label">Exposiciones</span>
+        <span class="fecha-date">2, 4, 9 y 11 jun</span>
+        <span class="fecha-desc">Orden por equipo publicado en Moodle</span>
+      </div>
+    </div>
+
+    <div class="alert-box" style="margin-top: .5rem;">
+      Las fechas de revisión del primer avance (16, 21 y 23 de abril) se asignarán por equipo. El orden se comunicará en clase o en Moodle.
+    </div>
+  </div>
+
+  <!-- EQUIPO -->
+  <div class="inv-block" id="equipo">
+    <h2 class="inv-block-title"><span>👥</span> Formación de equipo</h2>
+
+    <div class="equipo-box">
+      <h3>Integrantes</h3>
+
+      <div class="team-size-badge">
+        1 – 5
+        <small>personas<br>por equipo</small>
+      </div>
+
+      <p style="margin: 0 0 16px; font-size: 0.97rem; line-height: 1.57;">
+        Cada equipo o expositor individual definirá un <strong>objeto o caso de estudio</strong>,
+        así como la <strong>perspectiva</strong> desde la cual lo analizará.
+        El trabajo puede ser individual o en equipo de hasta cinco personas.
+      </p>
+
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px;">
+        <span class="deadline-pill">⚠ Límite: jueves 9 de abril</span>
+        <span style="font-size: 0.88rem; color: var(--text-muted);">Registrar equipo y tema en la WIKI de Moodle, en el FORO o al correo del profesor</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OBJETIVO GENERAL -->
+  <div class="inv-block" id="objetivo">
+    <h2 class="inv-block-title"><span>🎯</span> Objetivo general</h2>
+
+    <div class="objective-box">
+      El <strong>objetivo general</strong> de estos trabajos de investigación es
+      <strong>analizar, describir, medir, interpretar y/o explicar</strong> diversos temas
+      relacionados con <em>los sistemas de empleo en diferentes países</em> desde una perspectiva
+      que combine el <strong>análisis comparativo</strong> con el <strong>análisis internacional</strong>
+      (Bamber, Lansbury y Wailes, 2004, pp. 1-2).
+    </div>
+
+    <div class="objective-box" style="margin-top: 14px; background: #f0ecff; border-left-color: #6c5ce7;">
+      Esto implica observar tanto sus <strong>procesos y dinámicas internas</strong> como sus
+      <strong>formas de integración en el proceso internacional de la globalización</strong>.
+    </div>
+  </div>
+
+  <!-- REQUISITOS DEL PRIMER AVANCE -->
+  <div class="inv-block" id="requisitos">
+    <h2 class="inv-block-title"><span>📋</span> Requisitos del 1.er avance</h2>
+    <p style="margin: 0 0 16px; font-size: 0.96rem; color: var(--text-muted); line-height: 1.55;">
+      Para la revisión en clase (16, 21 o 23 de abril), el equipo debe presentar:
+    </p>
+
+    <ul class="req-list">
+      <li>
+        <span class="req-num">1</span>
+        <div>
+          <strong>Integrantes del equipo</strong><br>
+          Lista de nombres completos de todos los miembros (1 a 5 personas).
+        </div>
+      </li>
+      <li>
+        <span class="req-num">2</span>
+        <div>
+          <strong>Tema y caso de estudio</strong><br>
+          Definición del objeto de estudio: ¿qué país, sector o fenómeno laboral se analizará?
+        </div>
+      </li>
+      <li>
+        <span class="req-num">3</span>
+        <div>
+          <strong>Pregunta de investigación preliminar</strong><br>
+          Una pregunta central que guíe el trabajo: clara, acotada y relacionada con globalización y empleo.
+        </div>
+      </li>
+      <li>
+        <span class="req-num">4</span>
+        <div>
+          <strong>Perspectiva de análisis</strong><br>
+          ¿Desde qué enfoque se estudiará el caso? (comparativo, institucional, de género, sectorial, etc.)
+        </div>
+      </li>
+      <li>
+        <span class="req-num">5</span>
+        <div>
+          <strong>Bibliografía preliminar</strong><br>
+          Al menos 3 fuentes académicas relevantes al tema (formato APA 7).
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- REFERENCIA -->
+  <div style="border: var(--border-thin); border-radius: var(--radius-sm); padding: 16px 18px; background: var(--surface); font-size: 0.88rem; color: var(--text-muted); line-height: 1.55;">
+    <strong style="color: var(--ink);">Referencia metodológica base:</strong><br>
+    Bamber, G. J., Lansbury, R. D., &amp; Wailes, N. (Eds.). (2004).
+    <em>International and comparative employment relations: A study of industrialised market economies</em> (4th ed.).
+    Allen &amp; Unwin / SAGE Publications.
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <p><strong>Globalización y Empleo 2026-2</strong> · FCA UNAM · Dr. Jorge Cardiel</p>
+      <p class="footer-meta">Unidad 2 · Trabajo de Investigación</p>
+      <p class="footer-disclaimer">
+        Esta página es un complemento académico. El material oficial se encuentra en la plataforma Moodle del curso.
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
