@@ -892,3 +892,385 @@ img {
     font-size: clamp(1.8rem, 7vw, 3rem);
   }
 }
+
+/* ================================================================
+   RESPONSIVE IMPROVEMENTS
+   — Móvil vertical  : full-bleed, tap targets, lectura cómoda
+   — Proyector horiz.: texto de slides legible desde lejos
+   ================================================================ */
+
+/* ── BASE: lectura más cómoda en todos los tamaños ─────────────── */
+body {
+  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.08rem);
+  line-height: 1.62;
+}
+
+.key-card p,
+.note-card p,
+.data-card p,
+.section-copy {
+  font-size: clamp(0.96rem, 0.9rem + 0.3vw, 1.06rem);
+  line-height: 1.6;
+}
+
+/* ── MÓVIL VERTICAL (≤ 480px) ──────────────────────────────────── */
+@media (max-width: 480px) {
+
+  /* Full-bleed: quitar márgenes y bordes laterales */
+  .page-shell {
+    width: 100%;
+    margin: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-radius: 0;
+  }
+
+  .topbar,
+  .footerbar {
+    padding: 14px 18px;
+  }
+
+  .hero {
+    padding: 22px 18px 24px;
+  }
+
+  .section {
+    padding: 24px 18px;
+  }
+
+  /* Título hero: más grande, línea menos comprimida */
+  .hero-title {
+    font-size: clamp(2.6rem, 11vw, 4rem);
+    max-width: none;
+    line-height: 1.0;
+  }
+
+  .hero-subtitle {
+    font-size: 1.07rem;
+    line-height: 1.6;
+    max-width: 100%;
+  }
+
+  /* Botones de acción: apilados, tap target generoso */
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .solid-btn,
+  .ghost-btn,
+  .accent-btn {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 0.85rem;
+    min-height: 52px;
+    border-radius: 16px;
+    justify-content: center;
+  }
+
+  .section-title {
+    font-size: clamp(1.9rem, 9vw, 3rem);
+    line-height: 1.0;
+  }
+
+  /* Tarjetas de contenido */
+  .key-card {
+    padding: 22px 18px 18px;
+  }
+
+  .note-card,
+  .data-card {
+    padding: 18px;
+  }
+
+  .key-card h3,
+  .note-card h3,
+  .data-card h3 {
+    font-size: 1.12rem;
+    line-height: 1.3;
+    margin-top: 12px;
+  }
+
+  .key-card p,
+  .note-card p,
+  .data-card p {
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+
+  /* Preguntas de discusión: más espacio de lectura */
+  .question-list {
+    gap: 12px;
+  }
+
+  .question-list li {
+    padding: 18px 16px;
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+
+  /* Tags y chips más legibles */
+  .tag {
+    font-size: 0.78rem;
+    padding: 7px 13px;
+  }
+
+  .chip {
+    font-size: 0.92rem;
+    padding: 9px 13px;
+    border-radius: 14px;
+  }
+
+  /* Timeline: columna única con gap reducido */
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .timeline-year {
+    font-size: 1.05rem;
+  }
+
+  /* APA reference más pequeña pero legible */
+  .apa-box {
+    font-size: 0.91rem;
+    line-height: 1.56;
+  }
+
+  .eyebrow {
+    font-size: 0.79rem;
+  }
+
+  /* Presentación en móvil */
+  .deck-shell .slide {
+    padding: 18px 16px;
+    gap: 14px;
+  }
+
+  .deck-shell .slide-title {
+    font-size: clamp(1.7rem, 8.5vw, 2.8rem);
+    line-height: 1.05;
+  }
+
+  .deck-shell .slide-card {
+    padding: 16px;
+  }
+
+  .deck-shell .slide-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .deck-shell .slide-card li,
+  .deck-shell .slide-card p {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .deck-shell .quote-panel {
+    font-size: 1.02rem;
+    padding: 14px 16px;
+  }
+
+  .deck-shell .stat-card strong {
+    font-size: 2rem;
+  }
+
+  .deck-shell .deck-top,
+  .deck-shell .deck-bottom {
+    padding: 12px 16px;
+  }
+
+  .deck-shell .nav-btns button,
+  .deck-shell .close-btn {
+    padding: 13px 20px;
+    font-size: 1rem;
+    min-height: 50px;
+    border-radius: 14px;
+  }
+
+  .deck-shell .deck-progress {
+    display: none; /* en móvil ahorra espacio en la barra */
+  }
+}
+
+/* ── TABLET INTERMEDIA (481–820px) ─────────────────────────────── */
+@media (max-width: 820px) and (min-width: 481px) {
+
+  .hero-title {
+    font-size: clamp(2.7rem, 7vw, 4.2rem);
+    line-height: 0.97;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.02rem, 2vw, 1.16rem);
+    line-height: 1.57;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+  }
+
+  .deck-shell .slide-card {
+    font-size: clamp(1rem, 2.1vw, 1.16rem);
+  }
+
+  .deck-shell .slide-card h3 {
+    font-size: clamp(1.05rem, 2.3vw, 1.22rem);
+  }
+
+  .deck-shell .slide-card li,
+  .deck-shell .slide-card p {
+    font-size: clamp(0.98rem, 2vw, 1.12rem);
+    line-height: 1.52;
+  }
+
+  .deck-shell .quote-panel {
+    font-size: clamp(1rem, 2.1vw, 1.2rem);
+    line-height: 1.6;
+  }
+
+  .deck-shell .stat-card strong {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+  }
+}
+
+/* ── PROYECTOR / ESCRITORIO ANCHO (≥ 1024px) ───────────────────── */
+/* Objetivo: texto de slides legible a 3–4 metros de distancia     */
+@media (min-width: 1024px) {
+
+  /* Padding generoso en slides */
+  .deck-shell .slide {
+    padding: clamp(28px, 3.5vw, 60px);
+    gap: 24px;
+  }
+
+  /* Subtítulo de portada */
+  .deck-shell .slide-subtitle {
+    font-size: clamp(1.12rem, 1.55vw, 1.48rem);
+    line-height: 1.58;
+  }
+
+  /* Grilla de slide: stretch para que las tarjetas crezcan igual */
+  .deck-shell .slide-grid {
+    gap: 26px;
+    align-items: stretch;
+  }
+
+  .deck-shell .stat-band {
+    gap: 20px;
+  }
+
+  /* Tarjetas de slide: padding + fuente escalada con viewport */
+  .deck-shell .slide-card {
+    padding: 24px 28px;
+    font-size: clamp(1.08rem, 1.45vw, 1.4rem);
+  }
+
+  .deck-shell .slide-card h3 {
+    font-size: clamp(1.14rem, 1.6vw, 1.52rem);
+    margin-top: 0;
+    margin-bottom: 16px;
+    line-height: 1.25;
+  }
+
+  .deck-shell .slide-card ul {
+    gap: 14px;
+  }
+
+  .deck-shell .slide-card li {
+    font-size: clamp(1.08rem, 1.42vw, 1.38rem);
+    line-height: 1.52;
+  }
+
+  .deck-shell .slide-card p {
+    font-size: clamp(1.08rem, 1.42vw, 1.38rem);
+    line-height: 1.58;
+  }
+
+  /* Cita: texto grande e impactante para proyector */
+  .deck-shell .quote-panel {
+    font-size: clamp(1.14rem, 1.6vw, 1.55rem);
+    line-height: 1.64;
+    padding: 22px 28px;
+    border-left-width: 8px;
+  }
+
+  /* Tarjetas stat (slide contradicción) */
+  .deck-shell .stat-card {
+    padding: 24px 22px;
+    font-size: clamp(1.08rem, 1.42vw, 1.38rem);
+  }
+
+  .deck-shell .stat-card strong {
+    font-size: clamp(2.4rem, 4.8vw, 5rem);
+    margin-bottom: 12px;
+  }
+
+  /* Portada: imagen del libro más grande */
+  .deck-shell .cover-frame {
+    width: min(260px, 100%);
+  }
+
+  /* Barras superiores e inferiores */
+  .deck-shell .deck-top,
+  .deck-shell .deck-bottom {
+    padding: 14px clamp(20px, 2.8vw, 40px);
+  }
+
+  .deck-shell .brand {
+    font-size: 1.02rem;
+  }
+
+  .deck-shell .pill {
+    font-size: 0.86rem;
+    padding: 9px 16px;
+  }
+
+  .deck-shell .deck-progress {
+    width: min(260px, 32vw);
+    height: 7px;
+  }
+
+  /* Botones de navegación: fáciles de tocar/hacer clic */
+  .deck-shell .nav-btns button,
+  .deck-shell .close-btn {
+    padding: 12px 26px;
+    font-size: 1rem;
+    min-height: 46px;
+    border-radius: 14px;
+  }
+
+  /* Badge de índice */
+  .deck-shell .slide-index {
+    font-size: 0.82rem;
+    padding: 8px 15px;
+  }
+
+  /* Chips en clusters del slide */
+  .deck-shell .chip {
+    font-size: 0.95rem;
+    padding: 9px 14px;
+  }
+
+  .deck-shell .tag {
+    font-size: 0.84rem;
+    padding: 8px 14px;
+  }
+
+  .deck-shell .glossary-link {
+    font-size: 0.86rem;
+    margin-top: 16px;
+  }
+}
+
+/* ── PANTALLAS MUY ANCHAS (≥ 1600px): título de slide más grande ─ */
+@media (min-width: 1600px) {
+  .deck-shell .slide-title {
+    font-size: clamp(3.5rem, 4.2vw, 5.5rem);
+  }
+
+  .deck-shell .slide-subtitle {
+    font-size: clamp(1.3rem, 1.7vw, 1.65rem);
+  }
+}

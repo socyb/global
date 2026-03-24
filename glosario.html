@@ -52,6 +52,22 @@
       font-family: var(--font-mono); font-size: 0.72rem;
       background: var(--black); color: var(--white);
     }
+    .toolbar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.28em 0.75em;
+      border: 1.5px solid rgba(245, 242, 235, 0.35);
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.12s, border-color 0.12s;
+    }
+    .toolbar-link:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
     .toolbar .count {
       background: var(--accent); color: #fff;
       padding: 0.2em 0.7em; font-weight: 700; letter-spacing: 0.05em;
@@ -273,6 +289,7 @@
 </header>
 
 <div class="toolbar">
+  <a class="toolbar-link" href="index.html">Inicio del curso</a>
   <span class="count" id="visible-count">14</span>
   <span style="letter-spacing:0.08em">ENTRADAS</span>
   <label><input type="checkbox" id="filter-teacher" onchange="applyFilters()"> SOLO DOCENTE</label>
