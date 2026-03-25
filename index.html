@@ -14,6 +14,15 @@
 </head>
 <body>
 
+<div class="today-strip">
+    <div class="container">
+        <div class="today-box" style="text-align: center;">
+            <span class="today-label">Hoy</span>
+            <time id="todayDate" datetime="">Cargando fecha…</time>
+        </div>
+    </div>
+</div>
+
 <!-- HEADER -->
 <header class="site-header">
     <div class="container">
@@ -209,11 +218,6 @@
                     <strong>Importante:</strong> planea con anticipación y revisa los materiales de la unidad correspondiente.
                 </div>
                 <div class="timeline">
-                    <div class="timeline-item parcial-1">
-                        <span class="timeline-badge">Parcial 1</span>
-                        <span class="timeline-date">Jue 19 de marzo</span>
-                        <span class="timeline-event">Aplicación en clase</span>
-                    </div>
                     <div class="timeline-item parcial-2">
                         <span class="timeline-badge badge-accent">Parcial 2</span>
                         <span class="timeline-date">Jue 7 de mayo</span>
@@ -223,6 +227,14 @@
                 <div class="calendario-notas">
                     <p>Recomendación: revisar previamente notas, esquemas o controles de lectura.</p>
                     <p>Traer controles de lectura, notas o esquemas el día del examen.</p>
+                </div><br>
+                <div class="history-block">
+                    <div class="history-list">
+                        <div class="history-item" style="text-align: center;">
+                            <span class="history-badge">Parcial 1</span>
+                            <span>Jue 19 de marzo · Aplicación en clase</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -317,6 +329,26 @@
 </footer>
 
 <script>
+/* Show the viewer's current local date */
+(function () {
+    const el = document.getElementById('todayDate');
+    if (!el) return;
+    const today = new Date();
+    const localDate = [
+        today.getFullYear(),
+        String(today.getMonth() + 1).padStart(2, '0'),
+        String(today.getDate()).padStart(2, '0')
+    ].join('-');
+    const formatted = today.toLocaleDateString('es-MX', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+    el.setAttribute('datetime', localDate);
+    el.textContent = formatted.charAt(0).toUpperCase() + formatted.slice(1);
+})();
+
 /* Auto-update "Última actualización" from latest GitHub commit */
 (function () {
     const el = document.getElementById('lastUpdated');

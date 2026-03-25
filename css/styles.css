@@ -56,6 +56,36 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+.today-strip {
+    padding: .85rem 0 0;
+}
+
+.today-strip .container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.today-box {
+    display: inline-flex;
+    align-items: center;
+    gap: .65rem;
+    background: var(--gold);
+    color: var(--ink);
+    border: var(--border-thin);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    padding: .45rem .85rem;
+    font-family: var(--font-accent);
+    font-size: .82rem;
+    font-weight: 700;
+}
+
+.today-label {
+    font-size: .68rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
 .container {
     max-width: var(--container-max);
     margin: 0 auto;
@@ -567,6 +597,53 @@ a.session-card:hover {
     margin-bottom: 0;
 }
 
+.history-block {
+    margin-top: .85rem;
+}
+
+.history-label {
+    display: block;
+    margin-bottom: .45rem;
+    font-family: var(--font-accent);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.history-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .65rem;
+}
+
+.history-item {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .55rem .8rem;
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-muted);
+    border: 1.5px dashed var(--ink);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-accent);
+    font-size: .8rem;
+}
+
+.history-badge {
+    display: inline-block;
+    padding: .18rem .55rem;
+    background: var(--surface);
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius-sm);
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
 .expo-fechas {
     display: flex;
     flex-wrap: wrap;
@@ -673,6 +750,10 @@ a.session-card:hover {
 
 /* ── Responsive ────────────────────────────────────── */
 @media (max-width: 768px) {
+    .today-strip .container {
+        justify-content: flex-start;
+    }
+
     .header-content {
         flex-direction: column;
         align-items: flex-start;

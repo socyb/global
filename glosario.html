@@ -72,8 +72,6 @@
       background: var(--accent); color: #fff;
       padding: 0.2em 0.7em; font-weight: 700; letter-spacing: 0.05em;
     }
-    .toolbar label { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; }
-    .toolbar input[type=checkbox] { accent-color: var(--accent); width:14px; height:14px; }
     .search-wrap { margin-left: auto; display: flex; align-items: center; gap: 0.5rem; }
     #search {
       background: transparent; border: 1.5px solid #666;
@@ -103,7 +101,6 @@
     .card:hover .card-tags,
     .card:hover .card-footer-label { color: #aaa; }
     .card:hover .card-tag { border-color: #555; color: #ccc; }
-    .card:hover .teacher-badge { background: var(--accent); color: #fff; }
     .card:hover .arrow { opacity: 1; }
     .card:hover .card-author-name { color: #ddd; }
     .card:hover .card-author-date { color: #888; }
@@ -114,11 +111,6 @@
       color: var(--gray); letter-spacing: 0.08em;
       padding: 1rem 1.1rem 0;
       display: flex; align-items: center; justify-content: space-between;
-    }
-    .teacher-badge {
-      font-family: var(--font-mono); font-size: 0.58rem;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      background: var(--black); color: var(--white); padding: 0.15em 0.5em;
     }
     .card-concept {
       padding: 0.7rem 1.1rem 0.4rem;
@@ -244,13 +236,8 @@
     .modal-footer {
       border-top: var(--border); padding: 0.8rem 1.5rem;
       font-family: var(--font-mono); font-size: 0.65rem; color: var(--gray);
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex; justify-content: flex-start; align-items: center;
     }
-    .modal-footer .teacher-stamp {
-      background: var(--black); color: var(--white);
-      padding: 0.2em 0.7em; letter-spacing: 0.1em; text-transform: uppercase;
-    }
-
     .empty-state {
       grid-column: 1/-1; padding: 4rem; text-align: center;
       font-family: var(--font-mono); font-size: 0.8rem; color: var(--gray); display: none;
@@ -292,8 +279,6 @@
   <a class="toolbar-link" href="index.html">Inicio del curso</a>
   <span class="count" id="visible-count">14</span>
   <span style="letter-spacing:0.08em">ENTRADAS</span>
-  <label><input type="checkbox" id="filter-teacher" onchange="applyFilters()"> SOLO DOCENTE</label>
-  <label><input type="checkbox" id="filter-student" onchange="applyFilters()"> SOLO ESTUDIANTES</label>
   <div class="search-wrap">
     <span style="letter-spacing:0.08em">BUSCAR</span>
     <input type="text" id="search" placeholder="concepto, autor o etiqueta…" oninput="applyFilters()">
@@ -320,7 +305,6 @@
     <div class="modal-body" id="modal-body"></div>
     <div class="modal-footer">
       <span id="modal-footer-entry"></span>
-      <span id="modal-teacher-stamp"></span>
     </div>
   </div>
 </div>
@@ -355,13 +339,11 @@ function buildCards() {
     card.dataset.id      = e.id;
     card.dataset.concept = e.concept.toLowerCase();
     card.dataset.slug    = slugify(e.concept);
-    card.dataset.teacher = e.teacher_entry ? '1' : '0';
     card.dataset.author  = (e.author || '').toLowerCase();
     card.dataset.aliases = e.aliases.map(a => a.toLowerCase()).join(' ');
     card.id = `glosario-${card.dataset.slug}`;
 
     const num         = String(idx+1).padStart(2,'0');
-    const teacherBadge = e.teacher_entry ? '<span class="teacher-badge">Docente</span>' : '';
     const tagList     = e.aliases.slice(0,4).map(a =>
       a.split(/[,·]/).slice(0,3).map(t => `<span class="card-tag">${t.trim()}</span>`).join('')
     ).join('');
@@ -374,7 +356,7 @@ function buildCards() {
       : `<div class="card-author pending">datos pendientes</div>`;
 
     card.innerHTML = `
-      <div class="card-num"><span>ZTL·${num}</span>${teacherBadge}</div>
+      <div class="card-num"><span>ZTL·${num}</span></div>
       <div class="card-concept">${e.concept}</div>
       ${authorBlock}
       <div class="card-tags">${tagList}</div>
@@ -395,11 +377,9 @@ function openModal(id, updateHash = true) {
 
   const strip = document.getElementById('modal-author-strip');
   strip.innerHTML = e.author
-    ? `<div class="field"><span class="field-label">Autor/a</span><span class="field-value">${e.author}</span></div>
-       <div class="field"><span class="field-label">Fecha de envío</span><span class="field-value">${e.date}</span></div>
-       <div class="field"><span class="field-label">Tipo</span><span class="field-value">${e.teacher_entry ? '★ Docente' : 'Estudiante'}</span></div>`
-    : `<div class="field"><span class="field-label">Autor/a</span><span class="field-value pending">no disponible</span></div>
-       <div class="field"><span class="field-label">Tipo</span><span class="field-value">${e.teacher_entry ? '★ Docente' : 'Estudiante'}</span></div>`;
+    ? `<div class="field"><span class="field-label">Autor</span><span class="field-value">${e.author}</span></div>
+       <div class="field"><span class="field-label">Fecha de envío</span><span class="field-value">${e.date}</span></div>`
+    : `<div class="field"><span class="field-label">Autor</span><span class="field-value pending">no disponible</span></div>`;
 
   const aliasEl = document.getElementById('modal-aliases');
   if (e.aliases.length > 0) {
@@ -415,9 +395,6 @@ function openModal(id, updateHash = true) {
   document.getElementById('modal-body').innerHTML = e.definition;
   document.getElementById('modal-footer-entry').textContent =
     `Entrada ${idx} de ${ENTRIES.length} · Glosario Globalización y Empleo`;
-  document.getElementById('modal-teacher-stamp').innerHTML = e.teacher_entry
-    ? '<span class="teacher-stamp">&#9733; Entrada docente</span>'
-    : '<span style="color:#888">Entrada estudiantil</span>';
 
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -438,17 +415,13 @@ function closeModal() {
 
 function applyFilters() {
   const search     = document.getElementById('search').value.toLowerCase().trim();
-  const onlyTeacher = document.getElementById('filter-teacher').checked;
-  const onlyStudent = document.getElementById('filter-student').checked;
   let visible = 0;
   document.querySelectorAll('.card').forEach(card => {
     const hit = !search
       || card.dataset.concept.includes(search)
       || card.dataset.aliases.includes(search)
       || card.dataset.author.includes(search);
-    const teacherOk = !onlyTeacher || card.dataset.teacher === '1';
-    const studentOk = !onlyStudent || card.dataset.teacher === '0';
-    const show = hit && teacherOk && studentOk;
+    const show = hit;
     card.classList.toggle('hidden', !show);
     if (show) visible++;
   });
