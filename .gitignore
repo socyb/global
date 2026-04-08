@@ -2,59 +2,12 @@
 .DS_Store
 **/.DS_Store
 
-# Reference/draft files
-neoacademicbrutalism.html
-
-# PDF files
-*.pdf
-
-# Video files
-*.mp4
-
-# Python scripts
-*.py
-
-# Python virtual environment
+# Editor and environment
 .venv/
-
-# VS Code settings
 .vscode/
 
-# PDF reference files
-pdfs/
+# Local-only working material
+/local/
 
-# Pizarrones PNG files
-pizarrones/*.png
-
-# Web archive files
+# Misc local browser exports
 *.webarchive
-
-# Class submission and reading folders
-/controles/
-/lecturas/
-/exams/
-
-# Local-only source material not used by the published site
-/yt-backups/
-/glosario/*/
-/glosario/*.xml
-/sesiones/24feb26/*.csv
-/sesiones/24feb26/*.xml
-/foro_noticias/*_discussion.json
-/pizarrones/*.dot
-/cap-glob-old.html
-/actividades/enunciados_marcados_introduction_GlobalizationInPractice.md
-/actividades/transcripcion_digital_world_and_us_25feb26.txt
-
-# Prompt/notes files (never publish)
-**/prompt.md
-
-# Screenshots used as notes
-/sesiones/7abr26/*.png
-
-# Private/support files for Feminist Perspectives activity
-/actividades/actividad_feminist_perspectives_global_24mar26/README.md
-/actividades/actividad_feminist_perspectives_global_24mar26/consulta_privada.md
-/actividades/actividad_feminist_perspectives_global_24mar26/consulta_privada.html
-/actividades/actividad_feminist_perspectives_global_24mar26/assets/data/
-/actividades/actividad_feminist_perspectives_global_24mar26/assets/img/feminist_perspectives_titlepage.png
