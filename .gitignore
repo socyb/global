@@ -32,6 +32,7 @@ pizarrones/*.png
 # Class submission and reading folders
 /controles/
 /lecturas/
+/exams/
 
 # Local-only source material not used by the published site
 /yt-backups/
