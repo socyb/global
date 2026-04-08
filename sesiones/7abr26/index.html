@@ -1,0 +1,1425 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="El Modelo Angloamericano de Relaciones Laborales — Notas de sesión 7 abr 2026 · Globalización y Empleo · FCA UNAM" />
+  <title>Cap. 6 · Modelo Angloamericano · 7 abr 2026</title>
+  <link rel="icon" href="../../img/icon-globe.svg">
+  <link rel="stylesheet" href="../../css/styles.css">
+  <style>
+    /* ─── Overrides y extensiones para esta sesión ─── */
+    .session-shell {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 1.25rem 3rem;
+    }
+
+    /* Eyebrow pill */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: var(--cream);
+      border: var(--border-thin);
+      font-family: var(--font-accent);
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: .6rem;
+    }
+
+    /* Hero de sesión */
+    .session-hero {
+      padding: 2rem 0 1.5rem;
+      border-bottom: var(--border-thin);
+      margin-bottom: 2rem;
+    }
+    .session-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.05;
+      margin: .4rem 0 .8rem;
+    }
+    .session-hero .lede {
+      max-width: 60ch;
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .apa-ref {
+      background: var(--mint);
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      padding: .75rem 1rem;
+      font-size: .84rem;
+      line-height: 1.55;
+      max-width: 68ch;
+    }
+    .apa-ref strong { color: var(--ink); }
+
+    /* Internal nav */
+    .internal-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-bottom: 2rem;
+    }
+    .internal-nav a {
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      border: var(--border-thin);
+      background: var(--surface);
+      font-family: var(--font-accent);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--text);
+      transition: background .15s, color .15s;
+    }
+    .internal-nav a:hover { background: var(--ink); color: #fff; }
+
+    /* Secciones */
+    .nota-section {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: var(--border-thin);
+    }
+    .nota-section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-family: var(--font-accent);
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: .3rem;
+    }
+    .nota-section h2 {
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      border-left: 5px solid var(--ink);
+      padding-left: .75rem;
+    }
+
+    /* Cita textual del libro */
+    .book-quote {
+      background: var(--cream);
+      border: var(--border-thin);
+      border-left: 5px solid var(--gold);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: .9rem 1.1rem;
+      margin: .8rem 0;
+      font-size: .93rem;
+      line-height: 1.6;
+    }
+    .book-quote cite {
+      display: block;
+      margin-top: .5rem;
+      font-size: .75rem;
+      color: var(--text-muted);
+      font-style: normal;
+      font-family: var(--font-accent);
+    }
+
+    /* Nota de clase (para estudiantes) */
+    .prof-note {
+      background: var(--blush);
+      border: var(--border-thin);
+      border-left: 5px solid var(--coral);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: .9rem 1.2rem;
+      margin: .9rem 0;
+      font-size: .97rem;
+      line-height: 1.65;
+    }
+    .prof-note-label {
+      display: block;
+      font-family: var(--font-accent);
+      font-size: .66rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: .4rem;
+    }
+
+    /* Pregunta de discusión */
+    .pregunta {
+      display: flex;
+      gap: .7rem;
+      align-items: flex-start;
+      padding: .8rem 1rem;
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      background: var(--lavender);
+      margin: .6rem 0;
+      font-size: .9rem;
+      line-height: 1.5;
+    }
+    .pregunta::before {
+      content: "?";
+      flex-shrink: 0;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--purple);
+      color: #fff;
+      font-family: var(--font-accent);
+      font-weight: 900;
+      font-size: .8rem;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+
+    /* Bar chart */
+    .bar-chart { display: grid; gap: .5rem; margin: .8rem 0; }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 120px 1fr 60px;
+      gap: .5rem;
+      align-items: center;
+      font-size: .82rem;
+    }
+    .bar-track { background: rgba(0,0,0,.08); border-radius: 999px; height: 10px; overflow: hidden; }
+    .bar-fill  { height: 100%; border-radius: 999px; background: var(--ink); }
+    .bar-val   { font-family: var(--font-accent); font-weight: 800; font-size: .8rem; }
+
+    /* Stats grid */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: .75rem;
+      margin: .8rem 0;
+    }
+    .stat-box {
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      padding: .8rem;
+      text-align: center;
+      box-shadow: var(--shadow-press);
+    }
+    .stat-num {
+      font-size: 1.8rem;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--ink);
+    }
+    .stat-lbl {
+      font-family: var(--font-accent);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: .3rem;
+    }
+
+    /* Sector cards */
+    .sector-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: .75rem;
+      margin: .8rem 0;
+    }
+    .sector-card {
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      box-shadow: var(--shadow-press);
+      padding: .9rem 1rem;
+    }
+    .sector-card h4 {
+      font-size: .92rem;
+      margin-bottom: .4rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .sector-card ul {
+      font-size: .8rem;
+      padding-left: 1rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Video cards */
+    .media-section { margin: 1rem 0; }
+    .media-label {
+      font-family: var(--font-accent);
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: .5rem;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+      gap: .75rem;
+    }
+    .v-card {
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      overflow: hidden;
+      box-shadow: var(--shadow-press);
+      transition: transform .15s, box-shadow .15s;
+    }
+    .v-card:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow-sm); }
+    .v-card .thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #111;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .v-card .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .v-card .thumb .play-icon {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(0,0,0,.65);
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+      transition: background .2s;
+    }
+    .v-card .thumb:hover .play-icon { background: var(--coral); }
+    .play-icon svg { fill: #fff; width: 18px; height: 18px; margin-left: 2px; }
+    .v-card .thumb iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .v-card .info { padding: .65rem .8rem; }
+    .v-card .info h4 { font-size: .84rem; line-height: 1.3; margin-bottom: .25rem; }
+    .v-card .info .v-q {
+      font-size: .76rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(0,0,0,.08);
+      padding-top: .4rem;
+      margin-top: .4rem;
+    }
+    .v-card .info .v-q::before { content: "💬 "; }
+
+    /* Glosario modal */
+    .gloss-term {
+      border-bottom: 2px dotted var(--teal);
+      color: var(--teal);
+      font-weight: 700;
+      cursor: help;
+      font-style: normal;
+    }
+    .gloss-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 900;
+      background: rgba(0,0,0,.4);
+      backdrop-filter: blur(3px);
+      align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    .gloss-overlay.open { display: flex; }
+    .gloss-modal {
+      max-width: 480px; width: 100%;
+      background: var(--surface);
+      border: var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .gloss-modal h3 { font-size: 1.2rem; margin-bottom: .5rem; }
+    .gloss-modal p  { font-size: .9rem; line-height: 1.58; color: var(--text-muted); }
+    .gloss-close {
+      position: absolute; top: .75rem; right: .75rem;
+      background: none; border: var(--border-thin);
+      border-radius: 50%; width: 28px; height: 28px;
+      font-size: .9rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ═══ Presentación — modo proyector ═══ */
+    .pres-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 999;
+      background: #0a0e14;
+      flex-direction: column;
+    }
+    .pres-overlay.is-open { display: flex; }
+
+    .pres-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .55rem 1.4rem; flex-shrink: 0;
+      background: rgba(0,0,0,.7);
+    }
+    .pres-bar-title {
+      color: rgba(255,255,255,.4);
+      font-family: var(--font-accent);
+      font-size: .78rem; font-weight: 800;
+      letter-spacing: .07em; text-transform: uppercase;
+    }
+    .pres-counter {
+      color: rgba(255,255,255,.35);
+      font-family: var(--font-accent);
+      font-size: .78rem; font-weight: 700;
+    }
+    .pres-progress { height: 4px; background: rgba(255,255,255,.08); flex-shrink: 0; }
+    .pres-fill     { height: 100%; background: var(--coral); transition: width .35s; }
+
+    /* Área de slides */
+    .slides-wrap { flex: 1; overflow: hidden; position: relative; }
+    .slide {
+      display: none; height: 100%; overflow-y: auto;
+      padding: clamp(2rem, 5vw, 4.5rem) clamp(2rem, 7vw, 7rem);
+    }
+    .slide.active { display: flex; flex-direction: column; gap: 1.4rem; justify-content: center; }
+
+    /* Tipografía de diapositivas — pensada para proyección */
+    .slide-eyebrow {
+      font-family: var(--font-accent);
+      font-size: clamp(.75rem, 1vw, .9rem);
+      font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+    }
+    .slide-title {
+      font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+      line-height: .97; color: #f4ede0;
+      margin: 0; font-weight: 900;
+      text-wrap: balance;
+    }
+    .slide-body {
+      font-size: clamp(1.05rem, 1.8vw, 1.5rem);
+      line-height: 1.6; color: rgba(244,237,224,.82);
+      max-width: 70ch;
+    }
+
+    /* Cards dentro de slides */
+    .slide-card {
+      padding: 1.2rem 1.4rem; border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: #ede5d8;
+    }
+    .slide-card h3 {
+      font-size: clamp(1rem, 1.6vw, 1.3rem);
+      margin-bottom: .5rem; color: #f4ede0;
+    }
+    .slide-card p,
+    .slide-card li {
+      font-size: clamp(.9rem, 1.35vw, 1.15rem);
+      line-height: 1.6; color: rgba(210,200,188,.9);
+    }
+    .slide-card ul { padding-left: 1.2rem; display: grid; gap: .35rem; }
+
+    .slide-grid { display: grid; gap: 1rem; }
+    .slide-grid.g2 { grid-template-columns: repeat(2,1fr); }
+    .slide-grid.g3 { grid-template-columns: repeat(3,1fr); }
+
+    /* Cita destacada */
+    .slide-quote {
+      border-left: 5px solid var(--coral);
+      padding: 1rem 1.4rem;
+      border-radius: 0 12px 12px 0;
+      background: rgba(255,107,107,.1);
+      font-size: clamp(1rem, 1.6vw, 1.35rem);
+      font-style: italic; color: #d8d0c4; line-height: 1.6;
+    }
+    .slide-quote cite {
+      display: block; margin-top: .5rem;
+      font-size: clamp(.7rem, 1vw, .88rem);
+      font-style: normal; color: rgba(255,255,255,.3);
+      font-family: var(--font-accent);
+    }
+
+    /* Stats grandes */
+    .slide-stat-row { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .slide-stat {
+      padding: 1rem 1.4rem; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.07);
+      text-align: center; min-width: 120px; flex: 1;
+    }
+    .slide-stat .n {
+      font-size: clamp(2rem, 4.5vw, 3.8rem);
+      font-weight: 900; color: #f4ede0; line-height: 1;
+    }
+    .slide-stat .l {
+      font-size: clamp(.65rem, 1vw, .82rem);
+      text-transform: uppercase; letter-spacing: .08em;
+      color: rgba(255,255,255,.35); margin-top: .35rem;
+      font-family: var(--font-accent);
+    }
+
+    /* Barra de navegación inferior */
+    .pres-nav {
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      padding: .7rem 1rem; background: rgba(0,0,0,.7); flex-shrink: 0;
+    }
+    .pres-nav button {
+      padding: .55rem 1.6rem; border-radius: var(--radius-pill);
+      background: rgba(255,255,255,.1); color: #e8e0d4;
+      border: 1px solid rgba(255,255,255,.16);
+      font-family: var(--font-accent); font-size: .78rem;
+      font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      cursor: pointer; transition: background .15s;
+    }
+    .pres-nav button:hover:not(:disabled) { background: rgba(255,255,255,.22); }
+    .pres-nav button:disabled { opacity: .25; cursor: default; }
+    .pres-nav .close-btn { background: rgba(255,107,107,.22); border-color: rgba(255,107,107,.4); }
+    .pres-nav .close-btn:hover { background: rgba(255,107,107,.42); }
+
+    @media (max-width: 680px) {
+      .slide-grid.g2, .slide-grid.g3 { grid-template-columns: 1fr; }
+      .slide { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Topbar del curso ── -->
+<div class="today-strip">
+  <div class="container">
+    <div class="today-box">
+      <span class="today-label">Sesión</span>
+      <time datetime="2026-04-07">7 de abril de 2026</time>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="header-text">
+        <span class="header-pill">FCA · UNAM · Globalización y Empleo 2026-2</span>
+        <h1><img src="../../img/icon-globe.svg" alt="" class="icon-8bit-lg"> Cap. 6 · Modelo Angloamericano</h1>
+        <p class="subtitle">Notas de lectura y sesión · 7 de abril de 2026</p>
+        <p class="instructor">Dr. Jorge Cardiel</p>
+      </div>
+      <div class="header-badges">
+        <a href="../../index.html" class="badge github-badge">← Inicio del curso</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="site-nav">
+  <div class="container">
+    <ul class="nav-links">
+      <li><a href="#referencia">Referencia</a></li>
+      <li><a href="#crisis1973">La crisis de 1973</a></li>
+      <li><a href="#sectores">Sectores en EE.UU.</a></li>
+      <li><a href="#datos-empleo">Datos de empleo</a></li>
+      <li><a href="#sindicatos">Sindicatos</a></li>
+      <li><a href="#irlanda">Irlanda y austeridad</a></li>
+      <li><a href="#trabajo-infantil">Trabajo infantil</a></li>
+      <li><a href="#individualizacion">Individualización</a></li>
+      <li><a href="#mediateca">Mediateca</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="session-shell">
+
+  <!-- ── Hero ── -->
+  <div class="session-hero">
+    <span class="eyebrow">📖 Brunet, Pizzi y Moral · 2016 · Cap. 6</span>
+    <h1>El Modelo Angloamericano<br>de Relaciones Laborales</h1>
+    <p class="lede">Esta página acompaña la lectura del capítulo 6. Encontrarán las citas más importantes del texto, notas que explican su contexto y significado, preguntas para pensar, datos graficados y los videos que se discutirán en clase.</p>
+    <div class="apa-ref" id="referencia">
+      <strong>Referencia APA 7:</strong><br>
+      Brunet, I., Pizzi, A., y Moral, D. (2016). <em>Sistemas laborales comparados: Las transformaciones de las relaciones de empleo en la era neoliberal</em>. Anthropos Editorial / Universidad Nacional del Litoral.
+    </div>
+    <div style="margin-top:1rem;">
+      <button class="btn btn-primary" type="button" data-open-presentation>▶ Presentación</button>
+    </div>
+  </div>
+
+  <!-- ── NAV interno ── -->
+  <nav class="internal-nav" aria-label="Ir a sección">
+    <a href="#crisis1973">Crisis de 1973</a>
+    <a href="#sectores">Sectores EE.UU.</a>
+    <a href="#agricultura">Agricultura y subsidios</a>
+    <a href="#grandes-pymes">Grandes empresas vs. pymes</a>
+    <a href="#datos-empleo">Fuerza de trabajo</a>
+    <a href="#brecha-genero">Brecha de género</a>
+    <a href="#sindicatos">Sindicatos y AFL-CIO</a>
+    <a href="#lock-out">Huelgas y lock-outs</a>
+    <a href="#subcontratacion">Subcontratación</a>
+    <a href="#irlanda">Irlanda y austeridad</a>
+    <a href="#trabajo-infantil">Trabajo infantil</a>
+    <a href="#contrato-social">Contrato social</a>
+    <a href="#individualizacion">Individualización</a>
+    <a href="#mediateca">Mediateca</a>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       1. LA CRISIS DE 1973
+  ══════════════════════════════════════ -->
+  <section class="nota-section" id="crisis1973">
+    <p class="section-label">Página 7 del capítulo</p>
+    <h2>La crisis de 1973</h2>
+
+    <div class="book-quote">
+      «A partir de 1973» [inicio de la era de estanflación y crisis del modelo keynesiano en los países angloamericanos]
+      <cite>Brunet, Pizzi y Moral (2016, p. 253).</cite>
+    </div>
+
+    <div class="media-section">
+      <p class="media-label">Video anotado en la lectura</p>
+      <div class="video-grid">
+        <article class="v-card" data-cats="neoliberalismo historia">
+          <div class="thumb" data-yt="AR2Y8NU3k-k">
+            <img src="https://img.youtube.com/vi/AR2Y8NU3k-k/hqdefault.jpg" alt="La crisis de 1973" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h4>La crisis de 1973</h4>          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       2. SECTORES EN EE.UU.
+  ══════════════════════════════════════ -->
+  <section class="nota-section" id="sectores">
+    <p class="section-label">Página 11 del capítulo</p>
+    <h2>Los tres sectores de la economía en EE.UU.</h2>
+
+    <div class="book-quote">
+      «El sector servicios incluye los servicios científicos, profesionales y técnicos, salud, educación, finanzas, artes y entretenimientos, transporte y almacenamiento. Las manufacturas, por su parte, incluyen la producción textil y vestimentas, metal, plásticos, madera y papel, generación y distribución de electricidad, componentes eléctricos, hardwares, muebles, alimentación y bebidas.»
+      <cite>Brunet, Pizzi y Moral (2016, p. 261). Citan a Eurofound (2014b).</cite>
+    </div>
+
+    <div class="prof-note">
+      <span class="prof-note-label">Para pensar</span>
+      Esta clasificación en tres sectores es una herramienta analítica, no una descripción neutral. Fíjense cómo la mayor parte del PIB y del empleo en EE.UU. está en los servicios — pero eso no significa que la manufactura o la agricultura sean insignificantes. Como veremos, incluso ese 1 % de agricultura tiene un peso geopolítico enorme, especialmente en su relación con México.
+    </div>
+
+    <div class="stats-row" style="margin-bottom:1rem;">
+      <div class="stat-box"><p class="stat-num">80%</p><p class="stat-lbl">Servicios del PIB</p></div>
+      <div class="stat-box"><p class="stat-num">19%</p><p class="stat-lbl">Industrial</p></div>
+      <div class="stat-box"><p class="stat-num">1%</p><p class="stat-lbl">Agricultura</p></div>
+    </div>
+
+    <div class="bar-chart">
+      <div class="bar-row"><span>Servicios</span><div class="bar-track"><div class="bar-fill" style="width:80%; background:var(--teal);"></div></div><span class="bar-val">80 %</span></div>
+      <div class="bar-row"><span>Industrial</span><div class="bar-track"><div class="bar-fill" style="width:19%; background:var(--ink);"></div></div><span class="bar-val">19 %</span></div>
+      <div class="bar-row"><span>Agricultura</span><div class="bar-track"><div class="bar-fill" style="width:1%; background:var(--coral);"></div></div><span class="bar-val">1 %</span></div>
+    </div>
+
+    <!-- Subsección: agricultura y subsidios -->
+    <div id="agricultura" style="margin-top:1.5rem;">
+      <h3 style="font-size:1.1rem; margin-bottom:.5rem;">Ese 1 % de agricultura que no es tan pequeño</h3>
+
+      <div class="prof-note">
+        <span class="prof-note-label">Contexto clave</span>
+        Que la agricultura represente solo el 1 % del PIB de EE.UU. puede parecer irrelevante — pero en términos absolutos, eso equivale a cientos de miles de millones de dólares. Y hay algo más: EE.UU. subsidia masivamente a su sector agrícola, incluso durante la pandemia de Covid-19. Eso es una contradicción importante: el país que más predica el libre mercado protege a su campo con dinero público. Ello muestra que el capitalismo angloamericano no es un sistema de «mercado puro»; combina lógicas de mercado con formas de planificación y apoyo estatal según qué sectores le interesan sostener. El maíz que México le compra a EE.UU. — como vemos en la noticia de ayer — es un caso concreto de este fenómeno.
+      </div>
+
+      <div class="pregunta">
+        ¿En qué medida el modelo angloamericano, que se presenta como de «libre mercado», depende en realidad de subsidios estatales a sectores estratégicos como la agricultura? ¿Cómo encaja eso con la exportación masiva de maíz a México?
+      </div>
+
+      <div class="media-section">
+        <p class="media-label">Videos anotados</p>
+        <div class="video-grid">
+
+          <article class="v-card">
+            <div class="thumb" data-yt="wcR815SfWOU">
+              <img src="https://img.youtube.com/vi/wcR815SfWOU/hqdefault.jpg" alt="" loading="lazy">
+              <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+            </div>
+            <div class="info">
+              <h4>Subsidios agrícolas en EE.UU.</h4>            </div>
+          </article>
+
+          <article class="v-card">
+            <div class="thumb" data-yt="ARGSrVvNSvQ">
+              <img src="https://img.youtube.com/vi/ARGSrVvNSvQ/hqdefault.jpg" alt="" loading="lazy">
+              <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+            </div>
+            <div class="info">
+              <h4>Agricultura y comercio: México y EE.UU.</h4>            </div>
+          </article>
+
+          <article class="v-card">
+            <div class="thumb" data-yt="YPUj0sFEfxU">
+              <img src="https://img.youtube.com/vi/YPUj0sFEfxU/hqdefault.jpg" alt="" loading="lazy">
+              <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+            </div>
+            <div class="info">
+              <h4>La exportación de maíz desde EE.UU.</h4>            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       3. GRANDES EMPRESAS Y PYMES
+  ══════════════════════════════════════ -->
+  <section class="nota-section" id="grandes-pymes">
+    <p class="section-label">Página 11 del capítulo</p>
+    <h2>Grandes empresas globales vs. PyMES</h2>
+
+    <div class="book-quote">
+      «Las empresas globales están entre las más grandes, competitivas y rentables del mundo. Estas empresas aportan el 23 % del PIB del país y el 33 % de los puestos de trabajo. Indirectamente, explican el 31 % del PIB y el 41 % de las ganancias de productividad. Contribuyen con 70 % de las exportaciones totales. El sector pymes es mayoritario, produce más del 50 % del PIB y crea el 67 % de todos los puestos de trabajo, y es responsable de más del 51 % de las ganancias de productividad. Contribuyen con el 30 % de las exportaciones.»
+      <cite>Brunet, Pizzi y Moral (2016, p. 261). Citan a Eurofound (2014b).</cite>
+    </div>
+
+    <div class="prof-note">
+      <span class="prof-note-label">Dato y contexto</span>
+      Estos números corresponden aproximadamente al año 2014, que es la fuente más reciente que usa el libro. Vale la pena preguntarse: ¿cómo han evolucionado desde entonces? Las grandes plataformas digitales (Amazon, Alphabet, Meta) no existían o eran mucho más pequeñas en 2014. Hoy probablemente concentran aún más la productividad y las exportaciones. Si las grandes empresas ya dominaban el 70 % de las exportaciones, ¿cuál es ese porcentaje hoy con el auge tecnológico?
+    </div>
+
+    <div class="sector-grid">
+      <div class="sector-card" style="border-top: 4px solid var(--ink);">
+        <h4>🏢 Grandes empresas globales</h4>
+        <ul>
+          <li>23 % del PIB directo</li>
+          <li>31 % del PIB indirecto</li>
+          <li>33 % de los puestos de trabajo</li>
+          <li>41 % de ganancias de productividad</li>
+          <li><strong>70 % de las exportaciones</strong></li>
+        </ul>
+      </div>
+      <div class="sector-card" style="border-top: 4px solid var(--teal);">
+        <h4>🏪 PyMES</h4>
+        <ul>
+          <li>&gt;50 % del PIB</li>
+          <li><strong>67 % de todos los puestos de trabajo</strong></li>
+          <li>51 % de ganancias de productividad</li>
+          <li>30 % de las exportaciones</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pregunta">
+      Si las PyMES generan el 67 % de los empleos pero solo el 30 % de las exportaciones, ¿qué tan representativas son las condiciones laborales de las grandes empresas globales para el trabajador promedio en EE.UU.?
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       4. FUERZA DE TRABAJO Y DATOS DE EMPLEO
+  ══════════════════════════════════════ -->
+  <section class="nota-section" id="datos-empleo">
+    <p class="section-label">Página 11 del capítulo</p>
+    <h2>La fuerza de trabajo en EE.UU.</h2>
+
+    <div class="book-quote">
+      «La fuerza de trabajo está compuesta por 154,4 millones de trabajadores. Los hombres son el 53 % y las mujeres el 47 %. De ellos, el 81 % son empleados a tiempo completo. El 19 % son trabajadores a tiempo parcial. El 39 % está contratado en puestos profesionales o ejecutivos, mientras que el 23 % están en puestos comerciales y administrativos. El 18 % en ocupaciones de servicios, incluyendo cuidados de salud, y el 12 % en puestos de producción y transporte. Por último, el 9 % en actividades primarias, ocupaciones de mantenimiento y construcción.»
+      <cite>Brunet, Pizzi y Moral (2016, p. 261). Citan a Eurofound (2014b).</cite>
+    </div>
+
+    <div class="prof-note">
+      <span class="prof-note-label">Lo que las estadísticas no miden</span>
+      Cuando leemos que hay 154.4 millones de trabajadores en EE.UU., vale la pena preguntar: ¿a quién no está contando esa cifra? El trabajo migrante — especialmente el indocumentado — tiende a concentrarse en los sectores más duros y peor remunerados: agricultura, construcción, servicios de limpieza, industria cárnica. Pero al estar en la economía informal o en la «sombra», muchas veces no aparece en los registros oficiales. Esto no es un accidente: es una característica estructural del modelo. La invisibilización estadística de ciertos trabajadores también es una forma de invisibilización política y jurídica.
+    </div>
+
+    <div class="pregunta">
+      ¿Cuál es la diferencia entre «<em class="gloss-term" data-term="shadow-economy">shadow economy</em>» e «<em class="gloss-term" data-term="informal-economy">informal economy</em>»? ¿Qué otras categorías se usan para hablar de lo que sistemáticamente no se ve, que se mantiene oculto, que no aparece en el PIB?
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box"><p class="stat-num">154.4M</p><p class="stat-lbl">Trabajadores totales</p></div>
+      <div class="stat-box"><p class="stat-num">81%</p><p class="stat-lbl">Tiempo completo</p></div>
+      <div class="stat-box"><p class="stat-num">39%</p><p class="stat-lbl">Puestos prof./ejecutivos</p></div>
+      <div class="stat-box"><p class="stat-num">19%</p><p class="stat-lbl">Tiempo parcial</p></div>
+    </div>
+
+    <!-- Brecha de género -->
+    <div id="brecha-genero" style="margin-top:1.5rem;">
+      <h3 style="font-size:1.1rem; margin-bottom:.5rem;">Brecha salarial de género</h3>
+
+      <div class="book-quote">
+        «Comparados con países europeos, en EE.UU. las mujeres trabajan en puestos de alta jerarquía en una proporción mayor. Un 52 % de los puestos manageriales y profesionales son ocupados por mujeres. Las brechas de género se han reducido, aunque todavía se mantienen diferencias en los ingresos promedios. Un trabajador masculino a tiempo completo gana, en promedio, 43.200 dólares, frente a los 35.560 dólares anuales que gana una trabajadora mujer en las mismas condiciones. En términos de disparidad de ingresos, la desigualdad salarial ha aumentado en las últimas décadas. En 1970 estaba por debajo de 0,40, hasta subir a un 0,477 en 2014.»
+        <cite>Brunet, Pizzi y Moral (2016, p. 261). Citan a Brenner (2007).</cite>
+      </div>
+
+      <div class="prof-note">
+        <span class="prof-note-label">Dos datos, dos lecturas</span>
+        El texto menciona dos cosas distintas que vale la pena no confundir. Por un lado, la brecha de género: las mujeres ganan menos que los hombres en las mismas condiciones de trabajo (eso es discriminación salarial directa). Por otro lado, el índice de Gini que sube de 0.40 a 0.477 mide la desigualdad <em>general</em> del ingreso — no solo entre hombres y mujeres, sino entre todos los trabajadores. Ambas desigualdades coexisten y se refuerzan: las mujeres están sobrerrepresentadas en los empleos peor pagados, por lo que la desigualdad de género amplifica la desigualdad general.
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-box"><p class="stat-num" style="font-size:1.3rem;">$43,200</p><p class="stat-lbl">Salario medio hombres (USD)</p></div>
+        <div class="stat-box"><p class="stat-num" style="font-size:1.3rem;">$35,560</p><p class="stat-lbl">Salario medio mujeres (USD)</p></div>
+        <div class="stat-box"><p class="stat-num">52%</p><p class="stat-lbl">Mujeres en puestos gerenciales</p></div>
+        <div class="stat-box"><p class="stat-num">0.477</p><p class="stat-lbl">Gini salarial 2014 (era 0.40 en 1970)</p></div>
+      </div>
+
+      <div class="bar-chart" style="max-width:400px; margin-top:.8rem;">
+        <div class="bar-row"><span>Hombres</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--ink);"></div></div><span class="bar-val">$43,200</span></div>
+        <div class="bar-row"><span>Mujeres</span><div class="bar-track"><div class="bar-fill" style="width:82%;background:var(--coral);"></div></div><span class="bar-val">$35,560</span></div>
+      </div>
+      <p style="font-size:.74rem; color:var(--text-muted); margin-top:.4rem;">Fuente: Brunet, Pizzi y Moral (2016, p. 261); Brenner (2007).</p>
+    </div>
+
+    <!-- Ingresos desde la crisis -->
+    <div style="margin-top:1.2rem;">
+      <div class="book-quote">
+        «Históricamente, los ingresos personales subían un 10 % al año, pero desde la crisis de 2009, los ingresos han subido un 3,6 %.»
+        <cite>Brunet, Pizzi y Moral (2016, p. 262).</cite>
+      </div>
+      <div class="prof-note">
+        <span class="prof-note-label">Lo que ese 3.6 % significa</span>
+        Un crecimiento del 3.6 % anual en los ingresos suena razonable en abstracto — pero hay que ponerlo en contexto. Si antes crecían al 10 % y ahora crecen al 3.6 %, eso quiere decir que los trabajadores están perdiendo terreno relativo frente al capital. La inflación y el costo de la vivienda siguieron subiendo a ritmos más altos en muchos periodos. El resultado práctico: el poder adquisitivo de los salarios se estanca o retrocede, aunque los números nominales suban.
+      </div>
+      <div class="bar-chart" style="max-width:350px;">
+        <div class="bar-row"><span>Antes de 2009</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--teal);"></div></div><span class="bar-val">+10 %/año</span></div>
+        <div class="bar-row"><span>Desde 2009</span><div class="bar-track"><div class="bar-fill" style="width:36%;background:var(--coral);"></div></div><span class="bar-val">+3.6 %/año</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       5. SINDICATOS Y AFL-CIO
+  ══════════════════════════════════════ -->
+  <section class="nota-section" id="sindicatos">
+    <p class="section-label">Página 12 del capítulo</p>
+    <h2>Sindicatos, AFL-CIO y la homogeneización salarial</h2>
+
+    <div class="book-quote">
+      «Sin embargo, las confederaciones sindicales, especialmente AFL-CIO, están desarrollando criterios estandarizados para negociar convenios y acuerdos salariales, que utilizan los sindicatos en sus negociaciones con las empresas y ello favorece cierta homogeneidad.»
+      <cite>Brunet, Pizzi y Moral (2016, p. 262).</cite>
+    </div>
+
+    <div class="prof-note">
+      <span class="prof-note-label">El sindicalismo que el libro no alcanzó a ver</span>
+      El texto de Brunet, Pizzi y Moral describe un sindicalismo en franco declive. Pero desde 2021 ha surgido algo nuevo: trabajadores de Amazon, Starbucks, supermercados y museos se han sindicalizado en EE.UU. con una lógica distinta a la del siglo XX — más horizontal, sin afiliación a las grandes centrales históricas, usando redes sociales como herramienta organizativa. ¿Es un cambio de tendencia estructural o una anomalía? Los videos de esta sección nos permiten evaluarlo con material de primera mano.
+    </div>
+
+    <div class="media-section">
+      <p class="media-label">Amazon, Starbucks y el nuevo sindicalismo en EE.UU.</p>
+      <div class="video-grid">
+
+        <article class="v-card">
+          <div class="thumb" data-yt="D_-9uACGJeo">
+            <img src="https://img.youtube.com/vi/D_-9uACGJeo/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h4>Sindicato en Amazon</h4>          </div>
+        </article>
+
+        <article class="v-card">
+          <div class="thumb" data-yt="nESQX_qTZzA">
+            <img src="https://img.youtube.com/vi/nESQX_qTZzA/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h4>Sindicato en Starbucks</h4>          </div>
+        </article>
+
+        <article class="v-card">
+          <div class="thumb" data-yt="TBGwcCZK6Ok">
+            <img src="https://img.youtube.com/vi/TBGwcCZK6Ok/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h4>Amazon Labor Union</h4>          </div>
+        </article>
+
+        <article class="v-card">
+          <div class="thumb" data-yt="L7OIpBpgXMI">
+            <img src="https://img.youtube.com/vi/L7OIpBpgXMI/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h4>Sindicalización en grandes empresas</h4>          </div>
+        </article>
+
+        <article class="v-card">
+          <div class="thumb" data-yt="rs5Hoq67KQk">
+            <img src="https://img.youtube.com/vi/rs5Hoq67KQk/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h4>El movimiento sindical en EE.UU. hoy</h4>          </div>
+        </article>
+
+      </div>
+
+      <p class="media-label" style="margin-top:1rem;">La caída histórica de los sindicatos</p>
+      <div class="video-grid">
+
+        <article class="v-card">
+          <div class="thumb" data-yt="XWFocLnBdhM">
+            <img src="https://img.youtube.com/vi/XWFocLnBdhM/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h4>The Decline of Unions in the USA (1)</h4>          </div>
+        </article>
+
+        <article class="v-card">
+          <div class="thumb" data-yt="zpWhy5krLXk">
+            <img src="https://img.youtube.com/vi/zpWhy5krLXk/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h4>The Decline of Unions in the USA (2)</h4>          </div>
+        </article>
+
+        <article class="v-card">
+          <div class="thumb" data-yt="KtxITylE73U">
+            <img src="https://img.youtube.com/vi/KtxITylE73U/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h4>Tendencia sindical actual en EE.UU.</h4>          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Cita afiliación sindical -->
+    <div class="book-quote" style="margin-top:1rem;">
+      «Durante la década de 1980 y 1990 ha constituido parte importante de la ofensiva patronal. Ello coincide con el declive de la afiliación sindical, que cayó del 22 % en 1980 al 12 % en 2006.»
+      <cite>Brunet, Pizzi y Moral (2016, p. 272). Citan a Katz et al. (2007).</cite>
+    </div>
+
+    <div class="bar-chart" style="max-width:350px;">
+      <div class="bar-row"><span>1980</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--teal);"></div></div><span class="bar-val">22 %</span></div>
+      <div class="bar-row"><span>2006</span><div class="bar-track"><div class="bar-fill" style="width:55%;background:var(--coral);"></div></div><span class="bar-val">12 %</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       6. HUELGAS Y LOCK-OUTS
+  ══════════════════════════════════════ -->
+  <section class="nota-section" id="lock-out">
+    <p class="section-label">Página 13 del capítulo</p>
+    <h2>Huelgas y <em class="gloss-term" data-term="lock-out">lock-outs</em>: tendencia a la baja</h2>
+
+    <div class="book-quote">
+      «La realización de <em>lock-outs</em> por parte de las empresas. Sin embargo, en los últimos 10 años, el número de huelgas y <em>lock-outs</em> disminuyó sistemáticamente.»
+      <cite>Brunet, Pizzi y Moral (2016, p. 265).</cite>
+    </div>
+
+    <div class="pregunta">
+      Si las huelgas y los lock-outs disminuyen sistemáticamente, ¿significa que hay menos conflicto laboral o que el conflicto se ha desplazado a otros espacios (tribunales, redes sociales, política electoral)?
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       7. SUBCONTRATACIÓN Y PRECARIEDAD
+  ══════════════════════════════════════ -->
+  <section class="nota-section" id="subcontratacion">
+    <p class="section-label">Página 14 del capítulo</p>
+    <h2>Subcontratación y precariedad laboral</h2>
+
+    <div class="book-quote">
+      «En este marco existen problemas legales con los trabajadores subcontratados y/o autónomos, lo que puede suponer, en muchos casos, un aumento de la precariedad laboral porque quedan fuera de las protecciones legales. La utilización de este tipo de trabajadores, en gran medida a tiempo parcial o de forma temporal, es muy habitual por parte de las empresas, y que refleja una estrategia actual de las direcciones de recursos humanos para abaratar costes laborales.»
+      <cite>Brunet, Pizzi y Moral (2016, p. 264).</cite>
+    </div>
+
+    <div class="pregunta">
+      ¿Cómo se relaciona la figura del trabajador subcontratado o «autónomo» en EE.UU. con el auge de plataformas como Uber, DoorDash o Amazon Flex? ¿Es eso nuevo o es la extensión de una lógica ya descrita por el capítulo?
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       8. IRLANDA Y AUSTERIDAD
+  ══════════════════════════════════════ -->
+  <section class="nota-section" id="irlanda">
+    <p class="section-label">Páginas 15-16 del capítulo</p>
+    <h2>Irlanda: austeridad, salarios congelados y la fuerza-de-ley</h2>
+
+    <div class="book-quote">
+      «Los acuerdos nacionales sobre temas salariales colapsaron en 2010, tras las exigencias de austeridad impuestas como condición del rescate financiero de la UE y el FMI.»
+      <cite>Brunet, Pizzi y Moral (2016, p. 269).</cite>
+    </div>
+
+    <div class="prof-note">
+      <span class="prof-note-label">La austeridad como política permanente</span>
+      El colapso de los acuerdos salariales en Irlanda no fue un accidente — fue la condición que impuso el rescate financiero de 2010. Este patrón es reconocible: cuando hay crisis, los organismos internacionales (FMI, Banco Mundial, BCE) intervienen con «ajustes estructurales» que siempre implican lo mismo — reducción del gasto público, congelamiento o recorte de salarios, y flexibilización del mercado laboral. Irlanda es un caso europeo de algo que América Latina conoce desde los años 80. La austeridad no es una medida de emergencia: se convierte en el estado normal de las relaciones laborales.
+    </div>
+
+    <div class="book-quote">
+      «Con relación a las modalidades de pago: la mayoría del sector empresarial privado irlandés respondió a la crisis de 2008 congelando el salario básico a los niveles previos a la crisis, al tiempo que recortaron horas extras como forma de ahorro de costes. Desde 2011 los sectores que negociaron algunas actualizaciones salariales fueron fundamentalmente aquellos vinculados a la exportación, como las farmacéuticas, alimentación, aparatos médicos, etc. Por el contrario, en el sector público los salarios fueron recortados entre un 5 y un 15 % en 2009.»
+      <cite>Brunet, Pizzi y Moral (2016, p. 270). Citan a Eurofound (2014d).</cite>
+    </div>
+
+    <div class="prof-note">
+      <span class="prof-note-label">Congelar un salario es bajarlo</span>
+      Hay una trampa en el lenguaje de la política económica: cuando se dice que los salarios se «congelan», parece que no cambian. Pero si los precios siguen subiendo y el salario no, el trabajador puede comprar menos con el mismo dinero — es una reducción real aunque no nominal. En México hemos vivido variantes de esto: uno de los mecanismos más conocidos fue el reemplazo del Salario Mínimo por las Unidades de Medida y Actualización (UMAs) en 2017, lo que desvinculó muchas prestaciones del salario y las congeló efectivamente. La lección es que hay que leer siempre los salarios en términos reales, no nominales.
+    </div>
+
+    <div class="book-quote">
+      «Desde el sector privado provienen fuertes presiones para cambiar el sistema, desde uno basado en ingresos garantizados hacia otro esquema basado en las contribuciones individuales de los trabajadores.»
+      <cite>Brunet, Pizzi y Moral (2016, p. 270).</cite>
+    </div>
+
+    <div class="book-quote">
+      «Por último, los temas de la capacitación y la formación continua se diluyeron como tópicos de la negociación de empresa. Los mismos tuvieron su protagonismo en la etapa previa a la crisis, en el marco de acuerdos sectoriales de alcance nacional. Tras la crisis el tema dejó de estar presente en las negociaciones, al igual que los temas de igualdad de género.»
+      <cite>Brunet, Pizzi y Moral (2016, p. 270).</cite>
+    </div>
+
+    <div class="prof-note">
+      <span class="prof-note-label">«Fuerza de ley»: una distinción importante</span>
+      Cuando el texto dice que los convenios colectivos en el Reino Unido no tienen «fuerza de ley», está diciendo algo preciso: no son exigibles ante los tribunales. Un sindicato y una empresa pueden firmar un convenio, pero si la empresa lo viola, el trabajador no puede ir a juicio y reclamar su cumplimiento — solo puede negociar de nuevo o hacer huelga. Esto contrasta con EE.UU. o Canadá, donde los convenios sí son contratos legalmente vinculantes. El filósofo Giorgio Agamben usa la expresión «fuerza-de-ley» en otro contexto (el estado de excepción), pero la idea subyacente es la misma: no basta con que algo esté escrito — importa qué mecanismo lo hace cumplir.
+    </div>
+
+    <div class="pregunta">
+      El capítulo menciona que tras la crisis la formación continua y la igualdad de género desaparecen de las negociaciones. ¿Qué dice eso sobre cuáles son las prioridades «prescindibles» cuando la austeridad aprieta?
+    </div>
+
+    <!-- Case: Henry -->
+    <div style="margin-top:1rem; padding:.85rem 1rem; background:var(--sky); border:var(--border-thin); border-radius:var(--radius-sm); font-size:.88rem; line-height:1.55;">
+      <strong>📁 Caso «Henry» (R.U. · Google Drive)</strong><br>
+      Estructura actual de las relaciones laborales en el Reino Unido · Material en:
+      <a href="https://drive.google.com/drive/folders/1BQnH1sCLkzbo7ShIPpkIISBZSW6dySEC" target="_blank" rel="noopener" style="color:var(--purple); font-weight:700;">Ver carpeta en Drive →</a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       9. TRABAJO INFANTIL
+  ══════════════════════════════════════ -->
+  <section class="nota-section" id="trabajo-infantil">
+    <p class="section-label">Página 16 del capítulo</p>
+    <h2>Trabajo infantil: lo que no aparece en los medios</h2>
+
+    <div class="book-quote">
+      «En cuanto a la regulación del trabajo infantil. Aquí los niños menores de 16 años no pueden ser empleados a tiempo completo. Los niños menores de 14 años no pueden ser empleados en ninguna condición, al tiempo que los niños entre 14 y 15 años pueden ser empleados bajo las siguientes condiciones: 1) trabajos diurnos durante las vacaciones; 2) trabajos que sean parte de programas educativos o para lograr alguna experiencia laboral, y que no comporten ningún riesgo sanitario; 3) en industrias culturales, como films, publicidades, etc.»
+      <cite>Brunet, Pizzi y Moral (2016, pp. 271-272).</cite>
+    </div>
+
+    <div class="prof-note">
+      <span class="prof-note-label">Un tema que casi no aparece en los medios</span>
+      La regulación del trabajo infantil que describe el capítulo es la norma oficial — pero hay una brecha creciente entre esa norma y la realidad. En los últimos años, reportajes y datos gubernamentales han documentado un aumento del trabajo infantil en EE.UU., concentrado en la industria cárnica, la agricultura y la construcción, muchas veces vinculado a niños migrantes no acompañados que llegaron como solicitantes de asilo. No es un fenómeno marginal ni nuevo: forma parte de la misma lógica de abaratamiento de costos laborales que el capítulo describe para los adultos — subcontratación, informalidad, zonas grises del derecho.
+    </div>
+
+    <div class="pregunta">
+      El capítulo describe las excepciones legales al trabajo infantil. ¿Cómo se relaciona la regulación formal con la tendencia real a la normalización del trabajo infantil que reportan algunos investigadores?
+    </div>
+
+    <div class="media-section">
+      <p class="media-label">Videos anotados — Michael C. Burns</p>
+      <div class="video-grid">
+
+        <article class="v-card">
+          <div class="thumb" data-yt="OoCnObkbd7o">
+            <img src="https://img.youtube.com/vi/OoCnObkbd7o/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h4>Trabajo infantil en EE.UU. (1)</h4>          </div>
+        </article>
+
+        <article class="v-card">
+          <div class="thumb" data-yt="aFjoraev49g">
+            <img src="https://img.youtube.com/vi/aFjoraev49g/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h4>Trabajo infantil en EE.UU. (2)</h4>          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       10. CONTRATO SOCIAL
+  ══════════════════════════════════════ -->
+  <section class="nota-section" id="contrato-social">
+    <p class="section-label">Página 17 del capítulo</p>
+    <h2>El <em class="gloss-term" data-term="contrato-social">contrato social</em> y la ofensiva patronal</h2>
+
+    <div class="book-quote">
+      «[contrato social]»
+      <cite>Brunet, Pizzi y Moral (2016, p. 272).</cite>
+    </div>
+
+    <div class="prof-note">
+      <span class="prof-note-label">¿Qué es el «contrato social» en este contexto?</span>
+      El concepto de contrato social viene de la filosofía política (Rousseau, Hobbes, Locke), pero en sociología del trabajo se usa de una manera más concreta. El «contrato social» de posguerra refiere al acuerdo tácito — nunca firmado, pero sí operativo — entre el capital, el trabajo y el Estado en las décadas de 1945-1975: los trabajadores aceptan el sistema capitalista a cambio de salarios crecientes, seguridad social, pensiones y reconocimiento sindical. Los autores llaman «contrato social» a ese equilibrio que se construyó sobre el conflicto de clases, no a pesar de él: fue una forma de gestionar ese conflicto sin resolverlo. El neoliberalismo rompió ese pacto desde los años 80.
+    </div>
+
+    <div class="book-quote">
+      «No obstante, esta legislación aborda la regulación laboral siempre desde un punto de vista de los derechos individuales de los trabajadores, dejando al margen los derechos de las organizaciones (que constituyen la fuente del eventual poder estructural de los trabajadores).»
+      <cite>Brunet, Pizzi y Moral (2016, p. 273).</cite>
+    </div>
+
+    <div class="prof-note">
+      <span class="prof-note-label">«No existe tal cosa como la sociedad» — Thatcher (1987)</span>
+      En una entrevista de 1987, la primera ministra británica Margaret Thatcher pronunció una de las frases más citadas del neoliberalismo: «There is no such thing as society. There are individual men and women, and there are families.» La frase tiene consecuencias directas en la lógica laboral que describe el capítulo: si no hay sociedad, no hay sujeto colectivo que pueda tener derechos. Los derechos son siempre individuales — del trabajador frente a su empleador, nunca del sindicato frente a la empresa. Eso es exactamente lo que el capítulo señala: la legislación angloamericana protege derechos individuales y deja al margen los derechos de las organizaciones, que son la fuente del poder estructural de los trabajadores.
+    </div>
+
+    <div class="pregunta">
+      ¿Por qué proteger los derechos individuales de los trabajadores sin proteger los derechos colectivos de sus organizaciones equivale a debilitar el poder estructural de los trabajadores?
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       11. INDIVIDUALIZACIÓN
+  ══════════════════════════════════════ -->
+  <section class="nota-section" id="individualizacion">
+    <p class="section-label">Página 19 del capítulo</p>
+    <h2>La individualización como vector del neoliberalismo</h2>
+
+    <div class="book-quote">
+      «Sin embargo, el modelo norteamericano difiere, en parte, en que su sistema favorece más sistemáticamente a los empresarios que en los otros países. En el área de los derechos laborales los empresarios tienen derecho a contratar trabajadores para reemplazar a quienes hacen huelgas, lo que debilita la capacidad de negociación de los sindicatos. También se observa el recurso continuo a la contratación de trabajadores «a voluntad», lo que facilita el despido y la flexibilidad de las condiciones de trabajo.»
+      <cite>Brunet, Pizzi y Moral (2016, p. 276).</cite>
+    </div>
+
+    <div class="book-quote">
+      «[…] de esta manera profundizar la individualización de las relaciones laborales norteamericanas.»
+      <cite>Brunet, Pizzi y Moral (2016, p. 276).</cite>
+    </div>
+
+    <div class="prof-note">
+      <span class="prof-note-label">Individualización: el vector más silencioso del neoliberalismo</span>
+      La individualización de las relaciones laborales no es solo un cambio jurídico — es un cambio en el balance de poder. Cuando un trabajador negocia individualmente con una empresa, lo hace desde una posición de asimetría radical: la empresa tiene información, abogados, tiempo y alternativas; el trabajador, en la mayoría de los casos, no. La organización colectiva — el sindicato — existe precisamente para corregir esa asimetría. Por eso, debilitar los sindicatos y promover los contratos individuales no es neutro: sistemáticamente favorece a los empleadores. El modelo norteamericano, con sus contratos «a voluntad» y el derecho a contratar rompehuelgas, lleva esta lógica más lejos que ningún otro país analizado en el capítulo.
+    </div>
+
+    <div class="pregunta">
+      ¿Cuál es la conexión entre la <em class="gloss-term" data-term="individualizacion">individualización</em> de las relaciones laborales y el debilitamiento del poder colectivo de los trabajadores? ¿Es posible defender derechos laborales individualmente?
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       12. MEDIATECA DE LA SESIÓN
+  ══════════════════════════════════════ -->
+  <section class="nota-section" id="mediateca">
+    <p class="section-label">Todos los videos de la sesión</p>
+    <h2>Mediateca · 7 abr 2026</h2>
+    <p style="font-size:.9rem; color:var(--text-muted); margin-bottom:1rem;">Los videos están organizados por el orden en que aparecen en las notas de lectura.</p>
+
+    <div class="video-grid">
+
+      <article class="v-card"><div class="thumb" data-yt="AR2Y8NU3k-k"><img src="https://img.youtube.com/vi/AR2Y8NU3k-k/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>La crisis de 1973</h4></div></article>
+
+      <article class="v-card"><div class="thumb" data-yt="wcR815SfWOU"><img src="https://img.youtube.com/vi/wcR815SfWOU/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>Subsidios agrícolas en EE.UU.</h4></div></article>
+
+      <article class="v-card"><div class="thumb" data-yt="ARGSrVvNSvQ"><img src="https://img.youtube.com/vi/ARGSrVvNSvQ/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>México y EE.UU.: agricultura y comercio</h4></div></article>
+
+      <article class="v-card"><div class="thumb" data-yt="YPUj0sFEfxU"><img src="https://img.youtube.com/vi/YPUj0sFEfxU/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>Exportación de maíz desde EE.UU.</h4></div></article>
+
+      <article class="v-card"><div class="thumb" data-yt="D_-9uACGJeo"><img src="https://img.youtube.com/vi/D_-9uACGJeo/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>Sindicato en Amazon</h4></div></article>
+
+      <article class="v-card"><div class="thumb" data-yt="nESQX_qTZzA"><img src="https://img.youtube.com/vi/nESQX_qTZzA/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>Sindicato en Starbucks</h4></div></article>
+
+      <article class="v-card"><div class="thumb" data-yt="TBGwcCZK6Ok"><img src="https://img.youtube.com/vi/TBGwcCZK6Ok/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>Amazon Labor Union</h4></div></article>
+
+      <article class="v-card"><div class="thumb" data-yt="L7OIpBpgXMI"><img src="https://img.youtube.com/vi/L7OIpBpgXMI/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>Sindicalización en grandes empresas</h4></div></article>
+
+      <article class="v-card"><div class="thumb" data-yt="rs5Hoq67KQk"><img src="https://img.youtube.com/vi/rs5Hoq67KQk/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>El movimiento sindical en EE.UU. hoy</h4></div></article>
+
+      <article class="v-card"><div class="thumb" data-yt="XWFocLnBdhM"><img src="https://img.youtube.com/vi/XWFocLnBdhM/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>The Decline of Unions in the USA (1)</h4></div></article>
+
+      <article class="v-card"><div class="thumb" data-yt="zpWhy5krLXk"><img src="https://img.youtube.com/vi/zpWhy5krLXk/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>The Decline of Unions in the USA (2)</h4></div></article>
+
+      <article class="v-card"><div class="thumb" data-yt="KtxITylE73U"><img src="https://img.youtube.com/vi/KtxITylE73U/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>Tendencia sindical actual en EE.UU.</h4></div></article>
+
+      <article class="v-card"><div class="thumb" data-yt="OoCnObkbd7o"><img src="https://img.youtube.com/vi/OoCnObkbd7o/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>Trabajo infantil en EE.UU. (1)</h4></div></article>
+
+      <article class="v-card"><div class="thumb" data-yt="aFjoraev49g"><img src="https://img.youtube.com/vi/aFjoraev49g/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>Trabajo infantil en EE.UU. (2)</h4></div></article>
+
+    </div>
+
+    <p style="font-size:.8rem; color:var(--text-muted); margin-top:1rem;">
+      <a href="../../mediateca.html" style="color:var(--purple); font-weight:700;">Ver mediateca completa del curso →</a>
+    </p>
+  </section>
+
+</main>
+
+<footer class="site-footer" style="text-align:center; padding:1.5rem; border-top:var(--border-thin); font-family:var(--font-accent); font-size:.78rem; color:var(--text-muted);">
+  Globalización y Empleo 2026-2 · FCA UNAM · Dr. Jorge Cardiel ·
+  <a href="../../index.html" style="color:var(--teal);">Inicio del curso</a> ·
+  <a href="../../mediateca.html" style="color:var(--teal);">Mediateca</a>
+</footer>
+
+<!-- ── Glosario modal ── -->
+<div class="gloss-overlay" id="gloss-overlay" role="dialog" aria-modal="true" aria-labelledby="gloss-title">
+  <div class="gloss-modal">
+    <button class="gloss-close" id="gloss-close" aria-label="Cerrar">×</button>
+    <h3 id="gloss-title"></h3>
+    <p id="gloss-body"></p>
+  </div>
+</div>
+
+<!-- ── Presentación overlay ── -->
+<div class="pres-overlay" data-deck id="pres-overlay" role="dialog" aria-modal="true">
+  <div class="pres-bar">
+    <span class="pres-bar-title">Cap. 6 · Modelo Angloamericano · 7 abr 2026</span>
+    <span class="pres-counter" data-slide-counter>1 / 10</span>
+  </div>
+  <div class="pres-progress"><div class="pres-fill" data-progress-fill></div></div>
+
+  <div class="slides-wrap">
+
+    <!-- 01 -->
+    <section class="slide active" data-slide aria-hidden="false">
+      <span class="slide-eyebrow">01 · Portada</span>
+      <h2 class="slide-title">El Modelo Angloamericano de Relaciones Laborales</h2>
+      <p class="slide-body">Capítulo 6 · Brunet, I., Pizzi, A., y Moral, D. (2016). <em>Sistemas laborales comparados</em>. Anthropos Editorial.</p>
+      <div class="slide-grid g3">
+        <div class="slide-card"><h3>Países</h3><ul><li>Estados Unidos</li><li>Reino Unido</li><li>Canadá</li><li>Australia</li><li>Nueva Zelanda</li><li>Irlanda</li></ul></div>
+        <div class="slide-card"><h3>Tesis central</h3><p>Hay una convergencia hacia el ordenamiento privado: relaciones laborales definidas a nivel de empresa, contratos individuales y debilitamiento de los derechos colectivos.</p></div>
+        <div class="slide-card"><h3>Sesión</h3><p>7 de abril de 2026 · Unidad 2 · Dr. Jorge Cardiel · FCA UNAM</p></div>
+      </div>
+    </section>
+
+    <!-- 02 -->
+    <section class="slide" data-slide aria-hidden="true">
+      <span class="slide-eyebrow">02 · La crisis de 1973</span>
+      <h2 class="slide-title">A partir de 1973: el quiebre del modelo keynesiano</h2>
+      <p class="slide-body">La crisis del petróleo de 1973 y la estanflación marcan el inicio del desmantelamiento del Estado de Bienestar en los países angloamericanos y abren paso al neoliberalismo de Reagan y Thatcher.</p>
+      <div class="slide-quote">
+        «A partir de 1973» [se inicia la era de estanflación y crisis económica que conduce a los empresarios a profundizar su ataque contra las organizaciones obreras].
+        <cite>Brunet, Pizzi y Moral (2016, p. 253).</cite>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section class="slide" data-slide aria-hidden="true">
+      <span class="slide-eyebrow">03 · Los tres sectores</span>
+      <h2 class="slide-title">Estructura económica de EE.UU.: tres sectores</h2>
+      <div class="slide-stat-row">
+        <div class="slide-stat"><p class="n">80%</p><p class="l">Servicios del PIB</p></div>
+        <div class="slide-stat"><p class="n">19%</p><p class="l">Industrial</p></div>
+        <div class="slide-stat"><p class="n">1%</p><p class="l">Agricultura</p></div>
+      </div>
+      <div class="slide-grid g2" style="margin-top:.5rem;">
+        <div class="slide-card">
+          <h3>Sector servicios incluye</h3>
+          <ul><li>Servicios científicos, profesionales y técnicos</li><li>Salud y educación</li><li>Finanzas, artes, entretenimientos</li><li>Transporte y almacenamiento</li></ul>
+        </div>
+        <div class="slide-card">
+          <h3>Sector manufacturero incluye</h3>
+          <ul><li>Textil, metal, plásticos, madera</li><li>Electricidad y componentes</li><li>Muebles, alimentación y bebidas</li></ul>
+          <p style="margin-top:.5rem; font-size:.75rem; color:rgba(200,190,178,.6);">Cita Eurofound (2014b).</p>
+        </div>
+      </div>
+      <p class="slide-body" style="font-size:.82rem; color:rgba(200,190,178,.7);">Nota: el 1 % de agricultura de EE.UU. es muy grande en términos absolutos. EE.UU. subsidia su campo de manera significativa — lo que contradice el discurso de libre mercado puro.</p>
+    </section>
+
+    <!-- 04 -->
+    <section class="slide" data-slide aria-hidden="true">
+      <span class="slide-eyebrow">04 · Grandes empresas y PyMES</span>
+      <h2 class="slide-title">¿Quién genera el empleo?</h2>
+      <div class="slide-grid g2">
+        <div class="slide-card" style="border-top:3px solid rgba(78,205,196,.5);">
+          <h3>🏢 Grandes empresas globales</h3>
+          <ul>
+            <li>23 % del PIB directo · 31 % indirecto</li>
+            <li>33 % de los puestos de trabajo</li>
+            <li><strong>70 % de las exportaciones</strong></li>
+            <li>41 % de ganancias de productividad</li>
+          </ul>
+        </div>
+        <div class="slide-card" style="border-top:3px solid rgba(255,211,61,.5);">
+          <h3>🏪 PyMES</h3>
+          <ul>
+            <li>&gt;50 % del PIB</li>
+            <li><strong>67 % de todos los empleos</strong></li>
+            <li>51 % de ganancias de productividad</li>
+            <li>30 % de las exportaciones</li>
+          </ul>
+        </div>
+      </div>
+      <div class="slide-quote">Las PyMES generan 2 de cada 3 empleos, pero las grandes empresas controlan 70 % de las exportaciones. ¿Qué tan representativas son las condiciones de trabajo de las grandes empresas para el trabajador promedio?</div>
+    </section>
+
+    <!-- 05 -->
+    <section class="slide" data-slide aria-hidden="true">
+      <span class="slide-eyebrow">05 · La fuerza de trabajo</span>
+      <h2 class="slide-title">154.4 millones de trabajadores en EE.UU.</h2>
+      <div class="slide-stat-row">
+        <div class="slide-stat"><p class="n">81%</p><p class="l">Tiempo completo</p></div>
+        <div class="slide-stat"><p class="n">39%</p><p class="l">Puestos prof./ejecutivos</p></div>
+        <div class="slide-stat"><p class="n">52%</p><p class="l">Mujeres en puestos gerenciales</p></div>
+        <div class="slide-stat"><p class="n">19%</p><p class="l">Tiempo parcial</p></div>
+      </div>
+      <div class="slide-quote">
+        ¿El trabajo migrante está invisibilizado en los sectores que más ocupa? Porque está en la «sombra» o lo informal. ¿Cuál es la diferencia entre <em>shadow economy</em> e <em>informal economy</em>?
+      </div>
+    </section>
+
+    <!-- 06 -->
+    <section class="slide" data-slide aria-hidden="true">
+      <span class="slide-eyebrow">06 · Brecha de género y desigualdad</span>
+      <h2 class="slide-title">Salarios, género y desigualdad creciente</h2>
+      <div class="slide-grid g2">
+        <div class="slide-card">
+          <h3>Brecha salarial de género</h3>
+          <p>Hombres: <strong>$43,200/año</strong></p>
+          <p>Mujeres: <strong>$35,560/año</strong></p>
+          <p style="margin-top:.4rem; font-size:.78rem; color:rgba(200,190,178,.6);">Mismas condiciones · diferencia: −18 %</p>
+        </div>
+        <div class="slide-card">
+          <h3>Desigualdad salarial creciente</h3>
+          <p>Índice de Gini salarial:</p>
+          <p>1970: <strong>&lt;0.40</strong> → 2014: <strong>0.477</strong></p>
+          <p style="margin-top:.4rem; font-size:.78rem; color:rgba(200,190,178,.6);">Cita a Brenner (2007).</p>
+        </div>
+      </div>
+      <div class="slide-quote">
+        Históricamente los ingresos subían un 10 % al año. Desde la crisis de 2009, solo un 3.6 %.
+        <cite>Brunet, Pizzi y Moral (2016, p. 262).</cite>
+      </div>
+    </section>
+
+    <!-- 07 -->
+    <section class="slide" data-slide aria-hidden="true">
+      <span class="slide-eyebrow">07 · Sindicatos</span>
+      <h2 class="slide-title">Sindicatos: AFL-CIO y el declive de la afiliación</h2>
+      <div class="slide-grid g2">
+        <div class="slide-card">
+          <h3>Afiliación sindical en EE.UU.</h3>
+          <p>1980 → <strong>22 %</strong></p>
+          <p>2006 → <strong>12 %</strong></p>
+          <p style="margin-top:.5rem; font-size:.78rem; color:rgba(200,190,178,.6);">Katz et al. (2007).</p>
+        </div>
+        <div class="slide-card">
+          <h3>Lo que hace la AFL-CIO</h3>
+          <p>Desarrolla criterios estandarizados para negociar convenios y acuerdos salariales que los sindicatos usan en sus negociaciones con las empresas → favorece cierta homogeneidad salarial.</p>
+        </div>
+      </div>
+      <p class="slide-body" style="margin-top:.5rem;">Nuevo sindicalismo: Amazon (ALU), Starbucks, sectores de servicios. ¿Tendencia o anomalía?</p>
+    </section>
+
+    <!-- 08 -->
+    <section class="slide" data-slide aria-hidden="true">
+      <span class="slide-eyebrow">08 · Irlanda y austeridad</span>
+      <h2 class="slide-title">Irlanda: cuando el FMI dicta los salarios</h2>
+      <div class="slide-quote">
+        «Los acuerdos nacionales sobre temas salariales colapsaron en 2010, tras las exigencias de austeridad impuestas como condición del rescate financiero de la UE y el FMI.»
+        <cite>Brunet, Pizzi y Moral (2016, p. 269).</cite>
+      </div>
+      <div class="slide-grid g2">
+        <div class="slide-card">
+          <h3>Respuesta empresarial a la crisis 2008</h3>
+          <ul>
+            <li>Congelaron salarios básicos</li>
+            <li>Recortaron horas extras</li>
+            <li>Solo actualizaron salarios en exportación (farma, alimentos, med.)</li>
+          </ul>
+        </div>
+        <div class="slide-card">
+          <h3>Sector público</h3>
+          <p>Salarios <strong>recortados entre 5 % y 15 %</strong> en 2009.</p>
+          <p style="margin-top:.5rem; font-size:.8rem; color:rgba(200,190,178,.6);">Nota: congelar salarios = disminuirlos efectivamente (como pasó en México con el cambio de SM a UMAs).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 -->
+    <section class="slide" data-slide aria-hidden="true">
+      <span class="slide-eyebrow">09 · Contrato social e individualización</span>
+      <h2 class="slide-title">«No hay sociedad» — Thatcher</h2>
+      <div class="slide-quote">
+        «Esta legislación aborda la regulación laboral siempre desde un punto de vista de los derechos individuales de los trabajadores, dejando al margen los derechos de las organizaciones (que constituyen la fuente del eventual poder estructural de los trabajadores).»
+        <cite>Brunet, Pizzi y Moral (2016, p. 273).</cite>
+      </div>
+      <div class="slide-quote" style="margin-top:.5rem;">
+        «El modelo norteamericano favorece más sistemáticamente a los empresarios… los empresarios tienen derecho a contratar trabajadores para reemplazar a quienes hacen huelgas… el recurso continuo a la contratación de trabajadores «a voluntad»…»
+        <cite>Brunet, Pizzi y Moral (2016, p. 276).</cite>
+      </div>
+      <p class="slide-body" style="margin-top:.5rem;">La individualización es un vector del neoliberalismo: menos trabajo organizado = menos poder estructural para los trabajadores.</p>
+    </section>
+
+    <!-- 10 -->
+    <section class="slide" data-slide aria-hidden="true">
+      <span class="slide-eyebrow">10 · Preguntas para discutir</span>
+      <h2 class="slide-title">Para discutir en clase</h2>
+      <div class="slide-grid g2">
+        <div class="slide-card">
+          <h3>Preguntas del texto</h3>
+          <ul>
+            <li>¿Por qué EE.UU. subsidia su agricultura si predica el libre mercado?</li>
+            <li>¿Qué es la <em>shadow economy</em> y quién queda invisible en las estadísticas?</li>
+            <li>¿Congelar salarios es lo mismo que bajarlos?</li>
+          </ul>
+        </div>
+        <div class="slide-card">
+          <h3>Preguntas de análisis</h3>
+          <ul>
+            <li>¿Proteger derechos individuales sin derechos colectivos debilita a los trabajadores?</li>
+            <li>¿El resurgimiento sindical en Amazon y Starbucks es tendencia estructural?</li>
+            <li>¿Hay alguna relación entre caída sindical y aumento del Gini salarial?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- .slides-wrap -->
+
+  <div class="pres-nav">
+    <button type="button" data-prev>← Anterior</button>
+    <button type="button" class="close-btn" data-close-presentation>Cerrar</button>
+    <button type="button" data-next>Siguiente →</button>
+  </div>
+</div>
+
+<!-- ── Scripts ── -->
+<script>
+/* Glosario */
+const TERMS = {
+  'shadow-economy': {
+    t: 'Shadow economy (economía en la sombra)',
+    b: 'Actividades económicas que producen bienes y servicios legales pero que se ocultan deliberadamente a las autoridades para evitar impuestos, regulaciones laborales o la seguridad social. No es lo mismo que economía informal (que incluye actividades legales no registradas por pequeñas empresas o trabajadores independientes) ni que economía ilegal.'
+  },
+  'informal-economy': {
+    t: 'Economía informal',
+    b: 'Conjunto de actividades económicas que no están reguladas ni protegidas por marcos formales: trabajo sin contrato, sin prestaciones, sin acceso a seguridad social. Es más amplia que la shadow economy e incluye desde vendedores ambulantes hasta trabajadores domésticos no registrados.'
+  },
+  'lock-out': {
+    t: 'Lock-out (cierre patronal)',
+    b: 'Medida de conflicto colectivo en la que el empleador cierra el centro de trabajo de forma temporal para presionar a los trabajadores durante una negociación colectiva. Es el equivalente patronal de la huelga. En el modelo angloamericano, su uso ha disminuido sistemáticamente en los últimos 10 años.'
+  },
+  'contrato-social': {
+    t: 'Contrato social (en el contexto laboral)',
+    b: 'En la sociología del trabajo, el «contrato social» de posguerra refiere al pacto tácito por el que los trabajadores aceptan el sistema capitalista a cambio de mejoras continuas en sus condiciones de vida (salarios reales crecientes, Estado de Bienestar, reconocimiento sindical). Brunet, Pizzi y Moral lo usan para referirse a ese equilibrio que el neoliberalismo desmanteló desde los años 80.'
+  },
+  'individualizacion': {
+    t: 'Individualización de las relaciones laborales',
+    b: 'Tendencia en el modelo angloamericano por la que las condiciones de trabajo se negocian cada vez más entre el empleador y cada trabajador de forma individual, en lugar de a través de convenios colectivos. Implica el debilitamiento del poder estructural de los trabajadores: sin organización colectiva, cada trabajador negocia desde una posición de asimetría con la empresa.'
+  }
+};
+
+const glOverlay = document.getElementById('gloss-overlay');
+const glTitle   = document.getElementById('gloss-title');
+const glBody    = document.getElementById('gloss-body');
+const glClose   = document.getElementById('gloss-close');
+
+document.querySelectorAll('.gloss-term').forEach(el => {
+  el.setAttribute('tabindex','0'); el.setAttribute('role','button');
+  const open = () => {
+    const d = TERMS[el.dataset.term]; if (!d) return;
+    glTitle.textContent = d.t; glBody.textContent = d.b;
+    glOverlay.classList.add('open'); document.body.style.overflow='hidden'; glClose.focus();
+  };
+  el.addEventListener('click', open);
+  el.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();open();} });
+});
+glClose.addEventListener('click', () => { glOverlay.classList.remove('open'); document.body.style.overflow=''; });
+glOverlay.addEventListener('click', e => { if(e.target===glOverlay){ glOverlay.classList.remove('open'); document.body.style.overflow=''; } });
+document.addEventListener('keydown', e => { if(e.key==='Escape' && glOverlay.classList.contains('open')){ glOverlay.classList.remove('open'); document.body.style.overflow=''; } });
+
+/* YouTube lazy */
+document.querySelectorAll('.thumb[data-yt]').forEach(thumb => {
+  thumb.addEventListener('click', function(){
+    const f = document.createElement('iframe');
+    f.src = `https://www.youtube.com/embed/${this.dataset.yt}?autoplay=1&rel=0`;
+    f.allow = 'autoplay; encrypted-media; picture-in-picture';
+    f.allowFullscreen = true;
+    this.innerHTML = ''; this.appendChild(f);
+  });
+});
+</script>
+<script src="./assets/presentation.js"></script>
+</body>
+</html>

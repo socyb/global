@@ -45,6 +45,12 @@ pizarrones/*.png
 /actividades/enunciados_marcados_introduction_GlobalizationInPractice.md
 /actividades/transcripcion_digital_world_and_us_25feb26.txt
 
+# Prompt/notes files (never publish)
+**/prompt.md
+
+# Screenshots used as notes
+/sesiones/7abr26/*.png
+
 # Private/support files for Feminist Perspectives activity
 /actividades/actividad_feminist_perspectives_global_24mar26/README.md
 /actividades/actividad_feminist_perspectives_global_24mar26/consulta_privada.md
