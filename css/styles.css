@@ -132,6 +132,11 @@ a:hover { color: var(--coral); }
     flex-wrap: wrap;
 }
 
+.header-text {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
 .header-text h1 {
     font-family: var(--font-body);
     font-size: 2.4rem;
@@ -158,10 +163,12 @@ a:hover { color: var(--coral); }
     align-items: center;
     gap: .8rem;
     flex-wrap: wrap;
+    width: 100%;
     margin-top: .5rem;
 }
 
 .header-today {
+    margin-left: auto;
     padding: .35rem .75rem;
     font-size: .78rem;
     box-shadow: 3px 3px 0 var(--ink);
@@ -181,11 +188,8 @@ a:hover { color: var(--coral); }
     color: var(--ink);
 }
 
-.header-badges {
-    display: flex;
-    flex-direction: column;
-    gap: .6rem;
-    align-items: flex-end;
+.header-repo-mobile {
+    display: inline-flex;
 }
 
 .badge {
@@ -624,39 +628,52 @@ a.session-card:hover {
     color: var(--text-muted);
 }
 
-.calendar-list {
-    display: flex;
-    flex-direction: column;
-}
-
-.calendar-entry {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: .85rem;
-    align-items: start;
-    padding: .85rem 0;
+.calendar-table {
     border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.calendar-list .calendar-entry:first-child {
+.calendar-row {
+    display: grid;
+    grid-template-columns: minmax(110px, 150px) minmax(140px, 190px) minmax(0, 1fr);
+    gap: .85rem;
+    align-items: start;
+}
+
+.calendar-row {
+    padding: .8rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.calendar-table .calendar-row:first-child {
     border-top: none;
-    padding-top: 0;
 }
 
-.calendar-entry:last-child {
-    padding-bottom: 0;
-}
-
-.calendar-copy {
+.calendar-cell {
     min-width: 0;
 }
 
-.calendar-entry .timeline-badge {
+.calendar-cell .timeline-badge {
     margin-bottom: 0;
-    justify-self: start;
 }
 
-.calendar-entry.archived {
+.calendar-date-cell {
+    font-size: .88rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.calendar-detail-cell {
+    font-size: .84rem;
+    color: var(--text-muted);
+}
+
+.calendar-link {
+    color: var(--teal);
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+.calendar-row.archived {
     opacity: .62;
 }
 
@@ -664,6 +681,8 @@ a.session-card:hover {
     font-size: .84rem;
     color: var(--text-muted);
     margin-top: .8rem;
+    padding-top: .7rem;
+    border-top: 1px dashed rgba(0, 0, 0, 0.18);
 }
 
 .calendar-note strong {
@@ -826,24 +845,51 @@ a.session-card:hover {
 
 /* ── Responsive ────────────────────────────────────── */
 @media (max-width: 768px) {
+    .site-header {
+        padding: 1.6rem 0 1.25rem;
+    }
+
     .header-content {
         flex-direction: column;
         align-items: flex-start;
-    }
-
-    .header-badges {
-        flex-direction: row;
-        align-items: center;
+        gap: .85rem;
     }
 
     .header-text h1 {
         font-size: 1.65rem;
+        margin-bottom: .2rem;
+    }
+
+    .subtitle {
+        font-size: .94rem;
+        line-height: 1.35;
     }
 
     .header-meta {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: .55rem;
+        gap: .45rem .6rem;
+        margin-top: .35rem;
+    }
+
+    .instructor {
+        font-size: .95rem;
+    }
+
+    .header-today {
+        margin-left: 0;
+        padding: .22rem .55rem;
+        gap: .45rem;
+        font-size: .73rem;
+        box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .today-label {
+        font-size: .62rem;
+        letter-spacing: .1em;
+    }
+
+    .badge {
+        padding: .35rem .75rem;
+        font-size: .78rem;
     }
 
     .nav-links {
@@ -873,9 +919,9 @@ a.session-card:hover {
         flex-direction: column;
     }
 
-    .calendar-entry {
+    .calendar-row {
         grid-template-columns: 1fr;
-        gap: .45rem;
+        gap: .35rem;
     }
 
     .accordion-header {
@@ -885,6 +931,46 @@ a.session-card:hover {
 
     .accordion-body {
         padding: 0 1rem 1rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .site-header {
+        padding: 1.3rem 0 1.05rem;
+    }
+
+    .header-content {
+        gap: .65rem;
+    }
+
+    .header-text h1 {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: .88rem;
+    }
+
+    .header-meta {
+        margin-top: .3rem;
+    }
+
+    .instructor {
+        font-size: .9rem;
+    }
+
+    .header-today {
+        padding: .18rem .45rem;
+        font-size: .68rem;
+    }
+
+    .header-today .today-label {
+        display: none;
+    }
+
+    .badge {
+        padding: .32rem .65rem;
+        font-size: .74rem;
     }
 }
 
@@ -904,7 +990,7 @@ a.session-card:hover {
 
 /* ── Print styles ──────────────────────────────────── */
 @media print {
-    .site-nav, .header-badges, .views-badge {
+    .site-nav, .header-repo-mobile, .views-badge {
         display: none;
     }
 

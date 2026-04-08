@@ -14,15 +14,6 @@
 </head>
 <body>
 
-<div class="today-strip">
-    <div class="container">
-        <div class="today-box" style="text-align: center;">
-            <span class="today-label">Hoy</span>
-            <time id="todayDate" datetime="">Cargando fecha…</time>
-        </div>
-    </div>
-</div>
-
 <!-- HEADER -->
 <header class="site-header">
     <div class="container">
@@ -31,13 +22,17 @@
                 <!--<span class="header-pill">FCA · UNAM · Licenciatura en Negocios Internacionales</span>-->
                 <h1><img src="img/icon-globe.svg" alt="" class="icon-8bit-lg"> Globalización y Empleo</h1>
                 <p class="subtitle">Semestre 2026-2 · Facultad de Contaduría y Administración · UNAM</p>
-                <p class="instructor">Dr. Jorge Cardiel</p>
-            </div>
-            <div class="header-badges">
-                <a href="https://github.com/socyb/global" target="_blank" rel="noopener" class="badge github-badge" title="Repositorio en GitHub">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                    Repositorio
-                </a>
+                <div class="header-meta">
+                    <p class="instructor">Dr. Jorge Cardiel</p>
+                    <div class="today-box header-today">
+                        <span class="today-label">Hoy</span>
+                        <time id="todayDate" datetime="">Cargando fecha…</time>
+                    </div>
+                    <a href="https://github.com/socyb/global" target="_blank" rel="noopener" class="badge github-badge header-repo-mobile" title="Repositorio en GitHub">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        Repositorio
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -146,12 +141,6 @@
     <details id="unidad2" class="section accordion" open>
         <summary class="accordion-header"><img src="img/icon-book.svg" alt="" class="icon-8bit"> Unidad 2</summary>
         <div class="accordion-body">
-            <div class="past-mosaic">
-                <a href="actividades/actividad_feminist_perspectives_global_24mar26/index.html" class="past-mini">
-                    <span class="pm-num">08</span>
-                    <span class="pm-title">Feminist Perspectives in Global Studies</span>
-                </a>
-            </div>
             <div class="sessions-list">
                 <a href="sesiones/7abr26/index.html" class="session-card active-session">
                     <span class="session-number">09</span>
@@ -161,13 +150,15 @@
                     </div>
                     <span class="session-status status-available">Disponible →</span>
                 </a>
-                <a href="unidad2/investigacion.html" class="session-card active-session">
-                    <span class="session-number">📋</span>
-                    <div class="session-info">
-                        <h3>Trabajo de Investigación</h3>
-                        <p>Instrucciones, fechas de revisión de avances y requisitos · Equipo antes del 9 de abril</p>
-                    </div>
-                    <span class="session-status status-available">Ver →</span>
+            </div>
+            <div class="past-mosaic">
+                <a href="actividades/actividad_feminist_perspectives_global_24mar26/index.html" class="past-mini">
+                    <span class="pm-num">08</span>
+                    <span class="pm-title">Feminist Perspectives in Global Studies</span>
+                </a>
+                <a href="unidad2/investigacion.html" class="past-mini">
+                    <span class="pm-num">📋</span>
+                    <span class="pm-title">Trabajo de Investigación</span>
                 </a>
             </div>
         </div>
@@ -180,27 +171,27 @@
             <!-- Trabajo de investigación -->
             <div class="calendario-bloque">
                 <h3><img src="img/icon-book.svg" alt="" class="icon-8bit-sm"> Trabajo de investigación (en equipo)</h3>
-                <div class="calendar-list">
-                    <div class="calendar-entry">
-                        <span class="timeline-badge badge-accent">Equipo</span>
-                        <div class="calendar-copy">
-                            <span class="timeline-date">Jue 9 de abril</span>
-                            <span class="timeline-event">Límite para formar equipo (1 a 5 personas)</span>
+                <div class="calendar-table">
+                    <div class="calendar-row">
+                        <div class="calendar-cell" data-label="Actividad">
+                            <span class="timeline-badge badge-accent">Equipo</span>
                         </div>
+                        <div class="calendar-cell calendar-date-cell" data-label="Fecha">Jue 9 de abril</div>
+                        <div class="calendar-cell calendar-detail-cell" data-label="Detalle">Límite para formar equipo (1 a 5 personas)</div>
                     </div>
-                    <div class="calendar-entry">
-                        <span class="timeline-badge">1.er avance</span>
-                        <div class="calendar-copy">
-                            <span class="timeline-date">16, 21 y 23 de abril</span>
-                            <span class="timeline-event">Revisión en clase · <a href="unidad2/investigacion.html" style="color:var(--teal);text-decoration:underline;">ver instrucciones</a></span>
+                    <div class="calendar-row">
+                        <div class="calendar-cell" data-label="Actividad">
+                            <span class="timeline-badge">1.er avance</span>
                         </div>
+                        <div class="calendar-cell calendar-date-cell" data-label="Fecha">16, 21 y 23 de abril</div>
+                        <div class="calendar-cell calendar-detail-cell" data-label="Detalle">Revisión en clase · <a href="unidad2/investigacion.html" class="calendar-link">ver instrucciones</a></div>
                     </div>
-                    <div class="calendar-entry">
-                        <span class="timeline-badge badge-success">Entrega</span>
-                        <div class="calendar-copy">
-                            <span class="timeline-date">Mar 2 de junio de 2026</span>
-                            <span class="timeline-event">Subir en Moodle en el formato indicado</span>
+                    <div class="calendar-row">
+                        <div class="calendar-cell" data-label="Actividad">
+                            <span class="timeline-badge badge-success">Entrega</span>
                         </div>
+                        <div class="calendar-cell calendar-date-cell" data-label="Fecha">Mar 2 de junio de 2026</div>
+                        <div class="calendar-cell calendar-detail-cell" data-label="Detalle">Subir en Moodle en el formato indicado</div>
                     </div>
                 </div>
             </div>
@@ -208,20 +199,20 @@
             <!-- Exámenes parciales -->
             <div class="calendario-bloque">
                 <h3><img src="img/icon-note.svg" alt="" class="icon-8bit-sm"> Exámenes parciales</h3>
-                <div class="calendar-list">
-                    <div class="calendar-entry">
-                        <span class="timeline-badge badge-accent">Parcial 2</span>
-                        <div class="calendar-copy">
-                            <span class="timeline-date">Jue 7 de mayo</span>
-                            <span class="timeline-event">Aplicación en clase</span>
+                <div class="calendar-table">
+                    <div class="calendar-row">
+                        <div class="calendar-cell" data-label="Examen">
+                            <span class="timeline-badge badge-accent">Parcial 2</span>
                         </div>
+                        <div class="calendar-cell calendar-date-cell" data-label="Fecha">Jue 7 de mayo</div>
+                        <div class="calendar-cell calendar-detail-cell" data-label="Detalle">Aplicación en clase</div>
                     </div>
-                    <div class="calendar-entry archived">
-                        <span class="timeline-badge">Parcial 1</span>
-                        <div class="calendar-copy">
-                            <span class="timeline-date">Jue 19 de marzo</span>
-                            <span class="timeline-event">Aplicación en clase</span>
+                    <div class="calendar-row archived">
+                        <div class="calendar-cell" data-label="Examen">
+                            <span class="timeline-badge">Parcial 1</span>
                         </div>
+                        <div class="calendar-cell calendar-date-cell" data-label="Fecha">Jue 19 de marzo</div>
+                        <div class="calendar-cell calendar-detail-cell" data-label="Detalle">Aplicación en clase</div>
                     </div>
                 </div>
                 <p class="calendar-note"><strong>Importante:</strong> planea con anticipación y revisa los materiales de la unidad correspondiente.</p>
@@ -231,13 +222,13 @@
             <!-- Exposiciones -->
             <div class="calendario-bloque">
                 <h3><img src="img/icon-megaphone.svg" alt="" class="icon-8bit-sm"> Exposiciones (equipos)</h3>
-                <div class="calendar-list">
-                    <div class="calendar-entry">
-                        <span class="timeline-badge">Fechas</span>
-                        <div class="calendar-copy">
-                            <span class="timeline-date">2, 4, 9 y 11 de junio</span>
-                            <span class="timeline-event">Presentaciones finales por equipo</span>
+                <div class="calendar-table">
+                    <div class="calendar-row">
+                        <div class="calendar-cell" data-label="Actividad">
+                            <span class="timeline-badge">Fechas</span>
                         </div>
+                        <div class="calendar-cell calendar-date-cell" data-label="Fecha">2, 4, 9 y 11 de junio</div>
+                        <div class="calendar-cell calendar-detail-cell" data-label="Detalle">Presentaciones finales por equipo</div>
                     </div>
                 </div>
                 <p class="calendar-note">Nota: el orden de exposición por equipo se publicará en Moodle.</p>

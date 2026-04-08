@@ -12,7 +12,50 @@
     .session-shell {
       max-width: var(--container-max);
       margin: 0 auto;
-      padding: 0 1.25rem 3rem;
+      padding: 0 1.25rem .75rem;
+    }
+
+    .header-session-box {
+      padding: .3rem .68rem;
+      font-size: .75rem;
+      gap: .5rem;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+    .header-session-box .today-label {
+      font-size: .62rem;
+      letter-spacing: .1em;
+    }
+
+    .site-header {
+      padding: 1.45rem 0 1rem;
+    }
+    .header-content {
+      gap: .8rem;
+    }
+    .header-text h1 {
+      font-size: clamp(1.9rem, 4.6vw, 3rem);
+      margin-bottom: .18rem;
+    }
+    .subtitle {
+      font-size: .95rem;
+      line-height: 1.28;
+      margin-bottom: .18rem;
+    }
+    .header-meta-row {
+      display: flex;
+      align-items: center;
+      gap: .55rem .8rem;
+      flex-wrap: wrap;
+    }
+    .instructor {
+      margin: 0;
+      font-size: .98rem;
+      line-height: 1.2;
+    }
+    .header-meta-row .badge {
+      padding: .34rem .72rem;
+      font-size: .76rem;
+      box-shadow: 3px 3px 0 var(--ink);
     }
 
     /* Eyebrow pill */
@@ -84,29 +127,131 @@
     }
     .internal-nav a:hover { background: var(--ink); color: #fff; }
 
+    .site-nav .container {
+      max-width: min(1480px, calc(100vw - 1.5rem));
+    }
+    .site-nav .nav-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: .45rem;
+      overflow-x: visible;
+      align-items: stretch;
+    }
+    .site-nav .nav-links li {
+      display: flex;
+      min-width: 0;
+    }
+    .site-nav .nav-links li a {
+      width: 100%;
+      min-height: 100%;
+      justify-content: center;
+      text-align: center;
+      white-space: normal;
+      line-height: 1.22;
+    }
+
     /* Secciones */
     .nota-section {
       margin-bottom: 2.5rem;
       padding-bottom: 2rem;
       border-bottom: var(--border-thin);
+      scroll-margin-top: 5.5rem;
     }
-    .nota-section:last-of-type { border-bottom: none; }
+    .nota-section:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: .5rem;
+    }
 
-    .section-label {
-      font-family: var(--font-accent);
-      font-size: .7rem;
-      font-weight: 800;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: .3rem;
-    }
-    .nota-section h2 {
+    .nota-section > h2 {
       font-size: clamp(1.4rem, 2.8vw, 2rem);
       line-height: 1.1;
       margin-bottom: 1rem;
       border-left: 5px solid var(--ink);
       padding-left: .75rem;
+    }
+    .apa-ref,
+    #agricultura,
+    #brecha-genero {
+      scroll-margin-top: 5.5rem;
+    }
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .nota-section-header {
+      display: none;
+    }
+    .js-enhanced .nota-section.is-collapsible {
+      margin-bottom: 1rem;
+      padding-bottom: 0;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      background: var(--surface);
+      transition: box-shadow .18s ease, transform .18s ease;
+    }
+    .js-enhanced .nota-section.is-collapsible:last-of-type {
+      border-bottom: var(--border);
+      margin-bottom: 0;
+    }
+    .site-footer {
+      margin-top: 0;
+    }
+    .js-enhanced .nota-section.is-collapsible:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 7px 7px 0 var(--ink);
+    }
+    .js-enhanced .nota-section-header {
+      display: block;
+    }
+    .js-enhanced .nota-section-body {
+      padding: 0 1.15rem 1.2rem;
+    }
+    .js-enhanced .nota-section-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: 1rem 1.15rem;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-body);
+      font-size: clamp(1.12rem, 2.4vw, 1.55rem);
+      font-weight: 700;
+      line-height: 1.12;
+    }
+    .js-enhanced .nota-section-trigger:hover {
+      background: var(--blush);
+    }
+    .js-enhanced .nota-section-trigger:focus-visible {
+      outline: 3px solid var(--teal);
+      outline-offset: -3px;
+    }
+    .js-enhanced .nota-section-trigger::after {
+      content: "▸";
+      margin-left: auto;
+      color: var(--text-muted);
+      font-size: 1rem;
+      transition: transform .18s ease;
+      flex-shrink: 0;
+    }
+    .js-enhanced .nota-section.is-open .nota-section-trigger::after {
+      transform: rotate(90deg);
+    }
+    .js-enhanced .nota-section-trigger-text {
+      max-width: 48rem;
     }
 
     /* Cita textual del libro */
@@ -298,7 +443,19 @@
     .play-icon svg { fill: #fff; width: 18px; height: 18px; margin-left: 2px; }
     .v-card .thumb iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
     .v-card .info { padding: .65rem .8rem; }
-    .v-card .info h4 { font-size: .84rem; line-height: 1.3; margin-bottom: .25rem; }
+    .v-card .info h4 {
+      font-size: .84rem;
+      line-height: 1.3;
+      margin-bottom: .3rem;
+      overflow-wrap: anywhere;
+    }
+    .v-card .info .video-meta {
+      margin: 0;
+      font-size: .72rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+    }
+    .v-card .info .video-meta time { font-weight: 700; }
     .v-card .info .v-q {
       font-size: .76rem;
       line-height: 1.45;
@@ -308,6 +465,59 @@
       margin-top: .4rem;
     }
     .v-card .info .v-q::before { content: "💬 "; }
+
+    @media (max-width: 768px) {
+      .site-nav .container {
+        max-width: var(--container-max);
+      }
+      .site-nav .nav-links {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        row-gap: 0;
+        gap: .35rem;
+      }
+      .site-nav .nav-links li {
+        display: block;
+      }
+      .site-nav .nav-links li a {
+        width: auto;
+        justify-content: flex-start;
+        text-align: left;
+        white-space: nowrap;
+      }
+      .site-header {
+        padding: 1.05rem 0 .8rem;
+      }
+      .header-content {
+        gap: .55rem;
+      }
+      .header-text h1 {
+        font-size: 1.6rem;
+      }
+      .subtitle {
+        font-size: .9rem;
+      }
+      .instructor {
+        font-size: .92rem;
+      }
+      .header-meta-row .badge {
+        padding: .3rem .62rem;
+        font-size: .72rem;
+      }
+      .header-session-box {
+        padding: .24rem .55rem;
+        font-size: .7rem;
+        box-shadow: 2px 2px 0 var(--ink);
+      }
+      .js-enhanced .nota-section-trigger {
+        padding: .85rem 1rem;
+        font-size: 1.03rem;
+      }
+      .js-enhanced .nota-section-body {
+        padding: 0 1rem 1rem;
+      }
+    }
 
     /* Glosario modal */
     .gloss-term {
@@ -345,185 +555,49 @@
       display: flex; align-items: center; justify-content: center;
     }
 
-    /* ═══ Presentación — modo proyector ═══ */
-    .pres-overlay {
-      display: none;
-      position: fixed; inset: 0; z-index: 999;
-      background: #0a0e14;
-      flex-direction: column;
-    }
-    .pres-overlay.is-open { display: flex; }
-
-    .pres-bar {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: .55rem 1.4rem; flex-shrink: 0;
-      background: rgba(0,0,0,.7);
-    }
-    .pres-bar-title {
-      color: rgba(255,255,255,.4);
-      font-family: var(--font-accent);
-      font-size: .78rem; font-weight: 800;
-      letter-spacing: .07em; text-transform: uppercase;
-    }
-    .pres-counter {
-      color: rgba(255,255,255,.35);
-      font-family: var(--font-accent);
-      font-size: .78rem; font-weight: 700;
-    }
-    .pres-progress { height: 4px; background: rgba(255,255,255,.08); flex-shrink: 0; }
-    .pres-fill     { height: 100%; background: var(--coral); transition: width .35s; }
-
-    /* Área de slides */
-    .slides-wrap { flex: 1; overflow: hidden; position: relative; }
-    .slide {
-      display: none; height: 100%; overflow-y: auto;
-      padding: clamp(2rem, 5vw, 4.5rem) clamp(2rem, 7vw, 7rem);
-    }
-    .slide.active { display: flex; flex-direction: column; gap: 1.4rem; justify-content: center; }
-
-    /* Tipografía de diapositivas — pensada para proyección */
-    .slide-eyebrow {
-      font-family: var(--font-accent);
-      font-size: clamp(.75rem, 1vw, .9rem);
-      font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
-      color: rgba(255,255,255,.3);
-    }
-    .slide-title {
-      font-size: clamp(2.2rem, 5.5vw, 4.2rem);
-      line-height: .97; color: #f4ede0;
-      margin: 0; font-weight: 900;
-      text-wrap: balance;
-    }
-    .slide-body {
-      font-size: clamp(1.05rem, 1.8vw, 1.5rem);
-      line-height: 1.6; color: rgba(244,237,224,.82);
-      max-width: 70ch;
-    }
-
-    /* Cards dentro de slides */
-    .slide-card {
-      padding: 1.2rem 1.4rem; border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color: #ede5d8;
-    }
-    .slide-card h3 {
-      font-size: clamp(1rem, 1.6vw, 1.3rem);
-      margin-bottom: .5rem; color: #f4ede0;
-    }
-    .slide-card p,
-    .slide-card li {
-      font-size: clamp(.9rem, 1.35vw, 1.15rem);
-      line-height: 1.6; color: rgba(210,200,188,.9);
-    }
-    .slide-card ul { padding-left: 1.2rem; display: grid; gap: .35rem; }
-
-    .slide-grid { display: grid; gap: 1rem; }
-    .slide-grid.g2 { grid-template-columns: repeat(2,1fr); }
-    .slide-grid.g3 { grid-template-columns: repeat(3,1fr); }
-
-    /* Cita destacada */
-    .slide-quote {
-      border-left: 5px solid var(--coral);
-      padding: 1rem 1.4rem;
-      border-radius: 0 12px 12px 0;
-      background: rgba(255,107,107,.1);
-      font-size: clamp(1rem, 1.6vw, 1.35rem);
-      font-style: italic; color: #d8d0c4; line-height: 1.6;
-    }
-    .slide-quote cite {
-      display: block; margin-top: .5rem;
-      font-size: clamp(.7rem, 1vw, .88rem);
-      font-style: normal; color: rgba(255,255,255,.3);
-      font-family: var(--font-accent);
-    }
-
-    /* Stats grandes */
-    .slide-stat-row { display: flex; flex-wrap: wrap; gap: 1rem; }
-    .slide-stat {
-      padding: 1rem 1.4rem; border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.07);
-      text-align: center; min-width: 120px; flex: 1;
-    }
-    .slide-stat .n {
-      font-size: clamp(2rem, 4.5vw, 3.8rem);
-      font-weight: 900; color: #f4ede0; line-height: 1;
-    }
-    .slide-stat .l {
-      font-size: clamp(.65rem, 1vw, .82rem);
-      text-transform: uppercase; letter-spacing: .08em;
-      color: rgba(255,255,255,.35); margin-top: .35rem;
-      font-family: var(--font-accent);
-    }
-
-    /* Barra de navegación inferior */
-    .pres-nav {
-      display: flex; align-items: center; justify-content: center; gap: 1rem;
-      padding: .7rem 1rem; background: rgba(0,0,0,.7); flex-shrink: 0;
-    }
-    .pres-nav button {
-      padding: .55rem 1.6rem; border-radius: var(--radius-pill);
-      background: rgba(255,255,255,.1); color: #e8e0d4;
-      border: 1px solid rgba(255,255,255,.16);
-      font-family: var(--font-accent); font-size: .78rem;
-      font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
-      cursor: pointer; transition: background .15s;
-    }
-    .pres-nav button:hover:not(:disabled) { background: rgba(255,255,255,.22); }
-    .pres-nav button:disabled { opacity: .25; cursor: default; }
-    .pres-nav .close-btn { background: rgba(255,107,107,.22); border-color: rgba(255,107,107,.4); }
-    .pres-nav .close-btn:hover { background: rgba(255,107,107,.42); }
-
-    @media (max-width: 680px) {
-      .slide-grid.g2, .slide-grid.g3 { grid-template-columns: 1fr; }
-      .slide { padding: 1.5rem; }
-    }
   </style>
 </head>
 <body>
-
-<!-- ── Topbar del curso ── -->
-<div class="today-strip">
-  <div class="container">
-    <div class="today-box">
-      <span class="today-label">Sesión</span>
-      <time datetime="2026-04-07">7 de abril de 2026</time>
-    </div>
-  </div>
-</div>
 
 <header class="site-header">
   <div class="container">
     <div class="header-content">
       <div class="header-text">
-        <span class="header-pill">FCA · UNAM · Globalización y Empleo 2026-2</span>
+ 
         <h1><img src="../../img/icon-globe.svg" alt="" class="icon-8bit-lg"> Cap. 6 · Modelo Angloamericano</h1>
-        <p class="subtitle">Notas de lectura y sesión · 7 de abril de 2026</p>
-        <p class="instructor">Dr. Jorge Cardiel</p>
-      </div>
-      <div class="header-badges">
-        <a href="../../index.html" class="badge github-badge">← Inicio del curso</a>
+    
+        <div class="header-meta-row">
+          <p class="instructor">Dr. Jorge Cardiel</p>
+          <div class="today-box header-session-box">
+            <span class="today-label">Sesión</span>
+            <time datetime="2026-04-07">7 de abril de 2026</time>
+          </div>
+          <a href="../../index.html" class="badge github-badge">← Inicio del curso</a>
+        </div>
       </div>
     </div>
   </div>
 </header>
 
-<nav class="site-nav">
+<!--<nav class="site-nav">
   <div class="container">
     <ul class="nav-links">
-      <li><a href="#referencia">Referencia</a></li>
+      <li><a href="#referencia">Referencia APA 7</a></li>
       <li><a href="#crisis1973">La crisis de 1973</a></li>
-      <li><a href="#sectores">Sectores en EE.UU.</a></li>
-      <li><a href="#datos-empleo">Datos de empleo</a></li>
-      <li><a href="#sindicatos">Sindicatos</a></li>
-      <li><a href="#irlanda">Irlanda y austeridad</a></li>
-      <li><a href="#trabajo-infantil">Trabajo infantil</a></li>
-      <li><a href="#individualizacion">Individualización</a></li>
-      <li><a href="#mediateca">Mediateca</a></li>
+      <li><a href="#sectores">Los tres sectores de la economía en EE.UU.</a></li>
+      <li><a href="#grandes-pymes">Grandes empresas globales vs. PyMES</a></li>
+      <li><a href="#datos-empleo">La fuerza de trabajo en EE.UU.</a></li>
+      <li><a href="#sindicatos">Sindicatos, AFL-CIO y la homogeneización salarial</a></li>
+      <li><a href="#lock-out">Huelgas y lock-outs: tendencia a la baja</a></li>
+      <li><a href="#subcontratacion">Subcontratación y precariedad laboral</a></li>
+      <li><a href="#irlanda">Irlanda: austeridad, salarios congelados y la fuerza-de-ley</a></li>
+      <li><a href="#trabajo-infantil">Trabajo infantil: lo que no aparece en los medios</a></li>
+      <li><a href="#contrato-social">El contrato social y la ofensiva patronal</a></li>
+      <li><a href="#individualizacion">La individualización como vector del neoliberalismo</a></li>
+      <li><a href="#mediateca">Mediateca · 7 abr 2026</a></li>
     </ul>
   </div>
-</nav>
+</nav>-->
 
 <main class="session-shell">
 
@@ -531,39 +605,34 @@
   <div class="session-hero">
     <span class="eyebrow">📖 Brunet, Pizzi y Moral · 2016 · Cap. 6</span>
     <h1>El Modelo Angloamericano<br>de Relaciones Laborales</h1>
-    <p class="lede">Esta página acompaña la lectura del capítulo 6. Encontrarán citas del texto, notas que explican su contexto y significado, preguntas para pensar, datos graficados y los videos que se discutirán en clase.</p>
+    <p class="lede">Esta página acompaña la lectura del capítulo 6. Encontrarán citas del texto, notas que explican su contexto y significado, preguntas para pensar, datos y los videos que se discutirán en clase.</p>
     <div class="apa-ref" id="referencia">
       <strong>Referencia APA 7:</strong><br>
       Brunet, I., Pizzi, A., y Moral, D. (2016). <em>Sistemas laborales comparados: Las transformaciones de las relaciones de empleo en la era neoliberal</em>. Anthropos Editorial / Universidad Nacional del Litoral.
     </div>
-    <div style="margin-top:1rem;">
-      <button class="btn btn-primary" type="button" data-open-presentation>▶ Presentación</button>
-    </div>
   </div>
 
-  <!-- ── NAV interno ── -->
+  <!-- ── NAV interno 
   <nav class="internal-nav" aria-label="Ir a sección">
-    <a href="#crisis1973">Crisis de 1973</a>
-    <a href="#sectores">Sectores EE.UU.</a>
-    <a href="#agricultura">Agricultura y subsidios</a>
-    <a href="#grandes-pymes">Grandes empresas vs. pymes</a>
-    <a href="#datos-empleo">Fuerza de trabajo</a>
-    <a href="#brecha-genero">Brecha de género</a>
-    <a href="#sindicatos">Sindicatos y AFL-CIO</a>
-    <a href="#lock-out">Huelgas y lock-outs</a>
-    <a href="#subcontratacion">Subcontratación</a>
-    <a href="#irlanda">Irlanda y austeridad</a>
-    <a href="#trabajo-infantil">Trabajo infantil</a>
-    <a href="#contrato-social">Contrato social</a>
-    <a href="#individualizacion">Individualización</a>
-    <a href="#mediateca">Mediateca</a>
-  </nav>
+    <a href="#referencia">Referencia APA 7</a>
+    <a href="#crisis1973">La crisis de 1973</a>
+    <a href="#sectores">Los tres sectores de la economía en EE.UU.</a>
+    <a href="#grandes-pymes">Grandes empresas globales vs. PyMES</a>
+    <a href="#datos-empleo">La fuerza de trabajo en EE.UU.</a>
+    <a href="#sindicatos">Sindicatos, AFL-CIO y la homogeneización salarial</a>
+    <a href="#lock-out">Huelgas y lock-outs: tendencia a la baja</a>
+    <a href="#subcontratacion">Subcontratación y precariedad laboral</a>
+    <a href="#irlanda">Irlanda: austeridad, salarios congelados y la fuerza-de-ley</a>
+    <a href="#trabajo-infantil">Trabajo infantil: lo que no aparece en los medios</a>
+    <a href="#contrato-social">El contrato social y la ofensiva patronal</a>
+    <a href="#individualizacion">La individualización como vector del neoliberalismo</a>
+    <a href="#mediateca">Mediateca · 7 abr 2026</a>
+  </nav>── -->
 
   <!-- ══════════════════════════════════════
        1. LA CRISIS DE 1973
   ══════════════════════════════════════ -->
   <section class="nota-section" id="crisis1973">
-    <p class="section-label">Página 7 del capítulo</p>
     <h2>La crisis de 1973</h2>
 
     <div class="book-quote">
@@ -572,7 +641,7 @@
     </div>
 
     <div class="media-section">
-      <p class="media-label">Video anotado en la lectura</p>
+   
       <div class="video-grid">
         <article class="v-card" data-cats="neoliberalismo historia">
           <div class="thumb" data-yt="AR2Y8NU3k-k">
@@ -590,7 +659,6 @@
        2. SECTORES EN EE.UU.
   ══════════════════════════════════════ -->
   <section class="nota-section" id="sectores">
-    <p class="section-label">Página 11 del capítulo</p>
     <h2>Los tres sectores de la economía en EE.UU.</h2>
 
     <div class="book-quote">
@@ -629,7 +697,7 @@
       </div>
 
       <div class="media-section">
-        <p class="media-label">Videos anotados</p>
+        
         <div class="video-grid">
 
           <article class="v-card">
@@ -668,7 +736,6 @@
        3. GRANDES EMPRESAS Y PYMES
   ══════════════════════════════════════ -->
   <section class="nota-section" id="grandes-pymes">
-    <p class="section-label">Página 11 del capítulo</p>
     <h2>Grandes empresas globales vs. PyMES</h2>
 
     <div class="book-quote">
@@ -706,13 +773,36 @@
     <div class="pregunta">
       Si las PyMES generan el 67 % de los empleos pero solo el 30 % de las exportaciones, ¿qué tan representativas son las condiciones laborales de las grandes empresas globales para el trabajador promedio en EE.UU.?
     </div>
+
+    <div class="media-section">
+      <p class="media-label">PyMES, aranceles y política comercial</p>
+      <div class="video-grid">
+        <article class="v-card">
+          <div class="thumb" data-yt="PmzYUX3X_Qc">
+            <img src="https://img.youtube.com/vi/PmzYUX3X_Qc/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h4>How small US businesses fought back against Trump's tariffs – and won | DW News</h4>
+          </div>
+        </article>
+        <article class="v-card">
+          <div class="thumb" data-yt="MiRZPCUqoQg">
+            <img src="https://img.youtube.com/vi/MiRZPCUqoQg/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          </div>
+          <div class="info">
+            <h4>The True Cost Of Trump’s Tariffs: Small Businesses Speak Out</h4>
+          </div>
+        </article>
+      </div>
+    </div>
   </section>
 
   <!-- ══════════════════════════════════════
        4. FUERZA DE TRABAJO Y DATOS DE EMPLEO
   ══════════════════════════════════════ -->
   <section class="nota-section" id="datos-empleo">
-    <p class="section-label">Página 11 del capítulo</p>
     <h2>La fuerza de trabajo en EE.UU.</h2>
 
     <div class="book-quote">
@@ -785,7 +875,6 @@
        5. SINDICATOS Y AFL-CIO
   ══════════════════════════════════════ -->
   <section class="nota-section" id="sindicatos">
-    <p class="section-label">Página 12 del capítulo</p>
     <h2>Sindicatos, AFL-CIO y la homogeneización salarial</h2>
 
     <div class="book-quote">
@@ -898,7 +987,6 @@
        6. HUELGAS Y LOCK-OUTS
   ══════════════════════════════════════ -->
   <section class="nota-section" id="lock-out">
-    <p class="section-label">Página 13 del capítulo</p>
     <h2>Huelgas y <em class="gloss-term" data-term="lock-out">lock-outs</em>: tendencia a la baja</h2>
 
     <div class="book-quote">
@@ -915,7 +1003,6 @@
        7. SUBCONTRATACIÓN Y PRECARIEDAD
   ══════════════════════════════════════ -->
   <section class="nota-section" id="subcontratacion">
-    <p class="section-label">Página 14 del capítulo</p>
     <h2>Subcontratación y precariedad laboral</h2>
 
     <div class="book-quote">
@@ -926,13 +1013,18 @@
     <div class="pregunta">
       ¿Cómo se relaciona la figura del trabajador subcontratado o «autónomo» en EE.UU. con el auge de plataformas como Uber, DoorDash o Amazon Flex? ¿Es eso nuevo o es la extensión de una lógica ya descrita por el capítulo?
     </div>
+
+    <div style="margin-top:1rem; padding:.85rem 1rem; background:var(--sky); border:var(--border-thin); border-radius:var(--radius-sm); font-size:.88rem; line-height:1.55;">
+      <strong>📁 Caso «Henry» (R.U. · Google Drive)</strong><br>
+      Estructura actual de las relaciones laborales en el Reino Unido · Material en:
+      <a href="https://drive.google.com/drive/folders/1BQnH1sCLkzbo7ShIPpkIISBZSW6dySEC" target="_blank" rel="noopener" style="color:var(--purple); font-weight:700;">Ver carpeta en Drive →</a>
+    </div>
   </section>
 
   <!-- ══════════════════════════════════════
        8. IRLANDA Y AUSTERIDAD
   ══════════════════════════════════════ -->
   <section class="nota-section" id="irlanda">
-    <p class="section-label">Páginas 15-16 del capítulo</p>
     <h2>Irlanda: austeridad, salarios congelados y la fuerza-de-ley</h2>
 
     <div class="book-quote">
@@ -974,19 +1066,12 @@
       El capítulo menciona que tras la crisis la formación continua y la igualdad de género desaparecen de las negociaciones. ¿Qué dice eso sobre cuáles son las prioridades «prescindibles» cuando la austeridad aprieta?
     </div>
 
-    <!-- Case: Henry -->
-    <div style="margin-top:1rem; padding:.85rem 1rem; background:var(--sky); border:var(--border-thin); border-radius:var(--radius-sm); font-size:.88rem; line-height:1.55;">
-      <strong>📁 Caso «Henry» (R.U. · Google Drive)</strong><br>
-      Estructura actual de las relaciones laborales en el Reino Unido · Material en:
-      <a href="https://drive.google.com/drive/folders/1BQnH1sCLkzbo7ShIPpkIISBZSW6dySEC" target="_blank" rel="noopener" style="color:var(--purple); font-weight:700;">Ver carpeta en Drive →</a>
-    </div>
   </section>
 
   <!-- ══════════════════════════════════════
        9. TRABAJO INFANTIL
   ══════════════════════════════════════ -->
   <section class="nota-section" id="trabajo-infantil">
-    <p class="section-label">Página 16 del capítulo</p>
     <h2>Trabajo infantil: lo que no aparece en los medios</h2>
 
     <div class="book-quote">
@@ -1033,7 +1118,6 @@
        10. CONTRATO SOCIAL
   ══════════════════════════════════════ -->
   <section class="nota-section" id="contrato-social">
-    <p class="section-label">Página 17 del capítulo</p>
     <h2>El <em class="gloss-term" data-term="contrato-social">contrato social</em> y la ofensiva patronal</h2>
 
     <div class="book-quote">
@@ -1065,7 +1149,6 @@
        11. INDIVIDUALIZACIÓN
   ══════════════════════════════════════ -->
   <section class="nota-section" id="individualizacion">
-    <p class="section-label">Página 19 del capítulo</p>
     <h2>La individualización como vector del neoliberalismo</h2>
 
     <div class="book-quote">
@@ -1092,7 +1175,6 @@
        12. MEDIATECA DE LA SESIÓN
   ══════════════════════════════════════ -->
   <section class="nota-section" id="mediateca">
-    <p class="section-label">Todos los videos de la sesión</p>
     <h2>Mediateca · 7 abr 2026</h2>
     <p style="font-size:.9rem; color:var(--text-muted); margin-bottom:1rem;">Los videos están organizados por el orden en que aparecen en las notas de lectura.</p>
 
@@ -1105,6 +1187,10 @@
       <article class="v-card"><div class="thumb" data-yt="ARGSrVvNSvQ"><img src="https://img.youtube.com/vi/ARGSrVvNSvQ/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>México y EE.UU.: agricultura y comercio</h4></div></article>
 
       <article class="v-card"><div class="thumb" data-yt="YPUj0sFEfxU"><img src="https://img.youtube.com/vi/YPUj0sFEfxU/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>Exportación de maíz desde EE.UU.</h4></div></article>
+
+      <article class="v-card"><div class="thumb" data-yt="PmzYUX3X_Qc"><img src="https://img.youtube.com/vi/PmzYUX3X_Qc/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>How small US businesses fought back against Trump's tariffs – and won | DW News</h4></div></article>
+
+      <article class="v-card"><div class="thumb" data-yt="MiRZPCUqoQg"><img src="https://img.youtube.com/vi/MiRZPCUqoQg/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>The True Cost Of Trump’s Tariffs: Small Businesses Speak Out</h4></div></article>
 
       <article class="v-card"><div class="thumb" data-yt="D_-9uACGJeo"><img src="https://img.youtube.com/vi/D_-9uACGJeo/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div><div class="info"><h4>Sindicato en Amazon</h4></div></article>
 
@@ -1128,9 +1214,9 @@
 
     </div>
 
-    <p style="font-size:.8rem; color:var(--text-muted); margin-top:1rem;">
+    <!--<p style="font-size:.8rem; color:var(--text-muted); margin-top:1rem;">
       <a href="../../mediateca.html" style="color:var(--purple); font-weight:700;">Ver mediateca completa del curso →</a>
-    </p>
+    </p>-->
   </section>
 
 </main>
@@ -1138,7 +1224,7 @@
 <footer class="site-footer" style="text-align:center; padding:1.5rem; border-top:var(--border-thin); font-family:var(--font-accent); font-size:.78rem; color:var(--text-muted);">
   Globalización y Empleo 2026-2 · FCA UNAM · Dr. Jorge Cardiel ·
   <a href="../../index.html" style="color:var(--teal);">Inicio del curso</a> ·
-  <a href="../../mediateca.html" style="color:var(--teal);">Mediateca</a>
+
 </footer>
 
 <!-- ── Glosario modal ── -->
@@ -1150,222 +1236,210 @@
   </div>
 </div>
 
-<!-- ── Presentación overlay ── -->
-<div class="pres-overlay" data-deck id="pres-overlay" role="dialog" aria-modal="true">
-  <div class="pres-bar">
-    <span class="pres-bar-title">Cap. 6 · Modelo Angloamericano · 7 abr 2026</span>
-    <span class="pres-counter" data-slide-counter>1 / 10</span>
-  </div>
-  <div class="pres-progress"><div class="pres-fill" data-progress-fill></div></div>
-
-  <div class="slides-wrap">
-
-    <!-- 01 -->
-    <section class="slide active" data-slide aria-hidden="false">
-      <span class="slide-eyebrow">01 · Portada</span>
-      <h2 class="slide-title">El Modelo Angloamericano de Relaciones Laborales</h2>
-      <p class="slide-body">Capítulo 6 · Brunet, I., Pizzi, A., y Moral, D. (2016). <em>Sistemas laborales comparados</em>. Anthropos Editorial.</p>
-      <div class="slide-grid g3">
-        <div class="slide-card"><h3>Países</h3><ul><li>Estados Unidos</li><li>Reino Unido</li><li>Canadá</li><li>Australia</li><li>Nueva Zelanda</li><li>Irlanda</li></ul></div>
-        <div class="slide-card"><h3>Tesis central</h3><p>Hay una convergencia hacia el ordenamiento privado: relaciones laborales definidas a nivel de empresa, contratos individuales y debilitamiento de los derechos colectivos.</p></div>
-        <div class="slide-card"><h3>Sesión</h3><p>7 de abril de 2026 · Unidad 2 · Dr. Jorge Cardiel · FCA UNAM</p></div>
-      </div>
-    </section>
-
-    <!-- 02 -->
-    <section class="slide" data-slide aria-hidden="true">
-      <span class="slide-eyebrow">02 · La crisis de 1973</span>
-      <h2 class="slide-title">A partir de 1973: el quiebre del modelo keynesiano</h2>
-      <p class="slide-body">La crisis del petróleo de 1973 y la estanflación marcan el inicio del desmantelamiento del Estado de Bienestar en los países angloamericanos y abren paso al neoliberalismo de Reagan y Thatcher.</p>
-      <div class="slide-quote">
-        «A partir de 1973» [se inicia la era de estanflación y crisis económica que conduce a los empresarios a profundizar su ataque contra las organizaciones obreras].
-        <cite>Brunet, Pizzi y Moral (2016, p. 253).</cite>
-      </div>
-    </section>
-
-    <!-- 03 -->
-    <section class="slide" data-slide aria-hidden="true">
-      <span class="slide-eyebrow">03 · Los tres sectores</span>
-      <h2 class="slide-title">Estructura económica de EE.UU.: tres sectores</h2>
-      <div class="slide-stat-row">
-        <div class="slide-stat"><p class="n">80%</p><p class="l">Servicios del PIB</p></div>
-        <div class="slide-stat"><p class="n">19%</p><p class="l">Industrial</p></div>
-        <div class="slide-stat"><p class="n">1%</p><p class="l">Agricultura</p></div>
-      </div>
-      <div class="slide-grid g2" style="margin-top:.5rem;">
-        <div class="slide-card">
-          <h3>Sector servicios incluye</h3>
-          <ul><li>Servicios científicos, profesionales y técnicos</li><li>Salud y educación</li><li>Finanzas, artes, entretenimientos</li><li>Transporte y almacenamiento</li></ul>
-        </div>
-        <div class="slide-card">
-          <h3>Sector manufacturero incluye</h3>
-          <ul><li>Textil, metal, plásticos, madera</li><li>Electricidad y componentes</li><li>Muebles, alimentación y bebidas</li></ul>
-          <p style="margin-top:.5rem; font-size:.75rem; color:rgba(200,190,178,.6);">Cita Eurofound (2014b).</p>
-        </div>
-      </div>
-      <p class="slide-body" style="font-size:.82rem; color:rgba(200,190,178,.7);">Nota: el 1 % de agricultura de EE.UU. es muy grande en términos absolutos. EE.UU. subsidia su campo de manera significativa — lo que contradice el discurso de libre mercado puro.</p>
-    </section>
-
-    <!-- 04 -->
-    <section class="slide" data-slide aria-hidden="true">
-      <span class="slide-eyebrow">04 · Grandes empresas y PyMES</span>
-      <h2 class="slide-title">¿Quién genera el empleo?</h2>
-      <div class="slide-grid g2">
-        <div class="slide-card" style="border-top:3px solid rgba(78,205,196,.5);">
-          <h3>🏢 Grandes empresas globales</h3>
-          <ul>
-            <li>23 % del PIB directo · 31 % indirecto</li>
-            <li>33 % de los puestos de trabajo</li>
-            <li><strong>70 % de las exportaciones</strong></li>
-            <li>41 % de ganancias de productividad</li>
-          </ul>
-        </div>
-        <div class="slide-card" style="border-top:3px solid rgba(255,211,61,.5);">
-          <h3>🏪 PyMES</h3>
-          <ul>
-            <li>&gt;50 % del PIB</li>
-            <li><strong>67 % de todos los empleos</strong></li>
-            <li>51 % de ganancias de productividad</li>
-            <li>30 % de las exportaciones</li>
-          </ul>
-        </div>
-      </div>
-      <div class="slide-quote">Las PyMES generan 2 de cada 3 empleos, pero las grandes empresas controlan 70 % de las exportaciones. ¿Qué tan representativas son las condiciones de trabajo de las grandes empresas para el trabajador promedio?</div>
-    </section>
-
-    <!-- 05 -->
-    <section class="slide" data-slide aria-hidden="true">
-      <span class="slide-eyebrow">05 · La fuerza de trabajo</span>
-      <h2 class="slide-title">154.4 millones de trabajadores en EE.UU.</h2>
-      <div class="slide-stat-row">
-        <div class="slide-stat"><p class="n">81%</p><p class="l">Tiempo completo</p></div>
-        <div class="slide-stat"><p class="n">39%</p><p class="l">Puestos prof./ejecutivos</p></div>
-        <div class="slide-stat"><p class="n">52%</p><p class="l">Mujeres en puestos gerenciales</p></div>
-        <div class="slide-stat"><p class="n">19%</p><p class="l">Tiempo parcial</p></div>
-      </div>
-      <div class="slide-quote">
-        ¿El trabajo migrante está invisibilizado en los sectores que más ocupa? Porque está en la «sombra» o lo informal. ¿Cuál es la diferencia entre <em>shadow economy</em> e <em>informal economy</em>?
-      </div>
-    </section>
-
-    <!-- 06 -->
-    <section class="slide" data-slide aria-hidden="true">
-      <span class="slide-eyebrow">06 · Brecha de género y desigualdad</span>
-      <h2 class="slide-title">Salarios, género y desigualdad creciente</h2>
-      <div class="slide-grid g2">
-        <div class="slide-card">
-          <h3>Brecha salarial de género</h3>
-          <p>Hombres: <strong>$43,200/año</strong></p>
-          <p>Mujeres: <strong>$35,560/año</strong></p>
-          <p style="margin-top:.4rem; font-size:.78rem; color:rgba(200,190,178,.6);">Mismas condiciones · diferencia: −18 %</p>
-        </div>
-        <div class="slide-card">
-          <h3>Desigualdad salarial creciente</h3>
-          <p>Índice de Gini salarial:</p>
-          <p>1970: <strong>&lt;0.40</strong> → 2014: <strong>0.477</strong></p>
-          <p style="margin-top:.4rem; font-size:.78rem; color:rgba(200,190,178,.6);">Cita a Brenner (2007).</p>
-        </div>
-      </div>
-      <div class="slide-quote">
-        Históricamente los ingresos subían un 10 % al año. Desde la crisis de 2009, solo un 3.6 %.
-        <cite>Brunet, Pizzi y Moral (2016, p. 262).</cite>
-      </div>
-    </section>
-
-    <!-- 07 -->
-    <section class="slide" data-slide aria-hidden="true">
-      <span class="slide-eyebrow">07 · Sindicatos</span>
-      <h2 class="slide-title">Sindicatos: AFL-CIO y el declive de la afiliación</h2>
-      <div class="slide-grid g2">
-        <div class="slide-card">
-          <h3>Afiliación sindical en EE.UU.</h3>
-          <p>1980 → <strong>22 %</strong></p>
-          <p>2006 → <strong>12 %</strong></p>
-          <p style="margin-top:.5rem; font-size:.78rem; color:rgba(200,190,178,.6);">Katz et al. (2007).</p>
-        </div>
-        <div class="slide-card">
-          <h3>Lo que hace la AFL-CIO</h3>
-          <p>Desarrolla criterios estandarizados para negociar convenios y acuerdos salariales que los sindicatos usan en sus negociaciones con las empresas → favorece cierta homogeneidad salarial.</p>
-        </div>
-      </div>
-      <p class="slide-body" style="margin-top:.5rem;">Nuevo sindicalismo: Amazon (ALU), Starbucks, sectores de servicios. ¿Tendencia o anomalía?</p>
-    </section>
-
-    <!-- 08 -->
-    <section class="slide" data-slide aria-hidden="true">
-      <span class="slide-eyebrow">08 · Irlanda y austeridad</span>
-      <h2 class="slide-title">Irlanda: cuando el FMI dicta los salarios</h2>
-      <div class="slide-quote">
-        «Los acuerdos nacionales sobre temas salariales colapsaron en 2010, tras las exigencias de austeridad impuestas como condición del rescate financiero de la UE y el FMI.»
-        <cite>Brunet, Pizzi y Moral (2016, p. 269).</cite>
-      </div>
-      <div class="slide-grid g2">
-        <div class="slide-card">
-          <h3>Respuesta empresarial a la crisis 2008</h3>
-          <ul>
-            <li>Congelaron salarios básicos</li>
-            <li>Recortaron horas extras</li>
-            <li>Solo actualizaron salarios en exportación (farma, alimentos, med.)</li>
-          </ul>
-        </div>
-        <div class="slide-card">
-          <h3>Sector público</h3>
-          <p>Salarios <strong>recortados entre 5 % y 15 %</strong> en 2009.</p>
-          <p style="margin-top:.5rem; font-size:.8rem; color:rgba(200,190,178,.6);">Nota: congelar salarios = disminuirlos efectivamente (como pasó en México con el cambio de SM a UMAs).</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 09 -->
-    <section class="slide" data-slide aria-hidden="true">
-      <span class="slide-eyebrow">09 · Contrato social e individualización</span>
-      <h2 class="slide-title">«No hay sociedad» — Thatcher</h2>
-      <div class="slide-quote">
-        «Esta legislación aborda la regulación laboral siempre desde un punto de vista de los derechos individuales de los trabajadores, dejando al margen los derechos de las organizaciones (que constituyen la fuente del eventual poder estructural de los trabajadores).»
-        <cite>Brunet, Pizzi y Moral (2016, p. 273).</cite>
-      </div>
-      <div class="slide-quote" style="margin-top:.5rem;">
-        «El modelo norteamericano favorece más sistemáticamente a los empresarios… los empresarios tienen derecho a contratar trabajadores para reemplazar a quienes hacen huelgas… el recurso continuo a la contratación de trabajadores «a voluntad»…»
-        <cite>Brunet, Pizzi y Moral (2016, p. 276).</cite>
-      </div>
-      <p class="slide-body" style="margin-top:.5rem;">La individualización es un vector del neoliberalismo: menos trabajo organizado = menos poder estructural para los trabajadores.</p>
-    </section>
-
-    <!-- 10 -->
-    <section class="slide" data-slide aria-hidden="true">
-      <span class="slide-eyebrow">10 · Preguntas para discutir</span>
-      <h2 class="slide-title">Para discutir en clase</h2>
-      <div class="slide-grid g2">
-        <div class="slide-card">
-          <h3>Preguntas del texto</h3>
-          <ul>
-            <li>¿Por qué EE.UU. subsidia su agricultura si predica el libre mercado?</li>
-            <li>¿Qué es la <em>shadow economy</em> y quién queda invisible en las estadísticas?</li>
-            <li>¿Congelar salarios es lo mismo que bajarlos?</li>
-          </ul>
-        </div>
-        <div class="slide-card">
-          <h3>Preguntas de análisis</h3>
-          <ul>
-            <li>¿Proteger derechos individuales sin derechos colectivos debilita a los trabajadores?</li>
-            <li>¿El resurgimiento sindical en Amazon y Starbucks es tendencia estructural?</li>
-            <li>¿Hay alguna relación entre caída sindical y aumento del Gini salarial?</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-  </div><!-- .slides-wrap -->
-
-  <div class="pres-nav">
-    <button type="button" data-prev>← Anterior</button>
-    <button type="button" class="close-btn" data-close-presentation>Cerrar</button>
-    <button type="button" data-next>Siguiente →</button>
-  </div>
-</div>
-
 <!-- ── Scripts ── -->
 <script>
+const VIDEO_META = {
+  "AR2Y8NU3k-k": {
+    title: "Energy crisis: what can 1973 teach us?",
+    channel: "The Economist",
+    date: "2023-01-12"
+  },
+  "wcR815SfWOU": {
+    title: "Is capitalism actually broken?",
+    channel: "TED-Ed",
+    date: "2022-11-01"
+  },
+  "ARGSrVvNSvQ": {
+    title: "High costs, tariffs hammering U.S. farmers",
+    channel: "60 Minutes",
+    date: "2025-11-10"
+  },
+  "YPUj0sFEfxU": {
+    title: "Why China’s Economy Doesn’t Want American Corn Anymore | WSJ U.S. vs. China",
+    channel: "The Wall Street Journal",
+    date: "2023-07-24"
+  },
+  "PmzYUX3X_Qc": {
+    title: "How small US businesses fought back against Trump's tariffs – and won | DW News",
+    channel: "DW News",
+    date: "2026-02-25"
+  },
+  "MiRZPCUqoQg": {
+    title: "The True Cost Of Trump’s Tariffs: Small Businesses Speak Out",
+    channel: "CNBC",
+    date: "2025-11-07"
+  },
+  "D_-9uACGJeo": {
+    title: "Why Starbucks, Apple And Google Are Unionizing Now For The First Time",
+    channel: "CNBC",
+    date: "2022-08-05"
+  },
+  "nESQX_qTZzA": {
+    title: "How Amazon Fends Off Unions",
+    channel: "CNBC",
+    date: "2019-08-22"
+  },
+  "TBGwcCZK6Ok": {
+    title: "Why Starbucks Workers Fought to Unionize",
+    channel: "Bloomberg Originals",
+    date: "2022-04-05"
+  },
+  "L7OIpBpgXMI": {
+    title: "How Starbucks Workers DEFEATED Company's Union-Busting",
+    channel: "More Perfect Union",
+    date: "2022-02-24"
+  },
+  "rs5Hoq67KQk": {
+    title: "How US corporations try to stop a resurgence of labor unions | Business Beyond",
+    channel: "DW News",
+    date: "2022-09-16"
+  },
+  "XWFocLnBdhM": {
+    title: "The Decline of Unions in the United States",
+    channel: "MIT OpenCourseWare",
+    date: "2017-03-07"
+  },
+  "zpWhy5krLXk": {
+    title: "🇺🇸The decline of labour unions in the US | Fault Lines",
+    channel: "Al Jazeera English",
+    date: "2011-12-19"
+  },
+  "KtxITylE73U": {
+    title: "The fall (and rise?) of unions in the US",
+    channel: "Vox",
+    date: "2022-08-09"
+  },
+  "OoCnObkbd7o": {
+    title: "How does child labor still exist in America?",
+    channel: "NBC News",
+    date: "2023-07-31"
+  },
+  "aFjoraev49g": {
+    title: "Child Labor: It's Back!",
+    channel: "Wisecrack",
+    date: "2023-05-22"
+  }
+};
+
+function formatVideoDate(dateString) {
+  const [year, month, day] = dateString.split("-");
+  const months = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+  return `${Number(day)} ${months[Number(month) - 1]} ${year}`;
+}
+
+function setSectionOpen(section, open) {
+  const body = section.querySelector(".nota-section-body");
+  const trigger = section.querySelector(".nota-section-trigger");
+  if (!body || !trigger) return;
+  section.classList.toggle("is-open", open);
+  body.hidden = !open;
+  trigger.setAttribute("aria-expanded", String(open));
+}
+
+function setupSectionAccordions() {
+  document.body.classList.add("js-enhanced");
+  document.querySelectorAll(".nota-section").forEach(section => {
+    const title = section.querySelector(":scope > h2");
+    if (!title) return;
+
+    section.classList.add("is-collapsible");
+
+    const header = document.createElement("div");
+    header.className = "nota-section-header";
+
+    const trigger = document.createElement("button");
+    trigger.type = "button";
+    trigger.className = "nota-section-trigger";
+    trigger.innerHTML = `<span class="nota-section-trigger-text">${title.textContent.replace(/\s+/g, " ").trim()}</span>`;
+
+    const body = document.createElement("div");
+    body.className = "nota-section-body";
+    body.id = `section-body-${section.id}`;
+
+    while (section.firstChild) {
+      body.appendChild(section.firstChild);
+    }
+
+    const movedTitle = body.querySelector(":scope > h2");
+    if (movedTitle) movedTitle.classList.add("visually-hidden");
+
+    trigger.setAttribute("aria-controls", body.id);
+    trigger.setAttribute("aria-expanded", "false");
+    trigger.addEventListener("click", () => {
+      setSectionOpen(section, !section.classList.contains("is-open"));
+    });
+
+    body.hidden = true;
+    header.appendChild(trigger);
+    section.appendChild(header);
+    section.appendChild(body);
+  });
+}
+
+function hydrateVideoCards() {
+  document.querySelectorAll(".v-card .thumb[data-yt]").forEach(thumb => {
+    const meta = VIDEO_META[thumb.dataset.yt];
+    const card = thumb.closest(".v-card");
+    const info = card?.querySelector(".info");
+    const title = info?.querySelector("h4");
+    if (!meta || !info || !title) return;
+
+    const formattedDate = formatVideoDate(meta.date);
+    title.textContent = meta.title;
+
+    let metaLine = info.querySelector(".video-meta");
+    if (!metaLine) {
+      metaLine = document.createElement("p");
+      metaLine.className = "video-meta";
+      const quote = info.querySelector(".v-q");
+      if (quote) info.insertBefore(metaLine, quote);
+      else info.appendChild(metaLine);
+    }
+    metaLine.innerHTML = `${meta.channel} · <time datetime="${meta.date}">${formattedDate}</time>`;
+
+    const img = thumb.querySelector("img");
+    if (img) img.alt = meta.title;
+    thumb.setAttribute("aria-label", `${meta.title}. ${meta.channel}. ${formattedDate}.`);
+  });
+}
+
+function openSectionFromHash(shouldScroll = false) {
+  const id = decodeURIComponent(window.location.hash.replace(/^#/, ""));
+  if (!id) return;
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  const section = target.closest(".nota-section");
+  if (section) setSectionOpen(section, true);
+
+  if (shouldScroll) {
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+}
+
+function wireIndexLinks() {
+  document.querySelectorAll('.site-nav a[href^="#"], .internal-nav a[href^="#"]').forEach(link => {
+    link.addEventListener("click", event => {
+      const id = link.getAttribute("href").replace(/^#/, "");
+      const target = document.getElementById(id);
+      if (!target) return;
+
+      event.preventDefault();
+      const section = target.closest(".nota-section");
+      if (section) setSectionOpen(section, true);
+
+      if (history.pushState) history.pushState(null, "", `#${id}`);
+      else window.location.hash = id;
+
+      requestAnimationFrame(() => {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  });
+}
+
 /* Glosario */
 const TERMS = {
   'shadow-economy': {
@@ -1409,6 +1483,12 @@ glClose.addEventListener('click', () => { glOverlay.classList.remove('open'); do
 glOverlay.addEventListener('click', e => { if(e.target===glOverlay){ glOverlay.classList.remove('open'); document.body.style.overflow=''; } });
 document.addEventListener('keydown', e => { if(e.key==='Escape' && glOverlay.classList.contains('open')){ glOverlay.classList.remove('open'); document.body.style.overflow=''; } });
 
+setupSectionAccordions();
+hydrateVideoCards();
+wireIndexLinks();
+openSectionFromHash(Boolean(window.location.hash));
+window.addEventListener("hashchange", () => openSectionFromHash(true));
+
 /* YouTube lazy */
 document.querySelectorAll('.thumb[data-yt]').forEach(thumb => {
   thumb.addEventListener('click', function(){
@@ -1420,6 +1500,5 @@ document.querySelectorAll('.thumb[data-yt]').forEach(thumb => {
   });
 });
 </script>
-<script src="./assets/presentation.js"></script>
 </body>
 </html>
