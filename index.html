@@ -28,7 +28,7 @@
     <div class="container">
         <div class="header-content">
             <div class="header-text">
-                <span class="header-pill">FCA · UNAM · Licenciatura en Negocios Internacionales</span>
+                <!--<span class="header-pill">FCA · UNAM · Licenciatura en Negocios Internacionales</span>-->
                 <h1><img src="img/icon-globe.svg" alt="" class="icon-8bit-lg"> Globalización y Empleo</h1>
                 <p class="subtitle">Semestre 2026-2 · Facultad de Contaduría y Administración · UNAM</p>
                 <p class="instructor">Dr. Jorge Cardiel</p>
@@ -64,21 +64,20 @@
         <div class="accordion-body">
             <div class="announcements">
                 <article class="announcement">
-                    <span class="announcement-date">24 mar 2026</span>
+                    <div class="announcement-meta">
+                        <span class="announcement-date">24 mar 2026</span>
+                    </div>
                     <div class="announcement-body">
                         <strong>Primer avance del trabajo de investigación — revisiones 16, 21 y 23 de abril</strong>
                         <p>Los equipos deben estar formados antes del <strong>jueves 9 de abril</strong> (1 a 5 personas). Las revisiones del primer avance se realizarán en clase los días 16, 21 y 23 de abril. <a href="unidad2/investigacion.html" style="color: var(--teal); text-decoration: underline; font-weight: 700;">Ver instrucciones completas →</a></p>
                     </div>
                 </article>
-                <article class="announcement">
-                    <span class="announcement-date">24 mar 2026</span>
-                    <div class="announcement-body">
-                        <strong>No habrá clase el jueves 26 de marzo</strong>
-                        <p>Nos vemos regresando de Semana Santa.</p>
-                    </div>
-                </article>
             </div>
             <div class="past-mosaic" style="margin-top:.75rem;">
+                <div class="past-mini" style="cursor:default;">
+                    <span class="pm-num">24 mar</span>
+                    <span class="pm-title">No habrá clase el jueves 26 de marzo</span>
+                </div>
                 <div class="past-mini" style="cursor:default;">
                     <span class="pm-num">19 mar</span>
                     <span class="pm-title">Examen parcial 1</span>
@@ -118,44 +117,6 @@
     <details id="unidades" class="section accordion">
         <summary class="accordion-header"><img src="img/icon-book.svg" alt="" class="icon-8bit"> Unidad 1</summary>
         <div class="accordion-body">
-            <style>
-                .past-mosaic {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: .5rem;
-                    margin-bottom: 1rem;
-                }
-                .past-mini {
-                    display: flex;
-                    align-items: center;
-                    gap: .6rem;
-                    background: var(--surface);
-                    border: 1px solid rgba(0,0,0,0.12);
-                    border-radius: var(--radius-sm);
-                    padding: .5rem .75rem;
-                    text-decoration: none;
-                    color: var(--text-muted);
-                    font-size: .82rem;
-                    line-height: 1.25;
-                    opacity: .55;
-                    transition: opacity .2s;
-                }
-                .past-mini:hover { opacity: .85; }
-                .past-mini .pm-num {
-                    font-family: var(--font-accent);
-                    font-weight: 800;
-                    font-size: .85rem;
-                    color: var(--ink);
-                    min-width: 22px;
-                }
-                .past-mini .pm-title {
-                    font-weight: 600;
-                    color: var(--ink);
-                }
-                @media (max-width: 520px) {
-                    .past-mosaic { grid-template-columns: 1fr; }
-                }
-            </style>
             <div class="past-mosaic">
                 <a href="actividades/actividad_video_digital_world_and_us_25feb26.html" class="past-mini">
                     <span class="pm-num">03</span>
@@ -178,7 +139,6 @@
                     <span class="pm-title">Sistemas laborales comparados</span>
                 </a>
             </div>
-            </div>
         </div>
     </details>
 
@@ -186,15 +146,13 @@
     <details id="unidad2" class="section accordion" open>
         <summary class="accordion-header"><img src="img/icon-book.svg" alt="" class="icon-8bit"> Unidad 2</summary>
         <div class="accordion-body">
-            <div class="sessions-list">
-                <a href="actividades/actividad_feminist_perspectives_global_24mar26/index.html" class="session-card active-session">
-                    <span class="session-number">08</span>
-                    <div class="session-info">
-                        <h3>Feminist Perspectives in Global Studies</h3>
-                        <p>Valentine M. Moghadam · trabajo, cuidado, violencia, instituciones y movimientos</p>
-                    </div>
-                    <span class="session-status status-available">Disponible →</span>
+            <div class="past-mosaic">
+                <a href="actividades/actividad_feminist_perspectives_global_24mar26/index.html" class="past-mini">
+                    <span class="pm-num">08</span>
+                    <span class="pm-title">Feminist Perspectives in Global Studies</span>
                 </a>
+            </div>
+            <div class="sessions-list">
                 <a href="sesiones/7abr26/index.html" class="session-card active-session">
                     <span class="session-number">09</span>
                     <div class="session-info">
@@ -219,65 +177,70 @@
     <details id="calendario" class="section accordion">
         <summary class="accordion-header"><img src="img/icon-calendar.svg" alt="" class="icon-8bit"> Fechas clave del semestre</summary>
         <div class="accordion-body">
-            <!-- Exámenes parciales -->
+            <!-- Trabajo de investigación -->
             <div class="calendario-bloque">
-                <h3><img src="img/icon-note.svg" alt="" class="icon-8bit-sm"> Exámenes parciales</h3>
-                <div class="alert-box">
-                    <strong>Importante:</strong> planea con anticipación y revisa los materiales de la unidad correspondiente.
-                </div>
-                <div class="timeline">
-                    <div class="timeline-item parcial-2">
-                        <span class="timeline-badge badge-accent">Parcial 2</span>
-                        <span class="timeline-date">Jue 7 de mayo</span>
-                        <span class="timeline-event">Aplicación en clase</span>
+                <h3><img src="img/icon-book.svg" alt="" class="icon-8bit-sm"> Trabajo de investigación (en equipo)</h3>
+                <div class="calendar-list">
+                    <div class="calendar-entry">
+                        <span class="timeline-badge badge-accent">Equipo</span>
+                        <div class="calendar-copy">
+                            <span class="timeline-date">Jue 9 de abril</span>
+                            <span class="timeline-event">Límite para formar equipo (1 a 5 personas)</span>
+                        </div>
                     </div>
-                </div>
-                <div class="calendario-notas">
-                    <p>Recomendación: revisar previamente notas, esquemas o controles de lectura.</p>
-                    <p>Traer controles de lectura, notas o esquemas el día del examen.</p>
-                </div><br>
-                <div class="history-block">
-                    <div class="history-list">
-                        <div class="history-item" style="text-align: center;">
-                            <span class="history-badge">Parcial 1</span>
-                            <span>Jue 19 de marzo · Aplicación en clase</span>
+                    <div class="calendar-entry">
+                        <span class="timeline-badge">1.er avance</span>
+                        <div class="calendar-copy">
+                            <span class="timeline-date">16, 21 y 23 de abril</span>
+                            <span class="timeline-event">Revisión en clase · <a href="unidad2/investigacion.html" style="color:var(--teal);text-decoration:underline;">ver instrucciones</a></span>
+                        </div>
+                    </div>
+                    <div class="calendar-entry">
+                        <span class="timeline-badge badge-success">Entrega</span>
+                        <div class="calendar-copy">
+                            <span class="timeline-date">Mar 2 de junio de 2026</span>
+                            <span class="timeline-event">Subir en Moodle en el formato indicado</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Trabajo de investigación -->
+            <!-- Exámenes parciales -->
             <div class="calendario-bloque">
-                <h3><img src="img/icon-book.svg" alt="" class="icon-8bit-sm"> Trabajo de investigación (en equipo)</h3>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <span class="timeline-badge badge-accent">Equipo</span>
-                        <span class="timeline-date">Jue 9 de abril</span>
-                        <span class="timeline-event">Límite para formar equipo (1 a 5 personas)</span>
+                <h3><img src="img/icon-note.svg" alt="" class="icon-8bit-sm"> Exámenes parciales</h3>
+                <div class="calendar-list">
+                    <div class="calendar-entry">
+                        <span class="timeline-badge badge-accent">Parcial 2</span>
+                        <div class="calendar-copy">
+                            <span class="timeline-date">Jue 7 de mayo</span>
+                            <span class="timeline-event">Aplicación en clase</span>
+                        </div>
                     </div>
-                    <div class="timeline-item">
-                        <span class="timeline-badge">1.er avance</span>
-                        <span class="timeline-date">16, 21 y 23 de abril</span>
-                        <span class="timeline-event">Revisión en clase · <a href="unidad2/investigacion.html" style="color:var(--teal);text-decoration:underline;">ver instrucciones</a></span>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="timeline-badge badge-success">Entrega</span>
-                        <span class="timeline-date">Mar 2 de junio de 2026</span>
-                        <span class="timeline-event">Subir en Moodle en el formato indicado</span>
+                    <div class="calendar-entry archived">
+                        <span class="timeline-badge">Parcial 1</span>
+                        <div class="calendar-copy">
+                            <span class="timeline-date">Jue 19 de marzo</span>
+                            <span class="timeline-event">Aplicación en clase</span>
+                        </div>
                     </div>
                 </div>
+                <p class="calendar-note"><strong>Importante:</strong> planea con anticipación y revisa los materiales de la unidad correspondiente.</p>
+                <p class="calendar-note">Trae controles de lectura, notas o esquemas el día del examen.</p>
             </div>
 
             <!-- Exposiciones -->
             <div class="calendario-bloque">
                 <h3><img src="img/icon-megaphone.svg" alt="" class="icon-8bit-sm"> Exposiciones (equipos)</h3>
-                <div class="expo-fechas">
-                    <span class="expo-fecha">2 de junio</span>
-                    <span class="expo-fecha">4 de junio</span>
-                    <span class="expo-fecha">9 de junio</span>
-                    <span class="expo-fecha">11 de junio</span>
+                <div class="calendar-list">
+                    <div class="calendar-entry">
+                        <span class="timeline-badge">Fechas</span>
+                        <div class="calendar-copy">
+                            <span class="timeline-date">2, 4, 9 y 11 de junio</span>
+                            <span class="timeline-event">Presentaciones finales por equipo</span>
+                        </div>
+                    </div>
                 </div>
-                <p class="note">Nota: el orden de exposición por equipo se publicará en Moodle.</p>
+                <p class="calendar-note">Nota: el orden de exposición por equipo se publicará en Moodle.</p>
             </div>
         </div>
     </details>

@@ -56,15 +56,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-.today-strip {
-    padding: .85rem 0 0;
-}
-
-.today-strip .container {
-    display: flex;
-    justify-content: flex-end;
-}
-
 .today-box {
     display: inline-flex;
     align-items: center;
@@ -157,10 +148,23 @@ a:hover { color: var(--coral); }
 }
 
 .instructor {
-    margin-top: .4rem;
     font-size: 1.05rem;
     font-weight: 600;
     color: var(--coral);
+}
+
+.header-meta {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    flex-wrap: wrap;
+    margin-top: .5rem;
+}
+
+.header-today {
+    padding: .35rem .75rem;
+    font-size: .78rem;
+    box-shadow: 3px 3px 0 var(--ink);
 }
 
 /* pill-style tag above the header */
@@ -338,6 +342,14 @@ a:hover { color: var(--coral); }
     margin-bottom: 1rem;
 }
 
+.announcement-meta {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    flex-wrap: wrap;
+    margin-bottom: .4rem;
+}
+
 .announcement-date {
     display: inline-block;
     font-size: .75rem;
@@ -346,7 +358,7 @@ a:hover { color: var(--coral); }
     color: var(--coral);
     text-transform: uppercase;
     letter-spacing: .5px;
-    margin-bottom: .4rem;
+    margin-bottom: 0;
 }
 
 .announcement-body strong {
@@ -359,6 +371,44 @@ a:hover { color: var(--coral); }
 .announcement-body p {
     color: var(--text-muted);
     font-size: .92rem;
+}
+
+.past-mosaic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .5rem;
+    margin-bottom: 1rem;
+}
+
+.past-mini {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    background: var(--surface);
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: var(--radius-sm);
+    padding: .5rem .75rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: .82rem;
+    line-height: 1.25;
+    opacity: .55;
+    transition: opacity .2s;
+}
+
+.past-mini:hover { opacity: .85; }
+
+.past-mini .pm-num {
+    font-family: var(--font-accent);
+    font-weight: 800;
+    font-size: .85rem;
+    color: var(--ink);
+    min-width: 22px;
+}
+
+.past-mini .pm-title {
+    font-weight: 600;
+    color: var(--ink);
 }
 
 /* ── Unit Cards ────────────────────────────────────── */
@@ -479,11 +529,6 @@ a.session-card:hover {
     border: 2px solid var(--green);
 }
 
-.status-locked {
-    color: var(--text-muted);
-    opacity: .6;
-}
-
 .session-card.locked {
     opacity: .55;
     cursor: default;
@@ -579,6 +624,52 @@ a.session-card:hover {
     color: var(--text-muted);
 }
 
+.calendar-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-entry {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .85rem;
+    align-items: start;
+    padding: .85rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.calendar-list .calendar-entry:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.calendar-entry:last-child {
+    padding-bottom: 0;
+}
+
+.calendar-copy {
+    min-width: 0;
+}
+
+.calendar-entry .timeline-badge {
+    margin-bottom: 0;
+    justify-self: start;
+}
+
+.calendar-entry.archived {
+    opacity: .62;
+}
+
+.calendar-note {
+    font-size: .84rem;
+    color: var(--text-muted);
+    margin-top: .8rem;
+}
+
+.calendar-note strong {
+    color: var(--text);
+}
+
 .calendario-notas {
     background: var(--cream);
     border-radius: var(--radius-sm);
@@ -595,21 +686,6 @@ a.session-card:hover {
 
 .calendario-notas p:last-child {
     margin-bottom: 0;
-}
-
-.history-block {
-    margin-top: .85rem;
-}
-
-.history-label {
-    display: block;
-    margin-bottom: .45rem;
-    font-family: var(--font-accent);
-    font-size: .72rem;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--text-muted);
 }
 
 .history-list {
@@ -750,10 +826,6 @@ a.session-card:hover {
 
 /* ── Responsive ────────────────────────────────────── */
 @media (max-width: 768px) {
-    .today-strip .container {
-        justify-content: flex-start;
-    }
-
     .header-content {
         flex-direction: column;
         align-items: flex-start;
@@ -766,6 +838,12 @@ a.session-card:hover {
 
     .header-text h1 {
         font-size: 1.65rem;
+    }
+
+    .header-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .55rem;
     }
 
     .nav-links {
@@ -795,6 +873,11 @@ a.session-card:hover {
         flex-direction: column;
     }
 
+    .calendar-entry {
+        grid-template-columns: 1fr;
+        gap: .45rem;
+    }
+
     .accordion-header {
         font-size: 1.05rem;
         padding: .85rem 1rem;
@@ -806,6 +889,10 @@ a.session-card:hover {
 }
 
 @media (max-width: 480px) {
+    .past-mosaic {
+        grid-template-columns: 1fr;
+    }
+
     .units-grid {
         grid-template-columns: 1fr;
     }
