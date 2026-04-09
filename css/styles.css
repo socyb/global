@@ -56,6 +56,25 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 1rem;
+    z-index: 1000;
+    background: var(--gold);
+    color: var(--ink);
+    border: var(--border-thin);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    padding: .45rem .75rem;
+    font-family: var(--font-accent);
+    font-weight: 700;
+}
+
+.skip-link:focus {
+    top: 1rem;
+}
+
 .today-box {
     display: inline-flex;
     align-items: center;
@@ -89,6 +108,12 @@ a {
     transition: color var(--transition);
 }
 a:hover { color: var(--coral); }
+
+a:focus-visible,
+summary:focus-visible {
+    outline: 3px dashed var(--purple);
+    outline-offset: 3px;
+}
 
 /* ── 8-bit icon sizing ─────────────────────────────── */
 .icon-8bit {
