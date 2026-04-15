@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Actividad 10 · Apple in China · Cadenas globales de valor y distribución internacional del trabajo · 14 abr 2026">
+  <title>Actividad 10 · Apple in China · 14 abr 2026</title>
+  <link rel="icon" href="../../img/icon-globe.svg">
+  <link rel="stylesheet" href="../../css/styles.css">
+  <style>
+    .act-shell {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 1.25rem 3rem;
+    }
+
+    /* Hero */
+    .act-hero {
+      padding: 2rem 0 1.75rem;
+      border-bottom: var(--border);
+      margin-bottom: 2.5rem;
+    }
+    .act-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: var(--gold);
+      border: var(--border-thin);
+      box-shadow: var(--shadow-press);
+      font-family: var(--font-accent);
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: .85rem;
+    }
+    .act-hero h1 {
+      font-size: clamp(1.9rem, 5vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: .75rem;
+    }
+    .act-hero .lede {
+      font-family: var(--font-accent);
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 62ch;
+      margin-bottom: 1.25rem;
+    }
+
+    /* APA card */
+    .apa-card {
+      background: var(--mint);
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+      padding: 1rem 1.3rem;
+      font-size: .95rem;
+      line-height: 1.55;
+      max-width: 72ch;
+    }
+    .apa-label {
+      font-family: var(--font-accent);
+      font-size: .68rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: .35rem;
+    }
+
+    /* Material cards (links to presentation + videos) */
+    .material-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+    @media (max-width: 560px) {
+      .material-grid { grid-template-columns: 1fr; }
+    }
+    .material-card {
+      display: block;
+      background: var(--surface);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1.3rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .material-card:hover {
+      box-shadow: 8px 8px 0 var(--ink);
+      transform: translate(-1px, -1px);
+    }
+    .material-card .mc-icon {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+      display: block;
+    }
+    .material-card .mc-label {
+      font-family: var(--font-accent);
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: .3rem;
+    }
+    .material-card h3 {
+      font-size: 1.1rem;
+      line-height: 1.25;
+      margin-bottom: .4rem;
+    }
+    .material-card p {
+      font-family: var(--font-accent);
+      font-size: .88rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+    .material-card.pres {
+      background: var(--ink);
+      color: #f5f5f5;
+      border-color: var(--ink);
+    }
+    .material-card.pres .mc-label { color: #aaa; }
+    .material-card.pres p { color: #bbb; }
+    .material-card.pres:hover { box-shadow: 8px 8px 0 #d43724; }
+
+    /* Sections */
+    .act-section {
+      margin-bottom: 2.5rem;
+    }
+    .act-section-title {
+      font-size: 1.35rem;
+      font-family: var(--font-accent);
+      font-weight: 800;
+      letter-spacing: -.01em;
+      border-bottom: var(--border-thin);
+      padding-bottom: .5rem;
+      margin-bottom: 1.1rem;
+    }
+    .act-section p {
+      font-size: 1rem;
+      line-height: 1.65;
+      margin-bottom: .75rem;
+      max-width: 70ch;
+    }
+    .act-section ul, .act-section ol {
+      padding-left: 1.4rem;
+      margin-bottom: .75rem;
+    }
+    .act-section li {
+      font-size: 1rem;
+      line-height: 1.65;
+      margin-bottom: .4rem;
+    }
+
+    /* Highlight block */
+    .highlight-block {
+      background: var(--cream);
+      border: var(--border-thin);
+      border-left: 5px solid var(--gold);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      font-size: .98rem;
+      line-height: 1.6;
+      max-width: 70ch;
+    }
+    .highlight-block strong { color: var(--ink); }
+
+    /* Product badge */
+    .product-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blush);
+      border: var(--border-thin);
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-press);
+      padding: .35rem .9rem;
+      font-family: var(--font-accent);
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    /* Accordion — nivel superior */
+    .act-accordion { list-style: none; }
+    .act-accordion .act-summary {
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+    }
+    .act-accordion .act-summary::after {
+      content: '+';
+      font-family: var(--font-accent);
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .act-accordion[open] > .act-summary::after { content: '−'; }
+    .act-accordion .act-summary::-webkit-details-marker { display: none; }
+    .act-accordion-body { padding-top: 1rem; }
+
+    /* Accordion — nivel interno (guide-items) */
+    details.guide-item { cursor: default; }
+    details.guide-item > .guide-summary {
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+      font-family: var(--font-accent);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0;
+      padding: .1rem 0;
+    }
+    details.guide-item > .guide-summary::after {
+      content: '+';
+      font-family: var(--font-accent);
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    details.guide-item[open] > .guide-summary::after { content: '−'; }
+    details.guide-item > .guide-summary::-webkit-details-marker { display: none; }
+    .guide-body { padding-top: .6rem; }
+
+    /* Numbered guide items */
+    .guide-item {
+      background: var(--surface);
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      max-width: 74ch;
+    }
+    .guide-item h4 {
+      font-family: var(--font-accent);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+    .guide-item ul { margin: .4rem 0 0; }
+    .guide-item li {
+      font-size: .95rem;
+      margin-bottom: .3rem;
+    }
+
+    /* Closing question */
+    .closing-q {
+      background: var(--ink);
+      color: #f5f5f5;
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      margin: 1.5rem 0;
+      max-width: 68ch;
+    }
+    .closing-q .cq-label {
+      font-family: var(--font-accent);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: .5rem;
+    }
+    .closing-q p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* Participation */
+    .part-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-top: .75rem;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--teal);
+      color: var(--ink);
+      border: var(--border-thin);
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-press);
+      padding: .35rem .9rem;
+      font-family: var(--font-accent);
+      font-size: .82rem;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header" style="padding:1.2rem 0 .9rem;">
+  <div class="container">
+    <div class="header-content">
+      <div class="header-text">
+        <h1 style="font-size:clamp(1.5rem,3.5vw,2.2rem);margin-bottom:.15rem;">
+          <img src="../../img/icon-globe.svg" alt="" class="icon-8bit-lg"> Globalización y Empleo
+        </h1>
+        <p class="subtitle" style="font-size:.9rem;margin-bottom:.3rem;">Semestre 2026-2 · FCA · UNAM</p>
+        <div class="header-meta">
+          <p class="instructor">Dr. Jorge Cardiel</p>
+          <div class="today-box header-today">
+            <span class="today-label">Sesión</span>
+            <time>14 abr 2026</time>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="act-shell">
+
+  <!-- HERO -->
+  <section class="act-hero">
+    <div class="act-eyebrow">Actividad 10 · Unidad 2</div>
+    <h1>Globalización y empleo en las cadenas de producción:<br>Apple, China y la distribución internacional del trabajo</h1>
+    <p class="lede">Una cadena global de valor no solo distribuye procesos productivos: distribuye también jerarquías entre ensamblaje, diseño, logística, servicios y control tecnológico. El caso Apple muestra en qué lugar queda cada tipo de trabajo.</p>
+
+    <div class="apa-card">
+      <div class="apa-label">Lectura central</div>
+      McGee, P. (2025). <em>Apple in China: The capture of the world's greatest company</em>. Simon &amp; Schuster.<br>
+      <span style="font-family:var(--font-accent);font-size:.88rem;color:var(--text-muted);">
+        Prólogo · Caps. 9–13 · Caps. 18–19 · Conclusiones
+      </span>
+    </div>
+  </section>
+
+  <!-- MATERIALES -->
+  <section class="act-section">
+    <h2 class="act-section-title">Materiales para la sesión</h2>
+    <div class="material-grid">
+      <a href="china.html" class="material-card pres">
+        <span class="mc-icon">&#9654;</span>
+        <div class="mc-label">Presentación · 12 diapositivas</div>
+        <h3>Apple in China</h3>
+        <p>Slides sobre la dependencia estructural, Foxconn, la "China speed" y los riesgos geopolíticos.</p>
+      </a>
+      <a href="videos_apple_china.html" class="material-card">
+        <span class="mc-icon">&#127916;</span>
+        <div class="mc-label">Mediateca · 11 videos</div>
+        <h3>Videos – Apple in China</h3>
+        <p>Fragmentos de clase y biblioteca completa de videos sobre cadenas de producción, Foxconn e India.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- LECTURAS COMPLEMENTARIAS -->
+  <section class="act-section">
+    <h2 class="act-section-title">Lecturas complementarias (opcionales)</h2>
+    <div class="highlight-block">
+      <strong>Miller, C., &amp; Venugopalan, V. (2025).</strong> <em>Apple's Supply Chain: Economic and Geopolitical Implications</em>. American Enterprise Institute.
+    </div>
+    <div class="highlight-block">
+      <strong>Davis, B. (2025).</strong> How China captured Apple. <em>Foreign Policy</em>, Fall 2025, Issue 258, pp. 99–102.
+    </div>
+  </section>
+
+  <!-- PRODUCTO 
+  <section class="act-section">
+    <h2 class="act-section-title">Producto solicitado</h2>
+    <div class="product-badge">Control de lectura analítico</div>
+    <ul>
+      <li>Mínimo <strong>una cuartilla</strong> (aprox. 300–500 palabras).</li>
+      <li>Entrega en <strong>PDF</strong> vía Moodle.</li>
+      <li>Incluye al inicio una <strong>ficha bibliográfica en formato APA 7</strong> de la lectura central.</li>
+    </ul>
+    <p>El objetivo es identificar <strong>qué tipo de empleos</strong> genera una cadena global de valor, <strong>dónde se localizan</strong>, <strong>qué actividades concentran mayor valor</strong> y qué implicaciones tiene esto para países como China, India o México.</p>
+  </section>-->
+
+  <!-- RESPUESTA MODELO -->
+  <details class="act-section act-accordion">
+    <summary class="act-section-title act-summary">Ideas clave y ejemplo de análisis</summary>
+    <div class="act-accordion-body">
+    <p style="font-family:var(--font-accent);font-size:.95rem;color:var(--text-muted);max-width:68ch;margin-bottom:1.5rem;">El siguiente material recoge argumentos centrales del libro y los conecta con los videos de la sesión. No es la única lectura posible: es un punto de partida para desarrollar tu propio análisis.</p>
+
+    <!-- CITA CLAVE -->
+    <details class="guide-item">
+      <summary class="guide-summary">La tesis central: captura mutua</summary>
+      <div class="guide-body">
+        <div class="highlight-block" style="border-left-color:#c0392b;background:var(--blush);margin-bottom:.9rem;">
+          <strong>"Beijing allows Apple to exploit workers so China can exploit Apple."</strong><br>
+          <span style="font-family:var(--font-accent);font-size:.85rem;color:var(--text-muted);">— McGee, P. (2025). <em>Apple in China</em>. Simon &amp; Schuster.</span>
+        </div>
+        <p style="font-size:.97rem;line-height:1.7;max-width:68ch;">Esta frase invierte la narrativa más común sobre la relación Apple–China. No se trata de explotación unilateral: China permitió que Apple accediera a su fuerza de trabajo, su infraestructura y su mercado; a cambio, usó a Apple como palanca para acelerar su propio ascenso tecnológico. McGee llama a esto <strong>captura mutua</strong>: cada parte obtiene algo, pero ninguna controla completamente la relación.</p>
+        <p style="font-size:.97rem;line-height:1.7;max-width:68ch;margin-top:.65rem;">Lo que hace útil esta cita para el curso es que obliga a pensar en la cadena global de valor no como una jerarquía fija entre países ricos (diseño, marca) y países pobres (ensamblaje), sino como una relación dinámica en la que el socio "subordinado" puede ir acumulando capacidades. China comenzó ensamblando; treinta años después tiene campeones tecnológicos propios —Luxshare, BYD— entrenados en parte por Apple.</p>
+      </div>
+    </details>
+
+    <!-- QUÉ TRABAJO ESTÁ EN CHINA -->
+    <details class="guide-item">
+      <summary class="guide-summary">¿Qué tipos de trabajo se concentran en China y cuáles quedan fuera?</summary>
+      <div class="guide-body">
+        <p style="font-size:.97rem;line-height:1.7;max-width:68ch;">El teardown del iPhone 16 Pro (<a href="videos_apple_china.html#video-d" style="color:var(--teal);font-weight:600;">Video D — WIRED</a>) lo muestra de forma inmediata: un iPhone contiene piezas de más de 50 países. El chip A18 Pro lo fabrica TSMC en Taiwán; los sensores de cámara los hace Sony en Japón; el módulo de Face ID usa componentes de Austria y EE.&nbsp;UU.; el display viene de Corea del Sur. <strong>China hace el ensamblaje final</strong>, más parte de la manufactura de componentes medios (baterías, carcasas, conectores), pero no controla las piezas de mayor complejidad tecnológica ni el diseño.</p>
+        <p style="font-size:.97rem;line-height:1.7;max-width:68ch;margin-top:.65rem;">McGee documenta que en 1999–2000 Apple fabricaba en nueve países; para 2011, prácticamente todo había migrado a China. Pero eso no significa que el valor siguiera la misma ruta: mientras los márgenes de Foxconn cayeron del 10% al 2–3% entre 2000 y 2012, los de Apple subieron al 25%. <strong>El ensamblaje concentra personas, no valor</strong>. El diseño, el software, la marca y el control de la arquitectura del sistema —que permanecen en California— son los nodos que capturan la mayor proporción del precio final.</p>
+        <p style="font-size:.97rem;line-height:1.7;max-width:68ch;margin-top:.65rem;">El <a href="videos_apple_china.html#video-b" style="color:var(--teal);font-weight:600;">Video B (Tech Vision)</a> muestra esto en imágenes: cientos de miles de trabajadoras en líneas de ensamblaje, cada una realizando una operación específica y repetitiva. La escala es impresionante, pero la complejidad de cada tarea individual es baja. La complejidad real —y la captura de valor que la acompaña— ocurre en los eslabones que no aparecen en las fotos de la fábrica.</p>
+      </div>
+    </details>
+
+    <!-- TRANSFERENCIA DE CONOCIMIENTO -->
+    <details class="guide-item">
+      <summary class="guide-summary">La transferencia de conocimiento como argumento central</summary>
+      <div class="guide-body">
+        <div class="highlight-block" style="margin-bottom:.9rem;">
+          <strong>"It's not just a loss of jobs, it's a loss of know-how."</strong><br>
+          <span style="font-family:var(--font-accent);font-size:.85rem;color:var(--text-muted);">— McGee, entrevista con Keith Yap (2025)</span>
+        </div>
+        <p style="font-size:.97rem;line-height:1.7;max-width:68ch;">Este argumento es clave para distinguir el caso Apple de una simple relocalización de empleos. McGee sostiene que Apple no solo trasladó puestos de trabajo a China: trasladó <em>saber hacer</em>. Los ingenieros de Apple viajaban continuamente a Shenzhen para co-diseñar procesos y maquinaria; Apple financiaba formación técnica de alto nivel en sus proveedores. El resultado: China aprendió a fabricar electrónica de alta precisión a escala industrial, algo que no se consigue solo con salarios bajos.</p>
+        <p style="font-size:.97rem;line-height:1.7;max-width:68ch;margin-top:.65rem;">McGee calcula que Apple invirtió el equivalente a <strong>55 mil millones de dólares anuales</strong> en China —en maquinaria, infraestructura y formación— y formó a aproximadamente <strong>30 millones de trabajadores</strong> en estándares de producción de alta gama. Compara esta escala con el Plan Marshall, pero concentrada en un solo país, en un solo sector. La consecuencia es que China no solo tiene los empleos: tiene ahora la capacidad manufacturera que los sostiene.</p>
+      </div>
+    </details>
+
+    <!-- REFLEXIÓN: MÉXICO -->
+    <details class="guide-item">
+      <summary class="guide-summary">Reflexión: ¿qué implica esto para un país como México?</summary>
+      <div class="guide-body">
+        <p style="font-size:.97rem;line-height:1.7;max-width:68ch;">México lleva décadas insertado en cadenas globales de valor, principalmente a través del modelo maquilador: ensamblaje de exportación con insumos importados, trabajo intensivo y bajo valor agregado local. La comparación con China es instructiva pero también incómoda. China comenzó con un punto de partida similar en los años ochenta: zonas económicas especiales, salarios bajos, trabajo disciplinado. Pero el Estado chino mantuvo una política industrial activa orientada a la transferencia de tecnología y al desarrollo de proveedores nacionales. México, en cambio, apostó por la apertura comercial sin acompañarla de una estrategia de encadenamientos.</p>
+        <p style="font-size:.97rem;line-height:1.7;max-width:68ch;margin-top:.65rem;">El debate sobre el <em>nearshoring</em> que está ocurriendo en 2024–2026 es una oportunidad, pero también un riesgo. Si México atrae ensamblaje sin exigir transferencia de tecnología ni construir proveedores locales de mayor complejidad, reproducirá la trayectoria de bajo <em>upgrading</em> que ha caracterizado a muchas maquiladoras desde los años noventa. El <a href="videos_apple_china.html#video-a" style="color:var(--teal);font-weight:600;">Video A (PolyMatter)</a> ofrece un dato revelador: Apple tardó cuatro años en mover el 1% de su producción a India, un país con ventajas significativas de escala y costos. Esto sugiere que el ecosistema —no el salario— es la variable crítica, y construir ecosistemas requiere política industrial, no solo apertura.</p>
+      </div>
+    </details>
+
+    <!-- CIERRE -->
+    <details class="guide-item">
+      <summary class="guide-summary">Cierre analítico: empleos, proveedores o capacidades tecnológicas</summary>
+      <div class="guide-body">
+        <p style="font-family:var(--font-accent);font-size:.85rem;color:var(--text-muted);margin-bottom:.75rem;font-style:italic;">"En una cadena global como la de Apple, ¿qué importa más para el desarrollo: atraer empleos, atraer proveedores o atraer capacidades tecnológicas?"</p>
+        <p style="font-size:.97rem;line-height:1.7;max-width:68ch;">El caso Apple sugiere que las tres cosas importan, pero en secuencia. Los empleos son el punto de entrada —necesarios para generar ingresos, consumo y experiencia técnica básica— pero no son suficientes. Los proveedores crean encadenamientos locales y pueden generar aprendizaje tecnológico si hay políticas que lo incentiven. Las capacidades tecnológicas son el eslabón que más valor captura y el más difícil de construir, pero también el que más protege a un país frente a la reconfiguración de la cadena.</p>
+        <p style="font-size:.97rem;line-height:1.7;max-width:68ch;margin-top:.65rem;">TSMC en Taiwán es el ejemplo más claro: su capacidad tecnológica convierte a la isla en un actor geopolítico imprescindible —lo que McGee llama el "silicon shield"— independientemente de su tamaño o de la cantidad de empleos que genera. China entendió esto: comenzó con empleos, construyó proveedores, y ahora invierte masivamente en capacidades propias. La pregunta para México es si aún hay tiempo —y voluntad política— para recorrer ese mismo camino.</p>
+      </div>
+    </details>
+
+    </div><!-- end act-accordion-body -->
+  </details>
+
+  <!-- NOTAS DE VIDEO -->
+  <section class="act-section">
+    <h2 class="act-section-title">Notas de los videos de clase</h2>
+    <p style="font-family:var(--font-accent);font-size:.88rem;color:var(--text-muted);max-width:64ch;margin-bottom:1rem;">Consulta los apuntes de cada video para seguir los argumentos durante la sesión o repasar después.</p>
+    <div class="material-grid">
+      <a href="notas_video_A_polymatter.html" class="material-card">
+        <div class="mc-label">Video A · PolyMatter</div>
+        <h3>Why Apple Can't Leave China (yet)</h3>
+        <p>Argumentos, momentos clave y timestamps para la sesión.</p>
+      </a>
+      <a href="notas_video_B_techvision.html" class="material-card">
+        <div class="mc-label">Video B · Tech Vision</div>
+        <h3>Inside Apple's iPhone Factory In China</h3>
+        <p>Descripción de la fábrica, escala y condiciones laborales.</p>
+      </a>
+      <a href="notas_video_C_techaltar.html" class="material-card">
+        <div class="mc-label">Video C · TechAltar</div>
+        <h3>The Billionaire Behind All Your Favorite Tech</h3>
+        <p>Foxconn, Terry Gou y el modelo OEM extremo.</p>
+      </a>
+      <a href="notas_video_D_wired.html" class="material-card">
+        <div class="mc-label">Video D · WIRED</div>
+        <h3>iPhone 16 Pro Teardown</h3>
+        <p>Componentes del iPhone y sus países de origen.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- PARTICIPACIÓN 
+  <section class="act-section">
+    <h2 class="act-section-title">Participación en clase — 14 abr 2026</h2>
+    <p>Se comentarán en clase algunas ideas de los controles de lectura. También puedes ganar participación mediante:</p>
+    <div class="part-chips">
+      <span class="chip">Entrada al Glosario</span>
+      <span class="chip">Comentario en el Foro de Noticias</span>
+    </div>
+    <p style="margin-top:.9rem;font-family:var(--font-accent);font-size:.9rem;color:var(--text-muted);">
+      Conceptos útiles para el glosario: <em>cadena global de valor, upgrading, ensamblaje, relocalización, captura de valor</em>. Para el foro: relaciona el caso Apple con nearshoring, empleo industrial o competencia tecnológica.
+    </p>
+  </section>-->
+
+</div>
+
+<footer style="text-align:center;padding:1.5rem;font-family:var(--font-accent);font-size:.8rem;color:var(--text-muted);border-top:var(--border-thin);">
+  <a href="../../index.html" style="color:var(--teal);font-weight:700;text-decoration:none;">← Inicio del curso</a>
+  &nbsp;·&nbsp; Globalización y Empleo 2026-2 · FCA UNAM
+</footer>
+
+</body>
+</html>

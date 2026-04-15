@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Apple in China – Presentación</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --bg:#000000;
+    --apple-white:#ffffff;
+    --apple-red:#d43724;
+    --apple-gold:#d4a017;
+    --text:#f5f5f5;
+    --muted:#bbbbbb;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    margin:0;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow:hidden;
+  }
+  #deck{
+    width:100vw;
+    height:100vh;
+    position:relative;
+  }
+  .slide{
+    position:absolute;
+    inset:0;
+    padding:5vh 8vw;
+    display:none;
+    flex-direction:column;
+    justify-content:space-between;
+    background:radial-gradient(circle at top,#111 0,#000 55%,#000 100%);
+  }
+  .slide.active{display:flex;}
+
+  h1,h2{
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+  h1{
+    font-size:3.8rem;
+    color:var(--apple-red);
+    line-height:1.1;
+  }
+  h2{
+    font-size:2.4rem;
+    color:var(--apple-red);
+    margin-bottom:1rem;
+  }
+  h3{
+    font-size:1.45rem;
+    margin-bottom:0.7rem;
+    color:var(--apple-gold);
+  }
+  p,li{
+    font-size:1.18rem;
+    line-height:1.65;
+  }
+  ul{padding-left:1.3rem;margin-top:0.5rem;}
+  li+li{margin-top:0.4rem;}
+
+  .subtitle{
+    font-size:1.3rem;
+    color:var(--muted);
+    margin-top:1rem;
+  }
+
+  .footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:3vh;
+    font-size:0.9rem;
+    color:var(--muted);
+  }
+
+  .nav{
+    position:fixed;
+    bottom:1.5vh;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:0.75rem;
+    z-index:20;
+  }
+  .nav button{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.2);
+    color:var(--text);
+    padding:0.55rem 1.1rem;
+    border-radius:999px;
+    cursor:pointer;
+    font-size:1rem;
+    backdrop-filter:blur(6px);
+    min-height:44px;
+    touch-action:manipulation;
+  }
+  .nav button:hover{
+    background:rgba(255,255,255,0.16);
+  }
+  .nav button:active{
+    background:rgba(255,255,255,0.24);
+  }
+
+  .hint{
+    position:fixed;
+    top:1.2vh;
+    right:2vw;
+    font-size:0.82rem;
+    color:var(--muted);
+    opacity:0.85;
+  }
+
+  /* SVG styling + animations */
+  svg{
+    max-width:320px;
+    max-height:220px;
+  }
+  .hero-svg{
+    align-self:flex-end;
+  }
+  .apple-core{
+    fill:var(--apple-white);
+  }
+  .dragon{
+    fill:none;
+    stroke:var(--apple-red);
+    stroke-width:3;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+  .eye{
+    fill:var(--apple-gold);
+  }
+
+  /* Simple reusable animations */
+  @keyframes pulse {
+    0%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+    100%{transform:scale(1);}
+  }
+  @keyframes floatY {
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-6px);}
+    100%{transform:translateY(0);}
+  }
+  @keyframes scan {
+    0%{transform:translateX(-120%);}
+    100%{transform:translateX(120%);}
+  }
+  .slide.active .pulse{
+    animation:pulse 3s ease-in-out infinite;
+    transform-origin:center;
+  }
+  .slide.active .float{
+    animation:floatY 4s ease-in-out infinite;
+  }
+  .slide.active .scan-line{
+    animation:scan 5s linear infinite;
+  }
+
+  .two-cols{
+    display:grid;
+    grid-template-columns:minmax(0,2fr) minmax(0,1.3fr);
+    gap:3vw;
+    align-items:center;
+    flex:1;
+  }
+
+  /* ── Tablet landscape ─────────────────────────────── */
+  @media (max-width:900px){
+    .two-cols{
+      grid-template-columns:1fr;
+      grid-auto-rows:auto;
+    }
+    h1{font-size:2.8rem;}
+    h2{font-size:2rem;}
+    h3{font-size:1.3rem;}
+    p,li{font-size:1.1rem;}
+  }
+
+  /* ── Mobile portrait ──────────────────────────────── */
+  @media (max-width:640px){
+    body{overflow:auto;}
+    #deck{height:auto;min-height:100svh;}
+    .slide{
+      position:relative;
+      inset:auto;
+      min-height:100svh;
+      padding:4vh 6vw 14vh;
+      overflow-y:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+    .slide.active{display:flex;}
+    h1{font-size:2.2rem;letter-spacing:0.04em;}
+    h2{font-size:1.75rem;letter-spacing:0.04em;}
+    h3{font-size:1.15rem;}
+    p,li{font-size:1.08rem;line-height:1.55;}
+    .subtitle{font-size:1.05rem;}
+    svg{max-width:180px;max-height:140px;}
+    .hero-svg{align-self:center;}
+    .nav{bottom:2vh;}
+    .nav button{padding:0.7rem 1.4rem;font-size:1.05rem;}
+    .hint{display:none;}
+    .footer{font-size:0.8rem;}
+  }
+</style>
+</head>
+<body>
+<div id="deck">
+
+  <!-- 0: Portada -->
+  <section class="slide active" data-index="0">
+    <div class="two-cols">
+      <div>
+        <h1>Apple<br>in China</h1>
+        <p class="subtitle">La captura de la empresa más valiosa del mundo<br>y su dependencia estructural de China.</p>
+        <p style="margin-top:1.6rem;">
+          Basado en el libro de Patrick McGee (2025). Esta presentación resume
+          los principales argumentos sobre cómo Apple y China se co-constituyen:
+          modelo de producción, poder político y riesgos geopolíticos.
+        </p>
+      </div>
+      <div class="hero-svg">
+        <!-- Logo + dragón estilizado -->
+        <svg viewBox="0 0 220 220">
+          <defs>
+            <radialGradient id="appleGlow" cx="50%" cy="30%" r="60%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#aaaaaa" stop-opacity="0.4"/>
+            </radialGradient>
+          </defs>
+          <circle cx="110" cy="115" r="80" class="apple-core pulse" fill="url(#appleGlow)"/>
+          <path d="M140 70 C155 75 165 85 170 100
+                   C180 105 185 115 182 125
+                   C176 122 170 122 164 125
+                   C162 133 156 140 148 143
+                   C142 135 140 125 140 115
+                   C130 110 126 102 128 92
+                   C132 86 136 80 140 70 Z"
+                class="dragon float"/>
+          <circle cx="166" cy="103" r="4" class="eye"/>
+        </svg>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Globalización y Empleo 2026-2 · FCA UNAM</span>
+      <span>0 / 11</span>
+    </div>
+  </section>
+
+  <!-- 1: Ataque 2013 y vulnerabilidad -->
+  <section class="slide" data-index="1">
+    <div class="two-cols">
+      <div>
+        <h2>2013: “Incomparable” arrogancia</h2>
+        <h3>El Consumer Day como advertencia política</h3>
+        <ul>
+          <li>CCTV acusa a Apple de trato desigual a consumidores chinos por sus garantías.</li>
+          <li>Apple responde con un comunicado defensivo: “experiencia incomparable”.</li>
+          <li>Se desata una ofensiva coordinada de medios estatales: editoriales, amenazas regulatorias y caída abrupta de ventas.</li>
+          <li>El episodio revela la fragilidad de Apple frente al poder político chino y la facilidad con la que puede ser disciplinada.</li>
+        </ul>
+      </div>
+      <div>
+        <!-- Radar de “ataque mediático” -->
+        <svg viewBox="0 0 220 200">
+          <circle cx="110" cy="100" r="90" stroke="#d43724" stroke-width="3" fill="none"/>
+          <circle cx="110" cy="100" r="60" stroke="#d43724" stroke-width="2" stroke-dasharray="6 6" fill="none"/>
+          <circle cx="110" cy="100" r="30" stroke="#d43724" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>
+          <rect x="0" y="96" width="220" height="8" class="scan-line" fill="rgba(212,55,36,0.5)"/>
+          <circle cx="160" cy="55" r="6" fill="#d4a017"/>
+          <circle cx="60" cy="145" r="6" fill="#d4a017"/>
+        </svg>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Xi muestra que las reglas del juego han cambiado.</span>
+      <span>1 / 11</span>
+    </div>
+  </section>
+
+  <!-- 2: Disculpa de Cook y dependencia -->
+  <section class="slide" data-index="2">
+    <div class="two-cols">
+      <div>
+        <h2>La disculpa de Tim Cook</h2>
+        <h3>Cuando la empresa “intocable” se inclina</h3>
+        <ul>
+          <li>Tras 18 días de presión, Cook publica una carta en mandarín pidiendo disculpas y mejorando la política de reemplazo en China.</li>
+          <li>El episodio funciona como “juicio escénico”: Apple aprende su posición subordinada en la relación.</li>
+          <li>Al mismo tiempo, hay un problema real: mercados grises, tiendas falsas y teléfonos pirata generan frustración en consumidores.</li>
+          <li>Resultado: Apple comprende que no tiene estrategia política propia en China, solo una gigantesca operación productiva.</li>
+        </ul>
+      </div>
+      <div>
+        <!-- Cook inclinándose ante un “podio” abstracto -->
+        <svg viewBox="0 0 220 200">
+          <rect x="20" y="150" width="180" height="8" fill="#222"/>
+          <rect x="150" y="90" width="40" height="60" fill="#d43724"/>
+          <circle cx="80" cy="90" r="22" fill="#ffffff" class="float"/>
+          <rect x="70" y="110" width="20" height="40" fill="#ffffff" class="pulse"/>
+          <path d="M80 130 L110 150" stroke="#d4a017" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+    <div class="footer">
+      <span>La disculpa marca el reconocimiento explícito de la asimetría.</span>
+      <span>2 / 11</span>
+    </div>
+  </section>
+
+  <!-- 3: De manufactura propia a China -->
+  <section class="slide" data-index="3">
+    <div class="two-cols">
+      <div>
+        <h2>De “Mactories” a China</h2>
+        <h3>Reestructuración de la producción</h3>
+        <ul>
+          <li>Apple pasó de fabricar en EE. UU., Europa y Asia a externalizar casi todo a contratistas.</li>
+          <li>China ofrece mano de obra abundante, salarios bajos, moneda subvaluada y regulación laboral laxa.</li>
+          <li>El éxito de la cadena de suministro se vuelve tan central que el COO Tim Cook es elegido sucesor de Jobs.</li>
+          <li>La estrategia: menos “productos revolucionarios” y más distribución masiva de los éxitos existentes.</li>
+        </ul>
+      </div>
+      <div>
+        <!-- Líneas de producción -->
+        <svg viewBox="0 0 260 200">
+          <rect x="10" y="40" width="240" height="20" fill="#111"/>
+          <rect x="10" y="90" width="240" height="20" fill="#111"/>
+          <rect x="10" y="140" width="240" height="20" fill="#111"/>
+          <!-- “iPhones” -->
+          <rect x="20"  y="30" width="20" height="40" fill="#ffffff" class="float"/>
+          <rect x="70"  y="30" width="20" height="40" fill="#ffffff"/>
+          <rect x="120" y="30" width="20" height="40" fill="#ffffff"/>
+          <rect x="170" y="30" width="20" height="40" fill="#ffffff"/>
+          <rect x="220" y="30" width="20" height="40" fill="#ffffff"/>
+          <!-- segunda fila -->
+          <rect x="35"  y="80" width="20" height="40" fill="#ffffff"/>
+          <rect x="85"  y="80" width="20" height="40" fill="#ffffff" class="pulse"/>
+          <rect x="135" y="80" width="20" height="40" fill="#ffffff"/>
+          <rect x="185" y="80" width="20" height="40" fill="#ffffff"/>
+          <!-- tercera fila -->
+          <rect x="50"  y="130" width="20" height="40" fill="#ffffff"/>
+          <rect x="100" y="130" width="20" height="40" fill="#ffffff"/>
+          <rect x="150" y="130" width="20" height="40" fill="#ffffff"/>
+          <rect x="200" y="130" width="20" height="40" fill="#ffffff"/>
+        </svg>
+      </div>
+    </div>
+    <div class="footer">
+      <span>China se vuelve el centro de gravedad de la producción de Apple.</span>
+      <span>3 / 11</span>
+    </div>
+  </section>
+
+  <!-- 4: China como mayor riesgo -->
+  <section class="slide" data-index="4">
+    <div class="two-cols">
+      <div>
+        <h2>China: ventaja y riesgo existencial</h2>
+        <h3>Concentración geográfica extrema</h3>
+        <ul>
+          <li>En 2012, China ya representaba casi el 15&nbsp;% de los ingresos globales de Apple.</li>
+          <li>Alrededor del 90&nbsp;% de la producción de Apple pasa por China; India y Vietnam siguen dependiendo de insumos chinos.</li>
+          <li>China se convierte en “talón de Aquiles”: tensiones comerciales o políticas pueden paralizar el hardware global.</li>
+          <li>Analistas hablan de la “China Problem” como el riesgo central para el legado de Cook.</li>
+        </ul>
+      </div>
+      <div>
+        <!-- mapa simplificado con nodo gigante en China -->
+        <svg viewBox="0 0 240 200">
+          <rect width="240" height="200" fill="#050505"/>
+          <circle cx="70" cy="90" r="12" fill="#444"/>
+          <circle cx="50" cy="60" r="8" fill="#444"/>
+          <circle cx="100" cy="40" r="9" fill="#444"/>
+          <circle cx="175" cy="90" r="40" fill="#d43724" class="pulse"/>
+          <circle cx="195" cy="50" r="10" fill="#444"/>
+          <circle cx="190" cy="140" r="12" fill="#444"/>
+          <line x1="70" y1="90" x2="175" y2="90" stroke="#d4a017" stroke-width="2"/>
+          <line x1="50" y1="60" x2="175" y2="90" stroke="#d4a017" stroke-width="1.5"/>
+          <line x1="100" y1="40" x2="175" y2="90" stroke="#d4a017" stroke-width="1.5"/>
+          <line x1="195" y1="50" x2="175" y2="90" stroke="#d4a017" stroke-width="1.5"/>
+          <line x1="190" y1="140" x2="175" y2="90" stroke="#d4a017" stroke-width="1.5"/>
+        </svg>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Escala sin precedentes, pero concentrada en un solo país.</span>
+      <span>4 / 11</span>
+    </div>
+  </section>
+
+  <!-- 5: Inversiones masivas y “Chinaficación” -->
+  <section class="slide" data-index="5">
+    <div class="two-cols">
+      <div>
+        <h2>Inversiones masivas</h2>
+        <h3>De globalización a “Chinaficación”</h3>
+        <ul>
+          <li>Apple invierte decenas de miles de millones de dólares al año en China: maquinaria, entrenamiento, infraestructura.</li>
+          <li>La empresa calcula haber formado a más de 28 millones de trabajadoras y trabajadores.</li>
+          <li>China no solo permite que Apple explote mano de obra: usa a Apple para acelerar su propio ascenso tecnológico.</li>
+          <li>El libro sugiere que, en cierto sentido, “China no sería la China actual sin Apple”.</li>
+        </ul>
+      </div>
+      <div>
+        <!-- barras de inversión -->
+        <svg viewBox="0 0 240 200">
+          <line x1="30" y1="170" x2="220" y2="170" stroke="#444" stroke-width="2"/>
+          <rect x="40"  y="130" width="20" height="40" fill="#555"/>
+          <rect x="80"  y="110" width="20" height="60" fill="#777"/>
+          <rect x="120" y="80"  width="20" height="90" fill="#999"/>
+          <rect x="160" y="40"  width="20" height="130" fill="#d43724" class="pulse"/>
+          <text x="40" y="185" font-size="8" fill="#aaaaaa">2008</text>
+          <text x="78" y="185" font-size="8" fill="#aaaaaa">2010</text>
+          <text x="118" y="185" font-size="8" fill="#aaaaaa">2013</text>
+          <text x="154" y="185" font-size="8" fill="#aaaaaa">2015+</text>
+        </svg>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Apple actúa casi como un “plan Marshall” corporativo en China.</span>
+      <span>5 / 11</span>
+    </div>
+  </section>
+
+  <!-- 6: Foxconn y el modelo OEM -->
+  <section class="slide" data-index="6">
+    <div class="two-cols">
+      <div>
+        <h2>Foxconn: el “Silicon Valley del hardware”</h2>
+        <h3>OEM extremo y disciplinamiento laboral</h3>
+        <ul>
+          <li>Foxconn perfecciona el modelo de manufactura por contrato, integrando múltiples niveles de la cadena de valor.</li>
+          <li>Estrategia: ofrecer ensamblaje barato e incluso absorber el costo de herramentales para capturar el resto del negocio.</li>
+          <li>Tim Cook exige precios agresivos y fiabilidad absoluta; Foxconn responde con “velocidad China” y hubs productivos enormes.</li>
+          <li>Coste social: jornadas extensas, dormitorios, conflictos sindicales y suicidios que estallan en la opinión pública.</li>
+        </ul>
+      </div>
+      <div>
+        <!-- pirámide Apple–Foxconn–trabajadores -->
+        <svg viewBox="0 0 240 200">
+          <polygon points="120,20 210,160 30,160" fill="#111" stroke="#d43724" stroke-width="2"/>
+          <circle cx="120" cy="40" r="10" fill="#ffffff" class="pulse"/>
+          <rect x="95" y="80" width="50" height="18" fill="#d43724"/>
+          <text x="100" y="93" font-size="10" fill="#ffffff">Foxconn</text>
+          <rect x="55" y="125" width="40" height="15" fill="#444"/>
+          <rect x="145" y="125" width="40" height="15" fill="#444"/>
+          <rect x="98" y="135" width="44" height="15" fill="#444"/>
+          <text x="80" y="185" font-size="9" fill="#aaaaaa">Trabajadores en campus masivos</text>
+        </svg>
+      </div>
+    </div>
+    <div class="footer">
+      <span>El éxito industrial de China pasa por la alianza Foxconn–Apple.</span>
+      <span>6 / 11</span>
+    </div>
+  </section>
+
+  <!-- 7: Shenzhen y la “China speed” -->
+  <section class="slide" data-index="7">
+    <div class="two-cols">
+      <div>
+        <h2>Shenzhen: de aldea a megaciudad</h2>
+        <h3>La “China speed” en acción</h3>
+        <ul>
+          <li>Las zonas económicas especiales de Deng Xiaoping convierten Shenzhen en un corredor industrial en pocas décadas.</li>
+          <li>Foxconn construye Longhua como “ciudad-fábrica” con cientos de miles de personas viviendo y trabajando in situ.</li>
+          <li>Apple envía continuamente equipos de ingeniería para codiseñar procesos y máquinas: transferencia intensiva de know-how.</li>
+          <li>La velocidad de cambio –“China speed”– supera la capacidad de reacción de competidores y reguladores occidentales.</li>
+        </ul>
+      </div>
+      <div>
+        <!-- skyline creciendo -->
+        <svg viewBox="0 0 240 200">
+          <rect x="0" y="0" width="240" height="200" fill="#020202"/>
+          <rect x="20" y="120" width="25" height="60" fill="#111"/>
+          <rect x="55" y="100" width="30" height="80" fill="#151515"/>
+          <rect x="95" y="80"  width="35" height="100" fill="#222"/>
+          <rect x="140" y="60" width="40" height="120" fill="#333"/>
+          <rect x="190" y="90" width="30" height="90" fill="#191919"/>
+          <polygon points="160,40 180,60 140,60" fill="#333"/>
+          <circle cx="40" cy="40" r="6" fill="#d4a017" class="float"/>
+        </svg>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Industrialización acelerada: urbanismo, capital y trabajo ensamblados.</span>
+      <span>7 / 11</span>
+    </div>
+  </section>
+
+  <!-- 8: Poder político y censura -->
+  <section class="slide" data-index="8">
+    <div class="two-cols">
+      <div>
+        <h2>El giro autoritario de Xi</h2>
+        <h3>De socio industrial a actor disciplinado</h3>
+        <ul>
+          <li>Xi impulsa “innovación endógena” y exige a multinacionales “devolver” más a China.</li>
+          <li>Apple acepta almacenar datos de usuarias en centros de datos chinos y bloquear miles de apps (VPN, NYT, etc.).</li>
+          <li>Surge la “Red Supply Chain”: proveedores chinos con apoyo estatal desplazan a socios taiwaneses, japoneses o estadounidenses.</li>
+          <li>Apple evita confrontar abiertamente a Pekín para proteger su hardware y su acceso al mercado local.</li>
+        </ul>
+      </div>
+      <div>
+        <!-- iPhone dividido: mitad hardware, mitad muro de fuego -->
+        <svg viewBox="0 0 220 200">
+          <rect x="70" y="20" width="80" height="160" rx="16" ry="16" fill="#111" stroke="#ffffff" stroke-width="2"/>
+          <line x1="110" y1="20" x2="110" y2="180" stroke="#d43724" stroke-width="2"/>
+          <rect x="72" y="70" width="36" height="6" fill="#d4a017"/>
+          <rect x="72" y="88" width="36" height="6" fill="#d4a017"/>
+          <rect x="72" y="106" width="36" height="6" fill="#d4a017"/>
+          <!-- muro de fuego -->
+          <path d="M112 150 C120 130 135 150 140 130
+                   C145 110 165 120 168 100
+                   C170 85 182 88 188 80
+                   L188 180 L112 180 Z"
+                fill="#d43724" class="pulse"/>
+        </svg>
+      </div>
+    </div>
+    <div class="footer">
+      <span>La integración económica implica también acomodarse al aparato de control.</span>
+      <span>8 / 11</span>
+    </div>
+  </section>
+
+  <!-- 9: Talón de Aquiles geopolítico -->
+  <section class="slide" data-index="9">
+    <div class="two-cols">
+      <div>
+        <h2>Geopolítica del chip y la fábrica</h2>
+        <h3>TSMC, red china y vulnerabilidad de EE. UU.</h3>
+        <ul>
+          <li>Cada iPhone depende de chips de TSMC (Taiwán), cuyo “escudo de silicio” es clave frente a Pekín.</li>
+          <li>Simultáneamente, proveedores chinos apoyados por el Estado adquieren capacidades estratégicas gracias al aprendizaje con Apple.</li>
+          <li>La concentración de producción en China hace casi imposible una relocalización rápida ante conflicto o sanciones.</li>
+          <li>Washington descubre que la apuesta por el libre comercio no trajo democratización, sino un rival tecnológico consolidado.</li>
+        </ul>
+      </div>
+      <div>
+        <!-- placa de circuito con nodo crítico -->
+        <svg viewBox="0 0 240 200">
+          <rect x="10" y="10" width="220" height="180" rx="10" fill="#021010"/>
+          <rect x="90" y="70" width="60" height="60" fill="#0c2020" stroke="#39aaaa" stroke-width="2" class="pulse"/>
+          <circle cx="50" cy="40" r="6" fill="#39aaaa"/>
+          <circle cx="190" cy="40" r="6" fill="#39aaaa"/>
+          <circle cx="50" cy="160" r="6" fill="#39aaaa"/>
+          <circle cx="190" cy="160" r="6" fill="#39aaaa"/>
+          <line x1="50" y1="40" x2="90" y2="70" stroke="#39aaaa" stroke-width="2"/>
+          <line x1="190" y1="40" x2="150" y2="70" stroke="#39aaaa" stroke-width="2"/>
+          <line x1="50" y1="160" x2="90" y2="130" stroke="#39aaaa" stroke-width="2"/>
+          <line x1="190" y1="160" x2="150" y2="130" stroke="#39aaaa" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Apple ayuda a formar la infraestructura que hoy sostiene a su principal rival.</span>
+      <span>9 / 11</span>
+    </div>
+  </section>
+
+  <!-- 10: Balance final del libro -->
+  <section class="slide" data-index="10">
+    <div class="two-cols">
+      <div>
+        <h2>Balance del argumento</h2>
+        <h3>Una relación de captura mutua</h3>
+        <ul>
+          <li>Apple usa a China para lograr escala, reducción de costos y beneficios récord, especialmente vía servicios.</li>
+          <li>China usa a Apple como catalizador de inversión, capacitación masiva y construcción de campeones nacionales.</li>
+          <li>Lo que empezó como una apuesta de eficiencia terminó como dependencia estructural difícil de revertir.</li>
+          <li>El libro plantea una pregunta central: ¿puede Apple “desatarse” de China sin dejar de ser Apple?</li>
+        </ul>
+      </div>
+      <div>
+        <!-- dos manos entrelazadas / engranes -->
+        <svg viewBox="0 0 240 200">
+          <circle cx="90" cy="110" r="40" fill="#111" stroke="#d43724" stroke-width="3" class="float"/>
+          <circle cx="150" cy="90" r="40" fill="#111" stroke="#ffffff" stroke-width="3" class="float"/>
+          <path d="M70 110 L80 90 L95 130 L115 80 L130 130" stroke="#d4a017" stroke-width="3" fill="none"/>
+        </svg>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Relación simbiótica, asimétrica y crecientemente conflictiva.</span>
+      <span>10 / 11</span>
+    </div>
+  </section>
+
+  <!-- 11: Cierre APA -->
+  <section class="slide" data-index="11">
+    <div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
+      <h2>Referencia en formato APA&nbsp;7</h2>
+      <p style="margin-top:2rem;font-size:1.1rem;">
+        McGee, P. (2025). <em>Apple in China: The capture of the world’s greatest company</em>. Simon % Schuster
+      <!--<p style="margin-top:2.2rem;max-width:38rem;">
+        Sugerencia de uso en clase: pedir al grupo que identifique en el libro episodios
+        clave de “captura mutua” (donde Apple captura valor de China y viceversa) y
+        los coloque en una línea del tiempo, conectándolos con debates sobre
+        desglobalización, “friendshoring” y seguridad nacional.
+      </p>-->
+    </div>
+    <div class="footer">
+      <span>Fin</span>
+      <span>11 / 11</span>
+    </div>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button id="prevBtn">&#9664; Anterior</button>
+  <button id="nextBtn">Siguiente &#9654;</button>
+</div>
+<div class="hint">Usa &larr; &rarr; o clic en los botones para avanzar</div>
+
+<!-- Botón de regreso a la actividad -->
+<a href="index.html" style="
+  position: fixed;
+  top: 1.2vh;
+  left: 1.5vw;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.22);
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.82rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s, color 0.2s;
+  min-height: 36px;
+" onmouseover="this.style.background='rgba(255,255,255,0.16)';this.style.color='#fff'"
+   onmouseout="this.style.background='rgba(255,255,255,0.07)';this.style.color='rgba(255,255,255,0.75)'">
+  &#8592; Actividad 14 abr
+</a>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let current = 0;
+
+  function showSlide(index) {
+    if (index < 0) index = 0;
+    if (index >= slides.length) index = slides.length - 1;
+    slides[current].classList.remove('active');
+    current = index;
+    slides[current].classList.add('active');
+    if (window.innerWidth <= 640) window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    if (current > 0) showSlide(current - 1);
+  });
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    if (current < slides.length - 1) showSlide(current + 1);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' && current < slides.length - 1) showSlide(current + 1);
+    else if (e.key === 'ArrowLeft' && current > 0) showSlide(current - 1);
+  });
+
+  // Touch swipe
+  let txStart = 0, tyStart = 0;
+  document.addEventListener('touchstart', e => {
+    txStart = e.changedTouches[0].clientX;
+    tyStart = e.changedTouches[0].clientY;
+  }, { passive: true });
+  document.addEventListener('touchend', e => {
+    const dx = txStart - e.changedTouches[0].clientX;
+    const dy = Math.abs(tyStart - e.changedTouches[0].clientY);
+    if (Math.abs(dx) > 50 && Math.abs(dx) > dy) {
+      if (dx > 0 && current < slides.length - 1) showSlide(current + 1);
+      else if (dx < 0 && current > 0) showSlide(current - 1);
+    }
+  }, { passive: true });
+</script>
+</body>
+</html>

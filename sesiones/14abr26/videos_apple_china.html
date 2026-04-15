@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Videos: Apple in China — Globalización y Empleo 2026-2 · FCA UNAM">
+<title>Videos – Apple in China · Globalización y Empleo</title>
+<link rel="icon" href="../../img/icon-globe.svg">
+<link rel="stylesheet" href="../../css/styles.css">
+<style>
+  /* ── Page-specific overrides ───────────────────────── */
+  .vac-shell {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 1.25rem 3rem;
+  }
+
+  /* Hero */
+  .vac-hero {
+    padding: 2rem 0 1.75rem;
+    border-bottom: var(--border);
+    margin-bottom: 2.5rem;
+  }
+  .vac-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    background: var(--cream);
+    border: var(--border-thin);
+    font-family: var(--font-accent);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: .75rem;
+  }
+  .vac-hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: .6rem;
+  }
+  .vac-hero h1 .mark-red { color: #c0392b; }
+  .vac-hero .lede {
+    font-family: var(--font-accent);
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: 58ch;
+  }
+  .accent-bar {
+    display: flex;
+    gap: 0;
+    margin-top: 1.2rem;
+    height: 5px;
+    width: 140px;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid var(--ink);
+  }
+  .accent-bar span:nth-child(1) { flex: 1; background: #c0392b; }
+  .accent-bar span:nth-child(2) { flex: 1; background: #f0b429; }
+  .accent-bar span:nth-child(3) { flex: 1; background: var(--teal); }
+  .accent-bar span:nth-child(4) { flex: 1; background: var(--ink); }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-accent);
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: color var(--transition);
+  }
+  .back-link:hover { color: var(--ink); }
+
+  /* Grid */
+  .video-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  @media (min-width: 680px) {
+    .video-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Card */
+  .video-card {
+    background: var(--surface);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+  .video-card:hover {
+    box-shadow: 8px 8px 0 var(--ink);
+    transform: translate(-1px, -1px);
+  }
+
+  /* 16:9 embed */
+  .video-embed {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background: #000;
+    border-bottom: var(--border-thin);
+  }
+  .video-embed iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+
+  /* Card info */
+  .video-info {
+    padding: 1.1rem 1.3rem 1.3rem;
+  }
+  .video-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-accent);
+    font-size: .72rem;
+    font-weight: 900;
+    border-radius: 50%;
+    margin-right: .5rem;
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
+  .video-info h2 {
+    font-family: var(--font-accent);
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: .5rem;
+  }
+  .video-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .2rem .9rem;
+    font-family: var(--font-accent);
+    font-size: .82rem;
+    color: var(--text-muted);
+  }
+  .video-meta .channel {
+    color: #c0392b;
+    font-weight: 600;
+  }
+  .video-meta .tag {
+    background: var(--gold);
+    color: var(--ink);
+    padding: 1px 7px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--ink);
+    font-weight: 700;
+    font-size: .72rem;
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: var(--font-accent);
+    font-size: .72rem;
+    font-weight: 900;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: var(--border-thin);
+    padding-bottom: .5rem;
+    margin: 2.5rem 0 1.25rem;
+  }
+
+  /* Footer */
+  .vac-footer {
+    margin-top: 3rem;
+    padding: 1.5rem 0;
+    border-top: var(--border-thin);
+    font-family: var(--font-accent);
+    font-size: .82rem;
+    color: var(--text-muted);
+    text-align: center;
+  }
+  .vac-footer a {
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .vac-footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header class="site-header" style="padding:1.2rem 0 .9rem;">
+  <div class="container">
+    <div class="header-content">
+      <div class="header-text">
+        <h1 style="font-size:clamp(1.5rem,3.5vw,2.2rem);margin-bottom:.15rem;">
+          <img src="../../img/icon-globe.svg" alt="" class="icon-8bit-lg"> Globalización y Empleo
+        </h1>
+        <p class="subtitle" style="font-size:.9rem;">Semestre 2026-2 · FCA · UNAM</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="vac-shell">
+
+  <div class="vac-hero">
+    <a href="index.html" class="back-link">← Actividad 10</a>
+    <div class="vac-eyebrow">Unidad 2 · 14 abr 2026 · Mediateca</div>
+    <h1>Apple in <span class="mark-red">China</span> — Videos</h1>
+    <p class="lede">Videos de referencia para la sesión. Los marcados con <strong>En clase</strong> se proyectarán en fragmentos durante la sesión del 14 de abril.</p>
+    <div class="accent-bar"><span></span><span></span><span></span><span></span></div>
+  </div>
+
+  <p class="section-label">Fragmentos para clase — 14 abr 2026</p>
+
+  <div class="video-grid">
+
+    <!-- Clase 1: PolyMatter -->
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/-JbIOGGTRTY?start=150"
+          title="Why Apple Can't Leave China (yet) — PolyMatter"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <h2><span class="video-num">A</span>Why Apple Can't Leave China (yet)</h2>
+        <div class="video-meta">
+          <span class="channel">PolyMatter</span>
+          <span>18:12</span>
+          <span class="tag">En clase</span>
+          <span>Inicia en 2:30 — por qué el ecosistema chino es irremplazable</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clase 2: Tech Vision factory -->
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/9XkX6EGk_CA?start=30"
+          title="Inside Apple's iPhone Factory In China — Tech Vision"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <h2><span class="video-num">B</span>Inside Apple's iPhone Factory In China</h2>
+        <div class="video-meta">
+          <span class="channel">Tech Vision</span>
+          <span>7:14</span>
+          <span class="tag">En clase</span>
+          <span>Tour completo — líneas de ensamblaje y escala productiva</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clase 3: TechAltar Foxconn -->
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/dEXH-K1m2kI?start=60"
+          title="The billionaire behind all your favorite tech — TechAltar"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <h2><span class="video-num">C</span>The Billionaire Behind All Your Favorite Tech</h2>
+        <div class="video-meta">
+          <span class="channel">TechAltar</span>
+          <span>14:55</span>
+          <span class="tag">En clase</span>
+          <span>Inicia en 1:00 — Foxconn, Terry Gou y el modelo OEM</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clase 4: WIRED teardown -->
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/IqIMhuAFIQM?start=90"
+          title="iPhone 16 Pro Teardown – How Every Single Piece Inside Works — WIRED"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <h2><span class="video-num">D</span>iPhone 16 Pro Teardown – How Every Single Piece Inside Works</h2>
+        <div class="video-meta">
+          <span class="channel">WIRED</span>
+          <span>~15 min</span>
+          <span class="tag">En clase</span>
+          <span>Inicia en 1:30 — componentes, países de origen, cadena global</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="section-label">Mediateca completa — Apple in China</p>
+
+  <div class="video-grid">
+
+    <!-- 1 -->
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/XHteRHDI3dU"
+          title="Globalization – How crises change our world (1/2) — DW Documentary"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <h2><span class="video-num">1</span>Globalization – How Crises Change Our World (1/2)</h2>
+        <div class="video-meta">
+          <span class="channel">DW Documentary</span>
+          <span>42:26</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/LytEuoS87EA"
+          title="Taiwan's Biggest Company – Foxconn — Asianometry"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <h2><span class="video-num">2</span>Taiwan's Biggest Company – Foxconn</h2>
+        <div class="video-meta">
+          <span class="channel">Asianometry</span>
+          <span>13:16</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/Cw3V2x5u54Y"
+          title="What's In Your Apple iPhone — CNBC"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <h2><span class="video-num">3</span>What's In Your Apple iPhone</h2>
+        <div class="video-meta">
+          <span class="channel">CNBC</span>
+          <span>6:50</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/FvvJtx8ndG8"
+          title="Why Apple Is Betting Big On Making iPhones In India — CNBC"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <h2><span class="video-num">4</span>Why Apple Is Betting Big On Making iPhones In India</h2>
+        <div class="video-meta">
+          <span class="channel">CNBC</span>
+          <span>9:49</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/NIH6kvYJwK4"
+          title="Inside Apple's and Samsung's Supply Chain Shift Away From China — WSJ"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <h2><span class="video-num">5</span>Inside Apple's and Samsung's Supply Chain Shift Away From China</h2>
+        <div class="video-meta">
+          <span class="channel">The Wall Street Journal</span>
+          <span>6:39</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/FqDP3hbwErA"
+          title="Apple Makes iPhone 14 in India Amid China Woes — ColdFusion"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <h2><span class="video-num">6</span>Apple Makes iPhone 14 in India Amid China Woes</h2>
+        <div class="video-meta">
+          <span class="channel">ColdFusion</span>
+          <span>7:09</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/NAj9zB4vaZc"
+          title="Patrick McGee – Apple in China · The Daily Show"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <h2><span class="video-num">7</span>Patrick McGee – "Apple in China: The Capture of the World's Greatest Company"</h2>
+        <div class="video-meta">
+          <span class="channel">The Daily Show</span>
+          <span>18:56</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="vac-footer">
+    Globalización y Empleo 2026-2 · Unidad 2 · FCA, UNAM<br>
+    Videos incrustados con <a href="https://support.google.com/youtube/answer/171780" target="_blank" rel="noopener">modo de privacidad mejorada</a> (youtube-nocookie.com)
+  </div>
+
+</div>
+
+</body>
+</html>
