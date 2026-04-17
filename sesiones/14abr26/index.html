@@ -52,6 +52,76 @@
       margin-bottom: 1.25rem;
     }
 
+    /* Pizarrón temporal */
+    .today-board {
+      background: #143d32;
+      color: #f7fff7;
+      border: 3px solid var(--ink);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.25rem 1.4rem;
+      margin: 0 0 1.75rem;
+      max-width: 76ch;
+      position: relative;
+    }
+    .today-board[hidden] { display: none; }
+    .today-board::after {
+      content: "";
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: .55rem;
+      height: 4px;
+      background: rgba(247,255,247,.22);
+      border-radius: 999px;
+    }
+    .today-board-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f0b429;
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      border-radius: var(--radius-pill);
+      box-shadow: 3px 3px 0 rgba(0,0,0,.45);
+      padding: .25rem .65rem;
+      font-family: var(--font-accent);
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .85rem;
+    }
+    .today-board h2 {
+      color: #ffffff;
+      font-size: clamp(1.35rem, 3vw, 1.9rem);
+      line-height: 1.12;
+      margin-bottom: .75rem;
+    }
+    .today-board ol {
+      padding-left: 1.25rem;
+      margin: 0;
+    }
+    .today-board li {
+      color: #f7fff7;
+      font-size: 1rem;
+      line-height: 1.55;
+      margin-bottom: .5rem;
+    }
+    .today-board a {
+      color: #ffe08a;
+      font-weight: 800;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .today-board-note {
+      font-family: var(--font-accent);
+      font-size: .78rem;
+      color: rgba(247,255,247,.72);
+      margin-top: .85rem;
+      padding-bottom: .4rem;
+    }
+
     /* APA card */
     .apa-card {
       background: var(--mint);
@@ -336,6 +406,16 @@
 
 <div class="act-shell">
 
+  <section class="today-board" data-expires="2026-04-21T00:00:00-06:00" aria-labelledby="today-board-title">
+    <div class="today-board-label">Pizarrón 16 abril de 2026</div>
+    <h2 id="today-board-title">Plan de trabajo</h2>
+    <ol>
+      <li>Continuar viendo los videos sobre Foxconn, incluyendo la comparación con TSMC.</li>
+      <li>Revisar los primeros avances del <a href="../../unidad2/investigacion.html#requisitos">tema de investigación</a>. Cuestionario: <a href="https://forms.gle/QHu3AXioc997r1RH8" target="_blank" rel="noopener noreferrer">primer avance del tema de investigación</a>.</li>
+      <li>Continuar con el video sobre <a href="videos_apple_china.html#video-globalization-huawei"><em>Globalization</em> (parte 1)</a>, para ver la comparación con Huawei.</li>
+    </ol>
+  </section>
+
   <!-- HERO -->
   <section class="act-hero">
     <div class="act-eyebrow">Actividad 10 · Unidad 2</div>
@@ -363,7 +443,7 @@
       </a>
       <a href="videos_apple_china.html" class="material-card">
         <span class="mc-icon">&#127916;</span>
-        <div class="mc-label">Mediateca · 11 videos</div>
+        <div class="mc-label">Mediateca · 12 videos</div>
         <h3>Videos – Apple in China</h3>
         <p>Fragmentos de clase y biblioteca completa de videos sobre cadenas de producción, Foxconn e India.</p>
       </a>
@@ -450,7 +530,7 @@
       <div class="guide-body">
         <p style="font-family:var(--font-accent);font-size:.85rem;color:var(--text-muted);margin-bottom:.75rem;font-style:italic;">"En una cadena global como la de Apple, ¿qué importa más para el desarrollo: atraer empleos, atraer proveedores o atraer capacidades tecnológicas?"</p>
         <p style="font-size:.97rem;line-height:1.7;max-width:68ch;">El caso Apple sugiere que las tres cosas importan, pero en secuencia. Los empleos son el punto de entrada —necesarios para generar ingresos, consumo y experiencia técnica básica— pero no son suficientes. Los proveedores crean encadenamientos locales y pueden generar aprendizaje tecnológico si hay políticas que lo incentiven. Las capacidades tecnológicas son el eslabón que más valor captura y el más difícil de construir, pero también el que más protege a un país frente a la reconfiguración de la cadena.</p>
-        <p style="font-size:.97rem;line-height:1.7;max-width:68ch;margin-top:.65rem;">TSMC en Taiwán es el ejemplo más claro: su capacidad tecnológica convierte a la isla en un actor geopolítico imprescindible —lo que McGee llama el "silicon shield"— independientemente de su tamaño o de la cantidad de empleos que genera. China entendió esto: comenzó con empleos, construyó proveedores, y ahora invierte masivamente en capacidades propias. La pregunta para México es si aún hay tiempo —y voluntad política— para recorrer ese mismo camino.</p>
+        <p style="font-size:.97rem;line-height:1.7;max-width:68ch;margin-top:.65rem;">TSMC en Taiwán es el ejemplo más claro: su capacidad tecnológica convierte a la isla en un actor geopolítico imprescindible —lo que McGee llama el "silicon shield"— independientemente de su tamaño o de la cantidad de empleos que genera. El <a href="videos_apple_china.html#video-e" style="color:var(--teal);font-weight:600;">Video E (TechAltar)</a> ayuda a precisar la comparación: TSMC también es fabricante por contrato, como Foxconn, pero captura mucho más valor porque domina un nodo tecnológico escaso. China entendió esto: comenzó con empleos, construyó proveedores, y ahora invierte masivamente en capacidades propias. La pregunta para México es si aún hay tiempo —y voluntad política— para recorrer ese mismo camino.</p>
       </div>
     </details>
 
@@ -482,6 +562,11 @@
         <h3>iPhone 16 Pro Teardown</h3>
         <p>Componentes del iPhone y sus países de origen.</p>
       </a>
+      <a href="notas_video_E_techaltar_tsmc.html" class="material-card">
+        <div class="mc-label">Video E · TechAltar</div>
+        <h3>The fight for TSMC is heating up</h3>
+        <p>Foxconn, TSMC y la diferencia entre ensamblar y capturar valor tecnológico.</p>
+      </a>
     </div>
   </section>
 
@@ -505,5 +590,13 @@
   &nbsp;·&nbsp; Globalización y Empleo 2026-2 · FCA UNAM
 </footer>
 
+<script>
+  document.querySelectorAll('[data-expires]').forEach((element) => {
+    const expiresAt = new Date(element.dataset.expires);
+    if (!Number.isNaN(expiresAt.getTime()) && new Date() >= expiresAt) {
+      element.hidden = true;
+    }
+  });
+</script>
 </body>
 </html>
