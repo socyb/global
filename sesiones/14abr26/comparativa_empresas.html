@@ -1,0 +1,1350 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Comparativa interactiva entre Apple, Foxconn, TSMC, Huawei, Samsung y Xiaomi: curva de valor, márgenes e inversión en I+D.">
+  <title>Comparativa de seis gigantes · Apple, Foxconn, TSMC, Huawei, Samsung, Xiaomi · 14 abr 2026</title>
+  <link rel="icon" href="../../img/icon-globe.svg">
+  <link rel="stylesheet" href="../../css/styles.css">
+  <style>
+    .cp-shell { max-width: 1040px; margin: 0 auto; padding: 0 1.25rem 3rem; }
+
+    /* Hero */
+    .cp-hero { padding: 1.75rem 0 1.5rem; border-bottom: var(--border); margin-bottom: 2rem; }
+    .back-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-accent); font-size: .78rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--text-muted); text-decoration: none;
+      margin-bottom: .9rem; transition: color var(--transition);
+    }
+    .back-pill:hover { color: var(--ink); }
+    .cp-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px; border-radius: var(--radius-pill);
+      background: var(--gold); border: var(--border-thin);
+      box-shadow: var(--shadow-press);
+      font-family: var(--font-accent); font-size: .72rem; font-weight: 900;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--ink); margin-bottom: .85rem;
+    }
+    .cp-hero h1 {
+      font-size: clamp(1.8rem, 4.2vw, 2.8rem);
+      line-height: 1.08; letter-spacing: -0.02em;
+      margin-bottom: .6rem;
+    }
+    .cp-hero .lede {
+      font-family: var(--font-accent); font-size: 1.02rem;
+      color: var(--text-muted); line-height: 1.6; max-width: 64ch;
+    }
+    .disclaimer {
+      display: flex; gap: .7rem; align-items: flex-start;
+      background: var(--blush);
+      border: var(--border-thin); border-left: 5px solid #c0392b;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: .75rem 1rem;
+      max-width: 68ch; margin-top: 1.1rem;
+    }
+    .disclaimer-label {
+      display: inline-block; flex-shrink: 0;
+      background: #c0392b; color: #fff;
+      border: 1.5px solid var(--ink);
+      border-radius: var(--radius-pill);
+      font-family: var(--font-accent); font-size: .68rem;
+      font-weight: 900; letter-spacing: .09em; text-transform: uppercase;
+      padding: 2px 9px; margin-top: 2px;
+    }
+    .disclaimer p {
+      font-family: var(--font-accent); font-size: .85rem;
+      line-height: 1.55; color: var(--text); margin: 0;
+    }
+    .disclaimer a { color: var(--ink); font-weight: 700; }
+
+    /* Glossary term (clickable inline) */
+    .gloss {
+      display: inline;
+      background: none; border: none; padding: 0 1px;
+      font: inherit; color: inherit; cursor: help;
+      border-bottom: 2px dotted var(--teal);
+      text-align: left;
+      transition: background var(--transition);
+    }
+    .gloss:hover, .gloss:focus-visible {
+      background: var(--mint);
+      outline: none;
+    }
+    .gloss::after {
+      content: " ⓘ";
+      font-size: .72em;
+      color: var(--teal);
+      font-weight: 700;
+      vertical-align: super;
+    }
+    .gloss.tag { border-bottom: 1.5px solid var(--ink); }
+    .gloss.tag::after { content: none; }
+
+    /* Glossary modal */
+    .gloss-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(17,17,17,.55);
+      display: none;
+      align-items: center; justify-content: center;
+      z-index: 100; padding: 1rem;
+    }
+    .gloss-backdrop.is-open { display: flex; }
+    .gloss-modal {
+      background: var(--paper);
+      border: var(--border); border-radius: var(--radius);
+      box-shadow: 10px 10px 0 var(--gold), 10px 10px 0 3px var(--ink);
+      max-width: 520px; width: 100%;
+      padding: 1.3rem 1.5rem 1.4rem;
+      position: relative;
+      animation: gloss-pop .18s ease-out;
+    }
+    @keyframes gloss-pop {
+      from { transform: translateY(8px) scale(.96); opacity: 0; }
+      to   { transform: none; opacity: 1; }
+    }
+    .gloss-label {
+      display: inline-block;
+      background: var(--teal); color: var(--ink);
+      border: 1.5px solid var(--ink);
+      border-radius: var(--radius-pill);
+      font-family: var(--font-accent);
+      font-size: .66rem; font-weight: 900;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: 2px 10px;
+      margin-bottom: .6rem;
+    }
+    .gloss-modal h3 {
+      font-size: 1.3rem; line-height: 1.2;
+      margin-bottom: .55rem;
+    }
+    .gloss-modal p {
+      font-size: .97rem; line-height: 1.6;
+      margin-bottom: .7rem;
+    }
+    .gloss-modal p:last-of-type { margin-bottom: 0; }
+    .gloss-close {
+      position: absolute; top: .55rem; right: .65rem;
+      background: var(--ink); color: var(--paper);
+      border: 2px solid var(--ink);
+      border-radius: var(--radius-pill);
+      width: 30px; height: 30px;
+      font-family: var(--font-accent);
+      font-size: 1.05rem; font-weight: 900;
+      cursor: pointer; line-height: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform var(--transition);
+    }
+    .gloss-close:hover { transform: rotate(90deg); }
+
+    /* Forum questions — random draw game */
+    .draw-stage {
+      background: var(--cream);
+      border: var(--border); border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      min-height: 320px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .draw-stage::before {
+      content: "?";
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-accent);
+      font-size: 18rem; font-weight: 900;
+      color: rgba(0,0,0,.04);
+      line-height: 1; pointer-events: none;
+      user-select: none;
+    }
+    .draw-intro { position: relative; z-index: 1; max-width: 48ch; }
+    .draw-intro p {
+      font-family: var(--font-accent);
+      font-size: .95rem; line-height: 1.55;
+      color: var(--text); margin-bottom: 1.2rem;
+    }
+    .draw-btn {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: var(--ink); color: var(--gold);
+      border: 3px solid var(--ink);
+      border-radius: var(--radius-pill);
+      box-shadow: 5px 5px 0 var(--gold), 5px 5px 0 3px var(--ink);
+      font-family: var(--font-accent);
+      font-size: 1rem; font-weight: 900;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .9rem 1.7rem;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative; z-index: 1;
+    }
+    .draw-btn:hover {
+      transform: translate(-2px,-2px);
+      box-shadow: 8px 8px 0 var(--gold), 8px 8px 0 3px var(--ink);
+    }
+    .draw-btn:active {
+      transform: translate(2px,2px);
+      box-shadow: 2px 2px 0 var(--gold), 2px 2px 0 3px var(--ink);
+    }
+    .draw-btn:disabled {
+      cursor: not-allowed; opacity: .5;
+      transform: none;
+      box-shadow: 5px 5px 0 var(--gold), 5px 5px 0 3px var(--ink);
+    }
+    .draw-btn .dice {
+      font-size: 1.3rem;
+      display: inline-block;
+      transition: transform .4s ease;
+    }
+    .draw-btn:hover .dice { transform: rotate(20deg); }
+
+    .q-reveal {
+      display: none;
+      background: var(--surface);
+      border: var(--border); border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.4rem 1.6rem;
+      text-align: left;
+      position: relative; z-index: 1;
+      max-width: 620px;
+      animation: q-pop .45s cubic-bezier(.2,.9,.3,1.3);
+    }
+    .q-reveal.is-shown { display: block; }
+    @keyframes q-pop {
+      0%   { transform: scale(.7) rotate(-3deg); opacity: 0; }
+      60%  { transform: scale(1.04) rotate(1deg); opacity: 1; }
+      100% { transform: none; opacity: 1; }
+    }
+    .q-reveal .q-num {
+      display: inline-flex; align-items: center;
+      background: var(--gold); color: var(--ink);
+      border: 1.5px solid var(--ink);
+      border-radius: var(--radius-pill);
+      font-family: var(--font-accent);
+      font-size: .72rem; font-weight: 900;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 3px 10px; margin-bottom: .6rem;
+    }
+    .q-reveal h4 {
+      font-family: var(--font-accent);
+      font-size: 1.15rem; font-weight: 800;
+      line-height: 1.3; margin-bottom: .55rem;
+    }
+    .q-reveal p {
+      font-size: .97rem; line-height: 1.6;
+      margin-bottom: .7rem;
+    }
+    .q-reveal .q-hint {
+      font-family: var(--font-accent); font-size: .82rem;
+      color: var(--text-muted); line-height: 1.5;
+      padding-top: .55rem;
+      border-top: 1px dashed rgba(0,0,0,.15);
+    }
+    .q-reveal .q-hint strong { color: var(--ink); }
+    .q-reveal .refresh-note {
+      font-family: var(--font-accent); font-size: .78rem;
+      color: var(--text-muted);
+      margin-top: .9rem; padding-top: .6rem;
+      border-top: 1px dashed rgba(0,0,0,.15);
+      font-style: italic;
+    }
+    .q-reveal .refresh-note kbd {
+      background: var(--ink); color: var(--paper);
+      border-radius: 4px; padding: 1px 6px;
+      font-family: var(--font-accent); font-size: .76rem;
+      font-weight: 700;
+    }
+
+    /* Section titles */
+    .cp-section { margin-bottom: 2.75rem; }
+    .cp-section-title {
+      font-size: 1.3rem; font-family: var(--font-accent);
+      font-weight: 800; letter-spacing: -.01em;
+      border-bottom: var(--border-thin);
+      padding-bottom: .45rem; margin-bottom: 1rem;
+    }
+    .cp-section p {
+      font-size: 1rem; line-height: 1.65; margin-bottom: .75rem; max-width: 70ch;
+    }
+
+    /* Filter chips for the table */
+    .filter-bar {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+    .filter-label {
+      font-family: var(--font-accent); font-size: .75rem;
+      font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-muted); margin-right: .35rem;
+    }
+    .filter-chip {
+      background: var(--surface); border: var(--border-thin);
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-press);
+      padding: .3rem .85rem;
+      font-family: var(--font-accent); font-size: .82rem;
+      font-weight: 700; cursor: pointer;
+      transition: transform var(--transition), background var(--transition);
+    }
+    .filter-chip:hover { transform: translate(-1px,-1px); }
+    .filter-chip.is-active { background: var(--gold); }
+
+    /* Comparison table */
+    .cmp-table-wrap {
+      border: var(--border); border-radius: var(--radius);
+      background: var(--surface); box-shadow: var(--shadow);
+      overflow-x: auto;
+    }
+    table.cmp {
+      width: 100%; border-collapse: collapse;
+      font-size: .93rem;
+      min-width: 760px;
+    }
+    table.cmp thead th {
+      background: var(--ink); color: #f5f5f5;
+      font-family: var(--font-accent);
+      font-size: .74rem; font-weight: 800;
+      letter-spacing: .08em; text-transform: uppercase;
+      text-align: left; padding: .7rem .85rem;
+      border-bottom: 3px solid var(--gold);
+      cursor: pointer; user-select: none;
+      position: sticky; top: 0;
+    }
+    table.cmp thead th::after {
+      content: " ↕"; color: #888; font-size: .8em;
+    }
+    table.cmp thead th.sort-asc::after { content: " ▲"; color: var(--gold); }
+    table.cmp thead th.sort-desc::after { content: " ▼"; color: var(--gold); }
+    table.cmp tbody tr {
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      transition: background var(--transition);
+    }
+    table.cmp tbody tr:hover { background: var(--cream); }
+    table.cmp tbody tr.is-hidden { display: none; }
+    table.cmp tbody td {
+      padding: .7rem .85rem; vertical-align: middle;
+    }
+    .co-name {
+      display: flex; align-items: center; gap: .55rem;
+      font-weight: 700;
+    }
+    .co-dot {
+      width: 12px; height: 12px; border-radius: 3px;
+      border: 1.5px solid var(--ink);
+      display: inline-block; flex-shrink: 0;
+    }
+    .co-country {
+      font-family: var(--font-accent); font-size: .72rem;
+      color: var(--text-muted); margin-left: .25rem;
+    }
+    .tag {
+      display: inline-block;
+      font-family: var(--font-accent); font-size: .68rem;
+      font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: var(--radius-pill);
+      border: 1.5px solid var(--ink);
+    }
+    .tag.ensamble  { background: var(--rose); }
+    .tag.fabless   { background: var(--sky); }
+    .tag.foundry   { background: var(--mint); }
+    .tag.integrado { background: var(--lavender); }
+
+    /* Mini bars inside table cells */
+    .bar-cell { min-width: 120px; }
+    .bar-track {
+      position: relative;
+      height: 10px; background: #eee;
+      border: 1.5px solid var(--ink); border-radius: 6px;
+      overflow: hidden; margin-top: 4px;
+    }
+    .bar-fill {
+      height: 100%; background: var(--teal);
+      border-right: 1.5px solid var(--ink);
+      transition: width .6s cubic-bezier(.2,.7,.2,1);
+    }
+    .bar-fill.margin { background: var(--gold); }
+    .bar-fill.rnd    { background: var(--purple); }
+    .bar-num {
+      font-family: var(--font-accent);
+      font-size: .84rem; font-weight: 700;
+    }
+
+    /* Value curve */
+    .curve-wrap {
+      position: relative;
+      background: var(--cream);
+      border: var(--border); border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.4rem 1.4rem 1.2rem;
+    }
+    .curve-caption {
+      font-family: var(--font-accent); font-size: .8rem;
+      color: var(--text-muted); margin-top: .6rem;
+      text-align: center;
+    }
+    svg.curve-svg { width: 100%; height: auto; display: block; }
+    .curve-svg .axis-label {
+      font-family: system-ui, sans-serif;
+      font-size: 11px; font-weight: 700;
+      fill: var(--text-muted);
+      letter-spacing: .04em; text-transform: uppercase;
+    }
+    .curve-svg .stage-label {
+      font-family: system-ui, sans-serif;
+      font-size: 11.5px; font-weight: 700;
+      fill: var(--ink);
+      text-anchor: middle;
+    }
+    .curve-svg .stage-sub {
+      font-family: system-ui, sans-serif;
+      font-size: 10px; fill: var(--text-muted);
+      text-anchor: middle;
+    }
+    .curve-svg .node {
+      cursor: pointer;
+      transition: transform .15s ease;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+    .curve-svg .node:hover { transform: scale(1.25); }
+    .curve-svg .node-label {
+      font-family: system-ui, sans-serif;
+      font-size: 10.5px; font-weight: 700;
+      text-anchor: middle;
+    }
+    .curve-svg .arrow {
+      stroke: #c0392b; stroke-width: 2.2;
+      fill: none; marker-end: url(#arrow-head);
+    }
+    .curve-svg .arrow-label {
+      font-family: system-ui, sans-serif;
+      font-size: 11px; font-weight: 800;
+      fill: #c0392b; text-anchor: middle;
+    }
+
+    /* Two-column: curve + reading */
+    .curve-row {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+    @media (max-width: 820px) {
+      .curve-row { grid-template-columns: 1fr; }
+    }
+    .curve-aside {
+      background: var(--surface);
+      border: var(--border); border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.1rem 1.2rem;
+      font-size: .95rem; line-height: 1.6;
+    }
+    .curve-aside h3 {
+      font-family: var(--font-accent);
+      font-size: 1rem; margin-bottom: .5rem;
+      border-bottom: var(--border-thin); padding-bottom: .3rem;
+    }
+    .curve-aside .bullet {
+      display: grid; grid-template-columns: auto 1fr;
+      gap: .55rem; margin: .55rem 0;
+    }
+    .curve-aside .bullet strong { font-family: var(--font-accent); font-size: .92rem; }
+
+    /* iPhone BOM panel */
+    .bom-card {
+      background: var(--surface);
+      border: var(--border); border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.3rem 1.4rem;
+    }
+    .bom-title {
+      font-family: var(--font-accent);
+      font-size: 1rem; font-weight: 800;
+      margin-bottom: .7rem;
+    }
+    .bom-bar {
+      display: flex; width: 100%;
+      height: 44px; border: var(--border-thin);
+      border-radius: var(--radius-sm); overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .bom-seg {
+      height: 100%; display: flex;
+      align-items: center; justify-content: center;
+      font-family: var(--font-accent);
+      font-size: .78rem; font-weight: 800;
+      color: var(--ink);
+      border-right: 2px solid var(--ink);
+      position: relative; overflow: hidden;
+    }
+    .bom-seg:last-child { border-right: none; }
+    .bom-seg.apple   { background: var(--gold);   flex: 0 0 59.6%; }
+    .bom-seg.other   { background: var(--teal);   flex: 0 0 31.0%; }
+    .bom-seg.tsmc    { background: var(--mint);   flex: 0 0 3.8%;  }
+    .bom-seg.foxconn { background: var(--rose);   flex: 0 0 1.2%;  }
+    .bom-seg.logistic{ background: #eee;          flex: 0 0 4.4%;  }
+    .bom-legend {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: .65rem; margin-top: .9rem;
+      font-size: .86rem;
+    }
+    .bom-legend-item {
+      display: flex; gap: .5rem; align-items: flex-start;
+    }
+    .bom-swatch {
+      width: 16px; height: 16px; border-radius: 3px;
+      border: 1.5px solid var(--ink); flex-shrink: 0; margin-top: 3px;
+    }
+    .bom-note {
+      font-family: var(--font-accent); font-size: .8rem;
+      color: var(--text-muted); margin-top: .8rem;
+    }
+
+    /* Margin bars (big viz) */
+    .margin-viz {
+      background: var(--surface);
+      border: var(--border); border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.3rem 1.4rem;
+    }
+    .mv-row {
+      display: grid;
+      grid-template-columns: 140px 1fr 70px;
+      align-items: center;
+      gap: .9rem;
+      padding: .55rem 0;
+      border-bottom: 1px dashed rgba(0,0,0,.1);
+    }
+    .mv-row:last-child { border-bottom: none; }
+    .mv-name {
+      font-family: var(--font-accent);
+      font-size: .92rem; font-weight: 700;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .mv-track {
+      position: relative;
+      height: 22px; background: #f5f5f5;
+      border: 1.5px solid var(--ink);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+    }
+    .mv-fill {
+      height: 100%; background: var(--teal);
+      transition: width .9s cubic-bezier(.2,.7,.2,1);
+    }
+    .mv-num {
+      font-family: var(--font-accent);
+      font-size: .95rem; font-weight: 800;
+      text-align: right;
+    }
+    .mv-flag {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-size: .64rem; font-weight: 800;
+      letter-spacing: .07em; text-transform: uppercase;
+      padding: 1px 6px; border-radius: var(--radius-pill);
+      background: var(--gold); border: 1.5px solid var(--ink);
+      margin-left: .35rem;
+    }
+
+    /* Card grid for qualitative comparison */
+    .cmp-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .cmp-card {
+      background: var(--surface);
+      border: var(--border-thin); border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+      padding: .95rem 1.1rem;
+    }
+    .cmp-card h3 {
+      font-family: var(--font-accent);
+      font-size: 1rem; font-weight: 800;
+      margin-bottom: .3rem;
+      display: flex; align-items: center; gap: .45rem;
+    }
+    .cmp-card p {
+      font-size: .9rem; line-height: 1.55;
+    }
+    .cmp-card .role {
+      font-family: var(--font-accent); font-size: .72rem;
+      font-weight: 700; color: var(--text-muted);
+      letter-spacing: .06em; text-transform: uppercase;
+      margin-bottom: .4rem;
+    }
+
+    /* Sources */
+    .sources-box {
+      background: var(--surface);
+      border: var(--border-thin); border-radius: var(--radius-sm);
+      padding: 1rem 1.2rem;
+    }
+    .sources-box h3 {
+      font-family: var(--font-accent);
+      font-size: .95rem; margin-bottom: .5rem;
+    }
+    .sources-box ul { padding-left: 1.2rem; }
+    .sources-box li {
+      font-size: .85rem; line-height: 1.55;
+      margin-bottom: .35rem; max-width: none;
+    }
+    .sources-box a { color: var(--teal); font-weight: 700; }
+
+    /* Tooltip (value curve) */
+    .tip-box {
+      position: absolute;
+      background: var(--ink); color: #fff;
+      border: 2px solid var(--gold);
+      border-radius: var(--radius-sm);
+      padding: .55rem .75rem;
+      font-family: var(--font-accent);
+      font-size: .82rem; line-height: 1.45;
+      pointer-events: none;
+      box-shadow: var(--shadow-sm);
+      max-width: 220px;
+      z-index: 10;
+      opacity: 0; transition: opacity .15s ease;
+    }
+    .tip-box.show { opacity: 1; }
+    .tip-box strong { color: var(--gold); display: block; margin-bottom: 2px; }
+  </style>
+</head>
+<body>
+
+<header class="site-header" style="padding:1.2rem 0 .9rem;">
+  <div class="container">
+    <div class="header-content">
+      <div class="header-text">
+        <h1 style="font-size:clamp(1.5rem,3.5vw,2.2rem);margin-bottom:.15rem;">
+          <img src="../../img/icon-globe.svg" alt="" class="icon-8bit-lg"> Globalización y Empleo
+        </h1>
+        <p class="subtitle" style="font-size:.9rem;margin-bottom:.3rem;">Semestre 2026-2 · FCA · UNAM</p>
+        <div class="header-meta">
+          <p class="instructor">Dr. Jorge Cardiel</p>
+          <div class="today-box header-today">
+            <span class="today-label">Sesión</span>
+            <time>14 abr 2026</time>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="cp-shell">
+
+  <!-- HERO -->
+  <section class="cp-hero">
+    <a href="index.html" class="back-pill">← Actividad 14 abr</a>
+    <div class="cp-eyebrow">Artefacto interactivo · Unidad 2</div>
+    <h1>¿Dónde está la ganancia?<br>Seis gigantes de la cadena del iPhone (y más allá)</h1>
+    <p class="lede">Una misma <button type="button" class="gloss" data-term="cgv">cadena global de valor</button> reparte ingresos, márgenes, empleos e I+D de forma muy desigual. Este artefacto compara a <strong>Apple, Foxconn, TSMC, Huawei, Samsung y Xiaomi</strong> con datos del ejercicio 2024, siguiendo la lectura que hace TechAltar sobre cómo TSMC invierte la curva de valor frente a Foxconn.</p>
+
+    <div class="disclaimer">
+      <span class="disclaimer-label">Aviso</span>
+      <p>Datos recopilados y organizados con ayuda de <strong>Claude Opus 4.7</strong> a partir de reportes públicos de las empresas (ver <a href="#fuentes">fuentes</a>). Las cifras son estimaciones con fines meramente didácticos: redondeos, tipos de cambio promedio y aproximaciones para el BOM del iPhone pueden desviarse de los valores oficiales.</p>
+    </div>
+  </section>
+
+  <!-- VALUE CURVE -->
+  <section class="cp-section">
+    <h2 class="cp-section-title">1 · La curva de valor (smile curve) y su inversión</h2>
+    <p>La literatura clásica sobre cadenas globales dibuja una <button type="button" class="gloss" data-term="smile">smile curve</button>: las etapas de diseño/marca y servicio/distribución capturan mucho valor; el ensamblaje en el centro captura poco. TechAltar muestra que <strong>TSMC rompe esa figura</strong>: técnicamente también es manufactura por contrato, pero controla una capacidad tecnológica tan escasa que <button type="button" class="gloss" data-term="captura">captura valor</button> propio de los eslabones "altos".</p>
+
+    <div class="curve-row">
+      <div class="curve-wrap" id="curveWrap">
+        <svg class="curve-svg" viewBox="0 0 720 380" aria-label="Curva de valor con empresas posicionadas">
+          <defs>
+            <marker id="arrow-head" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/>
+            </marker>
+            <pattern id="grid" width="60" height="30" patternUnits="userSpaceOnUse">
+              <path d="M 60 0 L 0 0 0 30" fill="none" stroke="rgba(0,0,0,.05)" stroke-width="1"/>
+            </pattern>
+          </defs>
+
+          <rect width="720" height="380" fill="url(#grid)"/>
+
+          <!-- Axes -->
+          <line x1="60" y1="300" x2="700" y2="300" stroke="#111" stroke-width="2"/>
+          <line x1="60" y1="40" x2="60" y2="300" stroke="#111" stroke-width="2"/>
+
+          <text class="axis-label" x="60" y="26">Valor capturado</text>
+          <text class="axis-label" x="700" y="370" text-anchor="end">Etapa de la cadena →</text>
+
+          <!-- Smile curve (classic) -->
+          <path d="M 90,80 C 180,300 300,320 380,315 C 460,310 580,260 690,80"
+                fill="none" stroke="#999" stroke-width="2.5" stroke-dasharray="6,5"/>
+          <text x="420" y="70" class="axis-label" fill="#666">Smile curve clásica</text>
+
+          <!-- Stage tick positions (4 etapas, bien espaciadas) -->
+          <!-- 1 Design -->
+          <line x1="140" y1="296" x2="140" y2="304" stroke="#111" stroke-width="2"/>
+          <text class="stage-label" x="140" y="325">Diseño / marca</text>
+          <text class="stage-sub"   x="140" y="340">IP, software, retail</text>
+
+          <!-- 2 Components -->
+          <line x1="310" y1="296" x2="310" y2="304" stroke="#111" stroke-width="2"/>
+          <text class="stage-label" x="310" y="325">Componentes clave</text>
+          <text class="stage-sub"   x="310" y="340">chips, displays</text>
+
+          <!-- 3 Assembly -->
+          <line x1="480" y1="296" x2="480" y2="304" stroke="#111" stroke-width="2"/>
+          <text class="stage-label" x="480" y="325">Ensamblaje</text>
+          <text class="stage-sub"   x="480" y="340">manufactura final</text>
+
+          <!-- 4 Distribution -->
+          <line x1="650" y1="296" x2="650" y2="304" stroke="#111" stroke-width="2"/>
+          <text class="stage-label" x="650" y="325">Servicios / marca</text>
+          <text class="stage-sub"   x="650" y="340">ecosistema, venta</text>
+
+          <!-- ARROW: TSMC vs Foxconn inversion -->
+          <path class="arrow" d="M 480,220 Q 400,160 320,115"/>
+          <text class="arrow-label" x="410" y="150">TSMC "sube" la curva</text>
+
+          <!-- NODES: Company dots -->
+          <!-- Apple: design, very high -->
+          <g class="node" data-name="Apple" data-rev="$391.0 B" data-net="$93.7 B" data-margin="24%" data-note="Captura ~60% del precio de un iPhone. Diseño, iOS, marca y servicios; no fabrica casi nada.">
+            <circle cx="140" cy="78" r="13" fill="#ffd93d" stroke="#111" stroke-width="2.5"/>
+            <text class="node-label" x="140" y="58">Apple</text>
+          </g>
+
+          <!-- TSMC: the "anomaly" — mid stage but very high value -->
+          <g class="node" data-name="TSMC" data-rev="$90.1 B" data-net="$36.5 B" data-margin="45.7%" data-note="Foundry pura. Fabrica sin diseñar y sin marca, pero controla el nodo más avanzado del planeta: captura margen de ~46% op.">
+            <circle cx="320" cy="105" r="15" fill="#4ecdc4" stroke="#111" stroke-width="3"/>
+            <text class="node-label" x="320" y="85">TSMC</text>
+          </g>
+
+          <!-- Samsung: integrated -->
+          <g class="node" data-name="Samsung" data-rev="$223 B" data-net="$22.9 B" data-margin="10.9%" data-note="Único jugador plenamente integrado: diseña, fabrica chips y displays, ensambla y vende bajo marca propia.">
+            <circle cx="605" cy="135" r="13" fill="#6c5ce7" stroke="#111" stroke-width="2.5"/>
+            <text class="node-label" x="605" y="115" fill="#111">Samsung</text>
+          </g>
+
+          <!-- Huawei: integrated -->
+          <g class="node" data-name="Huawei" data-rev="$118.2 B" data-net="$8.6 B" data-margin="7%" data-note="Diseña chips (HiSilicon), redes 5G y hace su propio OS. I+D = 20.8% de ingresos tras sanciones de EE.UU.">
+            <circle cx="670" cy="165" r="12" fill="#ff6b6b" stroke="#111" stroke-width="2.5"/>
+            <text class="node-label" x="670" y="185">Huawei</text>
+          </g>
+
+          <!-- Xiaomi: brand + ecosystem -->
+          <g class="node" data-name="Xiaomi" data-rev="$51.2 B" data-net="$3.7 B" data-margin="6.5%" data-note="Marca propia con modelo 'Apple chino' de bajo margen: ecosistema AIoT y ahora autos eléctricos (SU7).">
+            <circle cx="560" cy="215" r="11" fill="#f0b429" stroke="#111" stroke-width="2.5"/>
+            <text class="node-label" x="560" y="200">Xiaomi</text>
+          </g>
+
+          <!-- Foxconn: assembly, at the bottom -->
+          <g class="node" data-name="Foxconn" data-rev="$208 B" data-net="$4.9 B" data-margin="2.2%" data-note="Escala masiva (1.7M empleados pico), pero margen neto 2.2%. Recibe ~$14 por cada iPhone ensamblado.">
+            <circle cx="480" cy="250" r="13" fill="#fff5f5" stroke="#111" stroke-width="2.5"/>
+            <text class="node-label" x="480" y="275">Foxconn</text>
+          </g>
+
+        </svg>
+        <div class="tip-box" id="tipBox" role="tooltip" aria-hidden="true"></div>
+        <p class="curve-caption">Posiciones ilustrativas. Pasa el cursor sobre cada empresa para ver sus cifras de 2024.</p>
+      </div>
+
+      <div class="curve-aside">
+        <h3>Cómo leer el gráfico</h3>
+        <div class="bullet">
+          <span>▲</span>
+          <div><strong>Apple</strong> queda en la cima izquierda: diseño, marca y servicios capturan la mayor parte del precio final.</div>
+        </div>
+        <div class="bullet">
+          <span>▲</span>
+          <div><strong>TSMC</strong> está "en medio" de la cadena (es contract manufacturer), pero su margen operativo (45.7%) lo empuja hacia arriba — la <em>anomalía</em> que analiza TechAltar.</div>
+        </div>
+        <div class="bullet">
+          <span>▼</span>
+          <div><strong>Foxconn</strong> ocupa el fondo: gigantesco en ingresos y en empleo, pero su margen neto es de apenas 2.2%.</div>
+        </div>
+        <div class="bullet">
+          <span>◆</span>
+          <div><strong>Huawei y Samsung</strong> son modelos integrados que operan en varios eslabones a la vez; <strong>Xiaomi</strong> copia la estrategia Apple pero con márgenes muy delgados.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- iPhone BOM -->
+  <section class="cp-section">
+    <h2 class="cp-section-title">2 · ¿Cuánto se queda cada actor en un iPhone 16 Pro Max?</h2>
+    <div class="bom-card">
+      <div class="bom-title">Descomposición del precio de venta (~US$1,199, modelo 256 GB) según el <button type="button" class="gloss" data-term="bom">BOM</button></div>
+      <div class="bom-bar" aria-label="Barra de descomposición del precio">
+        <div class="bom-seg apple"   title="Margen bruto de Apple">Apple · 59.6%</div>
+        <div class="bom-seg other"   title="Otros componentes y proveedores">Otros proveedores · 31%</div>
+        <div class="bom-seg tsmc"    title="Chip A18 Pro (TSMC)">TSMC 3.8%</div>
+        <div class="bom-seg logistic" title="Logística, empaque, envío">Logística 4.4%</div>
+        <div class="bom-seg foxconn" title="Fee de ensamblaje (Foxconn)">Foxconn 1.2%</div>
+      </div>
+      <div class="bom-legend">
+        <div class="bom-legend-item"><span class="bom-swatch" style="background:var(--gold)"></span><div><strong>Apple ≈ US$714</strong><br><span style="color:var(--text-muted)">Margen bruto: marca, diseño, iOS, servicios.</span></div></div>
+        <div class="bom-legend-item"><span class="bom-swatch" style="background:var(--teal)"></span><div><strong>Otros componentes ≈ US$371</strong><br><span style="color:var(--text-muted)">Sony (cámara), Samsung/LG (display), Qualcomm, Skyworks, etc.</span></div></div>
+        <div class="bom-legend-item"><span class="bom-swatch" style="background:var(--mint)"></span><div><strong>TSMC ≈ US$45</strong><br><span style="color:var(--text-muted)">Chip A18 Pro — el único componente que Apple no puede sustituir.</span></div></div>
+        <div class="bom-legend-item"><span class="bom-swatch" style="background:#eee"></span><div><strong>Logística ≈ US$55</strong><br><span style="color:var(--text-muted)">Empaque, transporte y overhead de producción.</span></div></div>
+        <div class="bom-legend-item"><span class="bom-swatch" style="background:var(--rose)"></span><div><strong>Foxconn ≈ US$14</strong><br><span style="color:var(--text-muted)">Fee pagado por el ensamblaje final de cada unidad.</span></div></div>
+      </div>
+      <p class="bom-note">Fuentes: Bill-of-materials de iPhone 16 Pro Max reportado por DigiTimes (≈ US$485 de costo total) y estimaciones de prensa técnica (MacRumors, AppleInsider, iPhoneTonic). Los porcentajes son aproximados y redondeados.</p>
+    </div>
+  </section>
+
+  <!-- MARGIN BAR VISUALIZATION -->
+  <section class="cp-section">
+    <h2 class="cp-section-title">3 · <button type="button" class="gloss" data-term="margen">Margen neto</button> 2024 — ¿quién se queda con el excedente?</h2>
+    <div class="margin-viz" id="marginViz">
+      <div class="mv-row" data-margin="24.0">
+        <div class="mv-name"><span class="co-dot" style="background:var(--gold)"></span>Apple</div>
+        <div class="mv-track"><div class="mv-fill" style="background:var(--gold)"></div></div>
+        <div class="mv-num">24.0%</div>
+      </div>
+      <div class="mv-row" data-margin="40.5">
+        <div class="mv-name"><span class="co-dot" style="background:var(--teal)"></span>TSMC <span class="mv-flag">Anomalía</span></div>
+        <div class="mv-track"><div class="mv-fill" style="background:var(--teal)"></div></div>
+        <div class="mv-num">40.5%</div>
+      </div>
+      <div class="mv-row" data-margin="10.9">
+        <div class="mv-name"><span class="co-dot" style="background:var(--purple)"></span>Samsung</div>
+        <div class="mv-track"><div class="mv-fill" style="background:var(--purple)"></div></div>
+        <div class="mv-num">10.9%</div>
+      </div>
+      <div class="mv-row" data-margin="7.3">
+        <div class="mv-name"><span class="co-dot" style="background:var(--coral)"></span>Huawei</div>
+        <div class="mv-track"><div class="mv-fill" style="background:var(--coral)"></div></div>
+        <div class="mv-num">7.3%</div>
+      </div>
+      <div class="mv-row" data-margin="6.5">
+        <div class="mv-name"><span class="co-dot" style="background:#f0b429"></span>Xiaomi</div>
+        <div class="mv-track"><div class="mv-fill" style="background:#f0b429"></div></div>
+        <div class="mv-num">6.5%</div>
+      </div>
+      <div class="mv-row" data-margin="2.2">
+        <div class="mv-name"><span class="co-dot" style="background:#fff5f5"></span>Foxconn</div>
+        <div class="mv-track"><div class="mv-fill" style="background:#d64747"></div></div>
+        <div class="mv-num">2.2%</div>
+      </div>
+      <p style="font-family:var(--font-accent);font-size:.82rem;color:var(--text-muted);margin-top:.8rem;">Barras proporcionales al margen neto anual. Samsung usa el margen operativo (~10.9%) por disponibilidad comparable. TSMC y Apple capturan más del 10× del margen de Foxconn a pesar de operar en la misma cadena.</p>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE TABLE -->
+  <section class="cp-section">
+    <h2 class="cp-section-title">4 · Tabla comparativa — datos 2024</h2>
+
+    <div class="filter-bar" role="group" aria-label="Filtros por rol en la cadena">
+      <span class="filter-label">Filtrar por rol:</span>
+      <button class="filter-chip is-active" data-filter="all">Todas</button>
+      <button class="filter-chip" data-filter="ensamble">Ensamble</button>
+      <button class="filter-chip" data-filter="foundry">Foundry</button>
+      <button class="filter-chip" data-filter="integrado">Integrado</button>
+      <button class="filter-chip" data-filter="fabless">Fabless/marca</button>
+    </div>
+
+    <div class="cmp-table-wrap">
+      <table class="cmp" id="cmpTable">
+        <thead>
+          <tr>
+            <th data-sort="name" data-type="text">Empresa</th>
+            <th data-sort="role" data-type="text">Rol en la cadena</th>
+            <th data-sort="revenue" data-type="num">Ingresos (USD B)</th>
+            <th data-sort="margin" data-type="num">Margen neto/op.</th>
+            <th data-sort="rnd" data-type="num">I+D / ingresos</th>
+            <th data-sort="employees" data-type="num">Empleados</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-role="fabless">
+            <td><div class="co-name"><span class="co-dot" style="background:var(--gold)"></span>Apple<span class="co-country">EE.UU.</span></div></td>
+            <td><button type="button" class="gloss tag fabless" data-term="fabless" style="cursor:help;">Marca / fabless</button></td>
+            <td class="bar-cell" data-value="391">
+              <div class="bar-num">391.0</div>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            </td>
+            <td class="bar-cell" data-value="24">
+              <div class="bar-num">24.0% <span style="color:var(--text-muted);font-weight:400">neto</span></div>
+              <div class="bar-track"><div class="bar-fill margin" style="width:52%"></div></div>
+            </td>
+            <td class="bar-cell" data-value="8.0">
+              <div class="bar-num">8.0%</div>
+              <div class="bar-track"><div class="bar-fill rnd" style="width:32%"></div></div>
+            </td>
+            <td data-value="164000">164 000</td>
+          </tr>
+
+          <tr data-role="ensamble">
+            <td><div class="co-name"><span class="co-dot" style="background:#fff5f5"></span>Foxconn (Hon Hai)<span class="co-country">Taiwán</span></div></td>
+            <td><button type="button" class="gloss tag ensamble" data-term="oem" style="cursor:help;">Ensamble (OEM/EMS)</button></td>
+            <td class="bar-cell" data-value="208">
+              <div class="bar-num">208.0</div>
+              <div class="bar-track"><div class="bar-fill" style="width:53%"></div></div>
+            </td>
+            <td class="bar-cell" data-value="2.2">
+              <div class="bar-num">2.2% <span style="color:var(--text-muted);font-weight:400">neto</span></div>
+              <div class="bar-track"><div class="bar-fill margin" style="width:5%"></div></div>
+            </td>
+            <td class="bar-cell" data-value="1.0">
+              <div class="bar-num">~1.0%</div>
+              <div class="bar-track"><div class="bar-fill rnd" style="width:4%"></div></div>
+            </td>
+            <td data-value="767000">767 000</td>
+          </tr>
+
+          <tr data-role="foundry">
+            <td><div class="co-name"><span class="co-dot" style="background:var(--teal)"></span>TSMC<span class="co-country">Taiwán</span></div></td>
+            <td><button type="button" class="gloss tag foundry" data-term="foundry" style="cursor:help;">Foundry pura</button></td>
+            <td class="bar-cell" data-value="90.1">
+              <div class="bar-num">90.1</div>
+              <div class="bar-track"><div class="bar-fill" style="width:23%"></div></div>
+            </td>
+            <td class="bar-cell" data-value="45.7">
+              <div class="bar-num">45.7% <span style="color:var(--text-muted);font-weight:400">op.</span></div>
+              <div class="bar-track"><div class="bar-fill margin" style="width:100%"></div></div>
+            </td>
+            <td class="bar-cell" data-value="7.1">
+              <div class="bar-num">7.1%</div>
+              <div class="bar-track"><div class="bar-fill rnd" style="width:28%"></div></div>
+            </td>
+            <td data-value="83000">83 000</td>
+          </tr>
+
+          <tr data-role="integrado">
+            <td><div class="co-name"><span class="co-dot" style="background:var(--coral)"></span>Huawei<span class="co-country">China</span></div></td>
+            <td><span class="tag integrado">Integrado (chips + redes)</span></td>
+            <td class="bar-cell" data-value="118.2">
+              <div class="bar-num">118.2</div>
+              <div class="bar-track"><div class="bar-fill" style="width:30%"></div></div>
+            </td>
+            <td class="bar-cell" data-value="7.3">
+              <div class="bar-num">7.3% <span style="color:var(--text-muted);font-weight:400">neto</span></div>
+              <div class="bar-track"><div class="bar-fill margin" style="width:16%"></div></div>
+            </td>
+            <td class="bar-cell" data-value="20.8">
+              <div class="bar-num">20.8% <span style="color:var(--text-muted);font-weight:400">record</span></div>
+              <div class="bar-track"><div class="bar-fill rnd" style="width:83%"></div></div>
+            </td>
+            <td data-value="208000">208 000</td>
+          </tr>
+
+          <tr data-role="integrado">
+            <td><div class="co-name"><span class="co-dot" style="background:var(--purple)"></span>Samsung Electronics<span class="co-country">Corea del Sur</span></div></td>
+            <td><span class="tag integrado">Integrado vertical</span></td>
+            <td class="bar-cell" data-value="223">
+              <div class="bar-num">223.0</div>
+              <div class="bar-track"><div class="bar-fill" style="width:57%"></div></div>
+            </td>
+            <td class="bar-cell" data-value="10.9">
+              <div class="bar-num">10.9% <span style="color:var(--text-muted);font-weight:400">op.</span></div>
+              <div class="bar-track"><div class="bar-fill margin" style="width:24%"></div></div>
+            </td>
+            <td class="bar-cell" data-value="9.0">
+              <div class="bar-num">~9.0%</div>
+              <div class="bar-track"><div class="bar-fill rnd" style="width:36%"></div></div>
+            </td>
+            <td data-value="267000">267 000</td>
+          </tr>
+
+          <tr data-role="fabless">
+            <td><div class="co-name"><span class="co-dot" style="background:#f0b429"></span>Xiaomi<span class="co-country">China</span></div></td>
+            <td><span class="tag fabless">Marca / AIoT + EV</span></td>
+            <td class="bar-cell" data-value="51.2">
+              <div class="bar-num">51.2</div>
+              <div class="bar-track"><div class="bar-fill" style="width:13%"></div></div>
+            </td>
+            <td class="bar-cell" data-value="6.5">
+              <div class="bar-num">6.5% <span style="color:var(--text-muted);font-weight:400">neto</span></div>
+              <div class="bar-track"><div class="bar-fill margin" style="width:14%"></div></div>
+            </td>
+            <td class="bar-cell" data-value="6.6">
+              <div class="bar-num">6.6%</div>
+              <div class="bar-track"><div class="bar-fill rnd" style="width:26%"></div></div>
+            </td>
+            <td data-value="41000">41 000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-family:var(--font-accent);font-size:.82rem;color:var(--text-muted);margin-top:.8rem;">
+      Haz clic en los encabezados para ordenar. Usa los filtros de arriba para aislar un rol. Las barras son proporcionales al máximo de cada columna.
+    </p>
+  </section>
+
+  <!-- QUALITATIVE CARDS -->
+  <section class="cp-section">
+    <h2 class="cp-section-title">5 · Qué hace única a cada empresa</h2>
+    <div class="cmp-card-grid">
+      <div class="cmp-card">
+        <div class="role">Fabless · Diseño y marca</div>
+        <h3><span class="co-dot" style="background:var(--gold)"></span>Apple</h3>
+        <p>Casi no fabrica. Controla iOS, App Store y retail. Su ventaja es la <em>arquitectura del sistema</em> y una base instalada de 2 000 M+ dispositivos activos que alimenta servicios de alto margen.</p>
+      </div>
+      <div class="cmp-card">
+        <div class="role">OEM/EMS · Ensamblaje masivo</div>
+        <h3><span class="co-dot" style="background:#d64747"></span>Foxconn</h3>
+        <p>El ejemplo canónico del <em>bajo upgrading</em>: enorme en escala y empleo, diminuto en margen. Apuesta a diversificar hacia EV y servidores de IA para romper el techo del 2–3%.</p>
+      </div>
+      <div class="cmp-card">
+        <div class="role">Foundry pura · Monopolio técnico</div>
+        <h3><span class="co-dot" style="background:var(--teal)"></span>TSMC</h3>
+        <p>Fabrica para Apple, Nvidia, AMD y Qualcomm sin competirles. Controla ~90% del mercado de semiconductores avanzados (≤5 nm). El "silicon shield" de Taiwán.</p>
+      </div>
+      <div class="cmp-card">
+        <div class="role">Integrado · Resiliencia por sanciones</div>
+        <h3><span class="co-dot" style="background:var(--coral)"></span>Huawei</h3>
+        <p>Golpeado por EE.UU. en 2019, respondió con I+D de 20.8% de ingresos — proporción comparable a empresas farmacéuticas. Diseña sus propios chips (Kirin) y sistemas (HarmonyOS).</p>
+      </div>
+      <div class="cmp-card">
+        <div class="role">Integrado · El conglomerado coreano</div>
+        <h3><span class="co-dot" style="background:var(--purple)"></span>Samsung</h3>
+        <p>Compite consigo mismo: es proveedor clave de Apple (OLED, memoria) y al mismo tiempo su principal rival en smartphones. Único actor con fábrica propia, diseño y marca global.</p>
+      </div>
+      <div class="cmp-card">
+        <div class="role">Ecosistema · "Apple chino"</div>
+        <h3><span class="co-dot" style="background:#f0b429"></span>Xiaomi</h3>
+        <p>Copia la estrategia de ecosistema de Apple con precios agresivos. En 2024 lanzó el SU7, su primer auto eléctrico, y creció 35% en ingresos. Margen 4× menor que Apple.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAKEAWAY -->
+  <section class="cp-section">
+    <h2 class="cp-section-title">6 · Reflexión</h2>
+    <div style="background:var(--ink);color:#f5f5f5;border-radius:var(--radius);padding:1.5rem 1.75rem;max-width:68ch;">
+      <p style="font-size:1.05rem;line-height:1.65;font-family:var(--font-body);margin:0;">La cadena global de valor no es una jerarquía entre países, sino entre <strong style="color:var(--gold)">posiciones tecnológicas</strong>. Apple captura valor por diseño y marca; TSMC lo captura por monopolio técnico; Foxconn, pese a su tamaño, se queda con migajas. La única salida del "techo del ensamblaje" — lo que la literatura llama <button type="button" class="gloss" data-term="upgrading" style="color:var(--gold);border-bottom-color:var(--gold);">upgrading</button> — es construir capacidades tecnológicas propias. El debate actual sobre <button type="button" class="gloss" data-term="nearshoring" style="color:var(--gold);border-bottom-color:var(--gold);">nearshoring</button> en México plantea exactamente esa pregunta: atraer ensamblaje no basta; hace falta política industrial.</p>
+    </div>
+  </section>
+
+  <!-- FORUM QUESTIONS — random draw game -->
+  <section class="cp-section">
+    <h2 class="cp-section-title">7 · Pregunta sorpresa para el foro de Moodle</h2>
+
+    <div class="draw-stage" id="drawStage" aria-live="polite">
+      <div class="draw-intro" id="drawIntro">
+        <p>El artefacto contiene <strong>seis preguntas</strong> para investigar, reflexionar y redactar en el foro. Una sola saldrá sorteada al azar — y es la que te toca responder.</p>
+        <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:1.5rem;">Solo tendrás <strong>un tiro</strong>. Para volver a barajear hay que recargar la página.</p>
+        <button type="button" class="draw-btn" id="drawBtn">
+          <span class="dice" aria-hidden="true">&#127922;</span>
+          Sacar mi pregunta
+        </button>
+      </div>
+
+      <article class="q-reveal" id="qReveal" aria-hidden="true">
+        <span class="q-num" id="qNum">Pregunta —</span>
+        <h4 id="qTitle"></h4>
+        <p id="qBody"></p>
+        <div class="q-hint"><strong>Pistas:</strong> <span id="qHint"></span></div>
+        <p class="refresh-note">Si quieres ver otra pregunta, recarga la página (<kbd>⌘R</kbd> / <kbd>F5</kbd>). El sorteo solo se hace una vez por visita.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- SOURCES -->
+  <section class="cp-section" id="fuentes">
+    <h2 class="cp-section-title">Fuentes</h2>
+    <div class="sources-box">
+      <h3>Datos financieros (ejercicio 2024)</h3>
+      <ul>
+        <li><strong>Apple:</strong> Apple Inc. — Press release 4Q FY24 (oct 2024). Ingresos US$391 B, utilidad neta US$93.7 B. <a href="https://www.sec.gov/Archives/edgar/data/320193/000032019324000120/a8-kex991q4202409282024.htm" target="_blank" rel="noopener">Formulario 8-K SEC</a>.</li>
+        <li><strong>TSMC:</strong> TSMC 4Q24 Management Report. Ingresos US$90.08 B, margen operativo 45.7%, margen bruto 56.1%. <a href="https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2025-01/2d8b2bb6fc3b5887d24ae0635f639c1cdca834f3/4Q24ManagementReport.pdf" target="_blank" rel="noopener">PDF · TSMC IR</a>.</li>
+        <li><strong>Foxconn / Hon Hai:</strong> Hon Hai Technology Group FY2024 financial results. Ingresos NT$6.86 T (~US$208 B), utilidad neta NT$152.7 B, margen neto 2.22%. <a href="https://www.foxconn.com/en-us/press-center/press-releases/latest-news/1554" target="_blank" rel="noopener">Foxconn press release</a>.</li>
+        <li><strong>Huawei:</strong> Huawei 2024 Annual Report. Ingresos CNY 862 B (~US$118.2 B), I+D CNY 179.7 B (20.8% de ingresos). <a href="https://www.huawei.com/en/annual-report/2024" target="_blank" rel="noopener">Reporte anual</a> · <a href="https://www.digitimes.com/news/a20250401VL202/huawei-profit-revenue-2024.html" target="_blank" rel="noopener">DigiTimes cobertura</a>.</li>
+        <li><strong>Samsung Electronics:</strong> Q4 &amp; FY2024 earnings. Ingresos KRW 300.9 T (~US$223 B), utilidad operativa KRW 32.7 T (10.9%). <a href="https://news.samsung.com/global/samsung-electronics-announces-fourth-quarter-and-fy-2024-results" target="_blank" rel="noopener">Samsung Newsroom</a>.</li>
+        <li><strong>Xiaomi:</strong> Annual Results 2024. Ingresos RMB 365.9 B (~US$51.2 B), utilidad neta ajustada RMB 27.2 B. <a href="https://www.ciw.news/p/xiaomis-2024" target="_blank" rel="noopener">China Internet Watch</a>.</li>
+      </ul>
+      <h3 style="margin-top:.8rem;">Curva de valor e iPhone BOM</h3>
+      <ul>
+        <li>TechAltar (2024). <em>The fight for TSMC is heating up</em>. Video E de la sesión. Argumento sobre TSMC como anomalía dentro de la manufactura por contrato.</li>
+        <li>DigiTimes (2024). <em>iPhone 16 series teardown shows increased costs in certain components</em>. BOM de US$485 para el iPhone 16 Pro Max. <a href="https://www.digitimes.com/news/a20241004PD214/apple-iphone-component-cost-production-profit.html" target="_blank" rel="noopener">Enlace</a>.</li>
+        <li>iPhoneTonic / MacRumors (2024–2025). Estimación del fee de ensamblaje Foxconn ≈ US$14 por unidad y del costo del A18 Pro ≈ US$45. <a href="https://iphonetonic.com/how-much-does-it-cost-to-make-an-iphone/" target="_blank" rel="noopener">iPhoneTonic</a>.</li>
+        <li>McGee, P. (2025). <em>Apple in China</em>. Simon &amp; Schuster. Márgenes de Foxconn (10% → 2–3%) vs. Apple (25%) entre 2000 y 2012.</li>
+      </ul>
+      <p class="bom-note" style="margin-top:.6rem;">Los tipos de cambio usados son aproximados (promedios 2024). Las proporciones en la barra del iPhone son estimaciones redondeadas a partir del BOM y del precio de venta de referencia.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer style="text-align:center;padding:1.5rem;font-family:var(--font-accent);font-size:.8rem;color:var(--text-muted);border-top:var(--border-thin);">
+  <a href="index.html" style="color:var(--teal);font-weight:700;text-decoration:none;">← Actividad 14 abr</a>
+  &nbsp;·&nbsp; Globalización y Empleo 2026-2 · FCA UNAM
+</footer>
+
+<!-- Glossary modal -->
+<div class="gloss-backdrop" id="glossBackdrop" role="dialog" aria-modal="true" aria-labelledby="glossTitle">
+  <div class="gloss-modal">
+    <button type="button" class="gloss-close" id="glossClose" aria-label="Cerrar">×</button>
+    <span class="gloss-label" id="glossLabel">Concepto</span>
+    <h3 id="glossTitle"></h3>
+    <div id="glossBody"></div>
+  </div>
+</div>
+
+<script>
+/* ───────────── Tabla: ordenamiento por columna ───────────── */
+(function () {
+  const table = document.getElementById('cmpTable');
+  if (!table) return;
+  const headers = table.querySelectorAll('thead th');
+  const tbody = table.querySelector('tbody');
+
+  headers.forEach((th, idx) => {
+    th.addEventListener('click', () => {
+      const type = th.dataset.type;
+      const isAsc = th.classList.contains('sort-asc');
+      headers.forEach(h => h.classList.remove('sort-asc','sort-desc'));
+      th.classList.add(isAsc ? 'sort-desc' : 'sort-asc');
+      const dir = isAsc ? -1 : 1;
+
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      rows.sort((a, b) => {
+        const ca = a.children[idx], cb = b.children[idx];
+        if (type === 'num') {
+          const va = parseFloat(ca.dataset.value ?? ca.textContent.replace(/[^\d.-]/g,'')) || 0;
+          const vb = parseFloat(cb.dataset.value ?? cb.textContent.replace(/[^\d.-]/g,'')) || 0;
+          return (va - vb) * dir;
+        }
+        return ca.textContent.trim().localeCompare(cb.textContent.trim(), 'es') * dir;
+      });
+      rows.forEach(r => tbody.appendChild(r));
+    });
+  });
+})();
+
+/* ───────────── Tabla: filtros por rol ───────────── */
+(function () {
+  const chips = document.querySelectorAll('.filter-chip');
+  const rows  = document.querySelectorAll('#cmpTable tbody tr');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('is-active'));
+      chip.classList.add('is-active');
+      const f = chip.dataset.filter;
+      rows.forEach(r => {
+        r.classList.toggle('is-hidden', f !== 'all' && r.dataset.role !== f);
+      });
+    });
+  });
+})();
+
+/* ───────────── Curva de valor: tooltip interactivo ───────────── */
+(function () {
+  const wrap = document.getElementById('curveWrap');
+  const tip  = document.getElementById('tipBox');
+  if (!wrap || !tip) return;
+  const nodes = wrap.querySelectorAll('.node');
+
+  nodes.forEach(n => {
+    const show = (ev) => {
+      const rect = wrap.getBoundingClientRect();
+      const nr   = n.getBoundingClientRect();
+      const x = nr.left - rect.left + nr.width/2;
+      const y = nr.top  - rect.top  - 10;
+      tip.innerHTML =
+        `<strong>${n.dataset.name}</strong>` +
+        `Ingresos 2024: ${n.dataset.rev}<br>` +
+        `Utilidad neta: ${n.dataset.net}<br>` +
+        `Margen: ${n.dataset.margin}<br>` +
+        `<span style="color:#ddd;font-size:.78rem;">${n.dataset.note}</span>`;
+      tip.style.left = (x - 110) + 'px';
+      tip.style.top  = (y - tip.offsetHeight) + 'px';
+      tip.classList.add('show');
+      tip.setAttribute('aria-hidden','false');
+    };
+    const hide = () => {
+      tip.classList.remove('show');
+      tip.setAttribute('aria-hidden','true');
+    };
+    n.addEventListener('mouseenter', show);
+    n.addEventListener('mouseleave', hide);
+    n.addEventListener('focus', show);
+    n.addEventListener('blur', hide);
+    n.setAttribute('tabindex','0');
+  });
+})();
+
+/* ───────────── Foro: sorteo de pregunta aleatoria ───────────── */
+(function () {
+  const QUESTIONS = [
+    {
+      title: "Foxconn más allá del iPhone",
+      body:  "Foxconn quiere escapar del techo del 2–3% de margen apostando por autos eléctricos (proyecto MIH) y servidores de IA. Investiga sus movimientos recientes: ¿ha logrado <em>upgrading</em> real o reproduce el modelo de ensamblaje en otro sector? Compara con lo que sí logró TSMC.",
+      hint:  "reportes trimestrales de Hon Hai 2024–2025, alianzas con Nvidia, fábricas en México."
+    },
+    {
+      title: "Nearshoring en México: ¿ensamblaje o capacidades?",
+      body:  "Elige un caso concreto de nearshoring en México (Tesla en Nuevo León, Foxconn en Chihuahua/Jalisco, BMW en SLP, Lego, etc.). ¿Está generando solo empleos de ensamblaje o también transferencia de tecnología y encadenamientos locales? ¿Qué política pública faltaría para que signifique escalamiento?",
+      hint:  "notas de prensa de Secretaría de Economía, estudios del Banxico sobre nearshoring, cifras de IED 2023–2025."
+    },
+    {
+      title: "Huawei y la I+D bajo sanciones",
+      body:  "Huawei destinó 20.8% de sus ingresos a I+D en 2024 — proporción de farmacéutica. ¿Qué productos o tecnologías ha logrado desarrollar tras las sanciones de EE.UU. (chip Kirin 9010, HarmonyOS, Mate 60 Pro, SMIC en 7 nm)? ¿Puede un país alcanzar la frontera tecnológica estando bloqueado del ecosistema global?",
+      hint:  "reporte anual Huawei 2024, Financial Times, SemiAnalysis, debate sobre DUV vs EUV."
+    },
+    {
+      title: "El \"silicon shield\" bajo presión",
+      body:  "El argumento del escudo de silicio dice que Taiwán es demasiado importante para ser invadido. Pero TSMC ya construye fábricas en Arizona, Japón y Alemania. ¿Diluye esto el silicon shield o lo refuerza? ¿Qué ganan y qué pierden Taiwán, EE.UU. y México en esa reconfiguración?",
+      hint:  "CHIPS Act (2022), Fab 21 Arizona, JASM Kumamoto, discurso de Mark Liu y C.C. Wei."
+    },
+    {
+      title: "Xiaomi SU7: ¿convergencia tecnológica o apuesta desesperada?",
+      body:  "Xiaomi lanzó en 2024 el SU7, su primer auto eléctrico, y vendió más de 100 000 unidades en menos de un año. ¿Qué capacidades comparten smartphones y autos eléctricos (software, baterías, cadena de suministro)? ¿Es un modelo replicable para otros fabricantes chinos — o para empresas occidentales?",
+      hint:  "entrevistas a Lei Jun, comparativa con BYD y Tesla, Bloomberg y Caixin sobre EV chinos."
+    },
+    {
+      title: "Samsung: proveedor y rival a la vez",
+      body:  "Samsung fabrica OLEDs y memorias para Apple — y al mismo tiempo compite con el iPhone en el mercado global de smartphones. Investiga cuánto factura por ventas a Apple al año. ¿Cómo logra esta relación cliente-competidor? ¿Qué tiene que ofrecer un proveedor para negociar así con su rival?",
+      hint:  "estimaciones de Counterpoint Research, Nikkei Asia, reportes 10-K de Apple sobre concentración de proveedores."
+    }
+  ];
+
+  const btn    = document.getElementById('drawBtn');
+  const intro  = document.getElementById('drawIntro');
+  const reveal = document.getElementById('qReveal');
+  const numEl  = document.getElementById('qNum');
+  const titleEl= document.getElementById('qTitle');
+  const bodyEl = document.getElementById('qBody');
+  const hintEl = document.getElementById('qHint');
+
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    const idx = Math.floor(Math.random() * QUESTIONS.length);
+    const q   = QUESTIONS[idx];
+
+    numEl.textContent   = 'Pregunta ' + (idx + 1) + ' de ' + QUESTIONS.length;
+    titleEl.textContent = q.title;
+    bodyEl.innerHTML    = q.body;
+    hintEl.textContent  = q.hint;
+
+    intro.style.display = 'none';
+    reveal.classList.add('is-shown');
+    reveal.setAttribute('aria-hidden', 'false');
+    reveal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    btn.disabled = true;
+  });
+})();
+
+/* ───────────── Glosario: diccionario + modal ───────────── */
+(function () {
+  const GLOSS = {
+    bom: {
+      label: "Concepto · Costos",
+      title: "BOM — Bill of Materials",
+      body: "<p>Lista detallada de todos los componentes, materiales y subensambles necesarios para fabricar un producto, con sus costos unitarios. Es la base para estimar el costo de producción y compararlo contra el precio de venta.</p><p>En el caso del iPhone 16 Pro Max, el BOM ronda los US$485: cada pieza proviene de un país distinto, y la diferencia entre ese costo y el precio de venta (~US$1,199) es el margen bruto que se reparte Apple con sus canales.</p>"
+    },
+    smile: {
+      label: "Concepto · Cadenas globales",
+      title: "Smile curve",
+      body: "<p>Modelo propuesto por Stan Shih (fundador de Acer) en los años 90. Dibuja una curva en forma de sonrisa donde el eje horizontal es la etapa productiva y el vertical el valor agregado capturado en cada una.</p><p>Los extremos de la cadena —I+D, diseño, marca (izquierda) y distribución, servicios post-venta (derecha)— concentran el valor. El centro, manufactura y ensamblaje, captura muy poco. Por eso las empresas líderes tienden a externalizar la producción y conservar diseño y marca.</p>"
+    },
+    upgrading: {
+      label: "Concepto · Desarrollo",
+      title: "Upgrading (escalamiento)",
+      body: "<p>Proceso por el cual un país, región o empresa sube de posición dentro de una cadena global de valor, capturando más valor agregado. Gereffi distingue cuatro tipos:</p><p><strong>Proceso:</strong> fabricar lo mismo con mayor eficiencia.<br><strong>Producto:</strong> pasar a bienes más sofisticados.<br><strong>Funcional:</strong> asumir funciones de mayor valor (diseño, marca).<br><strong>Intersectorial:</strong> moverse a sectores distintos más rentables.</p><p>El caso chino muestra los cuatro tipos en secuencia; el mexicano, casi solo el primero.</p>"
+    },
+    cgv: {
+      label: "Concepto · Marco teórico",
+      title: "Cadena Global de Valor (CGV / GVC)",
+      body: "<p>Secuencia de actividades que una empresa dispersa geográficamente para producir un bien o servicio: investigación, diseño, producción de insumos, ensamblaje, logística, marketing, distribución y post-venta.</p><p>La teoría de las CGV, desarrollada por Gary Gereffi y otros, sustituye al análisis país-por-país clásico: hoy los países compiten por <em>etapas</em> dentro de cadenas globales, no por fabricar productos completos.</p>"
+    },
+    fabless: {
+      label: "Concepto · Modelos de negocio",
+      title: "Fabless",
+      body: "<p>Del inglés <em>fabrication-less</em>. Empresa que diseña chips pero no los fabrica: terceriza la producción a foundries como TSMC, Samsung Foundry o GlobalFoundries.</p><p>Ejemplos: Apple (chips A y M), Nvidia (GPUs), AMD (CPUs), Qualcomm (Snapdragon), MediaTek. El modelo les permite invertir solo en I+D y diseño, sin el costo (decenas de miles de millones) de una fábrica de chips.</p>"
+    },
+    foundry: {
+      label: "Concepto · Semiconductores",
+      title: "Foundry pura",
+      body: "<p>Planta de semiconductores que solo fabrica chips para terceros, sin diseñar ni vender chips de marca propia. El modelo lo inventó TSMC en 1987.</p><p>La clave es que la foundry no compite con sus clientes. Eso permite que empresas fabless (Apple, Nvidia, AMD) confíen en ella sin temor a que les robe diseños. TSMC controla hoy ~90% del mercado de nodos avanzados (≤ 5 nm).</p>"
+    },
+    oem: {
+      label: "Concepto · Manufactura",
+      title: "OEM / EMS",
+      body: "<p><strong>OEM</strong> — <em>Original Equipment Manufacturer</em>: empresa que fabrica productos que otra marca venderá bajo su nombre. <strong>EMS</strong> — <em>Electronics Manufacturing Services</em>: variante especializada en ensamblaje electrónico a gran escala.</p><p>Foxconn es el ejemplo canónico: ensambla iPhones para Apple, consolas para Sony, servidores para Dell. Opera con márgenes muy delgados (2–3%) porque su ventaja competitiva es escala y velocidad, no propiedad intelectual.</p>"
+    },
+    captura: {
+      label: "Concepto · Distribución del excedente",
+      title: "Captura de valor",
+      body: "<p>Parte del excedente económico de una cadena que un actor logra retener para sí, en vez de trasladarlo a clientes, proveedores o competidores. Depende de:</p><p>· <strong>Poder de mercado</strong> (pocos competidores).<br>· <strong>Activos intangibles</strong>: marca, patentes, software, ecosistema.<br>· <strong>Capacidades tecnológicas</strong> escasas y difíciles de replicar.</p><p>En la cadena del iPhone, Apple y TSMC capturan la mayor parte; Foxconn, a pesar de emplear a más de un millón de personas, captura muy poco.</p>"
+    },
+    margen: {
+      label: "Concepto · Contabilidad",
+      title: "Margen operativo vs margen neto",
+      body: "<p><strong>Margen operativo</strong>: utilidad operativa ÷ ingresos. Refleja la eficiencia del negocio <em>antes</em> de impuestos, intereses y partidas extraordinarias.</p><p><strong>Margen neto</strong>: utilidad neta ÷ ingresos. Es lo que queda <em>después</em> de todo — impuestos, financiamiento, cargos únicos. Refleja la ganancia final para los accionistas.</p><p>Para comparar la eficiencia productiva entre empresas conviene el operativo; para comparar retorno al inversionista, el neto. En la tabla de este artefacto usamos uno u otro según lo reporta cada empresa.</p>"
+    },
+    nearshoring: {
+      label: "Concepto · Geografía económica",
+      title: "Nearshoring",
+      body: "<p>Relocalización de procesos productivos desde un país lejano hacia otro geográficamente cercano al mercado final, para reducir riesgos logísticos, costos de transporte y exposición geopolítica.</p><p>Para Estados Unidos, México es el destino emblemático del nearshoring post-2020, impulsado por la guerra comercial EE.UU.–China, la pandemia y los conflictos en torno a Taiwán. El reto mexicano es aprovecharlo para escalar (<em>upgrading</em>) y no limitarse a reproducir el modelo maquilador.</p>"
+    }
+  };
+
+  const backdrop = document.getElementById('glossBackdrop');
+  const closeBtn = document.getElementById('glossClose');
+  const labelEl  = document.getElementById('glossLabel');
+  const titleEl  = document.getElementById('glossTitle');
+  const bodyEl   = document.getElementById('glossBody');
+
+  const open = (term) => {
+    const entry = GLOSS[term];
+    if (!entry) return;
+    labelEl.textContent = entry.label;
+    titleEl.textContent = entry.title;
+    bodyEl.innerHTML    = entry.body;
+    backdrop.classList.add('is-open');
+    closeBtn.focus();
+  };
+  const close = () => backdrop.classList.remove('is-open');
+
+  document.querySelectorAll('.gloss').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      open(el.dataset.term);
+    });
+  });
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) close();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && backdrop.classList.contains('is-open')) close();
+  });
+})();
+
+/* ───────────── Margin viz: llena barras al entrar en viewport ───────────── */
+(function () {
+  const rows = document.querySelectorAll('#marginViz .mv-row');
+  const maxMargin = 50; // escala fija (0–50%) para comparar márgenes
+
+  const fill = () => {
+    rows.forEach(row => {
+      const m = parseFloat(row.dataset.margin) || 0;
+      const pct = Math.min(100, (m / maxMargin) * 100);
+      const bar = row.querySelector('.mv-fill');
+      requestAnimationFrame(() => { bar.style.width = pct + '%'; });
+    });
+  };
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { fill(); io.disconnect(); } });
+    }, { threshold: 0.2 });
+    io.observe(document.getElementById('marginViz'));
+  } else {
+    fill();
+  }
+})();
+</script>
+</body>
+</html>
