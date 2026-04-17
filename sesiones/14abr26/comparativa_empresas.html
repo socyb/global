@@ -261,6 +261,50 @@
       font-weight: 700;
     }
 
+    /* Interpretación desplegable */
+    .interp { margin-top: 1rem; }
+    .interp > summary {
+      list-style: none;
+      cursor: pointer;
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--ink); color: var(--paper);
+      border: 1.5px solid var(--ink); border-radius: var(--radius-pill);
+      font-family: var(--font-accent);
+      font-size: .8rem; font-weight: 800;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: 7px 14px;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .interp > summary::-webkit-details-marker { display: none; }
+    .interp > summary:hover { transform: translateY(-1px); background: #000; }
+    .interp > summary::after {
+      content: "▸"; font-size: .9rem;
+      transition: transform .25s ease;
+    }
+    .interp[open] > summary::after { transform: rotate(90deg); }
+    .interp-body {
+      margin-top: .9rem;
+      background: var(--surface);
+      border: var(--border); border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.2rem 1.4rem;
+      animation: interp-fade .35s ease;
+    }
+    @keyframes interp-fade {
+      from { opacity: 0; transform: translateY(-4px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .interp-body p {
+      font-size: .96rem; line-height: 1.6; margin-bottom: .7rem;
+    }
+    .interp-body p:last-child { margin-bottom: 0; }
+    .interp-body ul {
+      margin: .3rem 0 .8rem 1.1rem;
+      font-size: .94rem; line-height: 1.55;
+    }
+    .interp-body ul li { margin-bottom: .25rem; }
+    .interp-body strong { font-weight: 800; }
+
     /* Section titles */
     .cp-section { margin-bottom: 2.75rem; }
     .cp-section-title {
@@ -977,6 +1021,29 @@
     <p style="font-family:var(--font-accent);font-size:.82rem;color:var(--text-muted);margin-top:.8rem;">
       Haz clic en los encabezados para ordenar. Usa los filtros de arriba para aislar un rol. Las barras son proporcionales al máximo de cada columna.
     </p>
+
+    <details class="interp">
+      <summary>Ver interpretación</summary>
+      <div class="interp-body">
+        <p>La tabla compara seis empresas clave de la cadena de valor de la electrónica/semiconductores con datos de 2024. Te explico qué significa cada parte:</p>
+        <p>Los <strong>filtros superiores</strong> (Todas, Ensamble, Foundry, Integrado, Fabless/marca) te permiten aislar empresas según el papel que juegan en la cadena. Cada uno representa un modelo de negocio distinto:</p>
+        <ul>
+          <li><strong>Ensamble:</strong> fabrican físicamente productos para otras marcas (OEM/EMS).</li>
+          <li><strong>Foundry:</strong> fabrican chips diseñados por terceros.</li>
+          <li><strong>Integrado:</strong> hacen de todo internamente (diseño, fabricación, producto final).</li>
+          <li><strong>Fabless/marca:</strong> diseñan y venden, pero subcontratan la fabricación.</li>
+        </ul>
+        <p>Las columnas miden cada empresa en cuatro dimensiones:</p>
+        <ul>
+          <li><strong>Ingresos (USD B)</strong> — ventas totales en miles de millones de dólares. Aquí destaca Apple con 391 mil millones, casi el doble que Samsung (223) o Foxconn (208).</li>
+          <li><strong>Margen neto/op.</strong> — qué porcentaje de esos ingresos se convierte en ganancia. Es donde se ve el abismo estructural: TSMC saca 45.7% operativo (típico de un monopolio tecnológico), Apple 24% neto, y en el otro extremo Foxconn apenas 2.2% porque el ensamblaje es un negocio de volumen con márgenes diminutos.</li>
+          <li><strong>I+D / Ingresos</strong> — cuánto reinvierten en investigación y desarrollo respecto a lo que venden. Huawei sobresale con 20.8% (marcado como "récord"), reflejo de su presión por desarrollar tecnología propia tras las sanciones. Foxconn, al ser ensamblador, apenas invierte 1%.</li>
+          <li><strong>Empleados</strong> — tamaño de la plantilla. Foxconn encabeza con 767 mil (el ensamblaje es intensivo en mano de obra), mientras Xiaomi opera con solo 41 mil gracias a un modelo más ligero.</li>
+        </ul>
+        <p>Las <strong>barras de colores</strong> debajo de cada número son visualizaciones proporcionales: la barra llena representa el valor máximo de esa columna, así puedes comparar de un vistazo sin leer los números.</p>
+        <p>La <strong>lectura conjunta</strong> revela los distintos modelos económicos: Apple y TSMC capturan mucho valor (altos márgenes), Foxconn captura poco pero mueve enormes volúmenes, Samsung y Huawei apuestan por la integración vertical, y Xiaomi por una marca ágil con bajo headcount.</p>
+      </div>
+    </details>
   </section>
 
   <!-- QUALITATIVE CARDS -->
