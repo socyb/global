@@ -1,0 +1,1517 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sesión 21 abr 2026 · Sistemas Laborales Comparados, Capítulo 7 (pp. 305–335): Brasil, Argentina y China · Globalización y Empleo · FCA · UNAM" />
+  <title>SLC · Cap. 7 (pp. 305–335) · Brasil · Argentina · China · 21 abr 2026</title>
+  <style>
+    :root {
+      --ink: #1a2a2a;
+      --paper: #eaf4ef;
+      --blush: #d8ece2;
+      --rose: #c0e0d0;
+      --surface: #fff;
+      --text: #1a2a2a;
+      --muted: #3a5a5a;
+      --border: 3px solid var(--ink);
+      --border-thin: 2px solid var(--ink);
+      --radius: 6px;
+      --radius-sm: 4px;
+      --radius-pill: 999px;
+      --shadow: 6px 6px 0 var(--ink);
+      --shadow-sm: 4px 4px 0 var(--ink);
+      --font-body: 'American Typewriter', 'Georgia', serif;
+      --font-accent: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --teal: #008d8e;
+      --teal-dark: #006e70;
+      --blue: #2166a9;
+      --blue-light: #50aee2;
+      --red: #e2312b;
+      --green: #22af49;
+      --green-dark: #009060;
+      --mint: #c0e0d0;
+      --gold: #f0b429;
+      --brasil: #22af49;
+      --argentina: #50aee2;
+      --china: #e2312b;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    body {
+      font-family: var(--font-body);
+      background: var(--paper);
+      color: var(--text);
+      font-size: clamp(1rem, 1.1vw + 0.5rem, 1.18rem);
+      line-height: 1.6;
+      padding: clamp(14px, 2.5vw, 28px);
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+
+    /* Header */
+    .header {
+      background: var(--teal);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      margin-bottom: clamp(20px, 3vw, 34px);
+      overflow: hidden;
+    }
+    .header-blocks {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3px;
+      padding: 3px;
+    }
+    .header-blocks .blk { height: clamp(10px, 1.8vw, 18px); border-radius: 2px; }
+    .header-inner {
+      padding: clamp(20px, 3vw, 32px) clamp(18px, 3vw, 32px);
+      background: rgba(255,255,255,0.94);
+    }
+    .pill-row {
+      display: flex; justify-content: center; gap: 8px;
+      flex-wrap: wrap; margin-bottom: 12px;
+    }
+    .pill {
+      display: inline-flex; align-items: center;
+      font-family: var(--font-accent);
+      font-size: clamp(0.74rem, 1.1vw, 0.88rem);
+      font-weight: 800; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--teal); color: #fff;
+      border: var(--border-thin); border-radius: var(--radius-sm);
+      padding: 6px 14px;
+    }
+    .pill.ghost { background: #fff; color: var(--teal-dark); }
+    .header h1 {
+      font-size: clamp(1.9rem, 5vw, 3.2rem);
+      line-height: 1.05; margin-bottom: 10px;
+    }
+    .header .sub {
+      font-size: clamp(1.02rem, 1.6vw, 1.22rem);
+      color: var(--muted); max-width: 52ch;
+      margin: 0 auto; line-height: 1.45;
+    }
+    .back-link {
+      display: inline-block; margin-top: 14px;
+      font-family: var(--font-accent);
+      font-size: clamp(0.82rem, 0.9vw + 0.2rem, 0.94rem);
+      font-weight: 700; color: var(--teal-dark);
+      text-decoration: none;
+    }
+
+    /* Table of contents */
+    .toc {
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      background: #fff;
+      padding: clamp(16px, 2vw, 22px);
+      margin-bottom: clamp(22px, 3vw, 36px);
+    }
+    .toc h2 {
+      font-size: clamp(1.25rem, 2vw, 1.55rem);
+      margin-bottom: 10px;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .toc a {
+      display: block;
+      font-family: var(--font-accent);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 9px 12px;
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      background: var(--mint);
+      transition: transform .08s ease;
+    }
+    .toc a:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--ink); }
+
+    /* Sections */
+    section.major {
+      margin-bottom: clamp(34px, 5vw, 56px);
+      scroll-margin-top: 14px;
+    }
+    section.major > .section-header {
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(18px, 3vw, 28px);
+      margin-bottom: clamp(18px, 2.5vw, 26px);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-header .flag-row {
+      display: flex; gap: 6px; margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .flag-chip {
+      font-family: var(--font-accent);
+      font-size: 0.72rem; font-weight: 900;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      background: #fff; color: var(--ink);
+      border: var(--border-thin); border-radius: var(--radius-pill);
+      padding: 4px 10px;
+    }
+    .section-header h2 {
+      font-size: clamp(1.8rem, 4.6vw, 2.8rem);
+      line-height: 1.05;
+      color: #fff;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+    }
+    .section-header p {
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      max-width: 56ch;
+      margin-top: 10px;
+      color: rgba(255,255,255,0.94);
+    }
+    .sh-brasil  { background: linear-gradient(120deg, var(--green-dark) 0%, var(--brasil) 100%); }
+    .sh-argentina { background: linear-gradient(120deg, #2166a9 0%, var(--argentina) 100%); }
+    .sh-china   { background: linear-gradient(120deg, #8a1f1c 0%, var(--china) 100%); }
+    .sh-filo    { background: linear-gradient(120deg, #2a2a2a 0%, #555 100%); }
+    .sh-gloss   { background: linear-gradient(120deg, var(--teal-dark) 0%, var(--teal) 100%); }
+
+    /* Cards / blocks */
+    .block {
+      background: #fff;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(16px, 2.4vw, 24px);
+      margin-bottom: clamp(16px, 2vw, 22px);
+      scroll-margin-top: 14px;
+    }
+    .block h3 {
+      font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+      line-height: 1.15;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .block h4 {
+      font-size: clamp(1.1rem, 1.6vw, 1.25rem);
+      margin: 14px 0 8px;
+    }
+    .block p + p { margin-top: 10px; }
+    .block ul, .block ol {
+      padding-left: 22px;
+      margin: 8px 0;
+    }
+    .block li + li { margin-top: 5px; }
+    .tag {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-size: 0.7rem; font-weight: 900;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--teal); color: #fff;
+      border: var(--border-thin); border-radius: var(--radius-sm);
+      padding: 3px 9px; margin-bottom: 8px;
+    }
+    .tag.brasil    { background: var(--brasil); }
+    .tag.argentina { background: var(--argentina); color: var(--ink); }
+    .tag.china     { background: var(--china); }
+    .tag.filo      { background: #333; }
+    .tag.discuss   { background: var(--gold); color: var(--ink); }
+    .tag.gloss     { background: var(--teal-dark); }
+
+    /* Quote block */
+    blockquote.cita {
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+      line-height: 1.5;
+      padding: 14px 18px 14px 22px;
+      border-left: 6px solid var(--teal);
+      background: var(--blush);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 10px 0;
+    }
+    blockquote.cita.gold { border-left-color: var(--gold); background: #fff8e3; }
+    blockquote.cita.red { border-left-color: var(--china); background: #fde5e3; }
+    blockquote.cita.blue { border-left-color: var(--blue); background: #e3eef9; }
+    blockquote.cita footer {
+      display: block;
+      margin-top: 8px;
+      font-family: var(--font-accent);
+      font-style: normal;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    /* Discussion question */
+    .discuss-box {
+      border: var(--border);
+      border-left: 10px solid var(--gold);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      background: #fffbf0;
+      padding: clamp(14px, 2vw, 20px);
+      margin: 14px 0;
+    }
+    .discuss-box h4 {
+      font-family: var(--font-accent);
+      font-size: clamp(0.78rem, 1.1vw, 0.95rem);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8a6400;
+      margin-bottom: 8px;
+    }
+    .discuss-box p { font-size: clamp(1.02rem, 1.3vw, 1.15rem); }
+
+    /* Comparative table */
+    .table-wrap { overflow-x: auto; }
+    table.comp {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-family: var(--font-accent);
+      font-size: clamp(0.9rem, 1.1vw, 1rem);
+      min-width: 560px;
+    }
+    table.comp th, table.comp td {
+      border: var(--border-thin);
+      padding: 10px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+    table.comp thead th {
+      background: var(--teal);
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.88rem;
+    }
+    table.comp tbody tr:nth-child(even) td { background: var(--blush); }
+    table.comp tbody th {
+      background: var(--mint);
+      font-weight: 800;
+    }
+
+    /* Tree / org diagram */
+    .org-tree {
+      display: grid;
+      gap: 10px;
+      font-family: var(--font-accent);
+      margin: 10px 0;
+    }
+    .org-level {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+      gap: 10px;
+    }
+    .org-node {
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      background: #fff;
+      box-shadow: 3px 3px 0 var(--ink);
+      padding: 10px 12px;
+      font-size: 0.92rem;
+      line-height: 1.35;
+    }
+    .org-node strong { display: block; font-size: 1rem; }
+    .org-node.l1 { background: var(--teal); color: #fff; }
+    .org-node.l2 { background: var(--mint); }
+    .org-node.l3 { background: #fff; }
+    .org-node.brasil  { border-left: 6px solid var(--brasil); }
+    .org-node.argentina { border-left: 6px solid var(--argentina); }
+    .org-node.china   { border-left: 6px solid var(--china); }
+
+    /* Timeline */
+    .timeline {
+      display: grid;
+      gap: 10px;
+      margin: 10px 0;
+    }
+    .tl-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+    .tl-year {
+      font-family: var(--font-accent);
+      font-size: 1rem;
+      font-weight: 900;
+      background: var(--ink);
+      color: #fff;
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      text-align: center;
+    }
+    .tl-body {
+      background: #fff;
+      border: var(--border-thin);
+      border-left: 6px solid var(--teal);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 0.98rem;
+      line-height: 1.45;
+    }
+    @media (max-width: 600px) {
+      .tl-row { grid-template-columns: 1fr; }
+      .tl-year { text-align: left; width: fit-content; }
+    }
+
+    /* Glossary cards */
+    .gloss-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: 12px;
+    }
+    .gloss-card {
+      background: #fff;
+      border: var(--border-thin);
+      border-top: 6px solid var(--teal);
+      border-radius: var(--radius-sm);
+      box-shadow: 3px 3px 0 var(--ink);
+      padding: 12px 14px;
+    }
+    .gloss-card dt {
+      font-weight: 900;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+      color: var(--teal-dark);
+    }
+    .gloss-card dd {
+      font-size: 0.96rem;
+      line-height: 1.45;
+    }
+    .gloss-card.clt { border-top-color: var(--brasil); }
+    .gloss-card.clt dt { color: var(--green-dark); }
+    .gloss-card.asignatura { border-top-color: var(--blue); }
+    .gloss-card.asignatura dt { color: var(--blue); }
+
+    /* Comparative cards (2-col) */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(12px, 2vw, 18px);
+    }
+    .side {
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      box-shadow: 3px 3px 0 var(--ink);
+      padding: 14px 16px;
+      background: #fff;
+    }
+    .side h4 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+    .side.blue { border-left: 8px solid var(--blue); }
+    .side.red { border-left: 8px solid var(--china); }
+    .side.green { border-left: 8px solid var(--brasil); }
+    .side.gold { border-left: 8px solid var(--gold); }
+    @media (max-width: 720px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: var(--font-accent);
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 16px 0 6px;
+      border-top: 1px solid rgba(0,0,0,0.12);
+      margin-top: clamp(24px, 3vw, 36px);
+    }
+    .footer a { color: var(--teal-dark); text-decoration: none; font-weight: 700; }
+    .ref-list {
+      font-size: 0.92rem;
+      line-height: 1.5;
+      max-width: 90ch;
+      margin-top: 10px;
+    }
+    .ref-list li + li { margin-top: 8px; }
+
+    /* Callout for page reference */
+    .pageref {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      background: var(--ink);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      margin-left: 4px;
+      vertical-align: 2px;
+    }
+
+    /* Key-points grid */
+    .kp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+      gap: 12px;
+      margin: 10px 0;
+    }
+    .kp {
+      background: #fff;
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      box-shadow: 3px 3px 0 var(--ink);
+      padding: 12px 14px;
+      font-size: 0.96rem;
+      line-height: 1.45;
+    }
+    .kp .num {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-weight: 900;
+      background: var(--teal);
+      color: #fff;
+      width: 26px; height: 26px; line-height: 26px;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    /* Diagram: disciplinary -> control */
+    .arrow-flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 10px;
+      align-items: stretch;
+      margin: 10px 0;
+    }
+    .af-node {
+      background: #fff;
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      box-shadow: 3px 3px 0 var(--ink);
+      padding: 12px 14px;
+    }
+    .af-node h5 {
+      font-family: var(--font-accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .af-node p { font-size: 0.95rem; line-height: 1.4; }
+    .af-arrow {
+      display: grid; place-items: center;
+      font-size: clamp(1.4rem, 2.3vw, 1.9rem);
+      font-weight: 900;
+      color: var(--teal);
+    }
+    @media (max-width: 860px) {
+      .arrow-flow { grid-template-columns: 1fr; }
+      .af-arrow { transform: rotate(90deg); }
+    }
+
+    /* Section divider */
+    .divider {
+      text-align: center;
+      font-family: var(--font-accent);
+      font-weight: 900;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      margin: 16px 0;
+    }
+
+    @media (max-width: 600px) {
+      body { font-size: 1.02rem; }
+      .section-header h2 { font-size: 1.7rem; }
+      .block h3 { font-size: 1.25rem; }
+    }
+
+    /* Print / projection helpers */
+    @media print {
+      body { background: #fff; }
+      .toc, .back-link { display: none; }
+      .block, .section-header { page-break-inside: avoid; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="header">
+      <div class="header-blocks" aria-hidden="true">
+        <div class="blk" style="background:#22af49;grid-column:span 3"></div>
+        <div class="blk" style="background:#50aee2;grid-column:span 2"></div>
+        <div class="blk" style="background:#e2312b;grid-column:span 2"></div>
+        <div class="blk" style="background:#008d8e;grid-column:span 2"></div>
+        <div class="blk" style="background:#f0b429;grid-column:span 1"></div>
+        <div class="blk" style="background:#22af49;grid-column:span 2"></div>
+        <div class="blk" style="background:#e2312b;grid-column:span 2"></div>
+        <div class="blk" style="background:#50aee2;grid-column:span 3"></div>
+        <div class="blk" style="background:#008d8e;grid-column:span 2"></div>
+        <div class="blk" style="background:#c0e0d0;grid-column:span 1"></div>
+        <div class="blk" style="background:#22af49;grid-column:span 2"></div>
+        <div class="blk" style="background:#e2312b;grid-column:span 2"></div>
+      </div>
+      <div class="header-inner">
+        <div class="pill-row">
+          <span class="pill">Globalización y Empleo</span>
+          <span class="pill ghost">Sesión · 21 abr 2026</span>
+          <span class="pill ghost">SLC · Cap. 7 · pp. 305–335</span>
+        </div>
+        <h1>Brasil · Argentina · China</h1>
+        <p class="sub">Especificidades latinoamericanas y un epílogo sobre China: negociación colectiva, sindicatos, informalidad y lo pos-neoliberal.</p>
+        <a class="back-link" href="../../index.html">← Inicio</a>
+        &nbsp;·&nbsp;
+        <a class="back-link" href="../slc.html">Estructura del libro (SLC)</a>
+      </div>
+    </header>
+
+    <!-- ═══ TOC ═══ -->
+    <nav class="toc" aria-label="Contenido de la sesión">
+      <h2>Recorrido de las notas de lectura</h2>
+      <p style="font-size:0.98rem;color:var(--muted);">Cada bloque está diseñado para poderse leer por separado; el flujo entero se puede leer de corrido también.</p>
+      <div class="toc-grid">
+        <a href="#brasil">🇧🇷 Brasil · modelo CLT</a>
+        <a href="#huelga-ilegal">1. Huelga ilegal (1988)</a>
+        <a href="#neg-colectiva">2. Negociación colectiva (BR)</a>
+        <a href="#conv87">3. Convención OIT n.º 87</a>
+        <a href="#cita-308">4. Disciplinamiento (p. 308)</a>
+        <a href="#filosofia">5. Disciplinario → Control (Deleuze)</a>
+        <a href="#redemocratizacion">6. Redemocratización BR</a>
+        <a href="#sindicatos-br">7. Asociaciones sindicales BR</a>
+        <a href="#empresarial-br-mx">8. Empresarial BR vs MX</a>
+        <a href="#cita-310">9. Estructuras burocráticas</a>
+        <a href="#discriminacion">10. Discriminación (p. 311)</a>
+        <a href="#subcontratacion">11. Subcontratación (p. 312)</a>
+        <a href="#argentina">🇦🇷 Argentina</a>
+        <a href="#peronismo">12. Modelo paradigmático peronista</a>
+        <a href="#posneoliberal">13. ¿Qué es lo pos-neoliberal?</a>
+        <a href="#mapa-ar">14. Mapa AR (sindicatos/empresas)</a>
+        <a href="#informalidad">15. Informalidad · Marx</a>
+        <a href="#interlocutor">16. Reconocimiento · Žižek</a>
+        <a href="#unicato">17. Unicato (p. 321)</a>
+        <a href="#statu-quo">18. Statu quo</a>
+        <a href="#china">🇨🇳 China · epílogo</a>
+        <a href="#china-2016">19. China tras 2016</a>
+        <a href="#hukou">20. Hukou · kafala</a>
+        <a href="#bol-ferreo">21. Bol férreo de arroz</a>
+        <a href="#china-actores">22. Actores (China)</a>
+        <a href="#glosario-clt">📘 Glosario CLT (Brasil)</a>
+        <a href="#glosario-asig">📗 Glosario de la asignatura</a>
+        <a href="#fuentes">Fuentes</a>
+      </div>
+    </nav>
+
+    <!-- ═════════════════════════════ -->
+    <!-- ═══ SECCIÓN: BRASIL ═══════ -->
+    <!-- ═════════════════════════════ -->
+    <section class="major" id="brasil">
+      <div class="section-header sh-brasil">
+        <div class="flag-row">
+          <span class="flag-chip">🇧🇷 Brasil</span>
+          <span class="flag-chip">pp. 305–315</span>
+          <span class="flag-chip">§ 7.3.1</span>
+        </div>
+        <h2>Brasil · Consolidación de Leyes del Trabajo</h2>
+        <p>La CLT, heredada de la era Vargas (1930), organiza todavía hoy el tejido de derechos individuales y colectivos. Una legislación «sustancialmente uniforme» convive con una arquitectura sindical fragmentada en más de 15.000 sindicatos.</p>
+      </div>
+
+      <!-- 1. Huelga ilegal -->
+      <article class="block" id="huelga-ilegal">
+        <span class="tag brasil">1 · Huelga ilegal</span>
+        <h3>La desaparición del concepto de «huelga ilegal»</h3>
+        <p>Hasta la <strong>Constitución de 1988</strong>, la legislación brasileña conservaba un régimen autoritario heredado del Estado Novo de Vargas: las huelgas podían ser declaradas ilegales, los empleados públicos no podían sindicalizarse y las organizaciones de trabajadores tenían prohibiciones de alcance nacional.</p>
+        <p>La Constitución redemocratizadora de 1988 produjo un giro normativo: <em>«Dejó de existir el concepto de “huelga ilegal”, se eliminaron las prohibiciones nacionales respecto a las organizaciones de trabajadores, se permitió la sindicalización de empleados públicos y se alentó la práctica de la negociación colectiva»</em> <span class="pageref">p. 307</span>.</p>
+        <p>No obstante, la regla constitucional convive con límites: <strong>la huelga está protegida</strong> siempre que siga los procedimientos legales; durante su vigencia los trabajadores no pueden ser despedidos y tienen derecho a buscar fondos de huelga y a persuadir a compañeros. <strong>No hay límite legal de duración.</strong> <span class="pageref">p. 314</span></p>
+        <div class="kp-grid">
+          <div class="kp"><span class="num">1</span>Antes de 1988 podía declararse «huelga ilegal».</div>
+          <div class="kp"><span class="num">2</span>La Constitución Federal garantiza el derecho de huelga y prohíbe los cierres patronales.</div>
+          <div class="kp"><span class="num">3</span>En 2011 se registró el pico: 631 huelgas; el sector público (325) superó al privado (227). <span class="pageref">p. 314</span></div>
+        </div>
+      </article>
+
+      <!-- 2. Negociación colectiva -->
+      <article class="block" id="neg-colectiva">
+        <span class="tag brasil">2 · Negociación colectiva</span>
+        <h3>Negociación colectiva brasileña: obligatoria, anual y <em>fuera</em> de la empresa</h3>
+        <p>La negociación colectiva fue actualizada por la <strong>Constitución de 1988</strong>, que incluyó salarios, huelgas y regulación de sindicatos. Sin embargo, quedaron inalteradas reglas básicas que todavía generan fricciones <span class="pageref">p. 307</span>.</p>
+        <h4>Lo distintivo del caso brasileño</h4>
+        <ul>
+          <li><strong>Obligatoria y anual:</strong> sindicato y empresarios negocian salarios y cuestiones de empleo; el resultado cubre a <em>todo</em> el sector, incluso a no afiliados. <span class="pageref">p. 310</span></li>
+          <li><strong>Fuera de la empresa:</strong> «la ley no otorga a los sindicatos el derecho de representar a los trabajadores en el lugar de trabajo. En este sentido, la negociación colectiva solo se garantiza fuera de la empresa» <span class="pageref">p. 308</span>.</li>
+          <li><strong>Centrada en salarios:</strong> los temas no salariales tienen regulación limitada; solo los sindicatos «fuertes» de banca, petróleo, química y metalurgia logran empujar nuevos derechos <span class="pageref">p. 307</span>.</li>
+          <li><strong>Exclusión de informales:</strong> «los trabajadores sin contrato (trabajadores informales) no están cubiertos por los convenios colectivos de su categoría» <span class="pageref">p. 307</span>.</li>
+          <li><strong>Duración máxima de los convenios:</strong> dos años, por escrito, con efecto similar al de la ley. <span class="pageref">p. 312</span></li>
+        </ul>
+      </article>
+
+      <!-- 3. Convención 87 -->
+      <article class="block" id="conv87">
+        <span class="tag brasil">3 · OIT — Convención n.º 87</span>
+        <h3>Convención n.º 87 de la OIT: derecho a formar sindicatos</h3>
+        <p>La Convención n.º 87 de la Organización Internacional del Trabajo (Ginebra, 1948) es la piedra angular del <strong>derecho internacional a la libertad sindical</strong>: garantiza que trabajadores y empleadores puedan constituir las organizaciones que estimen convenientes, sin autorización previa, con estatutos libres y protegidas frente a la disolución administrativa.</p>
+        <blockquote class="cita">
+          «La libertad de asociación no es absoluta en Brasil y la Convención n.º 87 de la OIT, que garantiza la protección del derecho de sindicación y la libertad sindical, no ha sido ratificada por este país.»
+          <footer>Brunet, Pizzi & Moral (2016), p. 307</footer>
+        </blockquote>
+        <h4>¿Por qué importa esta no-ratificación?</h4>
+        <ul>
+          <li>Sostiene la <strong>regla del sindicato único por categoría territorial</strong>: «Solo puede haber un sindicato representativo por cada categoría de trabajador» <span class="pageref">p. 308</span>.</li>
+          <li>Mantiene al <strong>Ministerio de Trabajo</strong> como autoridad con poder para decidir «qué sindicato dispone de la representación de los trabajadores en cada jurisdicción» <span class="pageref">p. 307</span>.</li>
+          <li>Convive con el «impuesto sindical» obligatorio, factor estructural del financiamiento.</li>
+        </ul>
+        <p><strong>Conexión comparativa:</strong> México ratificó la Convención 87 en 1950. La no ratificación brasileña no es un dato técnico: es una decisión soberana que preserva la arquitectura corporativista heredada de Vargas.</p>
+      </article>
+
+      <!-- 4. Cita 308 -->
+      <article class="block" id="cita-308">
+        <span class="tag brasil">4 · Cita ancla</span>
+        <h3>El disciplinamiento sin sindicato</h3>
+        <blockquote class="cita red">
+          «La ausencia de sindicatos y las posibilidades de despido constituyen dispositivos de disciplinamiento que desincentivan la aparición de conflictos laborales en los lugares de trabajo.»
+          <footer>Brunet, Pizzi & Moral (2016), p. 308</footer>
+        </blockquote>
+        <p>Esta frase condensa el núcleo del régimen: si no hay representación sindical <em>dentro</em> de la empresa y el empleador puede despedir sin causa (pagando indemnización), el costo de denunciar en plena relación laboral es demasiado alto. «Por eso los trabajadores retrasan sus quejas hasta el final de la relación laboral, y solo si son despedidos llevan sus reclamos ante los tribunales» <span class="pageref">p. 308</span>.</p>
+        <p>El conflicto se desplaza hacia la justicia laboral individual y hacia tribunales con «poder normativo» <span class="pageref">p. 308</span>; el lugar de trabajo queda como un espacio despolitizado.</p>
+      </article>
+
+      <!-- 5. Filosofía complementaria -->
+      <article class="block" id="filosofia">
+        <span class="tag filo">5 · Rama filosófica complementaria</span>
+        <h3>De la sociedad disciplinaria a la sociedad de control (y su hibridación actual)</h3>
+        <p>La cita anterior puede leerse con una lente filosófico-política. Foucault describió en <em>Vigilar y castigar</em> (1975) la <strong>sociedad disciplinaria</strong>: espacios cerrados —fábrica, escuela, cuartel, prisión— que moldean cuerpos útiles mediante rutinas, vigilancia y sanción.</p>
+        <p>Gilles Deleuze, en su «Posdata sobre las sociedades de control» (1990), sostuvo que ese régimen está en crisis: lo sustituye la <strong>sociedad de control</strong>, donde el encierro deja paso a la modulación continua, la evaluación permanente, la deuda y la contraseña. Ya no se pasa de un encierro a otro, sino que el control se vuelve <em>ambiental</em>, móvil, datificado.</p>
+
+        <div class="arrow-flow">
+          <div class="af-node">
+            <h5>Disciplinaria (Foucault)</h5>
+            <p>Fábrica, normas fijas, contrato, sindicato, encierros sucesivos.</p>
+          </div>
+          <div class="af-arrow" aria-hidden="true">→</div>
+          <div class="af-node" style="background:#fff8e3;border-left:6px solid var(--gold);">
+            <h5>Híbrida (hoy)</h5>
+            <p>Plataformas + CLT + cadenas globales de valor + vigilancia algorítmica + despido como dispositivo.</p>
+          </div>
+          <div class="af-arrow" aria-hidden="true">→</div>
+          <div class="af-node">
+            <h5>Control (Deleuze)</h5>
+            <p>Modulación permanente, deuda, scoring, contraseñas, trabajo móvil.</p>
+          </div>
+        </div>
+
+        <p>La cita de Brunet, Pizzi & Moral <span class="pageref">p. 308</span> capta bien esta <strong>hibridación</strong>: la disciplina de fábrica (despido, ausencia de sindicato) sigue operando, pero se combina con lógicas de control ambiental propias del capitalismo financiarizado.</p>
+
+        <h4>Palantir y el manifiesto</h4>
+        <p>En abril de 2026, Alex Karp (CEO) y los cuadros directivos de <strong>Palantir Technologies</strong> publicaron un manifiesto corporativo en el que defendían explícitamente que los sistemas de <em>targeting</em> militar (kill chains) y los sistemas de gestión de cadenas globales de valor (GVCs) comparten la misma arquitectura: trazar, segmentar y optimizar flujos. La analogía es inquietante: trata al trabajador y al objetivo militar como nodos de una misma topología de datos.</p>
+        <p>Esta lectura resuena, de forma incómoda, con lo que <strong>Hannah Arendt</strong> llamó, en <em>Eichmann en Jerusalén</em> (1963), la «banalidad del mal»: no hace falta odio ni ideología delirante para producir exterminio; basta una burocracia tecnocrática que fragmenta la responsabilidad en pasos procedimentales. Los aparatos administrativos de los campos nazis eran, en este sentido, la forma extrema de una racionalidad burocrática que ya describía Max Weber.</p>
+        <div class="discuss-box">
+          <h4>💬 Discusión</h4>
+          <p>¿La cita de la p. 308 se puede leer hoy como una <em>mezcla</em> entre disciplina (despido, sindicato ausente) y control (rating, plataformas, deuda)? ¿El «manifiesto Palantir» (2026) es un síntoma o una rareza?</p>
+        </div>
+      </article>
+
+      <!-- 6. Redemocratización -->
+      <article class="block" id="redemocratizacion">
+        <span class="tag brasil">6 · Redemocratización</span>
+        <h3>La redemocratización de Brasil (p. 309)</h3>
+        <p>El libro señala que la definición legal de las categorías sindicales cambió «tras la redemocratización política iniciada en 1988» <span class="pageref">p. 309</span>. Detrás de esa frase hay un proceso histórico de dos décadas.</p>
+        <div class="timeline">
+          <div class="tl-row"><span class="tl-year">1964</span><div class="tl-body"><strong>Golpe militar</strong> contra João Goulart. Se instaura una dictadura civil-militar que durará 21 años.</div></div>
+          <div class="tl-row"><span class="tl-year">1968</span><div class="tl-body"><strong>AI-5:</strong> Acto Institucional nº 5, el más duro del régimen, cierra el Congreso y suspende libertades.</div></div>
+          <div class="tl-row"><span class="tl-year">1974</span><div class="tl-body">Inicio de la <em>abertura</em> «lenta, gradual y segura» del general Ernesto Geisel.</div></div>
+          <div class="tl-row"><span class="tl-year">1978–80</span><div class="tl-body">Huelgas metalúrgicas del ABC paulista lideradas por <strong>Luiz Inácio Lula da Silva</strong>; nace la CUT (1983) y el PT (1980).</div></div>
+          <div class="tl-row"><span class="tl-year">1984</span><div class="tl-body">Movimiento <strong>«Diretas Já»:</strong> masivas marchas pidiendo elecciones directas.</div></div>
+          <div class="tl-row"><span class="tl-year">1985</span><div class="tl-body">Fin formal de la dictadura: Tancredo Neves es electo por el Colegio Electoral; asume José Sarney.</div></div>
+          <div class="tl-row"><span class="tl-year">1988</span><div class="tl-body"><strong>Nova Constituição Cidadã</strong>: redefine derechos laborales, elimina la «huelga ilegal», reconoce sindicación de empleados públicos.</div></div>
+          <div class="tl-row"><span class="tl-year">1989</span><div class="tl-body">Primeras elecciones presidenciales directas desde 1960: Collor vs. Lula.</div></div>
+        </div>
+        <p>Por eso, cuando el capítulo 7 habla de «redemocratización» no es un término neutro: es la bisagra que <em>resignifica</em> el viejo aparato de Vargas dentro de una gramática constitucional democrática.</p>
+      </article>
+
+      <!-- 7. Sindicatos Brasil -->
+      <article class="block" id="sindicatos-br">
+        <span class="tag brasil">7 · Esquema</span>
+        <h3>Las asociaciones de sindicatos en Brasil</h3>
+        <p>Brunet, Pizzi & Moral describen <strong>cuatro niveles</strong> de organización <span class="pageref">p. 309</span>:</p>
+        <div class="org-tree">
+          <div class="org-level">
+            <div class="org-node l1 brasil"><strong>Nivel 4 — Centrales sindicales</strong>Organizaciones representativas de los empleados (intersectoriales).</div>
+          </div>
+          <div style="text-align:center;font-size:1.5rem;color:var(--brasil);">↑</div>
+          <div class="org-level">
+            <div class="org-node l2 brasil"><strong>Nivel 3 — Confederaciones</strong>Formadas por al menos 3 federaciones.</div>
+          </div>
+          <div style="text-align:center;font-size:1.5rem;color:var(--brasil);">↑</div>
+          <div class="org-level">
+            <div class="org-node l2 brasil"><strong>Nivel 2 — Federaciones</strong>Compuestas por al menos 5 sindicatos.</div>
+          </div>
+          <div style="text-align:center;font-size:1.5rem;color:var(--brasil);">↑</div>
+          <div class="org-level">
+            <div class="org-node l3 brasil"><strong>Nivel 1 — Sindicatos</strong>Conectados directamente a sus miembros (más de 15.000 hoy; en 1988 ≈ 4.000).</div>
+          </div>
+        </div>
+
+        <h4>Centrales sindicales principales <span class="pageref">p. 309</span></h4>
+        <div class="kp-grid">
+          <div class="kp"><strong>CUT</strong> — Central Única de Trabajadores (1983). La primera, ligada al PT; mayor número de afiliados.</div>
+          <div class="kp"><strong>CGT</strong> — Confederación General de Trabajadores (1986).</div>
+          <div class="kp"><strong>Força Sindical</strong> (1989).</div>
+          <div class="kp"><strong>NCST</strong> — Nova Central Sindical dos Trabalhadores.</div>
+          <div class="kp"><strong>CGTB</strong> — Central Geral dos Trabalhadores do Brasil.</div>
+          <div class="kp"><strong>UGT</strong> — União Geral dos Trabalhadores.</div>
+          <div class="kp"><strong>UST</strong> — União Sindical dos Trabalhadores.</div>
+        </div>
+        <p style="margin-top:10px;"><em>Dato relevante:</em> entre 2005 y 2013 se crearon más de 250 sindicatos al año, aunque la tasa de afiliación cae: en 2011 solo el 17 % de la población ocupada estaba afiliada <span class="pageref">p. 309</span>.</p>
+      </article>
+
+      <!-- 8. Empresarial BR vs MX -->
+      <article class="block" id="empresarial-br-mx">
+        <span class="tag brasil">8 · Tabla comparativa</span>
+        <h3>Asociaciones empresariales: Brasil vs México</h3>
+        <p>El texto menciona que en 2010 había <strong>4.559 asociaciones de empleadores</strong> en Brasil, con la <strong>CNI</strong> como ejemplo clave <span class="pageref">p. 310</span>. Abajo, una comparación con las cúpulas empresariales mexicanas.</p>
+        <div class="table-wrap">
+          <table class="comp">
+            <thead>
+              <tr>
+                <th>Dimensión</th>
+                <th>Brasil 🇧🇷</th>
+                <th>México 🇲🇽</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Cúpula industrial</th>
+                <td><strong>CNI</strong> — Confederação Nacional da Indústria: 27 federaciones, 1.250+ sindicatos, 350.000 empresas.</td>
+                <td><strong>CONCAMIN</strong> — Confederación de Cámaras Industriales (1918); agrupa cámaras sectoriales industriales.</td>
+              </tr>
+              <tr>
+                <th>Cúpula comercial/servicios</th>
+                <td><strong>CNC</strong> — Confederação Nacional do Comércio de Bens, Serviços e Turismo.</td>
+                <td><strong>CONCANACO-SERVYTUR</strong> — Confederación de Cámaras Nacionales de Comercio, Servicios y Turismo.</td>
+              </tr>
+              <tr>
+                <th>Patronal «dura»</th>
+                <td>Presión fragmentada vía confederaciones sectoriales; fuerte <em>lobby</em> en el Congreso.</td>
+                <td><strong>COPARMEX</strong> — Confederación Patronal de la República Mexicana (1929); voz pública de la patronal.</td>
+              </tr>
+              <tr>
+                <th>Cúpula estratégica</th>
+                <td><strong>FIESP</strong> — Federación de Industrias del Estado de São Paulo, con peso nacional desproporcionado.</td>
+                <td><strong>CCE</strong> — Consejo Coordinador Empresarial (1976), paraguas que integra CONCAMIN, CONCANACO, COPARMEX, ABM, AMIS y CMN.</td>
+              </tr>
+              <tr>
+                <th>Grandes empresas</th>
+                <td>Integradas vía CNI/FIESP; diálogo bilateral con Planalto.</td>
+                <td><strong>CMN</strong> — Consejo Mexicano de Negocios (antes CMHN): reúne a las ~60 empresas más grandes del país.</td>
+              </tr>
+              <tr>
+                <th>Estructura sindical que las refleja</th>
+                <td>Principio de «una sola organización por categoría» <span class="pageref">p. 309</span>.</td>
+                <td>Pluralidad cameral (Ley de Cámaras Empresariales de 1996).</td>
+              </tr>
+              <tr>
+                <th>Número total</th>
+                <td>4.559 asociaciones de empleadores (2010) <span class="pageref">p. 310</span>.</td>
+                <td>~260 cámaras (industriales y de comercio/servicios) registradas ante la SE.</td>
+              </tr>
+              <tr>
+                <th>Rol en negociación tripartita</th>
+                <td>Alta: integran mesas tripartitas promovidas por la OIT.</td>
+                <td>Formal (Comisión Nacional de Salarios Mínimos), con sesgo de élite corporativa.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- 9. Cita 310 y discusión -->
+      <article class="block" id="cita-310">
+        <span class="tag brasil">9 · Cita ancla + discusión</span>
+        <h3>Estructuras burocráticas gigantescas</h3>
+        <blockquote class="cita">
+          «Se ha argumentado que este sistema ha dado lugar a la creación de estructuras burocráticas gigantescas, cuyos intereses pueden estar muy alejados de los de las empresas que se supone que representan.»
+          <footer>Brunet, Pizzi & Moral (2016), p. 310</footer>
+        </blockquote>
+
+        <div class="discuss-box">
+          <h4>💬 Pregunta para la clase</h4>
+          <p>Si las grandes burocracias representativas se autonomizan de sus bases, ¿<strong>cómo se debería leer el discurso actual de «desmantelamiento de la burocracia»</strong> que encarnan Milei en Argentina, Trump y Musk (DOGE) en EE.UU.? ¿Es continuidad radicalizada del neoliberalismo de los 80, o una ruptura tecno-populista?</p>
+        </div>
+
+        <h4>Tres anclajes teóricos para la discusión</h4>
+        <div class="two-col">
+          <div class="side blue">
+            <h4>Weber · la «jaula de hierro»</h4>
+            <p>La burocracia es la forma racional-legal más eficiente del capitalismo moderno: cálculo, impersonalidad, reglas. Pero produce una «jaula de hierro» (<em>stahlhartes Gehäuse</em>) que vacía de sentido la acción humana.</p>
+          </div>
+          <div class="side red">
+            <h4>Arendt · Eichmann y la «banalidad del mal»</h4>
+            <p>En <em>Eichmann en Jerusalén</em> (1963), Arendt muestra que la burocracia permite que el mal radical sea ejecutado por funcionarios sin malicia, que solo «cumplen procedimientos». La despolitización burocrática es ella misma un peligro político.</p>
+          </div>
+          <div class="side gold">
+            <h4>Neoliberalismo clásico (1980)</h4>
+            <p>Reagan/Thatcher: retirar al Estado del mercado, desregular, privatizar. La burocracia pública es el enemigo; el mercado, el mecanismo neutro de coordinación.</p>
+          </div>
+          <div class="side green">
+            <h4>Tecno-populismo (2024–2026)</h4>
+            <p>Milei, Trump–Musk y DOGE: ya no solo desregular, sino <em>demoler</em> agencias enteras («motosierra»). La promesa es una soberanía directa líder–pueblo, mediada por plataformas, sin cuerpos intermedios.</p>
+          </div>
+        </div>
+
+        <p style="margin-top:12px;">La paradoja: la demolición de la burocracia pública se apoya en <em>otras</em> burocracias —las plataformas privadas (X, Palantir, contratistas de DOGE)— que replican la impersonalidad weberiana sin su promesa de legalidad igual para todos. La cita de la p. 310, pensada para describir la CNI brasileña, se vuelve espejo del problema global.</p>
+      </article>
+
+      <!-- 10. Discriminación -->
+      <article class="block" id="discriminacion">
+        <span class="tag brasil">10 · Discriminación (p. 311)</span>
+        <h3>Prohibición de discriminar: ¿ley o práctica?</h3>
+        <p>La Constitución Federal brasileña «prohíbe expresamente toda discriminación arbitraria por parte de la empresa basada en criterios ilegales para la admisión, contratación y determinación de salarios (… discriminación basada en la edad, la religión, el género y la orientación sexual, nacionalidad o convicciones políticas)» <span class="pageref">p. 311</span>.</p>
+
+        <div class="two-col">
+          <div class="side green">
+            <h4>🇲🇽 México</h4>
+            <p><strong>Ley:</strong> el art. 1.º constitucional (reforma 2011) y la LFT prohíben la discriminación. El CONAPRED sanciona administrativamente.</p>
+            <p><strong>Práctica:</strong> brecha salarial de género del ~14% (INEGI, ENOE 2024); alta informalidad invisibiliza la discriminación; trabajo del hogar todavía con subregistro.</p>
+            <p><strong>Caso-tipo:</strong> solicitud de «buena presencia» y de prueba de embarazo en manufactura — documentado por CNDH.</p>
+          </div>
+          <div class="side blue">
+            <h4>🇩🇪 Alemania</h4>
+            <p><strong>Ley:</strong> AGG (Allgemeines Gleichbehandlungsgesetz, 2006) transpone directivas UE; inspecciones de trabajo independientes.</p>
+            <p><strong>Práctica:</strong> brecha salarial bruta ≈ 18% (Destatis 2024); techos de cristal persistentes; segregación ocupacional de mujeres migrantes en cuidados.</p>
+            <p><strong>Caso-tipo:</strong> discriminación por nombre «no alemán» en CV — estudios de campo reiterados (IAB).</p>
+          </div>
+        </div>
+
+        <div class="discuss-box">
+          <h4>💬 Pregunta</h4>
+          <p>La ley prohíbe. La práctica sortea. ¿La diferencia entre México, Brasil y Alemania es de <strong>normativa</strong>, de <strong>capacidad estatal de inspección</strong>, o de <strong>estructura del mercado laboral</strong> (informalidad, subcontratación)?</p>
+        </div>
+      </article>
+
+      <!-- 11. Subcontratación -->
+      <article class="block" id="subcontratacion">
+        <span class="tag brasil">11 · Subcontratación (p. 312)</span>
+        <h3>Subcontratación: Brasil y la reforma mexicana</h3>
+        <p>Brunet, Pizzi & Moral son contundentes: la subcontratación «constituye una modalidad que precariza y flexibiliza aún más las relaciones laborales. Existe poca regulación al respecto. En principio está prohibido el outsourcing o subcontratación para realizar tareas “finales” en las empresas, si bien se suelen emplear en las denominadas “actividades secundarias”» <span class="pageref">p. 312</span>.</p>
+
+        <h4>Mecánica del caso brasileño</h4>
+        <ul>
+          <li><strong>Distinción ficticia</strong> entre actividad <em>fin</em> (prohibida subcontratar) y actividad <em>meio</em> (limpieza, seguridad, transporte).</li>
+          <li>Los subcontratados conservan paga extra y descansos, pero pierden <strong>derechos como seguro médico</strong>.</li>
+          <li>Riesgo principal: <strong>quiebra de la empresa de outsourcing</strong>. Los sindicatos han logrado, vía tribunales, responsabilidad solidaria del contratante y anulación de despidos <span class="pageref">p. 312</span>.</li>
+          <li>En 2017 (un año después del libro), la reforma laboral de Temer (Ley 13.467/2017) <em>legalizó</em> la subcontratación también en actividades-fin: un giro regresivo.</li>
+        </ul>
+
+        <h4>La reforma mexicana de 2021 (outsourcing)</h4>
+        <ul>
+          <li>La reforma a la LFT (abril 2021) <strong>prohibió</strong> la subcontratación de personal, salvo «servicios especializados» registrados en el REPSE.</li>
+          <li>Se buscó frenar el fraude: empresas-fachada que diluían la PTU y las cuotas al IMSS.</li>
+          <li>Efecto real: migración masiva de trabajadores a nómina directa (~2.9 millones), pero también <strong>nuevas zonas grises</strong> (intermediación via REPSE sin fiscalización efectiva).</li>
+          <li>Límite: no alcanza a los esquemas de plataformas (Uber, Rappi), donde la «no laboralidad» sigue operando como outsourcing de hecho.</li>
+        </ul>
+
+        <p><strong>Lectura cruzada:</strong> Brasil y México representan dos trayectorias opuestas en 2017–2021 (liberalización vs. prohibición), pero ambas terminan dejando al descubierto la pregunta estructural: la subcontratación es más un <em>dispositivo</em> que una forma contractual; se adapta a la regulación que le ponga enfrente.</p>
+      </article>
+    </section>
+
+    <div class="divider">·  ·  ·</div>
+
+    <!-- ═════════════════════════════ -->
+    <!-- ═══ SECCIÓN: ARGENTINA ════ -->
+    <!-- ═════════════════════════════ -->
+    <section class="major" id="argentina">
+      <div class="section-header sh-argentina">
+        <div class="flag-row">
+          <span class="flag-chip">🇦🇷 Argentina</span>
+          <span class="flag-chip">pp. 316–321</span>
+          <span class="flag-chip">§ 7.3.2</span>
+        </div>
+        <h2>Argentina · Paritarias, unicato y lo pos-neoliberal</h2>
+        <p>La Ley de Asociaciones Sindicales (1988) y las <em>paritarias</em> anuales estructuran un sistema corporativo de raíz peronista, re-energizado por el kirchnerismo y desafiado por la justicia desde 2008.</p>
+      </div>
+
+      <!-- 12. Peronismo -->
+      <article class="block" id="peronismo">
+        <span class="tag argentina">12 · Peronismo paradigmático</span>
+        <h3>El modelo «paradigmático» de negociación del peronismo (p. 317)</h3>
+        <p>Los autores, siguiendo a Novick y Trajtemberg (2000), describen así el modelo que se consolida desde los años cuarenta y que define hasta hoy el ADN institucional argentino:</p>
+        <blockquote class="cita blue">
+          «Hasta fines de los ochenta las negociaciones colectivas se caracterizaban por ser, mayoritariamente, centralizadas por grandes sindicatos de los diferentes sectores económicos y las cámaras empresarias correspondientes. Constituyó el modelo “paradigmático” de negociación que surgió del peronismo.»
+          <footer>Brunet, Pizzi & Moral (2016), p. 317</footer>
+        </blockquote>
+        <h4>Los cuatro rasgos del modelo</h4>
+        <div class="kp-grid">
+          <div class="kp"><span class="num">1</span><strong>Centralización por rama:</strong> un sindicato por actividad negocia con la cámara empresaria del sector (y no empresa por empresa).</div>
+          <div class="kp"><span class="num">2</span><strong>Tripartismo:</strong> el Estado no solo homologa, convoca y orienta: fija la «pauta salarial» <span class="pageref">p. 317</span>.</div>
+          <div class="kp"><span class="num">3</span><strong>Personería gremial exclusiva:</strong> «un gremio por rama» (el unicato, ver §17).</div>
+          <div class="kp"><span class="num">4</span><strong>Obra social sindical:</strong> el sindicato administra salud, vacaciones, formación — palanca material de fidelidad política.</div>
+        </div>
+        <p style="margin-top:10px;">En la era neoliberal (1990s) este modelo se erosiona: se multiplican los convenios por empresa (hasta 2004, el 80% de los convenios eran de nivel de empresa <span class="pageref">p. 317</span>). El kirchnerismo (2003→) invierte parcialmente la tendencia: en 2012 se homologaron 1.760 convenios <span class="pageref">p. 316</span>, frente a una media de 176 en los noventa.</p>
+      </article>
+
+      <!-- 13. Pos-neoliberal -->
+      <article class="block" id="posneoliberal">
+        <span class="tag argentina">13 · ¿Qué es lo pos-neoliberal?</span>
+        <h3>Lo pos-neoliberal: Argentina y posibilidad mexicana</h3>
+        <h4>En el contexto argentino</h4>
+        <p>Brunet, Pizzi & Moral hablan de «la etapa posneoliberal kirchnerista de crecimiento económico y recuperación del empleo» <span class="pageref">p. 320</span>. El prefijo «pos-» no equivale a «anti»: describe un ciclo que <em>convive</em> con estructuras heredadas del neoliberalismo, pero intenta re-estatizar la coordinación y re-politizar la negociación colectiva.</p>
+        <ul>
+          <li><strong>Re-apertura paritaria:</strong> de 176 a 922 convenios anuales en promedio <span class="pageref">p. 316</span>.</li>
+          <li><strong>Rol activo del Estado</strong> como fijador de «pauta salarial» y homologador.</li>
+          <li><strong>Inclusión por consumo</strong> más que por reforma estructural: no se eliminó la informalidad (≈ 30% <span class="pageref">p. 319</span>).</li>
+          <li><strong>Límites:</strong> el unicato corporativo se reforzó al tiempo que la justicia lo declaraba parcialmente inconstitucional <span class="pageref">pp. 320–321</span>.</li>
+        </ul>
+
+        <h4>¿Qué podría significar en el contexto mexicano?</h4>
+        <div class="two-col">
+          <div class="side green">
+            <h4>Continuidades con el T-MEC</h4>
+            <p>México no puede replicar la fórmula ISI argentina: el T-MEC (2020) y las cadenas automotrices/electrónicas limitan la autonomía de pauta salarial. Lo pos-neoliberal mexicano tendría que <strong>conciliar soberanía laboral con integración norteamericana</strong>.</p>
+          </div>
+          <div class="side blue">
+            <h4>Reforma laboral 2019 y democracia sindical</h4>
+            <p>La reforma 2019 + T-MEC anexo 23 obligan a legitimar contratos colectivos por <a href="https://www.gob.mx/cms/uploads/attachment/file/485094/Reporte-TMEC_n10-esp_20190812_a.pdf" target="_blank">voto libre y secreto</a>. <strong>Un posible pos-neoliberalismo mexicano</strong>: desmontar el charrismo, repatriar negociación efectiva al piso de fábrica, sin repetir el corporativismo.</p>
+          </div>
+          <div class="side gold">
+            <h4>Salario mínimo como pauta</h4>
+            <p>La CONASAMI recuperó desde 2018 una lógica de <em>pauta</em> estatal: el mínimo creció ~110% real 2018–2025. Funciona como piso redistributivo, pero sin paritarias sectoriales.</p>
+          </div>
+          <div class="side red">
+            <h4>Informalidad estructural</h4>
+            <p>Más de la mitad del empleo mexicano es informal <span class="pageref">p. 319</span>. Cualquier pos-neoliberalismo que no la ataque <em>es</em> neoliberalismo con otro nombre.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 14. Mapa AR -->
+      <article class="block" id="mapa-ar">
+        <span class="tag argentina">14 · Mapa institucional</span>
+        <h3>Asociaciones de trabajadores y de empresas en Argentina (p. 319)</h3>
+
+        <h4>🇦🇷 Trabajadores</h4>
+        <div class="org-tree">
+          <div class="org-level">
+            <div class="org-node l1 argentina" style="color:#0a3a60;"><strong>Centrales</strong>CGT (histórica, peronista) · CTA de los Trabajadores · CTA Autónoma.</div>
+          </div>
+          <div style="text-align:center;font-size:1.5rem;color:var(--argentina);">↑</div>
+          <div class="org-level">
+            <div class="org-node l2 argentina"><strong>Federaciones / Uniones</strong>Ej.: UOM (metalúrgicos), SMATA (mecánicos), CTERA (docentes).</div>
+          </div>
+          <div style="text-align:center;font-size:1.5rem;color:var(--argentina);">↑</div>
+          <div class="org-level">
+            <div class="org-node l3 argentina"><strong>Sindicatos de base / delegados</strong>Con o sin personería gremial; desde 2003 crecieron &gt;2.000 organizaciones «simplemente inscritas» <span class="pageref">p. 320</span>.</div>
+          </div>
+        </div>
+
+        <h4 style="margin-top:18px;">🇦🇷 Empresarios (p. 319)</h4>
+        <div class="org-tree">
+          <div class="org-level">
+            <div class="org-node l1 argentina" style="color:#0a3a60;"><strong>Nivel nacional</strong>UIA · AEA · SRA · CAC · ADEBA (corporaciones de cúpula).</div>
+          </div>
+          <div style="text-align:center;font-size:1.5rem;color:var(--argentina);">↑</div>
+          <div class="org-level">
+            <div class="org-node l2 argentina"><strong>Nivel sectorial / regional</strong>Cámaras empresariales, grupos, asociaciones, federaciones.</div>
+          </div>
+          <div style="text-align:center;font-size:1.5rem;color:var(--argentina);">↑</div>
+          <div class="org-level">
+            <div class="org-node l3 argentina"><strong>Nivel empresa</strong>Directivos negocian directamente con delegados.</div>
+          </div>
+        </div>
+
+        <div class="kp-grid" style="margin-top:12px;">
+          <div class="kp"><strong>UIA</strong> — Unión Industrial Argentina (1887).</div>
+          <div class="kp"><strong>AEA</strong> — Asociación Empresaria Argentina (2002).</div>
+          <div class="kp"><strong>SRA</strong> — Sociedad Rural Argentina (1866).</div>
+          <div class="kp"><strong>CAC</strong> — Cámara Argentina de Comercio y Servicios.</div>
+        </div>
+      </article>
+
+      <!-- 15. Informalidad -->
+      <article class="block" id="informalidad">
+        <span class="tag argentina">15 · Informalidad · Marx</span>
+        <h3>Informalidad: Argentina ~⅓, México &gt;½</h3>
+        <p>El libro subraya que «existe casi un tercio de la fuerza de trabajo que se encuentra en una situación de informalidad y, por tanto, carece de los beneficios de los convenios» <span class="pageref">p. 319</span>. En México, las cifras del INEGI (ENOE 2T-2025) ubican la Tasa de Informalidad Laboral cerca del <strong>54%</strong> de la población ocupada.</p>
+        <div class="two-col">
+          <div class="side blue">
+            <h4>Argentina</h4>
+            <p>≈ 30–35% informalidad (2012–2024). Herencia del neoliberalismo de los 90; el ciclo pos-neoliberal redujo pobreza pero no la «sumergida».</p>
+          </div>
+          <div class="side green">
+            <h4>México</h4>
+            <p>≈ 54% informalidad. La dualidad formal/informal es estructural; la IED manufacturera se apoya parcialmente en esa holgura.</p>
+          </div>
+        </div>
+
+        <h4 style="margin-top:16px;">Fuerza de trabajo en Marx · ¿es lo mismo que «mano de obra»?</h4>
+        <p>Para Marx, la <strong>fuerza de trabajo</strong> (<em>Arbeitskraft</em>) es «el conjunto de las facultades físicas e intelectuales que existen en la corporeidad […] del hombre vivo» y que éste «pone en movimiento cuantas veces produce valores de uso de cualquier clase» (<em>El capital</em>, I, cap. 4). Lo revolucionario de su planteo es:</p>
+        <ul>
+          <li>Bajo el capitalismo, la fuerza de trabajo <strong>se convierte en mercancía</strong>: el trabajador vende una capacidad (no trabajo ya hecho) a cambio de un salario.</li>
+          <li>Esa mercancía tiene una cualidad única: produce <em>más</em> valor del que cuesta. De ahí la <strong>plusvalía</strong>.</li>
+          <li>Su valor se determina por el tiempo socialmente necesario para reproducirla (alimento, vivienda, formación).</li>
+        </ul>
+        <p><strong>¿Es lo mismo que «mano de obra»?</strong> No del todo. «Mano de obra» es un término economicista-empresarial: designa al trabajador como insumo cuantificable (horas-hombre, costo unitario). «Fuerza de trabajo» es un concepto crítico: subraya que detrás del insumo hay un sujeto vivo cuya capacidad se mercantiliza. En el vocabulario de la asignatura, <em>mano de obra</em> describe; <em>fuerza de trabajo</em> desnaturaliza.</p>
+      </article>
+
+      <!-- 16. Interlocutor / Zizek -->
+      <article class="block" id="interlocutor">
+        <span class="tag argentina">16 · Reconocimiento como interlocutor</span>
+        <h3>El sindicato como interlocutor reconocido</h3>
+        <p>Los autores recalcan que el Estado argentino «reconoce como interlocutores privilegiados, y con derecho exclusivo a negociar convenios, a los sindicatos más burocratizados» <span class="pageref">p. 319</span>. El <strong>reconocimiento</strong> —hegeliano en su raíz— no es un gesto simbólico: habilita jurídicamente quién puede firmar convenios.</p>
+
+        <blockquote class="cita">
+          «Los resultados de la negociación colectiva se extienden a todos los trabajadores y empresas […]. Esta disposición otorga gran importancia a los sindicatos en las relaciones laborales.»
+          <footer>Brunet, Pizzi & Moral (2016), p. 307</footer>
+        </blockquote>
+
+        <h4>Una glosa desde Žižek · huelga y reconocimiento</h4>
+        <p>En <em>En defensa de la intolerancia</em>, Slavoj Žižek lee los movimientos obreros del final del socialismo-realmente-existente (Solidaridad en Polonia, Neues Forum en la RDA, las huelgas en la antigua Yugoslavia) como episodios donde la negociación salarial era solo el pretexto: lo que estaba en juego era el <strong>acto mismo de ser reconocidos como sujetos políticos</strong>. Recuerda Žižek que, en la Yugoslavia autogestionaria, la ideología oficial sostenía que los obreros ya administraban las fábricas, de modo que la huelga era conceptualmente imposible — ¿contra quién podían, entonces, hacer huelga? Y responde:</p>
+        <blockquote class="cita gold">
+          «La lucha, claro está, iba más allá del aumento salarial o de las mejoras en las condiciones laborales; se trataba, sobre todo, de que los trabajadores fueran reconocidos como interlocutores legítimos en la negociación con los representantes del régimen: tan pronto como el poder tuviera que aceptar eso, la batalla, en cierto sentido, estaba ganada.»
+          <footer>Žižek, S. (2008). <em>En defensa de la intolerancia</em> (J. Eraso Ceballos y A. A. Cancho Bonilla, trads., pp. 43–44). Sequitur.</footer>
+        </blockquote>
+        <p>Žižek lo llama, tomando a Rancière, una irrupción de <em>la parte sin parte</em>: los «excluidos» —demos griego, obreros polacos, huelguistas yugoslavos— no piden una mejora dentro del orden, sino ser contados como iguales en la discusión. «En Polonia, la nomenklatura perdió el pulso cuando reconoció a Solidaridad como interlocutor legítimo» (Žižek, 2008, p. 27).</p>
+        <p><strong>Lectura para Argentina:</strong> cuando el Estado «reconoce como interlocutores privilegiados» a los sindicatos con personería gremial (Brunet, Pizzi & Moral, 2016, p. 319) y deja fuera a las más de 2.000 organizaciones simplemente inscritas, no las está <em>tolerando</em> desde la distancia: está decidiendo cuáles tienen voz política y cuáles siguen siendo «parte sin parte». El reconocimiento es acto de poder, no de cortesía — por eso los fallos de la CSJN de 2008 y 2013, que abren la puerta al pluralismo sindical, son más que jurídicos: tocan la misma estructura del reconocimiento que describe Žižek.</p>
+      </article>
+
+      <!-- 17. Unicato -->
+      <article class="block" id="unicato">
+        <span class="tag argentina">17 · Unicato (p. 321)</span>
+        <h3>¿Qué es el unicato?</h3>
+        <p>El <strong>unicato</strong> es la regla de «un solo sindicato con personería gremial por rama de actividad». Brunet, Pizzi & Moral lo explican así:</p>
+        <blockquote class="cita blue">
+          «El unicato de la representación sindical explica que, a diferencia de muchos países europeos y latinoamericanos, el modelo argentino permitió durante décadas que las principales organizaciones por actividad o rama, reconocidas por las autoridades, monopolizaran la representación ante los empresarios y el Estado, sin necesidad de un mandato de las bases, ni tan solo de que los trabajadores estuvieran afiliados.»
+          <footer>Brunet, Pizzi & Moral (2016), pp. 320–321</footer>
+        </blockquote>
+
+        <h4>Mecánica y quiebres jurídicos</h4>
+        <ul>
+          <li>La <strong>personería gremial</strong> (Ley 23.551/1988) concede derechos exclusivos a un único sindicato por rama: negociar convenios, representar ante el Estado, tener fueros.</li>
+          <li>Los demás sindicatos solo pueden «inscribirse simplemente»: pueden existir pero no firmar.</li>
+          <li><strong>Fallo ATE c/ Ministerio de Trabajo (CSJN, 2008):</strong> se puede ser delegado sindical sin estar afiliado al gremio con personería.</li>
+          <li><strong>Fallo Rossi (CSJN, 2009)</strong> y siguientes: cuestionan el monopolio de representación.</li>
+          <li>2013: declaración de inconstitucionalidad del art. de la Ley que concede derechos exclusivos a los sindicatos con personería <span class="pageref">p. 320</span>.</li>
+        </ul>
+        <p>Pese a estas sentencias, «el modelo tradicional se mantiene vigente debido al poder que todavía conservan los gremios tradicionales» <span class="pageref">p. 321</span>.</p>
+      </article>
+
+      <!-- 18. Statu quo -->
+      <article class="block" id="statu-quo">
+        <span class="tag argentina">18 · Statu quo</span>
+        <h3>Statu quo: definición</h3>
+        <p>Expresión latina (<em>statu quo</em>, «en el estado en que…»), abreviatura de la fórmula diplomática <em>in statu quo ante bellum</em>: «en el estado en que [las cosas estaban] antes de la guerra». En ciencia política describe el <strong>arreglo institucional vigente</strong> que un conjunto de actores tiene interés en conservar.</p>
+        <p>El texto la usa en este sentido preciso: «el ehtramado [<em>sic</em>] de poder entre los sindicatos y la política refuerza el statu quo porque las fuerzas políticas que quieran disputar el poder en el país necesita[n] del apoyo de la estructura sindical» <span class="pageref">p. 321</span>.</p>
+        <div class="kp-grid">
+          <div class="kp"><strong>En relaciones internacionales:</strong> una potencia «statu quo» defiende el orden existente (ej. EE.UU. posguerra fría) frente a potencias «revisionistas».</div>
+          <div class="kp"><strong>En política laboral:</strong> el statu quo del unicato produce un equilibrio: cúpulas sindicales poderosas + partidos que las necesitan + empresarios que prefieren interlocutor único.</div>
+          <div class="kp"><strong>En economía política:</strong> se rompe cuando el costo de mantenerlo excede al de cambiarlo — lo que los fallos de la Corte parecen señalar.</div>
+        </div>
+      </article>
+    </section>
+
+    <div class="divider">·  ·  ·</div>
+
+    <!-- ═════════════════════════════ -->
+    <!-- ═══ SECCIÓN: CHINA ════════ -->
+    <!-- ═════════════════════════════ -->
+    <section class="major" id="china">
+      <div class="section-header sh-china">
+        <div class="flag-row">
+          <span class="flag-chip">🇨🇳 China</span>
+          <span class="flag-chip">pp. 321–335</span>
+          <span class="flag-chip">§ 7.4</span>
+        </div>
+        <h2>China · un epílogo</h2>
+        <p>Triángulo corporativista: Partido único (PCCh) + Sindicato único (ACFTU) + Empresas estatales. Dos transiciones simultáneas: de sociedad tradicional a moderna y de comunismo estalinista-maoísta a socialismo de mercado.</p>
+      </div>
+
+      <!-- 19. China 2016 -->
+      <article class="block" id="china-2016">
+        <span class="tag china">19 · China tras 2016</span>
+        <h3>Lo que cambió desde que el libro se escribió (2016)</h3>
+        <p>El capítulo advierte en la p. 322 problemas de contaminación urbana y la reforma «del hijo único». Desde 2016, varios de esos parámetros se han desplazado:</p>
+        <div class="table-wrap">
+          <table class="comp">
+            <thead>
+              <tr><th>Tema</th><th>Lo que decía el libro (2016)</th><th>Hoy (2026)</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Política demográfica</th>
+                <td>Flexibilización del hijo único (ya había política de 2 hijos desde 2015).</td>
+                <td>Desde 2021: política de <strong>3 hijos</strong>; en 2023 China perdió por primera vez población. La prioridad cambió de control a estímulo.</td>
+              </tr>
+              <tr>
+                <th>Medio ambiente</th>
+                <td>Contaminación severa, carbón como primera fuente. <span class="pageref">p. 322</span></td>
+                <td>China es el mayor emisor global, pero también líder absoluto en capacidad instalada de solar y eólica; meta de carbono-neutralidad en 2060.</td>
+              </tr>
+              <tr>
+                <th>Crecimiento</th>
+                <td>7,4% (2014), «el nivel más bajo en 24 años».</td>
+                <td>Entre 3 y 5% en el ciclo 2022–2025: nueva normalidad. Crisis inmobiliaria (Evergrande, Country Garden).</td>
+              </tr>
+              <tr>
+                <th>Hukou</th>
+                <td>Se anuncia su reforma como parte del programa de Xi para 2020.</td>
+                <td>Relajado en ciudades pequeñas y medianas; Beijing/Shanghai siguen con restricciones severas. Sigue vigente como dispositivo central.</td>
+              </tr>
+              <tr>
+                <th>Campos de trabajos forzados (laojiao)</th>
+                <td>Anuncio de su cierre.</td>
+                <td>Formalmente abolidos en 2013, pero persisten denuncias sobre Xinjiang y re-educación por otras vías.</td>
+              </tr>
+              <tr>
+                <th>Sindicalismo</th>
+                <td>ACFTU como sindicato único; primeras experiencias (Wal-Mart Changde, 2014).</td>
+                <td>Desde 2018: crecimiento de huelgas en plataformas (delivery, fábricas Apple); represión a activistas laborales independientes.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- 20. Hukou vs kafala -->
+      <article class="block" id="hukou">
+        <span class="tag china">20 · Hukou · kafala</span>
+        <h3>¿Se ha dado la reforma del hukou?</h3>
+        <p>El <strong>hukou</strong> (户口) es el sistema chino de <em>registro familiar</em> que divide a la población en rural y urbana, y ata derechos (educación, salud, vivienda, pensiones) al lugar de inscripción, no al de residencia real. Se creó en los años cincuenta con tres objetivos <span class="pageref">p. 331</span>: (1) garantizar pleno empleo urbano, (2) mantener bajos los ingresos urbanos, (3) dividir los mercados laborales rural y urbano.</p>
+        <p><strong>¿Se reformó?</strong> Parcialmente. Desde 2014 se anunciaron relajaciones progresivas; en 2022–2024 varias provincias liberalizaron el hukou en ciudades de menos de 3 millones. Pero el núcleo sigue: <strong>Beijing, Shanghai, Shenzhen y Guangzhou</strong> mantienen restricciones estrictas mediante sistemas de puntos. Los hijos de trabajadores migrantes sin hukou urbano siguen expulsados de las escuelas públicas de las ciudades de destino.</p>
+
+        <h4>Hukou y kafala: ¿dispositivos comparables?</h4>
+        <p>La <strong>kafala</strong> es el sistema de patrocinio laboral usado en países del Golfo Pérsico (Qatar, EAU, Arabia Saudita). Ata la visa del trabajador migrante a un empleador-patrocinador (<em>kafil</em>) que tiene potestad sobre su movilidad. Durante el Mundial Qatar 2022 se documentó cómo los empleadores retenían pasaportes de trabajadores del sur-sureste asiático, impidiéndoles cambiar de empleo o abandonar el país.</p>
+
+        <div class="table-wrap">
+          <table class="comp">
+            <thead>
+              <tr><th>Dimensión</th><th>🇨🇳 Hukou</th><th>🇶🇦 Kafala</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Base legal</th>
+                <td>Registro familiar estatal desde 1958.</td>
+                <td>Ley de patrocinio privado; vigente desde los años 50 (abolida formalmente en Qatar en 2020).</td>
+              </tr>
+              <tr>
+                <th>Quién controla</th>
+                <td>El Estado (Ministerio de Seguridad Pública).</td>
+                <td>El empleador individual (<em>kafil</em>).</td>
+              </tr>
+              <tr>
+                <th>Mecanismo</th>
+                <td>Categorización rural/urbana; servicios públicos condicionados.</td>
+                <td>Visa atada al empleador; retención de pasaporte en la práctica.</td>
+              </tr>
+              <tr>
+                <th>Población afectada</th>
+                <td>~300 millones de migrantes internos.</td>
+                <td>~25 millones de migrantes (Golfo), en su mayoría de Asia del Sur.</td>
+              </tr>
+              <tr>
+                <th>¿Moderno o arcaico?</th>
+                <td><strong>Patch híbrido:</strong> Estado moderno + categorización cuasi-feudal de ciudadanía.</td>
+                <td><strong>Patch híbrido:</strong> capitalismo petrolero globalizado + servidumbre personal.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="discuss-box">
+          <h4>💬 Pregunta para la clase</h4>
+          <p>Tanto hukou como kafala funcionan como un <em>parche</em> entre capitalismo globalizado y dispositivos de control premoderno. ¿Por qué el capitalismo del siglo XXI <strong>necesita</strong> estos parches? ¿Qué se produciría si se eliminaran de golpe?</p>
+        </div>
+      </article>
+
+      <!-- 21. Bol férreo -->
+      <article class="block" id="bol-ferreo">
+        <span class="tag china">21 · Bol férreo de arroz</span>
+        <h3>El bol férreo de arroz (<em>tie fanwan</em>, 铁饭碗) de Mao</h3>
+        <p>El <strong>bol férreo de arroz</strong> fue la garantía de <em>empleo vitalicio</em> en empresas públicas estatales (EPE) que instaló la política maoísta desde los años cincuenta. Los autores lo definen como un sistema que pretendía «asegurar empleo a los habitantes de las ciudades en empresas públicas estatales […] independientemente de su cualificación o productividad» <span class="pageref">p. 324</span>.</p>
+
+        <div class="kp-grid">
+          <div class="kp"><strong>Empleo de por vida</strong> garantizado por la <em>danwei</em> (unidad de trabajo).</div>
+          <div class="kp"><strong>Salario institucional</strong> desvinculado de la productividad.</div>
+          <div class="kp"><strong>Seguridad social corporativa</strong>: vivienda, salud, jubilación, educación provistas por la empresa.</div>
+          <div class="kp"><strong>Consecuencia:</strong> «origen del obrero escasamente remunerado, pero protegido por la empresa a través del <em>tie fanwan</em>» <span class="pageref">p. 324</span>.</div>
+        </div>
+
+        <h4>De Mao a Deng: la erosión</h4>
+        <ul>
+          <li>Desde 1978, «modernización socialista»: las EPE pueden retener parte de sus beneficios.</li>
+          <li>1982: <strong>el derecho de huelga es retirado</strong> de la Constitución <span class="pageref">p. 324</span>.</li>
+          <li>1984–1988: «sistema de responsabilidad contractual»; mayor libertad de despido.</li>
+          <li>Años 1990: 30 millones de empleados estatales despedidos; mercado urbano absorbe migrantes rurales <span class="pageref">pp. 325–326</span>.</li>
+          <li>1997 (XV Congreso PCCh): <em>zhuada, fangxiao</em> — «amarrar a las grandes, dejar libres a las pequeñas» <span class="pageref">p. 326</span>.</li>
+        </ul>
+
+        <p>El bol ferreo no desapareció: <em>sobrevive como privilegio residual</em>. Brunet, Pizzi & Moral señalan que los trabajadores urbanos despedidos siguen bajo «un sistema de empleo protector y prioritario, que podría fácilmente identificarse con una nueva versión del “bol férreo de arroz” en las zonas urbanas» <span class="pageref">p. 331</span>.</p>
+      </article>
+
+      <!-- 22. Actores China -->
+      <article class="block" id="china-actores">
+        <span class="tag china">22 · Actores (trabajadores / empresas)</span>
+        <h3>Esquema de asociaciones de trabajadores y de empresas en China</h3>
+        <p>Los autores describen un «triángulo perfecto corporativista (también totalitario)» <span class="pageref">p. 329</span>: un vértice para cada actor, con una única institución en cada uno.</p>
+
+        <div class="arrow-flow" style="grid-template-columns:1fr 1fr 1fr;">
+          <div class="af-node" style="border-left:6px solid var(--china);">
+            <h5>Estado / Partido</h5>
+            <p><strong>PCCh</strong> · Partido único. Supervisa la ANP, designa ejecutivos, nombra cuadros sindicales.</p>
+          </div>
+          <div class="af-node" style="border-left:6px solid var(--gold);">
+            <h5>Sindicato único</h5>
+            <p><strong>ACFTU</strong> · All-China Federation of Trade Unions (1925). 31 federaciones provinciales, 10 sindicatos nacionales, 1,32 M de sindicatos de empresa. Afiliación: ~170 millones (73,6%).</p>
+          </div>
+          <div class="af-node" style="border-left:6px solid var(--blue);">
+            <h5>Empresarios</h5>
+            <p><strong>Dualidad:</strong> SASAC (públicas) + CECh/Gongshanglian (privadas).</p>
+          </div>
+        </div>
+
+        <h4 style="margin-top:18px;">🇨🇳 Trabajadores (monopolio)</h4>
+        <div class="org-tree">
+          <div class="org-level">
+            <div class="org-node l1 china"><strong>ACFTU</strong>Único sindicato nacional reconocido, estrechamente alineado con el PCCh.</div>
+          </div>
+          <div style="text-align:center;font-size:1.5rem;color:var(--china);">↑</div>
+          <div class="org-level">
+            <div class="org-node l2 china"><strong>31 federaciones provinciales</strong></div>
+            <div class="org-node l2 china"><strong>10 sindicatos nacionales de industria</strong></div>
+          </div>
+          <div style="text-align:center;font-size:1.5rem;color:var(--china);">↑</div>
+          <div class="org-level">
+            <div class="org-node l3 china"><strong>1.324.000 sindicatos de empresa</strong>Delegados a menudo nombrados por la empresa o estamentos superiores <span class="pageref">p. 335</span>.</div>
+          </div>
+        </div>
+
+        <h4 style="margin-top:18px;">🇨🇳 Empresas</h4>
+        <div class="org-tree">
+          <div class="org-level">
+            <div class="org-node l1 china"><strong>Empresas públicas</strong>Supervisadas por la <strong>SASAC</strong> (Comisión de Supervisión y Administración de Activos Estatales).</div>
+            <div class="org-node l1 china"><strong>Empresas privadas</strong>Representadas por la <strong>CECh</strong> (Confederación de Empresas de China, 1979).</div>
+          </div>
+          <div style="text-align:center;font-size:1.5rem;color:var(--china);">↑</div>
+          <div class="org-level">
+            <div class="org-node l2 china"><strong>CECh / ACEC</strong>~550.000 empresas afiliadas; participa con la OIT y el Pacto Mundial.</div>
+            <div class="org-node l2 china"><strong>Gongshanglian</strong>Federación China de Industria y Comercio (1953); ~3.97 M miembros. Más activa en órganos tripartitos provinciales.</div>
+          </div>
+        </div>
+
+        <p style="margin-top:14px;"><strong>Nota:</strong> la negociación colectiva es parcelada — la fija el gobierno (salario mínimo ≥ 40% salario medio local, aunque en la práctica es 20–35%) y la negocian las representaciones del sindicato oficial en las empresas privadas <span class="pageref">pp. 334–335</span>. La verdadera presión viene «desde abajo»: huelgas, suicidios en Foxconn (2010), Delta del río Perla.</p>
+      </article>
+    </section>
+
+    <div class="divider">·  ·  ·</div>
+
+    <!-- ═════════════════════════════ -->
+    <!-- ═══ GLOSARIOS ═════════════ -->
+    <!-- ═════════════════════════════ -->
+    <section class="major" id="glosarios">
+      <div class="section-header sh-gloss">
+        <div class="flag-row">
+          <span class="flag-chip">📘 Glosarios</span>
+          <span class="flag-chip">Dos niveles</span>
+        </div>
+        <h2>Glosarios</h2>
+        <p>Primero los términos anclados al caso brasileño, argentino y chino; después, los conceptos transversales de la asignatura que atraviesan esta lectura.</p>
+      </div>
+
+      <!-- Glosario CLT -->
+      <article class="block" id="glosario-clt">
+        <span class="tag brasil">📘 Glosario I — Brasil / Argentina / China
+        </span>
+        <h3>Glosario del caso brasileño, argentino y chino</h3>
+        <dl class="gloss-grid">
+          <div class="gloss-card clt">
+            <dt>CLT</dt>
+            <dd>Consolidação das Leis do Trabalho. Código laboral brasileño unificado, creado en 1943 bajo Getúlio Vargas; base de toda la legislación laboral individual y colectiva <span class="pageref">p. 305</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>Principio de protección</dt>
+            <dd>Eje orientador de la CLT: ante ambigüedad, se aplica la interpretación más favorable al trabajador; los derechos adquiridos no pueden retroceder <span class="pageref">p. 305</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>Impuesto sindical</dt>
+            <dd>Contribución obligatoria pagada por todos los trabajadores de una categoría profesional. Financia al sindicato único por categoría; incentivó la proliferación de sindicatos (4.000 en 1988 → 15.000 hoy) <span class="pageref">p. 309</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>Personería gremial (Brasil)</dt>
+            <dd>En Brasil llamada simplemente «registro sindical»: el Ministerio de Trabajo decide qué sindicato representa a cada categoría en cada jurisdicción territorial <span class="pageref">p. 307</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>CUT</dt>
+            <dd>Central Única de Trabajadores. Fundada en 1983; primera central nacional en la transición democrática, alineada con el PT <span class="pageref">p. 309</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>CNI</dt>
+            <dd>Confederação Nacional da Indústria. Principal patronal industrial: 27 federaciones, 1.250+ sindicatos de empresarios, 350.000 empresas <span class="pageref">p. 310</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>FGTS</dt>
+            <dd>Fundo de Garantia do Tempo de Serviço. Depósito mensual del 8% del salario en cuenta pública a nombre del trabajador; se retira en caso de despido o extinción de la empresa <span class="pageref">p. 314</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>Tribunal de Trabajo (Justiça do Trabalho)</dt>
+            <dd>Rama del poder judicial con «poder normativo»: puede legislar sobre condiciones de trabajo en conflictos colectivos <span class="pageref">p. 308</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>Redemocratización</dt>
+            <dd>Proceso 1974–1988 de salida de la dictadura civil-militar; culmina en la Constitución Cidadã de 1988. La expresión aparece en el libro <span class="pageref">p. 309</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>Enmienda Constitucional 45 (2004)</dt>
+            <dd>Amplió la jurisdicción de los tribunales laborales más allá de la relación empleador-empleado <span class="pageref">p. 306</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>Paritarias (Argentina)</dt>
+            <dd>Comisiones de negociación salarial integradas por sindicatos y cámaras; el Ministerio de Trabajo convoca, preside y homologa <span class="pageref">p. 315</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>Pauta salarial (Argentina)</dt>
+            <dd>Criterio de aumento salarial orientador que fija el Estado y sirve de patrón para los sectores más débiles en la negociación <span class="pageref">p. 317</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>Hukou (户口, China)</dt>
+            <dd>Registro familiar que ata derechos urbanos a la inscripción formal; divide población en rural/urbana y restringe la movilidad interna <span class="pageref">p. 331</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>Danwei (单位)</dt>
+            <dd>«Unidad de trabajo»: la empresa estatal maoísta como célula total de vida (empleo, vivienda, salud, política) <span class="pageref">p. 332</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>Tie fanwan (铁饭碗)</dt>
+            <dd>«Bol férreo de arroz»: empleo vitalicio garantizado en EPE bajo Mao <span class="pageref">p. 324</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>Zhuada, fangxiao (抓大放小)</dt>
+            <dd>«Amarrar a las grandes, dejar libres a las pequeñas». Estrategia del XV Congreso (1997) para reformar las EPE <span class="pageref">p. 326</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>Xiagang zhigong (下岗职工)</dt>
+            <dd>Trabajador «despedido» temporalmente de una EPE, que conserva vínculo con su <em>danwei</em> y un subsidio mientras busca reubicación <span class="pageref">p. 332</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>ACFTU</dt>
+            <dd>All-China Federation of Trade Unions (1925). Único sindicato reconocido legalmente en China <span class="pageref">p. 330</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>SASAC</dt>
+            <dd>Comisión de Supervisión y Administración de Activos Estatales. Organismo estatal que gestiona las participaciones del gobierno en empresas públicas <span class="pageref">p. 329</span>.</dd>
+          </div>
+          <div class="gloss-card clt">
+            <dt>CECh</dt>
+            <dd>Confederación de Empresas de China (1979). Principal organización de empresas privadas: ~550.000 afiliadas <span class="pageref">p. 329</span>.</dd>
+          </div>
+        </dl>
+      </article>
+
+      <!-- Glosario asignatura -->
+      <article class="block" id="glosario-asig">
+        <span class="tag" style="background:var(--blue);">📗 Glosario II — Asignatura</span>
+        <h3>Glosario transversal de la asignatura (aplicado a esta lectura)</h3>
+        <dl class="gloss-grid">
+          <div class="gloss-card asignatura">
+            <dt>Sociedad salarial</dt>
+            <dd>Orden social del capitalismo organizado de posguerra, donde el salario articula derechos y ciudadanía. Lo que este capítulo muestra es su fragmentación en América Latina y China.</dd>
+          </div>
+          <div class="gloss-card asignatura">
+            <dt>Corporativismo</dt>
+            <dd>Modo de organización de intereses en que el Estado reconoce a un único interlocutor por sector. Brunet, Pizzi & Moral lo llaman «unicato» en Argentina y «triángulo corporativista» en China.</dd>
+          </div>
+          <div class="gloss-card asignatura">
+            <dt>Neoliberalismo</dt>
+            <dd>Régimen hegemónico desde los años 80: desregulación, privatización, retroceso sindical. En Argentina: convertibilidad; en Brasil: reforma laboral 2017; en China: apertura selectiva desde 1978.</dd>
+          </div>
+          <div class="gloss-card asignatura">
+            <dt>Pos-neoliberalismo</dt>
+            <dd>Etapa de <em>re-estatización</em> parcial (2003– en Argentina; 2003–2016 en Brasil). No revierte la informalidad ni la financiarización, pero reactiva la negociación colectiva.</dd>
+          </div>
+          <div class="gloss-card asignatura">
+            <dt>Fuerza de trabajo (Marx)</dt>
+            <dd>Capacidad humana de trabajar, que bajo el capitalismo se convierte en mercancía. Distinta de «mano de obra», que es su traducción administrativa.</dd>
+          </div>
+          <div class="gloss-card asignatura">
+            <dt>Informalidad</dt>
+            <dd>Fracción de la fuerza de trabajo sin cobertura de la seguridad social ni de los convenios colectivos. Argentina ≈ 30%; México &gt; 54%; China ~40% según ACFTU.</dd>
+          </div>
+          <div class="gloss-card asignatura">
+            <dt>Negociación colectiva</dt>
+            <dd>Proceso institucional por el que sindicatos y empresarios pactan salarios y condiciones. Aquí: obligatoria-anual en Brasil, paritaria tripartita en Argentina, parcelada y de cúpula en China.</dd>
+          </div>
+          <div class="gloss-card asignatura">
+            <dt>Tripartismo</dt>
+            <dd>Institucionalidad que reúne gobierno, empleadores y trabajadores. Promovido por la OIT; el libro lo presenta como rasgo clave del ciclo pos-neoliberal latinoamericano.</dd>
+          </div>
+          <div class="gloss-card asignatura">
+            <dt>Reconocimiento (como interlocutor)</dt>
+            <dd>Acto estatal que habilita a una organización como contraparte legítima de la negociación. No es neutral: produce jerarquías sindicales (ver §16, Žižek).</dd>
+          </div>
+          <div class="gloss-card asignatura">
+            <dt>Subcontratación / outsourcing</dt>
+            <dd>Mecanismo por el que una empresa delega funciones en terceros. Precariza y dificulta la acción sindical. Brasil legalizó en 2017; México prohibió salvo especialización en 2021.</dd>
+          </div>
+          <div class="gloss-card asignatura">
+            <dt>Flexibilización laboral</dt>
+            <dd>Conjunto de reformas que reducen la rigidez del contrato (despido, jornada, salario). Brunet, Pizzi & Moral la leen como respuesta al capitalismo financiarizado.</dd>
+          </div>
+          <div class="gloss-card asignatura">
+            <dt>Sociedad disciplinaria → sociedad de control</dt>
+            <dd>Tránsito foucaultiano-deleuziano. Hoy aparece en forma híbrida: disciplina de fábrica + modulación algorítmica (ver §5).</dd>
+          </div>
+          <div class="gloss-card asignatura">
+            <dt>Burocracia (Weber / Arendt)</dt>
+            <dd>Forma racional-legal de dominación (Weber); riesgo político de despolitización (Arendt). En el libro aparecen como crítica a las «estructuras burocráticas gigantescas» (p. 310).</dd>
+          </div>
+          <div class="gloss-card asignatura">
+            <dt>Cadenas globales de valor</dt>
+            <dd>Fragmentación transnacional de la producción. El «manifiesto Palantir» (2026) las homologa a <em>kill chains</em>: nudo ético de esta sesión.</dd>
+          </div>
+          <div class="gloss-card asignatura">
+            <dt>Statu quo</dt>
+            <dd>Arreglo vigente que un conjunto de actores tiene incentivo para conservar. Reforzado en Argentina por la dupla sindicato-partido (p. 321).</dd>
+          </div>
+          <div class="gloss-card asignatura">
+            <dt>Capitalismo financiarizado</dt>
+            <dd>Régimen donde las finanzas dominan la acumulación. Marco general del libro; los tres casos estudiados son sus periferias activas.</dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+
+    <!-- ═══ Fuentes / citas ═══ -->
+    <section id="fuentes" class="block" style="background:#fff;">
+      <span class="tag">📎 Fuentes</span>
+      <h3>Referencias</h3>
+      <ol class="ref-list">
+        <li>Brunet Icart, I., Pizzi, A. y Moral Martín, D. (2016). <em>Sistemas laborales comparados: Las transformaciones de las relaciones de empleo en la era neoliberal</em>. Anthropos Editorial; Universidad Nacional del Litoral. [Capítulo 7, pp. 305–335].</li>
+        <li>Arendt, H. (1963). <em>Eichmann in Jerusalem: A Report on the Banality of Evil</em>. Viking Press.</li>
+        <li>Deleuze, G. (1990). Post-scriptum sur les sociétés de contrôle. <em>L'autre journal</em>, 1. [Reeditado en <em>Pourparlers</em>, 1972–1990, Éditions de Minuit, 1990].</li>
+        <li>Foucault, M. (1975). <em>Surveiller et punir: Naissance de la prison</em>. Gallimard.</li>
+        <li>Marx, K. (1867). <em>Das Kapital: Kritik der politischen Ökonomie, Band I</em>. Verlag von Otto Meissner. [Cap. 4: «Transformación del dinero en capital»].</li>
+        <li>Weber, M. (1922). <em>Wirtschaft und Gesellschaft</em>. J.C.B. Mohr. [Cap. sobre tipos de dominación; burocracia].</li>
+        <li>Žižek, S. (2008). <em>En defensa de la intolerancia</em> (J. Eraso Ceballos y A. A. Cancho Bonilla, trads.). Sequitur. [Pasaje citado sobre los trabajadores como interlocutores legítimos, pp. 43–44].</li>
+        <li>Organización Internacional del Trabajo. (1948). <em>Convenio sobre la libertad sindical y la protección del derecho de sindicación, 1948 (núm. 87)</em>. Ginebra: OIT.</li>
+      </ol>
+      <p style="margin-top:14px;font-size:0.92rem;color:var(--muted);"><strong>Nota sobre paginación:</strong> las citas remiten a las páginas del libro impreso (pp. 305–335), <em>no</em> a la paginación del PDF del capítulo. Cuando el texto aparece entre comillas latinas («…») se ha respetado literalmente la redacción publicada.</p>
+    </section>
+
+    <!-- ═══ Footer ═══ -->
+    <footer class="footer">
+      <a href="../../index.html">← Inicio</a>
+      <span>Globalización y Empleo · FCA · UNAM · 2026-2 · Jorge Cardiel</span>
+      <a href="../slc.html">Estructura del libro (SLC) →</a>
+    </footer>
+
+    <p style="margin-top:10px;font-size:clamp(0.74rem,0.78vw+0.18rem,0.84rem);color:var(--muted);max-width:720px;text-align:center;line-height:1.45;margin-left:auto;margin-right:auto;">
+      <strong>Cómo citar esta página:</strong> Cardiel, J. (2026). <em>Sistemas laborales comparados, capítulo 7: Brasil, Argentina y China (pp. 305–335)</em> [Material didáctico digital]. Globalización y Empleo, FCA, UNAM. https://socyb.github.io/global/sesiones/21abr26/
+    </p>
+
+  </div>
+</body>
+</html>

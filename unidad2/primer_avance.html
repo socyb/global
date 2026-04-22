@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primer avance · Investigación · Globalización y Empleo 2026-2</title>
+  <link rel="icon" href="../img/icon-globe.svg">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    /* ── Hero ── */
+    .pa-hero {
+      background: linear-gradient(135deg, #e8fdf5 0%, #eef6ff 100%);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(24px, 4vw, 40px);
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .pa-hero::before {
+      content: "";
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(0, 163, 122, 0.08);
+    }
+    .pa-eyebrow {
+      font-family: var(--font-accent);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #00a37a;
+      margin-bottom: 10px;
+    }
+    .pa-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-family: var(--font-body);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin: 0 0 10px;
+    }
+    .pa-subtitle {
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin: 0;
+      max-width: 70ch;
+    }
+
+    /* ── Resumen ── */
+    .resumen-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin: 1.2rem 0 0;
+    }
+    .resumen-card {
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
+    }
+    .resumen-num {
+      font-family: var(--font-accent);
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: var(--teal, #008d8e);
+      line-height: 1;
+    }
+    .resumen-lbl {
+      font-family: var(--font-accent);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ── Navegación lateral por equipos ── */
+    .eq-index {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 1.2rem 0 2rem;
+    }
+    .eq-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      background: var(--surface);
+      box-shadow: 3px 3px 0 var(--ink);
+      font-family: var(--font-accent);
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--ink);
+      text-decoration: none;
+      transition: transform .1s ease, box-shadow .1s ease;
+    }
+    .eq-chip:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .eq-chip .chip-num {
+      background: var(--ink);
+      color: #fff;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+    }
+
+    /* ── Tarjeta de equipo ── */
+    .team-card {
+      border: var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 3vw, 32px);
+      margin-bottom: 1.5rem;
+      scroll-margin-top: 80px;
+      position: relative;
+    }
+    .team-card.accent-brasil   { border-left: 8px solid #22af49; }
+    .team-card.accent-teal     { border-left: 8px solid #008d8e; }
+    .team-card.accent-gold     { border-left: 8px solid #f0b429; }
+    .team-card.accent-coral    { border-left: 8px solid #e2312b; }
+    .team-card.accent-blue     { border-left: 8px solid #50aee2; }
+    .team-card.accent-violet   { border-left: 8px solid #6c5ce7; }
+    .team-card.accent-mint     { border-left: 8px solid #00a37a; }
+
+    .team-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      flex-wrap: wrap;
+      border-bottom: 1.5px dashed rgba(0,0,0,0.15);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+    .team-num {
+      font-family: var(--font-accent);
+      font-weight: 900;
+      font-size: 2rem;
+      color: #fff;
+      background: var(--ink);
+      border-radius: var(--radius-sm);
+      padding: 6px 14px;
+      line-height: 1;
+      min-width: 56px;
+      text-align: center;
+      box-shadow: 3px 3px 0 rgba(0,0,0,.15);
+    }
+    .team-head-body {
+      flex: 1 1 260px;
+    }
+    .team-tema {
+      font-family: var(--font-body);
+      font-size: clamp(1.15rem, 2vw, 1.4rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin: 0 0 6px;
+    }
+    .team-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-family: var(--font-accent);
+    }
+    .team-meta .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--cream, #f7f2e3);
+      border: 1px solid rgba(0,0,0,0.12);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .team-meta .pill.persp {
+      background: #eef6ff;
+      color: #1f4477;
+      border-color: #bcd3eb;
+    }
+    .team-meta .pill.date {
+      background: #fff7e8;
+      color: #8b5b00;
+      border-color: #ffd98a;
+    }
+
+    /* ── Grid interna de la tarjeta ── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 760px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+
+    .field {
+      background: var(--cream, #f7f2e3);
+      border: 1.5px solid rgba(0,0,0,0.1);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+    }
+    .field.wide { grid-column: 1 / -1; }
+    .field.q   { background: #eef6ff; border-color: #bcd3eb; }
+    .field.p   { background: #f0ecff; border-color: #cbc0ef; }
+    .field.i   { background: #fff; border-color: rgba(0,0,0,0.12); }
+    .field.b   { background: #fff7e8; border-color: #ffd98a; }
+
+    .field-label {
+      font-family: var(--font-accent);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+    .field-body {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--text, #1a2a2a);
+    }
+    .field-body p { margin: 0 0 8px; }
+    .field-body p:last-child { margin-bottom: 0; }
+    .field-body ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+    }
+    .field-body ul li { margin-bottom: 4px; }
+    .field-body em { color: var(--text-muted); }
+
+    .integrantes-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 4px;
+    }
+    .integrantes-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font-size: 0.93rem;
+      line-height: 1.4;
+    }
+    .integrantes-list li::before {
+      content: "·";
+      color: var(--teal, #008d8e);
+      font-weight: 900;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .biblio-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+      counter-reset: bib;
+    }
+    .biblio-list li {
+      counter-increment: bib;
+      position: relative;
+      padding: 8px 10px 8px 36px;
+      background: rgba(255,255,255,0.6);
+      border-left: 3px solid #f0b429;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      line-height: 1.52;
+    }
+    .biblio-list li::before {
+      content: counter(bib);
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      width: 20px; height: 20px;
+      background: #f0b429;
+      color: var(--ink);
+      font-family: var(--font-accent);
+      font-weight: 900;
+      font-size: 0.72rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .biblio-list li a {
+      color: #006a6a;
+      word-break: break-word;
+    }
+
+    /* ── Flag-chip: bandera de país si aplica ── */
+    .flag-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.1);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Nota vacío ── */
+    .empty-note {
+      border: 2px dashed rgba(0,0,0,0.2);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+      background: var(--cream, #f7f2e3);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin: 1rem 0 2rem;
+    }
+
+    /* ── Print ── */
+    @media print {
+      .site-nav, .eq-index, footer { display: none; }
+      .team-card {
+        box-shadow: none;
+        page-break-inside: avoid;
+        margin-bottom: 18px;
+      }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="header-text">
+        <span class="header-pill">FCA · UNAM · Licenciatura en Negocios Internacionales</span>
+        <h1><img src="../img/icon-globe.svg" alt="" class="icon-8bit-lg"> Globalización y Empleo</h1>
+        <p class="subtitle">Semestre 2026-2 · Unidad 2 · Primer avance — síntesis</p>
+        <p class="instructor">Dr. Jorge Cardiel</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="site-nav">
+  <div class="container">
+    <ul class="nav-links">
+      <li><a href="../index.html"><img src="../img/icon-book.svg" alt="" class="icon-8bit-sm"> Inicio</a></li>
+      <li><a href="investigacion.html">← Investigación</a></li>
+      <li><a href="#resumen">Resumen</a></li>
+      <li><a href="#equipos">Equipos</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+
+  <!-- HERO -->
+  <div class="pa-hero" id="resumen">
+    <p class="pa-eyebrow">Unidad 2 · Revisión del 1.er avance · abril 2026</p>
+    <h1 class="pa-title">Primer avance<br>de investigación</h1>
+    <p class="pa-subtitle">
+      Síntesis de los equipos registrados en el cuestionario del primer avance: tema o caso de
+      estudio, pregunta de investigación preliminar, perspectiva de análisis y bibliografía.
+      Documento de trabajo para las sesiones de revisión del 16, 21 y 23 de abril de 2026.
+    </p>
+
+    <div class="resumen-grid">
+      <div class="resumen-card">
+        <div class="resumen-num">7</div>
+        <div class="resumen-lbl">Equipos registrados</div>
+      </div>
+      <div class="resumen-card">
+        <div class="resumen-num">32</div>
+        <div class="resumen-lbl">Integrantes</div>
+      </div>
+      <div class="resumen-card">
+        <div class="resumen-num">5</div>
+        <div class="resumen-lbl">Perspectivas distintas</div>
+      </div>
+      <div class="resumen-card">
+        <div class="resumen-num">6</div>
+        <div class="resumen-lbl">Países o regiones</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÍNDICE DE EQUIPOS -->
+  <div id="equipos">
+    <nav class="eq-index" aria-label="Índice de equipos">
+      <a class="eq-chip" href="#eq-1"><span class="chip-num">1</span> Economía del desarrollo</a>
+      <a class="eq-chip" href="#eq-2"><span class="chip-num">2</span> Home office</a>
+      <a class="eq-chip" href="#eq-3"><span class="chip-num">3</span> Nómadas digitales · CDMX</a>
+      <a class="eq-chip" href="#eq-4"><span class="chip-num">4</span> Plataformas · MX / ES</a>
+      <a class="eq-chip" href="#eq-5"><span class="chip-num">5</span> ETR's pos-COVID</a>
+      <a class="eq-chip" href="#eq-6"><span class="chip-num">6</span> IA automotriz · MX / IL</a>
+      <a class="eq-chip" href="#eq-7"><span class="chip-num">7</span> CAE · Chile</a>
+    </nav>
+  </div>
+
+  <!-- ═══════════════════ EQUIPO 1 ═══════════════════ -->
+  <article class="team-card accent-mint" id="eq-1">
+    <div class="team-head">
+      <div class="team-num">01</div>
+      <div class="team-head-body">
+        <h2 class="team-tema">Economía del desarrollo y su impacto en el empleo internacional</h2>
+        <div class="team-meta">
+          <span class="pill persp">Institucional y comparativo</span>
+          <span class="pill date">16 abr · 20:50</span>
+          <span class="pill">5 integrantes</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-grid">
+      <div class="field q wide">
+        <span class="field-label">Pregunta de investigación</span>
+        <div class="field-body">
+          <p><strong>Central:</strong> ¿Cómo impacta la aplicación de políticas de la economía del bienestar en la redistribución y las dinámicas de empleo a nivel internacional?</p>
+          <p><strong>Preguntas de apoyo:</strong></p>
+          <ul>
+            <li>¿Cuáles son las causas, circunstancias y condiciones que detonan el crecimiento y desarrollo económico en las naciones?</li>
+            <li>¿Cuáles son las causas, circunstancias y condiciones que obstaculizan el crecimiento y desarrollo económico en las naciones?</li>
+            <li>Los países que toman con gran entusiasmo una agenda como el Consenso de Washington, ¿propician el desarrollo y crecimiento?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="field i">
+        <span class="field-label">Integrantes</span>
+        <ul class="integrantes-list">
+          <li>Hernández Milán Ana Sofía</li>
+          <li>López Cruz Daniela Sofía</li>
+          <li>Rodríguez Vázquez Joshua Joshimar</li>
+          <li>Ruiz Méndez Valeria</li>
+          <li>Michel Henestrosa García</li>
+        </ul>
+      </div>
+
+      <div class="field b">
+        <span class="field-label">Bibliografía preliminar · APA 7</span>
+        <ol class="biblio-list">
+          <li>Acemoglu, D., &amp; Robinson, J. A. (2012). <em>Por qué fracasan los países: Los orígenes del poder, la prosperidad y la pobreza</em>. Editorial Crítica.</li>
+          <li>Banerjee, A. V., y Duflo, E. (2011). <em>Repensar la pobreza: Un giro radical en la lucha contra la desigualdad</em> (M. Mora y R. S. de la Quintana, Trads.). Taurus.</li>
+          <li>Chang, H.-J. (2004). <em>Retirar la escalera: La estrategia del desarrollo en perspectiva histórica</em>. Anthem Press.</li>
+          <li>Polanyi, K. (2003). <em>La gran transformación: Los orígenes políticos y económicos de nuestro tiempo</em>. Fondo de Cultura Económica.</li>
+          <li>Rodrik, D. (2011). <em>Una economía, muchas recetas: La globalización, las instituciones y el crecimiento económico</em>. Fondo de Cultura Económica.</li>
+          <li>Sen, A. (2000). <em>Desarrollo y libertad</em> (E. Rabasco y L. Toharia, Trads.). Editorial Planeta.</li>
+          <li>Sachs, J. D. (2005). <em>El fin de la pobreza: Cómo conseguirlo en nuestro tiempo</em> (P. Hermida Lazcano, Trad.). Debate.</li>
+        </ol>
+      </div>
+    </div>
+  </article>
+
+  <!-- ═══════════════════ EQUIPO 2 ═══════════════════ -->
+  <article class="team-card accent-teal" id="eq-2">
+    <div class="team-head">
+      <div class="team-num">02</div>
+      <div class="team-head-body">
+        <h2 class="team-tema">Home office como deslocalización del empleo</h2>
+        <div class="team-meta">
+          <span class="pill persp">Sectorial</span>
+          <span class="pill date">16 abr · 20:56</span>
+          <span class="pill">6 integrantes</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-grid">
+      <div class="field q wide">
+        <span class="field-label">Pregunta de investigación</span>
+        <div class="field-body">
+          <p>¿De qué manera el <em>home office</em>, como forma de deslocalización del empleo, impacta la segmentación y desigualdad del mercado laboral, así como el equilibrio entre la vida laboral y personal en el contexto de la globalización?</p>
+        </div>
+      </div>
+
+      <div class="field i">
+        <span class="field-label">Integrantes</span>
+        <ul class="integrantes-list">
+          <li>Ameyali González</li>
+          <li>Daniela Elguea</li>
+          <li>Erick Grajeda</li>
+          <li>Donaldo Rosales</li>
+          <li>Benjamin Martínez Zuñiga</li>
+          <li>Julián Paz</li>
+        </ul>
+      </div>
+
+      <div class="field b">
+        <span class="field-label">Bibliografía preliminar · APA 7</span>
+        <ol class="biblio-list">
+          <li>Eurofound &amp; International Labour Organization. (2017). <em>Working anytime, anywhere: The effects on the world of work</em>. Publications Office of the European Union &amp; ILO. <a href="https://www.eurofound.europa.eu/publications/report/2017/working-anytime-anywhere-the-effects-on-the-world-of-work" target="_blank" rel="noopener">eurofound.europa.eu</a></li>
+          <li>Gajendran, R. S., &amp; Harrison, D. A. (2007). The good, the bad, and the unknown about telecommuting: Meta-analysis of psychological mediators and individual consequences. <em>Journal of Applied Psychology, 92</em>(6), 1524–1541. <a href="https://doi.org/10.1037/0021-9010.92.6.1524" target="_blank" rel="noopener">doi.org/10.1037/0021-9010.92.6.1524</a></li>
+          <li>International Labour Organization. (2020). <em>Teleworking during the COVID-19 pandemic and beyond: A practical guide</em>. ILO.</li>
+        </ol>
+      </div>
+    </div>
+  </article>
+
+  <!-- ═══════════════════ EQUIPO 3 ═══════════════════ -->
+  <article class="team-card accent-violet" id="eq-3">
+    <div class="team-head">
+      <div class="team-num">03</div>
+      <div class="team-head-body">
+        <h2 class="team-tema">Teletrabajo transnacional y «nómadas digitales» en la CDMX</h2>
+        <div class="team-meta">
+          <span class="pill persp">Economía · Derecho · Sociología</span>
+          <span class="pill date">16 abr · 21:00</span>
+          <span class="pill">5 integrantes</span>
+          <span class="flag-chip">🇲🇽 CDMX</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-grid">
+      <div class="field q wide">
+        <span class="field-label">Pregunta de investigación</span>
+        <div class="field-body">
+          <p>¿De qué manera la llegada masiva de trabajadores remotos extranjeros (<em>nómadas digitales</em>) altera el sistema de empleo y la habitabilidad urbana en las zonas centrales de la Ciudad de México frente al vacío regulatorio institucional en el periodo 2020-2026?</p>
+        </div>
+      </div>
+
+      <div class="field p wide">
+        <span class="field-label">Perspectiva de análisis</span>
+        <div class="field-body">
+          <p>Triangulación entre <strong>economía</strong> (análisis del mercado inmobiliario), <strong>derecho</strong> (regulación migratoria y laboral) y <strong>sociología</strong> (procesos de gentrificación y desplazamiento socioterritorial).</p>
+        </div>
+      </div>
+
+      <div class="field i">
+        <span class="field-label">Integrantes</span>
+        <ul class="integrantes-list">
+          <li>Danna Paola Benítez Montiel</li>
+          <li>Zoey Atenco Vargas</li>
+          <li>Irene Martínez Acosta</li>
+          <li>Mariana Zurisadai Flores Azuar</li>
+          <li>Sofía Gómez Monroy</li>
+        </ul>
+      </div>
+
+      <div class="field b">
+        <span class="field-label">Bibliografía preliminar · APA 7</span>
+        <ol class="biblio-list">
+          <li>Navarrete, D., Whitney, R., &amp; Krstikj, A. (2025). Gentrificación transnacional y nómadas digitales en la zona central de la Ciudad de México. <a href="https://www.redalyc.org/journal/196/19680047011/html/" target="_blank" rel="noopener">redalyc.org</a></li>
+          <li>Gobierno de la Ciudad de México. (2025, 16 de julio). <em>Gaceta Oficial de la Ciudad de México: Bando 1 por una ciudad habitable y asequible con identidad y arraigo local</em>.</li>
+          <li>Instituto Electoral de la Ciudad de México. (2024). <em>Gentrificación y espacio público</em>.</li>
+        </ol>
+      </div>
+    </div>
+  </article>
+
+  <!-- ═══════════════════ EQUIPO 4 ═══════════════════ -->
+  <article class="team-card accent-coral" id="eq-4">
+    <div class="team-head">
+      <div class="team-num">04</div>
+      <div class="team-head-body">
+        <h2 class="team-tema">Precarización laboral y plataformas (Uber, DiDi) — CDMX vs. España</h2>
+        <div class="team-meta">
+          <span class="pill persp">Comparativo</span>
+          <span class="pill date">16 abr · 21:05</span>
+          <span class="pill">4 integrantes</span>
+          <span class="flag-chip">🇲🇽 México</span>
+          <span class="flag-chip">🇪🇸 España</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-grid">
+      <div class="field q wide">
+        <span class="field-label">Pregunta de investigación</span>
+        <div class="field-body">
+          <p>¿De qué manera la omisión de una categoría laboral específica para plataformas digitales de <em>delivery</em> y movilidad en la Ley Federal del Trabajo (LFT) ha fomentado la precarización del empleo en México, tomando la CDMX como caso de estudio, en contraste con el modelo de laboralización español?</p>
+        </div>
+      </div>
+
+      <div class="field i">
+        <span class="field-label">Integrantes</span>
+        <ul class="integrantes-list">
+          <li>Nazario Benítez Sofía Meztli</li>
+          <li>Nápoles González Arturo Francisco</li>
+          <li>González Colin Axel Sahid</li>
+          <li>García Ibarra César Manuel</li>
+        </ul>
+      </div>
+
+      <div class="field b">
+        <span class="field-label">Bibliografía preliminar · APA 7</span>
+        <ol class="biblio-list">
+          <li>La regulación del trabajo en plataformas digitales. Estado de la cuestión y comentario a cambios normativos. (2025). <em>LABOS Revista de Derecho del Trabajo y Protección Social, 6</em>(2), 164–189. <a href="https://doi.org/10.20318/labos.2025.9670" target="_blank" rel="noopener">doi.org/10.20318/labos.2025.9670</a></li>
+          <li>Ortega Erreguerena, J. (2023). Repartidores de aplicación en México: entre el individualismo imaginado de las plataformas y las resistencias comunitarias de los trabajadores. <em>Espiral. Estudios sobre Estado y Sociedad, 30</em>(88). <a href="https://doi.org/10.32870/eees.v30i88.7319" target="_blank" rel="noopener">doi.org/10.32870/eees.v30i88.7319</a></li>
+          <li>Sanz de Miguel, P., Casas-Cortés, M. I., Prieto Arratibel, A., y Arasanz Díaz, J. (2023). El empleo irregular tras la Ley Rider: ¿nueva regulación, idénticas estrategias empresariales? <em>Revista Española de Sociología, 32</em>(3), a177. <a href="https://doi.org/10.22325/fes/res.2023.177" target="_blank" rel="noopener">doi.org/10.22325/fes/res.2023.177</a></li>
+        </ol>
+      </div>
+    </div>
+  </article>
+
+  <!-- ═══════════════════ EQUIPO 5 ═══════════════════ -->
+  <article class="team-card accent-brasil" id="eq-5">
+    <div class="team-head">
+      <div class="team-num">05</div>
+      <div class="team-head-body">
+        <h2 class="team-tema">Precariedad pos-COVID y ETR's en México · trabajador subcontratado o «autónomo»</h2>
+        <div class="team-meta">
+          <span class="pill persp">Sectorial + comparación temporal</span>
+          <span class="pill date">16 abr · 21:28</span>
+          <span class="pill">3 integrantes</span>
+          <span class="flag-chip">🇲🇽 CDMX</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-grid">
+      <div class="field q wide">
+        <span class="field-label">Pregunta de investigación</span>
+        <div class="field-body">
+          <p>¿Cómo se relaciona el auge de la precariedad laboral en México pos-crisis de COVID-19 con las empresas y apps ETR que utilizan la figura del trabajador subcontratado o «autónomo»?</p>
+          <p>¿Cómo debería verse la regulación para las empresas que ofrecen este tipo de modelo laboral para asegurar a sus trabajadores y mantener la «flexibilidad» que este esquema ofrece?</p>
+        </div>
+      </div>
+
+      <div class="field p wide">
+        <span class="field-label">Perspectiva de análisis</span>
+        <div class="field-body">
+          <p><strong>Sectorial:</strong> sector de empresas ETR en la Ciudad de México. <strong>Comparación:</strong> precariedad laboral antes y después de la pandemia por COVID-19 en México y su posible relación con el auge de las empresas que ofrecen un esquema de trabajadores «asociados».</p>
+        </div>
+      </div>
+
+      <div class="field i">
+        <span class="field-label">Integrantes</span>
+        <ul class="integrantes-list">
+          <li>Guzmán Vázquez David Abraham</li>
+          <li>Hidalgo Galván Mateo</li>
+          <li>Sánchez Marquez Regina</li>
+        </ul>
+      </div>
+
+      <div class="field b">
+        <span class="field-label">Bibliografía preliminar · APA 7</span>
+        <ol class="biblio-list">
+          <li>Brunet Icart, I., Pizzi, A., &amp; Moral, D. (2016). <em>Sistemas laborales comparados: Las transformaciones de las relaciones de empleo en la era neoliberal</em> (1.ª ed., pp. 261–276). Ediciones UNL / Anthropos.</li>
+          <li>Lander, V. (2025). Precariedad laboral y formalidad: Percepciones y tensiones en torno a la regulación, flexibilidad y autonomía. El caso de México y la reforma del trabajo realizado a través de plataformas digitales en 2025. <a href="https://revistas.uv.cl/index.php/Perfiles/article/view/5341/5077" target="_blank" rel="noopener">revistas.uv.cl</a></li>
+          <li>Martínez, M. (2021, 22 de diciembre). Plataformas tipo Uber, DiDi o Cabify, alternativa laboral, pero precaria. <em>El Economista</em>. <a href="https://www.eleconomista.com.mx/empresas/Plataformas-tipo-Uber-Didi-o-Cabify-alternativa-laboral-pero-precaria-20211222-0041.html" target="_blank" rel="noopener">eleconomista.com.mx</a></li>
+          <li>Resendiz, R. (2021, febrero). <em>Plataformas millonarias y empleos precarios</em>. Fundación Friedrich Ebert. <a href="https://collections.fes.de/publikationen/content/pagetext/856239" target="_blank" rel="noopener">collections.fes.de</a></li>
+        </ol>
+      </div>
+    </div>
+  </article>
+
+  <!-- ═══════════════════ EQUIPO 6 ═══════════════════ -->
+  <article class="team-card accent-gold" id="eq-6">
+    <div class="team-head">
+      <div class="team-num">06</div>
+      <div class="team-head-body">
+        <h2 class="team-tema">IA y mantenimiento predictivo en el empleo técnico vehicular · México vs. Israel</h2>
+        <div class="team-meta">
+          <span class="pill persp">Comparativo</span>
+          <span class="pill date">18 abr · 16:46</span>
+          <span class="pill">1 integrante</span>
+          <span class="flag-chip">🇲🇽 México</span>
+          <span class="flag-chip">🇮🇱 Israel</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-grid">
+      <div class="field q wide">
+        <span class="field-label">Pregunta de investigación</span>
+        <div class="field-body">
+          <p>¿Cómo está transformando la implementación de <em>inteligencia artificial</em> en el mantenimiento predictivo el empleo técnico vehicular y automotriz en México e Israel, y qué diferencias institucionales explican sus efectos sobre las competencias laborales, la autonomía técnica y la organización del trabajo?</p>
+        </div>
+      </div>
+
+      <div class="field i">
+        <span class="field-label">Integrantes</span>
+        <ul class="integrantes-list">
+          <li>Carlos Eibar Williams Rendón</li>
+        </ul>
+      </div>
+
+      <div class="field b">
+        <span class="field-label">Bibliografía preliminar · APA 7</span>
+        <ol class="biblio-list">
+          <li>Carrillo, J., Martínez, A. M., López, O., &amp; Díaz, M. (2023). <em>The automotive sector in Mexico: The impact of automation and digitalization on employment</em>. International Labour Organization.</li>
+          <li>Kuczera, M., Bastianić, T., &amp; Field, S. (2018). <em>Apprenticeship and vocational education and training in Israel</em>. OECD.</li>
+          <li>Theissler, A., Pérez-Velázquez, J., Kettelgerdes, M., &amp; Elger, G. (2021). Predictive maintenance enabled by machine learning: Use cases and challenges in the automotive industry. <em>Reliability Engineering &amp; System Safety, 215</em>, 107864.</li>
+        </ol>
+      </div>
+    </div>
+  </article>
+
+  <!-- ═══════════════════ EQUIPO 7 ═══════════════════ -->
+  <article class="team-card accent-blue" id="eq-7">
+    <div class="team-head">
+      <div class="team-num">07</div>
+      <div class="team-head-body">
+        <h2 class="team-tema">La deuda como mecanismo de control sobre el tiempo futuro del trabajador — Chile (CAE)</h2>
+        <div class="team-meta">
+          <span class="pill persp">Institucional y económico-financiero</span>
+          <span class="pill date">21 abr · 08:47</span>
+          <span class="pill">5 integrantes</span>
+          <span class="flag-chip">🇨🇱 Chile</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-grid">
+      <div class="field q wide">
+        <span class="field-label">Pregunta de investigación</span>
+        <div class="field-body">
+          <p>¿Cómo el endeudamiento estudiantil a través del <strong>Crédito con Aval del Estado</strong> opera como un mecanismo de disciplina social que empuja a los jóvenes profesionales en Chile a aceptar condiciones de subempleo y sobrecalificación ante la urgencia de cumplir con su relación acreedor/deudor?</p>
+        </div>
+      </div>
+
+      <div class="field i">
+        <span class="field-label">Integrantes</span>
+        <ul class="integrantes-list">
+          <li>Acero Castro Héctor Eleazar</li>
+          <li>Avilés Iturbide Víctor</li>
+          <li>Clavero Lechuga Alexander</li>
+          <li>Lemus Cruz Óscar Emiliano</li>
+          <li>Montesinos Hernández Rodrigo Gaspar</li>
+        </ul>
+      </div>
+
+      <div class="field b">
+        <span class="field-label">Bibliografía preliminar · APA 7</span>
+        <ol class="biblio-list">
+          <li>Lazzarato, M. (2013). <em>La fábrica del hombre endeudado: Ensayo sobre la condición neoliberal</em>. Amorrortu Editores.</li>
+          <li>Pérez-Roa, L. (2014). El peso de la deuda: la experiencia de endeudamiento de los jóvenes en la educación superior en Chile. <em>Última Década, 22</em>(40), 105–128. <a href="https://doi.org/10.4067/S0718-22362014000100006" target="_blank" rel="noopener">doi.org/10.4067/S0718-22362014000100006</a></li>
+          <li>Sisto, V. (2019). Inclusión excluyente: Políticas educativas y el nuevo <em>management</em> público en Chile. <em>Revista Brasileira de Educação, 24</em>, e240043. <a href="https://doi.org/10.1590/s1413-24782019240043" target="_blank" rel="noopener">doi.org/10.1590/s1413-24782019240043</a></li>
+        </ol>
+      </div>
+    </div>
+  </article>
+
+  <!-- NOTA FINAL -->
+  <div class="empty-note">
+    Registro generado a partir del cuestionario «Revisión Primer Avance GyE 2026-2» (Google Forms).
+    Última respuesta recibida: 21 de abril de 2026, 08:47 (GMT-6).
+  </div>
+
+  <!-- REFERENCIA -->
+  <div style="border: var(--border-thin); border-radius: var(--radius-sm); padding: 16px 18px; background: var(--surface); font-size: 0.88rem; color: var(--text-muted); line-height: 1.55;">
+    <strong style="color: var(--ink);">Referencia metodológica base:</strong><br>
+    Bamber, G. J., Lansbury, R. D., &amp; Wailes, N. (Eds.). (2004).
+    <em>International and comparative employment relations: A study of industrialised market economies</em> (4th ed.).
+    Allen &amp; Unwin / SAGE Publications.
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <p><strong>Globalización y Empleo 2026-2</strong> · FCA UNAM · Dr. Jorge Cardiel</p>
+      <p class="footer-meta">Unidad 2 · Primer avance · síntesis</p>
+      <p class="footer-disclaimer">
+        Esta página es un complemento académico basado en las respuestas del cuestionario del primer avance. El material oficial del curso se encuentra en Moodle.
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
