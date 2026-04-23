@@ -1,0 +1,1139 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Mediateca · Brasil · Argentina · China · complemento audiovisual (ARTE.tv) de la sesión del 21 abr 2026 · Globalización y Empleo · FCA · UNAM" />
+  <title>Mediateca · Brasil · Argentina · China · 21 abr 2026</title>
+  <style>
+    :root {
+      --ink: #1a2a2a;
+      --paper: #eaf4ef;
+      --blush: #d8ece2;
+      --rose: #c0e0d0;
+      --surface: #fff;
+      --text: #1a2a2a;
+      --muted: #3a5a5a;
+      --border: 3px solid var(--ink);
+      --border-thin: 2px solid var(--ink);
+      --radius: 6px;
+      --radius-sm: 4px;
+      --radius-pill: 999px;
+      --shadow: 6px 6px 0 var(--ink);
+      --shadow-sm: 4px 4px 0 var(--ink);
+      --font-body: 'American Typewriter', 'Georgia', serif;
+      --font-accent: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --teal: #008d8e;
+      --teal-dark: #006e70;
+      --blue: #2166a9;
+      --blue-light: #50aee2;
+      --red: #e2312b;
+      --green: #22af49;
+      --green-dark: #009060;
+      --mint: #c0e0d0;
+      --gold: #f0b429;
+      --brasil: #22af49;
+      --argentina: #50aee2;
+      --china: #e2312b;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    body {
+      font-family: var(--font-body);
+      background: var(--paper);
+      color: var(--text);
+      font-size: clamp(1rem, 1.1vw + 0.5rem, 1.18rem);
+      line-height: 1.6;
+      padding: clamp(14px, 2.5vw, 28px);
+    }
+    .wrap { max-width: 1240px; margin: 0 auto; }
+
+    .header {
+      background: var(--teal);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      margin-bottom: clamp(20px, 3vw, 34px);
+      overflow: hidden;
+    }
+    .header-blocks {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3px;
+      padding: 3px;
+    }
+    .header-blocks .blk { height: clamp(10px, 1.8vw, 18px); border-radius: 2px; }
+    .header-inner {
+      padding: clamp(20px, 3vw, 32px) clamp(18px, 3vw, 32px);
+      background: rgba(255,255,255,0.94);
+    }
+    .pill-row {
+      display: flex; justify-content: center; gap: 8px;
+      flex-wrap: wrap; margin-bottom: 12px;
+    }
+    .pill {
+      display: inline-flex; align-items: center;
+      font-family: var(--font-accent);
+      font-size: clamp(0.74rem, 1.1vw, 0.88rem);
+      font-weight: 800; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--teal); color: #fff;
+      border: var(--border-thin); border-radius: var(--radius-sm);
+      padding: 6px 14px;
+    }
+    .pill.ghost { background: #fff; color: var(--teal-dark); }
+    .header h1 {
+      font-size: clamp(1.9rem, 5vw, 3rem);
+      line-height: 1.05; margin-bottom: 10px;
+    }
+    .header .sub {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      color: var(--muted); max-width: 60ch;
+      margin: 0 auto; line-height: 1.45;
+    }
+    .back-link {
+      display: inline-block; margin-top: 14px;
+      font-family: var(--font-accent);
+      font-size: clamp(0.82rem, 0.9vw + 0.2rem, 0.94rem);
+      font-weight: 700; color: var(--teal-dark);
+      text-decoration: none;
+    }
+
+    /* Intro block */
+    .intro {
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      background: #fff;
+      padding: clamp(16px, 2.4vw, 24px);
+      margin-bottom: clamp(20px, 3vw, 32px);
+    }
+    .intro h2 {
+      font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+      margin-bottom: 8px;
+    }
+    .intro p { font-size: 1rem; line-height: 1.55; }
+    .intro p + p { margin-top: 8px; }
+
+    /* TOC */
+    .toc {
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      background: #fff;
+      padding: clamp(14px, 2vw, 20px);
+      margin-bottom: clamp(22px, 3vw, 36px);
+    }
+    .toc h2 { font-size: 1.15rem; margin-bottom: 8px; }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .toc a {
+      display: block;
+      font-family: var(--font-accent);
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 8px 10px;
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      background: var(--mint);
+    }
+    .toc a:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--ink); }
+    .toc a.ar { background: #d6ebf7; }
+    .toc a.br { background: #d5f0df; }
+    .toc a.cn { background: #f7d8d6; }
+    .toc a.mx { background: #fff3cf; }
+
+    /* Section headers */
+    section.major {
+      margin-bottom: clamp(34px, 5vw, 54px);
+      scroll-margin-top: 14px;
+    }
+    .section-header {
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(16px, 2.6vw, 24px);
+      margin-bottom: clamp(16px, 2.4vw, 24px);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-header .flag-row {
+      display: flex; gap: 6px; margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .flag-chip {
+      font-family: var(--font-accent);
+      font-size: 0.72rem; font-weight: 900;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      background: #fff; color: var(--ink);
+      border: var(--border-thin); border-radius: var(--radius-pill);
+      padding: 4px 10px;
+    }
+    .section-header h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      line-height: 1.05;
+      color: #fff;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+    }
+    .section-header p {
+      font-size: clamp(0.96rem, 1.3vw, 1.1rem);
+      max-width: 60ch;
+      margin-top: 8px;
+      color: rgba(255,255,255,0.94);
+    }
+    .sh-brasil    { background: linear-gradient(120deg, var(--green-dark) 0%, var(--brasil) 100%); }
+    .sh-argentina { background: linear-gradient(120deg, #2166a9 0%, var(--argentina) 100%); }
+    .sh-china     { background: linear-gradient(120deg, #8a1f1c 0%, var(--china) 100%); }
+    .sh-mapa      { background: linear-gradient(120deg, #4a3a1c 0%, var(--gold) 100%); color: var(--ink); }
+    .sh-mapa h2, .sh-mapa p { color: var(--ink); text-shadow: none; }
+    .sh-transn    { background: linear-gradient(120deg, var(--teal-dark) 0%, var(--teal) 100%); }
+
+    /* Mosaic grid */
+    .mosaic {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+      gap: clamp(14px, 2vw, 20px);
+    }
+    .vcard {
+      background: #fff;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      scroll-margin-top: 14px;
+    }
+    .vcard .vframe {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-bottom: var(--border-thin);
+    }
+    .vcard .vframe iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    .vbody { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .vtag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-accent);
+      font-size: 0.72rem; font-weight: 900;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border: var(--border-thin); border-radius: var(--radius-pill);
+      padding: 3px 9px;
+      background: var(--mint); color: var(--ink);
+      width: fit-content;
+    }
+    .vtag.ar { background: #d6ebf7; }
+    .vtag.br { background: #d5f0df; }
+    .vtag.cn { background: #f7d8d6; }
+    .vtag.mx { background: #fff3cf; }
+    .vcard h3 {
+      font-size: 1.08rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    .vcard h3 a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 2px dotted var(--muted);
+    }
+    .vcard h3 a:hover { color: var(--teal-dark); }
+    .vmeta {
+      font-family: var(--font-accent);
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex; flex-wrap: wrap; gap: 6px 10px;
+    }
+    .vmeta span { white-space: nowrap; }
+    .vmeta .dot { color: #bbb; }
+    .vlook {
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+    .vlook strong {
+      font-family: var(--font-accent);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal-dark);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .vq {
+      background: var(--blush);
+      border-left: 6px solid var(--teal);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+    .vq strong {
+      font-family: var(--font-accent);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal-dark);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .vapa {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.4;
+      font-family: 'Georgia', serif;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(0,0,0,0.18);
+      margin-top: 2px;
+    }
+    .vapa em { font-style: italic; }
+
+    /* Footer + fuentes */
+    .block {
+      background: #fff;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(16px, 2.4vw, 24px);
+      margin-bottom: clamp(16px, 2vw, 22px);
+    }
+    .block h3 {
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      margin-bottom: 10px;
+    }
+    .ref-list {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      max-width: 92ch;
+      margin-top: 8px;
+      padding-left: 20px;
+    }
+    .ref-list li + li { margin-top: 6px; }
+    .tag {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-size: 0.72rem; font-weight: 900;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--ink); color: #fff;
+      border-radius: var(--radius-pill);
+      padding: 4px 10px;
+      margin-bottom: 6px;
+    }
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: var(--font-accent);
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 16px 0 6px;
+      border-top: 1px solid rgba(0,0,0,0.12);
+      margin-top: clamp(24px, 3vw, 36px);
+    }
+    .footer a { color: var(--teal-dark); text-decoration: none; font-weight: 700; }
+
+    @media (max-width: 600px) {
+      body { font-size: 1.02rem; }
+      .section-header h2 { font-size: 1.6rem; }
+      .vcard h3 { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="header">
+      <div class="header-blocks" aria-hidden="true">
+        <div class="blk" style="background:#22af49;grid-column:span 3"></div>
+        <div class="blk" style="background:#50aee2;grid-column:span 2"></div>
+        <div class="blk" style="background:#e2312b;grid-column:span 2"></div>
+        <div class="blk" style="background:#008d8e;grid-column:span 2"></div>
+        <div class="blk" style="background:#f0b429;grid-column:span 1"></div>
+        <div class="blk" style="background:#22af49;grid-column:span 2"></div>
+        <div class="blk" style="background:#e2312b;grid-column:span 2"></div>
+        <div class="blk" style="background:#50aee2;grid-column:span 3"></div>
+        <div class="blk" style="background:#008d8e;grid-column:span 2"></div>
+        <div class="blk" style="background:#c0e0d0;grid-column:span 1"></div>
+        <div class="blk" style="background:#22af49;grid-column:span 2"></div>
+        <div class="blk" style="background:#e2312b;grid-column:span 2"></div>
+      </div>
+      <div class="header-inner">
+        <div class="pill-row">
+          <span class="pill">Globalización y Empleo</span>
+          <span class="pill ghost">Mediateca · 21 abr 2026</span>
+          <span class="pill ghost">ARTE.tv · 22 documentales</span>
+        </div>
+        <h1>Mediateca · Brasil · Argentina · China</h1>
+        <p class="sub">Mosaico audiovisual para proyectar en clase: 22 documentales (ARTE.tv) organizados por país y por tema transversal, con una pregunta dirigida a la lectura del capítulo 7 (SLC).</p>
+        <a class="back-link" href="./index.html">← Volver a la sesión del 21 abr 2026</a>
+        &nbsp;·&nbsp;
+        <a class="back-link" href="../../index.html">Inicio</a>
+      </div>
+    </header>
+
+    <!-- ═══ INTRO ═══ -->
+    <section class="intro">
+      <span class="tag">Cómo usar esta mediateca</span>
+      <h2>Un video por bloque, una pregunta por video</h2>
+      <p>Cada tarjeta incluye el video embebido en <strong>modo no-cookie</strong> (privacy-enhanced) para poderse proyectar durante la clase, la ficha mínima (canal, fecha, duración, idioma) y <strong>una sola pregunta</strong> pensada para tender un puente entre lo que se ve y los conceptos de Brunet, Pizzi &amp; Moral (2016), cap. 7: <em>CLT, negociación colectiva, arquitectura sindical, peronismo, pos-neoliberal, hukou, bol férreo de arroz</em>.</p>
+      <p>Al pie de cada tarjeta aparece la referencia en <strong>APA 7</strong>. Las referencias completas se repiten al final de la página como bibliografía consolidada.</p>
+      <p>Elige alguna pregunta y responde en el Foro de la clase en Moodle citando correctamente las fuentes para tener participación.</p>
+    </section>
+
+    <!-- ═══ TOC ═══ -->
+    <nav class="toc" aria-label="Secciones de la mediateca">
+      <h2>Secciones</h2>
+      <div class="toc-grid">
+        <a class="ar" href="#argentina">🇦🇷 Argentina (1–5)</a>
+        <a class="br" href="#brasil">🇧🇷 Brasil (6–10)</a>
+        <a class="br" href="#transnacional">🌐 Brasil ↔ Europa (11)</a>
+        <a class="mx" href="#mapa-al">🗺️ América Latina (12)</a>
+        <a class="cn" href="#china">🇨🇳 China (13–21)</a>
+        <a class="mx" href="#mapa-cn">🗺️ India vs. China (22)</a>
+        <a href="#bibliografia">📎 Bibliografía APA 7</a>
+      </div>
+    </nav>
+
+    <!-- ═══════════════════════ -->
+    <!-- ═══ ARGENTINA ═════════ -->
+    <!-- ═══════════════════════ -->
+    <section class="major" id="argentina">
+      <div class="section-header sh-argentina">
+        <div class="flag-row">
+          <span class="flag-chip">🇦🇷 Argentina</span>
+          <span class="flag-chip">Videos 1–5</span>
+          <span class="flag-chip">§ 7.2 · pp. 315–324</span>
+        </div>
+        <h2>Argentina · peronismo, motosierra, memoria</h2>
+        <p>Cinco documentales que enmarcan el «modelo paradigmático peronista», la herencia de la dictadura (1976–1983) y el giro ultraliberal de Milei como contrapunto al horizonte pos-neoliberal que discute el capítulo.</p>
+      </div>
+
+      <div class="mosaic">
+
+        <!-- 1 -->
+        <article class="vcard" id="v01">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/g-dzY1H35z4?rel=0" title="Argentina: River Restoration in Buenos Aires" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag ar">01 · Argentina · Ambiente</span>
+            <h3><a href="https://www.youtube.com/watch?v=g-dzY1H35z4" target="_blank" rel="noopener">Argentina: River Restoration in Buenos Aires</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentary</span><span class="dot">·</span>
+              <span>16 abr 2026</span><span class="dot">·</span>
+              <span>24:57</span><span class="dot">·</span>
+              <span>Inglés</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Recortes de Milei a organismos que sanean el Riachuelo; vecinos realojados, plomo en sangre de niños, trabajo precario de las ONG ambientales y de los habitantes de la ribera.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿Cómo se articulan los recortes de Milei a las agencias ambientales con la <em>informalidad</em> y la exclusión del convenio colectivo (p. 307) de las comunidades ribereñas del Riachuelo?
+            </div>
+            <p class="vapa">ARTE.tv Documentary. (2026, abril 16). <em>Argentina: River restoration in Buenos Aires</em> [Video]. YouTube. https://www.youtube.com/watch?v=g-dzY1H35z4</p>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="vcard" id="v02">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/omG64p6VoWE?rel=0" title="Argentina: las guardianas de la verdad" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag ar">02 · Argentina · Memoria</span>
+            <h3><a href="https://www.youtube.com/watch?v=omG64p6VoWE" target="_blank" rel="noopener">Argentina: las guardianas de la verdad</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>14 dic 2024</span><span class="dot">·</span>
+              <span>25:26</span><span class="dot">·</span>
+              <span>Español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              El revisionismo de Milei sobre la dictadura (1976–1983): Madres y Abuelas de Plaza de Mayo, disputa por las cifras de desaparecidos, derechos humanos y cultura política.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿De qué manera la memoria de la dictadura sostiene la <em>arquitectura sindical peronista</em> (unicato, p. 321) y qué ocurre cuando el relato estatal la desmonta?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2024, diciembre 14). <em>Argentina: Las guardianas de la verdad</em> [Video]. YouTube. https://www.youtube.com/watch?v=omG64p6VoWE</p>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="vcard" id="v03">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/IlAyS-nPARQ?rel=0" title="Argentina: el tren de la discordia" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag ar">03 · Argentina · Ferroviarios</span>
+            <h3><a href="https://www.youtube.com/watch?v=IlAyS-nPARQ" target="_blank" rel="noopener">Argentina: el tren de la discordia</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>14 ene 2024</span><span class="dot">·</span>
+              <span>24:35</span><span class="dot">·</span>
+              <span>Español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Víspera del balotaje 2023: privatización anunciada de Trenes Argentinos, «peronismo ferroviario», sindicato apoyando a Massa, movilización obrera contra Milei.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿Cómo se expresa el <em>modelo paradigmático peronista</em> en el conflicto ferroviario que muestra el video, y qué lectura permite desde la idea de «pos-neoliberal» del capítulo?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2024, enero 14). <em>Argentina: El tren de la discordia</em> [Video]. YouTube. https://www.youtube.com/watch?v=IlAyS-nPARQ</p>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="vcard" id="v04">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/jgBF70ETEoc?rel=0" title="Argentina en un círculo vicioso" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag ar">04 · Argentina · Motosierra</span>
+            <h3><a href="https://www.youtube.com/watch?v=jgBF70ETEoc" target="_blank" rel="noopener">Argentina en un círculo vicioso</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>5 jul 2025</span><span class="dot">·</span>
+              <span>54:00</span><span class="dot">·</span>
+              <span>Español / alemán</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Balance de la «terapia de choque» ultraliberal: inflación, deuda, saqueos, recorte radical del Estado, la trayectoria personal de Milei y la polarización entre rabia y esperanza.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              Si el capítulo 7 plantea lo «pos-neoliberal» como horizonte, ¿el mileísmo es una <em>re-neoliberalización</em> o una ruptura con ese horizonte?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2025, julio 5). <em>Argentina en un círculo vicioso</em> [Video]. YouTube. https://www.youtube.com/watch?v=jgBF70ETEoc</p>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="vcard" id="v05">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/Je4CUhIR22w?rel=0" title="Argentina: tierra de oportunidades perdidas" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag ar">05 · Argentina · Dessous des cartes</span>
+            <h3><a href="https://www.youtube.com/watch?v=Je4CUhIR22w" target="_blank" rel="noopener">Argentina: tierra de oportunidades perdidas</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>6 feb 2022</span><span class="dot">·</span>
+              <span>12:14</span><span class="dot">·</span>
+              <span>Francés / español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Análisis de «El revés de los mapas»: país rico de los años 1920, ciclo de crisis desde 1950, sobreinversión agrícola, peronismo, corrupción y 40% de pobreza.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿En qué sentido la trayectoria argentina del siglo XX ilustra la tensión entre <em>recursos naturales</em>, <em>peronismo</em> y un proyecto industrial siempre inconcluso?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2022, febrero 6). <em>Argentina: Tierra de oportunidades perdidas</em> [Video]. YouTube. https://www.youtube.com/watch?v=Je4CUhIR22w</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ -->
+    <!-- ═══ BRASIL ═══════════ -->
+    <!-- ═══════════════════════ -->
+    <section class="major" id="brasil">
+      <div class="section-header sh-brasil">
+        <div class="flag-row">
+          <span class="flag-chip">🇧🇷 Brasil</span>
+          <span class="flag-chip">Videos 6–10</span>
+          <span class="flag-chip">§ 7.3 · pp. 305–315</span>
+        </div>
+        <h2>Brasil · CLT, bolsonarismo y Amazonia</h2>
+        <p>Cinco documentales para pensar la CLT y la arquitectura sindical brasileña en su tensión con el bolsonarismo, el hambre, la calle (Cracolandia) y los conflictos por la Amazonia que desbordan la relación salarial clásica.</p>
+      </div>
+
+      <div class="mosaic">
+
+        <!-- 6 -->
+        <article class="vcard" id="v06">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/2nHO1Qg_lBA?rel=0" title="El Brasil bolsonarista" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag br">06 · Brasil · Bolsonarismo</span>
+            <h3><a href="https://www.youtube.com/watch?v=2nHO1Qg_lBA" target="_blank" rel="noopener">El Brasil bolsonarista</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>30 abr 2023</span><span class="dot">·</span>
+              <span>24:27</span><span class="dot">·</span>
+              <span>Portugués / español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Sur bolsonarista tras la derrota de 2022: radios locales, identidad «Germânica», moralidad del trabajo y culto a Bolsonaro como representante del «trabajador honesto».
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              Desde 1988 desaparece la «huelga ilegal» en Brasil, pero la cultura laboral-política bolsonarista persiste: ¿cómo se reconcilia esa cultura con el andamiaje colectivo de la <em>CLT</em>?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2023, abril 30). <em>El Brasil bolsonarista</em> [Video]. YouTube. https://www.youtube.com/watch?v=2nHO1Qg_lBA</p>
+          </div>
+        </article>
+
+        <!-- 7 -->
+        <article class="vcard" id="v07">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/U3kePpB5_Jc?rel=0" title="Brasil: el regreso del hambre" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag br">07 · Brasil · Hambre</span>
+            <h3><a href="https://www.youtube.com/watch?v=U3kePpB5_Jc" target="_blank" rel="noopener">Brasil: el regreso del hambre (2022)</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>12 oct 2025</span><span class="dot">·</span>
+              <span>24:36</span><span class="dot">·</span>
+              <span>Portugués / español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              60% de la población en inseguridad alimentaria, ~20 millones con hambre, inflación de alimentos al 20%, comedores eclesiales, madres solteras, post-COVID.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿Cómo dialoga el regreso del hambre con la regla de que «los trabajadores sin contrato no están cubiertos por los convenios colectivos de su categoría» (p. 307)?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2025, octubre 12). <em>Brasil: El regreso del hambre (2022)</em> [Video]. YouTube. https://www.youtube.com/watch?v=U3kePpB5_Jc</p>
+          </div>
+        </article>
+
+        <!-- 8 -->
+        <article class="vcard" id="v08">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/uPfBdiWMRpA?rel=0" title="Brasil: el payaso de Cracolandia" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag br">08 · Brasil · Cracolandia</span>
+            <h3><a href="https://www.youtube.com/watch?v=uPfBdiWMRpA" target="_blank" rel="noopener">Brasil: el payaso de Cracolandia</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>15 jun 2024</span><span class="dot">·</span>
+              <span>25:25</span><span class="dot">·</span>
+              <span>Portugués / español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              El psiquiatra Flávio Falcone vestido de payaso trabaja con personas adictas al crack en el centro de São Paulo; programas de reinserción laboral (techo, trabajo, tratamiento).
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿Qué dispositivos de <em>disciplinamiento</em> y qué dispositivos de <em>control</em> (bloque 5 de la sesión, Deleuze) operan simultáneamente sobre la población de Cracolandia?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2024, junio 15). <em>Brasil: El payaso de Cracolandia</em> [Video]. YouTube. https://www.youtube.com/watch?v=uPfBdiWMRpA</p>
+          </div>
+        </article>
+
+        <!-- 9 -->
+        <article class="vcard" id="v09">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/k8R-XRBvSOU?rel=0" title="Brasil, el embalse que amenaza la Amazonia" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag br">09 · Brasil · Amazonia</span>
+            <h3><a href="https://www.youtube.com/watch?v=k8R-XRBvSOU" target="_blank" rel="noopener">Brasil, el embalse que amenaza la Amazonia</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>21 mar 2022</span><span class="dot">·</span>
+              <span>34:04</span><span class="dot">·</span>
+              <span>Portugués / español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              El pueblo munduruku enfrenta el embalse del río Tapajós; relación sagrada con el río, mercurio, soja y deforestación.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿Qué tipo de sujetos laborales quedan <em>fuera</em> de la CLT cuando hablamos de pueblos originarios cuyo trabajo es reproducción cultural y ambiental?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2022, marzo 21). <em>Brasil, el embalse que amenaza la Amazonia</em> [Video]. YouTube. https://www.youtube.com/watch?v=k8R-XRBvSOU</p>
+          </div>
+        </article>
+
+        <!-- 10 -->
+        <article class="vcard" id="v10">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/5Dxhur3SCPE?rel=0" title="Brasil: BR 163, la autopista del Amazonas" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag br">10 · Brasil · BR-163</span>
+            <h3><a href="https://www.youtube.com/watch?v=5Dxhur3SCPE" target="_blank" rel="noopener">Brasil: BR 163, la autopista del Amazonas (2019)</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>29 sep 2024</span><span class="dot">·</span>
+              <span>24:58</span><span class="dot">·</span>
+              <span>Alemán / portugués</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Carretera trazada en dictadura (1972); soja y agronegocio; cacique Juarez Munduruku como defensor de la selva; 8000 km² deforestados por año.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿Cómo se inserta la cadena soja/transporte de la BR-163 en la lógica de <em>subcontratación</em> descrita en el capítulo (p. 312) y en la precariedad laboral rural brasileña?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2024, septiembre 29). <em>Brasil: BR 163, la autopista del Amazonas (2019)</em> [Video]. YouTube. https://www.youtube.com/watch?v=5Dxhur3SCPE</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ -->
+    <!-- ═══ TRANSNACIONAL ════ -->
+    <!-- ═══════════════════════ -->
+    <section class="major" id="transnacional">
+      <div class="section-header sh-transn">
+        <div class="flag-row">
+          <span class="flag-chip">🌐 Brasil ↔ Europa</span>
+          <span class="flag-chip">Video 11</span>
+          <span class="flag-chip">Cadena global</span>
+        </div>
+        <h2>Brasil–UE · la cadena tóxica</h2>
+        <p>Un documental largo muestra el circuito globalizado de los agrotóxicos: Europa prohíbe, Europa exporta a Brasil, Europa importa soja y café contaminados. La globalización del empleo, vista desde el campo brasileño.</p>
+      </div>
+
+      <div class="mosaic">
+        <!-- 11 -->
+        <article class="vcard" id="v11">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/A9QZc9Skskc?rel=0" title="Pesticidas: la hipocresía europea" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag br">11 · Brasil · Agrotóxicos</span>
+            <h3><a href="https://www.youtube.com/watch?v=A9QZc9Skskc" target="_blank" rel="noopener">Pesticidas: la hipocresía europea</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>20 ene 2026</span><span class="dot">·</span>
+              <span>1:21:49</span><span class="dot">·</span>
+              <span>Portugués / español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Mato Grosso, capital global del agrotóxico; 3 669 plaguicidas autorizados en Brasil; productos prohibidos en la UE exportados y devueltos en los alimentos; implicaciones del acuerdo UE–Mercosur.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿Qué nos dice este circuito sobre la inserción de Brasil en la <em>división internacional del trabajo</em> y sobre la debilidad del sindicalismo rural frente al capital agroquímico?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2026, enero 20). <em>Pesticidas: La hipocresía europea</em> [Video]. YouTube. https://www.youtube.com/watch?v=A9QZc9Skskc</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ -->
+    <!-- ═══ MAPA AL ═════════ -->
+    <!-- ═══════════════════════ -->
+    <section class="major" id="mapa-al">
+      <div class="section-header sh-mapa">
+        <div class="flag-row">
+          <span class="flag-chip">🗺️ Dessous des cartes</span>
+          <span class="flag-chip">Video 12</span>
+          <span class="flag-chip">Geopolítica AL</span>
+        </div>
+        <h2>América Latina · análisis geopolítico</h2>
+        <p>Un mapa para encuadrar Argentina y Brasil en la región: ¿qué une y qué separa a los 20 países latinoamericanos? ¿Por qué el sub-continente sigue siendo «patio trasero»?</p>
+      </div>
+
+      <div class="mosaic">
+        <!-- 12 -->
+        <article class="vcard" id="v12">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/G_wvxhEAkGg?rel=0" title="El revés de los mapas: América Latina" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag mx">12 · Mapa · América Latina</span>
+            <h3><a href="https://www.youtube.com/watch?v=G_wvxhEAkGg" target="_blank" rel="noopener">El revés de los mapas: América Latina · análisis geopolítico</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>18 dic 2024</span><span class="dot">·</span>
+              <span>12:25</span><span class="dot">·</span>
+              <span>Francés / español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Panorámica: Cordillera de los Andes, 20 Estados, lenguas, tránsito del periodo colonial europeo al «patio trasero» estadounidense y debilidades geopolíticas regionales.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿Por qué la región no consolida una identidad geopolítica propia, y qué efectos tiene esa dependencia sobre la capacidad de <em>negociación colectiva sectorial</em> en los países del capítulo?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2024, diciembre 18). <em>El revés de los mapas: América Latina · análisis geopolítico</em> [Video]. YouTube. https://www.youtube.com/watch?v=G_wvxhEAkGg</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ -->
+    <!-- ═══ CHINA ═════════════ -->
+    <!-- ═══════════════════════ -->
+    <section class="major" id="china">
+      <div class="section-header sh-china">
+        <div class="flag-row">
+          <span class="flag-chip">🇨🇳 China</span>
+          <span class="flag-chip">Videos 13–21</span>
+          <span class="flag-chip">§ 7.4 · epílogo</span>
+        </div>
+        <h2>China · hukou, bol férreo y autosuficiencia</h2>
+        <p>Nueve documentales sobre la China post-2016 que interpela la hipótesis pos-neoliberal: colonización de Xinjiang, «tribu de las ratas», juventud desilusionada, desequilibrio demográfico, reformas de Deng y autosuficiencia agrícola-energética.</p>
+      </div>
+
+      <div class="mosaic">
+
+        <!-- 13 -->
+        <article class="vcard" id="v13">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/lpzMDN-T6Ys?rel=0" title="China: los influencers de la colonización" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag cn">13 · China · Xinjiang</span>
+            <h3><a href="https://www.youtube.com/watch?v=lpzMDN-T6Ys" target="_blank" rel="noopener">China: los influencers de la colonización</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>9 nov 2025</span><span class="dot">·</span>
+              <span>13:46</span><span class="dot">·</span>
+              <span>Francés / español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Investigación digital sobre influencers chinos que promueven la instalación de han en Xinjiang con viviendas subsidiadas, mientras la minoría uigur es perseguida.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿Cómo se articula esta política de colonización demográfica con el <em>hukou</em> y la segmentación étnica del mercado laboral chino?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2025, noviembre 9). <em>China: Los influencers de la colonización</em> [Video]. YouTube. https://www.youtube.com/watch?v=lpzMDN-T6Ys</p>
+          </div>
+        </article>
+
+        <!-- 14 -->
+        <article class="vcard" id="v14">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/VVTElqTHXlk?rel=0" title="La tribu de las ratas de Pekín" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag cn">14 · China · Tribu de las ratas</span>
+            <h3><a href="https://www.youtube.com/watch?v=VVTElqTHXlk" target="_blank" rel="noopener">La «tribu de las ratas» de Pekín (2017)</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>2 sep 2023</span><span class="dot">·</span>
+              <span>24:19</span><span class="dot">·</span>
+              <span>Español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Trabajadores migrantes viviendo en sótanos de Pekín, salarios bajos, alquileres por las nubes, informalidad urbana en la capital.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿Qué rol juega el <em>hukou</em> —leído por el capítulo como análogo chino de la <em>kafala</em>— para mantener a la «tribu de las ratas» como fuerza laboral barata?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2023, septiembre 2). <em>La «tribu de las ratas» de Pekín, China (2017)</em> [Video]. YouTube. https://www.youtube.com/watch?v=VVTElqTHXlk</p>
+          </div>
+        </article>
+
+        <!-- 15 -->
+        <article class="vcard" id="v15">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/9S7gULymU2A?rel=0" title="China's Disillusioned Youth" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag cn">15 · China · Juventud</span>
+            <h3><a href="https://www.youtube.com/watch?v=9S7gULymU2A" target="_blank" rel="noopener">China's Disillusioned Youth</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentary</span><span class="dot">·</span>
+              <span>20 dic 2024</span><span class="dot">·</span>
+              <span>25:07</span><span class="dot">·</span>
+              <span>Inglés</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Promesas de prosperidad de Xi Jinping frente a la realidad: desempleo juvenil alto, crisis inmobiliaria, precios a la baja, expectativas defraudadas.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              Si el <em>bol férreo de arroz</em> ya no existe, ¿qué forma de seguridad laboral ofrece hoy el Estado chino a su juventud educada?
+            </div>
+            <p class="vapa">ARTE.tv Documentary. (2024, diciembre 20). <em>China's disillusioned youth</em> [Video]. YouTube. https://www.youtube.com/watch?v=9S7gULymU2A</p>
+          </div>
+        </article>
+
+        <!-- 16 -->
+        <article class="vcard" id="v16">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/Q_u4uqcRqWw?rel=0" title="Uigures, un pueblo en peligro" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag cn">16 · China · Uigures</span>
+            <h3><a href="https://www.youtube.com/watch?v=Q_u4uqcRqWw" target="_blank" rel="noopener">Uigures, un pueblo en peligro</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>5 oct 2024</span><span class="dot">·</span>
+              <span>24:47</span><span class="dot">·</span>
+              <span>Alemán / español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Testimonios de detenidas en Xinjiang, «campos de reeducación a través del trabajo», vigilancia masiva, disolución forzada de la identidad uigur.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿En qué se parece y en qué se distingue la «reeducación por el trabajo» en Xinjiang de los regímenes clásicos de <em>disciplinamiento laboral</em> que discute la sesión (bloque 4–5)?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2024, octubre 5). <em>Uigures, un pueblo en peligro</em> [Video]. YouTube. https://www.youtube.com/watch?v=Q_u4uqcRqWw</p>
+          </div>
+        </article>
+
+        <!-- 17 -->
+        <article class="vcard" id="v17">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/b_1QmLe6MeU?rel=0" title="China: Pueblos 2.0" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag cn">17 · China · e-commerce rural</span>
+            <h3><a href="https://www.youtube.com/watch?v=b_1QmLe6MeU" target="_blank" rel="noopener">China: Pueblos 2.0</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>30 mar 2024</span><span class="dot">·</span>
+              <span>23:47</span><span class="dot">·</span>
+              <span>Español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Yunnan: aldeanos que abandonan la agricultura para vender artesanía en línea. Su Junping emplea a 300 personas con teteras de plata por internet.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿Cómo reorganiza el <em>e-commerce rural</em> las fronteras entre trabajo formal, informal y autónomo en la China post-bol férreo de arroz?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2024, marzo 30). <em>China: Pueblos 2.0</em> [Video]. YouTube. https://www.youtube.com/watch?v=b_1QmLe6MeU</p>
+          </div>
+        </article>
+
+        <!-- 18 -->
+        <article class="vcard" id="v18">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/-k51Q77-L0k?rel=0" title="Chine: La course à l'autosuffisance" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag cn">18 · China · Autosuficiencia</span>
+            <h3><a href="https://www.youtube.com/watch?v=-k51Q77-L0k" target="_blank" rel="noopener">Chine · La course à l'autosuffisance</a></h3>
+            <div class="vmeta">
+              <span>ARTE</span><span class="dot">·</span>
+              <span>3 jul 2025</span><span class="dot">·</span>
+              <span>47:08</span><span class="dot">·</span>
+              <span>Francés</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Semiconductores en Wuhan, planta de hidrógeno en Ningxia, arroz híbrido, nuclear, yuan internacional; Brasil como primer socio agrícola de China por encima de EE.UU.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿Cómo reconfigura la <em>división internacional del trabajo</em> el hecho de que Brasil haya desplazado a Estados Unidos como primer proveedor agrícola de China?
+            </div>
+            <p class="vapa">ARTE. (2025, julio 3). <em>Chine, la course à l'autosuffisance</em> [Video]. YouTube. https://www.youtube.com/watch?v=-k51Q77-L0k</p>
+          </div>
+        </article>
+
+        <!-- 19 -->
+        <article class="vcard" id="v19">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/9tXjvHPNw0A?rel=0" title="Duelos históricos: Jiang Qing vs. Deng Xiaoping" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag cn">19 · China · Duelo histórico</span>
+            <h3><a href="https://www.youtube.com/watch?v=9tXjvHPNw0A" target="_blank" rel="noopener">Duelos históricos: Jiang Qing vs. Deng Xiaoping</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>2 ene 2024</span><span class="dot">·</span>
+              <span>12:43</span><span class="dot">·</span>
+              <span>Español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Juicio de 1980 a la viuda de Mao; escenificación del final del maoísmo y legitimación de las reformas de Deng que abrirán la puerta a la desarticulación del bol férreo de arroz.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿Qué continuidades y qué rupturas <em>laborales</em> introduce Deng respecto del <em>bol férreo de arroz</em> maoísta?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2024, enero 2). <em>Duelos históricos: Jiang Qing vs. Deng Xiaoping</em> [Video]. YouTube. https://www.youtube.com/watch?v=9tXjvHPNw0A</p>
+          </div>
+        </article>
+
+        <!-- 20 -->
+        <article class="vcard" id="v20">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/A3Kcgy3NDLA?rel=0" title="China: Men without Women" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag cn">20 · China · Demografía</span>
+            <h3><a href="https://www.youtube.com/watch?v=A3Kcgy3NDLA" target="_blank" rel="noopener">China: Men without Women</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentary</span><span class="dot">·</span>
+              <span>27 jul 2021</span><span class="dot">·</span>
+              <span>24:46</span><span class="dot">·</span>
+              <span>Francés / inglés</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Fábrica de muñecas de silicona, 1 de cada 5 hombres chinos sin pareja, secuelas de la política del hijo único (1979) sobre pueblos de solteros y reproducción social.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿Cómo afecta el desequilibrio demográfico al <em>mercado laboral</em> y a la reproducción social en la China post-2016?
+            </div>
+            <p class="vapa">ARTE.tv Documentary. (2021, julio 27). <em>China: Men without women</em> [Video]. YouTube. https://www.youtube.com/watch?v=A3Kcgy3NDLA</p>
+          </div>
+        </article>
+
+        <!-- 21 -->
+        <article class="vcard" id="v21">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/yjTKuYL7I3c?rel=0" title="China: La desaparición de los millonarios" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag cn">21 · China · Millonarios</span>
+            <h3><a href="https://www.youtube.com/watch?v=yjTKuYL7I3c" target="_blank" rel="noopener">China: La desaparición de los millonarios (2019)</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>10 ago 2024</span><span class="dot">·</span>
+              <span>25:17</span><span class="dot">·</span>
+              <span>Español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Purgas de presidentes y multimillonarios bajo Xi Jinping; exilios, desapariciones, confiscación de activos a quienes no siguen la línea del Partido.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              Si los actores empresariales pueden ser purgados, ¿qué implica eso para el <em>reconocimiento del interlocutor</em> en clave Žižek entre capital y trabajo en China?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2024, agosto 10). <em>China: La desaparición de los millonarios (2019)</em> [Video]. YouTube. https://www.youtube.com/watch?v=yjTKuYL7I3c</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ -->
+    <!-- ═══ MAPA INDIA-CHINA ═ -->
+    <!-- ═══════════════════════ -->
+    <section class="major" id="mapa-cn">
+      <div class="section-header sh-mapa">
+        <div class="flag-row">
+          <span class="flag-chip">🗺️ Dessous des cartes</span>
+          <span class="flag-chip">Video 22</span>
+          <span class="flag-chip">Asia · comparada</span>
+        </div>
+        <h2>India vs. China · duelo de gigantes</h2>
+        <p>Cierre comparativo: dos modelos de inserción laboral con demografías equivalentes pero arquitecturas institucionales y sindicales muy distintas.</p>
+      </div>
+
+      <div class="mosaic">
+        <!-- 22 -->
+        <article class="vcard" id="v22">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/G9uf0RQ5G3M?rel=0" title="El revés de los mapas: India vs. China" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag mx">22 · Mapa · India vs. China</span>
+            <h3><a href="https://www.youtube.com/watch?v=G9uf0RQ5G3M" target="_blank" rel="noopener">El revés de los mapas: India vs. China · duelo de gigantes</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>9 oct 2023</span><span class="dot">·</span>
+              <span>12:18</span><span class="dot">·</span>
+              <span>Francés / español</span>
+            </div>
+            <div class="vlook">
+              <strong>Qué se puede ver</strong>
+              Conflicto fronterizo en el Himalaya, comparación demográfica y económica, envejecimiento chino vs. bono demográfico indio, rivalidad estratégica.
+            </div>
+            <div class="vq">
+              <strong>Pregunta</strong>
+              ¿Qué diferencias <em>institucionales</em> separan al gigante chino del indio en materia de regulación sindical y movilidad del trabajo interno?
+            </div>
+            <p class="vapa">ARTE.tv Documentales. (2023, octubre 9). <em>El revés de los mapas: India vs. China · duelo de gigantes</em> [Video]. YouTube. https://www.youtube.com/watch?v=G9uf0RQ5G3M</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══ BIBLIOGRAFÍA ═══ -->
+    <section id="bibliografia" class="block">
+      <span class="tag">📎 Bibliografía · APA 7</span>
+      <h3>Referencias consolidadas de los 22 documentales</h3>
+      <p style="font-size:0.92rem;color:var(--muted);margin-bottom:8px;">Formato: <em>Canal. (Año, mes día). Título [Video]. YouTube. URL</em> · orden por aparición en la mediateca.</p>
+      <ol class="ref-list">
+        <li>ARTE.tv Documentary. (2026, abril 16). <em>Argentina: River restoration in Buenos Aires</em> [Video]. YouTube. https://www.youtube.com/watch?v=g-dzY1H35z4</li>
+        <li>ARTE.tv Documentales. (2024, diciembre 14). <em>Argentina: Las guardianas de la verdad</em> [Video]. YouTube. https://www.youtube.com/watch?v=omG64p6VoWE</li>
+        <li>ARTE.tv Documentales. (2024, enero 14). <em>Argentina: El tren de la discordia</em> [Video]. YouTube. https://www.youtube.com/watch?v=IlAyS-nPARQ</li>
+        <li>ARTE.tv Documentales. (2025, julio 5). <em>Argentina en un círculo vicioso</em> [Video]. YouTube. https://www.youtube.com/watch?v=jgBF70ETEoc</li>
+        <li>ARTE.tv Documentales. (2022, febrero 6). <em>Argentina: Tierra de oportunidades perdidas</em> [Video]. YouTube. https://www.youtube.com/watch?v=Je4CUhIR22w</li>
+        <li>ARTE.tv Documentales. (2023, abril 30). <em>El Brasil bolsonarista</em> [Video]. YouTube. https://www.youtube.com/watch?v=2nHO1Qg_lBA</li>
+        <li>ARTE.tv Documentales. (2025, octubre 12). <em>Brasil: El regreso del hambre (2022)</em> [Video]. YouTube. https://www.youtube.com/watch?v=U3kePpB5_Jc</li>
+        <li>ARTE.tv Documentales. (2024, junio 15). <em>Brasil: El payaso de Cracolandia</em> [Video]. YouTube. https://www.youtube.com/watch?v=uPfBdiWMRpA</li>
+        <li>ARTE.tv Documentales. (2022, marzo 21). <em>Brasil, el embalse que amenaza la Amazonia</em> [Video]. YouTube. https://www.youtube.com/watch?v=k8R-XRBvSOU</li>
+        <li>ARTE.tv Documentales. (2024, septiembre 29). <em>Brasil: BR 163, la autopista del Amazonas (2019)</em> [Video]. YouTube. https://www.youtube.com/watch?v=5Dxhur3SCPE</li>
+        <li>ARTE.tv Documentales. (2026, enero 20). <em>Pesticidas: La hipocresía europea</em> [Video]. YouTube. https://www.youtube.com/watch?v=A9QZc9Skskc</li>
+        <li>ARTE.tv Documentales. (2024, diciembre 18). <em>El revés de los mapas: América Latina · análisis geopolítico</em> [Video]. YouTube. https://www.youtube.com/watch?v=G_wvxhEAkGg</li>
+        <li>ARTE.tv Documentales. (2025, noviembre 9). <em>China: Los influencers de la colonización</em> [Video]. YouTube. https://www.youtube.com/watch?v=lpzMDN-T6Ys</li>
+        <li>ARTE.tv Documentales. (2023, septiembre 2). <em>La «tribu de las ratas» de Pekín, China (2017)</em> [Video]. YouTube. https://www.youtube.com/watch?v=VVTElqTHXlk</li>
+        <li>ARTE.tv Documentary. (2024, diciembre 20). <em>China's disillusioned youth</em> [Video]. YouTube. https://www.youtube.com/watch?v=9S7gULymU2A</li>
+        <li>ARTE.tv Documentales. (2024, octubre 5). <em>Uigures, un pueblo en peligro</em> [Video]. YouTube. https://www.youtube.com/watch?v=Q_u4uqcRqWw</li>
+        <li>ARTE.tv Documentales. (2024, marzo 30). <em>China: Pueblos 2.0</em> [Video]. YouTube. https://www.youtube.com/watch?v=b_1QmLe6MeU</li>
+        <li>ARTE. (2025, julio 3). <em>Chine, la course à l'autosuffisance</em> [Video]. YouTube. https://www.youtube.com/watch?v=-k51Q77-L0k</li>
+        <li>ARTE.tv Documentales. (2024, enero 2). <em>Duelos históricos: Jiang Qing vs. Deng Xiaoping</em> [Video]. YouTube. https://www.youtube.com/watch?v=9tXjvHPNw0A</li>
+        <li>ARTE.tv Documentary. (2021, julio 27). <em>China: Men without women</em> [Video]. YouTube. https://www.youtube.com/watch?v=A3Kcgy3NDLA</li>
+        <li>ARTE.tv Documentales. (2024, agosto 10). <em>China: La desaparición de los millonarios (2019)</em> [Video]. YouTube. https://www.youtube.com/watch?v=yjTKuYL7I3c</li>
+        <li>ARTE.tv Documentales. (2023, octubre 9). <em>El revés de los mapas: India vs. China · duelo de gigantes</em> [Video]. YouTube. https://www.youtube.com/watch?v=G9uf0RQ5G3M</li>
+      </ol>
+      <p style="margin-top:14px;font-size:0.9rem;color:var(--muted);">
+        <strong>Lectura que acompaña la mediateca:</strong> Brunet Icart, I., Pizzi, A. y Moral Martín, D. (2016). <em>Sistemas laborales comparados: Las transformaciones de las relaciones de empleo en la era neoliberal</em> (cap. 7, pp. 305–335). Anthropos; Universidad Nacional del Litoral.
+      </p>
+    </section>
+
+    <!-- ═══ Footer ═══ -->
+    <footer class="footer">
+      <a href="./index.html">← Sesión 21 abr 2026</a>
+      <span>Globalización y Empleo · FCA · UNAM · 2026-2 · Jorge Cardiel</span>
+      <a href="../../index.html">Inicio →</a>
+    </footer>
+
+    <p style="margin-top:10px;font-size:clamp(0.74rem,0.78vw+0.18rem,0.84rem);color:var(--muted);max-width:720px;text-align:center;line-height:1.45;margin-left:auto;margin-right:auto;">
+      <strong>Cómo citar esta página:</strong> Cardiel, J. (2026). <em>Mediateca · Brasil · Argentina · China</em> [Material didáctico digital]. Globalización y Empleo, FCA, UNAM. https://socyb.github.io/global/sesiones/21abr26/mediateca.html
+    </p>
+
+  </div>
+</body>
+</html>
