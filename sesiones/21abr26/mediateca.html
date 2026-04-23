@@ -99,6 +99,119 @@
       font-weight: 700; color: var(--teal-dark);
       text-decoration: none;
     }
+    .qr-share {
+      display: flex;
+      justify-content: center;
+      margin-top: 18px;
+    }
+    .qr-trigger {
+      display: inline-grid;
+      grid-template-columns: 72px 1fr;
+      align-items: center;
+      gap: 12px;
+      max-width: 360px;
+      text-align: left;
+      font: inherit;
+      color: var(--ink);
+      background: var(--mint);
+      border: var(--border-thin);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 8px 12px 8px 8px;
+      cursor: pointer;
+    }
+    .qr-trigger:hover,
+    .qr-trigger:focus-visible {
+      transform: translate(-1px,-1px);
+      box-shadow: 5px 5px 0 var(--ink);
+      outline: none;
+    }
+    .qr-trigger img {
+      display: block;
+      width: 72px;
+      height: 72px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.18);
+    }
+    .qr-trigger strong {
+      display: block;
+      font-family: var(--font-accent);
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .qr-trigger span {
+      display: block;
+      font-size: 0.9rem;
+      line-height: 1.25;
+      margin-top: 2px;
+    }
+
+    .qr-modal[hidden] { display: none; }
+    .qr-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: grid;
+      place-items: center;
+      padding: clamp(18px, 4vw, 42px);
+    }
+    .qr-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 24, 24, 0.76);
+      border: 0;
+      cursor: zoom-out;
+    }
+    .qr-panel {
+      position: relative;
+      z-index: 1;
+      width: min(92vw, 620px);
+      background: #fff;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: 10px 10px 0 var(--ink);
+      padding: clamp(14px, 2.5vw, 22px);
+      text-align: center;
+    }
+    .qr-panel h2 {
+      font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .qr-panel p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+    .qr-large {
+      display: block;
+      width: min(100%, 520px);
+      height: auto;
+      margin: 0 auto;
+      border: var(--border-thin);
+      background: #fff;
+    }
+    .qr-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 34px;
+      height: 34px;
+      border: var(--border-thin);
+      border-radius: var(--radius-pill);
+      background: var(--gold);
+      color: var(--ink);
+      font-family: var(--font-accent);
+      font-size: 1.2rem;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .qr-close:focus-visible {
+      outline: 3px solid var(--teal);
+      outline-offset: 3px;
+    }
 
     /* Intro block */
     .intro {
@@ -350,6 +463,14 @@
       body { font-size: 1.02rem; }
       .section-header h2 { font-size: 1.6rem; }
       .vcard h3 { font-size: 1rem; }
+      .qr-trigger {
+        grid-template-columns: 58px 1fr;
+        max-width: 100%;
+      }
+      .qr-trigger img {
+        width: 58px;
+        height: 58px;
+      }
     }
   </style>
 </head>
@@ -383,8 +504,27 @@
         <a class="back-link" href="./index.html">← Volver a la sesión del 21 abr 2026</a>
         &nbsp;·&nbsp;
         <a class="back-link" href="../../index.html">Inicio</a>
+        <div class="qr-share">
+          <button class="qr-trigger" type="button" aria-haspopup="dialog" aria-controls="qr-modal" data-qr-open>
+            <img src="mediateca_qr.png" alt="" width="72" height="72" loading="eager">
+            <span>
+              <strong>Código QR</strong>
+              <span>Escanear o dar click para verlo en grande</span>
+            </span>
+          </button>
+        </div>
       </div>
     </header>
+
+    <div class="qr-modal" id="qr-modal" role="dialog" aria-modal="true" aria-labelledby="qr-modal-title" hidden>
+      <button class="qr-backdrop" type="button" aria-label="Cerrar código QR" data-qr-close></button>
+      <div class="qr-panel">
+        <button class="qr-close" type="button" aria-label="Cerrar código QR" data-qr-close>×</button>
+        <h2 id="qr-modal-title">Código QR de la mediateca</h2>
+        
+        <img class="qr-large" src="mediateca_qr.png" alt="Código QR para abrir la mediateca del 21 de abril de 2026" width="1470" height="1470">
+      </div>
+    </div>
 
     <!-- ═══ INTRO ═══ -->
     <section class="intro">
@@ -1135,5 +1275,28 @@
     </p>
 
   </div>
+  <script>
+    const qrModal = document.querySelector('#qr-modal');
+    const qrOpenButton = document.querySelector('[data-qr-open]');
+    const qrCloseButtons = document.querySelectorAll('[data-qr-close]');
+
+    function openQrModal() {
+      qrModal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      qrModal.querySelector('.qr-close').focus();
+    }
+
+    function closeQrModal() {
+      qrModal.hidden = true;
+      document.body.style.overflow = '';
+      qrOpenButton.focus();
+    }
+
+    qrOpenButton.addEventListener('click', openQrModal);
+    qrCloseButtons.forEach((button) => button.addEventListener('click', closeQrModal));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !qrModal.hidden) closeQrModal();
+    });
+  </script>
 </body>
 </html>
