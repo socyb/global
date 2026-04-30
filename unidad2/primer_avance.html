@@ -334,6 +334,303 @@
       margin: 1rem 0 2rem;
     }
 
+    /* ── Mapa cibernético de equipos ── */
+    .mapa-section {
+      margin: 2rem 0 2.5rem;
+    }
+    .mapa-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .mapa-header h2 {
+      font-family: var(--font-body);
+      font-weight: 900;
+      font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .mapa-eyebrow {
+      font-family: var(--font-accent);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #00a37a;
+    }
+    .mapa-hint {
+      font-family: var(--font-accent);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(244,237,224,0.7);
+      pointer-events: none;
+    }
+    .mapa-hint::before { content: "▸ "; color: #f0b429; }
+
+    .mapa-reset-btn {
+      font-family: var(--font-accent);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border: 2px solid var(--ink);
+      background: var(--surface);
+      color: var(--ink);
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform .1s ease, box-shadow .1s ease;
+    }
+    .mapa-reset-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .mapa-reset-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    .mapa-canvas {
+      position: relative;
+      width: 100%;
+      height: clamp(520px, 72vh, 760px);
+      background:
+        radial-gradient(ellipse at 25% 20%, rgba(0,141,142,0.32), transparent 55%),
+        radial-gradient(ellipse at 78% 80%, rgba(240,180,41,0.22), transparent 55%),
+        radial-gradient(ellipse at 50% 50%, rgba(108,92,231,0.18), transparent 50%),
+        linear-gradient(135deg, #0c1e1e 0%, #112c33 50%, #08161a 100%);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .mapa-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(240,180,41,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,180,150,0.06) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+      mask-image: radial-gradient(ellipse at center, #000 35%, transparent 95%);
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 35%, transparent 95%);
+    }
+    .mapa-lines {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .mapa-lines line {
+      stroke: rgba(0,180,150,0.32);
+      stroke-width: 1;
+      fill: none;
+    }
+    .mapa-lines line.eq-link {
+      stroke: rgba(240,180,41,0.55);
+      stroke-width: 1.5;
+      stroke-dasharray: 5 5;
+      animation: mapaDash 28s linear infinite;
+    }
+    @keyframes mapaDash { to { stroke-dashoffset: -240; } }
+    .mapa-lines circle.endpoint {
+      fill: rgba(240,180,41,0.85);
+      stroke: none;
+    }
+
+    .mapa-node {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      cursor: grab;
+      font-family: var(--font-accent);
+      transition: box-shadow .18s ease, filter .18s;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+      z-index: 3;
+      text-align: left;
+    }
+    .mapa-node:hover { transform: translate(-50%, -50%) scale(1.06); filter: brightness(1.1); z-index: 5; }
+    .mapa-node.dragging {
+      cursor: grabbing !important;
+      transform: translate(-50%, -50%) scale(1.08) !important;
+      filter: brightness(1.25) !important;
+      z-index: 50 !important;
+      transition: none;
+    }
+
+    .mapa-eq {
+      background: linear-gradient(135deg, rgba(255,255,255,0.97), rgba(247,242,227,0.92));
+      border: 2px solid #008d8e;
+      border-radius: 6px;
+      padding: 8px 11px;
+      max-width: 175px;
+      box-shadow:
+        0 0 18px rgba(0,141,142,0.55),
+        0 0 6px rgba(240,180,41,0.5),
+        inset 0 0 0 1px rgba(255,255,255,0.5);
+      color: var(--ink);
+      position: absolute;
+    }
+    .mapa-eq::before {
+      content: "";
+      position: absolute;
+      top: -5px; left: -5px;
+      width: 10px; height: 10px;
+      border-top: 2px solid #f0b429;
+      border-left: 2px solid #f0b429;
+    }
+    .mapa-eq::after {
+      content: "";
+      position: absolute;
+      bottom: -5px; right: -5px;
+      width: 10px; height: 10px;
+      border-bottom: 2px solid #f0b429;
+      border-right: 2px solid #f0b429;
+    }
+    .mapa-eq.accent-mint    { border-color: #00a37a; box-shadow: 0 0 18px rgba(0,163,122,0.55), 0 0 6px rgba(240,180,41,0.5); }
+    .mapa-eq.accent-teal    { border-color: #008d8e; box-shadow: 0 0 18px rgba(0,141,142,0.55), 0 0 6px rgba(240,180,41,0.5); }
+    .mapa-eq.accent-violet  { border-color: #6c5ce7; box-shadow: 0 0 18px rgba(108,92,231,0.55), 0 0 6px rgba(240,180,41,0.5); }
+    .mapa-eq.accent-coral   { border-color: #e2312b; box-shadow: 0 0 18px rgba(226,49,43,0.5), 0 0 6px rgba(240,180,41,0.5); }
+    .mapa-eq.accent-brasil  { border-color: #22af49; box-shadow: 0 0 18px rgba(34,175,73,0.55), 0 0 6px rgba(240,180,41,0.5); }
+    .mapa-eq.accent-gold    { border-color: #f0b429; box-shadow: 0 0 18px rgba(240,180,41,0.6), 0 0 6px rgba(240,180,41,0.5); }
+    .mapa-eq.accent-blue    { border-color: #50aee2; box-shadow: 0 0 18px rgba(80,174,226,0.55), 0 0 6px rgba(240,180,41,0.5); }
+
+    .mapa-eq .eq-num {
+      display: inline-block;
+      font-size: 0.64rem;
+      letter-spacing: 0.22em;
+      color: #008d8e;
+      font-weight: 900;
+    }
+    .mapa-eq.accent-mint   .eq-num { color: #00a37a; }
+    .mapa-eq.accent-violet .eq-num { color: #6c5ce7; }
+    .mapa-eq.accent-coral  .eq-num { color: #c0241e; }
+    .mapa-eq.accent-brasil .eq-num { color: #1a8a3a; }
+    .mapa-eq.accent-gold   .eq-num { color: #b88a1c; }
+    .mapa-eq.accent-blue   .eq-num { color: #2c7fb0; }
+
+    .mapa-eq .eq-label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.22;
+      margin-top: 2px;
+    }
+
+    .mapa-kw {
+      background: rgba(10,28,32,0.85);
+      border: 1px solid rgba(240,180,41,0.55);
+      color: #f7f2e3;
+      border-radius: 999px;
+      padding: 5px 11px;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 800;
+      box-shadow: 0 0 10px rgba(240,180,41,0.25), inset 0 0 0 1px rgba(0,180,150,0.15);
+      backdrop-filter: blur(2px);
+      white-space: nowrap;
+    }
+    .mapa-kw:hover { border-color: #f0b429; color: #f0b429; }
+    .mapa-kw.center {
+      background: rgba(108,92,231,0.85);
+      border-color: rgba(240,180,41,0.85);
+      box-shadow: 0 0 18px rgba(108,92,231,0.65);
+      font-size: 0.74rem;
+      padding: 6px 14px;
+    }
+    .mapa-kw.center:hover { color: #fff; }
+
+    .mapa-pulse {
+      position: absolute;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #f0b429;
+      box-shadow: 0 0 14px #f0b429;
+      animation: mapaPulse 2.6s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 2;
+      transform: translate(-50%, -50%);
+    }
+    @keyframes mapaPulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.35; }
+      50%      { transform: translate(-50%, -50%) scale(1.5); opacity: 1; }
+    }
+
+    .mapa-legend {
+      position: absolute;
+      bottom: 10px; left: 14px;
+      font-family: var(--font-accent);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(247,242,227,0.6);
+      pointer-events: none;
+      line-height: 1.6;
+    }
+    .mapa-legend .dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+    .mapa-legend .dot.eq { background: #008d8e; box-shadow: 0 0 6px #008d8e; }
+    .mapa-legend .dot.kw { background: #f0b429; box-shadow: 0 0 6px #f0b429; }
+    .mapa-legend .dot.cn { background: #6c5ce7; box-shadow: 0 0 6px #6c5ce7; }
+
+    .mapa-hint-tr {
+      position: absolute;
+      top: 12px; right: 14px;
+      font-family: var(--font-accent);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(240,180,41,0.8);
+      pointer-events: none;
+    }
+    .mapa-hint-tr::before { content: "▸ "; }
+
+    .mapa-toast {
+      position: fixed;
+      bottom: 32px; left: 50%;
+      transform: translateX(-50%) translateY(28px);
+      background: var(--ink);
+      color: #f0b429;
+      padding: 10px 18px;
+      border: 1.5px solid #f0b429;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity .25s ease, transform .25s ease;
+      pointer-events: none;
+      z-index: 1000;
+      max-width: 80vw;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+    }
+    .mapa-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 760px) {
+      .mapa-canvas { height: clamp(640px, 110vh, 900px); }
+      .mapa-eq { max-width: 140px; }
+      .mapa-eq .eq-label { font-size: 0.72rem; }
+      .mapa-kw { font-size: 0.62rem; padding: 4px 9px; }
+    }
+
     /* ── Print ── */
     @media print {
       .site-nav, .eq-index, footer { display: none; }
@@ -368,6 +665,7 @@
       <li><a href="investigacion.html">← Investigación</a></li>
       <li><a href="#resumen">Resumen</a></li>
       <li><a href="#equipos">Equipos</a></li>
+      <li><a href="#mapa">Mapa</a></li>
     </ul>
   </div>
 </nav>
@@ -382,12 +680,12 @@
       Síntesis de los equipos registrados en el cuestionario del primer avance: tema o caso de
       estudio, pregunta de investigación preliminar, perspectiva de análisis y bibliografía.
       Documento de trabajo para las sesiones de revisión del 16, 21 y 23 de abril de 2026,
-      actualizado con respuestas válidas capturadas hasta el 22 de abril.
+      actualizado con respuestas válidas capturadas hasta el 30 de abril.
     </p>
 
     <div class="resumen-grid">
       <div class="resumen-card">
-        <div class="resumen-num">8</div>
+        <div class="resumen-num">9</div>
         <div class="resumen-lbl">Equipos registrados</div>
       </div>
       <div class="resumen-card">
@@ -395,11 +693,11 @@
         <div class="resumen-lbl">Integrantes</div>
       </div>
       <div class="resumen-card">
-        <div class="resumen-num">5</div>
+        <div class="resumen-num">6</div>
         <div class="resumen-lbl">Perspectivas distintas</div>
       </div>
       <div class="resumen-card">
-        <div class="resumen-num">7</div>
+        <div class="resumen-num">8</div>
         <div class="resumen-lbl">Países o regiones</div>
       </div>
     </div>
@@ -416,8 +714,171 @@
       <a class="eq-chip" href="#eq-6"><span class="chip-num">6</span> IA automotriz · MX / IL</a>
       <a class="eq-chip" href="#eq-7"><span class="chip-num">7</span> CAE · Chile</a>
       <a class="eq-chip" href="#eq-8"><span class="chip-num">8</span> 15 minutos · FR / MX</a>
+      <a class="eq-chip" href="#eq-9"><span class="chip-num">9</span> Trabajo doméstico · migrantes EE.UU.</a>
     </nav>
   </div>
+
+  <!-- ═══════════════════ MAPA CIBERNÉTICO DE EQUIPOS ═══════════════════ -->
+  <section class="mapa-section" id="mapa">
+    <div class="mapa-header">
+      <div>
+        <p class="mapa-eyebrow">Mapa cibernético · click = copiar pregunta de investigación</p>
+        <h2>Equipos y conceptos en red</h2>
+      </div>
+      <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+        <p class="mapa-hint">arrastra para mover · click para copiar</p>
+        <button type="button" class="mapa-reset-btn" id="mapaReset">↺ Reset</button>
+      </div>
+    </div>
+
+    <div class="mapa-canvas" id="mapaCanvas">
+      <div class="mapa-grid"></div>
+
+      <svg class="mapa-lines" viewBox="0 0 1000 700" preserveAspectRatio="none">
+        <!-- Equipo → conceptos -->
+        <line class="eq-link" data-from="map-eq-1" data-to="map-kw-globalizacion" x1="150" y1="126" x2="500" y2="350"/>
+        <line class="eq-link" data-from="map-eq-1" data-to="map-kw-comparativo" x1="150" y1="126" x2="380" y2="490"/>
+
+        <line class="eq-link" data-from="map-eq-2" data-to="map-kw-teletrabajo" x1="500" y1="84" x2="600" y2="196"/>
+        <line class="eq-link" data-from="map-eq-2" data-to="map-kw-covid" x1="500" y1="84" x2="500" y2="266"/>
+        <line class="eq-link" data-from="map-eq-2" data-to="map-kw-globalizacion" x1="500" y1="84" x2="500" y2="350"/>
+
+        <line class="eq-link" data-from="map-eq-3" data-to="map-kw-teletrabajo" x1="850" y1="126" x2="600" y2="196"/>
+        <line class="eq-link" data-from="map-eq-3" data-to="map-kw-migracion" x1="850" y1="126" x2="750" y2="350"/>
+        <line class="eq-link" data-from="map-eq-3" data-to="map-kw-urbanismo" x1="850" y1="126" x2="280" y2="336"/>
+
+        <line class="eq-link" data-from="map-eq-4" data-to="map-kw-plataformas" x1="920" y1="350" x2="400" y2="245"/>
+        <line class="eq-link" data-from="map-eq-4" data-to="map-kw-precarizacion" x1="920" y1="350" x2="500" y2="385"/>
+        <line class="eq-link" data-from="map-eq-4" data-to="map-kw-comparativo" x1="920" y1="350" x2="380" y2="490"/>
+
+        <line class="eq-link" data-from="map-eq-5" data-to="map-kw-subcontratacion" x1="850" y1="574" x2="550" y2="455"/>
+        <line class="eq-link" data-from="map-eq-5" data-to="map-kw-plataformas" x1="850" y1="574" x2="400" y2="245"/>
+        <line class="eq-link" data-from="map-eq-5" data-to="map-kw-precarizacion" x1="850" y1="574" x2="500" y2="385"/>
+        <line class="eq-link" data-from="map-eq-5" data-to="map-kw-covid" x1="850" y1="574" x2="500" y2="266"/>
+
+        <line class="eq-link" data-from="map-eq-6" data-to="map-kw-ia" x1="500" y1="616" x2="620" y2="525"/>
+        <line class="eq-link" data-from="map-eq-6" data-to="map-kw-comparativo" x1="500" y1="616" x2="380" y2="490"/>
+        <line class="eq-link" data-from="map-eq-6" data-to="map-kw-globalizacion" x1="500" y1="616" x2="500" y2="350"/>
+
+        <line class="eq-link" data-from="map-eq-7" data-to="map-kw-deuda" x1="150" y1="574" x2="220" y2="490"/>
+        <line class="eq-link" data-from="map-eq-7" data-to="map-kw-globalizacion" x1="150" y1="574" x2="500" y2="350"/>
+
+        <line class="eq-link" data-from="map-eq-8" data-to="map-kw-urbanismo" x1="80" y1="350" x2="280" y2="336"/>
+        <line class="eq-link" data-from="map-eq-8" data-to="map-kw-comparativo" x1="80" y1="350" x2="380" y2="490"/>
+
+        <line class="eq-link" data-from="map-eq-9" data-to="map-kw-migracion" x1="700" y1="245" x2="750" y2="350"/>
+        <line class="eq-link" data-from="map-eq-9" data-to="map-kw-precarizacion" x1="700" y1="245" x2="500" y2="385"/>
+        <line class="eq-link" data-from="map-eq-9" data-to="map-kw-genero" x1="700" y1="245" x2="450" y2="525"/>
+        <line class="eq-link" data-from="map-eq-9" data-to="map-kw-globalizacion" x1="700" y1="245" x2="500" y2="350"/>
+
+        <!-- Concepto ↔ concepto -->
+        <line data-from="map-kw-plataformas" data-to="map-kw-subcontratacion" x1="400" y1="245" x2="550" y2="455"/>
+        <line data-from="map-kw-plataformas" data-to="map-kw-precarizacion" x1="400" y1="245" x2="500" y2="385"/>
+        <line data-from="map-kw-plataformas" data-to="map-kw-teletrabajo" x1="400" y1="245" x2="600" y2="196"/>
+        <line data-from="map-kw-migracion" data-to="map-kw-genero" x1="750" y1="350" x2="450" y2="525"/>
+        <line data-from="map-kw-precarizacion" data-to="map-kw-subcontratacion" x1="500" y1="385" x2="550" y2="455"/>
+        <line data-from="map-kw-covid" data-to="map-kw-teletrabajo" x1="500" y1="266" x2="600" y2="196"/>
+        <line data-from="map-kw-globalizacion" data-to="map-kw-precarizacion" x1="500" y1="350" x2="500" y2="385"/>
+        <line data-from="map-kw-globalizacion" data-to="map-kw-urbanismo" x1="500" y1="350" x2="280" y2="336"/>
+        <line data-from="map-kw-globalizacion" data-to="map-kw-covid" x1="500" y1="350" x2="500" y2="266"/>
+        <line data-from="map-kw-globalizacion" data-to="map-kw-migracion" x1="500" y1="350" x2="750" y2="350"/>
+        <line data-from="map-kw-globalizacion" data-to="map-kw-deuda" x1="500" y1="350" x2="220" y2="490"/>
+        <line data-from="map-kw-globalizacion" data-to="map-kw-ia" x1="500" y1="350" x2="620" y2="525"/>
+
+        <!-- Endpoints sobre cada equipo -->
+        <circle class="endpoint" data-node="map-eq-1" cx="150" cy="126" r="3"/>
+        <circle class="endpoint" data-node="map-eq-2" cx="500" cy="84"  r="3"/>
+        <circle class="endpoint" data-node="map-eq-3" cx="850" cy="126" r="3"/>
+        <circle class="endpoint" data-node="map-eq-4" cx="920" cy="350" r="3"/>
+        <circle class="endpoint" data-node="map-eq-5" cx="850" cy="574" r="3"/>
+        <circle class="endpoint" data-node="map-eq-6" cx="500" cy="616" r="3"/>
+        <circle class="endpoint" data-node="map-eq-7" cx="150" cy="574" r="3"/>
+        <circle class="endpoint" data-node="map-eq-8" cx="80"  cy="350" r="3"/>
+        <circle class="endpoint" data-node="map-eq-9" cx="700" cy="245" r="3"/>
+      </svg>
+
+      <!-- Pulso central sobre Globalización -->
+      <span class="mapa-pulse" style="top: 50%; left: 50%;"></span>
+
+      <!-- Equipos -->
+      <div class="mapa-node mapa-eq accent-mint" id="map-eq-1" style="top: 18%; left: 15%;"
+        data-copy='Equipo 1 — ¿Cómo impacta la aplicación de políticas de la economía del bienestar en la redistribución y las dinámicas de empleo a nivel internacional?'>
+        <span class="eq-num">EQ · 01</span>
+        <span class="eq-label">Economía del desarrollo y empleo internacional</span>
+      </div>
+
+      <div class="mapa-node mapa-eq accent-teal" id="map-eq-2" style="top: 12%; left: 50%;"
+        data-copy='Equipo 2 — ¿De qué manera el home office, como forma de deslocalización del empleo, impacta la segmentación y desigualdad del mercado laboral, así como el equilibrio entre la vida laboral y personal en el contexto de la globalización?'>
+        <span class="eq-num">EQ · 02</span>
+        <span class="eq-label">Home office y deslocalización</span>
+      </div>
+
+      <div class="mapa-node mapa-eq accent-violet" id="map-eq-3" style="top: 18%; left: 85%;"
+        data-copy='Equipo 3 — ¿De qué manera la llegada masiva de trabajadores remotos extranjeros (nómadas digitales) altera el sistema de empleo y la habitabilidad urbana en las zonas centrales de la Ciudad de México frente al vacío regulatorio institucional en el periodo 2020-2026?'>
+        <span class="eq-num">EQ · 03</span>
+        <span class="eq-label">Nómadas digitales en CDMX</span>
+      </div>
+
+      <div class="mapa-node mapa-eq accent-coral" id="map-eq-4" style="top: 50%; left: 92%;"
+        data-copy='Equipo 4 — ¿De qué manera la omisión de una categoría laboral específica para plataformas digitales de delivery y movilidad en la Ley Federal del Trabajo (LFT) ha fomentado la precarización del empleo en México, tomando la CDMX como caso de estudio, en contraste con el modelo de laboralización español?'>
+        <span class="eq-num">EQ · 04</span>
+        <span class="eq-label">Plataformas (Uber, DiDi) · MX vs ES</span>
+      </div>
+
+      <div class="mapa-node mapa-eq accent-brasil" id="map-eq-5" style="top: 82%; left: 85%;"
+        data-copy='Equipo 5 — ¿Cómo se relaciona el auge de la precariedad laboral en México pos-crisis de COVID-19 con las empresas y apps ETR que utilizan la figura del trabajador subcontratado o "autónomo"?'>
+        <span class="eq-num">EQ · 05</span>
+        <span class="eq-label">ETR&apos;s pos-COVID y trabajador "autónomo"</span>
+      </div>
+
+      <div class="mapa-node mapa-eq accent-gold" id="map-eq-6" style="top: 88%; left: 50%;"
+        data-copy='Equipo 6 — ¿Cómo está transformando la implementación de inteligencia artificial en el mantenimiento predictivo el empleo técnico vehicular y automotriz en México e Israel, y qué diferencias institucionales explican sus efectos sobre las competencias laborales, la autonomía técnica y la organización del trabajo?'>
+        <span class="eq-num">EQ · 06</span>
+        <span class="eq-label">IA y mantenimiento predictivo · MX / IL</span>
+      </div>
+
+      <div class="mapa-node mapa-eq accent-blue" id="map-eq-7" style="top: 82%; left: 15%;"
+        data-copy='Equipo 7 — ¿Cómo el endeudamiento estudiantil a través del Crédito con Aval del Estado opera como un mecanismo de disciplina social que empuja a los jóvenes profesionales en Chile a aceptar condiciones de subempleo y sobrecalificación ante la urgencia de cumplir con su relación acreedor/deudor?'>
+        <span class="eq-num">EQ · 07</span>
+        <span class="eq-label">CAE y disciplina social · Chile</span>
+      </div>
+
+      <div class="mapa-node mapa-eq accent-teal" id="map-eq-8" style="top: 50%; left: 8%;"
+        data-copy='Equipo 8 — ¿Está México preparado para implementar un modelo como la ciudad de 15 minutos?'>
+        <span class="eq-num">EQ · 08</span>
+        <span class="eq-label">Ciudad de 15 minutos · FR / MX</span>
+      </div>
+
+      <div class="mapa-node mapa-eq accent-coral" id="map-eq-9" style="top: 35%; left: 70%;"
+        data-copy='Equipo 9 — ¿Cómo condiciona la situación migratoria irregular el acceso a protección institucional de las mujeres que realizan trabajo doméstico en Estados Unidos?'>
+        <span class="eq-num">EQ · 09</span>
+        <span class="eq-label">Trabajo doméstico migrante · EE.UU.</span>
+      </div>
+
+      <!-- Conceptos transversales -->
+      <div class="mapa-node mapa-kw center" id="map-kw-globalizacion" style="top: 50%; left: 50%;" data-copy="Globalización">Globalización</div>
+      <div class="mapa-node mapa-kw" id="map-kw-precarizacion" style="top: 55%; left: 50%;" data-copy="Precarización laboral">Precarización</div>
+      <div class="mapa-node mapa-kw" id="map-kw-plataformas" style="top: 35%; left: 40%;" data-copy="Plataformas digitales">Plataformas digitales</div>
+      <div class="mapa-node mapa-kw" id="map-kw-teletrabajo" style="top: 28%; left: 60%;" data-copy="Teletrabajo">Teletrabajo</div>
+      <div class="mapa-node mapa-kw" id="map-kw-migracion" style="top: 50%; left: 75%;" data-copy="Migración">Migración</div>
+      <div class="mapa-node mapa-kw" id="map-kw-comparativo" style="top: 70%; left: 38%;" data-copy="Comparativo internacional">Comparativo internacional</div>
+      <div class="mapa-node mapa-kw" id="map-kw-genero" style="top: 75%; left: 45%;" data-copy="Género">Género</div>
+      <div class="mapa-node mapa-kw" id="map-kw-subcontratacion" style="top: 65%; left: 55%;" data-copy="Subcontratación">Subcontratación</div>
+      <div class="mapa-node mapa-kw" id="map-kw-urbanismo" style="top: 48%; left: 28%;" data-copy="Urbanismo">Urbanismo</div>
+      <div class="mapa-node mapa-kw" id="map-kw-deuda" style="top: 70%; left: 22%;" data-copy="Deuda">Deuda</div>
+      <div class="mapa-node mapa-kw" id="map-kw-ia" style="top: 75%; left: 62%;" data-copy="IA / automatización">IA · automatización</div>
+      <div class="mapa-node mapa-kw" id="map-kw-covid" style="top: 38%; left: 50%;" data-copy="COVID-19">COVID-19</div>
+
+      <div class="mapa-hint-tr">red conceptual · 9 equipos</div>
+      <div class="mapa-legend">
+        <span class="dot eq"></span>equipo &nbsp;·&nbsp;
+        <span class="dot kw"></span>concepto &nbsp;·&nbsp;
+        <span class="dot cn"></span>nodo central
+      </div>
+    </div>
+
+    <div class="mapa-toast" id="mapaToast">Copiado</div>
+  </section>
 
   <!-- ═══════════════════ EQUIPO 1 ═══════════════════ -->
   <article class="team-card accent-mint" id="eq-1">
@@ -800,11 +1261,54 @@
     </div>
   </article>
 
+  <!-- ═══════════════════ EQUIPO 9 ═══════════════════ -->
+  <article class="team-card accent-coral" id="eq-9">
+    <div class="team-head">
+      <div class="team-num">09</div>
+      <div class="team-head-body">
+        <h2 class="team-tema">Precarización del trabajo doméstico de mujeres migrantes en Estados Unidos</h2>
+        <div class="team-meta">
+          <span class="pill persp">Institucional y de género</span>
+          <span class="pill date">23 abr · 20:32</span>
+          <span class="pill">3 integrantes</span>
+          <span class="flag-chip">🇺🇸 EE.UU.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-grid">
+      <div class="field q wide">
+        <span class="field-label">Pregunta de investigación</span>
+        <div class="field-body">
+          <p>¿Cómo condiciona la situación migratoria irregular el acceso a protección institucional de las mujeres que realizan trabajo doméstico en Estados Unidos?</p>
+        </div>
+      </div>
+
+      <div class="field i">
+        <span class="field-label">Integrantes</span>
+        <ul class="integrantes-list">
+          <li>Farfán Méndez Rodrigo</li>
+          <li>Lara Correa Diego</li>
+          <li>Mosso Hernández Max Cristóbal</li>
+        </ul>
+      </div>
+
+      <div class="field b">
+        <span class="field-label">Bibliografía preliminar · APA 7</span>
+        <ol class="biblio-list">
+          <li>Chuang, J. (s.f.). Achieving accountability for migrant domestic worker abuse. <em>American University Law Review</em>. <a href="https://digitalcommons.wcl.american.edu/facsch_lawrev/1052/" target="_blank" rel="noopener">digitalcommons.wcl.american.edu</a></li>
+          <li>Migration Policy Institute. (s.f.). <em>Domestic workers: Little protection for the underpaid</em>. <a href="https://www.migrationpolicy.org/article/domestic-workers-little-protection-underpaid" target="_blank" rel="noopener">migrationpolicy.org</a></li>
+          <li>Menjívar, C., &amp; Abrego, L. (2012). Legal violence: Immigration law and the lives of Central American immigrants. <em>American Journal of Sociology</em>. <a href="https://www.jstor.org/stable/10.1086/663575" target="_blank" rel="noopener">jstor.org</a></li>
+        </ol>
+      </div>
+    </div>
+  </article>
+
   <!-- NOTA FINAL -->
   <div class="empty-note">
     Registro generado a partir del cuestionario «Revisión Primer Avance GyE 2026-2» (Google Forms),
-    actualizado con el archivo del 23 de abril de 2026. Última respuesta válida recibida:
-    22 de abril de 2026, 15:17 (GMT-6). Se omitió un registro vacío del 21 de abril de 2026.
+    actualizado con el archivo del 30 de abril de 2026. Última respuesta válida recibida:
+    23 de abril de 2026, 20:32 (GMT-6). Se omitió un registro vacío del 21 de abril de 2026.
   </div>
 
   <!-- REFERENCIA -->
@@ -828,6 +1332,193 @@
     </div>
   </div>
 </footer>
+
+<script>
+  // Cybernetic team/concept network: drag nodes + click to copy
+  (function () {
+    const canvas = document.getElementById('mapaCanvas');
+    if (!canvas) return;
+    const svg = canvas.querySelector('.mapa-lines');
+    const toast = document.getElementById('mapaToast');
+    const resetBtn = document.getElementById('mapaReset');
+    const VB_W = 1000, VB_H = 700;
+    const DRAG_THRESHOLD = 5;
+    let toastTimer = null;
+
+    // Capture initial positions for reset
+    const initialPos = new Map();
+    document.querySelectorAll('.mapa-node').forEach(n => {
+      initialPos.set(n.id, { left: n.style.left, top: n.style.top });
+    });
+
+    /* ── toast + clipboard ── */
+    function showToast(text) {
+      if (!toast) return;
+      const preview = text.length > 80 ? text.slice(0, 77) + '…' : text;
+      toast.textContent = '✓ Copiado · ' + preview;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+    }
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    function copyText(text) {
+      if (!text) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(
+          () => showToast(text),
+          () => { fallbackCopy(text); showToast(text); }
+        );
+      } else {
+        fallbackCopy(text);
+        showToast(text);
+      }
+    }
+
+    /* ── geometry helpers ── */
+    function getCanvasRect() { return canvas.getBoundingClientRect(); }
+    function getEventPoint(e) {
+      const rect = getCanvasRect();
+      const t = (e.touches && e.touches[0]) || (e.changedTouches && e.changedTouches[0]) || e;
+      return { x: t.clientX - rect.left, y: t.clientY - rect.top, w: rect.width, h: rect.height };
+    }
+    function getNodeCenter(node) {
+      const cRect = getCanvasRect();
+      const nRect = node.getBoundingClientRect();
+      const cx = (nRect.left + nRect.width / 2) - cRect.left;
+      const cy = (nRect.top + nRect.height / 2) - cRect.top;
+      return {
+        px: cx, py: cy,
+        svgX: (cx / cRect.width) * VB_W,
+        svgY: (cy / cRect.height) * VB_H
+      };
+    }
+    function updateLinesForNode(id) {
+      const node = document.getElementById(id);
+      if (!node) return;
+      const c = getNodeCenter(node);
+      svg.querySelectorAll('line[data-from="' + id + '"]').forEach(l => {
+        l.setAttribute('x1', c.svgX);
+        l.setAttribute('y1', c.svgY);
+      });
+      svg.querySelectorAll('line[data-to="' + id + '"]').forEach(l => {
+        l.setAttribute('x2', c.svgX);
+        l.setAttribute('y2', c.svgY);
+      });
+      svg.querySelectorAll('circle[data-node="' + id + '"]').forEach(circ => {
+        circ.setAttribute('cx', c.svgX);
+        circ.setAttribute('cy', c.svgY);
+      });
+    }
+    function updateAllLines() {
+      document.querySelectorAll('.mapa-node').forEach(n => updateLinesForNode(n.id));
+    }
+
+    // Re-sync on resize
+    let resizeT = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeT);
+      resizeT = setTimeout(updateAllLines, 80);
+    });
+
+    /* ── drag state ── */
+    const drag = {
+      node: null, startX: 0, startY: 0,
+      origLeftPct: 0, origTopPct: 0,
+      moved: false, suppressClick: false
+    };
+
+    function pctFromStyle(value, fallbackPx, totalPx) {
+      if (value && value.endsWith('%')) return parseFloat(value);
+      if (value && value.endsWith('px')) return (parseFloat(value) / totalPx) * 100;
+      return (fallbackPx / totalPx) * 100;
+    }
+
+    function startDrag(e, node) {
+      const p = getEventPoint(e);
+      drag.node = node;
+      drag.startX = p.x;
+      drag.startY = p.y;
+      const c = getNodeCenter(node);
+      drag.origLeftPct = (c.px / p.w) * 100;
+      drag.origTopPct  = (c.py / p.h) * 100;
+      drag.moved = false;
+      node.classList.add('dragging');
+      if (e.cancelable) e.preventDefault();
+    }
+    function onDrag(e) {
+      if (!drag.node) return;
+      const p = getEventPoint(e);
+      const dx = p.x - drag.startX;
+      const dy = p.y - drag.startY;
+      if (!drag.moved && (Math.abs(dx) > DRAG_THRESHOLD || Math.abs(dy) > DRAG_THRESHOLD)) {
+        drag.moved = true;
+      }
+      const newLeft = Math.max(2, Math.min(98, drag.origLeftPct + (dx / p.w) * 100));
+      const newTop  = Math.max(3, Math.min(97, drag.origTopPct  + (dy / p.h) * 100));
+      drag.node.style.left = newLeft + '%';
+      drag.node.style.top  = newTop + '%';
+      updateLinesForNode(drag.node.id);
+      if (e.cancelable) e.preventDefault();
+    }
+    function endDrag() {
+      if (!drag.node) return;
+      drag.node.classList.remove('dragging');
+      const wasMoved = drag.moved;
+      const node = drag.node;
+      drag.node = null;
+      if (wasMoved) {
+        drag.suppressClick = true;
+        setTimeout(() => { drag.suppressClick = false; }, 50);
+      } else {
+        copyText(node.dataset.copy);
+      }
+    }
+
+    document.querySelectorAll('.mapa-node').forEach(node => {
+      node.addEventListener('mousedown', e => {
+        if (e.button !== 0) return;
+        startDrag(e, node);
+      });
+      node.addEventListener('touchstart', e => startDrag(e, node), { passive: false });
+      // swallow synthetic clicks after a drag
+      node.addEventListener('click', e => {
+        if (drag.suppressClick) { e.stopPropagation(); e.preventDefault(); }
+      });
+    });
+    document.addEventListener('mousemove', onDrag);
+    document.addEventListener('touchmove', onDrag, { passive: false });
+    document.addEventListener('mouseup', endDrag);
+    document.addEventListener('mouseleave', endDrag);
+    document.addEventListener('touchend', endDrag);
+    document.addEventListener('touchcancel', endDrag);
+
+    /* ── reset ── */
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        document.querySelectorAll('.mapa-node').forEach(n => {
+          const init = initialPos.get(n.id);
+          if (!init) return;
+          n.style.left = init.left;
+          n.style.top  = init.top;
+        });
+        // wait one frame so layout settles, then re-anchor lines
+        requestAnimationFrame(updateAllLines);
+      });
+    }
+
+    // Initial sync (in case of rounding/aspect mismatch)
+    requestAnimationFrame(updateAllLines);
+  })();
+</script>
 
 </body>
 </html>

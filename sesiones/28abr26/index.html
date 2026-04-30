@@ -360,6 +360,203 @@
   }
   @keyframes fade { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
 
+  /* Cybernetic network slide */
+  .network-slide {
+    padding: 5vh 4vw 6vh;
+    justify-content: flex-start;
+  }
+  .net-canvas {
+    position: relative;
+    width: 100%;
+    flex: 1 1 auto;
+    margin-top: 2vh;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(184,92,56,0.18), transparent 55%),
+      radial-gradient(ellipse at 75% 80%, rgba(212,167,71,0.15), transparent 50%),
+      linear-gradient(135deg, #0e1822 0%, #1a2332 70%, #0a1018 100%);
+    border: 1px solid rgba(212,167,71,0.35);
+    border-radius: 6px;
+    overflow: hidden;
+    min-height: 56vh;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(184,92,56,0.15);
+  }
+  .net-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(212,167,71,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,167,71,0.07) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at center, #000 40%, transparent 90%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 40%, transparent 90%);
+  }
+  .net-lines {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: visible;
+  }
+  .net-lines line, .net-lines path {
+    stroke: rgba(212,167,71,0.45);
+    stroke-width: 1;
+    fill: none;
+  }
+  .net-lines line.q-link, .net-lines path.q-link {
+    stroke: rgba(184,92,56,0.65);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 4;
+    animation: dash 30s linear infinite;
+  }
+  @keyframes dash { to { stroke-dashoffset: -200; } }
+  .net-lines circle.endpoint {
+    fill: rgba(212,167,71,0.7);
+    stroke: none;
+  }
+
+  .net-node {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    font-family: -apple-system, "Helvetica Neue", sans-serif;
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s;
+    user-select: none;
+    z-index: 3;
+  }
+  .net-node:hover { transform: translate(-50%, -50%) scale(1.06); filter: brightness(1.15); }
+  .net-node:active { transform: translate(-50%, -50%) scale(0.98); }
+
+  .net-q {
+    background: linear-gradient(135deg, rgba(244,237,224,0.97), rgba(244,237,224,0.88));
+    border: 1.5px solid var(--accent);
+    border-radius: 6px;
+    padding: 8px 12px;
+    max-width: 175px;
+    box-shadow:
+      0 0 18px rgba(184,92,56,0.45),
+      0 0 6px rgba(212,167,71,0.6),
+      inset 0 0 0 1px rgba(255,255,255,0.4);
+    color: var(--ink);
+  }
+  .net-q::before {
+    content: "";
+    position: absolute;
+    top: -6px; left: -6px;
+    width: 10px; height: 10px;
+    border-top: 2px solid var(--gold);
+    border-left: 2px solid var(--gold);
+  }
+  .net-q::after {
+    content: "";
+    position: absolute;
+    bottom: -6px; right: -6px;
+    width: 10px; height: 10px;
+    border-bottom: 2px solid var(--gold);
+    border-right: 2px solid var(--gold);
+  }
+  .net-q .node-num {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .net-q .node-label {
+    font-size: 0.78rem;
+    font-style: italic;
+    color: var(--steel);
+    line-height: 1.25;
+  }
+
+  .net-kw {
+    background: rgba(20,32,48,0.82);
+    border: 1px solid rgba(212,167,71,0.55);
+    color: var(--paper);
+    border-radius: 999px;
+    padding: 5px 11px;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(212,167,71,0.25), inset 0 0 0 1px rgba(212,167,71,0.1);
+    backdrop-filter: blur(2px);
+    white-space: nowrap;
+  }
+  .net-kw:hover { border-color: var(--gold); color: var(--gold); }
+
+  .net-pulse {
+    position: absolute;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px var(--gold);
+    animation: pulse 2.4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 2;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(0.6); opacity: 0.4; }
+    50% { transform: translate(-50%, -50%) scale(1.4); opacity: 1; }
+  }
+
+  .net-legend {
+    position: absolute;
+    bottom: 12px; left: 14px;
+    font-family: -apple-system, monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(244,237,224,0.55);
+    pointer-events: none;
+    line-height: 1.6;
+  }
+  .net-legend .dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+  .net-legend .dot.q { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+  .net-legend .dot.k { background: var(--gold); box-shadow: 0 0 6px var(--gold); }
+
+  .net-hint {
+    position: absolute;
+    top: 12px; right: 14px;
+    font-family: -apple-system, monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(212,167,71,0.7);
+    pointer-events: none;
+  }
+  .net-hint::before { content: "▸ "; }
+
+  .net-toast {
+    position: fixed;
+    bottom: 60px; left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    background: var(--ink);
+    color: var(--gold);
+    padding: 10px 18px;
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    font-family: -apple-system, monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: all .28s ease;
+    pointer-events: none;
+    z-index: 100;
+    max-width: 70vw;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+  }
+  .net-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
   /* Video media library grid */
   .videos-slide .video-grid {
     display: grid;
@@ -644,8 +841,109 @@
     </ol>
   </section>
 
-  <!-- ============ SLIDE 12 — VIDEO MEDIA LIBRARY ============ -->
-  <section class="slide videos-slide" data-slide="12">
+  <!-- ============ SLIDE 12 — CYBERNETIC NETWORK MAP ============ -->
+  <section class="slide network-slide" data-slide="12">
+    <h2><span class="num">Mapa cibernético · click = copiar</span>Preguntas y conceptos en red</h2>
+
+    <div class="net-canvas" id="netCanvas">
+      <div class="net-grid"></div>
+
+      <svg class="net-lines" viewBox="0 0 1000 600" preserveAspectRatio="none">
+        <!-- Q1 → conceptos -->
+        <line class="q-link" x1="180" y1="120" x2="350" y2="220"/>
+        <line class="q-link" x1="180" y1="120" x2="550" y2="180"/>
+        <line class="q-link" x1="180" y1="120" x2="450" y2="320"/>
+        <!-- Q2 → conceptos -->
+        <line class="q-link" x1="820" y1="120" x2="550" y2="180"/>
+        <line class="q-link" x1="820" y1="120" x2="700" y2="280"/>
+        <line class="q-link" x1="820" y1="120" x2="450" y2="320"/>
+        <!-- Q3 → conceptos -->
+        <line class="q-link" x1="920" y1="350" x2="820" y2="380"/>
+        <line class="q-link" x1="920" y1="350" x2="700" y2="420"/>
+        <!-- Q4 → conceptos -->
+        <line class="q-link" x1="700" y1="520" x2="520" y2="480"/>
+        <line class="q-link" x1="700" y1="520" x2="350" y2="460"/>
+        <!-- Q5 → conceptos -->
+        <line class="q-link" x1="250" y1="520" x2="200" y2="380"/>
+        <line class="q-link" x1="250" y1="520" x2="550" y2="380"/>
+        <line class="q-link" x1="250" y1="520" x2="380" y2="300"/>
+        <line class="q-link" x1="250" y1="520" x2="450" y2="320"/>
+        <!-- Concepto ↔ concepto -->
+        <line x1="550" y1="180" x2="700" y2="280"/>
+        <line x1="520" y1="480" x2="350" y2="460"/>
+        <line x1="820" y1="380" x2="700" y2="420"/>
+        <line x1="200" y1="380" x2="550" y2="380"/>
+        <line x1="450" y1="320" x2="380" y2="300"/>
+        <line x1="450" y1="320" x2="700" y2="280"/>
+        <line x1="350" y1="220" x2="450" y2="320"/>
+
+        <!-- Endpoints -->
+        <circle class="endpoint" cx="180" cy="120" r="3"/>
+        <circle class="endpoint" cx="820" cy="120" r="3"/>
+        <circle class="endpoint" cx="920" cy="350" r="3"/>
+        <circle class="endpoint" cx="700" cy="520" r="3"/>
+        <circle class="endpoint" cx="250" cy="520" r="3"/>
+      </svg>
+
+      <!-- Pulsos decorativos -->
+      <span class="net-pulse" style="top: 53.3%; left: 45%;"></span>
+
+      <!-- Question nodes (Q1–Q5) -->
+      <div class="net-node net-q" style="top: 20%; left: 18%;"
+        data-copy='Si la informalidad puede esconderse dentro de la formalidad —uniformes, gafetes, "profesionalismo"—, ¿qué utilidad analítica conserva la dicotomía formal/informal? ¿Necesitamos otras categorías?'>
+        <span class="node-num">Q1</span>
+        <span class="node-label">Formal / informal: ¿sigue siendo útil la dicotomía?</span>
+      </div>
+
+      <div class="net-node net-q" style="top: 20%; left: 82%;"
+        data-copy='¿Cómo entender el rol de la documentación y el compliance en este sistema? ¿Es un mero ritual cínico, o produce efectos reales sobre las relaciones laborales?'>
+        <span class="node-num">Q2</span>
+        <span class="node-label">Documentación &amp; compliance: ¿ritual o efecto real?</span>
+      </div>
+
+      <div class="net-node net-q" style="top: 58.3%; left: 92%;"
+        data-copy='El concepto de "body personality" describe la transmisión de una cultura corporativa a través del cuerpo. ¿Qué continuidades y rupturas tiene con las formas de disciplina laboral que estudiamos en otras lecturas (taylorismo, control panóptico, "trabajo emocional")?'>
+        <span class="node-num">Q3</span>
+        <span class="node-label">Body personality vs. taylorismo / panóptico / trabajo emocional</span>
+      </div>
+
+      <div class="net-node net-q" style="top: 86.7%; left: 70%;"
+        data-copy='La construcción discursiva de limpieza, transporte y seguridad como "noncore" tiene consecuencias legales concretas (Contract Labour Act). ¿Qué otros ejemplos contemporáneos conocen donde una clasificación discursiva habilita una precarización legal?'>
+        <span class="node-num">Q4</span>
+        <span class="node-label">"Noncore": clasificar para precarizar</span>
+      </div>
+
+      <div class="net-node net-q" style="top: 86.7%; left: 25%;"
+        data-copy='El libro plantea una contradicción nuclear: a los trabajadores se les exige encarnar el ideal del emprendedor neoliberal y servir como mano de obra barata que da ventaja competitiva al país. ¿Es esta tensión específica del Sur global, o también la encontramos en empleos precarios del Norte?'>
+        <span class="node-num">Q5</span>
+        <span class="node-label">Emprendedor neoliberal vs. mano de obra barata: ¿Sur o también Norte?</span>
+      </div>
+
+      <!-- Keyword nodes -->
+      <div class="net-node net-kw" style="top: 36.7%; left: 35%;" data-copy="Informalidad oculta">Informalidad oculta</div>
+      <div class="net-node net-kw" style="top: 30%; left: 55%;" data-copy="Compliance">Compliance</div>
+      <div class="net-node net-kw" style="top: 46.7%; left: 70%;" data-copy="Documentación">Documentación</div>
+      <div class="net-node net-kw" style="top: 63.3%; left: 82%;" data-copy="Body personality">Body personality</div>
+      <div class="net-node net-kw" style="top: 70%; left: 70%;" data-copy="Grooming">Grooming</div>
+      <div class="net-node net-kw" style="top: 80%; left: 52%;" data-copy="Noncore">Noncore</div>
+      <div class="net-node net-kw" style="top: 76.7%; left: 35%;" data-copy="Fissured workplace">Fissured workplace</div>
+      <div class="net-node net-kw" style="top: 63.3%; left: 20%;" data-copy="Emprendedor neoliberal">Emprendedor neoliberal</div>
+      <div class="net-node net-kw" style="top: 53.3%; left: 45%;" data-copy="Living wage">Living wage</div>
+      <div class="net-node net-kw" style="top: 63.3%; left: 55%;" data-copy="Trickle-down">Trickle-down</div>
+      <div class="net-node net-kw" style="top: 50%; left: 38%;" data-copy="Make in India">Make in India</div>
+
+      <div class="net-hint">click sobre cualquier nodo para copiarlo</div>
+      <div class="net-legend">
+        <span class="dot q"></span>pregunta &nbsp;·&nbsp;
+        <span class="dot k"></span>concepto
+      </div>
+    </div>
+
+    <div class="net-toast" id="netToast">Copiado</div>
+  </section>
+
+  <!-- ============ SLIDE 13 — VIDEO MEDIA LIBRARY ============ -->
+  <section class="slide videos-slide" data-slide="13">
     <h2><span class="num">Mediateca · Videos relacionados</span>Para complementar la lectura</h2>
 
     <div class="video-grid">
@@ -670,8 +968,8 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 13 — REFERENCE ============ -->
-  <section class="slide ref-slide" data-slide="13">
+  <!-- ============ SLIDE 14 — REFERENCE ============ -->
+  <section class="slide ref-slide" data-slide="14">
     <h2><span class="num">Referencia bibliográfica</span>Para citar</h2>
 
     <div class="ref-block">
@@ -724,12 +1022,55 @@
 
   // Click on slide (right half = next, left half = prev) — handy for laser pointers
   document.getElementById('deck').addEventListener('click', (e) => {
-    if (e.target.closest('.nav-btn') || e.target.closest('.footer-bar') || e.target.closest('.topbar') || e.target.closest('a')) return;
+    if (e.target.closest('.nav-btn') || e.target.closest('.footer-bar') || e.target.closest('.topbar') || e.target.closest('a') || e.target.closest('.net-node') || e.target.closest('.net-canvas')) return;
     const x = e.clientX;
     const w = window.innerWidth;
     if (x > w * 0.6) show(idx + 1);
     else if (x < w * 0.4) show(idx - 1);
   });
+
+  // Copy on click for cybernetic network nodes
+  (function () {
+    const toast = document.getElementById('netToast');
+    let toastTimer = null;
+
+    function showToast(text) {
+      if (!toast) return;
+      const preview = text.length > 70 ? text.slice(0, 67) + '…' : text;
+      toast.textContent = '✓ Copiado · ' + preview;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+
+    document.querySelectorAll('.net-node').forEach(node => {
+      node.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const text = node.dataset.copy;
+        if (!text) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(
+            () => showToast(text),
+            () => { fallbackCopy(text); showToast(text); }
+          );
+        } else {
+          fallbackCopy(text);
+          showToast(text);
+        }
+      });
+    });
+  })();
 </script>
 
 </body>
