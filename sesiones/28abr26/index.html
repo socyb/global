@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Low Wage in High Tech — Globalización y Empleo</title>
+<style>
+  :root {
+    --ink: #1a2332;
+    --paper: #f4ede0;
+    --accent: #b85c38;
+    --steel: #2d4356;
+    --muted: #6b6157;
+    --gold: #d4a747;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  }
+
+  .deck {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    padding: 5vh 7vw;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+  }
+
+  .slide.active { display: flex; }
+
+  /* HEADER strip — present on every slide */
+  .topbar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 38px;
+    padding: 0 7vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: -apple-system, "Helvetica Neue", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid rgba(26,35,50,0.15);
+    background: var(--paper);
+    z-index: 5;
+  }
+  .topbar .left a:hover { color: var(--accent); }
+
+  .topbar .left { color: var(--steel); font-weight: 600; }
+  .topbar .right { font-variant-numeric: tabular-nums; }
+
+  /* Tower silhouette motif */
+  .towers {
+    position: absolute;
+    bottom: 38px;
+    left: 0; right: 0;
+    height: 60px;
+    pointer-events: none;
+    opacity: 0.18;
+  }
+
+  .footer-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 38px;
+    padding: 0 7vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: -apple-system, "Helvetica Neue", sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid rgba(26,35,50,0.15);
+    background: var(--paper);
+    z-index: 5;
+  }
+
+  .nav-btn {
+    background: none;
+    border: 1px solid rgba(26,35,50,0.3);
+    color: var(--ink);
+    padding: 4px 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { background: var(--ink); color: var(--paper); }
+
+  .counter {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.15em;
+  }
+
+  /* TITLE SLIDE */
+  .title-slide h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.05;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin-bottom: 2vh;
+  }
+  .title-slide h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .title-slide .subtitle {
+    font-size: clamp(1rem, 1.6vw, 1.4rem);
+    color: var(--steel);
+    font-style: italic;
+    margin-bottom: 4vh;
+    max-width: 60ch;
+  }
+  .title-slide .meta {
+    font-family: -apple-system, "Helvetica Neue", sans-serif;
+    font-size: 0.95rem;
+    color: var(--muted);
+    border-top: 2px solid var(--ink);
+    padding-top: 2vh;
+    max-width: 50ch;
+    line-height: 1.7;
+  }
+  .title-slide .meta strong { color: var(--ink); }
+
+  /* CONTENT SLIDES */
+  .slide h2 {
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    font-weight: 400;
+    color: var(--steel);
+    margin-bottom: 1vh;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .slide h2 .num {
+    font-family: -apple-system, "Helvetica Neue", sans-serif;
+    font-size: 0.55em;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    display: block;
+    margin-bottom: 0.6vh;
+    font-weight: 500;
+  }
+
+  .slide h3 {
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+    font-style: italic;
+    color: var(--accent);
+    margin: 1.5vh 0 1vh;
+    font-weight: 400;
+  }
+
+  .slide p, .slide li {
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 1.2vh;
+    max-width: 80ch;
+  }
+
+  .slide ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .slide ul li {
+    padding-left: 1.6em;
+    position: relative;
+    margin-bottom: 1.4vh;
+  }
+
+  .slide ul li::before {
+    content: "▪";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+    font-size: 1.1em;
+  }
+
+  /* Quote blocks (citas del libro) */
+  .quote {
+    font-family: "Iowan Old Style", Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.05rem, 1.45vw, 1.3rem);
+    line-height: 1.5;
+    color: var(--steel);
+    border-left: 3px solid var(--accent);
+    padding: 0.5vh 0 0.5vh 1.5em;
+    margin: 1.5vh 0;
+    max-width: 75ch;
+  }
+  .quote .src {
+    display: block;
+    font-style: normal;
+    font-family: -apple-system, "Helvetica Neue", sans-serif;
+    font-size: 0.85em;
+    color: var(--muted);
+    margin-top: 0.6em;
+    letter-spacing: 0.05em;
+  }
+
+  .pullquote {
+    font-family: "Iowan Old Style", Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    line-height: 1.3;
+    color: var(--accent);
+    text-align: left;
+    margin: 2vh 0;
+    max-width: 28ch;
+  }
+
+  .pullquote::before {
+    content: "“";
+    font-size: 2em;
+    line-height: 0;
+    vertical-align: -0.4em;
+    color: var(--gold);
+    margin-right: 0.05em;
+  }
+
+  /* Two-column for contrast slides */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2vw;
+    align-items: start;
+    margin-top: 2vh;
+  }
+  .col { padding: 0; }
+  .col h4 {
+    font-family: -apple-system, "Helvetica Neue", sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 1vh;
+    font-weight: 600;
+  }
+  .col-divider {
+    width: 1px;
+    background: rgba(26,35,50,0.25);
+    align-self: stretch;
+  }
+
+  /* Tag for "contradicción" */
+  .tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--ink);
+    font-family: -apple-system, "Helvetica Neue", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 1.5vh;
+  }
+
+  /* Discussion questions slide */
+  .questions ol {
+    list-style: none;
+    counter-reset: q;
+    padding: 0;
+    margin-top: 1vh;
+  }
+  .questions ol li {
+    counter-increment: q;
+    padding: 1.5vh 0 1.5vh 3.5em;
+    position: relative;
+    border-bottom: 1px solid rgba(26,35,50,0.12);
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    line-height: 1.45;
+  }
+  .questions ol li:last-child { border-bottom: none; }
+  .questions ol li::before {
+    content: counter(q, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 1.5vh;
+    font-family: -apple-system, "Helvetica Neue", sans-serif;
+    font-size: 1.4em;
+    color: var(--accent);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  /* Reference slide */
+  .ref-slide .ref-block {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4vh 4vw;
+    margin-top: 2vh;
+    max-width: 70ch;
+    border-left: 6px solid var(--accent);
+  }
+  .ref-slide .ref-block p {
+    color: var(--paper);
+    font-family: "Iowan Old Style", Georgia, serif;
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    margin-bottom: 1.5vh;
+    text-indent: -2em;
+    padding-left: 2em;
+  }
+  .ref-slide .ref-block .label {
+    font-family: -apple-system, "Helvetica Neue", sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 1.5vh;
+    text-indent: 0;
+    padding-left: 0;
+  }
+
+  /* Side note (concept tags) */
+  .side-note {
+    display: inline-block;
+    font-family: -apple-system, "Helvetica Neue", sans-serif;
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-left: 0.5em;
+    border-left: 2px solid var(--gold);
+    padding-left: 0.6em;
+  }
+
+  /* Hint to start */
+  .hint {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: -apple-system, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    animation: fade 2.5s ease-in-out infinite;
+  }
+  @keyframes fade { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+  /* Video media library grid */
+  .videos-slide .video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vh 2vw;
+    margin-top: 3vh;
+    max-width: 86vw;
+  }
+
+  .video-card {
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid rgba(26,35,50,0.15);
+    background: var(--ink);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    box-shadow: 0 2px 8px rgba(26,35,50,0.08);
+  }
+
+  .video-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .video-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(26,35,50,0.22);
+  }
+
+  @media (max-width: 900px) {
+    .videos-slide .video-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media print { .footer-bar, .topbar, .hint { display: none; } .slide { display: flex !important; page-break-after: always; } }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="left"><a href="../../index.html" style="color: inherit; text-decoration: none; position: relative; z-index: 10;" onclick="event.stopPropagation()">← Globalización y Empleo · 2026-2</a></div>
+    <div class="right">28 · 04 · 2026</div>
+  </div>
+
+  <!-- Tower silhouette SVG (decoration) -->
+  <svg class="towers" viewBox="0 0 1400 60" preserveAspectRatio="none">
+    <g fill="#2d4356">
+      <rect x="50" y="20" width="40" height="40"/>
+      <rect x="100" y="10" width="55" height="50"/>
+      <rect x="170" y="25" width="35" height="35"/>
+      <rect x="220" y="5" width="60" height="55"/>
+      <rect x="295" y="18" width="42" height="42"/>
+      <rect x="350" y="0" width="70" height="60"/>
+      <rect x="435" y="15" width="38" height="45"/>
+      <rect x="488" y="22" width="48" height="38"/>
+      <rect x="555" y="8" width="55" height="52"/>
+      <rect x="625" y="20" width="40" height="40"/>
+      <rect x="680" y="2" width="65" height="58"/>
+      <rect x="760" y="18" width="42" height="42"/>
+      <rect x="815" y="12" width="50" height="48"/>
+      <rect x="880" y="25" width="36" height="35"/>
+      <rect x="930" y="6" width="58" height="54"/>
+      <rect x="1003" y="20" width="42" height="40"/>
+      <rect x="1060" y="14" width="48" height="46"/>
+      <rect x="1123" y="0" width="68" height="60"/>
+      <rect x="1206" y="22" width="40" height="38"/>
+      <rect x="1260" y="10" width="52" height="50"/>
+      <rect x="1325" y="24" width="38" height="36"/>
+    </g>
+  </svg>
+
+  <!-- ============ SLIDE 1 — TITLE ============ -->
+  <section class="slide title-slide active" data-slide="1">
+    <span class="tag">Lectura · Sesión de discusión</span>
+    <h1>Low Wage <em>in</em><br>High Tech</h1>
+    <p class="subtitle">Trabajadores de servicios invisibilizados en el sector tecnológico multinacional indio — una etnografía sobre la informalidad oculta dentro de la modernidad corporativa.</p>
+    <div class="meta">
+      <strong>Mirchandani, Mukherjee & Tambe (2020)</strong> — Introducción<br>
+      Curso: <strong>Globalización y Empleo 2026-2</strong><br>
+      Sesión del <strong>28 de abril de 2026</strong>
+    </div>
+    <div class="hint">↓ usa las flechas para avanzar</div>
+  </section>
+
+  <!-- ============ SLIDE 2 — Las dos Indias y los del medio ============ -->
+  <section class="slide" data-slide="2">
+    <h2><span class="num">01 · Punto de partida</span>Las "dos Indias" — y quienes están en medio</h2>
+
+    <p>Pune, ciudad sede del trabajo de campo, encarna la metáfora de las "dos Indias": la pobreza extrema convive con la riqueza de las ciudades globales más afluentes. Pero el libro <em>no</em> trata sobre ninguna de las dos.</p>
+
+    <div class="quote">
+      This book, however, is on neither of these two Indias; rather, it is about those who are situated in between.
+      <span class="src">— Mirchandani et al., 2020, Introducción</span>
+    </div>
+
+    <h3>¿Quiénes son?</h3>
+    <ul>
+      <li>Choferes, personal de limpieza ("housekeepers") y guardias de seguridad que prestan servicios a empresas tecnológicas multinacionales.</li>
+      <li><strong>No</strong> son parte del 30% bajo la línea de pobreza, <strong>ni</strong> de la nueva clase media móvil de servicios cualificados.</li>
+      <li>No son trabajadores de servicios "modernos" (TI, banca, finanzas) ni del todo "tradicionales" — aunque la ley los clasifique como no cualificados con salario mínimo bajo.</li>
+    </ul>
+  </section>
+
+  <!-- ============ SLIDE 3 — Trabajadores invisibles ============ -->
+  <section class="slide" data-slide="3">
+    <h2><span class="num">02 · La premisa</span>Los trabajadores que nadie ve</h2>
+
+    <p>Las torres de cristal y acero simbolizan modernidad y prosperidad. Las empresas que las habitan, y sus empleados de clase media, han recibido enorme atención. Pero…</p>
+
+    <div class="pullquote">
+      Yet very little is known about the less visible workers who labor within these spaces.
+    </div>
+
+    <p>Pocos notan que las áreas alrededor de las corporaciones high-tech albergan a los <em>contratistas</em> cuyos empleados proveen limpieza, transporte y seguridad — la infraestructura humana sin la cual el flujo virtual del capitalismo global no funcionaría.</p>
+
+    <div class="quote">
+      Virtual flows characterize so much of contemporary global capitalism that it is sometimes easy to forget that multinational firms also require local infrastructures in cities around the world.
+      <span class="src">— Introducción, p. 1</span>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 4 — La ficción de la "familia" + la documentación ============ -->
+  <section class="slide" data-slide="4">
+    <h2><span class="num">03 · Caso etnográfico</span>Sada y Naresh: paternalismo y "compliance"</h2>
+
+    <div class="two-col">
+      <div class="col">
+        <h4>El contratista — Sada</h4>
+        <p>Dueño de empresa de limpieza. Describe su empresa como "una familia". Da préstamos, come con sus empleados, inspecciona su pelo, uniformes, uñas. Retórica civilizatoria sobre la "profesionalización" del sector.</p>
+      </div>
+      <div class="col-divider"></div>
+      <div class="col">
+        <h4>El facilities manager — Naresh</h4>
+        <p>Cliente de Sada. Le gusta tratar con contratistas que entreguen <em>documentación</em> que confirme que no contratan "slave labor". El énfasis está en el papel — no en las condiciones reales.</p>
+      </div>
+    </div>
+
+    <h3>Lo que las trabajadoras realmente reportaban:</h3>
+    <ul>
+      <li>Salarios <strong>por debajo del salario mínimo legal</strong> (que ya se considera muy inferior al costo básico de vida).</li>
+      <li>Sin contratos escritos, despido sin causa, sin prestaciones ni pensión.</li>
+      <li>Pago en efectivo. <strong>Ninguna</strong> de las cuatro entrevistadas tenía cuenta bancaria.</li>
+      <li>Raj trabajaba bajo el nombre de su primo porque no podía aportar identificación.</li>
+    </ul>
+  </section>
+
+  <!-- ============ SLIDE 5 — Informalidad oculta ============ -->
+  <section class="slide" data-slide="5">
+    <h2><span class="num">04 · Tesis central</span>Informalidad oculta en el sector formal</h2>
+
+    <p>La informalidad laboral suele asociarse con trabajo temporal, callejero, de corto plazo. Aquí no:</p>
+
+    <div class="quote">
+      Despite working in the formal sector and being required to wear uniforms, carry identity cards, and display an organizationally sanctioned form of "professionalism," workers were hired through contractors, and many did not have written contracts, could be fired without cause, and did not receive legislatively established minimum levels of pay and benefits, let alone salaries that constituted a living wage.
+      <span class="src">— Prefacio, p. xi</span>
+    </div>
+
+    <p>La informalidad <em>se esconde</em> dentro de la formalidad. La paradoja: cuanto más lujosa y "moderna" es la empresa, más sofisticado el aparato documental que certifica el cumplimiento — y menos relación tiene ese aparato con la condición real de los trabajadores.</p>
+  </section>
+
+  <!-- ============ SLIDE 6 — La contradicción del cumplimiento ============ -->
+  <section class="slide" data-slide="6">
+    <span class="tag">Contradicción central</span>
+    <h2><span class="num">05 · Trickle-down y mínimos</span>Maximizar el ahorro <em>y</em> aparentar cumplimiento</h2>
+
+    <div class="quote">
+      Global firms set up companies in India with the explicit and widely stated goal of lowering their labor costs, yet, for reputational reasons, especially in light of the negative publicity associated with global sweatshops, they are simultaneously keen to be seen as being in compliance with labor standards.
+      <span class="src">— Introducción</span>
+    </div>
+
+    <h3>El truco discursivo:</h3>
+    <ul>
+      <li>Las empresas multinacionales adoptan el <strong>salario mínimo estatal</strong> como su benchmark — aunque saben que está muy por debajo de un <em>living wage</em> (Jhabvala muestra que se necesitan ~4× el mínimo para cubrir consumo básico).</li>
+      <li>El Estado tampoco eleva el mínimo: la marca "Make in India" depende justamente de costos laborales bajos.</li>
+      <li>Resultado: las firmas no pueden garantizar que los contratistas paguen más que "slave labor" — pero <em>sí</em> pueden garantizar que se produzca documentación que lo certifique.</li>
+    </ul>
+  </section>
+
+  <!-- ============ SLIDE 7 — Outsourcing & noncore ============ -->
+  <section class="slide" data-slide="7">
+    <h2><span class="num">06 · Mecanismo</span>"Noncore" — el atajo legal</h2>
+
+    <p>El régimen de outsourcing surgió en EE. UU. en los 60s. Weil (2014) llama a esto <em>fissured workplace</em>: las firmas se centran en sus "core competencies" y subcontratan todo lo demás.</p>
+
+    <div class="pullquote">
+      Apple Computers employed 63,000 workers directly but had 750,000 people working on its products.
+    </div>
+
+    <p>En India, la <strong>Contract Labour Act</strong> permite contratar mano de obra tercerizada solo para trabajo "periférico" o estacional. Las firmas tecnológicas resuelven el problema con un movimiento <em>discursivo</em>:</p>
+
+    <div class="quote">
+      Despite the fact that multinational technology firms distinguish themselves on the basis of their clean, air-conditioned, secure, "modern" facilities, the service labor required to maintain these organizations are described as "noncore."
+      <span class="src">— Introducción</span>
+    </div>
+
+    <p>Limpieza, transporte y seguridad son <em>esenciales</em> para producir el aura "moderna" del sector — pero se nombran como <em>no esenciales</em> para poder contratarlos como fuerza laboral desechable.</p>
+  </section>
+
+  <!-- ============ SLIDE 8 — Body personality ============ -->
+  <section class="slide" data-slide="8">
+    <h2><span class="num">07 · Concepto etnográfico clave</span>"Body personality"</h2>
+
+    <p>Categoría acuñada por uno de los trabajadores entrevistados <span class="side-note">— concepto emergido del trabajo de campo, no impuesto teóricamente</span></p>
+
+    <div class="pullquote">
+      The transmission of a particular work ethic, professionalism, or "culture" through the way one's body looks and sounds.
+    </div>
+
+    <h3>La misión "civilizatoria":</h3>
+    <ul>
+      <li>Vikram, contratista de housekeeping, contrasta el "clima doméstico" indio con el "clima extranjero" de las TI: uniformes, zapatos, cortes de pelo, uñas limpias, sin barba, sin anillos.</li>
+      <li>Como los trabajadores vienen de zonas rurales y "vivían en chozas", deben ser <em>entrenados para producir climas extranjeros</em>.</li>
+      <li>Managers y contratistas usan repetidamente la palabra <strong>"grooming"</strong> — el mismo término usado en peluquería de mascotas — para describir el entrenamiento de los trabajadores.</li>
+    </ul>
+
+    <div class="quote">
+      Both groups celebrated the potential for moral development that foreign firms engender even if the economic prospects of service workers have not improved much as a result of the flow of global capital into India.
+      <span class="src">— Introducción</span>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 9 — Emprendimiento neoliberal ============ -->
+  <section class="slide" data-slide="9">
+    <h2><span class="num">08 · Subjetividad neoliberal</span>El emprendedor obligatorio</h2>
+
+    <div class="quote">
+      The very emergence and proliferation of the technology sector in India has been an exercise in neoliberal entrepreneurialism, according to which individual self-initiative is valorized and benefits are assumed to accrue to those who provide the best service at the lowest cost.
+      <span class="src">— Introducción</span>
+    </div>
+
+    <span class="tag">Contradicción</span>
+
+    <p>Los trabajadores deben encarnar simultáneamente el ideal del emprendedor neoliberal <em>y</em> ser la fuente de mano de obra barata que da a India su "ventaja competitiva". Las dos exigencias son lógicamente incompatibles.</p>
+
+    <div class="pullquote">
+      This glamorization of a place of desperation as a site of agency masks the impact of such rhetoric on those unable to convert their marginalization to strength.
+    </div>
+
+    <p style="font-size: 0.95em; color: var(--muted); font-style: italic;">— Roy (2011) lo llama <em>poverty pornography</em>: el slum como sitio glamoroso de "agencia empresarial".</p>
+  </section>
+
+  <!-- ============ SLIDE 10 — Superman ============ -->
+  <section class="slide" data-slide="10">
+    <h2><span class="num">09 · Testimonio</span>Lo que se le exige a un guardia de seguridad</h2>
+
+    <p style="margin-bottom: 2vh;">Shridhar — manager retirado de la fuerza aérea, ahora en una empresa de seguridad con 1,500 guardias — explicando las exigencias actuales del sector TI:</p>
+
+    <div class="quote" style="font-size: clamp(1.15rem, 1.6vw, 1.4rem);">
+      In IT companies now... the expectation from a security guard is more... They want a Superman. He should know everything: managing computers, CCTV, manage government officials also and foreigners also, everything he should know.
+      <span class="src">— Shridhar, en Mirchandani et al. (2020)</span>
+    </div>
+
+    <p>Y al mismo tiempo, sobre el "trickle-down" de la economía TI:</p>
+
+    <div class="quote">
+      Earlier people used to stay in a room where the room rent was around 500 or 700. The same security person is paying now 3,000 where his salary is 5,000 or 7,000. It is an adverse effect actually.
+      <span class="src">— Shridhar</span>
+    </div>
+
+    <p style="font-style: italic; color: var(--steel);">El crecimiento del sector eleva el costo de vida más rápido que los salarios de quienes lo sostienen.</p>
+  </section>
+
+  <!-- ============ SLIDE 11 — DISCUSSION ============ -->
+  <section class="slide questions" data-slide="11">
+    <h2><span class="num">Preguntas para discutir</span>Para abrir el debate en clase</h2>
+
+    <ol>
+      <li>Si la informalidad puede esconderse <em>dentro</em> de la formalidad — uniformes, gafetes, "profesionalismo" — ¿qué utilidad analítica conserva la dicotomía formal/informal? ¿Necesitamos otras categorías?</li>
+
+      <li>¿Cómo entender el rol de la <strong>documentación</strong> y el <em>compliance</em> en este sistema? ¿Es un mero ritual cínico, o produce efectos reales sobre las relaciones laborales?</li>
+
+      <li>El concepto de <em>"body personality"</em> describe la transmisión de una cultura corporativa a través del cuerpo. ¿Qué continuidades y rupturas tiene con las formas de disciplina laboral que estudiamos en otras lecturas (taylorismo, control panóptico, "trabajo emocional")?</li>
+
+      <li>La construcción discursiva de limpieza, transporte y seguridad como <em>"noncore"</em> tiene consecuencias legales concretas (Contract Labour Act). ¿Qué otros ejemplos contemporáneos conocen donde una clasificación discursiva habilita una precarización legal?</li>
+
+      <li>El libro plantea una contradicción nuclear: a los trabajadores se les exige encarnar el ideal del <strong>emprendedor neoliberal</strong> <em>y</em> servir como mano de obra barata que da ventaja competitiva al país. ¿Es esta tensión específica del Sur global, o también la encontramos en empleos precarios del Norte?</li>
+    </ol>
+  </section>
+
+  <!-- ============ SLIDE 12 — VIDEO MEDIA LIBRARY ============ -->
+  <section class="slide videos-slide" data-slide="12">
+    <h2><span class="num">Mediateca · Videos relacionados</span>Para complementar la lectura</h2>
+
+    <div class="video-grid">
+      <a class="video-card" href="https://youtu.be/XHteRHDI3dU" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/XHteRHDI3dU/hqdefault.jpg" alt="">
+      </a>
+      <a class="video-card" href="https://youtu.be/pEAi92VmBd4" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/pEAi92VmBd4/hqdefault.jpg" alt="">
+      </a>
+      <a class="video-card" href="https://youtu.be/rByg85mdHMI" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/rByg85mdHMI/hqdefault.jpg" alt="">
+      </a>
+      <a class="video-card" href="https://youtu.be/YHVNWtBuDVk" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/YHVNWtBuDVk/hqdefault.jpg" alt="">
+      </a>
+      <a class="video-card" href="https://youtu.be/P0HVE0abC2o" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/P0HVE0abC2o/hqdefault.jpg" alt="">
+      </a>
+      <a class="video-card" href="https://youtu.be/g9f2Yqm9AIo" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/g9f2Yqm9AIo/hqdefault.jpg" alt="">
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 13 — REFERENCE ============ -->
+  <section class="slide ref-slide" data-slide="13">
+    <h2><span class="num">Referencia bibliográfica</span>Para citar</h2>
+
+    <div class="ref-block">
+      <p class="label">APA 7 — Libro completo</p>
+      <p>Mirchandani, K., Mukherjee, S., &amp; Tambe, S. (2020). <em>Low wage in high tech: An ethnography of service workers in global India</em>. Oxford University Press.</p>
+
+      <p class="label" style="margin-top: 3vh;">APA 7 — Capítulo / Introducción</p>
+      <p>Mirchandani, K., Mukherjee, S., &amp; Tambe, S. (2020). New service workers in the global economy. En <em>Low wage in high tech: An ethnography of service workers in global India</em> (pp. 1–37). Oxford University Press.</p>
+    </div>
+
+    <p style="margin-top: 3vh; font-size: 0.95rem; color: var(--muted); font-style: italic; max-width: 60ch;">
+      Sesión del 28 de abril de 2026 · Globalización y Empleo 2026-2
+    </p>
+  </section>
+
+  <!-- BOTTOM BAR -->
+  <div class="footer-bar">
+    <button class="nav-btn" id="prev">← Anterior</button>
+    <span class="counter"><span id="cur">1</span> / <span id="total">12</span></span>
+    <button class="nav-btn" id="next">Siguiente →</button>
+  </div>
+
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let idx = 0;
+
+  document.getElementById('total').textContent = total;
+
+  function show(n) {
+    if (n < 0) n = 0;
+    if (n >= total) n = total - 1;
+    slides.forEach(s => s.classList.remove('active'));
+    slides[n].classList.add('active');
+    document.getElementById('cur').textContent = n + 1;
+    idx = n;
+  }
+
+  document.getElementById('next').addEventListener('click', () => show(idx + 1));
+  document.getElementById('prev').addEventListener('click', () => show(idx - 1));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); show(idx + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(idx - 1); }
+    else if (e.key === 'Home') { show(0); }
+    else if (e.key === 'End') { show(total - 1); }
+  });
+
+  // Click on slide (right half = next, left half = prev) — handy for laser pointers
+  document.getElementById('deck').addEventListener('click', (e) => {
+    if (e.target.closest('.nav-btn') || e.target.closest('.footer-bar') || e.target.closest('.topbar') || e.target.closest('a')) return;
+    const x = e.clientX;
+    const w = window.innerWidth;
+    if (x > w * 0.6) show(idx + 1);
+    else if (x < w * 0.4) show(idx - 1);
+  });
+</script>
+
+</body>
+</html>
