@@ -647,7 +647,7 @@ body.board-archived .corkboard {
     margin-bottom: 0;
 }
 
-.announcement-body strong {
+.announcement-body > strong {
     display: block;
     font-size: 1rem;
     margin-bottom: .25rem;
