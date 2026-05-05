@@ -1,0 +1,1187 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sesión 5 may 2026 · Sistemas Laborales Comparados, Capítulo 3: Modelo Mediterráneo · Globalización y Empleo · FCA · UNAM" />
+  <title>SLC · Cap. 3 · Modelo Mediterráneo · 5 may 2026</title>
+  <style>
+    :root {
+      --ink: #1a2a2a;
+      --paper: #f4ede0;
+      --blush: #fdecd1;
+      --surface: #fff;
+      --text: #1a2a2a;
+      --muted: #4a4032;
+      --border: 3px solid var(--ink);
+      --border-thin: 2px solid var(--ink);
+      --radius: 6px;
+      --radius-sm: 4px;
+      --radius-pill: 999px;
+      --shadow: 6px 6px 0 var(--ink);
+      --shadow-sm: 4px 4px 0 var(--ink);
+      --font-body: 'American Typewriter', 'Georgia', serif;
+      --font-accent: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --teal: #008d8e;
+      --teal-dark: #006e70;
+      --gold: #f0b429;
+      --olive: #8a8a3c;
+      --it-green: #009246;
+      --it-red: #ce2b37;
+      --es-red: #aa151b;
+      --es-yellow: #f1bf00;
+      --pt-green: #006600;
+      --pt-red: #d52b1e;
+      --gr-blue: #0d5eaf;
+      --fr-blue: #0055a4;
+      --fr-red: #ef4135;
+      --troika-purple: #5a3d7a;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    body {
+      font-family: var(--font-body);
+      background: var(--paper);
+      color: var(--text);
+      font-size: clamp(1rem, 1.1vw + 0.5rem, 1.18rem);
+      line-height: 1.6;
+      padding: clamp(14px, 2.5vw, 28px);
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; }
+
+    /* Header */
+    .header {
+      background: var(--teal);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      margin-bottom: clamp(20px, 3vw, 34px);
+      overflow: hidden;
+    }
+    .header-blocks {
+      display: grid;
+      grid-template-columns: repeat(15, 1fr);
+      gap: 3px;
+      padding: 3px;
+    }
+    .header-blocks .blk { height: clamp(10px, 1.8vw, 18px); border-radius: 2px; }
+    .header-inner {
+      padding: clamp(20px, 3vw, 32px) clamp(18px, 3vw, 32px);
+      background: rgba(255,255,255,0.94);
+    }
+    .pill-row {
+      display: flex; justify-content: center; gap: 8px;
+      flex-wrap: wrap; margin-bottom: 12px;
+    }
+    .pill {
+      display: inline-flex; align-items: center;
+      font-family: var(--font-accent);
+      font-size: clamp(0.74rem, 1.1vw, 0.88rem);
+      font-weight: 800; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--teal); color: #fff;
+      border: var(--border-thin); border-radius: var(--radius-sm);
+      padding: 6px 14px;
+    }
+    .pill.ghost { background: #fff; color: var(--teal-dark); }
+    .header h1 {
+      font-size: clamp(1.9rem, 5vw, 3.2rem);
+      line-height: 1.05; margin-bottom: 10px;
+    }
+    .header .sub {
+      font-size: clamp(1.02rem, 1.6vw, 1.22rem);
+      color: var(--muted); max-width: 60ch;
+      margin: 0 auto; line-height: 1.45;
+    }
+    .back-link {
+      display: inline-block; margin-top: 14px;
+      font-family: var(--font-accent);
+      font-size: clamp(0.82rem, 0.9vw + 0.2rem, 0.94rem);
+      font-weight: 700; color: var(--teal-dark);
+      text-decoration: none;
+    }
+
+    /* TOC */
+    .toc {
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      background: #fff;
+      padding: clamp(16px, 2vw, 22px);
+      margin-bottom: clamp(22px, 3vw, 36px);
+    }
+    .toc h2 { font-size: clamp(1.25rem, 2vw, 1.55rem); margin-bottom: 8px; }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .toc a {
+      display: block;
+      font-family: var(--font-accent);
+      font-weight: 700;
+      font-size: 0.94rem;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 9px 12px;
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      background: var(--blush);
+      transition: transform .08s ease;
+    }
+    .toc a:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--ink); }
+
+    /* Sections */
+    section.major {
+      margin-bottom: clamp(34px, 5vw, 56px);
+      scroll-margin-top: 14px;
+    }
+    .section-header {
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(18px, 3vw, 28px);
+      margin-bottom: clamp(18px, 2.5vw, 26px);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-header .flag-row {
+      display: flex; gap: 6px; margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .flag-chip {
+      font-family: var(--font-accent);
+      font-size: 0.72rem; font-weight: 900;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      background: #fff; color: var(--ink);
+      border: var(--border-thin); border-radius: var(--radius-pill);
+      padding: 4px 10px;
+    }
+    .section-header h2 {
+      font-size: clamp(1.7rem, 4.6vw, 2.6rem);
+      line-height: 1.05;
+      color: #fff;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.18);
+    }
+    .section-header p {
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      max-width: 60ch;
+      margin-top: 10px;
+      color: rgba(255,255,255,0.94);
+    }
+    .sh-intro     { background: linear-gradient(120deg, var(--teal-dark) 0%, var(--teal) 100%); }
+    .sh-base      { background: linear-gradient(120deg, #4a4032 0%, var(--olive) 100%); }
+    .sh-italia    { background: linear-gradient(120deg, var(--it-green) 0%, var(--it-red) 100%); }
+    .sh-espana    { background: linear-gradient(120deg, var(--es-red) 0%, var(--es-yellow) 100%); color: var(--ink); }
+    .sh-espana h2, .sh-espana p { color: #fff; text-shadow: 2px 2px 0 rgba(0,0,0,0.25); }
+    .sh-portugal  { background: linear-gradient(120deg, var(--pt-green) 0%, var(--pt-red) 100%); }
+    .sh-grecia    { background: linear-gradient(120deg, #073f7a 0%, var(--gr-blue) 100%); }
+    .sh-francia   { background: linear-gradient(120deg, var(--fr-blue) 0%, var(--fr-red) 100%); }
+    .sh-troika    { background: linear-gradient(120deg, #2a1a3a 0%, var(--troika-purple) 100%); }
+    .sh-media     { background: linear-gradient(120deg, var(--teal-dark) 0%, var(--gold) 100%); }
+
+    /* Block */
+    .block {
+      background: #fff;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(16px, 2.4vw, 24px);
+      margin-bottom: clamp(16px, 2vw, 22px);
+      scroll-margin-top: 14px;
+    }
+    .block h3 {
+      font-size: clamp(1.3rem, 2vw, 1.65rem);
+      line-height: 1.15;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .block h4 {
+      font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+      margin: 14px 0 6px;
+    }
+    .block p + p { margin-top: 8px; }
+    .block ul, .block ol { padding-left: 22px; margin: 8px 0; }
+    .block li + li { margin-top: 5px; }
+    .tag {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-size: 0.7rem; font-weight: 900;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--ink); color: #fff;
+      border-radius: var(--radius-sm);
+      padding: 3px 9px; margin-bottom: 8px;
+    }
+    .tag.it { background: var(--it-red); }
+    .tag.es { background: var(--es-red); }
+    .tag.pt { background: var(--pt-green); }
+    .tag.gr { background: var(--gr-blue); }
+    .tag.fr { background: var(--fr-blue); }
+    .tag.tk { background: var(--troika-purple); }
+    .pageref {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      background: var(--ink);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      margin-left: 4px;
+      vertical-align: 2px;
+    }
+
+    /* Video link inside a block (referencia rápida a la mediateca) */
+    .vlinks {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .vlink {
+      display: flex; gap: 10px; align-items: center;
+      background: var(--blush);
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      font-family: var(--font-accent);
+      font-size: 0.92rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .vlink:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--ink); }
+    .vlink .play {
+      flex: none;
+      width: 30px; height: 30px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 0.8rem;
+      font-weight: 900;
+    }
+    .vlink .vmeta-mini {
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-left: auto;
+      flex: none;
+    }
+
+    /* Quote */
+    blockquote.cita {
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+      line-height: 1.5;
+      padding: 12px 18px 12px 22px;
+      border-left: 6px solid var(--teal);
+      background: var(--blush);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 10px 0;
+    }
+    blockquote.cita footer {
+      display: block;
+      margin-top: 8px;
+      font-family: var(--font-accent);
+      font-style: normal;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    /* Discuss */
+    .discuss {
+      border: var(--border);
+      border-left: 10px solid var(--gold);
+      border-radius: var(--radius);
+      background: #fffbf0;
+      padding: clamp(12px, 2vw, 18px);
+      margin: 14px 0;
+    }
+    .discuss h4 {
+      font-family: var(--font-accent);
+      font-size: clamp(0.78rem, 1.1vw, 0.92rem);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8a6400;
+      margin-bottom: 6px;
+    }
+
+    /* Key points */
+    .kp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+      gap: 12px;
+      margin: 10px 0;
+    }
+    .kp {
+      background: #fff;
+      border: var(--border-thin);
+      border-radius: var(--radius-sm);
+      box-shadow: 3px 3px 0 var(--ink);
+      padding: 12px 14px;
+      font-size: 0.96rem;
+      line-height: 1.45;
+    }
+    .kp .num {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-weight: 900;
+      background: var(--teal);
+      color: #fff;
+      width: 26px; height: 26px; line-height: 26px;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    /* Mediateca grid */
+    .mosaic {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+      gap: clamp(14px, 2vw, 20px);
+    }
+    .vcard {
+      background: #fff;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      scroll-margin-top: 14px;
+    }
+    .vcard .vframe {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-bottom: var(--border-thin);
+    }
+    .vcard .vframe iframe,
+    .vcard .vframe video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    .vbody { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .vtag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-accent);
+      font-size: 0.72rem; font-weight: 900;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border: var(--border-thin); border-radius: var(--radius-pill);
+      padding: 3px 9px;
+      width: fit-content;
+    }
+    .vtag.it { background: #d6f0dc; }
+    .vtag.es { background: #ffe5b3; }
+    .vtag.pt { background: #d5e8d6; }
+    .vtag.gr { background: #d6e3f4; }
+    .vtag.fr { background: #d8e1f1; }
+    .vcard h3 {
+      font-size: 1.06rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    .vcard h3 a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 2px dotted var(--muted);
+    }
+    .vcard h3 a:hover { color: var(--teal-dark); }
+    .vmeta {
+      font-family: var(--font-accent);
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex; flex-wrap: wrap; gap: 6px 10px;
+    }
+    .vmeta .dot { color: #bbb; }
+    .vlook { font-size: 0.95rem; line-height: 1.45; }
+    .vlook strong, .vq strong {
+      font-family: var(--font-accent);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal-dark);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .vq {
+      background: var(--blush);
+      border-left: 6px solid var(--teal);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+    .vapa {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.4;
+      font-family: 'Georgia', serif;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(0,0,0,0.18);
+      margin-top: 2px;
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: var(--font-accent);
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 16px 0 6px;
+      border-top: 1px solid rgba(0,0,0,0.12);
+      margin-top: clamp(24px, 3vw, 36px);
+    }
+    .footer a { color: var(--teal-dark); text-decoration: none; font-weight: 700; }
+
+    @media (max-width: 600px) {
+      body { font-size: 1.02rem; }
+      .section-header h2 { font-size: 1.6rem; }
+      .vcard h3 { font-size: 1rem; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .toc, .back-link { display: none; }
+      .block, .section-header { page-break-inside: avoid; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="header">
+      <div class="header-blocks" aria-hidden="true">
+        <div class="blk" style="background:#009246;grid-column:span 1"></div>
+        <div class="blk" style="background:#fff;grid-column:span 1"></div>
+        <div class="blk" style="background:#ce2b37;grid-column:span 1"></div>
+        <div class="blk" style="background:#aa151b;grid-column:span 1"></div>
+        <div class="blk" style="background:#f1bf00;grid-column:span 1"></div>
+        <div class="blk" style="background:#aa151b;grid-column:span 1"></div>
+        <div class="blk" style="background:#006600;grid-column:span 1"></div>
+        <div class="blk" style="background:#d52b1e;grid-column:span 1"></div>
+        <div class="blk" style="background:#0d5eaf;grid-column:span 1"></div>
+        <div class="blk" style="background:#fff;grid-column:span 1"></div>
+        <div class="blk" style="background:#0055a4;grid-column:span 1"></div>
+        <div class="blk" style="background:#fff;grid-column:span 1"></div>
+        <div class="blk" style="background:#ef4135;grid-column:span 1"></div>
+        <div class="blk" style="background:#008d8e;grid-column:span 1"></div>
+        <div class="blk" style="background:#f0b429;grid-column:span 1"></div>
+      </div>
+      <div class="header-inner">
+        <div class="pill-row">
+          <span class="pill">Globalización y Empleo</span>
+          <span class="pill ghost">Sesión · 5 may 2026</span>
+          <span class="pill ghost">SLC · Cap. 3</span>
+        </div>
+        <h1>Modelo Mediterráneo</h1>
+        <p class="sub">Francia · Italia · España · Portugal · Grecia. Una misma cuenca, cinco arquitecturas laborales que comparten heterogeneidad, fuerte presencia del Estado, sindicalismo politizado y la sombra reciente de la Troika.</p>
+        <a class="back-link" href="../../index.html">← Inicio</a>
+        &nbsp;·&nbsp;
+        <a class="back-link" href="../slc.html">Estructura del libro (SLC)</a>
+        &nbsp;·&nbsp;
+        <a class="back-link" href="#mediateca">🎬 Mediateca · 18 videos →</a>
+      </div>
+    </header>
+
+    <!-- ═══ TOC ═══ -->
+    <nav class="toc" aria-label="Contenido de la sesión">
+      <h2>Recorrido de las notas de lectura</h2>
+      <p style="font-size:0.96rem;color:var(--muted);">Cinco países, una mediateca al final. Cada bloque liga la lectura con uno o varios documentales que pueden proyectarse en clase.</p>
+      <div class="toc-grid">
+        <a href="#intro">Modelo Mediterráneo · ¿qué es?</a>
+        <a href="#base">3.1.3 · Características básicas</a>
+        <a href="#italia">🇮🇹 3.3.2 · Italia</a>
+        <a href="#espana">🇪🇸 3.3.3 · España</a>
+        <a href="#portugal">🇵🇹 3.3.4 · Portugal</a>
+        <a href="#grecia">🇬🇷 3.3.5 · Grecia</a>
+        <a href="#francia">🇫🇷 3.4.1 · Subsistema francés</a>
+        <a href="#troika">💶 3.4.2 · Países rescatados (Troika)</a>
+        <a href="#mediateca" style="background:#fce7c4;">🎬 Mediateca · 18 videos</a>
+      </div>
+    </nav>
+
+    <!-- ═══ INTRO ═══ -->
+    <section class="major" id="intro">
+      <div class="section-header sh-intro">
+        <div class="flag-row">
+          <span class="flag-chip">Cap. 3</span>
+          <span class="flag-chip">Brunet, Pizzi &amp; Moral (2016)</span>
+        </div>
+        <h2>¿Qué es el Modelo Mediterráneo (MM)?</h2>
+        <p>El conjunto de normas e instituciones que regula las relaciones laborales en el sur de Europa: <strong>Francia, Italia, España, Portugal y Grecia</strong>. Un mismo aire de familia, cinco trayectorias distintas.</p>
+      </div>
+
+      <article class="block">
+        <span class="tag">Cita ancla</span>
+        <h3>La definición del libro <span class="pageref">p. 1</span></h3>
+        <blockquote class="cita">
+          «Bajo el Modelo Mediterráneo (en adelante MM) se describe el conjunto de normas e instituciones características que regulan y definen las relaciones laborales de los países que ocupan el sur de Europa: Francia, Italia, España, Portugal y Grecia.»
+          <footer>Brunet, Pizzi &amp; Moral (2016)</footer>
+        </blockquote>
+        <p>El capítulo se mueve en dos planos: primero presenta los rasgos que comparten estos cinco países (3.1.3), luego baja a las particularidades nacionales (3.3) y termina con el corte que introdujo la Troika tras 2010 entre los países que necesitaron rescate y los que no (3.4).</p>
+      </article>
+    </section>
+
+    <!-- ═══ BASE ═══ -->
+    <section class="major" id="base">
+      <div class="section-header sh-base">
+        <div class="flag-row">
+          <span class="flag-chip">§ 3.1.3</span>
+          <span class="flag-chip">pp. 6–30</span>
+        </div>
+        <h2>Características básicas del modelo mediterráneo</h2>
+        <p>El aire de familia que comparten los cinco países y que el capítulo presenta «a modo introductorio».</p>
+      </div>
+
+      <article class="block">
+        <span class="tag">Rasgos compartidos</span>
+        <h3>Cinco rasgos para reconocer el MM</h3>
+        <div class="kp-grid">
+          <div class="kp"><span class="num">1</span><strong>Heterogeneidad interna.</strong> No hay un único modelo: hay aire de familia y trayectorias muy distintas (industrial, agraria, dictadura reciente, integración tardía).</div>
+          <div class="kp"><span class="num">2</span><strong>Estado central.</strong> Fuerte intervención estatal en la regulación de las relaciones laborales, con tradición legalista (códigos, contratos tipo, jurisprudencia laboral).</div>
+          <div class="kp"><span class="num">3</span><strong>Sindicalismo politizado.</strong> Sindicatos vinculados históricamente a partidos y a la izquierda, con baja afiliación pero alta cobertura de los convenios.</div>
+          <div class="kp"><span class="num">4</span><strong>Negociación colectiva extensiva.</strong> Los convenios se aplican <em>también</em> a no afiliados; eso explica afiliación baja con cobertura alta.</div>
+          <div class="kp"><span class="num">5</span><strong>Dualismo del mercado laboral.</strong> Núcleo protegido frente a periferia precaria (temporales, autónomos, informales, migrantes).</div>
+        </div>
+        <div class="discuss">
+          <h4>💬 Para abrir la sesión</h4>
+          <p>Si tuvieran que poner en una balanza los rasgos del MM frente a lo que vimos del modelo angloamericano (cap. 6), ¿qué mantendrían y qué desecharían?</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- ═══ ITALIA ═══ -->
+    <section class="major" id="italia">
+      <div class="section-header sh-italia">
+        <div class="flag-row">
+          <span class="flag-chip">🇮🇹 Italia</span>
+          <span class="flag-chip">§ 3.3.2</span>
+          <span class="flag-chip">p. 38</span>
+        </div>
+        <h2>Italia · ciudadanía, vaciamiento y deslocalización del asilo</h2>
+        <p>El caso italiano cruza dos fronteras: hacia adentro, ¿quién cuenta como italiano? hacia afuera, ¿se puede externalizar el derecho de asilo?</p>
+      </div>
+
+      <article class="block">
+        <span class="tag it">Italia · panorama</span>
+        <h3>Tres ventanas para entrar a Italia</h3>
+        <p>Las notas no detallan en este punto, pero los tres documentales abren ángulos complementarios: <strong>ciudadanía</strong> (quién entra al pacto laboral italiano), <strong>vaciamiento de Venecia</strong> (qué pasa cuando el turismo expulsa al residente que sostiene la economía local), y <strong>deslocalización del asilo</strong> (Italia–Albania como caso piloto europeo).</p>
+        <div class="vlinks">
+          <a class="vlink" href="#v01"><span class="play">▶</span><span><strong>La ciudadanía en Italia</strong> · 28 años sin pasaporte: el referéndum por reducir 10 → 5 años de residencia.</span><span class="vmeta-mini">5:36</span></a>
+          <a class="vlink" href="#v02"><span class="play">▶</span><span><strong>The Last Venetians</strong> · Venecia &lt;50.000 habitantes y 30 millones de turistas/año.</span><span class="vmeta-mini">30:09</span></a>
+          <a class="vlink" href="#v03"><span class="play">▶</span><span><strong>¿Deslocalizar el derecho de asilo?</strong> · Italia–Albania, Reino Unido–Ruanda y los tribunales que han bloqueado los acuerdos.</span><span class="vmeta-mini">9:23</span></a>
+        </div>
+        <div class="discuss">
+          <h4>💬 Discusión</h4>
+          <p>Si la ciudadanía se obtiene tras 10 años pero el trabajo precario empuja a salir y volver, ¿es realista pensar que ese tiempo «cuente»? ¿Cómo se conecta la deslocalización del asilo con el mercado laboral italiano?</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- ═══ ESPAÑA ═══ -->
+    <section class="major" id="espana">
+      <div class="section-header sh-espana">
+        <div class="flag-row">
+          <span class="flag-chip">🇪🇸 España</span>
+          <span class="flag-chip">§ 3.3.3</span>
+          <span class="flag-chip">pp. 43–48</span>
+        </div>
+        <h2>España · negociación colectiva y desafiliación</h2>
+        <p>«El sistema de negociación colectiva es fundamental para el modelo español de relaciones laborales» <em>(p. 43)</em>. Pero la afiliación no para de bajar.</p>
+      </div>
+
+      <article class="block">
+        <span class="tag es">España · cita</span>
+        <h3>Por qué la afiliación cae <span class="pageref">p. 45</span></h3>
+        <p>Las notas señalan cinco causas que el libro identifica para la caída de la afiliación sindical en España:</p>
+        <ol>
+          <li><strong>Triunfo ideológico del neoliberalismo</strong> y de la cultura individualista.</li>
+          <li><strong>Declive económico</strong> de los sectores donde tradicionalmente se concentraba la afiliación; las reconversiones industriales de finales de los 80 y comienzos de los 90 los golpean.</li>
+          <li><strong>Aumento de la ocupación «precaria»</strong>, sobre todo desde la reforma de 1994, sin estrategia sindical para alcanzar a los precarios.</li>
+          <li><strong>Extensión de los convenios</strong> a todos los trabajadores, afiliados o no: el «free rider» como estructura.</li>
+          <li><strong>Gran desocupación</strong>: las recesiones llevan el paro por encima del 20 %.</li>
+        </ol>
+        <div class="discuss">
+          <h4>💬 Pregunta</h4>
+          <p>Si el convenio cubre a quien no está afiliado, ¿qué incentivo queda para afiliarse? ¿Cómo se traduce eso en el poder real del sindicato frente al empresariado?</p>
+        </div>
+      </article>
+
+      <article class="block">
+        <span class="tag es">España · ventanas audiovisuales</span>
+        <h3>Tres puertas de entrada</h3>
+        <p>Tres ángulos para mirar el caso español hoy: el <strong>burnout</strong> y la crisis del personal sanitario público, una <strong>regularización masiva</strong> de inmigrantes que rompe con la tendencia europea, y un caso de <strong>cooperativa de mujeres</strong> que produce cerveza y reorganiza la propiedad del trabajo.</p>
+        <div class="vlinks">
+          <a class="vlink" href="#v04"><span class="play">▶</span><span><strong>La crisis de la sanidad pública en España</strong> · 92 % de burnout en Madrid; el sistema, antaño reputado, agotado.</span><span class="vmeta-mini">32:17</span></a>
+          <a class="vlink" href="#v05"><span class="play">▶</span><span><strong>Regularización histórica de inmigrantes</strong> · 500.000 personas, 600.000 firmas, apoyo de patronal y sociedad civil.</span><span class="vmeta-mini">3:00</span></a>
+          <a class="vlink" href="#v06"><span class="play">▶</span><span><strong>Cerveza, mujeres, cooperativa</strong> · una cooperativa española de mujeres cerveceras como contrapunto al modelo de empleo precario.</span><span class="vmeta-mini">📁 Drive</span></a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ═══ PORTUGAL ═══ -->
+    <section class="major" id="portugal">
+      <div class="section-header sh-portugal">
+        <div class="flag-row">
+          <span class="flag-chip">🇵🇹 Portugal</span>
+          <span class="flag-chip">§ 3.3.4</span>
+          <span class="flag-chip">pp. 49–50</span>
+        </div>
+        <h2>Portugal · de la Revolución de los Claveles a la reforma de 2025</h2>
+        <p>Una transición democrática que reconfiguró la economía portuguesa y dejó huellas que llegan hasta el ciclo actual de gentrificación, huelga general y debate sobre el MERCOSUR.</p>
+      </div>
+
+      <article class="block">
+        <span class="tag pt">Portugal · CIP</span>
+        <h3>La CIP y la Revolución de los Claveles <span class="pageref">p. 49</span></h3>
+        <p>La <strong>Confederación de Industria Portuguesa (CIP)</strong> nace en julio de 1974, tres meses después del derrocamiento de la dictadura el <strong>25 de abril de 1974</strong>. Su fundación es defensiva: reaccionar al artículo 1 de la Constitución de 1976 que define a Portugal como <em>«República soberana, basada en la dignidad de la persona humana y en la voluntad popular y empeñada en la transformación en una sociedad sin clases»</em> y a la expropiación del sector financiero.</p>
+        <ul>
+          <li>Promociona la «libre iniciativa» y la actividad privada como bastión contra los proyectos de colectivización.</li>
+          <li>Se presenta como expresión democrática del empresariado, <em>aunque sus estatutos fueron redactados por funcionarios del régimen derrocado</em>.</li>
+        </ul>
+      </article>
+
+      <article class="block">
+        <span class="tag pt">Portugal · ventanas audiovisuales</span>
+        <h3>Tres ángulos contemporáneos</h3>
+        <p>El triángulo que activa los videos: cómo la <strong>gentrificación de Lisboa</strong> reconfigura el espacio del trabajo, la <strong>huelga general de 2025</strong> contra la reforma de la derecha, y la <strong>hipocresía de los pesticidas</strong> que se exportan desde Europa, regresan en alimentos brasileños y agrava el debate UE–MERCOSUR.</p>
+        <div class="vlinks">
+          <a class="vlink" href="#v07"><span class="play">▶</span><span><strong>Gentrificación en Lisboa</strong> · video propio (Drive) — Lisboa como vitrina del proceso.</span><span class="vmeta-mini">📁 Drive</span></a>
+          <a class="vlink" href="#v08"><span class="play">▶</span><span><strong>Huelga general en Portugal por la reforma laboral</strong> · 100+ artículos modificados, sindicatos vs. gobierno de derecha.</span><span class="vmeta-mini">3:07</span></a>
+          <a class="vlink" href="#v09"><span class="play">▶</span><span><strong>Pesticidas: la hipocresía europea</strong> · pesticidas exportados que regresan en frutas brasileñas y el acuerdo UE–MERCOSUR.</span><span class="vmeta-mini">1:21:49</span></a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ═══ GRECIA ═══ -->
+    <section class="major" id="grecia">
+      <div class="section-header sh-grecia">
+        <div class="flag-row">
+          <span class="flag-chip">🇬🇷 Grecia</span>
+          <span class="flag-chip">§ 3.3.5</span>
+          <span class="flag-chip">pp. 51–53</span>
+        </div>
+        <h2>Grecia · sindicatos, autónomos, SMI y la herida de la Troika</h2>
+        <p>La compleja realidad sindical griega: pocos asalariados, muchos autónomos, un SMI que <em>solía</em> negociarse a escala nacional y la cicatriz abierta por las exigencias de la Troika.</p>
+      </div>
+
+      <article class="block">
+        <span class="tag gr">Grecia · estructura</span>
+        <h3>Una clase trabajadora dispersa <span class="pageref">p. 52</span></h3>
+        <p>Las notas resumen el dilema sindical griego en dos planos:</p>
+        <ul>
+          <li><strong>Bajo porcentaje de asalariados</strong>: la representación clásica del trabajo se diluye.</li>
+          <li><strong>Alto porcentaje de autónomos</strong>, caracterizados por la recepción de ayudas para sus pequeñas explotaciones artesanales, agrícolas o de comercio.</li>
+        </ul>
+        <h4>SMI griego: lo que era y lo que es <span class="pageref">p. 53</span></h4>
+        <p>El <strong>Salario Mínimo Interprofesional</strong> en Grecia <em>solía</em> fijarse a escala nacional de común acuerdo entre sindicatos y empresarios. La Troika rompió ese mecanismo.</p>
+        <div class="discuss">
+          <h4>💬 Definir en clase</h4>
+          <p><strong>SMI</strong> · ¿qué es un Salario Mínimo Interprofesional, cómo se fija en México y por qué importa que se negocie nacionalmente o no?</p>
+        </div>
+      </article>
+
+      <article class="block">
+        <span class="tag gr">Grecia · ventanas audiovisuales</span>
+        <h3>Seis videos para entender el ciclo griego</h3>
+        <p>Tres documentales describen el <strong>presente del trabajo</strong> (la jornada de 13 horas, el trabajo estacional turístico) y tres son material clásico sobre la <strong>crisis del euro</strong> y el ministro <strong>Yanis Varoufakis</strong>, figura clave del enfrentamiento con la Troika en 2015.</p>
+        <div class="vlinks">
+          <a class="vlink" href="#v10"><span class="play">▶</span><span><strong>Greece: working more for less pay</strong> · la reforma que sube la jornada máxima a 13 h.</span><span class="vmeta-mini">2:55</span></a>
+          <a class="vlink" href="#v11"><span class="play">▶</span><span><strong>Trabajadores estacionales en Grecia</strong> · 1 de cada 5 trabaja en hostelería; sin empleo garantizado.</span><span class="vmeta-mini">5:33</span></a>
+          <a class="vlink" href="#v12"><span class="play">▶</span><span><strong>How the euro caused the Greek crisis</strong> · explicación corta (Vox/Yglesias) sobre la moneda única y el déficit.</span><span class="vmeta-mini">2:55</span></a>
+          <a class="vlink" href="#v13"><span class="play">▶</span><span><strong>Varoufakis: «Welcome to the eye of the storm»</strong> · reportaje especial Channel 4 sobre cómo se construyó el relato del «griego derrochador».</span><span class="vmeta-mini">9:36</span></a>
+          <a class="vlink" href="#v14"><span class="play">▶</span><span><strong>Varoufakis en Newsnight</strong> · «no es una cuestión de tomar o dejar» — el cara a cara con el Eurogrupo.</span><span class="vmeta-mini">14:35</span></a>
+          <a class="vlink" href="#v15"><span class="play">▶</span><span><strong>The Greek FM who had to go</strong> · la salida de Varoufakis tras el referéndum.</span><span class="vmeta-mini">3:14</span></a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ═══ FRANCIA ═══ -->
+    <section class="major" id="francia">
+      <div class="section-header sh-francia">
+        <div class="flag-row">
+          <span class="flag-chip">🇫🇷 Francia</span>
+          <span class="flag-chip">§ 3.4.1</span>
+          <span class="flag-chip">pp. 55–56</span>
+        </div>
+        <h2>El subsistema francés</h2>
+        <p>Dentro del MM, Francia se separa: protección laboral fuerte, sindicatos poderosos y una sucesión de reformas (Macron, retiros, chalecos amarillos) que no logran cerrar el ciclo de conflicto.</p>
+      </div>
+
+      <article class="block">
+        <span class="tag fr">Francia · Ley Macron y reformas</span>
+        <h3>Tres olas de reforma <span class="pageref">p. 55–56</span></h3>
+        <p>Las notas marcan tres movimientos clave del subsistema francés:</p>
+        <h4>1. Ley Macron <em>«Para el crecimiento, la actividad y la igualdad de las posibilidades económicas»</em></h4>
+        <p>Bien recibida por el empresariado y por ciertos sindicatos, frente a la oposición de numerosos diputados del PSF y los grandes sindicatos. Inaugura un ciclo de reformas que llega hasta hoy.</p>
+        <h4>2. Reforma de las pensiones y los chalecos amarillos</h4>
+        <p>La reforma más reciente aplazó la edad de retiro y se topó con un movimiento de protesta extra-sindical: los <strong>chalecos amarillos</strong>, una nueva geografía del descontento.</p>
+        <h4>3. Dos palancas estructurales del cambio <span class="pageref">p. 56</span></h4>
+        <ul>
+          <li><strong>Contratación temporal y precaria</strong>: el contrato de trabajo de duración determinada se reconoce como principal figura contractual y el contrato de aprendizaje, como vía de entrada de los jóvenes.</li>
+          <li><strong>Redistribución de la protección del empleo</strong>: reforma del despido individual por causas económicas y reducción de la flexibilidad de entrada.</li>
+        </ul>
+      </article>
+
+      <article class="block">
+        <span class="tag fr">Francia · ventanas audiovisuales</span>
+        <h3>Tres ángulos del subsistema</h3>
+        <p>Tres documentales que iluminan el contexto reciente: el <strong>contrato laboral francés</strong> que Macron quiso reformar, la <strong>cooperativa de Bergère de France</strong> donde los trabajadores compraron su propia empresa, y la <strong>crisis de vivienda en Bretaña</strong> que muestra una nueva paradoja: hay trabajo, pero no hay dónde vivir.</p>
+        <div class="vlinks">
+          <a class="vlink" href="#v16"><span class="play">▶</span><span><strong>Francia: el intocable contrato laboral</strong> · derechos amplios, sindicatos fuertes y por qué la reforma es difícil.</span><span class="vmeta-mini">4:25</span></a>
+          <a class="vlink" href="#v17"><span class="play">▶</span><span><strong>Cuando los trabajadores se convierten en jefes</strong> · Bergère de France adquirida en cooperativa para salvar empleos.</span><span class="vmeta-mini">30:33</span></a>
+          <a class="vlink" href="#v18"><span class="play">▶</span><span><strong>Bretaña: con trabajo, pero sin techo</strong> · paro al 5 % y vivienda inaccesible: la nueva paradoja del empleo.</span><span class="vmeta-mini">30:18</span></a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ═══ TROIKA ═══ -->
+    <section class="major" id="troika">
+      <div class="section-header sh-troika">
+        <div class="flag-row">
+          <span class="flag-chip">💶 Troika</span>
+          <span class="flag-chip">§ 3.4.2</span>
+          <span class="flag-chip">pp. 57–59</span>
+        </div>
+        <h2>Países rescatados · Portugal · Grecia · España</h2>
+        <p>El subgrupo del MM que necesitó rescate financiero por sus déficits fiscales, frente a los casos «conservadores» y «moderados» de Francia e Italia.</p>
+      </div>
+
+      <article class="block">
+        <span class="tag tk">Definir Troika</span>
+        <h3>¿Qué es la Troika?</h3>
+        <p>La <strong>Troika</strong> es el grupo de tres organismos que gestionó los rescates financieros tras 2010:</p>
+        <ul>
+          <li><strong>Fondo Monetario Internacional (FMI)</strong></li>
+          <li><strong>Banco Central Europeo (BCE)</strong></li>
+          <li><strong>Comisión Europea</strong></li>
+        </ul>
+        <p>A cambio de préstamos, los países rescatados tuvieron que aceptar paquetes de austeridad y reformas laborales que precarizaron el empleo y abarataron el coste laboral.</p>
+      </article>
+
+      <article class="block">
+        <span class="tag tk">Portugal y la Troika</span>
+        <h3>Portugal bajo intervención <span class="pageref">p. 57–58</span></h3>
+        <p>«Portugal pasó a estar bajo la intervención de la Troika, obligándola a realizar nuevas transformaciones en su mercado laboral, esta vez dirigidas hacia el excesivo legalismo de éstas, como consecuencia de su protección constitucional.» Bajo este marco se certificó <em>«el final de la transformación del modelo portugués y la adaptación de su mercado de trabajo a las exigencias del capitalismo internacional y de los poderes europeos»</em>.</p>
+        <h4>Cambios introducidos por la reforma <span class="pageref">p. 58</span></h4>
+        <ol>
+          <li><strong>Disminución de las indemnizaciones</strong> por despido.</li>
+          <li><strong>Despidos individuales más fáciles</strong> en casos de «inadaptación» o «extinción del puesto de trabajo».</li>
+          <li><strong>Hora extra reducida a la mitad</strong> y recorte del subsidio de desempleo.</li>
+          <li><strong>Tope de la prestación</strong>: 2 años y 2 meses (antes: 3 años y 1 mes).</li>
+          <li><strong>Vacaciones</strong>: anulación de los 3 días extra por asistencia, 25 → 22 jornadas, eliminación de 4 festivos.</li>
+        </ol>
+      </article>
+
+      <article class="block">
+        <span class="tag tk">Grecia y la Troika</span>
+        <h3>Grecia 2010: el rescate y sus condiciones <span class="pageref">p. 58–59</span></h3>
+        <p>En mayo de 2010 Grecia se vio obligada a solicitar el mecanismo de ayuda financiera de la Troika. Recibió <strong>110.000 millones de euros</strong> en préstamos bilaterales (muy lejos de Portugal). Las condiciones:</p>
+        <ul>
+          <li><strong>Pacto de Estabilidad</strong> y un gran paquete de medidas de austeridad recordadas por los recortes en política social.</li>
+          <li><strong>Reforma laboral 2010</strong> que abarató el coste laboral y precarizó el empleo.</li>
+          <li><strong>Respuesta social</strong>: numerosas manifestaciones, disturbios, más de cinco huelgas generales.</li>
+        </ul>
+        <h4>El absurdo administrativo <span class="pageref">p. 59</span></h4>
+        <blockquote class="cita">
+          «El excesivo celo que se introdujo en las medidas de austeridad que impuso la Troika desde el 2011, se pudo comprobar con la adopción de disposiciones tan disparatadas como la de desocupar a las cerca de 230 islas griegas que tuviesen menos de 150 habitantes al creer insostenible el coste de éstas, obviando su papel de verdadero motor turístico griego.»
+          <footer>Brunet, Pizzi &amp; Moral (2016), p. 59</footer>
+        </blockquote>
+        <div class="discuss">
+          <h4>💬 Pregunta</h4>
+          <p>Si austeridad significa <em>«vaciar 230 islas para ahorrar costes en un país cuyo principal motor económico es el turismo»</em>, ¿qué tipo de racionalidad es ésa? ¿Se parece a algo que hayamos visto en otros capítulos?</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- ═══════════════════════════ -->
+    <!-- ═══ MEDIATECA AL FINAL ═══ -->
+    <!-- ═══════════════════════════ -->
+    <section class="major" id="mediateca">
+      <div class="section-header sh-media">
+        <div class="flag-row">
+          <span class="flag-chip">🎬 Mediateca</span>
+          <span class="flag-chip">18 videos</span>
+          <span class="flag-chip">5 países + Troika</span>
+        </div>
+        <h2>Mediateca · todos los videos de la sesión</h2>
+        <p>Mosaico audiovisual que se puede proyectar en clase. Videos embebidos en modo <em>privacy-enhanced</em> (no-cookie). Cada tarjeta enlaza al canal y al bloque de la lectura.</p>
+      </div>
+
+      <div class="mosaic">
+
+        <!-- ITALIA -->
+        <article class="vcard" id="v01">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/rP5oqr68CnU?rel=0" title="La ciudadanía en Italia" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag it">01 · Italia · Ciudadanía</span>
+            <h3><a href="https://www.youtube.com/watch?v=rP5oqr68CnU" target="_blank" rel="noopener">La ciudadanía en Italia</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>3 dic 2025</span><span class="dot">·</span>
+              <span>5:36</span><span class="dot">·</span>
+              <span>Español</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>Insaf Dimassi llegó de Túnez con 9 meses; hoy tiene 28 años y aún no es italiana. Como ella, 900 000 estudiantes. El referéndum busca pasar de 10 a 5 años de residencia legal para no europeos.</div>
+            <div class="vq"><strong>Pregunta</strong>¿Quién entra al pacto laboral italiano? ¿Qué relación hay entre ciudadanía y derechos laborales en el MM?</div>
+            <p class="vapa">ARTE.tv Documentales. (2025, diciembre 3). <em>La ciudadanía en Italia</em> [Video]. YouTube. https://www.youtube.com/watch?v=rP5oqr68CnU</p>
+          </div>
+        </article>
+
+        <article class="vcard" id="v02">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/H40HDpokYkw?rel=0" title="The Last Venetians" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag it">02 · Italia · Vaciamiento</span>
+            <h3><a href="https://www.youtube.com/watch?v=H40HDpokYkw" target="_blank" rel="noopener">The Last Venetians</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentary</span><span class="dot">·</span>
+              <span>22 jun 2024</span><span class="dot">·</span>
+              <span>30:09</span><span class="dot">·</span>
+              <span>Italiano</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>Venecia ha caído por debajo de los 50 000 habitantes mientras recibe 30 millones de turistas/año. Pierde 3 vecinos por día; rentas que expulsan al residente que sostiene servicios y trabajo local.</div>
+            <div class="vq"><strong>Pregunta</strong>¿Qué tipo de empleo deja una ciudad convertida en parque temático? ¿A quién protege el modelo laboral italiano cuando el espacio mismo se mercantiliza?</div>
+            <p class="vapa">ARTE.tv Documentary. (2024, junio 22). <em>The Last Venetians</em> [Video]. YouTube. https://www.youtube.com/watch?v=H40HDpokYkw</p>
+          </div>
+        </article>
+
+        <article class="vcard" id="v03">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/mcyyQ1YTUoU?rel=0" title="¿Deslocalizar el derecho de asilo?" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag it">03 · Italia · Asilo</span>
+            <h3><a href="https://www.youtube.com/watch?v=mcyyQ1YTUoU" target="_blank" rel="noopener">¿Deslocalizar el derecho de asilo?</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>14 ene 2026</span><span class="dot">·</span>
+              <span>9:23</span><span class="dot">·</span>
+              <span>Español</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>Italia–Albania y Reino Unido–Ruanda firman acuerdos para externalizar el asilo. Tribunales nacionales y europeos los han bloqueado, pero la idea atrae a varios estados de la UE.</div>
+            <div class="vq"><strong>Pregunta</strong>¿Cómo se relaciona la deslocalización del asilo con la regulación del trabajo migrante en Italia y, por extensión, en el resto del MM?</div>
+            <p class="vapa">ARTE.tv Documentales. (2026, enero 14). <em>¿Deslocalizar el derecho de asilo?</em> [Video]. YouTube. https://www.youtube.com/watch?v=mcyyQ1YTUoU</p>
+          </div>
+        </article>
+
+        <!-- ESPAÑA -->
+        <article class="vcard" id="v04">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/XSbXCbxFjXw?rel=0" title="La crisis de la sanidad pública en España" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag es">04 · España · Sanidad</span>
+            <h3><a href="https://www.youtube.com/watch?v=XSbXCbxFjXw" target="_blank" rel="noopener">La crisis de la sanidad pública en España</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>1 dic 2023</span><span class="dot">·</span>
+              <span>32:17</span><span class="dot">·</span>
+              <span>Español</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>Personal sanitario español agotado: en Madrid el 92 % declara burnout. Exceso de trabajo, falta de recursos, agotamiento; un sistema antaño reputado en crisis tras la COVID-19.</div>
+            <div class="vq"><strong>Pregunta</strong>¿Cómo se conecta el burnout sanitario con la negociación colectiva fundamental del modelo español (p. 43) y la caída de la afiliación (p. 45)?</div>
+            <p class="vapa">ARTE.tv Documentales. (2023, diciembre 1). <em>La crisis de la sanidad pública en España</em> [Video]. YouTube. https://www.youtube.com/watch?v=XSbXCbxFjXw</p>
+          </div>
+        </article>
+
+        <article class="vcard" id="v05">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/F40l6K1PmeY?rel=0" title="España: regularización histórica de inmigrantes" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag es">05 · España · Migración</span>
+            <h3><a href="https://www.youtube.com/watch?v=F40l6K1PmeY" target="_blank" rel="noopener">España: regularización histórica de inmigrantes</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>20 feb 2026</span><span class="dot">·</span>
+              <span>3:00</span><span class="dot">·</span>
+              <span>Español</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>España regulariza a 500 000 inmigrantes sin papeles. La iniciativa nace de una propuesta legislativa popular con 600 000 firmas, apoyo de la patronal y de la sociedad civil. Una respuesta directa a la demanda del mercado laboral.</div>
+            <div class="vq"><strong>Pregunta</strong>¿Qué significa que la patronal apoye una regularización masiva? ¿Es una contradicción del modelo dual (núcleo/periferia) o su lógica llevada al extremo?</div>
+            <p class="vapa">ARTE.tv Documentales. (2026, febrero 20). <em>España: regularización histórica de inmigrantes</em> [Video]. YouTube. https://www.youtube.com/watch?v=F40l6K1PmeY</p>
+          </div>
+        </article>
+
+        <article class="vcard" id="v06">
+          <div class="vframe">
+            <iframe src="https://drive.google.com/file/d/1B0fyZUyGWhTNYFYcZiP_YqlYEWtItIyG/preview" title="Cerveza, mujeres, cooperativa (España)" allow="autoplay" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag es">06 · España · Cooperativa</span>
+            <h3><a href="https://drive.google.com/file/d/1B0fyZUyGWhTNYFYcZiP_YqlYEWtItIyG/view" target="_blank" rel="noopener">Cerveza, mujeres, cooperativa</a></h3>
+            <div class="vmeta">
+              <span>Material propio</span><span class="dot">·</span>
+              <span>Drive</span><span class="dot">·</span>
+              <span>Español</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>Una cooperativa española de cerveza formada por mujeres: propiedad colectiva del trabajo y respuesta concreta al modelo de empleo precario.</div>
+            <div class="vq"><strong>Pregunta</strong>¿Qué relación guarda este proyecto con la idea de «sociedad sin clases» de la Constitución portuguesa de 1976 y con el cooperativismo francés de Bergère? ¿Es contracultura económica o estructura compatible con el MM?</div>
+            <p class="vapa">Material aportado por el docente (s. f.). <em>Cerveza, mujeres, cooperativa</em> [Video]. Google Drive. https://drive.google.com/file/d/1B0fyZUyGWhTNYFYcZiP_YqlYEWtItIyG/view</p>
+          </div>
+        </article>
+
+        <!-- PORTUGAL -->
+        <article class="vcard" id="v07">
+          <div class="vframe">
+            <iframe src="https://drive.google.com/file/d/1ZOdpD2VkwSKiUUI8XclrHrTAaUgjIohR/preview" title="Gentrificación en Lisboa" allow="autoplay" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag pt">07 · Portugal · Gentrificación</span>
+            <h3><a href="https://drive.google.com/file/d/1ZOdpD2VkwSKiUUI8XclrHrTAaUgjIohR/view" target="_blank" rel="noopener">Gentrificación en Lisboa</a></h3>
+            <div class="vmeta">
+              <span>Material propio</span><span class="dot">·</span>
+              <span>Drive</span><span class="dot">·</span>
+              <span>Español/Portugués</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>Lisboa como vitrina del proceso de gentrificación: cómo el desplazamiento residencial reorganiza el espacio del trabajo y los servicios.</div>
+            <div class="vq"><strong>Pregunta</strong>¿Qué tienen en común Venecia y Lisboa cuando el turismo y los <em>nómadas digitales</em> rediseñan el mercado de vivienda? ¿Cómo afecta esto al sindicalismo y al empleo local?</div>
+            <p class="vapa">Material aportado por el docente (s. f.). <em>Gentrificación en Lisboa</em> [Video]. Google Drive. https://drive.google.com/file/d/1ZOdpD2VkwSKiUUI8XclrHrTAaUgjIohR/view</p>
+          </div>
+        </article>
+
+        <article class="vcard" id="v08">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/NrqV3-Djd_U?rel=0" title="Huelga general en Portugal por la reforma laboral" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag pt">08 · Portugal · Huelga</span>
+            <h3><a href="https://www.youtube.com/watch?v=NrqV3-Djd_U" target="_blank" rel="noopener">Huelga general en Portugal por la reforma laboral</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>31 dic 2025</span><span class="dot">·</span>
+              <span>3:07</span><span class="dot">·</span>
+              <span>Portugués (sub. español)</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>El gobierno de derecha quiere revisar 100+ artículos del código laboral: teletrabajo, despidos, formación. La patronal celebra «flexibilidad»; los sindicatos hablan de «retroceso histórico».</div>
+            <div class="vq"><strong>Pregunta</strong>¿Cómo se compara esta reforma con la que aplicó la Troika a partir de 2011 (p. 58)? ¿Es continuidad o ruptura?</div>
+            <p class="vapa">ARTE.tv Documentales. (2025, diciembre 31). <em>Huelga general en Portugal por la reforma laboral</em> [Video]. YouTube. https://www.youtube.com/watch?v=NrqV3-Djd_U</p>
+          </div>
+        </article>
+
+        <article class="vcard" id="v09">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/A9QZc9Skskc?rel=0" title="Pesticidas: la hipocresía europea" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag pt">09 · Portugal · UE–MERCOSUR</span>
+            <h3><a href="https://www.youtube.com/watch?v=A9QZc9Skskc" target="_blank" rel="noopener">Pesticidas: la hipocresía europea</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>20 ene 2026</span><span class="dot">·</span>
+              <span>1:21:49</span><span class="dot">·</span>
+              <span>Portugués (sub. español)</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>Documental largo: pesticidas exportados por empresas europeas regresan a Europa en naranjas, melones, soja y café brasileños. El acuerdo UE–MERCOSUR amenaza con agravar el círculo.</div>
+            <div class="vq"><strong>Pregunta</strong>El MERCOSUR aparece dos veces en el curso (cap. 7 y aquí). ¿Cómo cambia la lectura del MM cuando se cruza con la cadena agroalimentaria global y los acuerdos comerciales?</div>
+            <p class="vapa">ARTE.tv Documentales. (2026, enero 20). <em>Pesticidas: la hipocresía europea</em> [Video]. YouTube. https://www.youtube.com/watch?v=A9QZc9Skskc</p>
+          </div>
+        </article>
+
+        <!-- GRECIA -->
+        <article class="vcard" id="v10">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/j5GNfKL69VQ?rel=0" title="Greece: working more for less pay" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag gr">10 · Grecia · Jornada</span>
+            <h3><a href="https://www.youtube.com/watch?v=j5GNfKL69VQ" target="_blank" rel="noopener">Greece: working more for less pay</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentary</span><span class="dot">·</span>
+              <span>9 nov 2025</span><span class="dot">·</span>
+              <span>2:55</span><span class="dot">·</span>
+              <span>Griego (sub.)</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>Las leyes laborales griegas se erosionaron desde la crisis de 2010 y aceleraron tras 2019. La última reforma sube la jornada máxima a <strong>13 horas</strong>; sindicatos y oposición resisten.</div>
+            <div class="vq"><strong>Pregunta</strong>13 horas de jornada máxima en 2025: ¿qué queda del «aire de familia mediterráneo» en términos de protección laboral si se compara con Francia?</div>
+            <p class="vapa">ARTE.tv Documentary. (2025, noviembre 9). <em>Greece: Working more for less pay</em> [Video]. YouTube. https://www.youtube.com/watch?v=j5GNfKL69VQ</p>
+          </div>
+        </article>
+
+        <article class="vcard" id="v11">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/URLjXGWWIk4?rel=0" title="Trabajadores estacionales en Grecia" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag gr">11 · Grecia · Estacionalidad</span>
+            <h3><a href="https://www.youtube.com/watch?v=URLjXGWWIk4" target="_blank" rel="noopener">Trabajar bajo el sol: los trabajadores estacionales en Grecia</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>26 jun 2025</span><span class="dot">·</span>
+              <span>5:33</span><span class="dot">·</span>
+              <span>Español</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>40 millones de turistas/año hacen de Grecia el país de la UE con más empleo en hostelería: 1 de cada 5 trabajadores. Mucha gente joven, sin empleo garantizado ni seguridad económica.</div>
+            <div class="vq"><strong>Pregunta</strong>Si la economía depende del turismo y la mayor parte del empleo es estacional, ¿cómo puede haber un sindicato fuerte? ¿Esto explica el dato del libro sobre el bajo % de asalariados (p. 52)?</div>
+            <p class="vapa">ARTE.tv Documentales. (2025, junio 26). <em>Trabajar bajo el sol: los trabajadores estacionales en Grecia</em> [Video]. YouTube. https://www.youtube.com/watch?v=URLjXGWWIk4</p>
+          </div>
+        </article>
+
+        <article class="vcard" id="v12">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/ULQiCN0YNmw?rel=0" title="How the euro caused the Greek crisis" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag gr">12 · Grecia · Euro</span>
+            <h3><a href="https://www.youtube.com/watch?v=ULQiCN0YNmw" target="_blank" rel="noopener">How the euro caused the Greek crisis</a></h3>
+            <div class="vmeta">
+              <span>Vox</span><span class="dot">·</span>
+              <span>2 jul 2015</span><span class="dot">·</span>
+              <span>2:55</span><span class="dot">·</span>
+              <span>Inglés</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>Matt Yglesias explica en pizarra cómo la moneda única impidió a Grecia devaluar y volvió inevitable la crisis fiscal. Marco económico mínimo para entender el rescate.</div>
+            <div class="vq"><strong>Pregunta</strong>¿La crisis fue griega, europea o estructural del euro? ¿Qué dice esto sobre la posibilidad de tener un MM coherente sin política fiscal común?</div>
+            <p class="vapa">Vox. (2015, julio 2). <em>How the euro caused the Greek crisis</em> [Video]. YouTube. https://www.youtube.com/watch?v=ULQiCN0YNmw</p>
+          </div>
+        </article>
+
+        <article class="vcard" id="v13">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/KwY89ZuQWdc?rel=0" title="Yanis Varoufakis: Welcome to the eye of the storm" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag gr">13 · Grecia · Varoufakis I</span>
+            <h3><a href="https://www.youtube.com/watch?v=KwY89ZuQWdc" target="_blank" rel="noopener">Yanis Varoufakis: «Welcome to the eye of the storm»</a></h3>
+            <div class="vmeta">
+              <span>Channel 4 News</span><span class="dot">·</span>
+              <span>20 feb 2012</span><span class="dot">·</span>
+              <span>9:36</span><span class="dot">·</span>
+              <span>Inglés</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>Reportaje especial de Varoufakis (entonces asesor económico) cuestionando el relato del «griego derrochador» y mostrando cómo se construye una narrativa moralista sobre una crisis estructural.</div>
+            <div class="vq"><strong>Pregunta</strong>¿Qué papel juega el relato moral («son perezosos», «gastaron de más») en la legitimación del rescate y de los recortes laborales que vinieron después?</div>
+            <p class="vapa">Channel 4 News. (2012, febrero 20). <em>Yanis Varoufakis' special report on Greece: Welcome to the eye of the storm</em> [Video]. YouTube. https://www.youtube.com/watch?v=KwY89ZuQWdc</p>
+          </div>
+        </article>
+
+        <article class="vcard" id="v14">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/vVpWOk7vu18?rel=0" title="Greek Finance Minister: not a question of take it or leave it" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag gr">14 · Grecia · Varoufakis II</span>
+            <h3><a href="https://www.youtube.com/watch?v=vVpWOk7vu18" target="_blank" rel="noopener">Greek Finance Minister: «not a question of take it or leave it» — Newsnight</a></h3>
+            <div class="vmeta">
+              <span>BBC Politics</span><span class="dot">·</span>
+              <span>12 feb 2015</span><span class="dot">·</span>
+              <span>14:35</span><span class="dot">·</span>
+              <span>Inglés</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>El nuevo ministro de Finanzas griego pide una «discusión racional» con los acreedores. Reunión «fructífera» con Dijsselbloem en Atenas. Grecia se niega a seguir aplicando un «programa inaplicable» de austeridad.</div>
+            <div class="vq"><strong>Pregunta</strong>¿Cómo se compara la posición de Varoufakis con la lógica administrativa de la Troika (rescate de Portugal, p. 57; islas griegas, p. 59)?</div>
+            <p class="vapa">BBC Politics. (2015, febrero 12). <em>Greek Finance Minister: «not a question of take it or leave it» — Newsnight</em> [Video]. YouTube. https://www.youtube.com/watch?v=vVpWOk7vu18</p>
+          </div>
+        </article>
+
+        <article class="vcard" id="v15">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/uty_XCI6-lM?rel=0" title="Yanis Varoufakis, the Greek Finance Minister who had to go" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag gr">15 · Grecia · Varoufakis III</span>
+            <h3><a href="https://www.youtube.com/watch?v=uty_XCI6-lM" target="_blank" rel="noopener">Yanis Varoufakis, the Greek Finance Minister who had to go</a></h3>
+            <div class="vmeta">
+              <span>CGTN America</span><span class="dot">·</span>
+              <span>7 jul 2015</span><span class="dot">·</span>
+              <span>3:14</span><span class="dot">·</span>
+              <span>Inglés</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>Tras el referéndum del «OXI» (no), Varoufakis renuncia. Sorpresa de Atenas y de Bruselas. Reportaje desde Washington sobre el costo político de plantarle cara a la Troika.</div>
+            <div class="vq"><strong>Pregunta</strong>¿Es posible una política laboral mediterránea soberana dentro de la zona euro? ¿Qué muestra la salida de Varoufakis sobre los límites del MM?</div>
+            <p class="vapa">CGTN America. (2015, julio 7). <em>Yanis Varoufakis, the Greek Finance Minister who had to go</em> [Video]. YouTube. https://www.youtube.com/watch?v=uty_XCI6-lM</p>
+          </div>
+        </article>
+
+        <!-- FRANCIA -->
+        <article class="vcard" id="v16">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/a4S-s1w6scY?rel=0" title="Francia: el intocable contrato laboral" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag fr">16 · Francia · Contrato</span>
+            <h3><a href="https://www.youtube.com/watch?v=a4S-s1w6scY" target="_blank" rel="noopener">Francia: el intocable contrato laboral</a></h3>
+            <div class="vmeta">
+              <span>DW Español · Enfoque Europa</span><span class="dot">·</span>
+              <span>27 jul 2017</span><span class="dot">·</span>
+              <span>4:25</span><span class="dot">·</span>
+              <span>Español</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>Macron debe reformar un mercado laboral con derechos amplísimos y sindicatos muy potentes. La pieza muestra por qué la Ley Macron generó polarización y resistencia.</div>
+            <div class="vq"><strong>Pregunta</strong>¿Qué efecto tiene la Ley Macron sobre las dos palancas que el libro destaca (contratación temporal y redistribución del despido individual)?</div>
+            <p class="vapa">DW Español. (2017, julio 27). <em>Francia: El intocable contrato laboral · Enfoque Europa</em> [Video]. YouTube. https://www.youtube.com/watch?v=a4S-s1w6scY</p>
+          </div>
+        </article>
+
+        <article class="vcard" id="v17">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/sCGQfiveUAQ?rel=0" title="Cuando los trabajadores se convierten en jefes" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag fr">17 · Francia · Cooperativa</span>
+            <h3><a href="https://www.youtube.com/watch?v=sCGQfiveUAQ" target="_blank" rel="noopener">Cuando los trabajadores se convierten en jefes</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>29 oct 2025</span><span class="dot">·</span>
+              <span>30:33</span><span class="dot">·</span>
+              <span>Español</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>En Bar-le-Duc (Mosa, Francia), decenas de empleados de Bergère de France compran su empresa —una de las últimas hilaturas industriales del país— y la convierten en cooperativa para salvar sus puestos.</div>
+            <div class="vq"><strong>Pregunta</strong>¿La cooperativa es una salida estructural o un parche local? ¿Cómo dialoga con el caso de la cerveza-cooperativa española y con la idea de pos-neoliberal del cap. 7?</div>
+            <p class="vapa">ARTE.tv Documentales. (2025, octubre 29). <em>Cuando los trabajadores se convierten en jefes</em> [Video]. YouTube. https://www.youtube.com/watch?v=sCGQfiveUAQ</p>
+          </div>
+        </article>
+
+        <article class="vcard" id="v18">
+          <div class="vframe">
+            <iframe src="https://www.youtube-nocookie.com/embed/5ErJg2nv9QE?rel=0" title="Bretaña: con trabajo, pero sin techo" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="vbody">
+            <span class="vtag fr">18 · Francia · Vivienda</span>
+            <h3><a href="https://www.youtube.com/watch?v=5ErJg2nv9QE" target="_blank" rel="noopener">Bretaña: con trabajo, pero sin techo</a></h3>
+            <div class="vmeta">
+              <span>ARTE.tv Documentales</span><span class="dot">·</span>
+              <span>26 feb 2026</span><span class="dot">·</span>
+              <span>30:18</span><span class="dot">·</span>
+              <span>Francés (sub. español)</span>
+            </div>
+            <div class="vlook"><strong>Qué se ve</strong>Bretaña: paro al 5 %, empresas en expansión que no pueden contratar porque no hay vivienda. Mercado residencial saturado e inaccesible.</div>
+            <div class="vq"><strong>Pregunta</strong>¿«Hay trabajo, pero no hay dónde vivir» reformula la pregunta clásica del cap. 3 sobre el mercado laboral mediterráneo? ¿Qué hace falta para empezar a contestarla?</div>
+            <p class="vapa">ARTE.tv Documentales. (2026, febrero 26). <em>Bretaña: con trabajo, pero sin techo</em> [Video]. YouTube. https://www.youtube.com/watch?v=5ErJg2nv9QE</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+      <div>
+        <strong>Sesión 5 may 2026</strong> · Globalización y Empleo · Dr. Jorge Cardiel · FCA UNAM
+      </div>
+      <div>
+        <a href="../../index.html">← Inicio</a> · <a href="../slc.html">SLC</a> · <a href="#mediateca">Mediateca ↑</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
