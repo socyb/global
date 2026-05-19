@@ -1,0 +1,1391 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>World Café · Vista simple · 19 may 2026</title>
+<style>
+  :root {
+    --bg: #f6f1e7;
+    --ink: #1c1c1c;
+    --muted: #5a5a5a;
+    --accent: #b03a2e;
+    --host: #6b4226;
+    --host-soft: #efd9c4;
+    --visit: #245a8d;
+    --visit-soft: #cfe0ee;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Iowan Old Style", Palatino, Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  .icon-pixel {
+    display: inline-block;
+    vertical-align: middle;
+    shape-rendering: crispEdges;
+    flex-shrink: 0;
+  }
+  .icon-pixel.lg { width: 40px; height: 40px; }
+  .icon-pixel.md { width: 22px; height: 22px; }
+  .icon-pixel.sm { width: 16px; height: 16px; }
+
+  .back-bar {
+    padding: 12px 28px 0;
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: var(--ink);
+    color: var(--bg);
+    text-decoration: none;
+    font-size: 13px;
+    font-family: inherit;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 2px solid var(--ink);
+  }
+  .back-link:hover { background: var(--accent); border-color: var(--accent); }
+
+  header h1 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .rules ol li {
+    list-style: none;
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 6px;
+  }
+  .rules ol { counter-reset: rule; padding-left: 0; }
+  .rules ol li .rule-icon {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: var(--accent);
+  }
+  .ronda-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 2px;
+  }
+  .ronda-header h2 .icon-pixel { color: white; }
+  header {
+    padding: 20px 28px 12px;
+    border-bottom: 2px solid var(--ink);
+    background: var(--bg);
+  }
+  header h1 {
+    margin: 0 0 4px;
+    font-size: 24px;
+  }
+  header .sub {
+    color: var(--muted);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .rules {
+    background: white;
+    border: 1.5px solid var(--ink);
+    padding: 10px 16px;
+    margin: 12px 28px 0;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+  .rules ol { margin: 4px 0 0; padding-left: 22px; }
+  .rules li { margin-bottom: 2px; }
+  .rules strong { color: var(--accent); }
+
+  nav.tabs {
+    display: flex;
+    gap: 0;
+    padding: 16px 28px 0;
+    background: var(--bg);
+    border-bottom: 2px solid var(--ink);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  nav.tabs button {
+    background: transparent;
+    border: 2px solid var(--ink);
+    border-bottom: none;
+    padding: 10px 22px;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--ink);
+    margin-right: 4px;
+    border-radius: 6px 6px 0 0;
+    transform: translateY(2px);
+  }
+  nav.tabs button.active {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  section.page {
+    display: none;
+    padding: 22px 28px 60px;
+  }
+  section.page.active { display: block; }
+
+  /* SETUP */
+  .setup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .team-setup {
+    background: white;
+    border: 1.5px solid var(--ink);
+    padding: 12px 14px;
+  }
+  .team-setup h3 {
+    margin: 0 0 4px;
+    font-size: 16px;
+  }
+  .team-setup .topic {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .counts {
+    font-size: 12px;
+    margin-bottom: 6px;
+    display: flex; flex-wrap: wrap; gap: 4px;
+  }
+  .count-pill {
+    background: #eee5d3;
+    border: 1px solid var(--ink);
+    padding: 1px 7px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+  }
+  .member-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 0;
+    font-size: 14px;
+    border-top: 1px dashed #ddd;
+    flex-wrap: wrap;
+  }
+  .member-row:first-of-type { border-top: none; }
+  .member-row .name {
+    flex: 1;
+    min-width: 140px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .row-tag {
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 1px 6px;
+    border: 1px solid var(--ink);
+  }
+  .row-tag.host { background: var(--host-soft); color: var(--host); border-color: var(--host); }
+  .row-tag.visit { background: var(--visit-soft); color: var(--visit); border-color: var(--visit); }
+  .row-tag.auto { background: #e7efe2; color: #3d6a3d; border-color: #3d6a3d; font-style: italic; }
+  .row-tag.none { background: transparent; color: var(--muted); border-color: #ccc; }
+  .member-row button {
+    border: 1px solid var(--ink);
+    background: white;
+    cursor: pointer;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-family: inherit;
+  }
+  .member-row button.role-host.on {
+    background: var(--host-soft);
+    border-color: var(--host);
+    color: var(--host);
+    font-weight: 700;
+  }
+  .member-row button.disabled,
+  .member-row button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+  .member-row button.role-visitA.on {
+    background: var(--visit-soft);
+    border-color: var(--visit);
+    color: var(--visit);
+    font-weight: 700;
+  }
+  .member-row button.role-visitB.on {
+    background: var(--visit-soft);
+    border-color: var(--visit);
+    color: var(--visit);
+    font-weight: 700;
+  }
+  .clear-btn {
+    margin-top: 18px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .custom-rounds-section {
+    margin-top: 32px;
+    padding: 16px 18px;
+    background: white;
+    border: 2px solid var(--ink);
+  }
+  .custom-rounds-section h3 {
+    margin: 0 0 4px;
+    font-size: 17px;
+  }
+  .add-round-btn {
+    background: var(--ink);
+    color: var(--bg);
+    border: 2px solid var(--ink);
+    padding: 8px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+    letter-spacing: 0.03em;
+  }
+  .add-round-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .custom-round-card {
+    margin-top: 12px;
+    padding: 12px 14px;
+    border: 1.5px dashed var(--ink);
+    background: var(--bg);
+  }
+  .custom-round-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .custom-round-num {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 13px;
+    color: var(--accent);
+  }
+  .custom-round-delete {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 3px 9px;
+    font-family: inherit;
+    font-size: 11.5px;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+  }
+  .custom-round-delete:hover { background: var(--accent); color: white; }
+  .custom-round-card label {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .custom-round-card input[type="text"],
+  .custom-round-card textarea {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    padding: 6px 8px;
+    font-family: inherit;
+    font-size: 14px;
+    border: 1.5px solid var(--ink);
+    background: white;
+    color: var(--ink);
+    box-sizing: border-box;
+    border-radius: 0;
+  }
+  .custom-round-card textarea {
+    min-height: 50px;
+    resize: vertical;
+  }
+  .probes-editor {
+    margin-top: 6px;
+  }
+  .probes-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .probe-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+  .probe-row input { flex: 1; }
+  .custom-probe-remove {
+    background: transparent;
+    border: 1px solid var(--muted);
+    color: var(--muted);
+    padding: 0 8px;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .custom-probe-remove:hover { background: var(--accent); border-color: var(--accent); color: white; }
+  .custom-probe-add {
+    background: white;
+    border: 1.5px solid var(--ink);
+    padding: 4px 10px;
+    font-family: inherit;
+    font-size: 12.5px;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+  .custom-probe-add:hover { background: var(--ink); color: white; }
+  .note.empty { color: var(--muted); font-style: italic; }
+  .note {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* RONDA */
+  .ronda-header {
+    background: var(--accent);
+    color: white;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+  }
+  .ronda-header h2 {
+    margin: 0 0 2px;
+    font-size: 22px;
+  }
+  .ronda-header .q {
+    font-style: italic;
+    font-size: 16px;
+    opacity: 0.96;
+  }
+  .timing {
+    font-size: 13px;
+    margin-top: 6px;
+    opacity: 0.9;
+  }
+  .probes {
+    margin-top: 12px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 8px 14px 6px;
+    border-radius: 4px;
+  }
+  .zoom-btn {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: white;
+    color: var(--accent);
+    border: 1.5px solid white;
+    padding: 6px 12px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    border-radius: 4px;
+  }
+  .zoom-btn:hover {
+    background: var(--ink);
+    color: white;
+    border-color: var(--ink);
+  }
+  .ronda-header { position: relative; }
+
+  .modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 4vh 4vw;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal-content {
+    background: var(--bg);
+    color: var(--ink);
+    max-width: 1100px;
+    width: 100%;
+    max-height: 92vh;
+    overflow: auto;
+    padding: 5vh 5vw;
+    border: 4px solid var(--accent);
+    position: relative;
+  }
+  .modal-content h2 {
+    margin: 0 0 0.4em;
+    font-size: clamp(28px, 4vw, 48px);
+    color: var(--accent);
+    line-height: 1.1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .modal-content h2 .icon-pixel { width: 48px; height: 48px; color: var(--accent); }
+  .modal-content .main-q {
+    font-size: clamp(22px, 2.8vw, 38px);
+    line-height: 1.25;
+    margin: 0 0 1em;
+    font-style: italic;
+    border-left: 6px solid var(--accent);
+    padding-left: 0.7em;
+  }
+  .modal-content .probes-h {
+    font-size: clamp(16px, 1.6vw, 22px);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 0.3em;
+  }
+  .modal-content ol {
+    padding-left: 1.2em;
+    margin: 0;
+  }
+  .modal-content li {
+    font-size: clamp(18px, 2vw, 28px);
+    line-height: 1.35;
+    margin-bottom: 0.5em;
+  }
+  .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .modal-timing {
+    margin-top: 1em;
+    font-size: clamp(14px, 1.3vw, 18px);
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .probes-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 4px;
+    opacity: 0.92;
+  }
+  .probes ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 14.5px;
+    line-height: 1.45;
+  }
+  .probes li {
+    margin-bottom: 2px;
+  }
+
+  .mesas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 12px;
+  }
+  .mesa {
+    background: white;
+    border: 1.5px solid var(--ink);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+  }
+  .mesa .num {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .mesa h4 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    line-height: 1.25;
+  }
+  .mesa .question {
+    font-size: 12.5px;
+    color: var(--muted);
+    border-left: 2px solid var(--accent);
+    padding-left: 8px;
+    margin: 0 0 10px;
+    line-height: 1.35;
+  }
+  .role-block {
+    border-top: 1px solid #ddd;
+    padding-top: 8px;
+    margin-top: auto;
+  }
+  .role-line {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+  .role-line .tag {
+    flex-shrink: 0;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 6px;
+    border: 1px solid var(--ink);
+    width: 78px;
+    text-align: center;
+  }
+  .role-line .tag.host {
+    background: var(--host-soft);
+    border-color: var(--host);
+    color: var(--host);
+  }
+  .role-line .tag.visit {
+    background: var(--visit-soft);
+    border-color: var(--visit);
+    color: var(--visit);
+  }
+  .role-line .who {
+    flex: 1;
+  }
+  .role-line .who .pending {
+    color: var(--muted);
+    font-style: italic;
+  }
+  .role-line .who .from {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 3px;
+  }
+  .who-name {
+    line-height: 1.3;
+    padding: 1px 0;
+  }
+  .who-name + .who-name {
+    border-top: 1px dotted #ddd;
+    padding-top: 3px;
+    margin-top: 3px;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 14px 16px 10px; }
+    .rules, nav.tabs, section.page { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="back-bar">
+  <a href="../../" class="back-link" title="Volver al sitio del curso">
+    <svg viewBox="0 0 16 16" class="icon-pixel sm" fill="currentColor" aria-hidden="true">
+      <rect x="5" y="7" width="8" height="2"/>
+      <rect x="3" y="6" width="2" height="1"/>
+      <rect x="3" y="9" width="2" height="1"/>
+      <rect x="2" y="5" width="1" height="1"/>
+      <rect x="2" y="10" width="1" height="1"/>
+      <rect x="1" y="6" width="1" height="4"/>
+    </svg>
+    Inicio del curso
+  </a>
+</div>
+
+<header>
+  <h1>
+    <svg viewBox="0 0 16 16" class="icon-pixel lg" fill="currentColor" aria-hidden="true">
+      <!-- vapor -->
+      <rect x="4" y="1" width="1" height="2"/>
+      <rect x="7" y="0" width="1" height="2"/>
+      <rect x="10" y="1" width="1" height="2"/>
+      <rect x="3" y="3" width="1" height="1"/>
+      <rect x="6" y="3" width="1" height="1"/>
+      <rect x="9" y="3" width="1" height="1"/>
+      <!-- borde superior taza -->
+      <rect x="1" y="5" width="11" height="1"/>
+      <!-- paredes -->
+      <rect x="1" y="6" width="1" height="6"/>
+      <rect x="11" y="6" width="1" height="6"/>
+      <!-- asa -->
+      <rect x="12" y="6" width="2" height="1"/>
+      <rect x="14" y="7" width="1" height="2"/>
+      <rect x="12" y="9" width="2" height="1"/>
+      <!-- fondo -->
+      <rect x="2" y="12" width="9" height="1"/>
+      <!-- plato -->
+      <rect x="0" y="14" width="14" height="1"/>
+    </svg>
+    World Café · Estado del Arte
+  </h1>
+  <div class="sub">Martes 19 de mayo de 2026 · 45 minutos</div>
+</header>
+
+<div class="rules">
+  <strong>Cómo funciona (3 reglas):</strong>
+  <ol>
+    <li>
+      <svg viewBox="0 0 16 16" class="icon-pixel sm rule-icon" fill="currentColor" aria-hidden="true">
+        <!-- dos cabecitas -->
+        <rect x="3" y="2" width="2" height="2"/>
+        <rect x="11" y="2" width="2" height="2"/>
+        <!-- hombros -->
+        <rect x="2" y="5" width="4" height="1"/>
+        <rect x="10" y="5" width="4" height="1"/>
+        <!-- torsos -->
+        <rect x="3" y="6" width="2" height="4"/>
+        <rect x="11" y="6" width="2" height="4"/>
+        <!-- mesa entre los dos -->
+        <rect x="6" y="9" width="4" height="1"/>
+        <rect x="7" y="10" width="2" height="3"/>
+      </svg>
+      Cada equipo marca a su(s) <strong>anfitrión(es)</strong>: <strong>2 personas</strong> en equipos grandes (4 o más integrantes) y <strong>1 persona</strong> en equipos pequeños. <strong>Todos los demás visitan</strong> automáticamente.
+    </li>
+    <li>
+      <svg viewBox="0 0 16 16" class="icon-pixel sm rule-icon" fill="currentColor" aria-hidden="true">
+        <!-- reloj redondo en píxeles -->
+        <rect x="6" y="1" width="4" height="1"/>
+        <rect x="4" y="2" width="2" height="1"/>
+        <rect x="10" y="2" width="2" height="1"/>
+        <rect x="3" y="3" width="1" height="1"/>
+        <rect x="12" y="3" width="1" height="1"/>
+        <rect x="2" y="4" width="1" height="2"/>
+        <rect x="13" y="4" width="1" height="2"/>
+        <rect x="1" y="6" width="1" height="4"/>
+        <rect x="14" y="6" width="1" height="4"/>
+        <rect x="2" y="10" width="1" height="2"/>
+        <rect x="13" y="10" width="1" height="2"/>
+        <rect x="3" y="12" width="1" height="1"/>
+        <rect x="12" y="12" width="1" height="1"/>
+        <rect x="4" y="13" width="2" height="1"/>
+        <rect x="10" y="13" width="2" height="1"/>
+        <rect x="6" y="14" width="4" height="1"/>
+        <!-- manecillas -->
+        <rect x="7" y="5" width="1" height="4"/>
+        <rect x="8" y="8" width="3" height="1"/>
+      </svg>
+      Tres rondas de <strong>10 minutos</strong>: 2 min explica el anfitrión · 5 min de conversación · 2 min los visitantes escriben recomendación · 1 min cambio de mesa.
+    </li>
+    <li>
+      <svg viewBox="0 0 16 16" class="icon-pixel sm rule-icon" fill="currentColor" aria-hidden="true">
+        <!-- libro abierto -->
+        <rect x="1" y="3" width="6" height="1"/>
+        <rect x="1" y="3" width="1" height="9"/>
+        <rect x="1" y="12" width="6" height="1"/>
+        <rect x="9" y="3" width="6" height="1"/>
+        <rect x="14" y="3" width="1" height="9"/>
+        <rect x="9" y="12" width="6" height="1"/>
+        <rect x="7" y="3" width="2" height="10"/>
+        <rect x="3" y="5" width="3" height="1"/>
+        <rect x="3" y="7" width="3" height="1"/>
+        <rect x="3" y="9" width="3" height="1"/>
+        <rect x="10" y="5" width="3" height="1"/>
+        <rect x="10" y="7" width="3" height="1"/>
+        <rect x="10" y="9" width="3" height="1"/>
+      </svg>
+      Cada ronda tiene <strong>una pregunta distinta</strong>. Al final, las embajadas vuelven a su equipo y se redacta la decisión.
+    </li>
+  </ol>
+</div>
+
+<nav class="tabs" id="tabs"></nav>
+
+<section class="page active" id="setup">
+  <div id="setupGrid" class="setup-grid"></div>
+
+  <div class="custom-rounds-section">
+    <h3>Rondas personalizadas</h3>
+    <p class="note">Agrega una <strong>cuarta o quinta ronda</strong> con preguntas a la medida. Las rutas de rotación se calculan automáticamente para que ninguna embajada visite la misma mesa dos veces.</p>
+    <div id="customRoundsList"></div>
+    <button class="add-round-btn" id="addRoundBtn">+ Agregar otra ronda</button>
+  </div>
+
+  <button class="clear-btn" id="clearAll">Borrar todas las asignaciones</button>
+  <p class="note">Las asignaciones y rondas personalizadas se guardan en este navegador automáticamente.</p>
+</section>
+
+<div id="roundsContainer"></div>
+
+<div class="modal-backdrop" id="modal">
+  <div class="modal-content" id="modalContent">
+    <button type="button" class="modal-close" id="modalClose">✕ Cerrar</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const TEAMS = [
+  {
+    id: 1, topic: "Economía del desarrollo y empleo internacional",
+    question: "¿Cómo impacta la economía del bienestar en la redistribución y las dinámicas de empleo a nivel internacional?",
+    members: ["Hernández Milán Ana Sofía", "López Cruz Daniela Sofía", "Rodríguez Vázquez Joshua Joshimar", "Michel Henestrosa García"],
+    needs: ["host", "visitA"]
+  },
+  {
+    id: 2, topic: "Home office como deslocalización del empleo",
+    question: "¿Cómo impacta el home office la segmentación del mercado laboral y el equilibrio vida-trabajo?",
+    members: ["Ameyali González", "Daniela Elguea", "Erick Grajeda", "Donaldo Rosales", "Benjamín Martínez Zúñiga", "Julián Paz"],
+    hasTwoEmbassies: true,
+    note: "Los no-anfitriones se dividen automáticamente: primera mitad a embajada A, segunda mitad a embajada B (suplente del Equipo 6)."
+  },
+  {
+    id: 3, topic: "Teletrabajo transnacional y nómadas digitales en la CDMX",
+    question: "¿Cómo alteran los nómadas digitales el empleo y la habitabilidad urbana en zonas centrales de la CDMX, 2020-2026?",
+    members: ["Danna Paola Benítez Montiel", "Zoey Atenco Vargas", "Irene Martínez Acosta", "Mariana Zurisadai Flores Azuar", "Sofía Gómez Monroy"],
+    hasTwoEmbassies: true,
+    note: "Los no-anfitriones se dividen automáticamente: primera mitad a embajada A, segunda mitad a embajada B (suplente del Equipo 10)."
+  },
+  {
+    id: 4, topic: "Plataformas Uber/DiDi: CDMX vs. España",
+    question: "¿Cómo ha fomentado la omisión de categoría laboral en la LFT la precarización en plataformas, frente al modelo español?",
+    members: ["Nazario Benítez Sofía Meztli", "Nápoles González Arturo Francisco", "González Colin Axel Sahid", "García Ibarra César Manuel"],
+    needs: ["host", "visitA"]
+  },
+  {
+    id: 5, topic: "Precariedad pos-COVID y ETR's en la CDMX",
+    question: "¿Cómo se relaciona la precariedad pos-COVID con apps ETR que usan al trabajador subcontratado o \"autónomo\"?",
+    members: ["Guzmán Vázquez David Abraham", "Hidalgo Galván Mateo", "Sánchez Márquez Regina"],
+    needs: ["host", "visitA"]
+  },
+  {
+    id: 6, topic: "IA, mantenimiento predictivo y empleo técnico vehicular: México–Israel",
+    question: "¿Cómo transforma la IA en mantenimiento predictivo el empleo técnico vehicular en México e Israel?",
+    members: ["Carlos Eibar Williams Rendón"],
+    needs: ["host"],
+    note: "Equipo individual: solo anfitrión, no rota."
+  },
+  {
+    id: 7, topic: "Deuda estudiantil (CAE) en Chile",
+    question: "¿Cómo opera el endeudamiento estudiantil (CAE) como disciplina social en los jóvenes profesionales chilenos?",
+    members: ["Acero Castro Héctor Eleazar", "Aviles Iturbide Víctor", "Clavero Lechuga Alexander", "Lemus Cruz Óscar Emiliano", "Montesinos Hernández Rodrigo Gaspar"],
+    needs: ["host", "visitA"]
+  },
+  {
+    id: 8, topic: "Ciudades de 15 minutos: Francia y México",
+    question: "¿Está México preparado para implementar el modelo de \"ciudad de 15 minutos\"?",
+    members: ["Chirinos Santamaría Ernesto Daniel", "Díaz Silva Karla Mariana", "Perrusquia Contreras Tania", "Rojas Aquino Gretel Camila", "Tejeda García Lizeth Estefanía"],
+    needs: ["host", "visitA"]
+  },
+  {
+    id: 9, topic: "Trabajo doméstico de mujeres migrantes en EE. UU.",
+    question: "¿Cómo condiciona la situación migratoria irregular el acceso a protección institucional de las trabajadoras domésticas en EE. UU.?",
+    members: ["Farfán Méndez Rodrigo", "Lara Correa Diego", "Mosso Hernández Max Cristóbal"],
+    needs: ["host", "visitA"]
+  },
+  {
+    id: 10, topic: "Derechos laborales de bailarines/artistas: México vs. Europa",
+    question: "Pregunta del segundo avance.",
+    members: ["Valeria Ruiz Méndez"],
+    needs: ["host"],
+    note: "Equipo individual: solo anfitriona, no rota."
+  }
+];
+
+// Posiciones de la tabla de rotaciones (1..10).
+// Cada posición es una embajada con su (equipo, rol). Las rotaciones son cíclicas:
+// embajada en posición p visita la mesa ((p + offset) mod 10) + 1.
+const POSITIONS = [
+  { teamId: 1, role: "visitA" },
+  { teamId: 2, role: "visitA" },
+  { teamId: 3, role: "visitA" },
+  { teamId: 4, role: "visitA" },
+  { teamId: 5, role: "visitA" },
+  { teamId: 2, role: "visitB" }, // suplente del Equipo 6
+  { teamId: 7, role: "visitA" },
+  { teamId: 8, role: "visitA" },
+  { teamId: 9, role: "visitA" },
+  { teamId: 3, role: "visitB" }  // suplente del Equipo 10
+];
+
+function buildVisitorAt(offset) {
+  // Devuelve { mesa: { teamId, role } } para todas las mesas (1..10).
+  const map = {};
+  for (let p = 1; p <= 10; p++) {
+    const mesa = ((p + offset) % 10) + 1;
+    map[mesa] = POSITIONS[p - 1];
+  }
+  return map;
+}
+
+// Offsets para rondas. Los primeros 3 son las rondas por defecto.
+// Offsets prohibidos: 0/3/6 ya usados; 2 (E3-B visitaría su propia mesa 3) y 5 y 9 (auto-visita para E2-B o todos los demás).
+// Disponibles para rondas extra: [1, 4, 7, 8].
+const DEFAULT_ROUND_OFFSETS = [0, 3, 6];
+const EXTRA_ROUND_OFFSETS = [1, 4, 7, 8];
+
+const DEFAULT_ROUNDS = [
+  {
+    offset: 0,
+    title: "Ronda 1 · ¿Qué debate hay?",
+    question: "¿Qué debate, tensión o desacuerdo aparece en este Estado del Arte?",
+    probes: [
+      "¿Tus autores se contradicen entre sí o más bien se complementan? ¿En qué punto exacto?",
+      "¿Hay alguna fuente que diga lo contrario de las otras? ¿Cómo decidiste integrarla?",
+      "Si tuvieras que nombrar al \"autor ganador\" de tu Estado del Arte, ¿quién sería y por qué?",
+      "¿Qué debate clásico de tu tema todavía NO aparece en lo que llevas?"
+    ]
+  },
+  {
+    offset: 3,
+    title: "Ronda 2 · ¿En qué se cruzan nuestros temas?",
+    question: "¿Qué de este Estado del Arte —concepto, fuente, enfoque— podríamos llevarnos a nuestro propio trabajo, aunque nuestros temas parezcan distintos?",
+    probes: [
+      "¿Creen que su tema tiene alguna conexión con el nuestro? ¿En qué parte se cruzan?",
+      "¿Qué concepto o categoría usan ustedes para analizar su tema que podría servirnos a nosotros también?",
+      "¿Qué tipo de fuentes les han sido más útiles en su Estado del Arte? ¿Cuáles nos recomendarían y por qué?",
+      "Si ustedes estuvieran investigando nuestro tema, ¿qué pregunta nueva formularían?"
+    ]
+  },
+  {
+    offset: 6,
+    title: "Ronda 3 · Un solo cambio antes de la versión final",
+    question: "Si pudiéramos sugerir UN solo cambio antes de la versión final, ¿cuál sería y por qué?",
+    probes: [
+      "¿Tu pregunta sigue siendo viable con las fuentes que tienes, o necesitas acotarla?",
+      "¿La perspectiva de análisis que declaraste realmente aparece en tu Estado del Arte?",
+      "¿Tu caso de estudio sigue siendo el mejor, o las fuentes apuntan a otro caso?",
+      "¿Qué estarías dispuesto a dejar fuera para ganar profundidad en lo que sí tienes?"
+    ]
+  }
+];
+
+function getRounds() {
+  const customs = (state.customRounds || []).slice(0, EXTRA_ROUND_OFFSETS.length).map((r, i) => ({
+    offset: EXTRA_ROUND_OFFSETS[i],
+    title: r.title && r.title.trim() ? r.title : `Ronda ${DEFAULT_ROUNDS.length + i + 1} · Sin título`,
+    question: r.question || "",
+    probes: Array.isArray(r.probes) ? r.probes.filter(p => p && p.trim()) : [],
+    isCustom: true,
+    customIndex: i
+  }));
+  return [...DEFAULT_ROUNDS, ...customs].map(r => ({
+    ...r,
+    visitorAt: buildVisitorAt(r.offset)
+  }));
+}
+
+const STORAGE_KEY = "worldcafe-19may26-roles-v3";
+let state = loadState();
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch { return {}; }
+}
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+// state shape: { "<teamId>": { "<memberName>": "host" } }
+// Cualquier integrante sin "host" es visitante automático.
+// Para equipos con dos embajadas (2 y 3), los no-anfitriones se dividen por orden: la primera mitad va a A, la segunda a B.
+
+// Marca como anfitriones a los integrantes únicos de equipos individuales (6 y 10) en su primera visita.
+TEAMS.forEach(t => {
+  if (t.members.length === 1) {
+    state[t.id] = state[t.id] || {};
+    if (state[t.id][t.members[0]] !== "host") {
+      state[t.id][t.members[0]] = "host";
+    }
+  }
+});
+saveState();
+
+function maxHosts(team) {
+  if (team.members.length === 1) return 1;
+  return team.members.length >= 4 ? 2 : 1;
+}
+
+function isHost(teamId, name) {
+  return state[teamId] && state[teamId][name] === "host";
+}
+
+function getHosts(teamId) {
+  const team = TEAMS.find(t => t.id === teamId);
+  return team ? team.members.filter(n => isHost(teamId, n)) : [];
+}
+
+function getNonHosts(teamId) {
+  const team = TEAMS.find(t => t.id === teamId);
+  return team ? team.members.filter(n => !isHost(teamId, n)) : [];
+}
+
+function getVisitors(teamId, role) {
+  const team = TEAMS.find(t => t.id === teamId);
+  if (!team) return [];
+  const nonHosts = getNonHosts(teamId);
+  if (!team.hasTwoEmbassies) {
+    return role === "visitA" ? nonHosts : [];
+  }
+  const halfA = Math.ceil(nonHosts.length / 2);
+  if (role === "visitA") return nonHosts.slice(0, halfA);
+  if (role === "visitB") return nonHosts.slice(halfA);
+  return [];
+}
+
+function embassyFor(teamId, name) {
+  // Devuelve "A", "B" o null para un integrante no-anfitrión de un equipo con dos embajadas.
+  const team = TEAMS.find(t => t.id === teamId);
+  if (!team || !team.hasTwoEmbassies) return null;
+  const nonHosts = getNonHosts(teamId);
+  const idx = nonHosts.indexOf(name);
+  if (idx === -1) return null;
+  const halfA = Math.ceil(nonHosts.length / 2);
+  return idx < halfA ? "A" : "B";
+}
+
+function toggleHost(teamId, name) {
+  state[teamId] = state[teamId] || {};
+  const team = TEAMS.find(t => t.id === teamId);
+  if (isHost(teamId, name)) {
+    delete state[teamId][name];
+  } else {
+    if (getHosts(teamId).length >= maxHosts(team)) return; // límite alcanzado
+    state[teamId][name] = "host";
+  }
+  saveState();
+  renderSetup();
+  renderRounds();
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function renderSetup() {
+  const grid = document.getElementById("setupGrid");
+  grid.innerHTML = "";
+  TEAMS.forEach(team => {
+    const card = document.createElement("div");
+    card.className = "team-setup";
+    const hosts = getHosts(team.id);
+    const nonHosts = getNonHosts(team.id);
+    const max = maxHosts(team);
+    const atMax = hosts.length >= max;
+
+    let countLine = `<span class="count-pill">${hosts.length}/${max} anfitrión${max === 1 ? "" : "es"}</span>`;
+    if (team.hasTwoEmbassies) {
+      const a = getVisitors(team.id, "visitA").length;
+      const b = getVisitors(team.id, "visitB").length;
+      countLine += ` <span class="count-pill">${a} en embajada A</span> <span class="count-pill">${b} en embajada B</span>`;
+    } else if (team.members.length > 1) {
+      countLine += ` <span class="count-pill">${nonHosts.length} visitan</span>`;
+    }
+
+    let html = `<h3>Equipo ${team.id}</h3>
+      <div class="topic">${escapeHtml(team.topic)}</div>
+      <div class="counts">${countLine}</div>`;
+    if (team.note) {
+      html += `<div class="note">${escapeHtml(team.note)}</div>`;
+    }
+
+    team.members.forEach(name => {
+      const host = isHost(team.id, name);
+      let tag;
+      if (host) {
+        tag = `<span class="row-tag host">Anfitrión</span>`;
+      } else if (team.hasTwoEmbassies) {
+        const emb = embassyFor(team.id, name);
+        tag = `<span class="row-tag auto">Visita ${emb} (auto)</span>`;
+      } else if (team.members.length === 1) {
+        tag = `<span class="row-tag none">sin asignar</span>`;
+      } else {
+        tag = `<span class="row-tag auto">Visita (auto)</span>`;
+      }
+      const disabled = !host && atMax;
+      html += `<div class="member-row">
+        <span class="name">${escapeHtml(name)} ${tag}</span>
+        <button type="button" class="role-host${host ? " on" : ""}${disabled ? " disabled" : ""}"
+          data-team="${team.id}" data-name="${escapeHtml(name)}" ${disabled ? "disabled" : ""}
+          title="${disabled ? "Quita primero a otro anfitrión" : ""}">${host ? "✓ Anfitrión" : "Anfitrión"}</button>
+      </div>`;
+    });
+    card.innerHTML = html;
+    grid.appendChild(card);
+  });
+}
+
+document.getElementById("setupGrid").addEventListener("click", (e) => {
+  const btn = e.target.closest("button[data-team]");
+  if (!btn || btn.disabled) return;
+  toggleHost(Number(btn.dataset.team), btn.dataset.name);
+});
+
+const ROUND_ICONS = [
+  // Ronda 1: balanza
+  `<svg viewBox="0 0 16 16" class="icon-pixel md" fill="currentColor" aria-hidden="true">
+    <rect x="7" y="1" width="2" height="14"/>
+    <rect x="1" y="3" width="14" height="1"/>
+    <rect x="1" y="4" width="1" height="3"/>
+    <rect x="14" y="4" width="1" height="3"/>
+    <rect x="0" y="7" width="4" height="1"/>
+    <rect x="13" y="7" width="4" height="1"/>
+  </svg>`,
+  // Ronda 2: burbujas conectadas
+  `<svg viewBox="0 0 16 16" class="icon-pixel md" fill="currentColor" aria-hidden="true">
+    <rect x="0" y="2" width="7" height="1"/>
+    <rect x="0" y="3" width="1" height="4"/>
+    <rect x="0" y="7" width="7" height="1"/>
+    <rect x="6" y="3" width="1" height="4"/>
+    <rect x="9" y="8" width="7" height="1"/>
+    <rect x="9" y="9" width="1" height="4"/>
+    <rect x="9" y="13" width="7" height="1"/>
+    <rect x="15" y="9" width="1" height="4"/>
+    <rect x="7" y="5" width="2" height="1"/>
+  </svg>`,
+  // Ronda 3: flecha arriba
+  `<svg viewBox="0 0 16 16" class="icon-pixel md" fill="currentColor" aria-hidden="true">
+    <rect x="7" y="1" width="2" height="14"/>
+    <rect x="6" y="2" width="1" height="1"/>
+    <rect x="9" y="2" width="1" height="1"/>
+    <rect x="5" y="3" width="1" height="1"/>
+    <rect x="10" y="3" width="1" height="1"/>
+    <rect x="4" y="4" width="1" height="1"/>
+    <rect x="11" y="4" width="1" height="1"/>
+    <rect x="3" y="5" width="1" height="1"/>
+    <rect x="12" y="5" width="1" height="1"/>
+  </svg>`,
+  // Ronda 4: estrella (rondas extras)
+  `<svg viewBox="0 0 16 16" class="icon-pixel md" fill="currentColor" aria-hidden="true">
+    <rect x="7" y="1" width="2" height="3"/>
+    <rect x="6" y="4" width="4" height="2"/>
+    <rect x="0" y="6" width="16" height="2"/>
+    <rect x="3" y="8" width="3" height="2"/>
+    <rect x="10" y="8" width="3" height="2"/>
+    <rect x="4" y="10" width="2" height="3"/>
+    <rect x="10" y="10" width="2" height="3"/>
+    <rect x="2" y="13" width="3" height="2"/>
+    <rect x="11" y="13" width="3" height="2"/>
+  </svg>`,
+  // Ronda 5: diamante
+  `<svg viewBox="0 0 16 16" class="icon-pixel md" fill="currentColor" aria-hidden="true">
+    <rect x="7" y="1" width="2" height="1"/>
+    <rect x="5" y="2" width="6" height="1"/>
+    <rect x="3" y="3" width="10" height="1"/>
+    <rect x="1" y="4" width="14" height="1"/>
+    <rect x="2" y="5" width="12" height="2"/>
+    <rect x="3" y="7" width="10" height="2"/>
+    <rect x="4" y="9" width="8" height="1"/>
+    <rect x="5" y="10" width="6" height="1"/>
+    <rect x="6" y="11" width="4" height="1"/>
+    <rect x="7" y="12" width="2" height="1"/>
+  </svg>`,
+  // Ronda 6: rombo simple
+  `<svg viewBox="0 0 16 16" class="icon-pixel md" fill="currentColor" aria-hidden="true">
+    <rect x="7" y="2" width="2" height="2"/>
+    <rect x="5" y="4" width="6" height="2"/>
+    <rect x="3" y="6" width="10" height="2"/>
+    <rect x="5" y="8" width="6" height="2"/>
+    <rect x="7" y="10" width="2" height="2"/>
+  </svg>`,
+  // Ronda 7: cruz
+  `<svg viewBox="0 0 16 16" class="icon-pixel md" fill="currentColor" aria-hidden="true">
+    <rect x="6" y="2" width="4" height="12"/>
+    <rect x="2" y="6" width="12" height="4"/>
+  </svg>`
+];
+
+function iconForRound(idx) {
+  return ROUND_ICONS[idx] || ROUND_ICONS[ROUND_ICONS.length - 1];
+}
+
+function renderTabs(rounds) {
+  const nav = document.getElementById("tabs");
+  const activeTab = nav.querySelector("button.active")?.dataset.tab;
+  let html = `<button data-tab="setup">Asignar roles</button>`;
+  rounds.forEach((r, i) => {
+    html += `<button data-tab="r${i + 1}">Ronda ${i + 1}</button>`;
+  });
+  nav.innerHTML = html;
+  const toRestore = nav.querySelector(`[data-tab="${activeTab}"]`) || nav.querySelector('[data-tab="setup"]');
+  toRestore.classList.add("active");
+}
+
+function renderRounds() {
+  const rounds = getRounds();
+  renderTabs(rounds);
+
+  const container = document.getElementById("roundsContainer");
+  container.innerHTML = "";
+  const activeTabId = document.querySelector("nav.tabs button.active")?.dataset.tab;
+
+  rounds.forEach((round, idx) => {
+    const sectionId = "r" + (idx + 1);
+    const section = document.createElement("section");
+    section.className = "page" + (activeTabId === sectionId ? " active" : "");
+    section.id = sectionId;
+
+    const probesHtml = (round.probes || []).map(p => `<li>${escapeHtml(p)}</li>`).join("");
+    const questionHtml = (round.question || "").trim()
+      ? escapeHtml(round.question)
+      : `<em style="opacity:0.75;">Sin pregunta principal — edítala en la pestaña "Asignar roles"</em>`;
+    let html = `<div class="ronda-header">
+      <button type="button" class="zoom-btn" data-zoom="${idx}">⛶ Ver en grande</button>
+      <h2>${iconForRound(idx)}<span>${escapeHtml(round.title)}</span></h2>
+      <div class="q">${questionHtml}</div>
+      <div class="timing">10 min total: 2 min explica el anfitrión · 5 min de conversación · 2 min los visitantes escriben · 1 min cambio de mesa</div>
+      ${probesHtml ? `<div class="probes"><div class="probes-title">Preguntas para profundizar (en los 5 min de conversación)</div><ul>${probesHtml}</ul></div>` : ""}
+    </div>
+    <div class="mesas-grid">`;
+    TEAMS.forEach(team => {
+      const visitor = round.visitorAt[team.id];
+      const hosts = getHosts(team.id);
+      const hostHtml = hosts.length
+        ? hosts.map(n => `<div class="who-name">${escapeHtml(n)}</div>`).join("")
+        : `<span class="pending">Por elegir</span>`;
+
+      let visitorBlock = "";
+      if (visitor) {
+        const visitors = getVisitors(visitor.teamId, visitor.role);
+        const isB = visitor.role !== "visitA";
+        const visitorTeam = TEAMS.find(t => t.id === visitor.teamId);
+        const hasB = !!(visitorTeam && visitorTeam.hasTwoEmbassies);
+        const visitorsHtml = visitors.length
+          ? visitors.map(n => `<div class="who-name">${escapeHtml(n)}</div>`).join("")
+          : `<span class="pending">Por elegir en Equipo ${visitor.teamId}</span>`;
+        const embajadaLabel = `Embajada del Equipo ${visitor.teamId}${hasB ? (isB ? " (B)" : " (A)") : ""}`;
+        visitorBlock = `<div class="role-line">
+          <span class="tag visit">Visita</span>
+          <span class="who">${visitorsHtml}<span class="from">${embajadaLabel}</span></span>
+        </div>`;
+      }
+      html += `<div class="mesa">
+        <div class="num">Mesa ${team.id}</div>
+        <h4>${escapeHtml(team.topic)}</h4>
+        <div class="question">${escapeHtml(team.question)}</div>
+        <div class="role-block">
+          <div class="role-line">
+            <span class="tag host">${hosts.length > 1 ? "Anfitriones" : "Anfitrión"}</span>
+            <span class="who">${hostHtml}</span>
+          </div>
+          ${visitorBlock}
+        </div>
+      </div>`;
+    });
+    html += "</div>";
+    section.innerHTML = html;
+    container.appendChild(section);
+  });
+  // Si ninguna sección quedó activa (por ejemplo, la tab activa era una ronda que ya no existe), activar setup.
+  if (!document.querySelector("section.page.active")) {
+    document.getElementById("setup").classList.add("active");
+    document.querySelector('nav.tabs button[data-tab="setup"]')?.classList.add("active");
+  }
+}
+
+// Modal con la pregunta en grande
+const modal = document.getElementById("modal");
+const modalBody = document.getElementById("modalBody");
+function openZoom(roundIdx) {
+  const rounds = getRounds();
+  const round = rounds[roundIdx];
+  if (!round) return;
+  const probesHtml = (round.probes || []).map(p => `<li>${escapeHtml(p)}</li>`).join("");
+  modalBody.innerHTML = `
+    <h2><span class="modal-icon">${iconForRound(roundIdx)}</span>${escapeHtml(round.title)}</h2>
+    <div class="main-q">${(round.question || "").trim() ? escapeHtml(round.question) : "<em>Sin pregunta principal</em>"}</div>
+    ${probesHtml ? `<div class="probes-h">Preguntas para profundizar</div><ol>${probesHtml}</ol>` : ""}
+    <div class="modal-timing">10 min · 2 min explica el anfitrión · 5 min de conversación · 2 min escriben los visitantes · 1 min cambio</div>
+  `;
+  modal.classList.add("open");
+}
+function closeZoom() { modal.classList.remove("open"); }
+document.getElementById("modalClose").onclick = closeZoom;
+modal.addEventListener("click", (e) => { if (e.target === modal) closeZoom(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeZoom(); });
+
+// Delegación: tabs, zoom, agregar/eliminar ronda
+document.addEventListener("click", (e) => {
+  // Tabs
+  const tabBtn = e.target.closest("nav.tabs button");
+  if (tabBtn) {
+    document.querySelectorAll("nav.tabs button").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll("section.page").forEach(p => p.classList.remove("active"));
+    tabBtn.classList.add("active");
+    const target = document.getElementById(tabBtn.dataset.tab);
+    if (target) target.classList.add("active");
+    window.scrollTo(0, 0);
+    return;
+  }
+  // Zoom
+  const zoomBtn = e.target.closest(".zoom-btn");
+  if (zoomBtn) { openZoom(Number(zoomBtn.dataset.zoom)); return; }
+  // Eliminar ronda personalizada
+  const deleteBtn = e.target.closest(".custom-round-delete");
+  if (deleteBtn) {
+    const idx = Number(deleteBtn.dataset.idx);
+    if (confirm("¿Eliminar esta ronda personalizada?")) {
+      state.customRounds.splice(idx, 1);
+      saveState();
+      renderCustomRoundsForm();
+      renderRounds();
+    }
+    return;
+  }
+  // Agregar nueva probe (pregunta para profundizar)
+  const addProbe = e.target.closest(".custom-probe-add");
+  if (addProbe) {
+    const idx = Number(addProbe.dataset.idx);
+    state.customRounds[idx].probes = state.customRounds[idx].probes || [];
+    state.customRounds[idx].probes.push("");
+    saveState();
+    renderCustomRoundsForm();
+    renderRounds();
+    return;
+  }
+  // Quitar una probe
+  const removeProbe = e.target.closest(".custom-probe-remove");
+  if (removeProbe) {
+    const idx = Number(removeProbe.dataset.idx);
+    const pIdx = Number(removeProbe.dataset.pidx);
+    state.customRounds[idx].probes.splice(pIdx, 1);
+    saveState();
+    renderCustomRoundsForm();
+    renderRounds();
+    return;
+  }
+});
+
+// Cambios en los inputs de rondas personalizadas (no re-renderizan el formulario para no perder el foco).
+document.addEventListener("input", (e) => {
+  const input = e.target;
+  if (input.matches(".custom-round-title")) {
+    const idx = Number(input.dataset.idx);
+    state.customRounds[idx].title = input.value;
+    saveState();
+    renderRounds();
+  } else if (input.matches(".custom-round-question")) {
+    const idx = Number(input.dataset.idx);
+    state.customRounds[idx].question = input.value;
+    saveState();
+    renderRounds();
+  } else if (input.matches(".custom-round-probe")) {
+    const idx = Number(input.dataset.idx);
+    const pIdx = Number(input.dataset.pidx);
+    state.customRounds[idx].probes[pIdx] = input.value;
+    saveState();
+    renderRounds();
+  }
+});
+
+document.getElementById("addRoundBtn").onclick = () => {
+  state.customRounds = state.customRounds || [];
+  if (state.customRounds.length >= EXTRA_ROUND_OFFSETS.length) {
+    alert("Ya alcanzaste el máximo de " + EXTRA_ROUND_OFFSETS.length + " rondas extra.");
+    return;
+  }
+  const n = DEFAULT_ROUNDS.length + state.customRounds.length + 1;
+  state.customRounds.push({
+    title: `Ronda ${n} · `,
+    question: "",
+    probes: [""]
+  });
+  saveState();
+  renderCustomRoundsForm();
+  renderRounds();
+};
+
+function renderCustomRoundsForm() {
+  const list = document.getElementById("customRoundsList");
+  const customs = state.customRounds || [];
+  const addBtn = document.getElementById("addRoundBtn");
+  if (addBtn) {
+    addBtn.disabled = customs.length >= EXTRA_ROUND_OFFSETS.length;
+    addBtn.style.opacity = addBtn.disabled ? "0.4" : "";
+  }
+  if (!customs.length) {
+    list.innerHTML = `<p class="note empty">Sin rondas personalizadas todavía. Puedes agregar hasta ${EXTRA_ROUND_OFFSETS.length}.</p>`;
+    return;
+  }
+  list.innerHTML = customs.map((r, idx) => {
+    const probes = Array.isArray(r.probes) ? r.probes : [];
+    const probesHtml = probes.map((p, pIdx) => `
+      <div class="probe-row">
+        <input type="text" class="custom-round-probe" data-idx="${idx}" data-pidx="${pIdx}"
+          value="${escapeHtml(p)}" placeholder="Pregunta para profundizar"/>
+        <button type="button" class="custom-probe-remove" data-idx="${idx}" data-pidx="${pIdx}" title="Quitar">✕</button>
+      </div>
+    `).join("");
+    const roundNumber = DEFAULT_ROUNDS.length + idx + 1;
+    return `<div class="custom-round-card">
+      <div class="custom-round-head">
+        <span class="custom-round-num">Ronda ${roundNumber}</span>
+        <button type="button" class="custom-round-delete" data-idx="${idx}">Eliminar ronda</button>
+      </div>
+      <label>Título
+        <input type="text" class="custom-round-title" data-idx="${idx}"
+          value="${escapeHtml(r.title || "")}" placeholder="Ronda ${roundNumber} · Mi título"/>
+      </label>
+      <label>Pregunta principal
+        <textarea class="custom-round-question" data-idx="${idx}"
+          placeholder="¿Cuál es la pregunta principal de esta ronda?">${escapeHtml(r.question || "")}</textarea>
+      </label>
+      <div class="probes-editor">
+        <div class="probes-label">Preguntas para profundizar</div>
+        ${probesHtml}
+        <button type="button" class="custom-probe-add" data-idx="${idx}">+ Agregar pregunta</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+document.getElementById("clearAll").onclick = () => {
+  if (confirm("¿Borrar todas las asignaciones de roles? (Las rondas personalizadas se conservan)")) {
+    const saved = state.customRounds;
+    state = {};
+    if (saved) state.customRounds = saved;
+    // Re-sembrar a equipos individuales
+    TEAMS.forEach(t => {
+      if (t.members.length === 1) {
+        state[t.id] = state[t.id] || {};
+        state[t.id][t.members[0]] = "host";
+      }
+    });
+    saveState();
+    renderSetup();
+    renderRounds();
+  }
+};
+
+renderSetup();
+renderCustomRoundsForm();
+renderRounds();
+// Activar setup por defecto
+document.querySelector('nav.tabs button[data-tab="setup"]').classList.add("active");
+document.getElementById("setup").classList.add("active");
+</script>
+</body>
+</html>
