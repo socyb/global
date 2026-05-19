@@ -356,6 +356,53 @@
   }
   .custom-probe-add:hover { background: var(--ink); color: white; }
   .note.empty { color: var(--muted); font-style: italic; }
+
+  .comments-section {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 40px 28px 60px;
+    margin-top: 30px;
+  }
+  .comments-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--bg);
+    color: var(--ink);
+    padding: 30px 36px 40px;
+    border: 3px solid var(--bg);
+  }
+  .comments-title {
+    margin: 0 0 8px;
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1.1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--accent);
+  }
+  .comments-title .icon-pixel {
+    width: 36px;
+    height: 36px;
+    color: var(--accent);
+  }
+  .comments-intro {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 0 22px;
+    max-width: 60ch;
+    color: var(--ink);
+  }
+  #cusdis_thread {
+    margin-top: 10px;
+    font-size: 17px;
+  }
+  #cusdis_thread iframe {
+    min-height: 420px;
+  }
+  @media (max-width: 600px) {
+    .comments-section { padding: 24px 14px 40px; }
+    .comments-inner { padding: 20px 18px 28px; }
+  }
   .note {
     font-size: 12.5px;
     color: var(--muted);
@@ -732,6 +779,51 @@
 </section>
 
 <div id="roundsContainer"></div>
+
+<section class="comments-section">
+  <div class="comments-inner">
+    <h2 class="comments-title">
+      <svg viewBox="0 0 16 16" class="icon-pixel md" fill="currentColor" aria-hidden="true">
+        <rect x="1" y="2" width="14" height="1"/>
+        <rect x="1" y="10" width="11" height="1"/>
+        <rect x="0" y="3" width="1" height="7"/>
+        <rect x="15" y="3" width="1" height="7"/>
+        <rect x="4" y="11" width="2" height="1"/>
+        <rect x="4" y="12" width="1" height="1"/>
+        <rect x="3" y="13" width="1" height="1"/>
+        <rect x="4" y="5" width="2" height="1"/>
+        <rect x="7" y="5" width="2" height="1"/>
+        <rect x="10" y="5" width="2" height="1"/>
+      </svg>
+      Observaciones del grupo
+    </h2>
+    <p class="comments-intro">Deja aquí tu nombre y equipo y comparte lo que aprendiste, una duda o una propuesta para mejorar el trabajo de otro equipo. Las observaciones se moderan antes de aparecer.</p>
+    <script>
+      window.CUSDIS_LOCALE = {
+        powered_by: "Comentarios con Cusdis",
+        post_comment: "Enviar observación",
+        loading: "Cargando…",
+        sending: "Enviando…",
+        email: "Equipo",
+        nickname: "Nombre",
+        reply_placeholder: "Escribe tu observación…",
+        reply_btn: "Observación",
+        mod_badge: "MOD",
+        content_is_required: "Hace falta escribir la observación",
+        nickname_is_required: "Hace falta tu nombre",
+        comment_has_been_sent: "Tu observación se envió. Quedará visible después de la moderación."
+      };
+    </script>
+    <div id="cusdis_thread"
+      data-host="https://cusdis.com"
+      data-app-id="5fab5eb4-6a52-4a4e-9e11-87c69b47a83d"
+      data-page-id="worldcafe-19may26"
+      data-page-url="https://socyb.github.io/global/sesiones/19may26/"
+      data-page-title="World Café · Estado del Arte · 19 may 2026"
+    ></div>
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+  </div>
+</section>
 
 <div class="modal-backdrop" id="modal">
   <div class="modal-content" id="modalContent">
