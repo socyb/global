@@ -284,7 +284,7 @@
 
     .kpis {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
       margin-bottom: 18px;
     }
@@ -715,6 +715,7 @@
       <aside class="source-panel">
         <strong>Fuente viva</strong>
         <p>Los datos se descargan desde la API de ILOSTAT cada vez que se abre o se actualiza esta página. El informe base es <em>Employment and Social Trends 2026</em> de la OIT.</p>
+        <p style="margin-top: 8px;">Consulta los mismos indicadores en el portal oficial: <a href="https://ilostat.ilo.org/data/" target="_blank" rel="noopener">ilostat.ilo.org/data</a>.</p>
       </aside>
     </header>
 
@@ -745,11 +746,6 @@
         <h2>Desempleo mundial</h2>
         <p class="kpi-value" id="globalUnemployment">--</p>
         <p id="globalUnemploymentMeta">Estimaciones modeladas de la OIT</p>
-      </article>
-      <article class="kpi">
-        <h2>Brecha clave</h2>
-        <p class="kpi-value" id="gapValue">--</p>
-        <p id="gapMeta">México y Chile, informalidad menos desempleo</p>
       </article>
     </section>
 
@@ -833,6 +829,21 @@
       </svg>
     </section>
 
+    <section class="panel trend-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow"><img src="../img/icon-trend.svg" alt="" class="eyebrow-icon">Trayectoria</p>
+          <h2 class="panel-title">Serie reciente de desempleo</h2>
+          <p class="panel-note">Las líneas usan la tasa de desempleo de 15 años o más, estimaciones modeladas de la OIT.</p>
+        </div>
+        <span class="pill">2015-2027</span>
+      </div>
+      <svg class="trend-canvas" id="unemploymentTrendChart" viewBox="0 0 1000 390" role="img" aria-labelledby="unemploymentTrendTitle unemploymentTrendDesc">
+        <title id="unemploymentTrendTitle">Serie reciente de desempleo</title>
+        <desc id="unemploymentTrendDesc">Comparación de desempleo para México, Argentina, Chile y mundo.</desc>
+      </svg>
+    </section>
+
     <section class="story">
       <article class="text-panel callout">
         <p class="eyebrow">La pregunta de fondo</p>
@@ -843,12 +854,11 @@
 
       <article class="text-panel">
         <p class="eyebrow">Conceptos clave</p>
-        <h2>Cuatro términos para leer el tablero</h2>
+        <h2>Tres términos para leer el tablero</h2>
         <div class="selection-list">
           <div class="selection-item"><strong>Empleo informal</strong><span>Trabajo sin contrato estable, sin seguridad social ni protección legal plena.</span></div>
           <div class="selection-item"><strong>Trabajo decente</strong><span>Empleo productivo, con ingreso justo, seguridad y derechos garantizados, según la OIT.</span></div>
           <div class="selection-item"><strong>Tasa de desempleo</strong><span>Personas sin empleo que buscan trabajo, como porcentaje de la fuerza laboral.</span></div>
-          <div class="selection-item"><strong>Brecha clave</strong><span>Distancia entre informalidad y desempleo: mide el empleo precario que la tasa de desempleo no refleja.</span></div>
         </div>
       </article>
     </section>
@@ -884,7 +894,7 @@
     </section>
 
     <footer>
-      <p>Fuentes: API de ILOSTAT y el informe <em>Employment and Social Trends 2026</em> de la Organización Internacional del Trabajo (OIT). El tablero muestra datos en vivo; si la consulta no responde, conserva los últimos valores disponibles.</p>
+      <p>Fuentes: <a href="https://ilostat.ilo.org/data/" target="_blank" rel="noopener">API de ILOSTAT</a> y el informe <em>Employment and Social Trends 2026</em> de la Organización Internacional del Trabajo (OIT). El tablero muestra datos en vivo; si la consulta no responde, conserva los últimos valores disponibles.</p>
     </footer>
   </main>
 
@@ -925,6 +935,36 @@
         Argentina: [{ year: 2017, value: 48.563 }, { year: 2020, value: 46.981 }, { year: 2025, value: 52.818 }],
         Chile: [{ year: 2015, value: 39.007 }, { year: 2020, value: 25.83 }, { year: 2025, value: 26.368 }],
         World: [{ year: 2015, value: 57.403 }, { year: 2020, value: 56.957 }, { year: 2025, value: 57.893 }, { year: 2027, value: 57.838 }]
+      },
+      unemploymentTrends: {
+        Mexico: [
+          { year: 2015, value: 4.311 }, { year: 2016, value: 3.853 }, { year: 2017, value: 3.419 },
+          { year: 2018, value: 3.275 }, { year: 2019, value: 3.477 }, { year: 2020, value: 4.44 },
+          { year: 2021, value: 4.019 }, { year: 2022, value: 3.256 }, { year: 2023, value: 2.765 },
+          { year: 2024, value: 2.678 }, { year: 2025, value: 2.673 }, { year: 2026, value: 2.69 },
+          { year: 2027, value: 2.597 }
+        ],
+        Argentina: [
+          { year: 2015, value: 7.577 }, { year: 2016, value: 8.088 }, { year: 2017, value: 8.347 },
+          { year: 2018, value: 9.22 }, { year: 2019, value: 9.843 }, { year: 2020, value: 11.461 },
+          { year: 2021, value: 8.736 }, { year: 2022, value: 6.805 }, { year: 2023, value: 6.139 },
+          { year: 2024, value: 7.15 }, { year: 2025, value: 7.145 }, { year: 2026, value: 6.808 },
+          { year: 2027, value: 6.594 }
+        ],
+        Chile: [
+          { year: 2015, value: 6.605 }, { year: 2016, value: 6.926 }, { year: 2017, value: 7.257 },
+          { year: 2018, value: 7.623 }, { year: 2019, value: 7.493 }, { year: 2020, value: 10.934 },
+          { year: 2021, value: 9.281 }, { year: 2022, value: 8.249 }, { year: 2023, value: 9.013 },
+          { year: 2024, value: 8.718 }, { year: 2025, value: 8.974 }, { year: 2026, value: 8.984 },
+          { year: 2027, value: 9.064 }
+        ],
+        World: [
+          { year: 2015, value: 5.996 }, { year: 2016, value: 5.969 }, { year: 2017, value: 5.895 },
+          { year: 2018, value: 5.756 }, { year: 2019, value: 5.587 }, { year: 2020, value: 6.587 },
+          { year: 2021, value: 6.042 }, { year: 2022, value: 5.253 }, { year: 2023, value: 4.896 },
+          { year: 2024, value: 4.883 }, { year: 2025, value: 4.869 }, { year: 2026, value: 4.861 },
+          { year: 2027, value: 4.842 }
+        ]
       }
     };
 
@@ -936,12 +976,7 @@
       informality: FALLBACK.informality,
       unemployment: FALLBACK.unemployment,
       trends: FALLBACK.trends,
-      unemploymentTrends: {
-        Mexico: FALLBACK.unemployment.filter((row) => row.area === "Mexico"),
-        Argentina: FALLBACK.unemployment.filter((row) => row.area === "Argentina"),
-        Chile: FALLBACK.unemployment.filter((row) => row.area === "Chile"),
-        World: FALLBACK.unemployment.filter((row) => row.area === "World")
-      },
+      unemploymentTrends: FALLBACK.unemploymentTrends,
       usingFallback: true
     };
 
@@ -1236,12 +1271,7 @@
         state.informality = FALLBACK.informality;
         state.unemployment = FALLBACK.unemployment;
         state.trends = FALLBACK.trends;
-        state.unemploymentTrends = {
-          Mexico: FALLBACK.unemployment.filter((row) => row.area === "Mexico"),
-          Argentina: FALLBACK.unemployment.filter((row) => row.area === "Argentina"),
-          Chile: FALLBACK.unemployment.filter((row) => row.area === "Chile"),
-          World: FALLBACK.unemployment.filter((row) => row.area === "World")
-        };
+        state.unemploymentTrends = FALLBACK.unemploymentTrends;
         populateYears();
         render();
         setStatus("error", "No se pudo consultar ILOSTAT; se muestran valores de respaldo.");
@@ -1267,27 +1297,12 @@
     function renderKpis() {
       const worldInformality = findMetric(state.informality, "World", state.year);
       const worldUnemployment = findMetric(state.unemployment, "World", state.year);
-      const mexicoInformality = findMetric(state.informality, "Mexico", state.year);
-      const mexicoUnemployment = findMetric(state.unemployment, "Mexico", state.year);
-      const chileInformality = findMetric(state.informality, "Chile", state.year);
-      const chileUnemployment = findMetric(state.unemployment, "Chile", state.year);
 
       document.getElementById("globalInformality").innerHTML = `${formatValue(worldInformality?.value).replace("%", "<small>%</small>")}`;
       document.getElementById("globalInformalityMeta").textContent = worldInformality ? `Mundo · ${worldInformality.year} · ${translateSource(worldInformality.source)}` : "Sin dato disponible";
 
       document.getElementById("globalUnemployment").innerHTML = `${formatValue(worldUnemployment?.value).replace("%", "<small>%</small>")}`;
       document.getElementById("globalUnemploymentMeta").textContent = worldUnemployment ? `Mundo · ${worldUnemployment.year} · ${translateSource(worldUnemployment.source)}` : "Sin dato disponible";
-
-      if (mexicoInformality && mexicoUnemployment && chileInformality && chileUnemployment) {
-        const mexicoGap = mexicoInformality.value - mexicoUnemployment.value;
-        const chileGap = chileInformality.value - chileUnemployment.value;
-        const diff = mexicoGap - chileGap;
-        document.getElementById("gapValue").innerHTML = `${diff.toFixed(1)}<small> pp</small>`;
-        document.getElementById("gapMeta").textContent = "Diferencia entre las brechas informalidad-desempleo de México y Chile";
-      } else {
-        document.getElementById("gapValue").textContent = "--";
-        document.getElementById("gapMeta").textContent = "Sin datos suficientes para calcular la brecha";
-      }
     }
 
     function renderBars() {
@@ -1368,8 +1383,8 @@
       });
     }
 
-    function renderTrend() {
-      const svg = document.getElementById("trendChart");
+    function renderTrendChart({ svgId, titleId, descId, title, description, seriesByArea, maxValue, ticks }) {
+      const svg = document.getElementById(svgId);
       const width = 1000;
       const height = 390;
       const margin = { top: 30, right: 130, bottom: 46, left: 56 };
@@ -1379,7 +1394,6 @@
       const minYear = 2015;
       const maxYear = 2027;
       const minValue = 0;
-      const maxValue = 70;
 
       function x(year) {
         return margin.left + ((year - minYear) / (maxYear - minYear)) * innerWidth;
@@ -1397,7 +1411,7 @@
           .join(" ");
       }
 
-      const grid = [0, 20, 40, 60].map((tick) => `
+      const grid = ticks.map((tick) => `
         <line x1="${margin.left}" x2="${width - margin.right}" y1="${y(tick)}" y2="${y(tick)}" stroke="#d6dee8" stroke-width="1" />
         <text x="${margin.left - 12}" y="${y(tick) + 4}" text-anchor="end" font-size="13" fill="#657282">${tick}%</text>
       `).join("");
@@ -1407,7 +1421,7 @@
       `).join("");
 
       const lines = SELECTED_AREAS.map((area) => {
-        const series = state.trends[area] || [];
+        const series = seriesByArea[area] || [];
         const path = linePath(series);
         if (!path) return "";
         const labelPoint = series.filter((point) => point.year >= minYear && point.year <= maxYear).sort((a, b) => b.year - a.year)[0];
@@ -1419,8 +1433,8 @@
       }).join("");
 
       svg.innerHTML = `
-        <title>Serie reciente de informalidad laboral</title>
-        <desc>Comparación de informalidad laboral para México, Argentina, Chile y mundo.</desc>
+        <title id="${titleId}">${title}</title>
+        <desc id="${descId}">${description}</desc>
         <rect x="0" y="0" width="${width}" height="${height}" fill="#ffffff" />
         ${grid}
         <line x1="${margin.left}" x2="${width - margin.right}" y1="${height - margin.bottom}" y2="${height - margin.bottom}" stroke="#17202a" stroke-width="1.5" />
@@ -1428,6 +1442,30 @@
         ${yearTicks}
         ${lines}
       `;
+    }
+
+    function renderTrends() {
+      renderTrendChart({
+        svgId: "trendChart",
+        titleId: "trendTitle",
+        descId: "trendDesc",
+        title: "Serie reciente de informalidad laboral",
+        description: "Comparación de informalidad laboral para México, Argentina, Chile y mundo.",
+        seriesByArea: state.trends,
+        maxValue: 70,
+        ticks: [0, 20, 40, 60]
+      });
+
+      renderTrendChart({
+        svgId: "unemploymentTrendChart",
+        titleId: "unemploymentTrendTitle",
+        descId: "unemploymentTrendDesc",
+        title: "Serie reciente de desempleo",
+        description: "Comparación de desempleo para México, Argentina, Chile y mundo.",
+        seriesByArea: state.unemploymentTrends,
+        maxValue: 12,
+        ticks: [0, 3, 6, 9, 12]
+      });
     }
 
     function updateChartLabels() {
@@ -1458,7 +1496,7 @@
       renderBars();
       renderSummaries();
       renderTable();
-      renderTrend();
+      renderTrends();
     }
 
     indicatorSelect.addEventListener("change", render);
