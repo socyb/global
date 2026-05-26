@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Caso de estudio · Médicos extranjeros en Alemania (Brisant / hr) · Unidad 4 · Globalización y Empleo 2026-2">
+    <title>Caso · Médicos extranjeros en Alemania — Unidad 4</title>
+    <link rel="icon" href="../img/icon-globe.svg">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/session.css">
+    <style>
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--radius);
+            border: var(--border);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .meta-item {
+            background: var(--sky);
+            border: var(--border-thin);
+            border-radius: var(--radius-sm);
+            padding: 0.85rem 1rem;
+        }
+        .meta-item .meta-label {
+            font-family: var(--font-accent);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        .meta-item .meta-value {
+            font-size: 1.05rem;
+            color: var(--ink);
+            font-weight: 600;
+        }
+        .intro-card {
+            background: var(--cream);
+        }
+        .intro-card h3 {
+            color: var(--purple);
+        }
+        .forum-card {
+            background: var(--mint);
+        }
+        .forum-card h3 {
+            color: var(--green);
+        }
+        .transcript-box {
+            max-height: 460px;
+            overflow-y: auto;
+            background: var(--paper);
+            border: var(--border-thin);
+            border-radius: var(--radius-sm);
+            padding: 1.25rem 1.5rem;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text);
+            margin-top: 0.75rem;
+        }
+        .transcript-box p {
+            margin-bottom: 0.85rem;
+        }
+        .timestamp {
+            font-family: var(--font-accent);
+            font-size: 0.8rem;
+            color: var(--coral);
+            font-weight: 700;
+            margin-right: 0.4rem;
+        }
+        .speaker {
+            font-family: var(--font-accent);
+            font-weight: 700;
+            color: var(--purple);
+        }
+        .discussion-list {
+            list-style: none;
+            counter-reset: question;
+            margin-top: 0.75rem;
+            padding-left: 0;
+        }
+        .discussion-list li {
+            counter-increment: question;
+            padding: 1rem 0 1rem 3.5rem;
+            position: relative;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.1rem;
+            line-height: 1.65;
+        }
+        .discussion-list li:last-child { border-bottom: none; }
+        .discussion-list li::before {
+            content: counter(question);
+            position: absolute;
+            left: 0;
+            top: 1rem;
+            width: 36px; height: 36px;
+            background: var(--green);
+            color: #fff;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            font-family: var(--font-accent);
+        }
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+        .step-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            height: 44px;
+            padding: 0 0.75rem;
+            background: var(--ink);
+            color: #fff;
+            font-family: var(--font-accent);
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: var(--radius-sm);
+            white-space: nowrap;
+        }
+        .step-header h2 {
+            margin-bottom: 0;
+        }
+        .moodle-callout {
+            background: var(--blush);
+            border: var(--border-thin);
+            border-radius: var(--radius-sm);
+            padding: 1rem 1.25rem;
+            margin-top: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        .moodle-callout strong {
+            color: var(--coral);
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header session-header">
+    <div class="container">
+        <a href="../index.html" class="back-link">← Volver al inicio</a>
+        <h1>El déficit de médicos en Alemania: el caso de Petr Rodionov</h1>
+        <p class="subtitle">Caso de estudio · Unidad 4 · Globalización y Empleo 2026-2 · FCA UNAM</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- INTRO -->
+    <section class="section">
+        <div class="content-card intro-card">
+            <h3>Antes de ver el video</h3>
+            <p>Este reportaje del programa <em>Brisant</em> (cadena pública alemana hr) cuenta la historia de Petr Rodionov, un cirujano vascular ruso que tardó <strong>años</strong> en poder ejercer su profesión en Alemania, a pesar de que el sistema de salud alemán <strong>necesita urgentemente</strong> médicos extranjeros para seguir funcionando.</p>
+            <p style="margin-top: 0.75rem;">El video se grabó en alemán; nosotros lo subtitulamos y tradujimos al español como parte de nuestro trabajo de la unidad. Mientras lo ven, fíjense en la <strong>contradicción central</strong>: un país que dice depender de la mano de obra calificada extranjera, pero al mismo tiempo levanta enormes barreras burocráticas para reconocer sus credenciales.</p>
+        </div>
+    </section>
+
+    <!-- VIDEO EMBED (Google Drive) -->
+    <section class="section">
+        <h2>Video</h2>
+        <div class="video-wrapper">
+            <iframe
+                src="https://drive.google.com/file/d/1wFQ_xZ_XviFOpnDBPQgVS7KVNRq_Pc7a/preview"
+                title="Médicos extranjeros en Alemania — caso Petr Rodionov (Brisant / hr, subtítulos en español)"
+                allow="autoplay"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 0.5rem;">
+            Si el video no carga, ábrelo directamente en
+            <a href="https://drive.google.com/file/d/1wFQ_xZ_XviFOpnDBPQgVS7KVNRq_Pc7a/view" target="_blank" rel="noopener">Google Drive ↗</a>.
+            Subtítulos en español ya incrustados en el video.
+        </p>
+    </section>
+
+    <!-- METADATA -->
+    <section class="section">
+        <h2>Ficha técnica</h2>
+        <div class="content-card">
+            <div class="meta-grid">
+                <div class="meta-item">
+                    <span class="meta-label">Programa</span>
+                    <span class="meta-value">Brisant — hr (Hessischer Rundfunk)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">País</span>
+                    <span class="meta-value">Alemania</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Idioma original</span>
+                    <span class="meta-value">Alemán</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Subtítulos</span>
+                    <span class="meta-value">Español (traducidos en clase)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Duración</span>
+                    <span class="meta-value">≈ 2:30 min</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Protagonista</span>
+                    <span class="meta-value">Petr Rodionov · cirujano vascular · Tréveris</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRANSCRIPT -->
+    <section class="section">
+        <div class="step-header">
+            <span class="step-badge">Paso 1</span>
+            <h2>Transcripción en español</h2>
+        </div>
+        <div class="content-card">
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.5rem;">Traducción desde el alemán, sincronizada con los subtítulos del video.</p>
+            <div class="transcript-box">
+                <p><span class="timestamp">00:00</span> El déficit de médicos en Alemania —hay consenso— solo lo solucionamos con médicos y médicas del extranjero. Petr Rodionov es un médico así, altamente calificado, y aun así le tomó años poder ejercer su trabajo en Alemania. Un problema que la política quiere resolver finalmente.</p>
+
+                <p><span class="timestamp">00:20</span> Ellos atienden pacientes todos los días, sin importar de dónde vengan. Sin ellos, el sistema de salud alemán colapsaría. Pero hasta que los médicos extranjeros puedan trabajar aquí, a menudo enfrentan una odisea. Uno de ellos es Petr Rodionov de Tréveris. Él viene de Rusia, trabajó mucho tiempo como cirujano vascular en San Petersburgo, también en un puesto directivo. En 2013 llega a Alemania, y luego se complica.</p>
+
+                <p><span class="timestamp">00:45</span> <span class="speaker">Petr Rodionov (cirujano vascular):</span> <em>«Fue terrible. Como médico formado y jefe de servicio, llegar aquí como cirujano vascular… Después de una invitación del hospital todo estuvo bien. Pero luego, tropezar con la burocracia, fue un desafío.»</em></p>
+
+                <p><span class="timestamp">01:05</span> Tuvo que traducir todos sus documentos en Alemania. Tomó mucho tiempo conseguir las citas necesarias. Al final pasaron varios años en los que solo pudo trabajar como médico asistente. Rodionov no es un caso aislado, y eso lo sienten claramente los hospitales.</p>
+
+                <p><span class="timestamp">01:19</span> <span class="speaker">Voz del hospital:</span> <em>«No podríamos operar el hospital si no tuviéramos a estos empleados.»</em></p>
+
+                <p><span class="timestamp">01:28</span> Cada séptimo médico que trabaja aquí viene de un tercer país. Ahora se busca facilitar su reconocimiento. Hoy el Consejo Federal (<em>Bundesrat</em>) decidió: los médicos con título fuera de la UE, a partir de noviembre, ya no tendrán que acreditar sus habilidades solo con documentos. Pueden inscribirse inmediatamente para un examen que evalúa los conocimientos médicos. En la casa madre de las Borromeas en Tréveris tienen mucha esperanza de que las reglas realmente faciliten el reconocimiento.</p>
+
+                <p><span class="timestamp">01:57</span> Y a pesar de toda la esperanza en la nueva ley, un gran problema en los hospitales no se resolverá con esto.</p>
+
+                <p><span class="timestamp">02:03</span> <span class="speaker">Voz del hospital:</span> <em>«Me gustaría que se aplicara el mismo procedimiento al personal de enfermería. Es el grupo profesional más grande en un hospital. Hasta ahora es mucho más difícil que para los médicos. Me sorprende que el personal de enfermería no se esté considerando con la misma urgencia. Pero hasta que eso pase, probablemente tomará tiempo.»</em></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DISCUSSION QUESTIONS -->
+    <section class="section">
+        <div class="step-header">
+            <span class="step-badge">Paso 2</span>
+            <h2>Dos preguntas para discutir en clase</h2>
+        </div>
+
+        <div class="content-card forum-card">
+            <h3>Preguntas guía</h3>
+            <p>Estas son las dos preguntas que abordaremos en la sesión presencial. Tómate unos minutos para pensarlas <strong>antes</strong> de llegar a clase: anota tus ideas, ejemplos y dudas.</p>
+            <ol class="discussion-list">
+                <li>El reportaje muestra una contradicción clara: Alemania <strong>necesita</strong> a los médicos extranjeros para que su sistema de salud no colapse, pero al mismo tiempo les pone enormes barreras burocráticas para reconocer su título. ¿Cómo explicarías esta contradicción desde lo que hemos visto en la unidad sobre <strong>mercados laborales segmentados</strong> y <strong>migración laboral calificada</strong>? ¿A quién termina beneficiando que el proceso de reconocimiento sea lento?</li>
+                <li>México vive el otro lado de la misma moneda: muchos profesionistas mexicanos (médicos, enfermeras, ingenieros) emigran a países como Alemania, EE.UU. o Canadá; al mismo tiempo, en México también hay debates sobre si reconocer o no títulos extranjeros (por ejemplo, el caso reciente de los médicos cubanos). Si tú diseñaras la política pública, <strong>¿qué debería hacer México</strong>: facilitar la salida de sus profesionales, retenerlos con mejores condiciones, o atraer activamente profesionales de otros países como hace Alemania? Justifica tu postura con al menos un argumento del curso.</li>
+            </ol>
+
+            <div class="moodle-callout">
+                <strong>📝 Foro de Moodle:</strong> Pueden adelantar sus respuestas (o continuar la discusión después de la clase) en el <strong>Foro de la Unidad 4 en Moodle</strong>. No es obligatorio escribir un ensayo: basta con un par de párrafos por pregunta, citando algo del video o de la transcripción que les haya llamado la atención. Lean también lo que escriban sus compañeros y respondan al menos a una entrada distinta a la suya.
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p><a href="../index.html">← Volver a la página principal</a></p>
+            <p class="footer-meta">Globalización y Empleo 2026-2 · FCA UNAM · Dr. Jorge Cardiel</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
