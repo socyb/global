@@ -1091,53 +1091,59 @@ a.session-card:hover {
 }
 
 .resource-logbook {
-    margin-top: 1.2rem;
-    padding: 1.15rem 1.2rem 1.25rem;
-    background: linear-gradient(180deg, var(--cream) 0%, #fff 100%);
-    border: var(--border-thin);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.2rem;
 }
 
-.logbook-header {
-    margin-bottom: 1rem;
+.logbook-summary {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .55rem;
+    padding: .55rem 0;
+    cursor: pointer;
+    list-style: none;
+}
+
+.logbook-summary::-webkit-details-marker {
+    display: none;
+}
+
+.logbook-summary::before {
+    content: "▸";
+    color: var(--ink);
+    font-size: .9rem;
+    transition: transform .15s ease;
+}
+
+.resource-logbook[open] > .logbook-summary::before {
+    transform: rotate(90deg);
 }
 
 .logbook-kicker {
     display: inline-block;
-    margin-bottom: .45rem;
-    padding: .28rem .6rem;
+    padding: .22rem .55rem;
     background: var(--ink);
     color: #fff;
-    border: var(--border-thin);
     border-radius: var(--radius-pill);
-    box-shadow: 3px 3px 0 var(--coral);
     font-family: var(--font-accent);
-    font-size: .7rem;
+    font-size: .68rem;
     font-weight: 800;
     letter-spacing: .08em;
     text-transform: uppercase;
 }
 
-.logbook-header h3 {
-    display: flex;
+.logbook-title {
+    display: inline-flex;
     align-items: center;
-    font-size: 1.15rem;
+    gap: .35rem;
+    font-family: var(--font-accent);
+    font-size: 1.02rem;
+    font-weight: 800;
     color: var(--ink);
-    margin-bottom: .25rem;
-}
-
-.logbook-header p {
-    font-size: .86rem;
-    color: var(--text-muted);
 }
 
 .log-entry {
-    padding: 1rem 1.05rem;
-    background: var(--surface);
-    border: var(--border-thin);
-    border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-sm);
+    padding-top: .6rem;
 }
 
 .log-entry-meta {
@@ -1339,14 +1345,6 @@ a.session-card:hover {
 
     .board-note h3 {
         padding-right: 1.2rem;
-    }
-
-    .resource-logbook {
-        padding: 1rem;
-    }
-
-    .log-entry {
-        padding: .9rem;
     }
 
     .log-entry-note {
