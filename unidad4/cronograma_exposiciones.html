@@ -179,7 +179,7 @@
 
     .panorama-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 0;
     }
 
@@ -207,17 +207,10 @@
       padding: 10px;
       border-bottom: 1px solid var(--line);
       background: #fff;
-      transition: background 0.15s ease, outline 0.15s ease;
     }
 
     .pan-slot:last-child {
       border-bottom: 0;
-    }
-
-    .pan-slot.drag-over {
-      outline: 2px dashed var(--blue);
-      outline-offset: -7px;
-      background: #f4f8ff;
     }
 
     .pan-card {
@@ -228,15 +221,6 @@
       border-radius: 8px;
       background: #fff;
       padding: 10px 11px 11px;
-      cursor: grab;
-    }
-
-    .pan-card:active {
-      cursor: grabbing;
-    }
-
-    .pan-card.dragging {
-      opacity: 0.45;
     }
 
     .pan-time {
@@ -282,7 +266,7 @@
 
     .summary {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 10px;
       margin: 0 0 26px;
     }
@@ -371,12 +355,6 @@
       border-bottom: 0;
     }
 
-    .slot.drag-over .slot-drop {
-      outline: 2px dashed var(--blue);
-      outline-offset: -8px;
-      background: #f4f8ff;
-    }
-
     .time {
       padding: 18px 16px;
       background: #f8fafc;
@@ -397,7 +375,6 @@
     .slot-drop {
       min-height: 142px;
       padding: 14px 16px;
-      transition: background 0.15s ease, outline 0.15s ease;
     }
 
     .talk {
@@ -407,15 +384,6 @@
       border-radius: 8px;
       background: #fff;
       padding: 14px 16px 16px;
-      cursor: grab;
-    }
-
-    .talk:active {
-      cursor: grabbing;
-    }
-
-    .talk.dragging {
-      opacity: 0.45;
     }
 
     .talk-head {
@@ -438,28 +406,6 @@
       font-size: clamp(1.05rem, 2vw, 1.45rem);
       line-height: 1.16;
       letter-spacing: 0;
-    }
-
-    .talk-actions {
-      display: flex;
-      gap: 5px;
-      flex: 0 0 auto;
-    }
-
-    .talk-actions button {
-      width: 34px;
-      height: 30px;
-      border: 1px solid var(--line);
-      border-radius: 7px;
-      background: var(--soft);
-      color: var(--ink);
-      font: inherit;
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    .talk-actions button:hover {
-      background: #e7edf5;
     }
 
     .description {
@@ -580,10 +526,6 @@
       .talk-head {
         display: block;
       }
-
-      .talk-actions {
-        margin-top: 8px;
-      }
     }
 
     @media print {
@@ -601,8 +543,7 @@
       }
 
       .tools,
-      .back-link,
-      .talk-actions {
+      .back-link {
         display: none !important;
       }
 
@@ -648,8 +589,8 @@
       </div>
     </header>
 
-    <section class="tools" aria-label="Herramientas de reordenamiento">
-      <span>Arrastra una exposición a otro horario. También puedes usar los botones ↑ y ↓ para moverla un bloque. La reorganización es temporal en esta sesión. La página con el orden final se actualiza por el docente.</span>
+    <section class="tools" aria-label="Acciones">
+      <span>Calendario definitivo de exposiciones finales.</span>
       <button type="button" id="printBtn">Guardar o imprimir PDF</button>
     </section>
 
@@ -685,11 +626,6 @@
         <div class="count"></div>
         <div class="teams"></div>
       </div>
-      <div class="summary-card" data-summary-for="2026-06-11">
-        <div class="date">Jue 11 junio</div>
-        <div class="count"></div>
-        <div class="teams"></div>
-      </div>
     </section>
 
     <section class="day" aria-labelledby="dia-28-may" data-date="2026-05-28">
@@ -701,13 +637,12 @@
         <article class="slot" data-slot="2026-05-28T20:00">
           <div class="time">20:00-20:30<span>20:00-20:15 exposición<br>20:15-20:30 retroalimentación</span></div>
           <div class="slot-drop">
-            <article class="talk accent-blue" draggable="true" data-team="Sahid" data-accent="accent-blue">
+            <article class="talk accent-blue" data-team="Sahid" data-accent="accent-blue">
               <div class="talk-head">
                 <div>
                   <div class="team-kicker">Exposición individual</div>
                   <h3>Mercado Libre y trabajo en plataformas logísticas</h3>
                 </div>
-                <div class="talk-actions" aria-label="Mover exposición"><button type="button" data-move="up">↑</button><button type="button" data-move="down">↓</button></div>
               </div>
               <p class="description">Análisis de las condiciones laborales asociadas a Mercado Libre y a la expansión de plataformas digitales de comercio, distribución y logística.</p>
               <p class="members-label">Estudiante</p>
@@ -719,7 +654,25 @@
         </article>
         <article class="slot" data-slot="2026-05-28T20:30">
           <div class="time">20:30-21:00<span>20:30-20:45 exposición<br>20:45-21:00 retroalimentación</span></div>
-          <div class="slot-drop"><div class="empty">Disponible</div></div>
+          <div class="slot-drop">
+            <article class="talk accent-green" data-team="E7" data-accent="accent-green">
+              <div class="talk-head">
+                <div>
+                  <div class="team-kicker">Equipo 7</div>
+                  <h3>Deuda estudiantil como mecanismo de control del tiempo futuro del trabajador en Chile</h3>
+                </div>
+              </div>
+              <p class="description">Analiza cómo el Crédito con Aval del Estado opera como mecanismo de disciplina social frente al subempleo y la sobrecalificación.</p>
+              <p class="members-label">Integrantes</p>
+              <ul class="members">
+                <li>Acero Castro Héctor Eleazar</li>
+                <li>Avilés Iturbide Víctor</li>
+                <li>Clavero Lechuga Alexander</li>
+                <li>Lemus Cruz Óscar Emiliano</li>
+                <li>Montesinos Hernández Rodrigo Gaspar</li>
+              </ul>
+            </article>
+          </div>
         </article>
         <article class="slot" data-slot="2026-05-28T21:00">
           <div class="time">21:00-21:30<span>21:00-21:15 exposición<br>21:15-21:30 retroalimentación</span></div>
@@ -737,13 +690,12 @@
         <article class="slot" data-slot="2026-06-02T20:00">
           <div class="time">20:00-20:30<span>20:00-20:15 exposición<br>20:15-20:30 retroalimentación</span></div>
           <div class="slot-drop">
-            <article class="talk accent-rose" draggable="true" data-team="E4" data-accent="accent-rose">
+            <article class="talk accent-rose" data-team="E4" data-accent="accent-rose">
               <div class="talk-head">
                 <div>
                   <div class="team-kicker">Equipo 4</div>
                   <h3>Precarización laboral y plataformas digitales: CDMX vs. España</h3>
                 </div>
-                <div class="talk-actions" aria-label="Mover exposición"><button type="button" data-move="up">↑</button><button type="button" data-move="down">↓</button></div>
               </div>
               <p class="description">Analiza la precarización del empleo en plataformas digitales de delivery y movilidad, comparando la Ciudad de México con el modelo de laboralización español.</p>
               <p class="members-label">Integrantes</p>
@@ -758,13 +710,12 @@
         <article class="slot" data-slot="2026-06-02T20:30">
           <div class="time">20:30-21:00<span>20:30-20:45 exposición<br>20:45-21:00 retroalimentación</span></div>
           <div class="slot-drop">
-            <article class="talk accent-teal" draggable="true" data-team="E9" data-accent="accent-teal">
+            <article class="talk accent-teal" data-team="E9" data-accent="accent-teal">
               <div class="talk-head">
                 <div>
                   <div class="team-kicker">Equipo 9</div>
                   <h3>Precarización del trabajo doméstico de mujeres migrantes en Estados Unidos</h3>
                 </div>
-                <div class="talk-actions" aria-label="Mover exposición"><button type="button" data-move="up">↑</button><button type="button" data-move="down">↓</button></div>
               </div>
               <p class="description">Estudia cómo la situación migratoria irregular condiciona el acceso a protección institucional para mujeres que realizan trabajo doméstico en Estados Unidos.</p>
               <p class="members-label">Integrantes</p>
@@ -779,13 +730,12 @@
         <article class="slot" data-slot="2026-06-02T21:00">
           <div class="time">21:00-21:30<span>21:00-21:15 exposición<br>21:15-21:30 retroalimentación</span></div>
           <div class="slot-drop">
-            <article class="talk accent-green" draggable="true" data-team="E1" data-accent="accent-green">
+            <article class="talk accent-green" data-team="E1" data-accent="accent-green">
               <div class="talk-head">
                 <div>
                   <div class="team-kicker">Equipo 1</div>
                   <h3>Economía del desarrollo y empleo internacional</h3>
                 </div>
-                <div class="talk-actions" aria-label="Mover exposición"><button type="button" data-move="up">↑</button><button type="button" data-move="down">↓</button></div>
               </div>
               <p class="description">Analiza cómo impactan las políticas de economía del bienestar en la redistribución y las dinámicas de empleo a nivel internacional.</p>
               <p class="members-label">Integrantes</p>
@@ -810,13 +760,12 @@
         <article class="slot" data-slot="2026-06-04T20:00">
           <div class="time">20:00-20:30<span>20:00-20:15 exposición<br>20:15-20:30 retroalimentación</span></div>
           <div class="slot-drop">
-            <article class="talk accent-amber" draggable="true" data-team="E5" data-accent="accent-amber">
+            <article class="talk accent-amber" data-team="E5" data-accent="accent-amber">
               <div class="talk-head">
                 <div>
                   <div class="team-kicker">Equipo 5</div>
                   <h3>Precariedad pos-COVID y ETR's en la CDMX</h3>
                 </div>
-                <div class="talk-actions" aria-label="Mover exposición"><button type="button" data-move="up">↑</button><button type="button" data-move="down">↓</button></div>
               </div>
               <p class="description">Estudia la relación entre precariedad laboral pos-COVID, empresas o apps ETR y esquemas de trabajador subcontratado o autónomo.</p>
               <p class="members-label">Integrantes</p>
@@ -831,13 +780,12 @@
         <article class="slot" data-slot="2026-06-04T20:30">
           <div class="time">20:30-21:00<span>20:30-20:45 exposición<br>20:45-21:00 retroalimentación</span></div>
           <div class="slot-drop">
-            <article class="talk accent-blue" draggable="true" data-team="E6" data-accent="accent-blue">
+            <article class="talk accent-blue" data-team="E6" data-accent="accent-blue">
               <div class="talk-head">
                 <div>
                   <div class="team-kicker">Equipo 6</div>
                   <h3>IA, mantenimiento predictivo y empleo técnico vehicular: México e Israel</h3>
                 </div>
-                <div class="talk-actions" aria-label="Mover exposición"><button type="button" data-move="up">↑</button><button type="button" data-move="down">↓</button></div>
               </div>
               <p class="description">Compara cómo la inteligencia artificial en mantenimiento predictivo transforma el empleo técnico vehicular y automotriz en México e Israel.</p>
               <p class="members-label">Estudiante</p>
@@ -849,7 +797,25 @@
         </article>
         <article class="slot" data-slot="2026-06-04T21:00">
           <div class="time">21:00-21:30<span>21:00-21:15 exposición<br>21:15-21:30 retroalimentación</span></div>
-          <div class="slot-drop"><div class="empty">Disponible</div></div>
+          <div class="slot-drop">
+            <article class="talk accent-teal" data-team="E8" data-accent="accent-teal">
+              <div class="talk-head">
+                <div>
+                  <div class="team-kicker">Equipo 8</div>
+                  <h3>Ciudades de 15 minutos: Francia y México</h3>
+                </div>
+              </div>
+              <p class="description">Discute si México está preparado para implementar un modelo como la ciudad de 15 minutos, en comparación con la experiencia francesa.</p>
+              <p class="members-label">Integrantes</p>
+              <ul class="members">
+                <li>Chirinos Santamaría Ernesto Daniel</li>
+                <li>Díaz Silva Karla Mariana</li>
+                <li>Perrusquia Contreras Tania</li>
+                <li>Rojas Aquino Gretel Camila</li>
+                <li>Tejeda García Lizeth Estefanía</li>
+              </ul>
+            </article>
+          </div>
         </article>
       </div>
     </section>
@@ -863,13 +829,12 @@
         <article class="slot" data-slot="2026-06-09T20:00">
           <div class="time">20:00-20:30<span>20:00-20:15 exposición<br>20:15-20:30 retroalimentación</span></div>
           <div class="slot-drop">
-            <article class="talk accent-blue" draggable="true" data-team="E2" data-accent="accent-blue">
+            <article class="talk accent-blue" data-team="E2" data-accent="accent-blue">
               <div class="talk-head">
                 <div>
                   <div class="team-kicker">Equipo 2</div>
                   <h3>Home office como deslocalización del empleo</h3>
                 </div>
-                <div class="talk-actions" aria-label="Mover exposición"><button type="button" data-move="up">↑</button><button type="button" data-move="down">↓</button></div>
               </div>
               <p class="description">Analiza cómo el home office impacta la segmentación y desigualdad del mercado laboral, así como el equilibrio vida-trabajo en la globalización.</p>
               <p class="members-label">Integrantes</p>
@@ -887,13 +852,12 @@
         <article class="slot" data-slot="2026-06-09T20:30">
           <div class="time">20:30-21:00<span>20:30-20:45 exposición<br>20:45-21:00 retroalimentación</span></div>
           <div class="slot-drop">
-            <article class="talk accent-violet" draggable="true" data-team="E3" data-accent="accent-violet">
+            <article class="talk accent-violet" data-team="E3" data-accent="accent-violet">
               <div class="talk-head">
                 <div>
                   <div class="team-kicker">Equipo 3</div>
                   <h3>Teletrabajo transnacional y nómadas digitales en la CDMX</h3>
                 </div>
-                <div class="talk-actions" aria-label="Mover exposición"><button type="button" data-move="up">↑</button><button type="button" data-move="down">↓</button></div>
               </div>
               <p class="description">Estudia cómo la llegada de trabajadores remotos extranjeros altera el empleo y la habitabilidad urbana en zonas centrales de la Ciudad de México.</p>
               <p class="members-label">Integrantes</p>
@@ -909,73 +873,13 @@
         </article>
         <article class="slot" data-slot="2026-06-09T21:00">
           <div class="time">21:00-21:30<span>21:00-21:15 exposición<br>21:15-21:30 retroalimentación</span></div>
-          <div class="slot-drop"><div class="empty">Disponible</div></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="day" aria-labelledby="dia-11-jun" data-date="2026-06-11">
-      <div class="day-head">
-        <h2 class="day-title" id="dia-11-jun">Jueves 11 de junio de 2026</h2>
-        <div class="capacity">20:00-21:30 · 3 bloques</div>
-      </div>
-      <div class="slots">
-        <article class="slot" data-slot="2026-06-11T20:00">
-          <div class="time">20:00-20:30<span>20:00-20:15 exposición<br>20:15-20:30 retroalimentación</span></div>
           <div class="slot-drop">
-            <article class="talk accent-teal" draggable="true" data-team="E8" data-accent="accent-teal">
-              <div class="talk-head">
-                <div>
-                  <div class="team-kicker">Equipo 8</div>
-                  <h3>Ciudades de 15 minutos: Francia y México</h3>
-                </div>
-                <div class="talk-actions" aria-label="Mover exposición"><button type="button" data-move="up">↑</button><button type="button" data-move="down">↓</button></div>
-              </div>
-              <p class="description">Discute si México está preparado para implementar un modelo como la ciudad de 15 minutos, en comparación con la experiencia francesa.</p>
-              <p class="members-label">Integrantes</p>
-              <ul class="members">
-                <li>Chirinos Santamaría Ernesto Daniel</li>
-                <li>Díaz Silva Karla Mariana</li>
-                <li>Perrusquia Contreras Tania</li>
-                <li>Rojas Aquino Gretel Camila</li>
-                <li>Tejeda García Lizeth Estefanía</li>
-              </ul>
-            </article>
-          </div>
-        </article>
-        <article class="slot" data-slot="2026-06-11T20:30">
-          <div class="time">20:30-21:00<span>20:30-20:45 exposición<br>20:45-21:00 retroalimentación</span></div>
-          <div class="slot-drop">
-            <article class="talk accent-green" draggable="true" data-team="E7" data-accent="accent-green">
-              <div class="talk-head">
-                <div>
-                  <div class="team-kicker">Equipo 7</div>
-                  <h3>Deuda estudiantil como mecanismo de control del tiempo futuro del trabajador en Chile</h3>
-                </div>
-                <div class="talk-actions" aria-label="Mover exposición"><button type="button" data-move="up">↑</button><button type="button" data-move="down">↓</button></div>
-              </div>
-              <p class="description">Analiza cómo el Crédito con Aval del Estado opera como mecanismo de disciplina social frente al subempleo y la sobrecalificación.</p>
-              <p class="members-label">Integrantes</p>
-              <ul class="members">
-                <li>Acero Castro Héctor Eleazar</li>
-                <li>Avilés Iturbide Víctor</li>
-                <li>Clavero Lechuga Alexander</li>
-                <li>Lemus Cruz Óscar Emiliano</li>
-                <li>Montesinos Hernández Rodrigo Gaspar</li>
-              </ul>
-            </article>
-          </div>
-        </article>
-        <article class="slot" data-slot="2026-06-11T21:00">
-          <div class="time">21:00-21:30<span>21:00-21:15 exposición<br>21:15-21:30 retroalimentación</span></div>
-          <div class="slot-drop">
-            <article class="talk accent-rose" draggable="true" data-team="E10" data-accent="accent-rose">
+            <article class="talk accent-rose" data-team="E10" data-accent="accent-rose">
               <div class="talk-head">
                 <div>
                   <div class="team-kicker">Equipo 10</div>
                   <h3>Derechos laborales de bailarines y artistas: México vs. Europa</h3>
                 </div>
-                <div class="talk-actions" aria-label="Mover exposición"><button type="button" data-move="up">↑</button><button type="button" data-move="down">↓</button></div>
               </div>
               <p class="description">Examina los derechos laborales de bailarines y artistas, con una comparación entre México y Europa desde una perspectiva institucional y sectorial.</p>
               <p class="members-label">Estudiante</p>
@@ -987,80 +891,17 @@
         </article>
       </div>
     </section>
+
   </main>
 
   <script>
-    const emptyTemplate = () => {
-      const empty = document.createElement("div");
-      empty.className = "empty";
-      empty.textContent = "Disponible";
-      return empty;
-    };
-
-    function getDrops() {
-      return Array.from(document.querySelectorAll(".slot-drop"));
-    }
-
-    function getSlots() {
-      return Array.from(document.querySelectorAll(".day .slot"));
-    }
-
-    function getTalk(drop) {
-      return drop.querySelector(".talk");
-    }
-
     function getTimeText(slot) {
       return slot.querySelector(".time").firstChild.textContent.trim();
-    }
-
-    function getTalkByTeam(team) {
-      return getDrops()
-        .map(drop => drop.querySelector(".talk"))
-        .find(talk => talk && talk.dataset.team === team);
-    }
-
-    function getDropBySlot(slotId) {
-      const slot = document.querySelector(`.slot[data-slot="${slotId}"]`);
-      return slot ? slot.querySelector(".slot-drop") : null;
-    }
-
-    function setDropContent(drop, node) {
-      drop.innerHTML = "";
-      drop.appendChild(node || emptyTemplate());
-    }
-
-    function refreshEmptyDrops() {
-      getDrops().forEach(drop => {
-        if (!drop.querySelector(".talk") && !drop.querySelector(".empty")) {
-          drop.appendChild(emptyTemplate());
-        }
-      });
-    }
-
-    function moveTalkToDrop(talk, targetDrop) {
-      const originDrop = talk.closest(".slot-drop");
-      if (!originDrop || !targetDrop || originDrop === targetDrop) return;
-
-      const targetTalk = getTalk(targetDrop);
-      setDropContent(targetDrop, talk);
-      setDropContent(originDrop, targetTalk);
-      updateViews();
-    }
-
-    function moveByButton(talk, direction) {
-      const drops = getDrops();
-      const current = talk.closest(".slot-drop");
-      const currentIndex = drops.indexOf(current);
-      const targetIndex = currentIndex + (direction === "up" ? -1 : 1);
-      if (targetIndex < 0 || targetIndex >= drops.length) return;
-      moveTalkToDrop(talk, drops[targetIndex]);
     }
 
     function createPanCard(talk, timeText) {
       const card = document.createElement("article");
       card.className = `pan-card ${talk.dataset.accent || ""}`;
-      card.draggable = true;
-      card.dataset.team = talk.dataset.team;
 
       const time = document.createElement("div");
       time.className = "pan-time";
@@ -1108,7 +949,6 @@
           const talk = slot.querySelector(".talk");
 
           panSlot.className = "pan-slot";
-          panSlot.dataset.targetSlot = slot.dataset.slot;
           panSlot.appendChild(talk ? createPanCard(talk, timeText) : createPanEmpty(timeText));
           panDay.appendChild(panSlot);
         });
@@ -1134,93 +974,10 @@
       });
     }
 
-    function updateViews() {
-      refreshEmptyDrops();
-      updateSummary();
-      renderPanorama();
-    }
+    document.getElementById("printBtn").addEventListener("click", () => window.print());
 
-    document.addEventListener("dragstart", event => {
-      const talk = event.target.closest(".talk");
-      const panCard = event.target.closest(".pan-card");
-      const source = talk || panCard;
-      if (!source) return;
-
-      source.classList.add("dragging");
-      event.dataTransfer.setData("text/plain", source.dataset.team);
-      event.dataTransfer.effectAllowed = "move";
-    });
-
-    document.addEventListener("dragend", event => {
-      const talk = event.target.closest(".talk");
-      const panCard = event.target.closest(".pan-card");
-      if (talk) talk.classList.remove("dragging");
-      if (panCard) panCard.classList.remove("dragging");
-      document.querySelectorAll(".slot, .pan-slot").forEach(slot => slot.classList.remove("drag-over"));
-    });
-
-    document.querySelectorAll(".slot").forEach(slot => {
-      slot.addEventListener("dragover", event => {
-        event.preventDefault();
-        slot.classList.add("drag-over");
-      });
-
-      slot.addEventListener("dragleave", event => {
-        if (!event.relatedTarget || !slot.contains(event.relatedTarget)) slot.classList.remove("drag-over");
-      });
-
-      slot.addEventListener("drop", event => {
-        event.preventDefault();
-        slot.classList.remove("drag-over");
-        const team = event.dataTransfer.getData("text/plain");
-        const dragged = document.querySelector(".talk.dragging") || getTalkByTeam(team);
-        const targetDrop = slot.querySelector(".slot-drop");
-        if (dragged && targetDrop) moveTalkToDrop(dragged, targetDrop);
-      });
-    });
-
-    const panoramaGrid = document.getElementById("panoramaGrid");
-    panoramaGrid.addEventListener("dragover", event => {
-      const panSlot = event.target.closest(".pan-slot");
-      if (!panSlot) return;
-      event.preventDefault();
-      panSlot.classList.add("drag-over");
-    });
-
-    panoramaGrid.addEventListener("dragleave", event => {
-      const panSlot = event.target.closest(".pan-slot");
-      if (!panSlot) return;
-      if (!event.relatedTarget || !panSlot.contains(event.relatedTarget)) {
-        panSlot.classList.remove("drag-over");
-      }
-    });
-
-    panoramaGrid.addEventListener("drop", event => {
-      const panSlot = event.target.closest(".pan-slot");
-      if (!panSlot) return;
-      event.preventDefault();
-      panSlot.classList.remove("drag-over");
-
-      const team = event.dataTransfer.getData("text/plain");
-      const dragged = document.querySelector(".talk.dragging") || getTalkByTeam(team);
-      const targetDrop = getDropBySlot(panSlot.dataset.targetSlot);
-      if (dragged && targetDrop) moveTalkToDrop(dragged, targetDrop);
-    });
-
-    document.addEventListener("click", event => {
-      const moveButton = event.target.closest("[data-move]");
-      if (moveButton) {
-        const talk = moveButton.closest(".talk");
-        moveByButton(talk, moveButton.dataset.move);
-        return;
-      }
-
-      if (event.target.id === "printBtn") {
-        window.print();
-      }
-    });
-
-    updateViews();
+    updateSummary();
+    renderPanorama();
   </script>
 </body>
 </html>
