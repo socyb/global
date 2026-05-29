@@ -658,7 +658,7 @@
         <article class="slot" data-slot="2026-05-28T20:30">
           <div class="time">20:30-21:00<span>20:30-20:45 exposición<br>20:45-21:00 retroalimentación</span></div>
           <div class="slot-drop">
-            <article class="talk accent-green" data-team="E7" data-accent="accent-green">
+            <article class="talk accent-green" data-team="E7" data-accent="accent-green" data-url="https://rodri-mondez.github.io/endeudamiento-educativo/">
               <div class="talk-head">
                 <div>
                   <div class="team-kicker">Equipo 7</div>
@@ -666,6 +666,7 @@
                 </div>
               </div>
               <p class="description">Analiza cómo el Crédito con Aval del Estado opera como mecanismo de disciplina social frente al subempleo y la sobrecalificación.</p>
+              <a href="https://rodri-mondez.github.io/endeudamiento-educativo/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 7px; margin: 10px 0 14px; padding: 9px 14px; background: #e8fdf5; border: 2px solid var(--green); border-radius: 8px; color: var(--green); font-weight: 900; font-size: 0.9rem; text-decoration: none;">🌐 Ver trabajo digital →</a>
               <p class="members-label">Integrantes</p>
               <ul class="members">
                 <li>Acero Castro Héctor Eleazar</li>
@@ -921,7 +922,17 @@
         members.appendChild(item);
       });
 
-      card.append(time, title, members);
+      if (talk.dataset.url) {
+        const link = document.createElement("a");
+        link.href = talk.dataset.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "🌐 Ver trabajo digital →";
+        link.style.cssText = "display:inline-block;margin-top:8px;padding:5px 10px;background:#e8fdf5;border:2px solid var(--green);border-radius:6px;color:var(--green);font-weight:900;font-size:0.78rem;text-decoration:none;";
+        card.append(time, title, link, members);
+      } else {
+        card.append(time, title, members);
+      }
       return card;
     }
 
