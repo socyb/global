@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cronograma de exposiciones · Globalización y Empleo</title>
+  <style>
+    :root {
+      --ink: #15181d;
+      --text: #2f3742;
+      --muted: #667085;
+      --line: #d8dee7;
+      --paper: #f7f8fa;
+      --card: #ffffff;
+      --soft: #f1f4f8;
+      --blue: #2454a6;
+      --green: #27684f;
+      --amber: #8a5a00;
+      --rose: #9f334c;
+      --violet: #5d479b;
+      --teal: #116b78;
+      --shadow: 0 16px 40px rgba(16, 24, 40, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.5;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: end;
+      padding: 28px 0 24px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .back-link:hover {
+      background: var(--soft);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+      max-width: 900px;
+    }
+
+    .course {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .meta {
+      display: grid;
+      gap: 8px;
+      min-width: 250px;
+    }
+
+    .meta-item {
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+    }
+
+    .meta-item strong {
+      display: block;
+      color: var(--muted);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .tools {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 18px 0 24px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .tools button {
+      border: 1px solid var(--line);
+      background: var(--soft);
+      color: var(--ink);
+      border-radius: 7px;
+      padding: 8px 11px;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .tools button:hover {
+      background: #e7edf5;
+    }
+
+    .panorama {
+      margin: 0 0 26px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panorama-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: #fdfefe;
+    }
+
+    .section-kicker {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .panorama-title {
+      margin: 0;
+      font-size: clamp(1.2rem, 2.6vw, 1.85rem);
+      line-height: 1.1;
+    }
+
+    .panorama-meta {
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .panorama-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+    }
+
+    .pan-day {
+      border-right: 1px solid var(--line);
+      min-width: 0;
+    }
+
+    .pan-day:last-child {
+      border-right: 0;
+    }
+
+    .pan-date {
+      min-height: 58px;
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      background: #f8fafc;
+      font-weight: 900;
+      font-size: 0.95rem;
+      line-height: 1.2;
+    }
+
+    .pan-slot {
+      min-height: 160px;
+      padding: 10px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .pan-slot:last-child {
+      border-bottom: 0;
+    }
+
+    .pan-card {
+      height: 100%;
+      min-height: 138px;
+      border: 1px solid var(--line);
+      border-left-width: 6px;
+      border-radius: 8px;
+      background: #fff;
+      padding: 10px 11px 11px;
+    }
+
+    .pan-time {
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .pan-card h3 {
+      margin: 0 0 8px;
+      font-size: 0.9rem;
+      line-height: 1.18;
+    }
+
+    .pan-members {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--text);
+      font-size: 0.76rem;
+      line-height: 1.28;
+    }
+
+    .pan-members li + li {
+      margin-top: 3px;
+    }
+
+    .pan-empty {
+      height: 100%;
+      min-height: 138px;
+      display: grid;
+      place-items: center;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      background: #fcfcfd;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0 0 26px;
+    }
+
+    .summary-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      min-height: 110px;
+    }
+
+    .summary-card .date {
+      font-weight: 900;
+      font-size: 1rem;
+    }
+
+    .summary-card .count {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .summary-card .teams {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 34px;
+      min-height: 27px;
+      padding: 0 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--soft);
+      font-weight: 800;
+      font-size: 0.78rem;
+    }
+
+    .day {
+      margin-top: 22px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .day-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: #fdfefe;
+    }
+
+    .day-title {
+      margin: 0;
+      font-size: clamp(1.25rem, 3vw, 1.9rem);
+      line-height: 1.1;
+    }
+
+    .capacity {
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .slot {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      min-height: 142px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .slot:last-child {
+      border-bottom: 0;
+    }
+
+    .time {
+      padding: 18px 16px;
+      background: #f8fafc;
+      border-right: 1px solid var(--line);
+      border-left: 7px solid var(--line);
+      font-weight: 900;
+      font-size: 1rem;
+    }
+
+    .time span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
+    .slot-drop {
+      min-height: 142px;
+      padding: 14px 16px;
+    }
+
+    .talk {
+      height: 100%;
+      border: 1px solid var(--line);
+      border-left-width: 7px;
+      border-radius: 8px;
+      background: #fff;
+      padding: 14px 16px 16px;
+    }
+
+    .talk-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .team-kicker {
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    h3 {
+      margin: 4px 0 8px;
+      font-size: clamp(1.05rem, 2vw, 1.45rem);
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+
+    .description {
+      margin: 0 0 12px;
+      color: var(--text);
+      max-width: 860px;
+      font-size: 0.95rem;
+    }
+
+    .members-label {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .members {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .members li {
+      border: 1px solid var(--line);
+      background: #fbfcfe;
+      border-radius: 999px;
+      padding: 6px 9px;
+      color: var(--text);
+      font-size: 0.85rem;
+    }
+
+    .empty {
+      height: 100%;
+      min-height: 110px;
+      display: grid;
+      place-items: center;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      background: #fcfcfd;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .accent-blue { border-left-color: var(--blue); }
+    .accent-green { border-left-color: var(--green); }
+    .accent-amber { border-left-color: var(--amber); }
+    .accent-rose { border-left-color: var(--rose); }
+    .accent-violet { border-left-color: var(--violet); }
+    .accent-teal { border-left-color: var(--teal); }
+
+    @media (max-width: 980px) {
+      .panorama-grid,
+      .summary {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .pan-day {
+        border-bottom: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 860px) {
+      header {
+        grid-template-columns: 1fr;
+      }
+
+      .meta {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .day-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .capacity {
+        text-align: left;
+        white-space: normal;
+      }
+
+      .panorama-head {
+        display: block;
+      }
+
+      .panorama-meta {
+        margin-top: 6px;
+        text-align: left;
+        white-space: normal;
+      }
+
+      .slot {
+        grid-template-columns: 1fr;
+      }
+
+      .time {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        width: min(100% - 20px, 1180px);
+        padding-top: 18px;
+      }
+
+      .meta,
+      .panorama-grid,
+      .summary {
+        grid-template-columns: 1fr;
+      }
+
+      .talk-head {
+        display: block;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .wrap {
+        width: 100%;
+        padding: 0;
+      }
+
+      header {
+        padding-top: 0;
+      }
+
+      .tools,
+      .back-link {
+        display: none !important;
+      }
+
+      .day,
+      .panorama,
+      .summary-card {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      .day {
+        margin-top: 16px;
+      }
+
+      .talk {
+        break-inside: avoid;
+      }
+
+      .empty {
+        min-height: 72px;
+      }
+
+      .pan-slot,
+      .pan-card,
+      .pan-empty {
+        min-height: 96px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div>
+        <a class="back-link" href="../index.html">← Volver al inicio</a>
+        <p class="course">Globalización y Empleo · 2026-2</p>
+        <h1>Cronograma de exposiciones finales</h1>
+      </div>
+      <div class="meta" aria-label="Datos generales">
+        <div class="meta-item"><strong>Horario</strong>Martes y jueves · 20:00-21:30</div>
+        <div class="meta-item"><strong>Exposición</strong>15 minutos máximo</div>
+        <div class="meta-item"><strong>Retroalimentación</strong>15 minutos máximo</div>
+      </div>
+    </header>
+
+    <section class="tools" aria-label="Acciones">
+      <span>Calendario definitivo de exposiciones finales.</span>
+      <button type="button" id="printBtn">Guardar o imprimir PDF</button>
+    </section>
+
+    <section class="panorama" aria-labelledby="panorama-title">
+      <div class="panorama-head">
+        <div>
+          <p class="section-kicker">Vista panorámica</p>
+          <h2 class="panorama-title" id="panorama-title">Temas y estudiantes por horario</h2>
+        </div>
+        <div class="panorama-meta">15 min exposición · 15 min retroalimentación</div>
+      </div>
+      <div class="panorama-grid" id="panoramaGrid"></div>
+    </section>
+
+    <section class="summary" aria-label="Resumen por fecha" id="summary">
+      <div class="summary-card" data-summary-for="2026-05-28">
+        <div class="date">Jue 28 mayo</div>
+        <div class="count"></div>
+        <div class="teams"></div>
+      </div>
+      <div class="summary-card" data-summary-for="2026-06-02">
+        <div class="date">Mar 2 junio</div>
+        <div class="count"></div>
+        <div class="teams"></div>
+      </div>
+      <div class="summary-card" data-summary-for="2026-06-04">
+        <div class="date">Jue 4 junio</div>
+        <div class="count"></div>
+        <div class="teams"></div>
+      </div>
+      <div class="summary-card" data-summary-for="2026-06-09">
+        <div class="date">Mar 9 junio</div>
+        <div class="count"></div>
+        <div class="teams"></div>
+      </div>
+    </section>
+
+    <section class="day" aria-labelledby="dia-28-may" data-date="2026-05-28">
+      <div class="day-head">
+        <h2 class="day-title" id="dia-28-may">Jueves 28 de mayo de 2026</h2>
+        <div class="capacity">20:00-21:30 · 3 bloques</div>
+      </div>
+      <div class="slots">
+        <article class="slot" data-slot="2026-05-28T20:00">
+          <div class="time">20:00-20:30<span>20:00-20:15 exposición<br>20:15-20:30 retroalimentación</span></div>
+          <div class="slot-drop">
+            <article class="talk accent-blue" data-team="Sahid" data-accent="accent-blue">
+              <div class="talk-head">
+                <div>
+                  <div class="team-kicker">Exposición individual</div>
+                  <h3>Mercado Libre y trabajo en plataformas logísticas</h3>
+                </div>
+              </div>
+              <p class="description">Análisis de las condiciones laborales asociadas a Mercado Libre y a la expansión de plataformas digitales de comercio, distribución y logística.</p>
+              <p class="members-label">Estudiante</p>
+              <ul class="members">
+                <li>González Colin Axel Sahid</li>
+              </ul>
+            </article>
+          </div>
+        </article>
+        <article class="slot" data-slot="2026-05-28T20:30">
+          <div class="time">20:30-21:00<span>20:30-20:45 exposición<br>20:45-21:00 retroalimentación</span></div>
+          <div class="slot-drop">
+            <article class="talk accent-green" data-team="E7" data-accent="accent-green">
+              <div class="talk-head">
+                <div>
+                  <div class="team-kicker">Equipo 7</div>
+                  <h3>Deuda estudiantil como mecanismo de control del tiempo futuro del trabajador en Chile</h3>
+                </div>
+              </div>
+              <p class="description">Analiza cómo el Crédito con Aval del Estado opera como mecanismo de disciplina social frente al subempleo y la sobrecalificación.</p>
+              <p class="members-label">Integrantes</p>
+              <ul class="members">
+                <li>Acero Castro Héctor Eleazar</li>
+                <li>Avilés Iturbide Víctor</li>
+                <li>Clavero Lechuga Alexander</li>
+                <li>Lemus Cruz Óscar Emiliano</li>
+                <li>Montesinos Hernández Rodrigo Gaspar</li>
+              </ul>
+            </article>
+          </div>
+        </article>
+        <article class="slot" data-slot="2026-05-28T21:00">
+          <div class="time">21:00-21:30<span>21:00-21:15 exposición<br>21:15-21:30 retroalimentación</span></div>
+          <div class="slot-drop"><div class="empty">Disponible</div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="day" aria-labelledby="dia-2-jun" data-date="2026-06-02">
+      <div class="day-head">
+        <h2 class="day-title" id="dia-2-jun">Martes 2 de junio de 2026</h2>
+        <div class="capacity">20:00-21:30 · 3 bloques</div>
+      </div>
+      <div class="slots">
+        <article class="slot" data-slot="2026-06-02T20:00">
+          <div class="time">20:00-20:30<span>20:00-20:15 exposición<br>20:15-20:30 retroalimentación</span></div>
+          <div class="slot-drop">
+            <article class="talk accent-rose" data-team="E4" data-accent="accent-rose">
+              <div class="talk-head">
+                <div>
+                  <div class="team-kicker">Equipo 4</div>
+                  <h3>Precarización laboral y plataformas digitales: CDMX vs. España</h3>
+                </div>
+              </div>
+              <p class="description">Analiza la precarización del empleo en plataformas digitales de delivery y movilidad, comparando la Ciudad de México con el modelo de laboralización español.</p>
+              <p class="members-label">Integrantes</p>
+              <ul class="members">
+                <li>Nazario Benítez Sofía Meztli</li>
+                <li>Nápoles González Arturo Francisco</li>
+                <li>García Ibarra César Manuel</li>
+              </ul>
+            </article>
+          </div>
+        </article>
+        <article class="slot" data-slot="2026-06-02T20:30">
+          <div class="time">20:30-21:00<span>20:30-20:45 exposición<br>20:45-21:00 retroalimentación</span></div>
+          <div class="slot-drop">
+            <article class="talk accent-teal" data-team="E9" data-accent="accent-teal">
+              <div class="talk-head">
+                <div>
+                  <div class="team-kicker">Equipo 9</div>
+                  <h3>Precarización del trabajo doméstico de mujeres migrantes en Estados Unidos</h3>
+                </div>
+              </div>
+              <p class="description">Estudia cómo la situación migratoria irregular condiciona el acceso a protección institucional para mujeres que realizan trabajo doméstico en Estados Unidos.</p>
+              <p class="members-label">Integrantes</p>
+              <ul class="members">
+                <li>Farfán Méndez Rodrigo</li>
+                <li>Lara Correa Diego</li>
+                <li>Mosso Hernández Max Cristóbal</li>
+              </ul>
+            </article>
+          </div>
+        </article>
+        <article class="slot" data-slot="2026-06-02T21:00">
+          <div class="time">21:00-21:30<span>21:00-21:15 exposición<br>21:15-21:30 retroalimentación</span></div>
+          <div class="slot-drop">
+            <article class="talk accent-green" data-team="E1" data-accent="accent-green">
+              <div class="talk-head">
+                <div>
+                  <div class="team-kicker">Equipo 1</div>
+                  <h3>Economía del desarrollo y empleo internacional</h3>
+                </div>
+              </div>
+              <p class="description">Analiza cómo impactan las políticas de economía del bienestar en la redistribución y las dinámicas de empleo a nivel internacional.</p>
+              <p class="members-label">Integrantes</p>
+              <ul class="members">
+                <li>Hernández Milán Ana Sofía</li>
+                <li>López Cruz Daniela Sofía</li>
+                <li>Rodríguez Vázquez Joshua Joshimar</li>
+                <li>Michel Henestrosa García</li>
+              </ul>
+            </article>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="day" aria-labelledby="dia-4-jun" data-date="2026-06-04">
+      <div class="day-head">
+        <h2 class="day-title" id="dia-4-jun">Jueves 4 de junio de 2026</h2>
+        <div class="capacity">20:00-21:30 · 3 bloques</div>
+      </div>
+      <div class="slots">
+        <article class="slot" data-slot="2026-06-04T20:00">
+          <div class="time">20:00-20:30<span>20:00-20:15 exposición<br>20:15-20:30 retroalimentación</span></div>
+          <div class="slot-drop">
+            <article class="talk accent-amber" data-team="E5" data-accent="accent-amber">
+              <div class="talk-head">
+                <div>
+                  <div class="team-kicker">Equipo 5</div>
+                  <h3>Precariedad pos-COVID y ETR's en la CDMX</h3>
+                </div>
+              </div>
+              <p class="description">Estudia la relación entre precariedad laboral pos-COVID, empresas o apps ETR y esquemas de trabajador subcontratado o autónomo.</p>
+              <p class="members-label">Integrantes</p>
+              <ul class="members">
+                <li>Guzmán Vázquez David Abraham</li>
+                <li>Hidalgo Galván Mateo</li>
+                <li>Sánchez Márquez Regina</li>
+              </ul>
+            </article>
+          </div>
+        </article>
+        <article class="slot" data-slot="2026-06-04T20:30">
+          <div class="time">20:30-21:00<span>20:30-20:45 exposición<br>20:45-21:00 retroalimentación</span></div>
+          <div class="slot-drop">
+            <article class="talk accent-blue" data-team="E6" data-accent="accent-blue">
+              <div class="talk-head">
+                <div>
+                  <div class="team-kicker">Equipo 6</div>
+                  <h3>IA, mantenimiento predictivo y empleo técnico vehicular: México e Israel</h3>
+                </div>
+              </div>
+              <p class="description">Compara cómo la inteligencia artificial en mantenimiento predictivo transforma el empleo técnico vehicular y automotriz en México e Israel.</p>
+              <p class="members-label">Estudiante</p>
+              <ul class="members">
+                <li>Carlos Eibar Williams Rendón</li>
+              </ul>
+            </article>
+          </div>
+        </article>
+        <article class="slot" data-slot="2026-06-04T21:00">
+          <div class="time">21:00-21:30<span>21:00-21:15 exposición<br>21:15-21:30 retroalimentación</span></div>
+          <div class="slot-drop">
+            <article class="talk accent-teal" data-team="E8" data-accent="accent-teal">
+              <div class="talk-head">
+                <div>
+                  <div class="team-kicker">Equipo 8</div>
+                  <h3>Ciudades de 15 minutos: Francia y México</h3>
+                </div>
+              </div>
+              <p class="description">Discute si México está preparado para implementar un modelo como la ciudad de 15 minutos, en comparación con la experiencia francesa.</p>
+              <p class="members-label">Integrantes</p>
+              <ul class="members">
+                <li>Chirinos Santamaría Ernesto Daniel</li>
+                <li>Díaz Silva Karla Mariana</li>
+                <li>Perrusquia Contreras Tania</li>
+                <li>Rojas Aquino Gretel Camila</li>
+                <li>Tejeda García Lizeth Estefanía</li>
+              </ul>
+            </article>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="day" aria-labelledby="dia-9-jun" data-date="2026-06-09">
+      <div class="day-head">
+        <h2 class="day-title" id="dia-9-jun">Martes 9 de junio de 2026</h2>
+        <div class="capacity">20:00-21:30 · 3 bloques</div>
+      </div>
+      <div class="slots">
+        <article class="slot" data-slot="2026-06-09T20:00">
+          <div class="time">20:00-20:30<span>20:00-20:15 exposición<br>20:15-20:30 retroalimentación</span></div>
+          <div class="slot-drop">
+            <article class="talk accent-blue" data-team="E2" data-accent="accent-blue">
+              <div class="talk-head">
+                <div>
+                  <div class="team-kicker">Equipo 2</div>
+                  <h3>Home office como deslocalización del empleo</h3>
+                </div>
+              </div>
+              <p class="description">Analiza cómo el home office impacta la segmentación y desigualdad del mercado laboral, así como el equilibrio vida-trabajo en la globalización.</p>
+              <p class="members-label">Integrantes</p>
+              <ul class="members">
+                <li>Ameyali González</li>
+                <li>Daniela Elguea</li>
+                <li>Erick Grajeda</li>
+                <li>Donaldo Rosales</li>
+                <li>Benjamín Martínez Zúñiga</li>
+                <li>Julián Paz</li>
+              </ul>
+            </article>
+          </div>
+        </article>
+        <article class="slot" data-slot="2026-06-09T20:30">
+          <div class="time">20:30-21:00<span>20:30-20:45 exposición<br>20:45-21:00 retroalimentación</span></div>
+          <div class="slot-drop">
+            <article class="talk accent-violet" data-team="E3" data-accent="accent-violet">
+              <div class="talk-head">
+                <div>
+                  <div class="team-kicker">Equipo 3</div>
+                  <h3>Teletrabajo transnacional y nómadas digitales en la CDMX</h3>
+                </div>
+              </div>
+              <p class="description">Estudia cómo la llegada de trabajadores remotos extranjeros altera el empleo y la habitabilidad urbana en zonas centrales de la Ciudad de México.</p>
+              <p class="members-label">Integrantes</p>
+              <ul class="members">
+                <li>Danna Paola Benítez Montiel</li>
+                <li>Zoey Atenco Vargas</li>
+                <li>Irene Martínez Acosta</li>
+                <li>Mariana Zurisadai Flores Azuar</li>
+                <li>Sofía Gómez Monroy</li>
+              </ul>
+            </article>
+          </div>
+        </article>
+        <article class="slot" data-slot="2026-06-09T21:00">
+          <div class="time">21:00-21:30<span>21:00-21:15 exposición<br>21:15-21:30 retroalimentación</span></div>
+          <div class="slot-drop">
+            <article class="talk accent-rose" data-team="E10" data-accent="accent-rose">
+              <div class="talk-head">
+                <div>
+                  <div class="team-kicker">Equipo 10</div>
+                  <h3>Derechos laborales de bailarines y artistas: México vs. Europa</h3>
+                </div>
+              </div>
+              <p class="description">Examina los derechos laborales de bailarines y artistas, con una comparación entre México y Europa desde una perspectiva institucional y sectorial.</p>
+              <p class="members-label">Estudiante</p>
+              <ul class="members">
+                <li>Valeria Ruiz Méndez</li>
+              </ul>
+            </article>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    function getTimeText(slot) {
+      return slot.querySelector(".time").firstChild.textContent.trim();
+    }
+
+    function createPanCard(talk, timeText) {
+      const card = document.createElement("article");
+      card.className = `pan-card ${talk.dataset.accent || ""}`;
+
+      const time = document.createElement("div");
+      time.className = "pan-time";
+      time.textContent = timeText;
+
+      const title = document.createElement("h3");
+      title.textContent = talk.querySelector("h3").textContent;
+
+      const members = document.createElement("ul");
+      members.className = "pan-members";
+      talk.querySelectorAll(".members li").forEach(member => {
+        const item = document.createElement("li");
+        item.textContent = member.textContent;
+        members.appendChild(item);
+      });
+
+      card.append(time, title, members);
+      return card;
+    }
+
+    function createPanEmpty(timeText) {
+      const empty = document.createElement("div");
+      empty.className = "pan-empty";
+      empty.textContent = `${timeText} · Disponible`;
+      return empty;
+    }
+
+    function renderPanorama() {
+      const grid = document.getElementById("panoramaGrid");
+      if (!grid) return;
+
+      grid.innerHTML = "";
+      document.querySelectorAll(".day").forEach(day => {
+        const panDay = document.createElement("section");
+        panDay.className = "pan-day";
+
+        const panDate = document.createElement("div");
+        panDate.className = "pan-date";
+        panDate.textContent = day.querySelector(".day-title").textContent;
+        panDay.appendChild(panDate);
+
+        day.querySelectorAll(".slot").forEach(slot => {
+          const panSlot = document.createElement("div");
+          const timeText = getTimeText(slot);
+          const talk = slot.querySelector(".talk");
+
+          panSlot.className = "pan-slot";
+          panSlot.appendChild(talk ? createPanCard(talk, timeText) : createPanEmpty(timeText));
+          panDay.appendChild(panSlot);
+        });
+
+        grid.appendChild(panDay);
+      });
+    }
+
+    function updateSummary() {
+      document.querySelectorAll(".summary-card").forEach(card => {
+        const date = card.dataset.summaryFor;
+        const talks = Array.from(document.querySelectorAll(`.day[data-date="${date}"] .talk`));
+        const count = card.querySelector(".count");
+        const teams = card.querySelector(".teams");
+        count.textContent = `${talks.length} ${talks.length === 1 ? "exposición" : "exposiciones"}`;
+        teams.innerHTML = "";
+        talks.forEach(talk => {
+          const chip = document.createElement("span");
+          chip.className = "chip";
+          chip.textContent = talk.dataset.team;
+          teams.appendChild(chip);
+        });
+      });
+    }
+
+    document.getElementById("printBtn").addEventListener("click", () => window.print());
+
+    updateSummary();
+    renderPanorama();
+  </script>
+</body>
+</html>

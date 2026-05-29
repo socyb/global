@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tablero ILOSTAT · Empleo, informalidad y trabajo decente</title>
+  <link rel="icon" href="../img/icon-chart.svg">
+  <style>
+    :root {
+      --ink: #17202a;
+      --text: #2e3a45;
+      --muted: #657282;
+      --line: #d6dee8;
+      --paper: #f5f7fa;
+      --surface: #ffffff;
+      --soft: #edf3f8;
+      --blue: #184e8a;
+      --teal: #0f766e;
+      --green: #2f6f4e;
+      --amber: #9a6500;
+      --red: #a43f4f;
+      --plum: #5d4b8c;
+      --shadow: 0 14px 34px rgba(23, 32, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.5;
+    }
+
+    a {
+      color: var(--blue);
+    }
+
+    .title-icon {
+      width: 0.82em;
+      height: 0.82em;
+      margin-right: 0.16em;
+      vertical-align: -0.07em;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    .eyebrow-icon {
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+      vertical-align: -3px;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .back-link:hover {
+      background: var(--soft);
+    }
+
+    .status {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      min-height: 36px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--amber);
+    }
+
+    .status[data-state="ready"] .status-dot {
+      background: var(--green);
+    }
+
+    .status[data-state="error"] .status-dot {
+      background: var(--red);
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 24px;
+      align-items: end;
+      padding: 28px 0 26px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 850px;
+      font-size: clamp(2rem, 4.8vw, 4.4rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      margin: 14px 0 0;
+      max-width: 760px;
+      color: var(--text);
+      font-size: clamp(1rem, 1.4vw, 1.12rem);
+    }
+
+    .source-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .source-panel strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .source-panel p {
+      margin: 0;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 18px 0 22px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+    }
+
+    .toolbar-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    label {
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    select,
+    button {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      font: inherit;
+      font-weight: 800;
+    }
+
+    select {
+      padding: 7px 36px 7px 10px;
+    }
+
+    button {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    button:hover,
+    select:hover {
+      background: var(--soft);
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: end;
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcfe;
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: clamp(1.2rem, 2.2vw, 1.75rem);
+      line-height: 1.12;
+    }
+
+    .panel-note {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 5px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .kpi {
+      min-height: 128px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .kpi h2 {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .kpi-value {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      line-height: 0.95;
+    }
+
+    .kpi-value small {
+      font-size: 0.55em;
+    }
+
+    .kpi p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .chart-area {
+      padding: 16px;
+    }
+
+    .bar-chart {
+      display: grid;
+      gap: 13px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr) 72px;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .bar-country {
+      min-width: 0;
+      font-weight: 900;
+    }
+
+    .bar-track {
+      position: relative;
+      height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #f3f6fa;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      width: 0;
+      height: 100%;
+      border-right: 2px solid rgba(23, 32, 42, 0.16);
+      background: var(--teal);
+      transition: width 0.45s ease;
+    }
+
+    .bar-fill.unemployment {
+      background: var(--plum);
+    }
+
+    .bar-fill.global {
+      background: var(--blue);
+    }
+
+    .bar-value {
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+      font-weight: 900;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.87rem;
+      font-weight: 800;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      background: var(--teal);
+    }
+
+    .swatch.unemployment {
+      background: var(--plum);
+    }
+
+    .swatch.global {
+      background: var(--blue);
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding: 16px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fbfcfe;
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .mini-card span {
+      display: block;
+      font-size: 1.35rem;
+      font-weight: 900;
+    }
+
+    .mini-card p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-top: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f7f9fc;
+      color: var(--muted);
+      font-size: 0.76rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    td.value {
+      font-variant-numeric: tabular-nums;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .trend-panel {
+      margin-top: 18px;
+    }
+
+    .trend-canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      padding: 16px;
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 18px;
+      margin-top: 18px;
+      align-items: start;
+    }
+
+    .text-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .text-panel h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.25rem, 2.5vw, 2rem);
+      line-height: 1.12;
+    }
+
+    .text-panel h3 {
+      margin: 18px 0 6px;
+      color: var(--blue);
+      font-size: 1.05rem;
+    }
+
+    .text-panel p {
+      margin: 0 0 10px;
+      color: var(--text);
+    }
+
+    .text-panel ul {
+      margin: 8px 0 0;
+      padding-left: 20px;
+      color: var(--text);
+    }
+
+    .text-panel li + li {
+      margin-top: 7px;
+    }
+
+    .callout {
+      border-left: 5px solid var(--teal);
+      background: #eef8f6;
+    }
+
+    .section {
+      margin-top: 28px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.6rem, 3.5vw, 3rem);
+      line-height: 1;
+    }
+
+    .section-head p {
+      margin: 0;
+      max-width: 440px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      text-align: right;
+    }
+
+    .answer-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .answer-card {
+      min-height: 220px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+
+    .answer-card h3 {
+      margin: 0 0 10px;
+      color: var(--blue);
+      font-size: 1.05rem;
+      line-height: 1.18;
+    }
+
+    .answer-card p {
+      margin: 0;
+      color: var(--text);
+      font-size: 0.94rem;
+    }
+
+    .selection-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .selection-item {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--teal);
+      border-radius: 8px;
+      background: #fbfcfe;
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    .selection-item strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--blue);
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 1020px) {
+      header,
+      .dashboard,
+      .story {
+        grid-template-columns: 1fr;
+      }
+
+      .source-panel {
+        max-width: 640px;
+      }
+
+      .kpis,
+      .answer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .wrap {
+        width: min(100% - 22px, 1180px);
+        padding-top: 18px;
+      }
+
+      .topbar,
+      .toolbar,
+      .section-head,
+      .panel-head {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .status {
+        width: 100%;
+      }
+
+      .toolbar-group {
+        width: 100%;
+      }
+
+      select,
+      button {
+        width: 100%;
+      }
+
+      .kpis,
+      .mini-grid,
+      .answer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bar-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .bar-value {
+        text-align: left;
+      }
+
+      .section-head p {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <a class="back-link" href="../index.html#unidad4">← Volver al inicio</a>
+      <div class="status" data-state="loading" id="status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="statusText">Consultando ILOSTAT...</span>
+      </div>
+    </div>
+
+    <header>
+      <div>
+        <p class="eyebrow">Globalización y Empleo · Unidad 4</p>
+        <h1><img src="../img/icon-chart.svg" alt="" class="title-icon">Empleo, informalidad y trabajo decente</h1>
+        <p class="intro">Tablero interactivo con indicadores oficiales de la OIT: informalidad laboral y desempleo en México, Argentina, Chile y el promedio mundial.</p>
+      </div>
+      <aside class="source-panel">
+        <strong>Fuente viva</strong>
+        <p>Los datos se descargan desde la API de ILOSTAT cada vez que se abre o se actualiza esta página. El informe base es <em>Employment and Social Trends 2026</em> de la OIT.</p>
+        <p style="margin-top: 8px;">Consulta los mismos indicadores en el portal oficial: <a href="https://ilostat.ilo.org/data/" target="_blank" rel="noopener">ilostat.ilo.org/data</a>.</p>
+      </aside>
+    </header>
+
+    <section class="toolbar" aria-label="Controles del tablero">
+      <div class="toolbar-group">
+        <label for="indicatorSelect">Indicador</label>
+        <select id="indicatorSelect">
+          <option value="informality">Informalidad laboral</option>
+          <option value="unemployment">Desempleo</option>
+        </select>
+      </div>
+      <div class="toolbar-group">
+        <label for="yearSelect">Año</label>
+        <select id="yearSelect">
+          <option value="2025">2025</option>
+        </select>
+        <button type="button" id="refreshButton">Actualizar datos</button>
+      </div>
+    </section>
+
+    <section class="kpis" aria-label="Indicadores principales">
+      <article class="kpi">
+        <h2>Informalidad mundial</h2>
+        <p class="kpi-value" id="globalInformality">--</p>
+        <p id="globalInformalityMeta">Estimaciones modeladas de la OIT</p>
+      </article>
+      <article class="kpi">
+        <h2>Desempleo mundial</h2>
+        <p class="kpi-value" id="globalUnemployment">--</p>
+        <p id="globalUnemploymentMeta">Estimaciones modeladas de la OIT</p>
+      </article>
+    </section>
+
+    <section class="dashboard">
+      <article class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Comparación central</p>
+            <h2 class="panel-title" id="chartTitle">Informalidad laboral</h2>
+            <p class="panel-note" id="chartNote">Personas ocupadas en empleo informal, porcentaje del empleo total.</p>
+          </div>
+          <span class="pill" id="yearPill">2025</span>
+        </div>
+        <div class="chart-area">
+          <div class="bar-chart" id="barChart" aria-live="polite"></div>
+          <div class="legend">
+            <span class="legend-item"><span class="swatch"></span>Datos nacionales ILOSTAT</span>
+            <span class="legend-item"><span class="swatch global"></span>Estimación mundial OIT</span>
+            <span class="legend-item" id="unemploymentLegend"><span class="swatch unemployment"></span>Desempleo modelado</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head">
+          <div>
+          <p class="eyebrow">Lectura rápida</p>
+          <h2 class="panel-title">Lo que muestran los países</h2>
+          </div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini-card">
+            <strong>México</strong>
+            <span id="mexicoSummary">--</span>
+            <p>Informalidad alta con desempleo bajo.</p>
+          </div>
+          <div class="mini-card">
+            <strong>Argentina</strong>
+            <span id="argentinaSummary">--</span>
+            <p>Informalidad alta en la serie urbana.</p>
+          </div>
+          <div class="mini-card">
+            <strong>Chile</strong>
+            <span id="chileSummary">--</span>
+            <p>Menor informalidad, desempleo más alto.</p>
+          </div>
+          <div class="mini-card">
+            <strong>Mundo</strong>
+            <span id="worldSummary">--</span>
+            <p>La paradoja del informe: estabilidad no implica trabajo decente.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>País o región</th>
+                <th>Informalidad</th>
+                <th>Desempleo</th>
+                <th>Fuente ILOSTAT</th>
+              </tr>
+            </thead>
+            <tbody id="comparisonTable"></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel trend-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow"><img src="../img/icon-trend.svg" alt="" class="eyebrow-icon">Trayectoria</p>
+          <h2 class="panel-title">Serie reciente de informalidad</h2>
+          <p class="panel-note">La línea mundial usa estimaciones modeladas de la OIT; las líneas de país usan datos nacionales procesados por ILOSTAT.</p>
+        </div>
+        <span class="pill">2015-2027</span>
+      </div>
+      <svg class="trend-canvas" id="trendChart" viewBox="0 0 1000 390" role="img" aria-labelledby="trendTitle trendDesc">
+        <title id="trendTitle">Serie reciente de informalidad laboral</title>
+        <desc id="trendDesc">Comparación de informalidad laboral para México, Argentina, Chile y mundo.</desc>
+      </svg>
+    </section>
+
+    <section class="panel trend-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow"><img src="../img/icon-trend.svg" alt="" class="eyebrow-icon">Trayectoria</p>
+          <h2 class="panel-title">Serie reciente de desempleo</h2>
+          <p class="panel-note">Las líneas usan la tasa de desempleo de 15 años o más, estimaciones modeladas de la OIT.</p>
+        </div>
+        <span class="pill">2015-2027</span>
+      </div>
+      <svg class="trend-canvas" id="unemploymentTrendChart" viewBox="0 0 1000 390" role="img" aria-labelledby="unemploymentTrendTitle unemploymentTrendDesc">
+        <title id="unemploymentTrendTitle">Serie reciente de desempleo</title>
+        <desc id="unemploymentTrendDesc">Comparación de desempleo para México, Argentina, Chile y mundo.</desc>
+      </svg>
+    </section>
+
+    <section class="story">
+      <article class="text-panel callout">
+        <p class="eyebrow">La pregunta de fondo</p>
+        <h2>El desempleo no mide la calidad del empleo.</h2>
+        <p>Una persona puede estar empleada y, aun así, trabajar sin contrato estable, sin protección social o sin ingresos suficientes. Por eso la informalidad revela algo que la tasa de desempleo oculta.</p>
+        <p>México lo muestra con fuerza: su desempleo es bajo, pero más de la mitad del empleo que registra ILOSTAT es informal. Chile matiza el contraste: tiene más desempleo que México, pero una informalidad mucho menor.</p>
+      </article>
+
+      <article class="text-panel">
+        <p class="eyebrow">Conceptos clave</p>
+        <h2>Tres términos para leer el tablero</h2>
+        <div class="selection-list">
+          <div class="selection-item"><strong>Empleo informal</strong><span>Trabajo sin contrato estable, sin seguridad social ni protección legal plena.</span></div>
+          <div class="selection-item"><strong>Trabajo decente</strong><span>Empleo productivo, con ingreso justo, seguridad y derechos garantizados, según la OIT.</span></div>
+          <div class="selection-item"><strong>Tasa de desempleo</strong><span>Personas sin empleo que buscan trabajo, como porcentaje de la fuerza laboral.</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="ideas-title">
+      <div class="section-head">
+        <h2 id="ideas-title">Cinco ideas que deja el tablero</h2>
+        <p>Una lectura de los datos a la luz del informe de la OIT.</p>
+      </div>
+
+      <div class="answer-grid">
+        <article class="answer-card">
+          <h3>1 · El diagnóstico de la OIT</h3>
+          <p>El desempleo mundial puede mantenerse estable y bajo, pero eso no significa que avance el trabajo decente. Persisten informalidad, pobreza laboral, desigualdad y baja productividad.</p>
+        </article>
+        <article class="answer-card">
+          <h3>2 · Por qué mirar la informalidad</h3>
+          <p>La informalidad mide el empleo que sí existe, no su ausencia. La pregunta no es solo si hay trabajo, sino bajo qué condiciones se trabaja.</p>
+        </article>
+        <article class="answer-card">
+          <h3>3 · Lo que dicen los datos</h3>
+          <p>El tablero compara México, Argentina, Chile y el mundo. ILOSTAT muestra que México y Argentina superan ampliamente a Chile en informalidad, aunque México registra una tasa de desempleo mucho menor.</p>
+        </article>
+        <article class="answer-card">
+          <h3>4 · Una paradoja regional</h3>
+          <p>Una tasa de desempleo baja puede convivir con precariedad masiva. Chile muestra que una mayor formalidad tampoco elimina todos los problemas del mercado laboral.</p>
+        </article>
+        <article class="answer-card">
+          <h3>5 · Una lectura crítica</h3>
+          <p>Medir el “éxito” laboral solo por el desempleo es incompleto. En América Latina, buena parte de la estabilidad laboral aparente se sostiene en empleo informal y desprotección social.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <p>Fuentes: <a href="https://ilostat.ilo.org/data/" target="_blank" rel="noopener">API de ILOSTAT</a> y el informe <em>Employment and Social Trends 2026</em> de la Organización Internacional del Trabajo (OIT). El tablero muestra datos en vivo; si la consulta no responde, conserva los últimos valores disponibles.</p>
+    </footer>
+  </main>
+
+  <script>
+    const API = "https://rplumber.ilo.org/data/indicator";
+    const SELECTED_AREAS = ["Mexico", "Argentina", "Chile", "World"];
+    const COUNTRY_AREAS = ["Mexico", "Argentina", "Chile"];
+    const COLORS = {
+      Mexico: "#0f766e",
+      Argentina: "#184e8a",
+      Chile: "#9a6500",
+      World: "#5d4b8c"
+    };
+
+    const SOURCE_LABELS = {
+      "ILO - Modelled Estimates": "OIT · Estimaciones modeladas",
+      "LFS - National Occupation and Employment Survey": "Encuesta Nacional de Ocupación y Empleo",
+      "LFS - Permanent Household Survey, Urban": "Encuesta Permanente de Hogares (urbana)",
+      "LFS - National Employment Survey": "Encuesta Nacional de Empleo"
+    };
+
+    const FALLBACK = {
+      timestamp: "Datos de respaldo integrados el 21 de mayo de 2026",
+      informality: [
+        { area: "Mexico", value: 56.878, year: 2025, source: "LFS - National Occupation and Employment Survey", kind: "national" },
+        { area: "Argentina", value: 52.818, year: 2025, source: "LFS - Permanent Household Survey, Urban", kind: "national" },
+        { area: "Chile", value: 26.368, year: 2025, source: "LFS - National Employment Survey", kind: "national" },
+        { area: "World", value: 57.893, year: 2025, source: "ILO - Modelled Estimates", kind: "global" }
+      ],
+      unemployment: [
+        { area: "Mexico", value: 2.673, year: 2025, source: "ILO - Modelled Estimates", kind: "modelled" },
+        { area: "Argentina", value: 7.145, year: 2025, source: "ILO - Modelled Estimates", kind: "modelled" },
+        { area: "Chile", value: 8.974, year: 2025, source: "ILO - Modelled Estimates", kind: "modelled" },
+        { area: "World", value: 4.869, year: 2025, source: "ILO - Modelled Estimates", kind: "modelled" }
+      ],
+      trends: {
+        Mexico: [{ year: 2015, value: 58.717 }, { year: 2020, value: 56.169 }, { year: 2025, value: 56.878 }],
+        Argentina: [{ year: 2017, value: 48.563 }, { year: 2020, value: 46.981 }, { year: 2025, value: 52.818 }],
+        Chile: [{ year: 2015, value: 39.007 }, { year: 2020, value: 25.83 }, { year: 2025, value: 26.368 }],
+        World: [{ year: 2015, value: 57.403 }, { year: 2020, value: 56.957 }, { year: 2025, value: 57.893 }, { year: 2027, value: 57.838 }]
+      },
+      unemploymentTrends: {
+        Mexico: [
+          { year: 2015, value: 4.311 }, { year: 2016, value: 3.853 }, { year: 2017, value: 3.419 },
+          { year: 2018, value: 3.275 }, { year: 2019, value: 3.477 }, { year: 2020, value: 4.44 },
+          { year: 2021, value: 4.019 }, { year: 2022, value: 3.256 }, { year: 2023, value: 2.765 },
+          { year: 2024, value: 2.678 }, { year: 2025, value: 2.673 }, { year: 2026, value: 2.69 },
+          { year: 2027, value: 2.597 }
+        ],
+        Argentina: [
+          { year: 2015, value: 7.577 }, { year: 2016, value: 8.088 }, { year: 2017, value: 8.347 },
+          { year: 2018, value: 9.22 }, { year: 2019, value: 9.843 }, { year: 2020, value: 11.461 },
+          { year: 2021, value: 8.736 }, { year: 2022, value: 6.805 }, { year: 2023, value: 6.139 },
+          { year: 2024, value: 7.15 }, { year: 2025, value: 7.145 }, { year: 2026, value: 6.808 },
+          { year: 2027, value: 6.594 }
+        ],
+        Chile: [
+          { year: 2015, value: 6.605 }, { year: 2016, value: 6.926 }, { year: 2017, value: 7.257 },
+          { year: 2018, value: 7.623 }, { year: 2019, value: 7.493 }, { year: 2020, value: 10.934 },
+          { year: 2021, value: 9.281 }, { year: 2022, value: 8.249 }, { year: 2023, value: 9.013 },
+          { year: 2024, value: 8.718 }, { year: 2025, value: 8.974 }, { year: 2026, value: 8.984 },
+          { year: 2027, value: 9.064 }
+        ],
+        World: [
+          { year: 2015, value: 5.996 }, { year: 2016, value: 5.969 }, { year: 2017, value: 5.895 },
+          { year: 2018, value: 5.756 }, { year: 2019, value: 5.587 }, { year: 2020, value: 6.587 },
+          { year: 2021, value: 6.042 }, { year: 2022, value: 5.253 }, { year: 2023, value: 4.896 },
+          { year: 2024, value: 4.883 }, { year: 2025, value: 4.869 }, { year: 2026, value: 4.861 },
+          { year: 2027, value: 4.842 }
+        ]
+      }
+    };
+
+    const state = {
+      loaded: false,
+      mode: "informality",
+      year: 2025,
+      years: [2025],
+      informality: FALLBACK.informality,
+      unemployment: FALLBACK.unemployment,
+      trends: FALLBACK.trends,
+      unemploymentTrends: FALLBACK.unemploymentTrends,
+      usingFallback: true
+    };
+
+    const endpoints = {
+      countryInformality: `${API}?id=EMP_NIFL_SEX_RT_A&ref_area=MEX+ARG+CHL&sex=SEX_T&timefrom=2015&timeto=2027&lang=en&type=label&format=.csv&channel=ilostat`,
+      globalInformality: `${API}?id=EMP_2IFL_SEX_RT_A&ref_area=X01&sex=SEX_T&timefrom=2015&timeto=2027&lang=en&type=label&format=.csv&channel=ilostat`,
+      unemployment: `${API}?id=UNE_2EAP_SEX_AGE_RT_A&ref_area=MEX+ARG+CHL+X01&sex=SEX_T&classif1=AGE_YTHADULT_YGE15&timefrom=2015&timeto=2027&lang=en&type=label&format=.csv&channel=ilostat`
+    };
+
+    const statusBox = document.getElementById("status");
+    const statusText = document.getElementById("statusText");
+    const yearSelect = document.getElementById("yearSelect");
+    const indicatorSelect = document.getElementById("indicatorSelect");
+    const refreshButton = document.getElementById("refreshButton");
+
+    function endpointAttempts(key, url) {
+      const attempts = [];
+      if (window.location.protocol !== "file:") {
+        attempts.push(`/ilostat?source=${encodeURIComponent(key)}`);
+      }
+      attempts.push(url);
+      return attempts;
+    }
+
+    async function fetchText(key, url) {
+      let lastError = null;
+
+      for (const attempt of endpointAttempts(key, url)) {
+        try {
+          const response = await fetch(attempt, {
+            method: "GET",
+            headers: {
+              "Accept": "text/csv,*/*"
+            },
+            cache: "no-store"
+          });
+
+          if (!response.ok) {
+            throw new Error(`ILOSTAT respondió ${response.status}`);
+          }
+
+          return response.text();
+        } catch (error) {
+          lastError = error;
+        }
+      }
+
+      throw lastError || new Error("No se pudo consultar ILOSTAT");
+    }
+
+    function parseCSV(text) {
+      const clean = text.replace(/^\uFEFF/, "");
+      const rows = [];
+      let row = [];
+      let value = "";
+      let inQuotes = false;
+
+      for (let i = 0; i < clean.length; i += 1) {
+        const char = clean[i];
+        const next = clean[i + 1];
+
+        if (char === '"' && inQuotes && next === '"') {
+          value += '"';
+          i += 1;
+        } else if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === "," && !inQuotes) {
+          row.push(value);
+          value = "";
+        } else if ((char === "\n" || char === "\r") && !inQuotes) {
+          if (char === "\r" && next === "\n") {
+            i += 1;
+          }
+          row.push(value);
+          if (row.some((cell) => cell !== "")) {
+            rows.push(row);
+          }
+          row = [];
+          value = "";
+        } else {
+          value += char;
+        }
+      }
+
+      if (value || row.length) {
+        row.push(value);
+        rows.push(row);
+      }
+
+      const headers = rows.shift() || [];
+      return rows.map((cells) => {
+        const entry = {};
+        headers.forEach((header, index) => {
+          entry[header] = cells[index] ?? "";
+        });
+        return entry;
+      });
+    }
+
+    function normalizeValue(row) {
+      return Number.parseFloat(row.obs_value);
+    }
+
+    function normalizeYear(row) {
+      return Number.parseInt(row.time, 10);
+    }
+
+    function areaLabel(row) {
+      return row["ref_area.label"] || row.ref_area || "";
+    }
+
+    function isTotalSex(row) {
+      return (row["sex.label"] || row.sex || "") === "Total";
+    }
+
+    function isAdultTotal(row) {
+      const age = row["classif1.label"] || row.classif1 || "";
+      return age === "Age (Youth, adults): 15+" || age === "AGE_YTHADULT_YGE15";
+    }
+
+    function latestAtOrBefore(rows, targetYear) {
+      const candidates = rows
+        .filter((row) => Number.isFinite(row.year) && row.year <= targetYear)
+        .sort((a, b) => b.year - a.year);
+      return candidates[0] || null;
+    }
+
+    function exactOrLatest(rows, targetYear) {
+      const exact = rows.find((row) => row.year === targetYear);
+      return exact || latestAtOrBefore(rows, targetYear);
+    }
+
+    function dedupeByYear(rows) {
+      const seen = new Map();
+      rows.forEach((row) => {
+        if (!seen.has(row.year)) {
+          seen.set(row.year, row);
+        }
+      });
+      return [...seen.values()].sort((a, b) => a.year - b.year);
+    }
+
+    function buildCountryInformality(rows) {
+      const filtered = rows
+        .filter((row) => COUNTRY_AREAS.includes(areaLabel(row)) && isTotalSex(row))
+        .map((row) => ({
+          area: areaLabel(row),
+          year: normalizeYear(row),
+          value: normalizeValue(row),
+          source: row["source.label"] || "ILOSTAT",
+          kind: "national"
+        }))
+        .filter((row) => Number.isFinite(row.value));
+
+      const byArea = {};
+      COUNTRY_AREAS.forEach((area) => {
+        byArea[area] = dedupeByYear(filtered.filter((row) => row.area === area));
+      });
+      return byArea;
+    }
+
+    function buildGlobalInformality(rows) {
+      const filtered = rows
+        .filter((row) => areaLabel(row) === "World" && isTotalSex(row))
+        .map((row) => ({
+          area: "World",
+          year: normalizeYear(row),
+          value: normalizeValue(row),
+          source: row["source.label"] || "ILO - Modelled Estimates",
+          kind: "global"
+        }))
+        .filter((row) => Number.isFinite(row.value));
+
+      return dedupeByYear(filtered);
+    }
+
+    function buildUnemployment(rows) {
+      const filtered = rows
+        .filter((row) => SELECTED_AREAS.includes(areaLabel(row)) && isTotalSex(row) && isAdultTotal(row))
+        .map((row) => ({
+          area: areaLabel(row),
+          year: normalizeYear(row),
+          value: normalizeValue(row),
+          source: row["source.label"] || "ILO - Modelled Estimates",
+          kind: "modelled"
+        }))
+        .filter((row) => Number.isFinite(row.value));
+
+      const byArea = {};
+      SELECTED_AREAS.forEach((area) => {
+        byArea[area] = dedupeByYear(filtered.filter((row) => row.area === area));
+      });
+      return byArea;
+    }
+
+    function setStatus(kind, message) {
+      statusBox.dataset.state = kind;
+      statusText.textContent = message;
+    }
+
+    function formatValue(value, digits = 1) {
+      if (!Number.isFinite(value)) return "--";
+      return `${value.toFixed(digits)}%`;
+    }
+
+    function displayArea(area) {
+      if (area === "Mexico") return "México";
+      if (area === "World") return "Mundo";
+      return area;
+    }
+
+    function translateSource(source) {
+      if (!source) return "ILOSTAT";
+      if (SOURCE_LABELS[source]) return SOURCE_LABELS[source];
+      return source
+        .replace(/ILO - Modelled Estimates/gi, "OIT · Estimaciones modeladas")
+        .replace(/^LFS - /, "Encuesta de fuerza de trabajo · ");
+    }
+
+    function findMetric(series, area, year) {
+      return exactOrLatest(series.filter((row) => row.area === area), year);
+    }
+
+    function mergeMetricSeries(countryInformality, globalInformality, unemploymentByArea, year) {
+      const informality = [
+        ...COUNTRY_AREAS.map((area) => exactOrLatest(countryInformality[area] || [], year)).filter(Boolean),
+        exactOrLatest(globalInformality || [], year)
+      ].filter(Boolean);
+
+      const unemployment = SELECTED_AREAS
+        .map((area) => exactOrLatest(unemploymentByArea[area] || [], year))
+        .filter(Boolean);
+
+      const years = new Set();
+      [...Object.values(countryInformality).flat(), ...(globalInformality || []), ...Object.values(unemploymentByArea).flat()].forEach((row) => {
+        if (row.year >= 2015 && row.year <= 2027) {
+          years.add(row.year);
+        }
+      });
+
+      return {
+        informality,
+        unemployment,
+        years: [...years].sort((a, b) => a - b)
+      };
+    }
+
+    async function loadData() {
+      setStatus("loading", "Consultando ILOSTAT...");
+      refreshButton.disabled = true;
+
+      try {
+        const [countryInfoText, globalInfoText, unemploymentText] = await Promise.all([
+          fetchText("countryInformality", endpoints.countryInformality),
+          fetchText("globalInformality", endpoints.globalInformality),
+          fetchText("unemployment", endpoints.unemployment)
+        ]);
+
+        const countryInformality = buildCountryInformality(parseCSV(countryInfoText));
+        const globalInformality = buildGlobalInformality(parseCSV(globalInfoText));
+        const unemploymentByArea = buildUnemployment(parseCSV(unemploymentText));
+        const merged = mergeMetricSeries(countryInformality, globalInformality, unemploymentByArea, 2025);
+
+        state.loaded = true;
+        state.usingFallback = false;
+        state.years = merged.years.length ? merged.years : [2025];
+        state.year = state.years.includes(2025) ? 2025 : state.years[state.years.length - 1];
+        state.trends = {
+          Mexico: countryInformality.Mexico || [],
+          Argentina: countryInformality.Argentina || [],
+          Chile: countryInformality.Chile || [],
+          World: globalInformality || []
+        };
+        state.unemploymentTrends = unemploymentByArea;
+        state.informality = SELECTED_AREAS
+          .map((area) => exactOrLatest(state.trends[area] || [], state.year))
+          .filter(Boolean);
+        state.unemployment = SELECTED_AREAS
+          .map((area) => exactOrLatest(unemploymentByArea[area] || [], state.year))
+          .filter(Boolean);
+
+        populateYears();
+        render();
+
+        const now = new Date();
+        setStatus("ready", `ILOSTAT actualizado en pantalla: ${now.toLocaleString("es-MX", { dateStyle: "medium", timeStyle: "short" })}`);
+      } catch (error) {
+        state.loaded = true;
+        state.usingFallback = true;
+        state.year = 2025;
+        state.years = [2025];
+        state.informality = FALLBACK.informality;
+        state.unemployment = FALLBACK.unemployment;
+        state.trends = FALLBACK.trends;
+        state.unemploymentTrends = FALLBACK.unemploymentTrends;
+        populateYears();
+        render();
+        setStatus("error", "No se pudo consultar ILOSTAT; se muestran valores de respaldo.");
+        console.error(error);
+      } finally {
+        refreshButton.disabled = false;
+      }
+    }
+
+    function populateYears() {
+      yearSelect.innerHTML = "";
+      state.years
+        .filter((year) => year >= 2015 && year <= 2027)
+        .forEach((year) => {
+          const option = document.createElement("option");
+          option.value = String(year);
+          option.textContent = String(year);
+          if (year === state.year) option.selected = true;
+          yearSelect.append(option);
+        });
+    }
+
+    function renderKpis() {
+      const worldInformality = findMetric(state.informality, "World", state.year);
+      const worldUnemployment = findMetric(state.unemployment, "World", state.year);
+
+      document.getElementById("globalInformality").innerHTML = `${formatValue(worldInformality?.value).replace("%", "<small>%</small>")}`;
+      document.getElementById("globalInformalityMeta").textContent = worldInformality ? `Mundo · ${worldInformality.year} · ${translateSource(worldInformality.source)}` : "Sin dato disponible";
+
+      document.getElementById("globalUnemployment").innerHTML = `${formatValue(worldUnemployment?.value).replace("%", "<small>%</small>")}`;
+      document.getElementById("globalUnemploymentMeta").textContent = worldUnemployment ? `Mundo · ${worldUnemployment.year} · ${translateSource(worldUnemployment.source)}` : "Sin dato disponible";
+    }
+
+    function renderBars() {
+      const chart = document.getElementById("barChart");
+      const rows = state.mode === "informality" ? state.informality : state.unemployment;
+      const values = SELECTED_AREAS.map((area) => findMetric(rows, area, state.year)).filter(Boolean);
+      const max = Math.max(65, ...values.map((row) => row.value));
+      chart.innerHTML = "";
+
+      values.forEach((row) => {
+        const barRow = document.createElement("div");
+        barRow.className = "bar-row";
+
+        const country = document.createElement("div");
+        country.className = "bar-country";
+        country.textContent = displayArea(row.area);
+
+        const track = document.createElement("div");
+        track.className = "bar-track";
+        track.setAttribute("aria-label", `${country.textContent}: ${formatValue(row.value)} en ${row.year}`);
+
+        const fill = document.createElement("div");
+        fill.className = `bar-fill ${state.mode === "unemployment" ? "unemployment" : ""} ${row.area === "World" ? "global" : ""}`;
+        fill.style.width = `${Math.min(100, (row.value / max) * 100)}%`;
+        track.append(fill);
+
+        const value = document.createElement("div");
+        value.className = "bar-value";
+        value.textContent = `${formatValue(row.value)} · ${row.year}`;
+
+        barRow.append(country, track, value);
+        chart.append(barRow);
+      });
+    }
+
+    function renderTable() {
+      const body = document.getElementById("comparisonTable");
+      body.innerHTML = "";
+
+      SELECTED_AREAS.forEach((area) => {
+        const inf = findMetric(state.informality, area, state.year);
+        const une = findMetric(state.unemployment, area, state.year);
+        const tr = document.createElement("tr");
+
+        const label = displayArea(area);
+        const source = inf?.source || une?.source || "ILOSTAT";
+        const sourceNote = area === "World" ? "OIT · Estimaciones modeladas" : translateSource(source);
+
+        tr.innerHTML = `
+          <td>${label}</td>
+          <td class="value">${inf ? `${formatValue(inf.value)} (${inf.year})` : "--"}</td>
+          <td class="value">${une ? `${formatValue(une.value)} (${une.year})` : "--"}</td>
+          <td>${sourceNote}</td>
+        `;
+        body.append(tr);
+      });
+    }
+
+    function renderSummaries() {
+      const areas = {
+        mexicoSummary: "Mexico",
+        argentinaSummary: "Argentina",
+        chileSummary: "Chile",
+        worldSummary: "World"
+      };
+
+      Object.entries(areas).forEach(([id, area]) => {
+        const inf = findMetric(state.informality, area, state.year);
+        const une = findMetric(state.unemployment, area, state.year);
+        const elem = document.getElementById(id);
+        if (inf && une) {
+          elem.textContent = `${formatValue(inf.value)} inf. / ${formatValue(une.value)} desempleo`;
+        } else if (inf) {
+          elem.textContent = `${formatValue(inf.value)} informalidad`;
+        } else {
+          elem.textContent = "--";
+        }
+      });
+    }
+
+    function renderTrendChart({ svgId, titleId, descId, title, description, seriesByArea, maxValue, ticks }) {
+      const svg = document.getElementById(svgId);
+      const width = 1000;
+      const height = 390;
+      const margin = { top: 30, right: 130, bottom: 46, left: 56 };
+      const innerWidth = width - margin.left - margin.right;
+      const innerHeight = height - margin.top - margin.bottom;
+      const years = Array.from({ length: 13 }, (_, index) => 2015 + index);
+      const minYear = 2015;
+      const maxYear = 2027;
+      const minValue = 0;
+
+      function x(year) {
+        return margin.left + ((year - minYear) / (maxYear - minYear)) * innerWidth;
+      }
+
+      function y(value) {
+        return margin.top + innerHeight - ((value - minValue) / (maxValue - minValue)) * innerHeight;
+      }
+
+      function linePath(series) {
+        return series
+          .filter((point) => point.year >= minYear && point.year <= maxYear && Number.isFinite(point.value))
+          .sort((a, b) => a.year - b.year)
+          .map((point, index) => `${index === 0 ? "M" : "L"} ${x(point.year).toFixed(2)} ${y(point.value).toFixed(2)}`)
+          .join(" ");
+      }
+
+      const grid = ticks.map((tick) => `
+        <line x1="${margin.left}" x2="${width - margin.right}" y1="${y(tick)}" y2="${y(tick)}" stroke="#d6dee8" stroke-width="1" />
+        <text x="${margin.left - 12}" y="${y(tick) + 4}" text-anchor="end" font-size="13" fill="#657282">${tick}%</text>
+      `).join("");
+
+      const yearTicks = years.filter((year) => year % 2 === 1).map((year) => `
+        <text x="${x(year)}" y="${height - 16}" text-anchor="middle" font-size="13" fill="#657282">${year}</text>
+      `).join("");
+
+      const lines = SELECTED_AREAS.map((area) => {
+        const series = seriesByArea[area] || [];
+        const path = linePath(series);
+        if (!path) return "";
+        const labelPoint = series.filter((point) => point.year >= minYear && point.year <= maxYear).sort((a, b) => b.year - a.year)[0];
+        return `
+          <path d="${path}" fill="none" stroke="${COLORS[area]}" stroke-width="${area === "World" ? 4 : 3}" stroke-linecap="round" stroke-linejoin="round" />
+          ${series.filter((point) => point.year >= minYear && point.year <= maxYear).map((point) => `<circle cx="${x(point.year)}" cy="${y(point.value)}" r="${area === "World" ? 4.8 : 4}" fill="${COLORS[area]}" />`).join("")}
+          ${labelPoint ? `<text x="${x(labelPoint.year) + 10}" y="${y(labelPoint.value) + 4}" font-size="14" font-weight="800" fill="${COLORS[area]}">${displayArea(area)}</text>` : ""}
+        `;
+      }).join("");
+
+      svg.innerHTML = `
+        <title id="${titleId}">${title}</title>
+        <desc id="${descId}">${description}</desc>
+        <rect x="0" y="0" width="${width}" height="${height}" fill="#ffffff" />
+        ${grid}
+        <line x1="${margin.left}" x2="${width - margin.right}" y1="${height - margin.bottom}" y2="${height - margin.bottom}" stroke="#17202a" stroke-width="1.5" />
+        <line x1="${margin.left}" x2="${margin.left}" y1="${margin.top}" y2="${height - margin.bottom}" stroke="#17202a" stroke-width="1.5" />
+        ${yearTicks}
+        ${lines}
+      `;
+    }
+
+    function renderTrends() {
+      renderTrendChart({
+        svgId: "trendChart",
+        titleId: "trendTitle",
+        descId: "trendDesc",
+        title: "Serie reciente de informalidad laboral",
+        description: "Comparación de informalidad laboral para México, Argentina, Chile y mundo.",
+        seriesByArea: state.trends,
+        maxValue: 70,
+        ticks: [0, 20, 40, 60]
+      });
+
+      renderTrendChart({
+        svgId: "unemploymentTrendChart",
+        titleId: "unemploymentTrendTitle",
+        descId: "unemploymentTrendDesc",
+        title: "Serie reciente de desempleo",
+        description: "Comparación de desempleo para México, Argentina, Chile y mundo.",
+        seriesByArea: state.unemploymentTrends,
+        maxValue: 12,
+        ticks: [0, 3, 6, 9, 12]
+      });
+    }
+
+    function updateChartLabels() {
+      const isInformality = state.mode === "informality";
+      document.getElementById("chartTitle").textContent = isInformality ? "Informalidad laboral" : "Tasa de desempleo";
+      document.getElementById("chartNote").textContent = isInformality
+        ? "Personas ocupadas en empleo informal, porcentaje del empleo total."
+        : "Personas desempleadas como porcentaje de la fuerza laboral, estimaciones modeladas de la OIT.";
+      document.getElementById("yearPill").textContent = String(state.year);
+      document.getElementById("unemploymentLegend").style.display = isInformality ? "none" : "inline-flex";
+    }
+
+    function render() {
+      state.year = Number.parseInt(yearSelect.value || state.year, 10);
+      state.mode = indicatorSelect.value;
+
+      if (!state.usingFallback && state.loaded) {
+        state.informality = SELECTED_AREAS
+          .map((area) => exactOrLatest(state.trends[area] || [], state.year))
+          .filter(Boolean);
+        state.unemployment = SELECTED_AREAS
+          .map((area) => exactOrLatest(state.unemploymentTrends[area] || [], state.year))
+          .filter(Boolean);
+      }
+
+      updateChartLabels();
+      renderKpis();
+      renderBars();
+      renderSummaries();
+      renderTable();
+      renderTrends();
+    }
+
+    indicatorSelect.addEventListener("change", render);
+    yearSelect.addEventListener("change", render);
+    refreshButton.addEventListener("click", loadData);
+
+    loadData();
+    window.setInterval(loadData, 30 * 60 * 1000);
+  </script>
+</body>
+</html>
