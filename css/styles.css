@@ -318,13 +318,37 @@ summary:focus-visible {
     min-width: 0;
 }
 
-body.board-archived .home-layout {
-    grid-template-columns: minmax(0, var(--container-max));
-    max-width: calc(var(--container-max) + 2.5rem);
-}
-
 body.board-archived .corkboard {
     display: none;
+}
+
+/* Columna lateral derecha: pizarrón de hoy + trabajos entregados */
+.home-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-width: 0;
+    align-self: start;
+}
+
+.works-board {
+    position: sticky;
+    top: 5rem;
+}
+
+.works-board-kicker {
+    margin: 0 0 .4rem .3rem;
+    font-family: var(--font-accent);
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.works-board .board-scatter {
+    gap: 1.8rem 1.2rem;
+    padding: .8rem 0 1rem;
 }
 
 .corkboard {
@@ -1306,6 +1330,19 @@ a.session-card:hover {
         margin-bottom: .35rem;
     }
 
+    /* En vertical, la columna lateral baja al final de la página */
+    .home-side {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem 2rem;
+        margin-top: 1.5rem;
+    }
+
+    .works-board {
+        position: static;
+        flex: 1 1 100%;
+    }
+
     .corkboard-lead {
         max-width: none;
     }
@@ -1492,6 +1529,167 @@ a.session-card:hover {
     .resources-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* ── Acceso discreto al cronograma de exposiciones ── */
+.cronograma-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    margin-bottom: 1rem;
+    padding: .55rem .9rem;
+    border: 1px dashed var(--border-color, rgba(0,0,0,.25));
+    border-radius: var(--radius-pill);
+    background: rgba(255,255,255,.5);
+    color: var(--text-muted);
+    font-size: .85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background .14s ease, color .14s ease, border-color .14s ease;
+}
+
+.cronograma-link:hover {
+    background: var(--blush);
+    color: var(--ink);
+    border-color: var(--ink);
+}
+
+.cronograma-link-go {
+    font-size: .78rem;
+    opacity: .8;
+    white-space: nowrap;
+}
+
+/* ── Trabajos digitales entregados: post-its sueltos ── */
+.board-scatter {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2.4rem 2.8rem;
+    padding: 1rem 0 2rem;
+}
+
+.work-note {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    padding: 1.6rem 1.1rem 1.1rem;
+    border: var(--border-thin);
+    border-radius: 10px 18px 12px 16px;
+    box-shadow: 5px 6px 9px rgba(0,0,0,.28);
+    color: var(--ink);
+    text-decoration: none;
+    transition: transform .14s ease, box-shadow .14s ease;
+}
+
+/* Ángulos y desfases espontáneos, como pegados a mano en huecos del pizarrón */
+.work-note:nth-child(5n+1) { transform: rotate(-3.2deg) translateY(0.4rem); }
+.work-note:nth-child(5n+2) { transform: rotate(2.6deg)  translateY(2.6rem); }
+.work-note:nth-child(5n+3) { transform: rotate(-1.4deg) translateY(-1.2rem); }
+.work-note:nth-child(5n+4) { transform: rotate(3.4deg)  translateY(1.8rem); }
+.work-note:nth-child(5n+5) { transform: rotate(-2.3deg) translateY(-0.6rem); }
+
+.work-note:hover,
+.work-note:focus-visible {
+    transform: rotate(0deg) translateY(-5px) scale(1.03);
+    box-shadow: 9px 13px 18px rgba(0,0,0,.32);
+    outline: none;
+    z-index: 3;
+}
+
+/* Chincheta clavada arriba del post-it */
+.work-note::before {
+    content: '';
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--ink);
+    background: radial-gradient(circle at 35% 30%, #fff7d4 0 22%, rgba(255,255,255,.25) 23%, transparent 24%), var(--coral);
+    box-shadow: 1px 3px 3px rgba(0,0,0,.4);
+    z-index: 2;
+}
+
+.work-note.paper-1 { background: #fff3c9; }
+.work-note.paper-2 { background: #eef4ff; }
+.work-note.paper-3 { background: #ebfff0; }
+.work-note.paper-4 { background: #fff9ea; }
+.work-note.paper-5 { background: #ffe9ef; }
+.work-note.paper-2::before { background: var(--pin-blue); }
+.work-note.paper-3::before { background: var(--pin-green); }
+.work-note.paper-4::before { background: var(--pin-gold); }
+.work-note.paper-5::before { background: var(--pin-red); }
+
+.work-note .wn-team {
+    display: inline-block;
+    align-self: flex-start;
+    margin-bottom: .55rem;
+    padding: .25rem .6rem;
+    background: var(--ink);
+    color: #fff;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-accent);
+    font-weight: 800;
+    font-size: .68rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.work-note .wn-title {
+    font-size: 1.02rem;
+    line-height: 1.22;
+    font-weight: 800;
+    margin-bottom: .4rem;
+}
+
+.work-note .wn-desc {
+    font-size: .82rem;
+    line-height: 1.42;
+    color: var(--text);
+    margin-bottom: .85rem;
+}
+
+.work-note .wn-members {
+    margin: 0 0 .95rem;
+    padding: 0;
+    list-style: none;
+    font-size: .74rem;
+    line-height: 1.35;
+    color: var(--text-muted);
+}
+
+.work-note .wn-cta {
+    margin-top: auto;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .4rem .8rem;
+    background: rgba(255,255,255,.75);
+    border: var(--border-thin);
+    border-radius: var(--radius-pill);
+    box-shadow: 2px 2px 0 var(--ink);
+    font-weight: 800;
+    font-size: .8rem;
+}
+
+.work-note:hover .wn-cta { background: var(--blush); }
+
+@media (max-width: 540px) {
+    .board-scatter { gap: 2rem 1rem; }
+    .work-note { width: 100%; max-width: 320px; }
+    .work-note:nth-child(5n+1),
+    .work-note:nth-child(5n+2),
+    .work-note:nth-child(5n+3),
+    .work-note:nth-child(5n+4),
+    .work-note:nth-child(5n+5) { transform: rotate(-1.5deg) translateY(0); }
 }
 
 /* ── Print styles ──────────────────────────────────── */
