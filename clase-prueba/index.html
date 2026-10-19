@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clase prueba didáctica · Sistemas de empleo y acuerdos comerciales · Globalización y Empleo</title>
+<meta name="description" content="Análisis de sistemas de empleo en países con los que México tiene acuerdos comerciales: Estados Unidos, Japón, Alemania y España frente a México. Presentación, tarea, videos y lecturas.">
+<meta property="og:title" content="Socios comerciales, sistemas de empleo distintos · Globalización y Empleo">
+<meta property="og:description" content="Clase prueba didáctica · lunes 26 de octubre de 2026 · A-205 · FCA UNAM">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://socyb.github.io/global/clase-prueba/">
+<link rel="icon" href="../img/icon-globe.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/clase-prueba.css">
+<script>
+  /* tema antes de pintar, para que no parpadee */
+  (function () {
+    try {
+      var q = location.search, t = null;
+      if (/[?&]tema=claro/.test(q) || /[?&]pdf=1/.test(q)) t = "light";
+      else if (/[?&]tema=oscuro/.test(q)) t = "dark";
+      if (!t) t = localStorage.getItem("global-cp-theme");
+      if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+    if (/[?&]pdf=1/.test(location.search)) document.documentElement.classList.add("is-pdf");
+  })();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<!-- ═══ Barra superior ═══ -->
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="../index.html" title="Volver a la página del curso">
+      <span class="brand-arrow" aria-hidden="true">←</span>
+      <span class="brand-txt"><b>Globalización y Empleo</b><small>FCA · UNAM</small></span>
+    </a>
+    <nav class="topnav" aria-label="Secciones de la clase">
+      <a href="#presentacion">Presentación</a>
+      <a href="#tarea">Tarea</a>
+      <a href="#videos">Videos</a>
+      <a href="#lecturas">Lecturas</a>
+      <a href="#palabras">Palabras clave</a>
+    </nav>
+    <div class="tools">
+      <button class="icon-btn" id="qrBtn" type="button" aria-label="Mostrar código QR de esta página" title="Código QR">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 14h3v3h-3zM18 18h3v3h-3zM14 19h2v2h-2zM19 14h2v2h-2z" fill="currentColor"/></svg>
+      </button>
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Cambiar a modo oscuro" title="Claro / oscuro">🌙</button>
+      <button class="icon-btn" id="printBtn" type="button" aria-label="Imprimir esta página" title="Imprimir">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M7 14h10v7H7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ═══ Portada ═══ -->
+<section class="hero">
+  <svg class="hero-rose" viewBox="0 0 400 400" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="1.2">
+      <circle cx="200" cy="200" r="190"/><circle cx="200" cy="200" r="150" stroke-dasharray="3 6"/><circle cx="200" cy="200" r="96"/>
+      <path d="M200 10v380M10 200h380M66 66l268 268M334 66 66 334"/>
+    </g>
+    <path d="M200 26l18 174-18 174-18-174z" fill="currentColor" opacity=".55"/>
+    <path d="M26 200l174-18 174 18-174 18z" fill="currentColor" opacity=".35"/>
+  </svg>
+  <div class="wrap hero-in">
+    <p class="kicker">Globalización y Empleo · Clase prueba didáctica</p>
+    <h1>Socios comerciales, <em>sistemas de empleo distintos</em></h1>
+    <p class="lead">Análisis de sistemas de empleo en países con los que México tiene acuerdos comerciales.</p>
+
+    <dl class="facts">
+      <div><dt>Fecha</dt><dd>Lunes 26 de octubre de 2026</dd></div>
+      <div><dt>Hora</dt><dd>9:00 h</dd></div>
+      <div><dt>Salón</dt><dd>A-205</dd></div>
+      <div><dt>Duración</dt><dd>15 min de exposición + 5 min de preguntas</dd></div>
+      <div><dt>Profesor</dt><dd>Dr. Jorge Cardiel Herrera</dd></div>
+      <div><dt>Facultad</dt><dd>Contaduría y Administración · UNAM</dd></div>
+    </dl>
+
+    <ul class="strip" aria-label="La clase en cifras">
+      <li><b>14</b><span>tratados de libre comercio</span></li>
+      <li><b>52</b><span>países socios</span></li>
+      <li><b>4</b><span>sistemas de empleo comparados</span></li>
+      <li><b>1</b><span>pregunta: ¿convergen o divergen?</span></li>
+    </ul>
+
+    <div class="hero-actions">
+      <button class="btn btn-primary" type="button" data-present>▶ Presentar</button>
+      <a class="btn" href="#tarea">Ir a la tarea</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Presentación ═══ -->
+<section id="presentacion" class="section section-deck">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker k-blue">La exposición</p>
+      <h2>Presentación</h2>
+    </div>
+  </div>
+
+  <div class="deck" id="deck" aria-roledescription="carrusel" aria-label="Presentación de la clase">
+    <div class="deck-stage" id="deckStage">
+
+      <!-- 1 · Portada -->
+      <article class="slide s-cover" aria-roledescription="diapositiva">
+        <div class="slide-in">
+          <div class="cover-grid">
+            <div>
+              <p class="s-kicker">Globalización y Empleo · Clase prueba didáctica</p>
+              <h2 class="s-title s-title--xl">Socios comerciales, <em>sistemas de empleo distintos</em></h2>
+              <p class="s-lead">Análisis de sistemas de empleo en países con los que México tiene acuerdos comerciales</p>
+              <ul class="cover-chips">
+                <li class="c-us">Estados Unidos <small>T-MEC</small></li>
+                <li class="c-jp">Japón <small>TIPAT</small></li>
+                <li class="c-de">Alemania <small>TLCUEM</small></li>
+                <li class="c-es">España <small>TLCUEM</small></li>
+                <li class="c-mx">México <small>referencia</small></li>
+              </ul>
+              <p class="s-meta">Dr. Jorge Cardiel Herrera · Facultad de Contaduría y Administración, UNAM<br>Lunes 26 de octubre de 2026 · 9:00 h · A-205</p>
+            </div>
+            <figure class="s-qr">
+              <img src="assets/qr-clase-prueba.svg" alt="Código QR para abrir esta página en el celular" width="296" height="296">
+              <figcaption>Abre la clase en tu celular</figcaption>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2 · Esquema de trabajo -->
+      <article class="slide" aria-roledescription="diapositiva">
+        <div class="slide-in">
+          <p class="s-kicker">Esquema de la clase</p>
+          <h2 class="s-title">Objetivo y ruta</h2>
+          <p class="s-objective"><b>Objetivo.</b> Comparar los sistemas de empleo de cuatro socios comerciales de México con las cuatro preguntas de Bamber, Lansbury y Wailes (2004) y reconocer cómo los acuerdos comerciales recientes empiezan a moverlos.</p>
+          <ol class="route">
+            <li><span class="route-n">1</span><b>La red</b><small>¿Con quién tiene acuerdos México?</small></li>
+            <li><span class="route-n">2</span><b>El instrumento</b><small>Qué es un sistema de empleo y cómo se compara</small></li>
+            <li><span class="route-n">3</span><b>Cuatro casos</b><small>EE.UU., Japón, Alemania y España frente a México</small></li>
+            <li><span class="route-n">4</span><b>Del comercio al trabajo</b><small>Los capítulos laborales de los tratados</small></li>
+          </ol>
+          <p class="s-proc"><b>Cómo trabajamos:</b> exposición · una pregunta a mano alzada al cerrar cada subtema · cuadro sinóptico al final · tarea y videos en el QR</p>
+        </div>
+      </article>
+
+      <!-- 3 · Exploración -->
+      <article class="slide s-ask" aria-roledescription="diapositiva">
+        <div class="slide-in">
+          <p class="s-kicker k-amber">✋ Antes de empezar · mano alzada</p>
+          <h2 class="s-title">¿Con cuántos países tiene México un tratado de libre comercio?</h2>
+          <ol class="options">
+            <li><span>A</span>5</li>
+            <li><span>B</span>15</li>
+            <li class="mark" data-frag><span>C</span>52</li>
+          </ol>
+          <p class="answer frag" data-frag><b>52 países, 14 tratados</b> (Secretaría de Economía, junio de 2026).</p>
+          <div class="ask-2 frag" data-frag>
+            <p class="ask-q">¿Y con China, segundo socio comercial de México?</p>
+            <p class="answer frag" data-frag><b>Ninguno.</b> China vende a México una de cada cinco cosas que importa, sin tratado de por medio.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 · La red -->
+      <article class="slide s-net" data-sub="1" aria-roledescription="diapositiva">
+        <div class="slide-in">
+          <p class="s-kicker">1 · La red</p>
+          <h2 class="s-title">14 tratados, 52 países</h2>
+          <figure class="net-frame">
+            <svg class="red" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690" role="img" aria-labelledby="redTitle redDesc">
+<title id="redTitle">Red de tratados de libre comercio de México, octubre de 2026</title>
+<desc id="redDesc">México en el centro. Seis acuerdos de varios países (T-MEC, Unión Europea, AELC, TIPAT, Centroamérica y Alianza del Pacífico) y ocho acuerdos bilaterales unen a México con 52 países. Resaltados: Estados Unidos, Japón, Alemania y España. Solo el T-MEC y el TIPAT tienen capítulo laboral vigente; el acuerdo modernizado con la Unión Europea lo incorpora. China, Corea del Sur e India no tienen tratado.</desc>
+
+<g class="edges">
+<line class="n-edge" x1="255" y1="95" x2="365" y2="185"/>
+<line class="n-edge" x1="390" y1="70" x2="365" y2="185"/>
+<line class="n-edge" x1="925" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="925" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="956" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="987" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="1018" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="1049" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="1080" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="1111" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="1142" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="1173" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="956" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="987" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="1018" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="1049" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="1080" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="1111" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="1142" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="1173" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="925" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="956" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="987" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="1018" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="1049" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="1080" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="1111" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="1142" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="1173" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="1075" y1="252" x2="960" y2="300"/>
+<line class="n-edge" x1="1075" y1="284" x2="960" y2="300"/>
+<line class="n-edge" x1="1075" y1="316" x2="960" y2="300"/>
+<line class="n-edge" x1="1075" y1="348" x2="960" y2="300"/>
+<line class="n-edge" x1="80" y1="206" x2="205" y2="270"/>
+<line class="n-edge" x1="80" y1="238" x2="205" y2="270"/>
+<line class="n-edge" x1="80" y1="270" x2="205" y2="270"/>
+<line class="n-edge" x1="80" y1="302" x2="205" y2="270"/>
+<line class="n-edge" x1="80" y1="334" x2="205" y2="270"/>
+<line class="n-edge" x1="868" y1="618" x2="815" y2="560"/>
+<line class="n-edge" x1="980" y1="618" x2="815" y2="560"/>
+<line class="n-edge" x1="1092" y1="618" x2="815" y2="560"/>
+<line class="n-edge" x1="868" y1="652" x2="815" y2="560"/>
+<line class="n-edge" x1="980" y1="652" x2="815" y2="560"/>
+<line class="n-edge" x1="1092" y1="652" x2="815" y2="560"/>
+<line class="n-edge" x1="485" y1="652" x2="350" y2="612"/>
+<line class="n-edge" x1="565" y1="660" x2="350" y2="612"/>
+<line class="n-edge" x1="635" y1="640" x2="350" y2="612"/>
+<line class="n-edge n-edge--direct" x1="365" y1="185" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="790" y1="175" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="960" y1="300" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="815" y1="560" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="205" y1="270" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="350" y1="612" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="600" y1="62" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="1085" y1="425" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="990" y1="470" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="285" y1="420" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="700" y1="650" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="485" y1="652" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="565" y1="660" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="635" y1="640" x2="600" y2="330"/>
+</g>
+<text class="t-edge" data-t="acc" text-anchor="middle" transform="translate(609.0,190.6) rotate(-90.0)">ACC 2021</text>
+<text class="t-edge" data-t="tlc" text-anchor="middle" transform="translate(868.5,373.4) rotate(11.1)">TLC 2000</text>
+<text class="t-edge" data-t="aae" text-anchor="middle" transform="translate(798.0,391.5) rotate(19.7)">AAE 2005</text>
+<text class="t-edge" data-t="tlc" text-anchor="middle" transform="translate(424.3,370.8) rotate(-15.9)">TLC 2015</text>
+<text class="t-edge" data-t="tlc" text-anchor="middle" transform="translate(658.6,487.3) rotate(72.6)">TLC 2004</text>
+<text class="t-edge" data-t="tlc" text-anchor="middle" transform="translate(539.8,471.9) rotate(-70.3)">TLC 1995</text>
+<text class="t-edge" data-t="aic" text-anchor="middle" transform="translate(572.9,500.7) rotate(-83.9)">AIC 2012</text>
+<text class="t-edge" data-t="tlc" text-anchor="middle" transform="translate(629.9,515.0) rotate(83.6)">TLC 1999</text>
+<g class="n-hub " data-t="tmec" transform="translate(365,185)"><rect x="-102.4" y="-25.0" width="204.8" height="50" rx="12"/><text class="t-hub" y="-3" text-anchor="middle">T-MEC</text><text class="t-sub" y="15" text-anchor="middle">TLCAN 1994 → T-MEC 2020</text>
+<g class="n-labor hard" data-t="caplab" transform="translate(96.4,-29.0)"><rect x="-53.4" y="-11" width="106.8" height="22" rx="11"/><text y="5" text-anchor="middle">cap. laboral</text></g>
+</g>
+<g class="n-hub " data-t="tlcuem" transform="translate(790,175)"><rect x="-75.8" y="-25.0" width="151.6" height="50" rx="12"/><text class="t-hub" y="-3" text-anchor="middle">TLCUEM</text><text class="t-sub" y="15" text-anchor="middle">2000 · 27 países</text>
+<g class="n-labor soft" data-t="caplab" transform="translate(69.8,-29.0)"><rect x="-71.9" y="-11" width="143.8" height="22" rx="11"/><text y="5" text-anchor="middle">cap. laboral 2026</text></g>
+</g>
+<g class="n-hub " data-t="aelc" transform="translate(960,300)"><rect x="-72.0" y="-25.0" width="144.0" height="50" rx="12"/><text class="t-hub" y="-3" text-anchor="middle">AELC</text><text class="t-sub" y="15" text-anchor="middle">2001 · 4 países</text>
+</g>
+<g class="n-hub " data-t="tipat" transform="translate(815,560)"><rect x="-75.8" y="-25.0" width="151.6" height="50" rx="12"/><text class="t-hub" y="-3" text-anchor="middle">TIPAT</text><text class="t-sub" y="15" text-anchor="middle">2018 · 11 países</text>
+<g class="n-labor hard" data-t="caplab" transform="translate(69.8,-29.0)"><rect x="-53.4" y="-11" width="106.8" height="22" rx="11"/><text y="5" text-anchor="middle">cap. laboral</text></g>
+</g>
+<g class="n-hub " data-t="ca" transform="translate(205,270)"><rect x="-82.6" y="-25.0" width="165.2" height="50" rx="12"/><text class="t-hub" y="-3" text-anchor="middle">Centroamérica</text><text class="t-sub" y="15" text-anchor="middle">2013 · 5 países</text>
+</g>
+<g class="n-hub " data-t="ap" transform="translate(350,612)"><rect x="-119.0" y="-25.0" width="238.0" height="50" rx="12"/><text class="t-hub" y="-3" text-anchor="middle">Alianza del Pacífico</text><text class="t-sub" y="15" text-anchor="middle">2016 · 3 países</text>
+</g>
+<g class="n-dot n-dot--on"><title>Estados Unidos</title>
+<circle cx="255" cy="95" r="11"/>
+<text class="t-on" x="239" y="100" text-anchor="end">Estados Unidos</text>
+</g>
+<g class="n-dot"><title>Canadá</title>
+<circle class="n-ring" cx="390" cy="70" r="12"/>
+<circle cx="390" cy="70" r="7"/>
+<text class="t-dot" x="404" y="75" text-anchor="start">Canadá</text>
+</g>
+<g class="n-dot"><title>Reino Unido</title>
+<circle class="n-ring" cx="600" cy="62" r="12"/>
+<circle cx="600" cy="62" r="7"/>
+<text class="t-dot" x="616" y="67" text-anchor="start">Reino Unido</text>
+</g>
+<g class="n-dot"><title>Israel</title>
+<circle cx="1085" cy="425" r="7"/>
+<text class="t-dot" x="1097" y="430" text-anchor="start">Israel</text>
+</g>
+<g class="n-dot n-dot--on"><title>Japón</title>
+<circle class="n-ring" cx="990" cy="470" r="16"/>
+<circle cx="990" cy="470" r="11"/>
+<text class="t-on" x="1008" y="475" text-anchor="start">Japón</text>
+</g>
+<g class="n-dot"><title>Panamá</title>
+<circle cx="285" cy="420" r="7"/>
+<text class="t-dot" x="272" y="425" text-anchor="end">Panamá</text>
+</g>
+<g class="n-dot"><title>Uruguay</title>
+<circle cx="700" cy="650" r="7"/>
+<text class="t-dot" x="713" y="655" text-anchor="start">Uruguay</text>
+</g>
+<g class="n-dot"><title>Colombia</title>
+<circle cx="485" cy="652" r="7"/>
+<text class="t-dot" x="485" y="678" text-anchor="middle">Colombia</text>
+</g>
+<g class="n-dot"><title>Perú</title>
+<circle class="n-ring" cx="565" cy="660" r="12"/>
+<circle cx="565" cy="660" r="7"/>
+<text class="t-dot" x="565" y="644" text-anchor="middle">Perú</text>
+</g>
+<g class="n-dot"><title>Chile</title>
+<circle class="n-ring" cx="635" cy="640" r="12"/>
+<circle cx="635" cy="640" r="7"/>
+<text class="t-dot" x="651" y="645" text-anchor="start">Chile</text>
+</g>
+<g class="n-dot n-dot--on"><title>Alemania</title>
+<circle cx="925" cy="42" r="11"/>
+<text class="t-on" x="908" y="47" text-anchor="end">Alemania</text>
+</g>
+<g class="n-dot n-dot--on"><title>España</title>
+<circle cx="925" cy="76" r="11"/>
+<text class="t-on" x="908" y="81" text-anchor="end">España</text>
+</g>
+<g class="n-dot"><title>Austria</title>
+<circle cx="956" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Bélgica</title>
+<circle cx="987" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Bulgaria</title>
+<circle cx="1018" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Chipre</title>
+<circle cx="1049" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Croacia</title>
+<circle cx="1080" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Dinamarca</title>
+<circle cx="1111" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Eslovaquia</title>
+<circle cx="1142" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Eslovenia</title>
+<circle cx="1173" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Estonia</title>
+<circle cx="956" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Finlandia</title>
+<circle cx="987" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Francia</title>
+<circle cx="1018" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Grecia</title>
+<circle cx="1049" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Hungría</title>
+<circle cx="1080" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Irlanda</title>
+<circle cx="1111" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Italia</title>
+<circle cx="1142" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Letonia</title>
+<circle cx="1173" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Lituania</title>
+<circle cx="925" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Luxemburgo</title>
+<circle cx="956" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Malta</title>
+<circle cx="987" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Países Bajos</title>
+<circle cx="1018" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Polonia</title>
+<circle cx="1049" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Portugal</title>
+<circle cx="1080" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>República Checa</title>
+<circle cx="1111" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Rumania</title>
+<circle cx="1142" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Suecia</title>
+<circle cx="1173" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Islandia</title>
+<circle cx="1075" cy="252" r="6"/>
+<text class="t-dot" x="1087" y="257" text-anchor="start">Islandia</text>
+</g>
+<g class="n-dot"><title>Liechtenstein</title>
+<circle cx="1075" cy="284" r="6"/>
+<text class="t-dot" x="1087" y="289" text-anchor="start">Liechtenstein</text>
+</g>
+<g class="n-dot"><title>Noruega</title>
+<circle cx="1075" cy="316" r="6"/>
+<text class="t-dot" x="1087" y="321" text-anchor="start">Noruega</text>
+</g>
+<g class="n-dot"><title>Suiza</title>
+<circle cx="1075" cy="348" r="6"/>
+<text class="t-dot" x="1087" y="353" text-anchor="start">Suiza</text>
+</g>
+<g class="n-dot"><title>Costa Rica</title>
+<circle cx="80" cy="206" r="6"/>
+</g>
+<g class="n-dot"><title>El Salvador</title>
+<circle cx="80" cy="238" r="6"/>
+</g>
+<g class="n-dot"><title>Guatemala</title>
+<circle cx="80" cy="270" r="6"/>
+</g>
+<g class="n-dot"><title>Honduras</title>
+<circle cx="80" cy="302" r="6"/>
+</g>
+<g class="n-dot"><title>Nicaragua</title>
+<circle cx="80" cy="334" r="6"/>
+</g>
+<g class="n-dot"><title>Australia</title>
+<circle cx="868" cy="618" r="6"/>
+<text class="t-dot" x="878" y="623" text-anchor="start">Australia</text>
+</g>
+<g class="n-dot"><title>Brunéi</title>
+<circle cx="980" cy="618" r="6"/>
+<text class="t-dot" x="990" y="623" text-anchor="start">Brunéi</text>
+</g>
+<g class="n-dot"><title>Malasia</title>
+<circle cx="1092" cy="618" r="6"/>
+<text class="t-dot" x="1102" y="623" text-anchor="start">Malasia</text>
+</g>
+<g class="n-dot"><title>Nueva Zelandia</title>
+<circle cx="868" cy="652" r="6"/>
+<text class="t-dot" x="878" y="657" text-anchor="start">Nueva Zelandia</text>
+</g>
+<g class="n-dot"><title>Singapur</title>
+<circle cx="980" cy="652" r="6"/>
+<text class="t-dot" x="990" y="657" text-anchor="start">Singapur</text>
+</g>
+<g class="n-dot"><title>Vietnam</title>
+<circle cx="1092" cy="652" r="6"/>
+<text class="t-dot" x="1102" y="657" text-anchor="start">Vietnam</text>
+</g>
+<g class="n-mx"><title>México</title><circle cx="600" cy="330" r="54"/><text x="600" y="338" text-anchor="middle">México</text></g>
+<g class="n-box n-box--aladi" data-t="aladi" transform="translate(18,486)"><rect width="222" height="72" rx="10"/><text class="t-box" x="14" y="24">Alcance parcial (ALADI)</text><text class="t-box-s" x="14" y="44">Argentina · Brasil · Bolivia</text><text class="t-box-s" x="14" y="61">Cuba · Ecuador · Paraguay</text></g>
+<g class="n-box n-box--none" data-t="sintratado" transform="translate(18,572)"><rect width="222" height="100" rx="10"/><text class="t-box" x="14" y="24">Sin tratado</text><text class="t-box-s" x="14" y="44">China · Corea del Sur · India</text><text class="t-box-s" x="14" y="61">aranceles de 5 % a 50 %</text><text class="t-box-s" x="14" y="78">desde el 1 de enero de 2026</text></g>
+<g class="n-legend" transform="translate(18,24)"><circle cx="8" cy="0" r="7" class="lg-dot"/><text x="22" y="4">país con TLC</text><circle cx="8" cy="24" r="12" class="lg-ring"/><circle cx="8" cy="24" r="6" class="lg-dot"/><text x="26" y="28" data-t="tipat">también en el TIPAT</text><rect x="-2" y="40" width="20" height="14" rx="7" class="lg-labor"/><text x="26" y="52" data-t="caplab">capítulo laboral</text></g>
+</svg>
+            <figcaption class="s-source">Secretaría de Economía (1 jun 2026) · TIPAT con Reino Unido vigente desde el 22 jun 2026 · aranceles: DOF, 29 dic 2025. <a href="assets/red-acuerdos.svg" target="_blank" rel="noopener">Ábrela en grande</a></figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- 5 · El hallazgo -->
+      <article class="slide" data-sub="1" aria-roledescription="diapositiva">
+        <div class="slide-in">
+          <p class="s-kicker">1 · La red</p>
+          <h2 class="s-title">Los países que comparan nuestros libros ya están en esta red</h2>
+          <div class="nations">
+            <ul class="nation-grid" aria-label="Países que estudian Bamber et al. (2004) y Brunet, Pizzi y Moral (2016)">
+              <li class="tlc on">Estados Unidos <i>B S</i></li>
+              <li class="tlc">Canadá <i>B</i></li>
+              <li class="tlc">Reino Unido <i>B S</i></li>
+              <li class="tlc">Irlanda <i>S</i></li>
+              <li class="tlc">Australia <i>B</i></li>
+              <li class="tlc">Italia <i>B S</i></li>
+              <li class="tlc">Francia <i>B S</i></li>
+              <li class="tlc on">España <i>S</i></li>
+              <li class="tlc">Portugal <i>S</i></li>
+              <li class="tlc">Grecia <i>S</i></li>
+              <li class="tlc on">Alemania <i>B S</i></li>
+              <li class="tlc">Austria <i>S</i></li>
+              <li class="tlc">Países Bajos <i>S</i></li>
+              <li class="tlc">Bélgica <i>S</i></li>
+              <li class="tlc">Suecia <i>B S</i></li>
+              <li class="tlc">Dinamarca <i>S</i></li>
+              <li class="tlc">Finlandia <i>S</i></li>
+              <li class="tlc">Noruega <i>S</i></li>
+              <li class="tlc">Islandia <i>S</i></li>
+              <li class="tlc on">Japón <i>B</i></li>
+              <li class="partial">Brasil <i>S</i></li>
+              <li class="partial">Argentina <i>S</i></li>
+              <li class="none">Corea del Sur <i>B</i></li>
+              <li class="none">China <i>S</i></li>
+            </ul>
+            <div class="nation-key">
+              <p class="big-figure"><b>20</b> de 24 tienen TLC con México</p>
+              <ul class="legend-list">
+                <li><span class="sw sw-tlc"></span>Tratado de libre comercio</li>
+                <li><span class="sw sw-partial"></span>Acuerdo parcial (ALADI)</li>
+                <li><span class="sw sw-none"></span>Sin acuerdo: aranceles desde 2026</li>
+              </ul>
+              <p class="s-source">B = Bamber, Lansbury y Wailes (2004) · S = Brunet, Pizzi y Moral (2016)</p>
+            </div>
+          </div>
+          <aside class="check">
+            <p class="check-q"><span class="check-tag">✋ Comprobación</span>¿Cuál de estos países <u>no</u> tiene acuerdo con México: Noruega, Japón o Corea del Sur?</p>
+            <p class="check-a frag" data-frag><b>Corea del Sur.</b> Noruega entra por la AELC (2001); Japón, por su acuerdo de 2005 y por el TIPAT.</p>
+          </aside>
+        </div>
+      </article>
+
+      <!-- 6 · ¿Qué es un sistema de empleo? -->
+      <article class="slide" data-sub="2" aria-roledescription="diapositiva">
+        <div class="slide-in">
+          <p class="s-kicker">2 · El instrumento</p>
+          <h2 class="s-title">¿Qué es un sistema de empleo?</h2>
+          <div class="two-col">
+            <figure class="dunlop">
+              <svg viewBox="0 0 520 420" role="img" aria-labelledby="dunlopT">
+                <title id="dunlopT">Tres actores (empleadores, trabajadores y Estado) producen una red de reglas, dentro de tres contextos: tecnología, mercados y poder.</title>
+                <g class="d-ctx" data-t="dunlopctx">
+                  <circle cx="260" cy="222" r="190"/>
+                  <text x="260" y="22" text-anchor="middle">tecnología</text>
+                  <text x="34" y="404">mercados</text>
+                  <text x="486" y="404" text-anchor="end">poder</text>
+                </g>
+                <g class="d-tri"><path d="M260 92 110 322h300z"/></g>
+                <g class="d-actor"><rect x="170" y="62" width="180" height="58" rx="12"/><text x="260" y="99" text-anchor="middle">Estado</text></g>
+                <g class="d-actor"><rect x="20" y="292" width="200" height="58" rx="12"/><text x="120" y="328" text-anchor="middle">Empleadores</text></g>
+                <g class="d-actor"><rect x="300" y="292" width="200" height="58" rx="12"/><text x="400" y="328" text-anchor="middle">Trabajadores</text></g>
+                <g class="d-core" data-t="redreglas"><rect x="160" y="188" width="200" height="78" rx="39"/><text x="260" y="222" text-anchor="middle">red de reglas</text><text class="d-small" x="260" y="246" text-anchor="middle">salario · jornada · despido</text></g>
+              </svg>
+              <figcaption class="s-source">Dunlop (1958), en Bamber et al. (2004, pp. 8–9). <em>Employment relations</em> = relaciones industriales + gestión de recursos humanos (p. 1).</figcaption>
+            </figure>
+            <div>
+              <p class="col-head">Para comparar países, cuatro preguntas <span class="s-source">(Bamber et al., 2004, p. 34)</span></p>
+              <ol class="four">
+                <li><b>¿Cómo se negocia?</b><small>Nivel (empresa, rama, nación) y cuántos quedan cubiertos</small></li>
+                <li><b>¿Cómo se organizan los trabajadores?</b><small>Sindicatos, afiliación, comités</small></li>
+                <li><b>¿Cómo se organizan los empleadores?</b><small>Patronales que negocian, o no</small></li>
+                <li><b>¿Qué papel juega el Estado?</b><small>Legisla, extiende, arbitra o se retira</small></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7 · Tres lecturas de la globalización -->
+      <article class="slide" data-sub="2" aria-roledescription="diapositiva">
+        <div class="slide-in">
+          <p class="s-kicker">2 · El instrumento</p>
+          <h2 class="s-title">La misma presión global, tres lecturas</h2>
+          <div class="three">
+            <section class="lens lens-1">
+              <p class="lens-tag">Convergencia</p>
+              <h3>Globalización simple</h3>
+              <p>La competencia es tan intensa que los sistemas nacionales terminan por parecerse.</p>
+              <p class="lens-pred">Predice: menos sindicatos y negociación por empresa en todas partes.</p>
+              <p class="s-source">pp. 29–30</p>
+            </section>
+            <section class="lens lens-2">
+              <p class="lens-tag">Divergencia</p>
+              <h3>Institucionalista</h3>
+              <p>Las instituciones de cada país «refractan» la misma presión de maneras distintas.</p>
+              <p class="lens-pred">Predice: las diferencias nacionales persisten.</p>
+              <p class="s-source">p. 31</p>
+            </section>
+            <section class="lens lens-3">
+              <p class="lens-tag">Las dos cosas</p>
+              <h3>Enfoque integrado</h3>
+              <p>Intereses + instituciones: depende de cómo se inserta cada país en la economía mundial y de quién gana con cada regla.</p>
+              <p class="lens-pred">Predice: parecidos y diferencias a la vez.</p>
+              <p class="s-source">pp. 33–34</p>
+            </section>
+          </div>
+          <aside class="check">
+            <p class="check-q"><span class="check-tag">✋ Comprobación</span>¿Cuáles son los tres actores de un sistema de empleo?</p>
+            <p class="check-a frag" data-frag><b>Empleadores, trabajadores y Estado</b>, cada uno con sus organizaciones.</p>
+          </aside>
+        </div>
+      </article>
+
+      <!-- 8 · Cuatro socios, cuatro sistemas -->
+      <article class="slide" data-sub="3" aria-roledescription="diapositiva">
+        <div class="slide-in">
+          <p class="s-kicker">3 · Cuatro casos</p>
+          <h2 class="s-title">Cuatro socios, cuatro sistemas</h2>
+          <div class="tablebox">
+            <table class="dtable cases">
+              <thead>
+                <tr><th scope="col"><span class="sr-only">Pregunta</span></th><th scope="col">Estados Unidos</th><th scope="col">Japón</th><th scope="col">Alemania</th><th scope="col">España</th><th scope="col" class="mx">México</th></tr>
+              </thead>
+              <tbody>
+                <tr class="row-deal"><th scope="row">Acuerdo con México</th><td>T-MEC (USMCA) <small>2020 · antes TLCAN (NAFTA), 1994</small></td><td>AAE <small>2005</small> + TIPAT <small>2018</small></td><td>TLCUEM <small>2000 · 2026</small></td><td>TLCUEM <small>2000 · 2026</small></td><td class="mx">—</td></tr>
+                <tr class="row-model"><th scope="row">Modelo</th><td>Angloamericano, liberal</td><td>Empleo de por vida</td><td>Continental, coordinado</td><td>Mediterráneo</td><td class="mx">En transición <small>del corporativismo a la democracia sindical</small></td></tr>
+                <tr><th scope="row"><span class="q-n">1</span>Negociación</th><td>Por empresa o centro de trabajo</td><td>Por empresa, sincronizada cada primavera (<i>shuntō</i>)</td><td>Por rama y región</td><td>Por sector, y vale para todo el sector</td><td class="mx">Por empresa; contratos votados desde 2019</td></tr>
+                <tr><th scope="row"><span class="q-n">2</span>Trabajadores</th><td>AFL-CIO; sindicatos en retroceso</td><td>Sindicatos de empresa; Rengo</td><td>Sindicatos de rama (DGB) y comités de empresa</td><td>CC. OO. y UGT</td><td class="mx">CTM y sindicatos independientes</td></tr>
+                <tr><th scope="row"><span class="q-n">3</span>Empleadores</th><td>Sin patronal nacional que negocie</td><td>Keidanren</td><td>BDA y patronales de rama</td><td>CEOE y Cepyme</td><td class="mx">CCE y Coparmex</td></tr>
+                <tr><th scope="row"><span class="q-n">4</span>Estado</th><td>Árbitro mínimo</td><td>Discreto</td><td>Garante de la autonomía de las partes</td><td>Interventor</td><td class="mx">Reformador</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="s-source">Bamber et al. (2004), caps. 3, 8 y 10 · Brunet, Pizzi y Moral (2016), caps. 3, 5 y 6.</p>
+        </div>
+      </article>
+
+      <!-- 9 · Afiliación y cobertura -->
+      <article class="slide" data-sub="3" aria-roledescription="diapositiva">
+        <div class="slide-in">
+          <p class="s-kicker">3 · Cuatro casos</p>
+          <h2 class="s-title">La afiliación se parece. <em>La cobertura, no.</em></h2>
+          <div class="chart-row">
+            <figure class="chart">
+              <ul class="chart-legend">
+                <li><span class="sw sw-afil"></span>Afiliación sindical</li>
+                <li><span class="sw sw-cob"></span>Cobertura de la negociación colectiva</li>
+                <li><span class="sw sw-prev"></span>Cobertura en 1996</li>
+              </ul>
+              <svg class="barras" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" role="img" aria-labelledby="barTitle barDesc">
+<title id="barTitle">Afiliación sindical y cobertura de la negociación colectiva (%)</title>
+<desc id="barDesc">México: 12.4 % de afiliación y 10.4 % de cobertura. Estados Unidos: 10.3 y 12.1. Japón: 16.8 y 16.8. Alemania: 16.3 y 51.8 (84 % en 1996). España: 12.4 y 80.1. La afiliación va de 10 a 17 %; la cobertura, de 10 a 80 %.</desc>
+<line class="b-grid" x1="178.0" y1="40" x2="178.0" y2="404"/>
+<text class="b-tick" x="178.0" y="32" text-anchor="middle">0 %</text>
+<line class="b-grid" x1="366.0" y1="40" x2="366.0" y2="404"/>
+<text class="b-tick" x="366.0" y="32" text-anchor="middle">25 %</text>
+<line class="b-grid" x1="554.0" y1="40" x2="554.0" y2="404"/>
+<text class="b-tick" x="554.0" y="32" text-anchor="middle">50 %</text>
+<line class="b-grid" x1="742.0" y1="40" x2="742.0" y2="404"/>
+<text class="b-tick" x="742.0" y="32" text-anchor="middle">75 %</text>
+<line class="b-grid" x1="930.0" y1="40" x2="930.0" y2="404"/>
+<text class="b-tick" x="930.0" y="32" text-anchor="middle">100 %</text>
+<text class="b-pais" x="162" y="82" text-anchor="end">México</text>
+<g class="b-mark b-afil"><title>México · afiliación sindical: 12.4 % (2020)</title><rect x="178" y="58" width="93.2" height="17" rx="4"/><text class="b-val" x="279.2" y="71.5">12.4 %</text></g>
+<g class="b-mark b-cob"><title>México · cobertura de la negociación colectiva: 10.4 % (2019)</title><rect x="178" y="77" width="78.2" height="17" rx="4"/><text class="b-val b-val--strong" x="264.2" y="90.5">10.4 %</text></g>
+<text class="b-pais" x="162" y="154" text-anchor="end">Estados Unidos</text>
+<g class="b-mark b-afil"><title>Estados Unidos · afiliación sindical: 10.3 % (2020)</title><rect x="178" y="130" width="77.5" height="17" rx="4"/><text class="b-val" x="263.5" y="143.5">10.3 %</text></g>
+<g class="b-mark b-cob"><title>Estados Unidos · cobertura de la negociación colectiva: 12.1 % (2020)</title><rect x="178" y="149" width="91.0" height="17" rx="4"/><text class="b-val b-val--strong" x="277.0" y="162.5">12.1 %</text></g>
+<text class="b-pais" x="162" y="226" text-anchor="end">Japón</text>
+<g class="b-mark b-afil"><title>Japón · afiliación sindical: 16.8 % (2019)</title><rect x="178" y="202" width="126.3" height="17" rx="4"/><text class="b-val" x="312.3" y="215.5">16.8 %</text></g>
+<g class="b-mark b-cob"><title>Japón · cobertura de la negociación colectiva: 16.8 % (2019)</title><rect x="178" y="221" width="126.3" height="17" rx="4"/><text class="b-val b-val--strong" x="312.3" y="234.5">16.8 %</text></g>
+<text class="b-pais" x="162" y="298" text-anchor="end">Alemania</text>
+<g class="b-mark b-afil"><title>Alemania · afiliación sindical: 16.3 % (2019)</title><rect x="178" y="274" width="122.6" height="17" rx="4"/><text class="b-val" x="308.6" y="287.5">16.3 %</text></g>
+<g class="b-mark b-cob"><title>Alemania · cobertura de la negociación colectiva: 51.8 % (2019)</title><rect x="178" y="293" width="389.5" height="17" rx="4"/><text class="b-val b-val--strong" x="575.5" y="306.5">51.8 %</text></g>
+<g class="b-prev"><title>Alemania · cobertura hacia 1996: 84 % (Bamber et al., 2004)</title><line x1="809.7" y1="289" x2="809.7" y2="314"/><text x="809.7" y="328" text-anchor="middle">84 % en 1996</text></g>
+<text class="b-pais" x="162" y="370" text-anchor="end">España</text>
+<g class="b-mark b-afil"><title>España · afiliación sindical: 12.4 % (2019)</title><rect x="178" y="346" width="93.2" height="17" rx="4"/><text class="b-val" x="279.2" y="359.5">12.4 %</text></g>
+<g class="b-mark b-cob"><title>España · cobertura de la negociación colectiva: 80.1 % (2018)</title><rect x="178" y="365" width="602.4" height="17" rx="4"/><text class="b-val b-val--strong" x="788.4" y="378.5">80.1 %</text></g>
+</svg>
+              <figcaption class="s-source">% de los asalariados. ILOSTAT, último año disponible (2018–2020) · 1996: Bamber et al. (2004, tabla A.22). Más recientes: Alemania, 49 % de cobertura (IAB, 2024); EE.UU., 10.0 % de afiliación (BLS, 2025); Japón, 16.0 % (MHLW, 2025).</figcaption>
+            </figure>
+            <aside class="check check--side">
+              <p class="check-q"><span class="check-tag">✋ Comprobación</span>España: 12 % de afiliados y 80 % de cobertura. ¿Cómo es posible?</p>
+              <p class="check-a frag" data-frag><b>Los convenios de sector valen para todo el sector</b>, afiliados o no. La institución, no la afiliación, decide la cobertura.</p>
+            </aside>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10 · Una noticia por sistema -->
+      <article class="slide" data-sub="3" aria-roledescription="diapositiva">
+        <div class="slide-in">
+          <p class="s-kicker">3 · Cuatro casos</p>
+          <h2 class="s-title">Cada sistema, una noticia reciente</h2>
+          <div class="news">
+            <article class="news-card n-us"><h3>Estados Unidos</h3><p><b>Proposición 22</b> (California, 2020): los conductores de aplicaciones siguen siendo contratistas, con un ingreso mínimo solo por tiempo activo.</p><p class="news-fig">5.9 % de afiliación en el sector privado <small>BLS, 2025</small></p></article>
+            <article class="news-card n-jp"><h3>Japón</h3><p><b>Shuntō 2026:</b> se negocia empresa por empresa, pero todas al mismo tiempo cada primavera.</p><p class="news-fig">+5.01 % de salario, tercer año arriba de 5 % <small>Rengo, 2026</small></p></article>
+            <article class="news-card n-de"><h3>Alemania</h3><p>Desde cinco trabajadores se puede elegir <b>comité de empresa</b>; en las empresas de más de 2,000, los trabajadores eligen la mitad del consejo de supervisión.</p><p class="news-fig">49 % trabaja con convenio <small>IAB, 2024</small></p></article>
+            <article class="news-card n-es"><h3>España</h3><p><b>Reforma laboral de 2021:</b> el contrato indefinido es la regla y el convenio de sector vuelve a mandar en salarios. <b>Ley Rider:</b> los repartidores son asalariados.</p><p class="news-fig">92 % de cobertura <small>Ministerio de Trabajo, 2023</small></p></article>
+            <article class="news-card n-mx"><h3>México</h3><p><b>Reforma de 2019:</b> los contratos colectivos se votan. Jornada: de 48 a 40 horas entre 2027 y 2030.</p><p class="news-fig">30,526 contratos legitimados de ~139 mil <small>CFCRL, 2023</small></p></article>
+          </div>
+          <p class="s-key"><b>Las mismas presiones</b> —plataformas, salarios, cadenas de suministro— <b>y cinco respuestas distintas:</b> cada sistema las procesa con sus propias instituciones.</p>
+        </div>
+      </article>
+
+      <!-- 11 · Del comercio al trabajo -->
+      <article class="slide" data-sub="4" aria-roledescription="diapositiva">
+        <div class="slide-in">
+          <p class="s-kicker">4 · Del comercio al trabajo</p>
+          <h2 class="s-title">Los tratados nuevos ya no solo mueven mercancías</h2>
+          <ol class="timeline">
+            <li><b>1994</b><span class="tl-name">TLCAN (NAFTA) + acuerdo laboral paralelo (ACLAN)</span><span>Quejas sin sanción; «insuficiente» para los sindicatos <small>(Katz y Wheeler, en Bamber et al., 2004, p. 80)</small></span></li>
+            <li><b>2018</b><span class="tl-name">TIPAT, cap. 19</span><span>Obligación de respetar los derechos de la Declaración de la OIT de 1998</span></li>
+            <li class="tl-hot"><b>2020</b><span class="tl-name">T-MEC (USMCA), cap. 23 y anexo 23-A</span><span>México reforma su ley laboral (2019). Mecanismo de Respuesta Rápida: más de 40 casos; en GM Silao ganó un sindicato independiente con 78 % (2022)</span></li>
+            <li><b>2023</b><span class="tl-name">Ley alemana de cadenas de suministro</span><span>Las grandes empresas responden por sus proveedores, también en México</span></li>
+            <li><b>2026</b><span class="tl-name">Acuerdo Global Modernizado con la UE</span><span>Comercio y desarrollo sostenible: compromisos de la OIT. Firmado el 22 de mayo</span></li>
+          </ol>
+          <p class="s-key"><b>Convergencia por tratado.</b> Los sindicatos y el Congreso de EE.UU. pidieron reglas laborales con dientes; el T-MEC las volvió instituciones para México. Intereses que se hacen instituciones: el enfoque integrado.</p>
+        </div>
+      </article>
+
+      <!-- 12 · Cierre -->
+      <article class="slide" data-sub="5" aria-roledescription="diapositiva">
+        <div class="slide-in">
+          <p class="s-kicker">Cierre</p>
+          <h2 class="s-title">Cuadro sinóptico</h2>
+          <dl class="synopsis">
+            <div><dt><span>1</span>La red</dt><dd>14 tratados, 52 países. Casi todos los países que comparamos son socios de México; China y Corea del Sur, no.</dd></div>
+            <div><dt><span>2</span>El instrumento</dt><dd>Sistema de empleo = actores + reglas. Cuatro preguntas: negociación, trabajadores, empleadores, Estado.</dd></div>
+            <div><dt><span>3</span>Los casos</dt><dd>La afiliación se parece (10–17 %); la cobertura va de 10 % a 80 %. Las instituciones filtran la globalización.</dd></div>
+            <div><dt><span>4</span>Comercio y trabajo</dt><dd>T-MEC, TIPAT y el acuerdo con la UE traen reglas laborales: el comercio empuja al sistema de empleo.</dd></div>
+          </dl>
+          <aside class="check check--vote">
+            <p class="check-q"><span class="check-tag">✋ Para cerrar</span>Los sistemas de empleo de los socios de México…</p>
+            <ul class="vote">
+              <li><span aria-hidden="true">👍</span>convergen</li>
+              <li><span aria-hidden="true">👎</span>divergen</li>
+              <li><span aria-hidden="true">✋</span>las dos cosas</li>
+            </ul>
+            <p class="check-a frag" data-frag>¿Quién nos dice por qué, con uno de los cuatro casos?</p>
+          </aside>
+        </div>
+      </article>
+
+      <!-- 13 · Tarea -->
+      <article class="slide s-end" aria-roledescription="diapositiva">
+        <div class="slide-in">
+          <div class="end-grid">
+            <div>
+              <p class="s-kicker">Para la próxima clase</p>
+              <h2 class="s-title">Tu tarea está en el QR</h2>
+              <ol class="hw">
+                <li><b>Ficha de un socio comercial.</b> Elige otro país de la red y responde las cuatro preguntas con datos de ILOSTAT.</li>
+                <li><b>Dos videos, dos respuestas.</b> Cada video trae su pregunta.</li>
+                <li><b>¿Convergen o divergen?</b> 150 a 200 palabras con dos casos de hoy.</li>
+              </ol>
+              <p class="col-head">Lecturas</p>
+              <ul class="biblio-mini">
+                <li>Bamber, Lansbury y Wailes (2004). <i>International and comparative employment relations</i>, cap. 1.</li>
+                <li>Brunet, Pizzi y Moral (2016). <i>Sistemas laborales comparados</i>.</li>
+                <li>OCDE (2019). <i>Negotiating our way up</i>.</li>
+              </ul>
+            </div>
+            <figure class="s-qr s-qr--big">
+              <img src="assets/qr-clase-prueba.svg" alt="Código QR de esta página" width="296" height="296">
+              <figcaption>socyb.github.io/global/clase-prueba</figcaption>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="deck-bar">
+      <button class="deck-btn" id="deckPrev" type="button" aria-label="Diapositiva anterior">←</button>
+      <div class="deck-pips" id="deckPips" role="tablist" aria-label="Ir a la diapositiva"></div>
+      <span class="deck-count" id="deckCount" aria-live="polite">1 / 13</span>
+      <button class="deck-btn" id="deckNext" type="button" aria-label="Siguiente">→</button>
+      <button class="deck-btn deck-fs" id="deckFs" type="button" aria-label="Presentar en pantalla completa" data-present>⛶</button>
+      <button class="deck-btn deck-exit" id="deckExit" type="button" aria-label="Salir de la presentación">✕</button>
+    </div>
+    <div class="deck-clock" id="deckClock" aria-hidden="true">00:00</div>
+  </div>
+</section>
+
+<!-- ═══ Tarea ═══ -->
+<section id="tarea" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker k-teal">Para la próxima clase</p>
+      <h2>Tu tarea</h2>
+      <p class="section-lead">Tres ejercicios. Entrégalos en tu siguiente clase, impresos, o por correo a <a href="mailto:semsocan2019@gmail.com?subject=Tarea%20%C2%B7%20Clase%20prueba%20%C2%B7%20Sistemas%20de%20empleo">semsocan2019@gmail.com</a>.</p>
+    </div>
+
+    <ol class="tasks">
+      <li class="task">
+        <p class="task-n">Ejercicio 1 · 40 minutos</p>
+        <h3>Ficha de un socio comercial</h3>
+        <p>Elige un país con el que México tenga acuerdo y que no hayamos visto en clase. Responde las cuatro preguntas de Bamber, Lansbury y Wailes (2004) y compáralo con México. Para las cifras usa <a href="https://ilostat.ilo.org/topics/industrial-relations/" target="_blank" rel="noopener">ILOSTAT · relaciones laborales</a> o el <a href="https://data-explorer.oecd.org/" target="_blank" rel="noopener">explorador de datos de la OCDE</a>; si el país está en <i>Sistemas laborales comparados</i>, empieza por su capítulo.</p>
+      </li>
+      <li class="task">
+        <p class="task-n">Ejercicio 2 · 30 minutos</p>
+        <h3>Dos videos, dos respuestas</h3>
+        <p>Elige dos <a href="#videos">videos</a> de la lista y responde la pregunta de cada uno en cinco a ocho líneas.</p>
+      </li>
+      <li class="task">
+        <p class="task-n">Ejercicio 3 · 150 a 200 palabras</p>
+        <h3>¿Convergen o divergen?</h3>
+        <p>Con dos de los cuatro casos de la clase y uno de los tres enfoques de Bamber et al. (2004), responde: ¿los acuerdos comerciales están haciendo que los sistemas de empleo se parezcan?</p>
+      </li>
+    </ol>
+
+    <!-- Ficha interactiva -->
+    <div class="ficha-wrap" id="ficha">
+      <form class="ficha-form" id="fichaForm" autocomplete="off">
+        <p class="kicker k-blue">Ejercicio 1 · tu ficha</p>
+        <div class="field-row">
+          <label class="field field--wide">País
+            <select name="pais" id="fPais" required>
+              <option value="">Elige un país…</option>
+            </select>
+          </label>
+        </div>
+        <p class="deal" id="fDeal" aria-live="polite"></p>
+        <div class="field-row">
+          <label class="field">Afiliación sindical (%)<input name="afil" type="text" inputmode="decimal" placeholder="p. ej. 23.4"></label>
+          <label class="field">Año<input name="afilY" type="text" inputmode="numeric" placeholder="2022"></label>
+          <label class="field">Cobertura de la negociación (%)<input name="cob" type="text" inputmode="decimal" placeholder="p. ej. 55"></label>
+          <label class="field">Año<input name="cobY" type="text" inputmode="numeric" placeholder="2021"></label>
+        </div>
+        <label class="field">1 · ¿Cómo se negocia? <small>nivel y cobertura</small><textarea name="q1" rows="2"></textarea></label>
+        <label class="field">2 · ¿Cómo se organizan los trabajadores?<textarea name="q2" rows="2"></textarea></label>
+        <label class="field">3 · ¿Cómo se organizan los empleadores?<textarea name="q3" rows="2"></textarea></label>
+        <label class="field">4 · ¿Qué papel juega el Estado?<textarea name="q4" rows="2"></textarea></label>
+        <label class="field">Una diferencia con México<textarea name="dif" rows="2"></textarea></label>
+        <fieldset class="field field--choice">
+          <legend>Frente a México, este sistema…</legend>
+          <div class="choices">
+            <label><input type="radio" name="conv" value="converge"> converge</label>
+            <label><input type="radio" name="conv" value="diverge"> diverge</label>
+            <label><input type="radio" name="conv" value="las dos cosas"> las dos cosas</label>
+          </div>
+        </fieldset>
+        <label class="field">¿Por qué?<textarea name="porque" rows="2"></textarea></label>
+        <label class="field field--wide">Tu nombre<input name="nombre" type="text" placeholder="Nombre y grupo"></label>
+        <div class="ficha-actions">
+          <button class="btn btn-primary" type="button" id="fCopy">Copiar texto</button>
+          <button class="btn" type="button" id="fPrint">Imprimir ficha</button>
+          <a class="btn" id="fMail" href="mailto:semsocan2019@gmail.com">Enviar por correo</a>
+          <button class="btn btn-ghost" type="button" id="fReset">Borrar</button>
+          <span class="saved" id="fSaved" aria-live="polite"></span>
+        </div>
+      </form>
+
+      <article class="ficha-card" id="fichaCard" aria-label="Vista previa de tu ficha">
+        <p class="fc-kicker">Ficha · sistema de empleo</p>
+        <h3 class="fc-title" id="cPais">País</h3>
+        <p class="fc-deal" id="cDeal">Acuerdo con México</p>
+        <div class="fc-figs">
+          <p><b id="cAfil">—</b><span>afiliación</span></p>
+          <p><b id="cCob">—</b><span>cobertura</span></p>
+        </div>
+        <dl class="fc-q">
+          <dt>Negociación</dt><dd id="cQ1">—</dd>
+          <dt>Trabajadores</dt><dd id="cQ2">—</dd>
+          <dt>Empleadores</dt><dd id="cQ3">—</dd>
+          <dt>Estado</dt><dd id="cQ4">—</dd>
+          <dt>Diferencia con México</dt><dd id="cDif">—</dd>
+          <dt>¿Converge o diverge?</dt><dd id="cConv">—</dd>
+        </dl>
+        <p class="fc-foot"><span id="cNombre">Tu nombre</span> · Globalización y Empleo · FCA UNAM</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Videos ═══ -->
+<section id="videos" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker k-plum">Ejercicio 2</p>
+      <h2>Videos</h2>
+      <p class="section-lead">Uno por país, dos sobre los tratados y uno sobre México. Cada uno trae su pregunta.</p>
+    </div>
+    <div class="vgrid">
+            <article class="vcard">
+        <a class="vthumb" href="https://www.youtube.com/watch?v=shbJ7yrHR7o" target="_blank" rel="noopener" aria-label="Ver en YouTube: Elección en GM Silao dará mensaje a sindicatos acostumbrados a antiguo modelo">
+          <img src="https://i.ytimg.com/vi/shbJ7yrHR7o/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="vdur">3:40</span>
+        </a>
+        <div class="vbody">
+          <p class="vtag">México · T-MEC</p>
+          <h3><a href="https://www.youtube.com/watch?v=shbJ7yrHR7o" target="_blank" rel="noopener">Elección en GM Silao dará mensaje a sindicatos acostumbrados a antiguo modelo</a></h3>
+          <p class="vmeta">Milenio · español</p>
+          <p>El primer caso del Mecanismo de Respuesta Rápida: los trabajadores de General Motors en Silao votan su contrato colectivo.</p>
+          <p class="vq"><b>Pregunta.</b> ¿Qué cambió para los trabajadores de GM Silao con el voto libre y secreto, y qué tuvo que ver el T-MEC?</p>
+        </div>
+      </article>
+      <article class="vcard">
+        <a class="vthumb" href="https://www.youtube.com/watch?v=oRDWioNv3Yg" target="_blank" rel="noopener" aria-label="Ver en YouTube: La revisión del T-MEC explicada: por qué el tratado no termina en 2026">
+          <img src="https://i.ytimg.com/vi/oRDWioNv3Yg/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="vdur">1:01</span>
+        </a>
+        <div class="vbody">
+          <p class="vtag">T-MEC</p>
+          <h3><a href="https://www.youtube.com/watch?v=oRDWioNv3Yg" target="_blank" rel="noopener">La revisión del T-MEC explicada: por qué el tratado no termina en 2026</a></h3>
+          <p class="vmeta">Reporte Índigo · español</p>
+          <p>Qué pasó en la revisión de julio de 2026 y por qué ahora el tratado se revisa cada año.</p>
+          <p class="vq"><b>Pregunta.</b> ¿Qué significa para una empresa que contrata en México que el T-MEC se revise cada año?</p>
+        </div>
+      </article>
+      <article class="vcard">
+        <a class="vthumb" href="https://www.youtube.com/watch?v=371CRxnGkA8" target="_blank" rel="noopener" aria-label="Ver en YouTube: USMCA vs NAFTA, explained with a toy car">
+          <img src="https://i.ytimg.com/vi/371CRxnGkA8/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="vdur">6:37</span>
+        </a>
+        <div class="vbody">
+          <p class="vtag">T-MEC</p>
+          <h3><a href="https://www.youtube.com/watch?v=371CRxnGkA8" target="_blank" rel="noopener">USMCA vs NAFTA, explained with a toy car</a></h3>
+          <p class="vmeta">Vox · inglés</p>
+          <p class="vtrad">«T-MEC contra TLCAN, explicado con un auto de juguete»</p>
+          <p>Cómo cambian las reglas de origen del TLCAN al T-MEC, explicado con un auto de juguete.</p>
+          <p class="vq"><b>Pregunta.</b> El T-MEC pide que entre 40 y 45 % de un auto lo fabriquen trabajadores que ganen al menos 16 dólares la hora. ¿Por qué una regla salarial está en un tratado comercial, y a quién protege?</p>
+        </div>
+      </article>
+      <article class="vcard">
+        <a class="vthumb" href="https://www.youtube.com/watch?v=KtxITylE73U" target="_blank" rel="noopener" aria-label="Ver en YouTube: The fall (and rise?) of unions in the US">
+          <img src="https://i.ytimg.com/vi/KtxITylE73U/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="vdur">10:23</span>
+        </a>
+        <div class="vbody">
+          <p class="vtag">Estados Unidos</p>
+          <h3><a href="https://www.youtube.com/watch?v=KtxITylE73U" target="_blank" rel="noopener">The fall (and rise?) of unions in the US</a></h3>
+          <p class="vmeta">Vox · inglés</p>
+          <p class="vtrad">«La caída (¿y el regreso?) de los sindicatos en EE.UU.»</p>
+          <p>De un tercio de los trabajadores sindicalizados en los años cincuenta al 10 % de hoy.</p>
+          <p class="vq"><b>Pregunta.</b> ¿Qué explica la caída de la afiliación en EE.UU. según el video? ¿Cuál de las cuatro preguntas de Bamber ayuda más a entenderla?</p>
+        </div>
+      </article>
+      <article class="vcard">
+        <a class="vthumb" href="https://www.youtube.com/watch?v=ugexiBcpZW8" target="_blank" rel="noopener" aria-label="Ver en YouTube: Japan sees biggest pay hikes in 33 years, survey shows">
+          <img src="https://i.ytimg.com/vi/ugexiBcpZW8/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="vdur">1:16</span>
+        </a>
+        <div class="vbody">
+          <p class="vtag">Japón</p>
+          <h3><a href="https://www.youtube.com/watch?v=ugexiBcpZW8" target="_blank" rel="noopener">Japan sees biggest pay hikes in 33 years, survey shows</a></h3>
+          <p class="vmeta">Reuters · inglés</p>
+          <p class="vtrad">«Japón tiene sus mayores aumentos salariales en 33 años, según una encuesta»</p>
+          <p>El shuntō de 2024, el primero de tres años seguidos con aumentos salariales arriba de 5 %.</p>
+          <p class="vq"><b>Pregunta.</b> ¿Cómo se negocian los salarios en Japón y por qué el shuntō importa más allá de cada empresa?</p>
+        </div>
+      </article>
+      <article class="vcard">
+        <a class="vthumb" href="https://www.youtube.com/watch?v=CTzglAzmXM8" target="_blank" rel="noopener" aria-label="Ver en YouTube: Works Councils in Germany – in a nutshell">
+          <img src="https://i.ytimg.com/vi/CTzglAzmXM8/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="vdur">3:16</span>
+        </a>
+        <div class="vbody">
+          <p class="vtag">Alemania</p>
+          <h3><a href="https://www.youtube.com/watch?v=CTzglAzmXM8" target="_blank" rel="noopener">Works Councils in Germany – in a nutshell</a></h3>
+          <p class="vmeta">Hans-Böckler-Stiftung · inglés</p>
+          <p class="vtrad">«Los comités de empresa en Alemania, en pocas palabras»</p>
+          <p>Qué es un comité de empresa (Betriebsrat), quién lo elige y qué derechos tiene.</p>
+          <p class="vq"><b>Pregunta.</b> ¿Qué decisiones toma un comité de empresa alemán que en México tomaría solo el patrón?</p>
+        </div>
+      </article>
+      <article class="vcard">
+        <a class="vthumb" href="https://www.youtube.com/watch?v=q4hMF1ICFdg" target="_blank" rel="noopener" aria-label="Ver en YouTube: La reforma laboral 2022 España: ¿qué cambios pone?">
+          <img src="https://i.ytimg.com/vi/q4hMF1ICFdg/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="vdur">2:17</span>
+        </a>
+        <div class="vbody">
+          <p class="vtag">España</p>
+          <h3><a href="https://www.youtube.com/watch?v=q4hMF1ICFdg" target="_blank" rel="noopener">La reforma laboral 2022 España: ¿qué cambios pone?</a></h3>
+          <p class="vmeta">Noticias Ilustradas · español</p>
+          <p>Los cambios de la reforma de 2021 en contratos temporales y convenios colectivos.</p>
+          <p class="vq"><b>Pregunta.</b> ¿Qué cambió en los contratos temporales y en el peso de los convenios de sector?</p>
+        </div>
+      </article>
+      <article class="vcard">
+        <a class="vthumb" href="https://www.youtube.com/watch?v=LKSH3CBhqdQ" target="_blank" rel="noopener" aria-label="Ver en YouTube: ¿Qué cambiará entre México y Europa tras la firma del acuerdo global modernizado?">
+          <img src="https://i.ytimg.com/vi/LKSH3CBhqdQ/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="vdur">4:37</span>
+        </a>
+        <div class="vbody">
+          <p class="vtag">Unión Europea</p>
+          <h3><a href="https://www.youtube.com/watch?v=LKSH3CBhqdQ" target="_blank" rel="noopener">¿Qué cambiará entre México y Europa tras la firma del acuerdo global modernizado?</a></h3>
+          <p class="vmeta">El Heraldo de México · español</p>
+          <p>Lo que trae el acuerdo firmado el 22 de mayo de 2026.</p>
+          <p class="vq"><b>Pregunta.</b> ¿Dice algo el acuerdo con la UE sobre el trabajo? Compáralo con el capítulo laboral del T-MEC.</p>
+        </div>
+      </article>
+      <article class="vcard">
+        <a class="vthumb" href="https://www.youtube.com/watch?v=idNoLfrMw1g" target="_blank" rel="noopener" aria-label="Ver en YouTube: Así funciona el fraude de las 40 horas laborales">
+          <img src="https://i.ytimg.com/vi/idNoLfrMw1g/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="vdur">4:10</span>
+        </a>
+        <div class="vbody">
+          <p class="vtag">México</p>
+          <h3><a href="https://www.youtube.com/watch?v=idNoLfrMw1g" target="_blank" rel="noopener">Así funciona el fraude de las 40 horas laborales</a></h3>
+          <p class="vmeta">Mientras tanto en México · español</p>
+          <p>Una crítica a la reforma que baja la jornada de 48 a 40 horas entre 2027 y 2030.</p>
+          <p class="vq"><b>Pregunta.</b> ¿Qué tendría que pasar para que la jornada de 40 horas se cumpla? ¿Qué actor del sistema de empleo debería vigilarlo?</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Lecturas ═══ -->
+<section id="lecturas" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker k-amber">Bibliografía</p>
+      <h2>Lecturas</h2>
+    </div>
+    <div class="biblio-grid">
+      <div>
+        <h3 class="biblio-h">Básica</h3>
+        <ul class="biblio">
+          <li>Bamber, G. J., Lansbury, R. D. y Wailes, N. (Eds.). (2004). <i>International and comparative employment relations: Globalisation and the developed market economies</i> (4.ª ed.). Allen &amp; Unwin. Cap. 1 (pp. 1–35) y apéndice estadístico (tablas A.18 y A.22).</li>
+          <li>Brunet, I., Pizzi, A. y Moral, D. (2016). <i>Sistemas laborales comparados: Las transformaciones de las relaciones de empleo en la era neoliberal</i>. Anthropos. Caps. 3 (mediterráneo), 5 (continental) y 6 (angloamericano).</li>
+        </ul>
+        <h3 class="biblio-h">Complementaria</h3>
+        <ul class="biblio">
+          <li>OCDE. (2019). <i>Negotiating our way up: Collective bargaining in a changing world of work</i>. OECD Publishing. <a href="https://doi.org/10.1787/1fd2da34-en" target="_blank" rel="noopener">doi.org/10.1787/1fd2da34-en</a></li>
+          <li>Organización Internacional del Trabajo. (2022). <i>Social dialogue report 2022: Collective bargaining for an inclusive, sustainable and resilient recovery</i>. OIT. <a href="https://www.ilo.org/publications/flagship-reports/social-dialogue-report-2022-collective-bargaining-inclusive-sustainable-and" target="_blank" rel="noopener">ilo.org</a></li>
+          <li>Hall, P. A. y Soskice, D. (Eds.). (2001). <i>Varieties of capitalism: The institutional foundations of comparative advantage</i>. Oxford University Press.</li>
+          <li>Tratado entre México, Estados Unidos y Canadá. (2020). Capítulo 23 (Laboral) y anexo 31-A. <a href="https://ustr.gov/trade-agreements/free-trade-agreements/united-states-mexico-canada-agreement/agreement-between" target="_blank" rel="noopener">Texto del tratado</a></li>
+          <li>Secretaría de Economía. (2026). <i>Comercio exterior: países con tratados y acuerdos firmados con México</i>. <a href="https://www.gob.mx/se/acciones-y-programas/comercio-exterior-paises-con-tratados-y-acuerdos-firmados-con-mexico" target="_blank" rel="noopener">gob.mx</a></li>
+          <li>Cardiel Herrera, J. (2025). <i>Cadenas, plataformas y algoritmos: Retos regulatorios del trabajo en la economía global</i> [Manuscrito]. Facultad de Contaduría y Administración, UNAM.</li>
+        </ul>
+      </div>
+      <aside class="more">
+        <h3 class="biblio-h">Sigue en el curso</h3>
+        <ul class="more-links">
+          <li><a href="../sesiones/blw.html">Bamber, Lansbury y Wailes: la presentación del libro</a></li>
+          <li><a href="../sesiones/slc.html">Sistemas laborales comparados: los cinco modelos</a></li>
+          <li><a href="../sesiones/7abr26/index.html">Modelo angloamericano (cap. 6)</a></li>
+          <li><a href="../unidad3/modelo-mediterraneo.html">Modelo mediterráneo (cap. 3)</a></li>
+          <li><a href="../sesiones/21abr26/index.html">Brasil, Argentina y China (cap. 7)</a></li>
+          <li><a href="../unidad4/dashboard_ilostat_actividad12.html">Tablero ILOSTAT: empleo e informalidad</a></li>
+          <li><a href="../glosario.html">Glosario del curso</a></li>
+          <li><a href="../mediateca.html">Mediateca</a></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Palabras clave ═══ -->
+<section id="palabras" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Para repasar</p>
+      <h2>Palabras clave</h2>
+      <p class="section-lead">Piensa la definición antes de voltear la tarjeta.</p>
+    </div>
+    <div class="flips">
+            <button class="flip" type="button" aria-pressed="false">
+        <span class="flip-in">
+          <span class="flip-face flip-front"><span class="flip-term">Sistema de empleo</span><span class="flip-hint">voltear</span></span>
+          <span class="flip-face flip-back"><span class="flip-term-s">Sistema de empleo</span><span class="flip-def">Los actores —empleadores, trabajadores y Estado— y las reglas que fijan salario, jornada, contratación y despido en un país. Bamber et al. (2004) incluyen las relaciones industriales y la gestión de recursos humanos.</span></span>
+        </span>
+      </button>
+      <button class="flip" type="button" aria-pressed="false">
+        <span class="flip-in">
+          <span class="flip-face flip-front"><span class="flip-term">Afiliación sindical</span><span class="flip-hint">voltear</span></span>
+          <span class="flip-face flip-back"><span class="flip-term-s">Afiliación sindical</span><span class="flip-def">Porcentaje de asalariados que pertenecen a un sindicato. En los cinco países de la clase va de 10 % (EE.UU.) a 17 % (Japón).</span></span>
+        </span>
+      </button>
+      <button class="flip" type="button" aria-pressed="false">
+        <span class="flip-in">
+          <span class="flip-face flip-front"><span class="flip-term">Cobertura de la negociación colectiva</span><span class="flip-hint">voltear</span></span>
+          <span class="flip-face flip-back"><span class="flip-term-s">Cobertura de la negociación colectiva</span><span class="flip-def">Porcentaje de asalariados cuyas condiciones fija un contrato colectivo, estén afiliados o no. Va de 10 % (México) a 80 % (España).</span></span>
+        </span>
+      </button>
+      <button class="flip" type="button" aria-pressed="false">
+        <span class="flip-in">
+          <span class="flip-face flip-front"><span class="flip-term">Eficacia general (erga omnes)</span><span class="flip-hint">voltear</span></span>
+          <span class="flip-face flip-back"><span class="flip-term-s">Eficacia general (erga omnes)</span><span class="flip-def">Regla por la que un convenio de sector vale para todas las empresas y personas de ese sector. Explica la cobertura de España.</span></span>
+        </span>
+      </button>
+      <button class="flip" type="button" aria-pressed="false">
+        <span class="flip-in">
+          <span class="flip-face flip-front"><span class="flip-term">Codeterminación</span><span class="flip-hint">voltear</span></span>
+          <span class="flip-face flip-back"><span class="flip-term-s">Codeterminación</span><span class="flip-def">Mitbestimmung: los trabajadores alemanes participan en las decisiones de la empresa por el comité de empresa y por sus asientos en el consejo de supervisión.</span></span>
+        </span>
+      </button>
+      <button class="flip" type="button" aria-pressed="false">
+        <span class="flip-in">
+          <span class="flip-face flip-front"><span class="flip-term">Ofensiva de primavera</span><span class="flip-hint">voltear</span></span>
+          <span class="flip-face flip-back"><span class="flip-term-s">Ofensiva de primavera</span><span class="flip-def">Shuntō: cada año los sindicatos de empresa japoneses negocian salarios al mismo tiempo, coordinados por la confederación Rengo.</span></span>
+        </span>
+      </button>
+      <button class="flip" type="button" aria-pressed="false">
+        <span class="flip-in">
+          <span class="flip-face flip-front"><span class="flip-term">Capítulo laboral</span><span class="flip-hint">voltear</span></span>
+          <span class="flip-face flip-back"><span class="flip-term-s">Capítulo laboral</span><span class="flip-def">Parte de un tratado comercial en la que los países se obligan a respetar derechos laborales. Lo tienen el T-MEC (cap. 23) y el TIPAT (cap. 19).</span></span>
+        </span>
+      </button>
+      <button class="flip" type="button" aria-pressed="false">
+        <span class="flip-in">
+          <span class="flip-face flip-front"><span class="flip-term">Mecanismo Laboral de Respuesta Rápida</span><span class="flip-hint">voltear</span></span>
+          <span class="flip-face flip-back"><span class="flip-term-s">Mecanismo Laboral de Respuesta Rápida</span><span class="flip-def">Procedimiento del T-MEC para revisar una fábrica concreta donde se niega la libertad sindical. Puede acabar en sanciones a sus exportaciones. Más de 40 casos desde 2021.</span></span>
+        </span>
+      </button>
+      <button class="flip" type="button" aria-pressed="false">
+        <span class="flip-in">
+          <span class="flip-face flip-front"><span class="flip-term">Legitimación de contratos</span><span class="flip-hint">voltear</span></span>
+          <span class="flip-face flip-back"><span class="flip-term-s">Legitimación de contratos</span><span class="flip-def">Votación libre y secreta en la que los trabajadores aprueban o rechazan su contrato colectivo. México la exigió en 2019: se legitimaron 30,526 contratos.</span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <p><a href="../index.html">← Volver a Globalización y Empleo</a></p>
+    <p><b>Globalización y Empleo</b> · Facultad de Contaduría y Administración · UNAM · Dr. Jorge Cardiel Herrera</p>
+    <p class="cite">Cómo citar: Cardiel Herrera, J. (2026). <i>Socios comerciales, sistemas de empleo distintos</i> [Material didáctico digital]. Globalización y Empleo, FCA, UNAM. https://socyb.github.io/global/clase-prueba/</p>
+  </div>
+</footer>
+
+<!-- QR -->
+<dialog class="qr-modal" id="qrModal" aria-labelledby="qrTitle">
+  <p class="kicker" id="qrTitle">Abre esta clase en tu celular</p>
+  <img src="assets/qr-clase-prueba.svg" alt="Código QR de https://socyb.github.io/global/clase-prueba/" width="296" height="296">
+  <p class="qr-url" id="qrUrl">https://socyb.github.io/global/clase-prueba/</p>
+  <div class="qr-actions">
+    <button class="btn" type="button" id="qrCopyBtn">Copiar liga</button>
+    <form method="dialog"><button class="btn btn-primary">Cerrar</button></form>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/glosario.js"></script>
+<script src="assets/clase-prueba.js"></script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg class="red" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690" role="img" aria-labelledby="redTitle redDesc">
+<title id="redTitle">Red de tratados de libre comercio de México, octubre de 2026</title>
+<desc id="redDesc">México en el centro. Seis acuerdos de varios países (T-MEC, Unión Europea, AELC, TIPAT, Centroamérica y Alianza del Pacífico) y ocho acuerdos bilaterales unen a México con 52 países. Resaltados: Estados Unidos, Japón, Alemania y España. Solo el T-MEC y el TIPAT tienen capítulo laboral vigente; el acuerdo modernizado con la Unión Europea lo incorpora. China, Corea del Sur e India no tienen tratado.</desc>
+
+<style>
+  .red text{font-family:"Space Grotesk",system-ui,sans-serif;fill:#16202c}
+  .red .t-sub,.red .t-edge,.red .t-box-s{font-family:"IBM Plex Mono",ui-monospace,monospace}
+  .red .n-edge{stroke:#9aa5b4;stroke-width:1.6}
+  .red .n-edge--direct{stroke:#33415a;stroke-width:2.2}
+  .red .n-hub rect{fill:#fffcf6;stroke:#16202c;stroke-width:2.5}
+  .red .t-hub{font-size:17px;font-weight:700}
+  .red .t-sub{font-size:12px;fill:#6a7789}
+  .red .n-labor rect{fill:#1a49c9}
+  .red .n-labor text{font-size:11.5px;font-weight:700;fill:#fff;font-family:"IBM Plex Mono",monospace}
+  .red .n-labor.soft rect{fill:#e4ecff;stroke:#1a49c9;stroke-width:1.5}
+  .red .n-labor.soft text{fill:#1a49c9}
+  .red .n-dot circle{fill:#6a7789;stroke:#fffcf6;stroke-width:2}
+  .red .n-dot--on circle{fill:#c1123f;stroke:#16202c;stroke-width:2.5}
+  .red .n-dot circle.n-ring{fill:none;stroke:#0f7a70;stroke-width:2.2;stroke-dasharray:3 2.5}
+  .red .t-dot{font-size:13.5px;fill:#33415a}
+  .red .t-on{font-size:19px;font-weight:700}
+  .red .t-edge{font-size:11.5px;fill:#6a7789}
+  .red .n-mx circle{fill:#16202c}
+  .red .n-mx text{fill:#f6f1e6;font-family:"Fraunces",Georgia,serif;font-size:24px;font-weight:600}
+  .red .n-box rect{fill:#fffcf6;stroke-width:2;stroke-dasharray:6 4}
+  .red .n-box--none rect{stroke:#c1123f}
+  .red .n-box--aladi rect{stroke:#c8860a}
+  .red .t-box{font-size:14px;font-weight:700}
+  .red .t-box-s{font-size:11.5px;fill:#33415a}
+  .red .n-box--none .t-box{fill:#c1123f}
+  .red .n-box--aladi .t-box{fill:#8a5c06}
+  .red .n-legend text{font-size:12.5px;fill:#33415a}
+</style>
+<style>
+  .red .lg-dot{fill:#6a7789}.red .lg-ring{fill:none;stroke:#0f7a70;stroke-width:2.2;stroke-dasharray:3 2.5}
+  .red .lg-labor{fill:#1a49c9}
+</style><rect width="100%" height="100%" fill="#f6f1e6"/>
+<g class="edges">
+<line class="n-edge" x1="255" y1="95" x2="365" y2="185"/>
+<line class="n-edge" x1="390" y1="70" x2="365" y2="185"/>
+<line class="n-edge" x1="925" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="925" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="956" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="987" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="1018" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="1049" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="1080" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="1111" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="1142" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="1173" y1="42" x2="790" y2="175"/>
+<line class="n-edge" x1="956" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="987" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="1018" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="1049" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="1080" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="1111" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="1142" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="1173" y1="76" x2="790" y2="175"/>
+<line class="n-edge" x1="925" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="956" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="987" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="1018" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="1049" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="1080" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="1111" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="1142" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="1173" y1="110" x2="790" y2="175"/>
+<line class="n-edge" x1="1075" y1="252" x2="960" y2="300"/>
+<line class="n-edge" x1="1075" y1="284" x2="960" y2="300"/>
+<line class="n-edge" x1="1075" y1="316" x2="960" y2="300"/>
+<line class="n-edge" x1="1075" y1="348" x2="960" y2="300"/>
+<line class="n-edge" x1="80" y1="206" x2="205" y2="270"/>
+<line class="n-edge" x1="80" y1="238" x2="205" y2="270"/>
+<line class="n-edge" x1="80" y1="270" x2="205" y2="270"/>
+<line class="n-edge" x1="80" y1="302" x2="205" y2="270"/>
+<line class="n-edge" x1="80" y1="334" x2="205" y2="270"/>
+<line class="n-edge" x1="868" y1="618" x2="815" y2="560"/>
+<line class="n-edge" x1="980" y1="618" x2="815" y2="560"/>
+<line class="n-edge" x1="1092" y1="618" x2="815" y2="560"/>
+<line class="n-edge" x1="868" y1="652" x2="815" y2="560"/>
+<line class="n-edge" x1="980" y1="652" x2="815" y2="560"/>
+<line class="n-edge" x1="1092" y1="652" x2="815" y2="560"/>
+<line class="n-edge" x1="485" y1="652" x2="350" y2="612"/>
+<line class="n-edge" x1="565" y1="660" x2="350" y2="612"/>
+<line class="n-edge" x1="635" y1="640" x2="350" y2="612"/>
+<line class="n-edge n-edge--direct" x1="365" y1="185" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="790" y1="175" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="960" y1="300" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="815" y1="560" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="205" y1="270" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="350" y1="612" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="600" y1="62" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="1085" y1="425" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="990" y1="470" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="285" y1="420" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="700" y1="650" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="485" y1="652" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="565" y1="660" x2="600" y2="330"/>
+<line class="n-edge n-edge--direct" x1="635" y1="640" x2="600" y2="330"/>
+</g>
+<text class="t-edge" data-t="acc" text-anchor="middle" transform="translate(609.0,190.6) rotate(-90.0)">ACC 2021</text>
+<text class="t-edge" data-t="tlc" text-anchor="middle" transform="translate(868.5,373.4) rotate(11.1)">TLC 2000</text>
+<text class="t-edge" data-t="aae" text-anchor="middle" transform="translate(798.0,391.5) rotate(19.7)">AAE 2005</text>
+<text class="t-edge" data-t="tlc" text-anchor="middle" transform="translate(424.3,370.8) rotate(-15.9)">TLC 2015</text>
+<text class="t-edge" data-t="tlc" text-anchor="middle" transform="translate(658.6,487.3) rotate(72.6)">TLC 2004</text>
+<text class="t-edge" data-t="tlc" text-anchor="middle" transform="translate(539.8,471.9) rotate(-70.3)">TLC 1995</text>
+<text class="t-edge" data-t="aic" text-anchor="middle" transform="translate(572.9,500.7) rotate(-83.9)">AIC 2012</text>
+<text class="t-edge" data-t="tlc" text-anchor="middle" transform="translate(629.9,515.0) rotate(83.6)">TLC 1999</text>
+<g class="n-hub " data-t="tmec" transform="translate(365,185)"><rect x="-102.4" y="-25.0" width="204.8" height="50" rx="12"/><text class="t-hub" y="-3" text-anchor="middle">T-MEC</text><text class="t-sub" y="15" text-anchor="middle">TLCAN 1994 → T-MEC 2020</text>
+<g class="n-labor hard" data-t="caplab" transform="translate(96.4,-29.0)"><rect x="-53.4" y="-11" width="106.8" height="22" rx="11"/><text y="5" text-anchor="middle">cap. laboral</text></g>
+</g>
+<g class="n-hub " data-t="tlcuem" transform="translate(790,175)"><rect x="-75.8" y="-25.0" width="151.6" height="50" rx="12"/><text class="t-hub" y="-3" text-anchor="middle">TLCUEM</text><text class="t-sub" y="15" text-anchor="middle">2000 · 27 países</text>
+<g class="n-labor soft" data-t="caplab" transform="translate(69.8,-29.0)"><rect x="-71.9" y="-11" width="143.8" height="22" rx="11"/><text y="5" text-anchor="middle">cap. laboral 2026</text></g>
+</g>
+<g class="n-hub " data-t="aelc" transform="translate(960,300)"><rect x="-72.0" y="-25.0" width="144.0" height="50" rx="12"/><text class="t-hub" y="-3" text-anchor="middle">AELC</text><text class="t-sub" y="15" text-anchor="middle">2001 · 4 países</text>
+</g>
+<g class="n-hub " data-t="tipat" transform="translate(815,560)"><rect x="-75.8" y="-25.0" width="151.6" height="50" rx="12"/><text class="t-hub" y="-3" text-anchor="middle">TIPAT</text><text class="t-sub" y="15" text-anchor="middle">2018 · 11 países</text>
+<g class="n-labor hard" data-t="caplab" transform="translate(69.8,-29.0)"><rect x="-53.4" y="-11" width="106.8" height="22" rx="11"/><text y="5" text-anchor="middle">cap. laboral</text></g>
+</g>
+<g class="n-hub " data-t="ca" transform="translate(205,270)"><rect x="-82.6" y="-25.0" width="165.2" height="50" rx="12"/><text class="t-hub" y="-3" text-anchor="middle">Centroamérica</text><text class="t-sub" y="15" text-anchor="middle">2013 · 5 países</text>
+</g>
+<g class="n-hub " data-t="ap" transform="translate(350,612)"><rect x="-119.0" y="-25.0" width="238.0" height="50" rx="12"/><text class="t-hub" y="-3" text-anchor="middle">Alianza del Pacífico</text><text class="t-sub" y="15" text-anchor="middle">2016 · 3 países</text>
+</g>
+<g class="n-dot n-dot--on"><title>Estados Unidos</title>
+<circle cx="255" cy="95" r="11"/>
+<text class="t-on" x="239" y="100" text-anchor="end">Estados Unidos</text>
+</g>
+<g class="n-dot"><title>Canadá</title>
+<circle class="n-ring" cx="390" cy="70" r="12"/>
+<circle cx="390" cy="70" r="7"/>
+<text class="t-dot" x="404" y="75" text-anchor="start">Canadá</text>
+</g>
+<g class="n-dot"><title>Reino Unido</title>
+<circle class="n-ring" cx="600" cy="62" r="12"/>
+<circle cx="600" cy="62" r="7"/>
+<text class="t-dot" x="616" y="67" text-anchor="start">Reino Unido</text>
+</g>
+<g class="n-dot"><title>Israel</title>
+<circle cx="1085" cy="425" r="7"/>
+<text class="t-dot" x="1097" y="430" text-anchor="start">Israel</text>
+</g>
+<g class="n-dot n-dot--on"><title>Japón</title>
+<circle class="n-ring" cx="990" cy="470" r="16"/>
+<circle cx="990" cy="470" r="11"/>
+<text class="t-on" x="1008" y="475" text-anchor="start">Japón</text>
+</g>
+<g class="n-dot"><title>Panamá</title>
+<circle cx="285" cy="420" r="7"/>
+<text class="t-dot" x="272" y="425" text-anchor="end">Panamá</text>
+</g>
+<g class="n-dot"><title>Uruguay</title>
+<circle cx="700" cy="650" r="7"/>
+<text class="t-dot" x="713" y="655" text-anchor="start">Uruguay</text>
+</g>
+<g class="n-dot"><title>Colombia</title>
+<circle cx="485" cy="652" r="7"/>
+<text class="t-dot" x="485" y="678" text-anchor="middle">Colombia</text>
+</g>
+<g class="n-dot"><title>Perú</title>
+<circle class="n-ring" cx="565" cy="660" r="12"/>
+<circle cx="565" cy="660" r="7"/>
+<text class="t-dot" x="565" y="644" text-anchor="middle">Perú</text>
+</g>
+<g class="n-dot"><title>Chile</title>
+<circle class="n-ring" cx="635" cy="640" r="12"/>
+<circle cx="635" cy="640" r="7"/>
+<text class="t-dot" x="651" y="645" text-anchor="start">Chile</text>
+</g>
+<g class="n-dot n-dot--on"><title>Alemania</title>
+<circle cx="925" cy="42" r="11"/>
+<text class="t-on" x="908" y="47" text-anchor="end">Alemania</text>
+</g>
+<g class="n-dot n-dot--on"><title>España</title>
+<circle cx="925" cy="76" r="11"/>
+<text class="t-on" x="908" y="81" text-anchor="end">España</text>
+</g>
+<g class="n-dot"><title>Austria</title>
+<circle cx="956" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Bélgica</title>
+<circle cx="987" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Bulgaria</title>
+<circle cx="1018" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Chipre</title>
+<circle cx="1049" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Croacia</title>
+<circle cx="1080" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Dinamarca</title>
+<circle cx="1111" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Eslovaquia</title>
+<circle cx="1142" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Eslovenia</title>
+<circle cx="1173" cy="42" r="6"/>
+</g>
+<g class="n-dot"><title>Estonia</title>
+<circle cx="956" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Finlandia</title>
+<circle cx="987" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Francia</title>
+<circle cx="1018" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Grecia</title>
+<circle cx="1049" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Hungría</title>
+<circle cx="1080" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Irlanda</title>
+<circle cx="1111" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Italia</title>
+<circle cx="1142" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Letonia</title>
+<circle cx="1173" cy="76" r="6"/>
+</g>
+<g class="n-dot"><title>Lituania</title>
+<circle cx="925" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Luxemburgo</title>
+<circle cx="956" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Malta</title>
+<circle cx="987" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Países Bajos</title>
+<circle cx="1018" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Polonia</title>
+<circle cx="1049" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Portugal</title>
+<circle cx="1080" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>República Checa</title>
+<circle cx="1111" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Rumania</title>
+<circle cx="1142" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Suecia</title>
+<circle cx="1173" cy="110" r="6"/>
+</g>
+<g class="n-dot"><title>Islandia</title>
+<circle cx="1075" cy="252" r="6"/>
+<text class="t-dot" x="1087" y="257" text-anchor="start">Islandia</text>
+</g>
+<g class="n-dot"><title>Liechtenstein</title>
+<circle cx="1075" cy="284" r="6"/>
+<text class="t-dot" x="1087" y="289" text-anchor="start">Liechtenstein</text>
+</g>
+<g class="n-dot"><title>Noruega</title>
+<circle cx="1075" cy="316" r="6"/>
+<text class="t-dot" x="1087" y="321" text-anchor="start">Noruega</text>
+</g>
+<g class="n-dot"><title>Suiza</title>
+<circle cx="1075" cy="348" r="6"/>
+<text class="t-dot" x="1087" y="353" text-anchor="start">Suiza</text>
+</g>
+<g class="n-dot"><title>Costa Rica</title>
+<circle cx="80" cy="206" r="6"/>
+</g>
+<g class="n-dot"><title>El Salvador</title>
+<circle cx="80" cy="238" r="6"/>
+</g>
+<g class="n-dot"><title>Guatemala</title>
+<circle cx="80" cy="270" r="6"/>
+</g>
+<g class="n-dot"><title>Honduras</title>
+<circle cx="80" cy="302" r="6"/>
+</g>
+<g class="n-dot"><title>Nicaragua</title>
+<circle cx="80" cy="334" r="6"/>
+</g>
+<g class="n-dot"><title>Australia</title>
+<circle cx="868" cy="618" r="6"/>
+<text class="t-dot" x="878" y="623" text-anchor="start">Australia</text>
+</g>
+<g class="n-dot"><title>Brunéi</title>
+<circle cx="980" cy="618" r="6"/>
+<text class="t-dot" x="990" y="623" text-anchor="start">Brunéi</text>
+</g>
+<g class="n-dot"><title>Malasia</title>
+<circle cx="1092" cy="618" r="6"/>
+<text class="t-dot" x="1102" y="623" text-anchor="start">Malasia</text>
+</g>
+<g class="n-dot"><title>Nueva Zelandia</title>
+<circle cx="868" cy="652" r="6"/>
+<text class="t-dot" x="878" y="657" text-anchor="start">Nueva Zelandia</text>
+</g>
+<g class="n-dot"><title>Singapur</title>
+<circle cx="980" cy="652" r="6"/>
+<text class="t-dot" x="990" y="657" text-anchor="start">Singapur</text>
+</g>
+<g class="n-dot"><title>Vietnam</title>
+<circle cx="1092" cy="652" r="6"/>
+<text class="t-dot" x="1102" y="657" text-anchor="start">Vietnam</text>
+</g>
+<g class="n-mx"><title>México</title><circle cx="600" cy="330" r="54"/><text x="600" y="338" text-anchor="middle">México</text></g>
+<g class="n-box n-box--aladi" data-t="aladi" transform="translate(18,486)"><rect width="222" height="72" rx="10"/><text class="t-box" x="14" y="24">Alcance parcial (ALADI)</text><text class="t-box-s" x="14" y="44">Argentina · Brasil · Bolivia</text><text class="t-box-s" x="14" y="61">Cuba · Ecuador · Paraguay</text></g>
+<g class="n-box n-box--none" data-t="sintratado" transform="translate(18,572)"><rect width="222" height="100" rx="10"/><text class="t-box" x="14" y="24">Sin tratado</text><text class="t-box-s" x="14" y="44">China · Corea del Sur · India</text><text class="t-box-s" x="14" y="61">aranceles de 5 % a 50 %</text><text class="t-box-s" x="14" y="78">desde el 1 de enero de 2026</text></g>
+<g class="n-legend" transform="translate(18,24)"><circle cx="8" cy="0" r="7" class="lg-dot"/><text x="22" y="4">país con TLC</text><circle cx="8" cy="24" r="12" class="lg-ring"/><circle cx="8" cy="24" r="6" class="lg-dot"/><text x="26" y="28" data-t="tipat">también en el TIPAT</text><rect x="-2" y="40" width="20" height="14" rx="7" class="lg-labor"/><text x="26" y="52" data-t="caplab">capítulo laboral</text></g>
+</svg>

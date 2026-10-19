@@ -42,6 +42,7 @@
 <nav class="site-nav" aria-label="Navegación principal">
     <div class="container">
         <ul class="nav-links">
+            <li data-cp-gate hidden><a href="#clase-prueba"><img src="img/icon-target.svg" alt="" class="icon-8bit-sm"> Clase prueba</a></li>
             <li><a href="#anuncios"><img src="img/icon-megaphone.svg" alt="" class="icon-8bit-sm"> Anuncios</a></li>
             <li><a href="#sesiones"><img src="img/icon-pencil.svg" alt="" class="icon-8bit-sm"> Sesiones</a></li>
             <li><a href="#unidades"><img src="img/icon-book.svg" alt="" class="icon-8bit-sm"> Unidades</a></li>
@@ -53,6 +54,25 @@
 
 <div class="home-layout">
 <main id="main-content" class="home-main">
+
+    <!-- CLASE PRUEBA DIDÁCTICA: oculta hasta el 26 oct 2026, 7:00 (CDMX); ver script al final -->
+    <section id="clase-prueba" class="cp-block" aria-labelledby="cpTitle" data-cp-gate hidden>
+        <p class="cp-kicker"><img src="img/icon-target.svg" alt="" class="icon-8bit-sm"> Clase prueba didáctica</p>
+        <h2 id="cpTitle">Análisis de sistemas de empleo en países con los que México tiene acuerdos comerciales</h2>
+        <ul class="cp-facts">
+            <li><span>Fecha</span>Lunes 26 de octubre de 2026</li>
+            <li><span>Hora</span>9:00 h</li>
+            <li><span>Salón</span>A-205</li>
+            <li><span>Duración</span>15 min de exposición + 5 min de preguntas</li>
+        </ul>
+        <p class="cp-lead">Estados Unidos, Japón, Alemania y España frente a México: cuatro socios comerciales, cuatro sistemas de empleo.</p>
+        <div class="cp-actions">
+            <a class="cp-btn cp-btn-primary" data-href="clase-prueba-v2/">Abrir la clase →</a>
+            <a class="cp-btn" data-href="clase-prueba-v2/#ahora">Noticias</a>
+            <a class="cp-btn" data-href="clase-prueba-v2/#tarea">Tarea</a>
+            <a class="cp-btn" data-href="clase-prueba-v2/#videos">Videos</a>
+        </div>
+    </section>
 
     <!-- CRONOGRAMA (acceso discreto) -->
     <a href="unidad4/cronograma_exposiciones.html" class="cronograma-link">
@@ -550,6 +570,16 @@
     document.body.classList.toggle('board-archived', shouldArchive);
     liveBoard.hidden = shouldArchive;
     logbook.hidden = !shouldArchive;
+})();
+
+/* Reveal the trial-class block and its links from 26 Oct 2026, 7:00 Mexico City time */
+(function () {
+    const revealAt = new Date('2026-10-26T07:00:00-06:00');
+    if (Date.now() < revealAt.getTime()) return;
+    document.querySelectorAll('[data-cp-gate]').forEach(el => { el.hidden = false; });
+    document.querySelectorAll('#clase-prueba [data-href]').forEach(a => {
+        a.setAttribute('href', a.dataset.href);
+    });
 })();
 </script>
 
