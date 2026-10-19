@@ -694,35 +694,57 @@
       words.push(b);
     }));
     // mezcla estable, para que las palabras de un tema no salgan juntas
-    const order = words.map((b, i) => [((i * 37) % words.length), b]).sort((a, b) => a[0] - b[0]).map((x) => x[1]);
+    const N = words.length;
+    const gcd = (a, b) => (b ? gcd(b, a % b) : a);
+    const mult = [17, 19, 23, 29, 31, 13, 11].find((m) => gcd(m, N) === 1 && m % N > 1 && m % N < N - 1) || 1;
+    const order = words.map((b, i) => [((i * mult + 7) % N), b]).sort((a, b) => a[0] - b[0]).map((x) => x[1]);
 
     function layoutCloud() {
       cloud.dataset.state = "cloud";
       stage.innerHTML = "";
-      order.forEach((b) => { b.style.fontSize = `${b.dataset.size}rem`; b.style.transform = ""; stage.appendChild(b); });
       const W = stage.clientWidth;
-      const placed = [];
-      const cx = W / 2;
-      let maxY = 0;
-      order.forEach((b, i) => {
-        const w = b.offsetWidth, h = b.offsetHeight;
-        let ang = i * 0.9, r = 0, x, y, ok = false;
-        for (let k = 0; k < 2200 && !ok; k++) {
-          x = cx + r * Math.cos(ang) * 1.9 - w / 2;
-          y = 190 + r * Math.sin(ang) - h / 2;
-          ok = x >= 0 && x + w <= W && y >= 0 &&
-            placed.every((p) => x + w + 6 < p.x || p.x + p.w + 6 < x || y + h + 2 < p.y || p.y + p.h + 2 < y);
-          ang += 0.35; r += 0.9;
-        }
-        placed.push({ x, y, w, h });
-        b.style.left = `${x}px`;
-        b.style.top = `${y}px`;
-        maxY = Math.max(maxY, y + h);
+      // en pantallas angostas (celular en vertical) la nube va en renglones centrados;
+      // en las anchas, en espiral
+      const narrow = W < 560;
+      stage.classList.toggle("is-flow", narrow);
+      const k = narrow ? 0.62 : Math.min(1, 0.45 + W / 1800);
+      order.forEach((b) => {
+        b.style.left = b.style.top = b.style.maxWidth = b.style.whiteSpace = "";
+        b.style.transform = "";
+        b.style.fontSize = `${Math.max(narrow ? 0.95 : 1, b.dataset.size * k).toFixed(2)}rem`;
+        stage.appendChild(b);
       });
-      // centra verticalmente la nube
-      const minY = Math.min(...placed.map((p) => p.y));
-      order.forEach((b, i) => { b.style.top = `${placed[i].y - minY + 8}px`; });
-      stage.style.height = `${maxY - minY + 24}px`;
+      if (!narrow) {
+        const placed = [];
+        const cx = W / 2;
+        const stretch = Math.min(1.9, Math.max(1.1, W / 480));
+        let maxY = 0;
+        order.forEach((b, i) => {
+          // una palabra más ancha que el escenario se parte en dos renglones
+          if (b.offsetWidth > W - 12) { b.style.whiteSpace = "normal"; b.style.maxWidth = `${W - 12}px`; }
+          const w = b.offsetWidth, h = b.offsetHeight;
+          let ang = i * 0.9, r = 0, x, y, ok = false;
+          for (let n = 0; n < 2600 && !ok; n++) {
+            x = cx + r * Math.cos(ang) * stretch - w / 2;
+            y = r * Math.sin(ang) - h / 2;
+            ok = x >= 0 && x + w <= W &&
+              placed.every((q) => x + w + 6 < q.x || q.x + q.w + 6 < x || y + h + 2 < q.y || q.y + q.h + 2 < y);
+            ang += 0.35; r += 0.8;
+          }
+          if (!ok) { x = Math.max(0, (W - w) / 2); y = maxY + 6; }   // respaldo: al final, centrada
+          placed.push({ x, y, w, h });
+          maxY = Math.max(maxY, y + h);
+        });
+        // la nube empieza arriba del escenario, sin huecos
+        const minY = Math.min(...placed.map((q) => q.y));
+        order.forEach((b, i) => {
+          b.style.left = `${placed[i].x}px`;
+          b.style.top = `${placed[i].y - minY + 8}px`;
+        });
+        stage.style.height = `${maxY - minY + 24}px`;
+      } else {
+        stage.style.height = "auto";
+      }
       btnGroup.hidden = false;
       btnReset.hidden = true;
     }
@@ -759,9 +781,10 @@
           grid.appendChild(box);
         });
         stage.innerHTML = "";
+        stage.classList.remove("is-flow");
         stage.appendChild(grid);
         words.forEach((b) => {
-          b.style.left = b.style.top = "";
+          b.style.left = b.style.top = b.style.maxWidth = b.style.whiteSpace = "";
           $(".ct-words", grid.children[b.dataset.topic]).appendChild(b);
         });
         stage.style.height = "auto";

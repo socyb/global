@@ -875,3 +875,6 @@ html.is-pdf .scroll-hint{display:none}
 .barras .b-est rect{stroke:var(--c-cob);stroke-width:1.6;stroke-dasharray:4 2.5}
 .barras .b-est text{fill:var(--ink-soft);font-family:var(--mono);font-size:13px}
 .sw-est{border-color:var(--c-cob);background:repeating-linear-gradient(45deg,var(--c-cob) 0 2px,var(--card) 2px 5px)}
+/* nube en celular: renglones centrados en lugar de espiral */
+.cloud[data-state="cloud"] .cloud-stage.is-flow{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.25rem .6rem;min-height:0;padding:.3rem 0 .6rem}
+.cloud[data-state="cloud"] .cloud-stage.is-flow .cw{position:static;white-space:normal;text-align:center;max-width:100%}
