@@ -665,6 +665,36 @@ html.is-pdf .frag{opacity:1;transform:none}
 .oit-note p{font-size:.66em;line-height:1.36}
 .oit-note b{color:var(--cobalt)}
 
+/* ── 6b · el sistema abierto, pieza por pieza ───────────────────────────── */
+.sys-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:1.2em;align-items:center;flex:1;min-height:0}
+.sys-fig{margin:0;min-height:0}
+.sys-fig svg{display:block;width:100%;max-height:17em}
+.sx-env{fill:none;stroke:var(--line);stroke-width:2;stroke-dasharray:6 6}
+.sx-ctx{fill:var(--muted);font-family:var(--mono);font-size:14px}
+.sx-sys{fill:var(--card);stroke:var(--edge);stroke-width:2.5}
+.sx-tag{fill:var(--muted);font-family:var(--mono);font-size:12px;letter-spacing:.06em}
+.sx-tri{fill:var(--tint-blue);stroke:var(--cobalt);stroke-width:2.5}
+.sx-rel{fill:var(--cobalt);font-family:var(--sans);font-size:13px;font-weight:600}
+.sx-actor rect{fill:var(--card);stroke:var(--edge);stroke-width:2.5}
+.sx-actor text{fill:var(--ink);font-family:var(--sans);font-size:16px;font-weight:700}
+.sx-flow{fill:none;stroke:var(--ink-soft);stroke-width:2.5}
+.sx-flow--r{stroke:var(--guinda);stroke-dasharray:7 5}
+.sx-head{fill:var(--ink-soft)}
+.sx-head--r{fill:var(--guinda)}
+.sx-lab{fill:var(--ink-soft);font-family:var(--mono);font-size:13px}
+.sx-lab--r{fill:var(--guinda);font-weight:600}
+.sx-out rect{fill:var(--guinda)}
+.sx-out text{fill:var(--on-guinda);font-family:var(--sans);font-size:17px;font-weight:700}
+.sx-out .sx-out-s{font-size:12px;font-weight:500}
+.sx-n circle{fill:var(--guinda);stroke:var(--card);stroke-width:2}
+.sx-n text{fill:var(--on-guinda);font-family:var(--mono);font-size:13px;font-weight:600}
+.sys-parts{list-style:none;margin:0;padding:0;display:grid;gap:.32em;counter-reset:sp}
+.sys-parts li{counter-increment:sp;display:grid;grid-template-columns:1.1em 1fr;column-gap:.55em;align-items:start;border:2px solid var(--edge);border-radius:.55em;padding:.32em .6em;background:var(--card)}
+.sys-parts li::before{content:counter(sp);grid-row:span 2;display:grid;place-items:center;width:1.6em;height:1.6em;margin-top:.15em;border-radius:50%;background:var(--guinda);color:var(--on-guinda);font-family:var(--mono);font-size:.68em;font-weight:600}
+.sys-parts p{font-size:.72em;line-height:1.32;color:var(--ink-soft)}
+.sys-parts p b{color:var(--ink)}
+.sys-parts cite{font-style:normal;font-family:var(--mono);font-size:.52em;color:var(--muted)}
+
 /* ── 7 · la cita de la p. 34 ────────────────────────────────────────────── */
 .quote-row{display:grid;grid-template-columns:4.4em 1fr;gap:1.1em;align-items:start}
 .quote-cover{width:4.4em;height:auto;border:2px solid var(--edge);border-radius:.3em;box-shadow:.15em .15em 0 var(--edge)}
@@ -790,7 +820,7 @@ html.is-pdf .scroll-hint{display:none}
   body:not(.is-presenting) .plan-grid,body:not(.is-presenting) .route--list,
   body:not(.is-presenting) .dunlop-pair,body:not(.is-presenting) .quote-row,
   body:not(.is-presenting) .four--row,body:not(.is-presenting) .deals,
-  body:not(.is-presenting) .bib-grid{grid-template-columns:1fr}
+  body:not(.is-presenting) .bib-grid,body:not(.is-presenting) .sys-grid{grid-template-columns:1fr}
   body:not(.is-presenting) .quote-cover{width:3.4em}
   body:not(.is-presenting) .tablebox--scroll{max-height:26rem}
   body:not(.is-presenting) .s-lenses .lens p,body:not(.is-presenting) .pattern p,

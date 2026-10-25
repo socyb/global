@@ -147,7 +147,12 @@ window.GLOSARIO_CP = {
 
   /* ── Conceptos de la clase ── */
   sisemp: ["Sistema de empleo",
-    "Los actores —empleadores, trabajadores y Estado— y las reglas que crean dinámicas y patrones en cada país: salario, jornada, contratación y despido. Se compara con cuatro preguntas: negociación, trabajadores, empleadores y Estado (Bamber et al., 2004, p. 34).", ""],
+    "Las relaciones —de negociación, de ley y de conflicto— entre trabajadores, empleadores y Estado, con sus organizaciones, que producen las reglas y prácticas del trabajo en un país: salario, jornada, contratación y despido. Es un sistema abierto: recibe presiones de su entorno (mercados, tecnología, poder, economía mundial) y las procesa con sus propias instituciones. Lo que repite forma sus patrones; lo que cambia, sus dinámicas. Se compara con cuatro preguntas (Bamber et al., 2004, p. 34).", ""],
+  sisabierto: ["Sistema abierto",
+    "Para la teoría general de sistemas (Bertalanffy), un conjunto de elementos en relación que intercambia con su entorno y se mantiene cambiando. Para Luhmann, un sistema existe por su diferencia con el entorno: no copia lo que llega de fuera, lo procesa con sus propias estructuras.", ""],
+  retro: ["Retroalimentación",
+    "Lo que un sistema produce vuelve sobre él. En un sistema de empleo, las reglas reorganizan a los actores que las hicieron: así se repiten los patrones o cambian las dinámicas.",
+    "En inglés: feedback."],
   emprel: ["Relaciones de empleo",
     "Término de Bamber et al. (2004): abarca las relaciones industriales (sindicatos, negociación, Estado) y la gestión de recursos humanos dentro de la empresa.",
     "En inglés: employment relations."],
@@ -331,6 +336,8 @@ window.TERMINOS_CP = [
   ["[Ss]indicatos? independientes?", "sindindep"],
   ["[Ee]mployment relations", "emprel"],
   ["[Ss]istemas? de empleo", "sisemp"],
+  ["[Ss]istemas? abiertos?", "sisabierto"],
+  ["[Rr]etroalimentación", "retro"],
   ["[Aa]filiación sindical", "afil"],
   ["[Dd]ensidad sindical", "afil"],
   ["[Dd]ensidad", "afil"],
